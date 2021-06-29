@@ -1,0 +1,34 @@
+.titulo_pagina{
+    
+}
+#botao_destaque{
+    -fx-background-color: #7222B6;
+    -fx-effect: dropshadow(three-pass-box, #282828, 15, 0, 0, 0);
+}
+
+#botao_comum{
+    -fx-background-color: #8876F9;
+    -fx-effect: dropshadow(three-pass-box, #282828, 5, 0, 0, 0);
+}
+
+#campo_texto{
+    -fx-background-color: #E8D2F9;
+    -fx-effect: dropshadow(three-pass-box, #282828, 5, 0, 0, 0);
+}
+
+.fundo_login{
+        -fx-background-image: url('file:/home/acer/NetBeansProjects/ped12/imagens/fundo_principal.jpg');
+        -fx-background-repeat: stretch;
+        -fx-background-size: 900 506;
+        -fx-background-position: center center;
+        /*-fx-effect: dropshadow(three-pass-box, #010911, 3, 3, 3, 3);*/
+}
+
+.imagens_cadastro{
+    -fx-background-image: url('https://drive.google.com/file/d/1So_tdyh_LAfviAXa5uNsJxbwe5AAGIpX/preview');
+    -fx-effect: dropshadow(three-pass-box, #282828, 5, 0, 0, 0);
+}
+
+.fundo_news{
+    -fx-background-image: url('https://drive.google.com/file/d/1So_tdyh_LAfviAXa5uNsJxbwe5AAGIpX/preview');
+}
