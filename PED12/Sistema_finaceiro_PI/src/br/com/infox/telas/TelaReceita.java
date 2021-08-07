@@ -22,8 +22,7 @@ public class TelaReceita extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
-    
+
     public TelaReceita() {
         initComponents();
         conexao = moduloConexao.conector();
@@ -40,7 +39,7 @@ public class TelaReceita extends javax.swing.JFrame {
 
              TelaPrincipal.setVisible(true);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
 
          } else {
 
@@ -48,7 +47,7 @@ public class TelaReceita extends javax.swing.JFrame {
 
              TelaPrincipal.setState(TelaPrincipal.NORMAL);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
          }
          
          this.dispose();
@@ -64,7 +63,7 @@ public class TelaReceita extends javax.swing.JFrame {
 
             TelaCartao_credito.setVisible(true);
 
-            TelaCartao_credito.receberID(id.getText());
+            TelaCartao_credito.receberID(txt_id.getText());
 
         } else {
 
@@ -72,24 +71,25 @@ public class TelaReceita extends javax.swing.JFrame {
 
             TelaCartao_credito.setState(TelaPrincipal.NORMAL);
 
-            TelaCartao_credito.receberID(id.getText());
+            TelaCartao_credito.receberID(txt_id.getText());
 
         }
 
         this.dispose();
+        
     }
     
     void cartao_debito() {
 
-        tela_Cartao_Debito TelaCartao_debito = null;
+        TelaCartao_debito TelaCartao_debito = null;
 
         if (TelaCartao_debito == null) {
 
-            TelaCartao_debito = new tela_Cartao_Debito();
+            TelaCartao_debito = new TelaCartao_debito();
 
             TelaCartao_debito.setVisible(true);
 
-            TelaCartao_debito.receberID(id.getText());
+            TelaCartao_debito.receberID(txt_id.getText());
 
         } else {
 
@@ -97,7 +97,7 @@ public class TelaReceita extends javax.swing.JFrame {
 
             TelaCartao_debito.setState(TelaPrincipal.NORMAL);
 
-            TelaCartao_debito.receberID(id.getText());
+            TelaCartao_debito.receberID(txt_id.getText());
 
         }
 
@@ -114,7 +114,7 @@ public class TelaReceita extends javax.swing.JFrame {
 
             TelaDespesa.setVisible(true);
 
-            TelaDespesa.receberID(id.getText());
+            TelaDespesa.receberID(txt_id.getText());
 
         } else {
 
@@ -122,7 +122,7 @@ public class TelaReceita extends javax.swing.JFrame {
 
             TelaDespesa.setState(TelaPrincipal.NORMAL);
 
-            TelaDespesa.receberID(id.getText());
+            TelaDespesa.receberID(txt_id.getText());
 
         }
 
@@ -141,7 +141,7 @@ public class TelaReceita extends javax.swing.JFrame {
 
         btn_inicio = new javax.swing.JButton();
         btn_despesas = new javax.swing.JButton();
-        id = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
         btnCartao_cred = new javax.swing.JButton();
         btnCartao_Deb = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -169,10 +169,10 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
 
-        id.setEditable(false);
-        id.addActionListener(new java.awt.event.ActionListener() {
+        txt_id.setEditable(false);
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                txt_idActionPerformed(evt);
             }
         });
 
@@ -233,7 +233,7 @@ public class TelaReceita extends javax.swing.JFrame {
                                     .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(67, 67, 67))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -256,7 +256,7 @@ public class TelaReceita extends javax.swing.JFrame {
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -280,9 +280,9 @@ public class TelaReceita extends javax.swing.JFrame {
         inicio();
     }//GEN-LAST:event_btn_inicioActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_txt_idActionPerformed
 
     private void btnCartao_credActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartao_credActionPerformed
         // TODO add your handling code here:
@@ -340,7 +340,6 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btn_despesas;
     private javax.swing.JButton btn_inicio;
-    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -349,12 +348,13 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
 
     public void receberID(String recebe){
 
-        id.setText(recebe);
+        txt_id.setText(recebe);
     }
 
 

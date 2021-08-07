@@ -11,16 +11,16 @@ import javax.swing.JOptionPane;
  *
  * @author pc
  */
-public class telaCliente extends javax.swing.JFrame {
+public class TelaUsuario_cadastrar extends javax.swing.JFrame {
 
     /**
-     * Creates new form telaCliente
+     * Creates new form TelaUsuario_cadastrar
      */
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public telaCliente() {
+    public TelaUsuario_cadastrar() {
         initComponents();
         conexao = moduloConexao.conector();
         
@@ -184,20 +184,21 @@ public class telaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaCliente().setVisible(true);
+                new TelaUsuario_cadastrar().setVisible(true);
             }
         });
     }

@@ -38,7 +38,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
              TelaPrincipal.setVisible(true);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
 
          } else {
 
@@ -46,7 +46,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
              TelaPrincipal.setState(TelaPrincipal.NORMAL);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
          }
          
          this.dispose();
@@ -69,7 +69,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
                TelaReceita.setVisible(true);
                
-               TelaReceita.receberID(id.getText());
+               TelaReceita.receberID(txt_id.getText());
 
            } else {
 
@@ -77,7 +77,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
                TelaReceita.setState(TelaPrincipal.NORMAL);
 
-               TelaReceita.receberID(id.getText());
+               TelaReceita.receberID(txt_id.getText());
                 
            }
            
@@ -86,15 +86,15 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     
       void cadastra_cartao(){
           
-         TelaCadastra_cartao_Cred TelaCadastra_CartaoCredito = null;
+         TelaCartaoCredito_cadastrar TelaCadastra_CartaoCredito = null;
      
            if (TelaCadastra_CartaoCredito == null) {
 
-               TelaCadastra_CartaoCredito = new  TelaCadastra_cartao_Cred();
+               TelaCadastra_CartaoCredito = new  TelaCartaoCredito_cadastrar();
 
                TelaCadastra_CartaoCredito.setVisible(true);
                
-               TelaCadastra_CartaoCredito.receberID(id.getText());
+               TelaCadastra_CartaoCredito.receberID(txt_id.getText());
 
            } else {
 
@@ -102,7 +102,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
                TelaCadastra_CartaoCredito.setState(TelaPrincipal.NORMAL);
 
-               TelaCadastra_CartaoCredito.receberID(id.getText());
+               TelaCadastra_CartaoCredito.receberID(txt_id.getText());
                 
            }
            
@@ -125,7 +125,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         btn_novoCartao_cc = new javax.swing.JButton();
         btnConsulta_CC = new javax.swing.JButton();
         btn_exclui_cc = new javax.swing.JButton();
-        id = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,10 +165,10 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
         btn_exclui_cc.setText("Exclui cartão");
 
-        id.setEditable(false);
-        id.addActionListener(new java.awt.event.ActionListener() {
+        txt_id.setEditable(false);
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                txt_idActionPerformed(evt);
             }
         });
 
@@ -199,7 +199,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                                 .addGap(60, 60, 60)
                                 .addComponent(btnConsulta_CC)
                                 .addGap(41, 41, 41)
-                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(283, 283, 283)
                                 .addComponent(btn_exclui_cc)))
@@ -221,7 +221,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_novoCartao_cc)
                     .addComponent(btnConsulta_CC)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(btn_exclui_cc)
                 .addContainerGap())
@@ -250,9 +250,9 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         cadastra_cartao();
     }//GEN-LAST:event_btn_novoCartao_ccActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_txt_idActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,15 +296,15 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JButton btn_novoCartao_cc;
     private javax.swing.JButton btn_receitaCC;
     private javax.swing.JButton btn_sairCC;
-    private javax.swing.JTextField id;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
 
     public void receberID(String recebe){
 
-        id.setText(recebe);
+        txt_id.setText(recebe);
     }
 
 

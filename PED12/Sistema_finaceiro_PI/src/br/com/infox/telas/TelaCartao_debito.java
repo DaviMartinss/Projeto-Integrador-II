@@ -15,16 +15,16 @@ import javax.swing.JOptionPane;
  *
  * @author pc
  */
-public class tela_Cartao_Debito extends javax.swing.JFrame {
+public class TelaCartao_debito extends javax.swing.JFrame {
 
     /**
-     * Creates new form tela_Cartao_Debito
+     * Creates new form TelaCartao_debito
      */
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public tela_Cartao_Debito() {
+    public TelaCartao_debito() {
         initComponents();
          conexao = moduloConexao.conector();
          System.out.println(conexao);
@@ -41,7 +41,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
 
              TelaPrincipal.setVisible(true);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
 
          } else {
 
@@ -49,7 +49,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
 
              TelaPrincipal.setState(TelaPrincipal.NORMAL);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
          }
          
          this.dispose();
@@ -72,7 +72,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
 
                TelaReceita.setVisible(true);
                
-               TelaReceita.receberID(id.getText());
+               TelaReceita.receberID(txt_id.getText());
 
            } else {
 
@@ -80,7 +80,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
 
                TelaReceita.setState(TelaPrincipal.NORMAL);
 
-               TelaReceita.receberID(id.getText());
+               TelaReceita.receberID(txt_id.getText());
                 
            }
            
@@ -89,15 +89,15 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
     
      void cadastraCartao_Deb(){
          
-         telaCadastra_cartao_deb TelaCadastra_CartaoDebito = null;
+         TelaCartaoDebito_cadastrar TelaCadastra_CartaoDebito = null;
                  
          if (TelaCadastra_CartaoDebito == null) {
 
-               TelaCadastra_CartaoDebito = new  telaCadastra_cartao_deb();
+               TelaCadastra_CartaoDebito = new  TelaCartaoDebito_cadastrar();
 
                TelaCadastra_CartaoDebito.setVisible(true);
             
-               TelaCadastra_CartaoDebito.receberID(id.getText());
+               TelaCadastra_CartaoDebito.receberID(txt_id.getText());
 
            } else {
 
@@ -105,7 +105,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
 
                TelaCadastra_CartaoDebito.setState(TelaPrincipal.NORMAL);
 
-               TelaCadastra_CartaoDebito.receberID(id.getText());
+               TelaCadastra_CartaoDebito.receberID(txt_id.getText());
                 
            }
          
@@ -130,7 +130,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        id = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,10 +175,10 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
 
         jButton7.setText("Excluir Cartão");
 
-        id.setEditable(false);
-        id.addActionListener(new java.awt.event.ActionListener() {
+        txt_id.setEditable(false);
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                txt_idActionPerformed(evt);
             }
         });
 
@@ -190,7 +190,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton5)
@@ -230,7 +230,7 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton6))
                 .addGap(30, 30, 30)
-                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -267,9 +267,9 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
         cadastraCartao_Deb();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_txt_idActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,26 +288,26 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(tela_Cartao_Debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartao_debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(tela_Cartao_Debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartao_debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(tela_Cartao_Debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartao_debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(tela_Cartao_Debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartao_debito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new tela_Cartao_Debito().setVisible(true);
+                new TelaCartao_debito().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -317,12 +317,13 @@ public class tela_Cartao_Debito extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
 
     public void receberID(String recebe){
 
-        id.setText(recebe);
+        txt_id.setText(recebe);
     }
 
 

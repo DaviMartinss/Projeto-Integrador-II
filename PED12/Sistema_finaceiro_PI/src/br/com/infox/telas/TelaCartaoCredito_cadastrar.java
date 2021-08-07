@@ -10,55 +10,65 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import java.sql. *;
+import java.sql.*;
 import br.com.infox.telas.TelaLogin;
 import br.com.infox.dal.Usuario;
+
 /**
  *
  * @author pc
  */
 
-public class TelaCadastra_cartao_Cred extends javax.swing.JFrame {
+public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     Usuario usuarioConta = new Usuario();
-    
-            
-    public TelaCadastra_cartao_Cred() {
-        
+
+    public TelaCartaoCredito_cadastrar() {
+
         initComponents();
-          conexao = moduloConexao.conector();
-          
-    }
-    
-    void voltaTelaCartao_Debito(){
-
-         tela_Cartao_Debito tela_cartDeb= new tela_Cartao_Debito();
-         tela_cartDeb.setVisible(true);
-         this.dispose();
+        conexao = moduloConexao.conector();
 
     }
 
-void volta_telaCartaoDeCredito(){
-         TelaCartao_credito telaDeCartaoDeCredito = new TelaCartao_credito();
-         telaDeCartaoDeCredito.setVisible(true);
-         this.dispose();
+    void volta_telaCartaoDeCredito() {
+       
+        TelaCartao_credito TelaCartao_credito = null;
+
+        if (TelaCartao_credito == null) {
+
+            TelaCartao_credito = new TelaCartao_credito();
+
+            TelaCartao_credito.setVisible(true);
+
+            TelaCartao_credito.receberID(txt_id.getText());
+
+        } else {
+
+            TelaCartao_credito.setVisible(true);
+
+            TelaCartao_credito.setState(TelaPrincipal.NORMAL);
+
+            TelaCartao_credito.receberID(txt_id.getText());
+
+        }
+
+        this.dispose();
     }
 
-    
-     public void cadastro_cartao_credito(){
-         
-          String id_conta = txt_id.getText();
-          
-          int Id_conta_BD = Integer.parseInt(id_conta);
+    public void cadastro_cartao_credito() {
+
+        String id_conta = txt_id.getText();
+
+        int Id_conta_BD = Integer.parseInt(id_conta);
 
         String sql = "insert into cartao_credito (n_cartao_credito, limite, dia_fatura, bandeira, valor_fatura, conta_id_conta) values(?,?,?, ?, ?, ?)";
-        
+
         try {
-            
+
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtCadas_num_CC.getText());
             pst.setString(2, txt_cadastra_limiteCC.getText());
@@ -75,11 +85,10 @@ void volta_telaCartaoDeCredito(){
 
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
 
-        voltaTelaCartao_Debito();
-        
+        volta_telaCartaoDeCredito();
+
     }
-     
-     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -235,20 +244,21 @@ void volta_telaCartaoDeCredito(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastra_cartao_Cred.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoCredito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastra_cartao_Cred.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoCredito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastra_cartao_Cred.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoCredito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastra_cartao_Cred.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoCredito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastra_cartao_Cred().setVisible(true);
+                new TelaCartaoCredito_cadastrar().setVisible(true);
             }
         });
     }
@@ -268,14 +278,9 @@ void volta_telaCartaoDeCredito(){
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
-
-    public void receberID(String recebe){
+    public void receberID(String recebe) {
 
         txt_id.setText(recebe);
     }
-
-
-
-
 
 }

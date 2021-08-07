@@ -29,7 +29,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
              TelaPrincipal.setVisible(true);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
 
          } else {
 
@@ -37,7 +37,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
              TelaPrincipal.setState(TelaPrincipal.NORMAL);
 
-             TelaPrincipal.receberID(id.getText());
+             TelaPrincipal.receberID(txt_id.getText());
          }
          
          this.dispose();
@@ -54,7 +54,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
             TelaCartao_credito.setVisible(true);
 
-            TelaCartao_credito.receberID(id.getText());
+            TelaCartao_credito.receberID(txt_id.getText());
 
         } else {
 
@@ -62,7 +62,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
             TelaCartao_credito.setState(TelaPrincipal.NORMAL);
 
-            TelaCartao_credito.receberID(id.getText());
+            TelaCartao_credito.receberID(txt_id.getText());
 
         }
 
@@ -71,15 +71,15 @@ public class TelaDespesa extends javax.swing.JFrame {
     
     void cartao_debito() {
 
-        tela_Cartao_Debito TelaCartao_debito = null;
+        TelaCartao_debito TelaCartao_debito = null;
 
         if (TelaCartao_debito == null) {
 
-            TelaCartao_debito = new tela_Cartao_Debito();
+            TelaCartao_debito = new TelaCartao_debito();
 
             TelaCartao_debito.setVisible(true);
 
-            TelaCartao_debito.receberID(id.getText());
+            TelaCartao_debito.receberID(txt_id.getText());
 
         } else {
 
@@ -87,7 +87,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
             TelaCartao_debito.setState(TelaPrincipal.NORMAL);
 
-            TelaCartao_debito.receberID(id.getText());
+            TelaCartao_debito.receberID(txt_id.getText());
 
         }
 
@@ -106,7 +106,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
                TelaReceita.setVisible(true);
                
-               TelaReceita.receberID(id.getText());
+               TelaReceita.receberID(txt_id.getText());
 
            } else {
 
@@ -114,7 +114,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
                TelaReceita.setState(TelaPrincipal.NORMAL);
 
-               TelaReceita.receberID(id.getText());
+               TelaReceita.receberID(txt_id.getText());
                 
            }
         
@@ -157,7 +157,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         rbCredito = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         txtParcelas = new javax.swing.JTextField();
-        id = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -246,10 +246,10 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         jLabel9.setText("Nº de Pacelas: ");
 
-        id.setEditable(false);
-        id.addActionListener(new java.awt.event.ActionListener() {
+        txt_id.setEditable(false);
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                txt_idActionPerformed(evt);
             }
         });
 
@@ -285,7 +285,7 @@ public class TelaDespesa extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -353,7 +353,7 @@ public class TelaDespesa extends javax.swing.JFrame {
                                     .addComponent(jLabel5)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(4, 4, 4)
-                                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -452,9 +452,9 @@ public class TelaDespesa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_rbCreditoActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_txt_idActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,7 +496,6 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btnReceitas;
     private javax.swing.JButton btn_inicio;
-    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -518,13 +517,14 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtParcelas;
     private javax.swing.JTextField txtValor;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
 
 
     public void receberID(String recebe){
 
-        id.setText(recebe);
+        txt_id.setText(recebe);
     }
 
 

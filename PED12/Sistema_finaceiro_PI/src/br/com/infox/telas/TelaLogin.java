@@ -76,7 +76,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }
     
     void cadastro(){
-         telaCliente cadastroCliente = new telaCliente();
+         TelaUsuario_cadastrar cadastroCliente = new TelaUsuario_cadastrar();
          cadastroCliente.setVisible(true);
          this.dispose();
     }

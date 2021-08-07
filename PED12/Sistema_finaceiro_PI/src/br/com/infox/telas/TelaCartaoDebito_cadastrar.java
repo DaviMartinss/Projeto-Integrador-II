@@ -15,22 +15,40 @@ import javax.swing.JOptionPane;
  *
  * @author pc
  */
-public class telaCadastra_cartao_deb extends javax.swing.JFrame {
+public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
 
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public telaCadastra_cartao_deb() {
+    public TelaCartaoDebito_cadastrar() {
         initComponents();
         conexao = moduloConexao.conector();
     }
     
     void voltaTelaCartao_Debito(){
 
-         tela_Cartao_Debito tela_cartDeb= new tela_Cartao_Debito();
-         tela_cartDeb.setVisible(true);
-         this.dispose();
+          TelaCartao_debito TelaCartao_debito = null;
+
+        if (TelaCartao_debito == null) {
+
+            TelaCartao_debito = new TelaCartao_debito();
+
+            TelaCartao_debito.setVisible(true);
+
+            TelaCartao_debito.receberID(txt_id.getText());
+
+        } else {
+
+            TelaCartao_debito.setVisible(true);
+
+            TelaCartao_debito.setState(TelaPrincipal.NORMAL);
+
+            TelaCartao_debito.receberID(txt_id.getText());
+
+        }
+
+        this.dispose();
 
     }
     
@@ -198,20 +216,21 @@ public class telaCadastra_cartao_deb extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(telaCadastra_cartao_deb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(telaCadastra_cartao_deb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(telaCadastra_cartao_deb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(telaCadastra_cartao_deb.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaCadastra_cartao_deb().setVisible(true);
+                new TelaCartaoDebito_cadastrar().setVisible(true);
             }
         });
     }
