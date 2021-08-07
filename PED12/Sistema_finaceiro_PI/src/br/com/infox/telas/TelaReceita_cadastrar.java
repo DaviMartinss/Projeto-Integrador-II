@@ -10,7 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-
+import br.com.infox.dal.Data;
+import br.com.infox.dal.Receita;
 /**
  *
  * @author Alan
@@ -22,6 +23,8 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     PreparedStatement pst2 = null;
     PreparedStatement pst3 = null;
     ResultSet rs = null;
+    boolean flagSucData = true;
+    boolean flagSucTotal = true;
     
     
     /**
@@ -52,16 +55,29 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             pst1.setString(1, txt_dia.getText());
             pst1.setString(2, txt_mes.getText());
             pst1.setString(3, txt_ano.getText());
-
-            pst1.executeUpdate();
+            
+            
+            int dia = Integer.parseInt(txt_dia.getText());
+            int mes = Integer.parseInt(txt_dia.getText());
+            int ano = Integer.parseInt(txt_ano.getText());
+            
+            Data data_aux = new Data(dia, mes, ano);
+            
+            if(!(data_aux.verifica_data())){
+                flagSucData = false;
+            }
+            if(flagSucData){
+                pst1.executeUpdate();
+            }    
+            
             
             pst2 = conexao.prepareStatement(sql2);
             
             pst2.setString(1, txt_dia.getText());
             pst2.setString(2, txt_mes.getText());
             pst2.setString(3, txt_ano.getText());
-            
-            rs = pst2.executeQuery();
+                   
+                rs = pst2.executeQuery();
             
             if(rs.next()){
                 
@@ -72,18 +88,33 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
                 pst3.setInt(1, cod_receita);
                 pst3.setString(2, txt_total.getText());
                 pst3.setInt(3, Id_conta_BD);
-            
-                pst3.executeUpdate();
+                
+                float total = Float.parseFloat(txt_total.getText());
+                Receita receita_aux = new Receita();
+                receita_aux.setTotal(total);
+                if(!(receita_aux.verifica_total())){
+                    flagSucTotal = false;
+                }
+                
+                if(flagSucTotal){
+                    pst3.executeUpdate();
+                }
+                
 
             }else{
                 JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar receita");
         }
-
-        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+        
+        if(flagSucData && flagSucTotal){
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+        }else{
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar receita");
+        }
+        
         Volta_TelaReceita();
         
     }

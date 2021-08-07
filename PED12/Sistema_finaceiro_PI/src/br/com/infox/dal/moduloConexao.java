@@ -21,9 +21,9 @@ public class moduloConexao {
         String driver = "com.mysql.cj.jdbc.Driver";  
         // armazenando infformações rederentes ao banco
         
-        String url = "jdbc:mysql://localhost:3306/bd_pedemeia";          
+        String url = "jdbc:mysql://localhost:3307/proj_int";          
         String user = "root";          
-        String password = "admin";          
+        String password = "07052002davi";           
        
         // estabelecendo a conexão com o banco
         try{

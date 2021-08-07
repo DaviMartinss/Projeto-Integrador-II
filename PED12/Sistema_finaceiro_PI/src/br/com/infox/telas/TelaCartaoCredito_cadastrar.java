@@ -5,6 +5,7 @@
  */
 package br.com.infox.telas;
 
+import br.com.infox.dal.Cartao_credito;
 import br.com.infox.dal.moduloConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +25,12 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    
+    boolean FlagSucLimite = true;
+    boolean Flagdia = true;
+    boolean FlagSucbandeira = true;
+    
+    
 
     Usuario usuarioConta = new Usuario();
 
@@ -59,34 +66,76 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         this.dispose();
     }
 
-    public void cadastro_cartao_credito() {
-
-        String id_conta = txt_id.getText();
-
-        int Id_conta_BD = Integer.parseInt(id_conta);
+   public void cadastro_cartao_credito(){
+         
+         String id_conta = txt_id.getText();
+          
+         int Id_conta_BD = Integer.parseInt(id_conta);
 
         String sql = "insert into cartao_credito (n_cartao_credito, limite, dia_fatura, bandeira, valor_fatura, conta_id_conta) values(?,?,?, ?, ?, ?)";
-
+        
         try {
-
+            
             pst = conexao.prepareStatement(sql);
+            
             pst.setString(1, txtCadas_num_CC.getText());
-            pst.setString(2, txt_cadastra_limiteCC.getText());
-            pst.setString(3, txtCadastra_diaFat_CC.getText());
+            pst.setString(2, txt_cadastra_limiteCC.getText());       
+            pst.setString(3, txtCadastra_diaFat_CC.getText());    
             pst.setString(4, txt_cadastra_band_cc.getText());
             pst.setInt(5, 0);
             pst.setInt(6, Id_conta_BD);
-
-            pst.executeUpdate();
-
+            
+           
+            int valorLimite = Integer.parseInt(txt_cadastra_limiteCC.getText());
+            int dia_fatura = Integer.parseInt(txtCadastra_diaFat_CC.getText());
+            System.out.println("Dia da fatura é = "+dia_fatura);
+            
+           
+            Cartao_credito cartao_aux = new Cartao_credito(valorLimite, dia_fatura, txt_cadastra_band_cc.getText());
+            
+            // verifica se o limite é positivo
+            if(!(cartao_aux.verifica_limite())){
+                JOptionPane.showMessageDialog(null, "o Limite deve ser o Valor Positivo - valor informado = "+valorLimite);
+                FlagSucLimite = false;
+            }else{
+                
+                FlagSucLimite = true;
+            }
+            
+            // verifica se o dia da fatura é maior do que 0 e menor que 31
+            if(!(cartao_aux.verifica_dia_fatura())){
+                JOptionPane.showMessageDialog(null, "O dia deve está entre 1 e 31");
+                Flagdia = false;
+            }else{
+                Flagdia = true;
+            }
+            
+            // verifica se o nome da bandeira contém so letra
+            if(!(cartao_aux.verifica_bandeira_credito())){
+                JOptionPane.showMessageDialog(null, "O nome da Bandeira deve conter apenas letras");
+                FlagSucbandeira = false;
+            }else{
+                FlagSucbandeira = true;
+            }
+            
+            if(FlagSucLimite && Flagdia && FlagSucbandeira){
+                pst.executeUpdate();   
+            }
+            
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+           
+            JOptionPane.showMessageDialog(null, "Falha ao Cadastrar o Cartão de Credito");
         }
-
-        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-
+        
+        if(FlagSucLimite && FlagSucbandeira && Flagdia){
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");    
+        }else{
+            JOptionPane.showMessageDialog(null, "Falha ao Cadastrar o Cartão de Credito");
+        }
+        
         volta_telaCartaoDeCredito();
-
+        
+        
     }
 
     /**

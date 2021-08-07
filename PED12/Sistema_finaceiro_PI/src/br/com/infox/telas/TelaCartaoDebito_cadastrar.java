@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-
+import br.com.infox.dal.Cartao_debito;
 /**
  *
  * @author pc
@@ -20,6 +20,10 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    
+    boolean flag_Suc_valorAtual = true;
+    boolean flag_Suc_bandeira = true;
+    
     
     public TelaCartaoDebito_cadastrar() {
         initComponents();
@@ -53,7 +57,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     }
     
     
-    public void cadastro_cartao_debito(){
+   public void cadastro_cartao_debito(){
         
          String id_conta = txt_id.getText();
          
@@ -69,15 +73,40 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             pst.setString(2, txt_valorCartaoDeb.getText());
             pst.setString(3, txt_BandCartDeb.getText());
             pst.setInt(4, Id_conta_BD);
-
-
-            pst.executeUpdate();
-
+            
+            int n_cartao_debito = Integer.parseInt(txt_numCartDeb.getText());
+            float valor_atual = Float.parseFloat(txt_valorCartaoDeb.getText());
+            String bandeira = txt_BandCartDeb.getText();
+                    
+            Cartao_debito cartao_aux = new Cartao_debito(n_cartao_debito, valor_atual, bandeira);
+            if(!(cartao_aux.verifica_Bandeira_cartao_deb())){
+                flag_Suc_bandeira = false;
+                JOptionPane.showMessageDialog(null, "A bandeira deve conter apenas letras");
+                
+            }
+            
+            if(!(cartao_aux.verifica_valor_atual())){
+                flag_Suc_valorAtual = false;
+                JOptionPane.showMessageDialog(null, "O valor atual deve ser positivo");
+                
+                
+            }
+            if(flag_Suc_bandeira && flag_Suc_valorAtual){
+                pst.executeUpdate();
+            }
+           
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o cartão de debito");
+   
         }
-
-        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+        
+        if(flag_Suc_bandeira && flag_Suc_valorAtual){
+            
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+        }else{
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o cartão de debito");
+        }
+        
         voltaTelaCartao_Debito();
         
     }
