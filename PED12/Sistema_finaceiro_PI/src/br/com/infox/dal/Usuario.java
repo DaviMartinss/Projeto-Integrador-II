@@ -47,7 +47,6 @@ public class Usuario {
      */
     public void setId_conta(int id_conta) {
         this.id_conta = id_conta;
-        System.out.println("id conta = " + id_conta);
     }
      
 }
