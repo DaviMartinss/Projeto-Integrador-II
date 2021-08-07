@@ -22,7 +22,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     PreparedStatement pst2 = null;
     PreparedStatement pst3 = null;
     PreparedStatement pst4 = null;
+    PreparedStatement pst5 = null;
+    PreparedStatement pst6 = null;
     ResultSet rs = null;
+    ResultSet rs2 = null;
     
     
     /**
@@ -32,6 +35,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         initComponents();
         conexao = moduloConexao.conector();
         txtParcelas.setEnabled(false);
+        txt_NumCartao.setEnabled(false);
     }
     
     
@@ -67,7 +71,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                 
                 cod_despesa = rs.getInt(1);
 
-                String sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, estatus, conta_id_conta) values(?,?,?,?,?,?,?)";
+                String sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, cartao_debito_n_cartao_debito, cartao_credito_n_cartao_credito, estatus, conta_id_conta) values(?,?,?,?,?,?,?,?,?)";
 
                 pst3 = conexao.prepareStatement(sql3);
                 pst3.setInt(1, cod_despesa);
@@ -78,24 +82,37 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                 if (rbDebito.isSelected()) {
 
                     pst3.setString(5, "DÉBITO");
+                    
+                    pst3.setLong(6, Long.parseLong(txt_NumCartao.getText()));
+                    
+                    pst3.setString(7, null);
 
-                } else {
+                }else if(rbCredito.isSelected()) {
 
                     pst3.setString(5, "CRÉDITO");
+                    
+                    pst3.setString(6, null);
+                    
+                    pst3.setLong(7, Long.parseLong(txt_NumCartao.getText()));
 
+                }else{
+                    
+                    pst3.setString(6, null);
+                    pst3.setString(7, null);
+                    
                 }
 
                 if (rbPago.isSelected()) {
 
-                    pst3.setString(6, "PAGO");
+                    pst3.setString(8, "PAGO");
 
                 } else {
 
-                    pst3.setString(6, "NÃO PAGO");
+                    pst3.setString(8, "NÃO PAGO");
 
-                }
+                }          
 
-                pst3.setInt(7, Id_conta_BD);
+                pst3.setInt(9, Id_conta_BD);
 
                 pst3.executeUpdate();
 
@@ -115,13 +132,43 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
             }
+            
+            String sql5 = "select * from receita_data where mes=? and ano=?";
+            
+            pst5 = conexao.prepareStatement(sql5);
+                    
+            pst5.setString(1, txtMes.getText());
+            pst5.setString(2, txtAno.getText());
+            
+            rs2 = pst5.executeQuery();
+            
+            if (rs2.next()) {
+
+                int cod_receita = rs2.getInt(1);
+
+                String sql6 = "update receita set total=total-? where conta_id_conta=? and receita_data_cod_receita=?";
+
+                pst6 = conexao.prepareStatement(sql6);
+
+                pst6.setFloat(1, Float.parseFloat(txtValor.getText()));
+                pst6.setInt(2, Integer.parseInt(txt_id.getText()));
+                pst6.setInt(3, cod_receita);
+
+                pst6.executeUpdate();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
+            }
 
         } catch (Exception e) {
+            
             JOptionPane.showMessageDialog(null, e);
+            
         }
 
         JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-
+        
+        
         Volta_TelaDespesa();
 
     }
@@ -186,6 +233,9 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         txtMes = new javax.swing.JTextField();
         btn_CadastrarDespesa = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        rbDinheiro = new javax.swing.JRadioButton();
+        jLabel11 = new javax.swing.JLabel();
+        txt_NumCartao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -263,6 +313,15 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("CADASTRO DE DESPESA");
 
+        rbDinheiro.setText("Dinheiro");
+        rbDinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDinheiroActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Nº do Cartão: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,34 +330,18 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btn_CadastrarDespesa)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(rbPago)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(rbNaoPago))))))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(99, 99, 99)
+                                .addComponent(jLabel10)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -314,47 +357,48 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rbDebito)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbCredito)))
-                        .addGap(63, 63, 63))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_CadastrarDespesa)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbPago)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbNaoPago)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbDebito)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbCredito)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbDinheiro))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel11)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txt_NumCartao))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(78, 78, 78))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(rbDebito)
-                            .addComponent(rbCredito))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(txtParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -372,15 +416,44 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbPago)
                             .addComponent(rbNaoPago)
-                            .addComponent(jLabel7))))
-                .addGap(41, 41, 41)
-                .addComponent(btn_CadastrarDespesa)
-                .addContainerGap(50, Short.MAX_VALUE))
+                            .addComponent(jLabel7))
+                        .addGap(57, 57, 57)
+                        .addComponent(btn_CadastrarDespesa))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(rbDebito)
+                            .addComponent(rbCredito)
+                            .addComponent(rbDinheiro))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txt_NumCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -391,6 +464,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
         if(rbDebito.isSelected()){
 
+            txt_NumCartao.setEnabled(true);
+
+            rbDinheiro.setSelected(false);
+            
             txtParcelas.setEnabled(false);
 
             rbCredito.setSelected(false);
@@ -402,10 +479,21 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if(rbCredito.isSelected()){
+            
+            txt_NumCartao.setEnabled(true);
+            
+            rbDinheiro.setSelected(false);
 
             txtParcelas.setEnabled(true);
 
             rbDebito.setSelected(false);
+
+        }
+        
+        
+        if(rbCredito.isSelected() == false){
+
+            txtParcelas.setEnabled(false);
 
         }
 
@@ -439,10 +527,11 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(  txtValor.getText().isEmpty() || txtCategoria.getText().isEmpty()   ||
-             txtAreaDescricao.getText().isEmpty() || txtDia.getText().isEmpty() ||
+             txtDia.getText().isEmpty() ||
              txtMes.getText().isEmpty() || txtAno.getText().isEmpty()           || 
             (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)   ||
             (rbDebito.isSelected() == false && rbCredito.isSelected() == false )||
+            ((rbDebito.isSelected() == true || rbCredito.isSelected() == true) && txt_NumCartao.getText().isEmpty() )||
             (rbCredito.isSelected() && txtParcelas.getText().isEmpty())){
             
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
@@ -454,6 +543,19 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_btn_CadastrarDespesaActionPerformed
+
+    private void rbDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDinheiroActionPerformed
+        // TODO add your handling code here:
+        
+        if(rbDinheiro.isSelected()){
+
+            rbCredito.setSelected(false);
+            rbDebito.setSelected(false);
+            txt_NumCartao.setEnabled(false);
+            txtParcelas.setEnabled(false);
+
+        }
+    }//GEN-LAST:event_rbDinheiroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -494,6 +596,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private javax.swing.JButton btn_CadastrarDespesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -505,6 +608,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbCredito;
     private javax.swing.JRadioButton rbDebito;
+    private javax.swing.JRadioButton rbDinheiro;
     private javax.swing.JRadioButton rbNaoPago;
     private javax.swing.JRadioButton rbPago;
     private javax.swing.JTextField txtAno;
@@ -514,6 +618,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtParcelas;
     private javax.swing.JTextField txtValor;
+    private javax.swing.JTextField txt_NumCartao;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
