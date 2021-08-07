@@ -217,7 +217,18 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cadastraCartDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastraCartDebActionPerformed
-        cadastro_cartao_debito();
+       
+        if(  txt_numCartDeb.getText().isEmpty() || txt_valorCartaoDeb.getText().isEmpty()   ||
+             txt_BandCartDeb.getText().isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            
+        }else{
+            
+            cadastro_cartao_debito();
+
+        } 
+ 
     }//GEN-LAST:event_btn_cadastraCartDebActionPerformed
 
     private void txt_BandCartDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BandCartDebActionPerformed

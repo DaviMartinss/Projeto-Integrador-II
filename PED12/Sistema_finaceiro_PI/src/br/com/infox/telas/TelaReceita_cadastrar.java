@@ -275,8 +275,16 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
 
     private void btn_NovaReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NovaReceitaActionPerformed
         
-        
-        cadastro_receita();
+        if(  txt_dia.getText().isEmpty() || txt_mes.getText().isEmpty()   ||
+             txt_ano.getText().isEmpty() || txt_total.getText().isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            
+        }else{
+            
+            cadastro_receita();
+
+        }
         
         
     }//GEN-LAST:event_btn_NovaReceitaActionPerformed

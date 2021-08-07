@@ -164,7 +164,18 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
 
     private void btnRealizarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarCadastroActionPerformed
         // TODO add your handling code here:
-        cadastro_cliente();
+        
+        if(  txtCadastraNome.getText().isEmpty() || txtCadastraEmail.getText().isEmpty()   ||
+             txtCadastraSenha.getText().isEmpty() || txtCadastraAvatar.getText().isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            
+        }else{
+            
+            cadastro_cliente();
+
+        } 
+        
     }//GEN-LAST:event_btnRealizarCadastroActionPerformed
 
     /**

@@ -31,6 +31,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     public TelaDespesa_cadastrar() {
         initComponents();
         conexao = moduloConexao.conector();
+        txtParcelas.setEnabled(false);
     }
     
     
@@ -437,7 +438,20 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private void btn_CadastrarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarDespesaActionPerformed
         // TODO add your handling code here:
         
-        cadastrar_despesa();
+        if(  txtValor.getText().isEmpty() || txtCategoria.getText().isEmpty()   ||
+             txtAreaDescricao.getText().isEmpty() || txtDia.getText().isEmpty() ||
+             txtMes.getText().isEmpty() || txtAno.getText().isEmpty()           || 
+            (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)   ||
+            (rbDebito.isSelected() == false && rbCredito.isSelected() == false )||
+            (rbCredito.isSelected() && txtParcelas.getText().isEmpty())){
+            
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            
+        }else{
+            
+            cadastrar_despesa();
+
+        } 
         
     }//GEN-LAST:event_btn_CadastrarDespesaActionPerformed
 
