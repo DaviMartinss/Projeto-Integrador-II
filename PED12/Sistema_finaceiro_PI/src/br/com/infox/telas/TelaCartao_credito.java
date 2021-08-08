@@ -22,6 +22,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+   
+    TelaCartaoCredito_consulta Tela_CartaoConsulta;
     
     public TelaCartao_credito() {
         initComponents();
@@ -39,6 +41,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
              TelaPrincipal.setVisible(true);
 
              TelaPrincipal.receberID(txt_id.getText());
+             
+             
 
          } else {
 
@@ -57,6 +61,32 @@ public class TelaCartao_credito extends javax.swing.JFrame {
          TelaLogin tela_login = new TelaLogin();
          tela_login.setVisible(true);
          this.dispose();
+    }
+    
+   void TelaConsulta(){
+        
+        TelaCartaoCredito_consulta TelaConsulta = null;
+
+        if (TelaConsulta == null) {
+
+            TelaConsulta = new TelaCartaoCredito_consulta();
+
+            TelaConsulta.setVisible(true);
+
+            TelaConsulta.receberID(txt_id.getText());
+
+        } else {
+
+            TelaConsulta.setVisible(true);
+
+            TelaConsulta.setState(TelaCartaoCredito_cadastrar.NORMAL);
+
+            TelaConsulta.receberID(txt_id.getText());
+
+        }
+
+        this.dispose();
+        
     }
     
     void receita(){
@@ -162,6 +192,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         });
 
         btnConsulta_CC.setText("Consulta");
+        btnConsulta_CC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsulta_CCActionPerformed(evt);
+            }
+        });
 
         btn_exclui_cc.setText("Exclui cartão");
 
@@ -253,6 +288,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
+
+    private void btnConsulta_CCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta_CCActionPerformed
+        // TODO add your handling code here:
+        TelaConsulta();
+        //Tela_CartaoConsulta.receberID(txt_id.getText());
+    }//GEN-LAST:event_btnConsulta_CCActionPerformed
 
     /**
      * @param args the command line arguments
