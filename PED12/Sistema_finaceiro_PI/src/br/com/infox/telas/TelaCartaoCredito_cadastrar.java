@@ -123,15 +123,11 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
             
         } catch (Exception e) {
-            
-            System.out.println(" AAAAAAAAA  ");
            
             JOptionPane.showMessageDialog(null, "Falha ao Cadastrar o Cartão de Credito");
         }
         
-        if(FlagSucLimite && FlagSucbandeira && Flagdia){
-            
-            System.out.println(" BBBBBBBBBBBBB  ");
+        if(FlagSucLimite && FlagSucbandeira && Flagdia){    
             
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");    
         }else{

@@ -27,6 +27,8 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     ResultSet rs = null;
     ResultSet rs2 = null;
     
+    boolean FlagErroCadastroDespesa = true;
+    
     
     /**
      * Creates new form TelaDespesa_cadastrar
@@ -97,6 +99,9 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
                 }else{
                     
+                    
+                    pst3.setString(5, "DINHEIRO");
+                    
                     pst3.setString(6, null);
                     pst3.setString(7, null);
                     
@@ -164,13 +169,23 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, e);
             
+            
+            FlagErroCadastroDespesa = false;
+            
         }
 
-        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
         
+        if(FlagErroCadastroDespesa){
+            
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
+            Volta_TelaDespesa();
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Falha ao Cadastrar a Despesa");
+            
+        }
         
-        Volta_TelaDespesa();
-
     }
     
     void Volta_TelaDespesa() {
@@ -530,7 +545,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
              txtDia.getText().isEmpty() ||
              txtMes.getText().isEmpty() || txtAno.getText().isEmpty()           || 
             (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)   ||
-            (rbDebito.isSelected() == false && rbCredito.isSelected() == false )||
+            (rbDebito.isSelected() == false && rbCredito.isSelected() == false && rbDinheiro.isSelected() == false)||
             ((rbDebito.isSelected() == true || rbCredito.isSelected() == true) && txt_NumCartao.getText().isEmpty() )||
             (rbCredito.isSelected() && txtParcelas.getText().isEmpty())){
             
