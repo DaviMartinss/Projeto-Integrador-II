@@ -36,7 +36,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }
     
-
+    void TelaUsuario_consultar() {
+        
+        TelaUsuario_consulta  TelaUsuario_consulta = new TelaUsuario_consulta();
+     
+        TelaUsuario_consulta.setVisible(true);
+        
+    }
     
     
       void receita() {
@@ -164,6 +170,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnCartao_Deb = new javax.swing.JButton();
         BtnSair = new javax.swing.JButton();
         txt_id = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -209,26 +216,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jToggleButton1.setText("Consultar User");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnReceitas)
-                .addGap(59, 59, 59)
-                .addComponent(btnDespesas)
-                .addGap(50, 50, 50)
-                .addComponent(btnCartao_cred)
-                .addGap(61, 61, 61)
-                .addComponent(btnCartao_Deb)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(BtnSair)
-                .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jToggleButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnReceitas)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnDespesas)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnCartao_cred)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnCartao_Deb)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(BtnSair)
+                        .addGap(41, 41, 41))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +259,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnCartao_cred)
                     .addComponent(btnCartao_Deb)
                     .addComponent(BtnSair))
-                .addGap(92, 92, 92)
+                .addGap(35, 35, 35)
+                .addComponent(jToggleButton1)
+                .addGap(34, 34, 34)
                 .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(154, Short.MAX_VALUE))
         );
@@ -278,6 +299,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
        
         despesa();
     }//GEN-LAST:event_btnDespesasActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        TelaUsuario_consultar();
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +349,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnReceitas;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
