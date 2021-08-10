@@ -33,6 +33,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     public TelaReceita_cadastrar() {
         initComponents();
         conexao = moduloConexao.conector();
+        this.setLocationRelativeTo(null);
     }
     
     public void cadastro_receita(){

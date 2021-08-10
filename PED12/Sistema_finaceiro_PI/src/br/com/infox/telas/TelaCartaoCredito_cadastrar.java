@@ -38,6 +38,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
         initComponents();
         conexao = moduloConexao.conector();
+        this.setLocationRelativeTo(null);
 
     }
 

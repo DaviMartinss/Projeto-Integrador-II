@@ -32,6 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.out.println(conexao);
         
         txt_id.setVisible(true);
+        this.setLocationRelativeTo(null);
         
     }
     

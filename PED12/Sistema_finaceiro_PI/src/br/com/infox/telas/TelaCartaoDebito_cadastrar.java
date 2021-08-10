@@ -28,6 +28,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     public TelaCartaoDebito_cadastrar() {
         initComponents();
         conexao = moduloConexao.conector();
+        this.setLocationRelativeTo(null);
     }
     
     void voltaTelaCartao_Debito(){

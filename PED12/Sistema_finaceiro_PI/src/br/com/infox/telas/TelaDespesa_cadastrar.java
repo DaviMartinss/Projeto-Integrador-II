@@ -38,23 +38,47 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         conexao = moduloConexao.conector();
         txtParcelas.setEnabled(false);
         txt_NumCartao.setEnabled(false);
+        this.setLocationRelativeTo(null);
     }
     
     
     public void cadastrar_despesa() {
 
         String id_conta = txt_id.getText();
+        
+        int cod_receita = 0;
 
         int Id_conta_BD = Integer.parseInt(id_conta);
 
-        String sql1 = "insert into despesa_data (dia, mes, ano) values(?,?,?)";
-
+        String sql1 = "insert into despesa_data (receita_data_cod_receita,dia, mes, ano) values(?,?,?,?)";
+        
+        String sql5 = "select * from receita_data where mes=? and ano=?";
+        
         try {
+            
+            pst5 = conexao.prepareStatement(sql5);
+                    
+            pst5.setString(1, txtMes.getText());
+            pst5.setString(2, txtAno.getText());
+            
+            rs2 = pst5.executeQuery();
+            
+            if(rs2.next()){
+                
+                cod_receita = rs2.getInt(1);
+            
+            }else {
+                
+                JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
+                
+                FlagErroCadastroDespesa = false;
+            }
 
             pst1 = conexao.prepareStatement(sql1);
-            pst1.setString(1, txtDia.getText());
-            pst1.setString(2, txtMes.getText());
-            pst1.setString(3, txtAno.getText());
+            pst1.setInt(1, cod_receita);
+            pst1.setString(2, txtDia.getText());
+            pst1.setString(3, txtMes.getText());
+            pst1.setString(4, txtAno.getText());
             
             pst1.executeUpdate();
             
@@ -136,34 +160,18 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
             }else{
                 JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
+                FlagErroCadastroDespesa = false;
             }
-            
-            String sql5 = "select * from receita_data where mes=? and ano=?";
-            
-            pst5 = conexao.prepareStatement(sql5);
-                    
-            pst5.setString(1, txtMes.getText());
-            pst5.setString(2, txtAno.getText());
-            
-            rs2 = pst5.executeQuery();
-            
-            if (rs2.next()) {
 
-                int cod_receita = rs2.getInt(1);
+            String sql6 = "update receita set total=total-? where conta_id_conta=? and receita_data_cod_receita=?";
 
-                String sql6 = "update receita set total=total-? where conta_id_conta=? and receita_data_cod_receita=?";
+            pst6 = conexao.prepareStatement(sql6);
 
-                pst6 = conexao.prepareStatement(sql6);
+            pst6.setFloat(1, Float.parseFloat(txtValor.getText()));
+            pst6.setInt(2, Integer.parseInt(txt_id.getText()));
+            pst6.setInt(3, cod_receita);
 
-                pst6.setFloat(1, Float.parseFloat(txtValor.getText()));
-                pst6.setInt(2, Integer.parseInt(txt_id.getText()));
-                pst6.setInt(3, cod_receita);
-
-                pst6.executeUpdate();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
-            }
+            pst6.executeUpdate();
 
         } catch (Exception e) {
             

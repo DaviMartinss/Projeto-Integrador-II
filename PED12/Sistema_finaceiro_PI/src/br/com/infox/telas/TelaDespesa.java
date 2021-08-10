@@ -16,6 +16,7 @@ public class TelaDespesa extends javax.swing.JFrame {
      */
     public TelaDespesa() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     

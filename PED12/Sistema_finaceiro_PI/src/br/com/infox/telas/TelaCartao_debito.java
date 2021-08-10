@@ -27,7 +27,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     public TelaCartao_debito() {
         initComponents();
          conexao = moduloConexao.conector();
-         System.out.println(conexao);
+         this.setLocationRelativeTo(null);
     }
     
     
@@ -112,6 +112,35 @@ public class TelaCartao_debito extends javax.swing.JFrame {
          
          this.dispose();
     }
+     
+     
+     void TelaConsulta_CartaoDebito(){
+        
+        TelaCartaoDebito_consulta TelaConsulta = null;
+
+        if (TelaConsulta == null) {
+
+            TelaConsulta = new TelaCartaoDebito_consulta();
+
+            TelaConsulta.setVisible(true);
+
+            TelaConsulta.receberID(txt_id.getText());
+
+        } else {
+
+            TelaConsulta.setVisible(true);
+
+            TelaConsulta.setState(TelaCartaoCredito_cadastrar.NORMAL);
+
+            TelaConsulta.receberID(txt_id.getText());
+
+        }
+
+        this.dispose();
+        
+    }
+     
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,7 +155,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
@@ -164,7 +193,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Consultar");
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         jTextField1.setText("Saldo da Receita");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +234,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                         .addComponent(jButton4)
                         .addGap(37, 37, 37)
                         .addComponent(jButton2)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -212,7 +246,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton6)
+                            .addComponent(btnConsultar)
                             .addComponent(jButton7))))
                 .addGap(44, 44, 44))
         );
@@ -228,7 +262,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButton6))
+                    .addComponent(btnConsultar))
                 .addGap(30, 30, 30)
                 .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
@@ -271,6 +305,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        
+        TelaConsulta_CartaoDebito();
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,12 +348,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

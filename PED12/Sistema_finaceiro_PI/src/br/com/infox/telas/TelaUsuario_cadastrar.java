@@ -23,7 +23,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     public TelaUsuario_cadastrar() {
         initComponents();
         conexao = moduloConexao.conector();
-        
+        this.setLocationRelativeTo(null);
         
     }
     
@@ -166,7 +166,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(  txtCadastraNome.getText().isEmpty() || txtCadastraEmail.getText().isEmpty()   ||
-             txtCadastraSenha.getText().isEmpty() || txtCadastraAvatar.getText().isEmpty()){
+             txtCadastraSenha.getText().isEmpty()){
             
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
             

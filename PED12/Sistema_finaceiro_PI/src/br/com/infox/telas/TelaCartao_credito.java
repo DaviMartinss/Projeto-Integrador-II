@@ -28,7 +28,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     public TelaCartao_credito() {
         initComponents();
         conexao = moduloConexao.conector();
-        System.out.println(conexao);
+        this.setLocationRelativeTo(null);
     }
      void inicio(){
          
@@ -63,7 +63,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
          this.dispose();
     }
     
-   void TelaConsulta(){
+   void TelaConsulta_CartaoCredito(){
         
         TelaCartaoCredito_consulta TelaConsulta = null;
 
@@ -291,7 +291,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     private void btnConsulta_CCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta_CCActionPerformed
         // TODO add your handling code here:
-        TelaConsulta();
+        TelaConsulta_CartaoCredito();
         //Tela_CartaoConsulta.receberID(txt_id.getText());
     }//GEN-LAST:event_btnConsulta_CCActionPerformed
 

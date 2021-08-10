@@ -25,6 +25,16 @@ public class TelaLogin extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
+    
+    public TelaLogin() {
+        initComponents();
+        conexao = moduloConexao.conector();
+        System.out.println(conexao);
+        
+        this.setLocationRelativeTo(null);
+      
+        
+    }
 
     TelaPrincipal TelaPrincipal;
     
@@ -100,13 +110,7 @@ public class TelaLogin extends javax.swing.JFrame {
         
     }
     */
-    public TelaLogin() {
-        initComponents();
-        conexao = moduloConexao.conector();
-        System.out.println(conexao);
-      
-        
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

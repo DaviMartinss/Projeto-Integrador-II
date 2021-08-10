@@ -27,6 +27,7 @@ public class TelaReceita extends javax.swing.JFrame {
         initComponents();
         conexao = moduloConexao.conector();
         System.out.println(conexao);
+        this.setLocationRelativeTo(null);
     }
     
     void inicio(){
