@@ -10,20 +10,33 @@ package Model;
  * @author pc
  */
 public class Receita {
-     public  int dia;
-    public int mes;
-    public int ano;
-    public float total;
+    
+    private int dia;
+    private int mes;
+    private int ano;
+    private float total;
+    private int id_conta;
+    
+    public Receita() {
+        
+    }
 
-    public Receita(int dia, int mes, int ano, float total) {
+    public Receita(int dia, int mes, int ano, float total, int id_conta) {
         this.dia = dia;
         this.mes = mes;
         this.ano = ano;
         this.total = total;
+        this.id_conta = id_conta;
     }
-    public Receita() {
-        
+
+    public int getId_conta() {
+        return id_conta;
     }
+
+    public void setId_conta(int id_conta) {
+        this.id_conta = id_conta;
+    }
+    
     public int getDia() {
         return dia;
     }
@@ -65,8 +78,10 @@ public class Receita {
     }
     
     public boolean verifica_ReceitaValida(){
+        
         Data data_aux = new Data(dia, mes, ano);
-        if( (data_aux.verifica_dia()) && (data_aux.verifica_mes()) && (data_aux.verifica_ano()) && verifica_total()){
+        
+        if(data_aux.verifica_data()){
             return true;
         }else{
             return false;

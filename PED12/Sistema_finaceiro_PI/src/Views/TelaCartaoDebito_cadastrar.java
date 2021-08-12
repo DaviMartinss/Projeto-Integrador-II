@@ -112,6 +112,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
 
         try {
             
+            
             if (cartao_db.verifica_Bandeira_cartao_deb() && cartao_db.verifica_valor_atual())
             {
                 

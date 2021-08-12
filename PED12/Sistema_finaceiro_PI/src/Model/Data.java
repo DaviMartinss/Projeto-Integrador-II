@@ -58,14 +58,14 @@ public class Data {
         }
     }
     
-    public boolean verifica_mes(){
+    private boolean verifica_mes(){
         if (getMes() > 0 && getMes() <= 12) {
             return true;
         } else {
             return false;
         }
     }
-    public boolean verifica_ano(){
+    private boolean verifica_ano(){
         if (getAno() > 0) {
             return true;
         } else {
