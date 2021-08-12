@@ -19,17 +19,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+
     
     
    
     
     public TelaPrincipal() {
         initComponents();
-        conexao = moduloConexao.conector();
-        System.out.println(conexao);
         
         txt_id.setVisible(true);
         this.setLocationRelativeTo(null);

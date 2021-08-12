@@ -20,105 +20,17 @@ import Model.Receita;
  */
 public class TelaReceita_cadastrar extends javax.swing.JFrame {
 
-    Connection conexao = null;
-    PreparedStatement pst1 = null;
-    PreparedStatement pst2 = null;
-    PreparedStatement pst3 = null;
-    ResultSet rs = null;
-    boolean flagSucData = true;
-    boolean flagSucTotal = true;
-    
-    
+   
     /**
      * Creates new form TelaReceita_cadastrar
      */
     public TelaReceita_cadastrar() {
         initComponents();
-        conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
     }
     
     public void cadastro_receita(){
-        
-//        int cod_receita = 0;
-//        
-//        String id_conta = txt_id.getText();
-//         
-//        int Id_conta_BD = Integer.parseInt(id_conta);
-//
-//        String sql1 = "insert into receita_data (dia, mes, ano) values(?,?,?)";
-//        
-//        String sql2 = "select * from receita_data where dia=? and mes=? and ano=?";
-//        
-//        String sql3 = "insert into receita (receita_data_cod_receita, total, conta_id_conta) values(?,?,?)";
-//  
-//        try {
-//            
-//            pst1 = conexao.prepareStatement(sql1);
-//            pst1.setString(1, txt_dia.getText());
-//            pst1.setString(2, txt_mes.getText());
-//            pst1.setString(3, txt_ano.getText());
-//            
-//            
-//            int dia = Integer.parseInt(txt_dia.getText());
-//            int mes = Integer.parseInt(txt_dia.getText());
-//            int ano = Integer.parseInt(txt_ano.getText());
-//            
-//            Data data_aux = new Data(dia, mes, ano);
-//            
-//            if(!(data_aux.verifica_data())){
-//                flagSucData = false;
-//            }
-//            if(flagSucData){
-//                pst1.executeUpdate();
-//            }    
-//            
-//            
-//            pst2 = conexao.prepareStatement(sql2);
-//            
-//            pst2.setString(1, txt_dia.getText());
-//            pst2.setString(2, txt_mes.getText());
-//            pst2.setString(3, txt_ano.getText());
-//                   
-//                rs = pst2.executeQuery();
-//            
-//            if(rs.next()){
-//                
-//                cod_receita = rs.getInt(1);
-//                
-//                pst3 = conexao.prepareStatement(sql3);
-//
-//                pst3.setInt(1, cod_receita);
-//                pst3.setString(2, txt_total.getText());
-//                pst3.setInt(3, Id_conta_BD);
-//                
-//                float total = Float.parseFloat(txt_total.getText());
-//                Receita receita_aux = new Receita();
-//                receita_aux.setTotal(total);
-//                
-//                if(!(receita_aux.verifica_total())){
-//                    flagSucTotal = false;
-//                }
-//                
-//                if(flagSucTotal){
-//                    pst3.executeUpdate();
-//                }
-//                
-//
-//            }else{
-//                JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
-//            }
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Falha ao cadastrar receita");
-//        }
-//        
-//        if(flagSucData && flagSucTotal){
-//            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Falha ao cadastrar receita");
-//        }
-        
+
         Receita receita = new Receita(
                 Integer.parseInt(txt_dia.getText()),
                 Integer.parseInt(txt_mes.getText()),
@@ -130,7 +42,6 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         ReceitaDAO receitaDAO = new ReceitaDAO();
 
         try {
-            
             
             if (receita.verifica_ReceitaValida())
             {
