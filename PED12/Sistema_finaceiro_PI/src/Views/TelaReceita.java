@@ -155,7 +155,31 @@ public class TelaReceita extends javax.swing.JFrame {
            
          this.dispose();
     }
+    void pesquisa(){
+
+        TelaReceita_Consulta TelaReceita_pesq = null;
+
+        if (TelaReceita_pesq == null) {
+
+            TelaReceita_pesq = new TelaReceita_Consulta();
+
+            TelaReceita_pesq.setVisible(true);
+
+            TelaReceita_pesq.receberID(txt_id.getText());
+
+        } else {
+
+            TelaReceita_pesq.setVisible(true);
+
+            TelaReceita_pesq.setState(TelaPrincipal.NORMAL);
+
+            TelaReceita_pesq.receberID(txt_id.getText());
+
+        }
+
+        this.dispose();
     
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -180,6 +204,7 @@ public class TelaReceita extends javax.swing.JFrame {
         txt_mes = new javax.swing.JTextField();
         txt_ano = new javax.swing.JTextField();
         btn_NovaReceita = new javax.swing.JButton();
+        btn_consulta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,6 +261,13 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
 
+        btn_consulta.setText("consulta");
+        btn_consulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consultaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -264,7 +296,10 @@ public class TelaReceita extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(112, 112, 112)
+                                .addComponent(btn_consulta)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(btn_inicio)
@@ -288,11 +323,12 @@ public class TelaReceita extends javax.swing.JFrame {
                     .addComponent(btnCartao_cred)
                     .addComponent(btnCartao_Deb)
                     .addComponent(btn_NovaReceita))
-                .addGap(59, 59, 59)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_consulta))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -345,6 +381,11 @@ public class TelaReceita extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_NovaReceitaActionPerformed
 
+    private void btn_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultaActionPerformed
+        // TODO add your handling code here:
+        pesquisa();
+    }//GEN-LAST:event_btn_consultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -384,6 +425,7 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_Deb;
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btn_NovaReceita;
+    private javax.swing.JButton btn_consulta;
     private javax.swing.JButton btn_despesas;
     private javax.swing.JButton btn_inicio;
     private javax.swing.JLabel jLabel1;
