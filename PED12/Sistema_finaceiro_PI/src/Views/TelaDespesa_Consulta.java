@@ -27,7 +27,32 @@ public class TelaDespesa_Consulta extends javax.swing.JFrame {
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
     }
+       
+    void voltaTelaDespesa(){
 
+          TelaDespesa Tela_despesa = null;
+
+        if (Tela_despesa == null) {
+
+            Tela_despesa = new TelaDespesa();
+
+            Tela_despesa.setVisible(true);
+
+            Tela_despesa.receberID(txt_id.getText());
+
+        } else {
+
+            Tela_despesa.setVisible(true);
+
+            Tela_despesa.setState(TelaPrincipal.NORMAL);
+
+            Tela_despesa.receberID(txt_id.getText());
+
+        }
+        this.dispose();
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +65,7 @@ public class TelaDespesa_Consulta extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtConsultaDespesa = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -66,6 +92,13 @@ public class TelaDespesa_Consulta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtConsultaDespesa);
 
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,7 +106,9 @@ public class TelaDespesa_Consulta extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(370, 370, 370))
+                .addGap(199, 199, 199)
+                .addComponent(jButton1)
+                .addGap(98, 98, 98))
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -82,9 +117,11 @@ public class TelaDespesa_Consulta extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(83, Short.MAX_VALUE))
         );
@@ -161,6 +198,11 @@ public class TelaDespesa_Consulta extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        voltaTelaDespesa();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +239,7 @@ public class TelaDespesa_Consulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaDespesa;
     private javax.swing.JTextField txt_id;
