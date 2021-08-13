@@ -160,107 +160,96 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txt_id = new javax.swing.JTextField();
         btnReceitas = new javax.swing.JButton();
         btnDespesas = new javax.swing.JButton();
         btnCartao_cred = new javax.swing.JButton();
         btnCartao_Deb = new javax.swing.JButton();
         BtnSair = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnReceitas.setText("Receitas");
-        btnReceitas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReceitasActionPerformed(evt);
-            }
-        });
-
-        btnDespesas.setText("Despesas");
-        btnDespesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDespesasActionPerformed(evt);
-            }
-        });
-
-        btnCartao_cred.setText("Cartão de Crédito");
-        btnCartao_cred.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCartao_credActionPerformed(evt);
-            }
-        });
-
-        btnCartao_Deb.setText("Cartão de Débito");
-        btnCartao_Deb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCartao_DebActionPerformed(evt);
-            }
-        });
-
-        BtnSair.setText("Sair");
-        BtnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSairActionPerformed(evt);
-            }
-        });
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         txt_id.setEditable(false);
+        txt_id.setBackground(new java.awt.Color(150, 175, 231));
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idActionPerformed(evt);
             }
         });
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        getContentPane().setLayout(null);
+
+        btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnReceitas.setText("Receitas");
+        btnReceitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReceitasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnReceitas);
+        btnReceitas.setBounds(10, 10, 84, 27);
+
+        btnDespesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnDespesas.setText("Despesas");
+        btnDespesas.setAlignmentY(0.1F);
+        btnDespesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDespesasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDespesas);
+        btnDespesas.setBounds(100, 10, 90, 27);
+
+        btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnCartao_cred.setText("Cartão de Crédito");
+        btnCartao_cred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartao_credActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCartao_cred);
+        btnCartao_cred.setBounds(200, 10, 140, 27);
+
+        btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnCartao_Deb.setText("Cartão de Débito");
+        btnCartao_Deb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartao_DebActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCartao_Deb);
+        btnCartao_Deb.setBounds(344, 10, 140, 27);
+
+        BtnSair.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        BtnSair.setText("Sair");
+        BtnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnSair);
+        BtnSair.setBounds(620, 10, 71, 27);
+
+        jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jToggleButton1.setText("Consultar User");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jToggleButton1);
+        jToggleButton1.setBounds(490, 10, 124, 27);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToggleButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnReceitas)
-                        .addGap(59, 59, 59)
-                        .addComponent(btnDespesas)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnCartao_cred)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnCartao_Deb)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                        .addComponent(BtnSair)
-                        .addGap(41, 41, 41))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReceitas)
-                    .addComponent(btnDespesas)
-                    .addComponent(btnCartao_cred)
-                    .addComponent(btnCartao_Deb)
-                    .addComponent(BtnSair))
-                .addGap(35, 35, 35)
-                .addComponent(jToggleButton1)
-                .addGap(34, 34, 34)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(530, 320, 140, 140);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -286,10 +275,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cartao_debito();
     }//GEN-LAST:event_btnCartao_DebActionPerformed
 
-    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_idActionPerformed
-
     private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed
         // TODO add your handling code here:
        
@@ -301,6 +286,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         TelaUsuario_consultar();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +334,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnReceitas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables

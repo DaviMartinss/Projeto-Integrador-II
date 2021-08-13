@@ -64,6 +64,29 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         
     }
     
+    void inicio(){
+         
+         TelaPrincipal TelaPrincipal = null;
+         
+         if (TelaPrincipal == null) {
+
+             TelaPrincipal = new TelaPrincipal();
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.receberID(txt_id.getText());
+
+         } else {
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.setState(TelaPrincipal.NORMAL);
+
+             TelaPrincipal.receberID(txt_id.getText());
+         }
+         
+         this.dispose();
+    }
     
     void Volta_TelaReceita(){
         
@@ -100,30 +123,20 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txt_id = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txt_dia = new javax.swing.JTextField();
         txt_mes = new javax.swing.JTextField();
         txt_ano = new javax.swing.JTextField();
+        btn_inicio = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txt_total = new javax.swing.JTextField();
-        txt_id = new javax.swing.JTextField();
         btn_NovaReceita = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Dia: ");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Mês:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Ano:");
-
-        jLabel1.setText("Total: ");
+        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -132,84 +145,72 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        getContentPane().setLayout(null);
+
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel4.setText("Data: (dd/mm/aaaa)");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(40, 120, 170, 17);
+
+        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
+        jLabel5.setText("/");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(90, 150, 10, 27);
+
+        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
+        jLabel6.setText("/");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(150, 150, 10, 27);
+        getContentPane().add(txt_dia);
+        txt_dia.setBounds(40, 150, 50, 27);
+        getContentPane().add(txt_mes);
+        txt_mes.setBounds(100, 150, 50, 27);
+        getContentPane().add(txt_ano);
+        txt_ano.setBounds(160, 150, 50, 27);
+
+        btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio.setText("Início");
+        btn_inicio.setMaximumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.setMinimumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inicioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_inicio);
+        btn_inicio.setBounds(40, 60, 68, 27);
+
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel1.setText("Total: ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(40, 200, 40, 17);
+        getContentPane().add(txt_total);
+        txt_total.setBounds(40, 230, 104, 27);
+
+        btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_NovaReceita.setText("Cadastrar Receita");
         btn_NovaReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_NovaReceitaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_NovaReceita);
+        btn_NovaReceita.setBounds(40, 300, 150, 27);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("CADASTRO DE RECEITA");
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel2.setText("CADASTRAR NOVA RECEITA");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(210, 10, 280, 18);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(4, 4, 4))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(btn_NovaReceita))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txt_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addComponent(btn_NovaReceita)
-                        .addContainerGap(49, Short.MAX_VALUE))))
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(530, 330, 140, 100);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(-150, -150, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -233,6 +234,11 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btn_NovaReceitaActionPerformed
+
+    private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed
+        // TODO add your handling code here:
+        inicio();
+    }//GEN-LAST:event_btn_inicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,11 +277,14 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_NovaReceita;
+    private javax.swing.JButton btn_inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txt_ano;
     private javax.swing.JTextField txt_dia;
     private javax.swing.JTextField txt_id;

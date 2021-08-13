@@ -31,6 +31,29 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
 
     }
+    void inicio(){
+         
+         TelaPrincipal TelaPrincipal = null;
+         
+         if (TelaPrincipal == null) {
+
+             TelaPrincipal = new TelaPrincipal();
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.receberID(txt_id.getText());
+
+         } else {
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.setState(TelaPrincipal.NORMAL);
+
+             TelaPrincipal.receberID(txt_id.getText());
+         }
+         
+         this.dispose();
+    }
 
     void volta_telaCartaoDeCredito() {
        
@@ -104,8 +127,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
         txt_NumCC = new javax.swing.JTextField();
         txt_DiaFaturaCC = new javax.swing.JTextField();
         txt_BandeiraCC = new javax.swing.JTextField();
@@ -114,43 +136,11 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btn_inicio = new javax.swing.JButton();
         btn_cadastra_cartao = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txt_ValorFatura = new javax.swing.JTextField();
-
-        jLabel3.setText("jLabel3");
-
-        jLabel5.setText("jLabel5");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txt_BandeiraCC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_BandeiraCCActionPerformed(evt);
-            }
-        });
-
-        txt_LimiteCC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_LimiteCCActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Número do cartão");
-
-        jLabel2.setText("Limite");
-
-        jLabel4.setText("Dia da Fatura");
-
-        jLabel6.setText("Bandeira");
-
-        btn_cadastra_cartao.setText("Cadastra cartao");
-        btn_cadastra_cartao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cadastra_cartaoActionPerformed(evt);
-            }
-        });
+        jLabel8 = new javax.swing.JLabel();
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -159,70 +149,84 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Valor da Fatura");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cartão de Crédito");
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        getContentPane().setLayout(null);
+        getContentPane().add(txt_NumCC);
+        txt_NumCC.setBounds(150, 60, 400, 27);
+        getContentPane().add(txt_DiaFaturaCC);
+        txt_DiaFaturaCC.setBounds(150, 240, 400, 27);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(btn_cadastra_cartao, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7))
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_NumCC, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_DiaFaturaCC, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_BandeiraCC, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txt_ValorFatura, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_LimiteCC, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_NumCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_LimiteCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_ValorFatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_DiaFaturaCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_BandeiraCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cadastra_cartao)
-                .addGap(22, 22, 22))
-        );
+        txt_BandeiraCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_BandeiraCCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_BandeiraCC);
+        txt_BandeiraCC.setBounds(150, 300, 400, 27);
+
+        txt_LimiteCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_LimiteCCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_LimiteCC);
+        txt_LimiteCC.setBounds(150, 120, 400, 27);
+
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel1.setText("Número do cartão");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(150, 40, 108, 17);
+
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel2.setText("Limite");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(150, 100, 40, 14);
+
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel4.setText("Dia da Fatura");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(150, 220, 90, 17);
+
+        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel6.setText("Bandeira");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(150, 280, 60, 17);
+
+        btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio.setText("Início");
+        btn_inicio.setMaximumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.setMinimumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inicioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_inicio);
+        btn_inicio.setBounds(150, 370, 68, 27);
+
+        btn_cadastra_cartao.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_cadastra_cartao.setText("Cadastra cartao");
+        btn_cadastra_cartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastra_cartaoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_cadastra_cartao);
+        btn_cadastra_cartao.setBounds(420, 370, 130, 27);
+
+        jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel7.setText("Valor da Fatura");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(150, 160, 93, 20);
+        getContentPane().add(txt_ValorFatura);
+        txt_ValorFatura.setBounds(150, 180, 400, 27);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        jLabel8.setText("jLabel8");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(0, 0, 1968, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -255,6 +259,11 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
+
+    private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed
+        // TODO add your handling code here:
+        inicio();
+    }//GEN-LAST:event_btn_inicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,13 +303,13 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cadastra_cartao;
+    private javax.swing.JButton btn_inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txt_BandeiraCC;
     private javax.swing.JTextField txt_DiaFaturaCC;
     private javax.swing.JTextField txt_LimiteCC;

@@ -26,32 +26,7 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
     }
-    
-    void voltaTelaReceita(){
 
-          TelaReceita Tela_receita = null;
-
-        if (Tela_receita == null) {
-
-            Tela_receita = new TelaReceita();
-
-            Tela_receita.setVisible(true);
-
-            Tela_receita.receberID(txt_id.getText());
-
-        } else {
-
-            Tela_receita.setVisible(true);
-
-            Tela_receita.setState(TelaPrincipal.NORMAL);
-
-            Tela_receita.receberID(txt_id.getText());
-
-        }
-        this.dispose();
-
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,8 +38,9 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPesquisa = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
-        btn_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -72,6 +48,7 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         jtPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,39 +68,18 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtPesquisa);
 
-        btn_voltar.setText("Voltar");
-        btn_voltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_voltarActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 110, 375, 97);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_voltar)
-                .addGap(97, 97, 97))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_voltar))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(540, 300, 130, 130);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
+        getContentPane().add(txt_id);
+        txt_id.setBounds(30, 80, 91, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -180,11 +136,6 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
         jtPesquisa.setAutoCreateRowSorter(true);
     }//GEN-LAST:event_formWindowOpened
 
-    private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
-        // TODO add your handling code here:
-        voltaTelaReceita();
-    }//GEN-LAST:event_btn_voltarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -221,7 +172,8 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_voltar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtPesquisa;
     private javax.swing.JTextField txt_id;

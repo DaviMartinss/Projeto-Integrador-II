@@ -144,37 +144,79 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         txt_numCartDeb = new javax.swing.JTextField();
         txt_BandCartDeb = new javax.swing.JTextField();
         btn_cadastraCartDeb = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txt_valorCartaoDeb = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        getContentPane().setLayout(null);
 
+        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel5.setText("Cadastrar Cartão de Débito");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(230, 10, 260, 17);
+
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 100, 108, 17);
 
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Bandeira");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(30, 210, 55, 17);
+
+        jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jButton1.setText("Início");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(30, 60, 68, 27);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(520, 270, 140, 130);
+        getContentPane().add(txt_numCartDeb);
+        txt_numCartDeb.setBounds(30, 120, 400, 27);
 
         txt_BandCartDeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_BandCartDebActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_BandCartDeb);
+        txt_BandCartDeb.setBounds(30, 230, 400, 27);
 
+        btn_cadastraCartDeb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_cadastraCartDeb.setText("Cadastrar");
         btn_cadastraCartDeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cadastraCartDebActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cadastraCartDeb);
+        btn_cadastraCartDeb.setBounds(330, 60, 94, 27);
 
+        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor Atual");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(30, 160, 68, 17);
+        getContentPane().add(txt_valorCartaoDeb);
+        txt_valorCartaoDeb.setBounds(30, 180, 400, 27);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -182,58 +224,8 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
                 txt_idActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_numCartDeb)
-                            .addComponent(txt_BandCartDeb)
-                            .addComponent(txt_valorCartaoDeb, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(btn_cadastraCartDeb)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txt_numCartDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txt_valorCartaoDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_BandCartDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addComponent(btn_cadastraCartDeb)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        getContentPane().add(txt_id);
+        txt_id.setBounds(343, 42, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -299,9 +291,13 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cadastraCartDeb;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txt_BandCartDeb;
     private javax.swing.JTextField txt_id;

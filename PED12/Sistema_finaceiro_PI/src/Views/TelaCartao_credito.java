@@ -30,7 +30,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
     }
-     void inicio(){
+    void inicio(){
          
          TelaPrincipal TelaPrincipal = null;
          
@@ -149,56 +149,96 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         btn_inicio_CC = new javax.swing.JButton();
         btn_receitaCC = new javax.swing.JButton();
         btn_sairCC = new javax.swing.JButton();
         btn_novoCartao_cc = new javax.swing.JButton();
         btnConsulta_CC = new javax.swing.JButton();
         btn_exclui_cc = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        getContentPane().setLayout(null);
 
         jTextField1.setText("Usuário");
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(30, 100, 52, 21);
 
         jTextField2.setText("Cartão de Crédito");
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(30, 140, 105, 21);
 
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel2.setText("Cartão de Crédito");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(260, 0, 170, 26);
+
+        btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_inicio_CC.setText("Inicio");
         btn_inicio_CC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_inicio_CCActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_inicio_CC);
+        btn_inicio_CC.setBounds(20, 50, 68, 27);
 
+        btn_receitaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_receitaCC.setText("Receitas");
         btn_receitaCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_receitaCCActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_receitaCC);
+        btn_receitaCC.setBounds(120, 50, 84, 27);
 
+        btn_sairCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_sairCC.setText("Sair");
         btn_sairCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sairCCActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_sairCC);
+        btn_sairCC.setBounds(620, 50, 58, 27);
 
+        btn_novoCartao_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_novoCartao_cc.setText("Novo Cartão");
         btn_novoCartao_cc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_novoCartao_ccActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_novoCartao_cc);
+        btn_novoCartao_cc.setBounds(480, 50, 107, 27);
 
+        btnConsulta_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnConsulta_CC.setText("Consulta");
         btnConsulta_CC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsulta_CCActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConsulta_CC);
+        btnConsulta_CC.setBounds(230, 50, 87, 27);
 
+        btn_exclui_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_exclui_cc.setText("Exclui cartão");
+        getContentPane().add(btn_exclui_cc);
+        btn_exclui_cc.setBounds(340, 50, 113, 27);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(530, 300, 140, 110);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -206,61 +246,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 txt_idActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_inicio_CC)
-                                .addGap(65, 65, 65)
-                                .addComponent(btn_receitaCC)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_sairCC)))
-                        .addGap(56, 56, 56))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_novoCartao_cc)
-                                .addGap(60, 60, 60)
-                                .addComponent(btnConsulta_CC)
-                                .addGap(41, 41, 41)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(283, 283, 283)
-                                .addComponent(btn_exclui_cc)))
-                        .addContainerGap(14, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_inicio_CC)
-                    .addComponent(btn_receitaCC)
-                    .addComponent(btn_sairCC))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_novoCartao_cc)
-                    .addComponent(btnConsulta_CC)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addComponent(btn_exclui_cc)
-                .addContainerGap())
-        );
+        getContentPane().add(txt_id);
+        txt_id.setBounds(307, 137, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -337,6 +324,9 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JButton btn_novoCartao_cc;
     private javax.swing.JButton btn_receitaCC;
     private javax.swing.JButton btn_sairCC;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField txt_id;

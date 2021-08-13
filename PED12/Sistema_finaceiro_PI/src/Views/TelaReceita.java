@@ -155,31 +155,7 @@ public class TelaReceita extends javax.swing.JFrame {
            
          this.dispose();
     }
-    void pesquisa(){
-
-        TelaReceita_Consulta TelaReceita_pesq = null;
-
-        if (TelaReceita_pesq == null) {
-
-            TelaReceita_pesq = new TelaReceita_Consulta();
-
-            TelaReceita_pesq.setVisible(true);
-
-            TelaReceita_pesq.receberID(txt_id.getText());
-
-        } else {
-
-            TelaReceita_pesq.setVisible(true);
-
-            TelaReceita_pesq.setState(TelaPrincipal.NORMAL);
-
-            TelaReceita_pesq.receberID(txt_id.getText());
-
-        }
-
-        this.dispose();
     
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,9 +166,9 @@ public class TelaReceita extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txt_id = new javax.swing.JTextField();
         btn_inicio = new javax.swing.JButton();
         btn_despesas = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         btnCartao_cred = new javax.swing.JButton();
         btnCartao_Deb = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -204,23 +180,8 @@ public class TelaReceita extends javax.swing.JFrame {
         txt_mes = new javax.swing.JTextField();
         txt_ano = new javax.swing.JTextField();
         btn_NovaReceita = new javax.swing.JButton();
-        btn_consulta = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btn_inicio.setText("Início");
-        btn_inicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_inicioActionPerformed(evt);
-            }
-        });
-
-        btn_despesas.setText("Despesas");
-        btn_despesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_despesasActionPerformed(evt);
-            }
-        });
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -229,122 +190,103 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        getContentPane().setLayout(null);
+
+        btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio.setText("Início");
+        btn_inicio.setMaximumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.setMinimumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inicioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_inicio);
+        btn_inicio.setBounds(20, 10, 68, 27);
+
+        btn_despesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_despesas.setText("Despesas");
+        btn_despesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_despesasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_despesas);
+        btn_despesas.setBounds(250, 10, 90, 27);
+
+        btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnCartao_cred.setText("Cartão de Crédito");
         btnCartao_cred.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCartao_credActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCartao_cred);
+        btnCartao_cred.setBounds(370, 10, 140, 27);
 
+        btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnCartao_Deb.setText("Cartão de Débito");
         btnCartao_Deb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCartao_DebActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCartao_Deb);
+        btnCartao_Deb.setBounds(540, 10, 140, 27);
 
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 90, 50, 17);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_total.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txt_total.setName(""); // NOI18N
+        txt_total.setPreferredSize(new java.awt.Dimension(10, 40));
+        getContentPane().add(txt_total);
+        txt_total.setBounds(30, 110, 300, 27);
+
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Dia: ");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 160, 27, 17);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel5.setText("Mês:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 230, 28, 17);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Ano:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(30, 290, 40, 17);
+        getContentPane().add(txt_dia);
+        txt_dia.setBounds(30, 180, 300, 27);
+        getContentPane().add(txt_mes);
+        txt_mes.setBounds(30, 250, 300, 27);
+        getContentPane().add(txt_ano);
+        txt_ano.setBounds(30, 310, 300, 27);
 
+        btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_NovaReceita.setText("Nova Receita");
         btn_NovaReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_NovaReceitaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_NovaReceita);
+        btn_NovaReceita.setBounds(110, 10, 111, 27);
 
-        btn_consulta.setText("consulta");
-        btn_consulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_consultaActionPerformed(evt);
-            }
-        });
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(540, 320, 140, 130);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6))
-                                        .addGap(4, 4, 4))
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(112, 112, 112)
-                                .addComponent(btn_consulta)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btn_inicio)
-                        .addGap(23, 23, 23)
-                        .addComponent(btn_NovaReceita)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_despesas)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnCartao_cred)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCartao_Deb)))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_inicio)
-                    .addComponent(btn_despesas)
-                    .addComponent(btnCartao_cred)
-                    .addComponent(btnCartao_Deb)
-                    .addComponent(btn_NovaReceita))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_consulta))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txt_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        jLabel2.setPreferredSize(new java.awt.Dimension(700, 500));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 700, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -380,11 +322,6 @@ public class TelaReceita extends javax.swing.JFrame {
         cadastra_receita();
         
     }//GEN-LAST:event_btn_NovaReceitaActionPerformed
-
-    private void btn_consultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultaActionPerformed
-        // TODO add your handling code here:
-        pesquisa();
-    }//GEN-LAST:event_btn_consultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -425,10 +362,11 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_Deb;
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btn_NovaReceita;
-    private javax.swing.JButton btn_consulta;
     private javax.swing.JButton btn_despesas;
     private javax.swing.JButton btn_inicio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
