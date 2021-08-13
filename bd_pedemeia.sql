@@ -83,15 +83,13 @@ valor float NOT NULL,
 categoria varchar(45) NOT NULL,
 descricao varchar(250) DEFAULT NULL,
 f_pagamento varchar(45) NOT NULL,
-cartao_debito_n_cartao_debito bigint DEFAULT NULL,
-cartao_credito_n_cartao_credito bigint DEFAULT NULL,
+num_cartao BIGINT(20) NOT NULL,
 estatus varchar(20) NOT NULL,
 conta_id_conta int(11) NOT NULL,
 FOREIGN KEY (conta_id_conta) REFERENCES conta (id_conta) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (despesa_data_cod_despesa) REFERENCES
-despesa_data (cod_despesa) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (cartao_debito_n_cartao_debito) REFERENCES cartao_debito (n_cartao_debito) ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY (cartao_credito_n_cartao_credito) REFERENCES cartao_credito (n_cartao_credito) ON DELETE CASCADE ON UPDATE CASCADE
+despesa_data (cod_despesa) ON DELETE CASCADE ON UPDATE CASCADE
+
 
 );
 

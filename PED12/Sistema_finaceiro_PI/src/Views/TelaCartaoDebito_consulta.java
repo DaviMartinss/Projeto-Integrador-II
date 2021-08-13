@@ -5,17 +5,26 @@
  */
 package Views;
 
+import DAO.moduloConexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author pc
  */
 public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCartaoDebito_consulta
-     */
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     public TelaCartaoDebito_consulta() {
         initComponents();
+        conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
     }
     
@@ -67,8 +76,15 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtConsultaCD = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnDeletar.setText("Deletar");
 
@@ -109,6 +125,24 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
             }
         });
 
+        jtConsultaCD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "N° Cartão Débito", "Valor Atual", "Bandeira"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jtConsultaCD);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,61 +151,72 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
                         .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_numCartDeb)
-                            .addComponent(txt_BandCartDeb)
-                            .addComponent(txt_valorCartaoDeb, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_Consultar)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAlterar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDeletar)
-                                .addGap(106, 106, 106)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnVoltar))))))
-                .addContainerGap(100, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(353, 353, 353)
+                                    .addComponent(btn_Consultar))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(txt_numCartDeb, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnDeletar)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnAlterar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnVoltar))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(97, 97, 97)
+                                    .addComponent(jLabel4)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_BandCartDeb)
+                                .addComponent(txt_valorCartaoDeb, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeletar)
+                    .addComponent(btnAlterar)
+                    .addComponent(txt_numCartDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_numCartDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Consultar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(28, 28, 28))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(txt_valorCartaoDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)))
+                        .addComponent(txt_valorCartaoDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_BandCartDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Consultar)
-                    .addComponent(btnAlterar)
-                    .addComponent(btnDeletar)
-                    .addComponent(btnVoltar))
-                .addGap(43, 43, 43))
+                .addGap(1, 1, 1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -195,6 +240,60 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
         
         voltaTelaCartao_Debito();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // consulta
+        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
+        
+        int l = mp1.getRowCount();
+        
+        if(l>0){
+            while(l>0){
+                //Limpa tabela sempre que for fazer uma nova consulta
+                ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
+                
+                //Menos um pois a primeira linha é a linha zero
+                l--;
+            }
+        }
+        
+        try{
+            
+            String sql = "select * from cartao_debito where conta_id_conta=?";
+
+            pst = conexao.prepareStatement(sql);
+            
+            pst.setInt(1, Integer.parseInt(txt_id.getText()));
+
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
+            
+            rs = pst.executeQuery();    
+
+            while(rs.next()) {
+                
+                String Col0 = rs.getString("n_cartao_debito");
+                String Col1 = rs.getString("valor_atual");
+                String Col2 = rs.getString("bandeira");
+                
+                
+                
+                //Redimensiona a tabela
+                //TamanhoColunas();
+                
+                mp.addRow(new String[] {Col0,Col1,Col2});
+                
+            }
+            
+            
+            
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+        }
+        
+        jtConsultaCD.setAutoCreateRowSorter(true);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -240,6 +339,8 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jtConsultaCD;
     private javax.swing.JTextField txt_BandCartDeb;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_numCartDeb;
