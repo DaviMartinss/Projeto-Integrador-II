@@ -146,6 +146,57 @@ public class TelaCartao_credito extends javax.swing.JFrame {
            
          this.dispose();
     }
+      
+      
+      void RecarregaTabela_CartaoCC() {
+
+        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCC.getModel();
+
+        int l = mp1.getRowCount();
+
+        if (l > 0) {
+            while (l > 0) {
+                //Limpa tabela sempre que for fazer uma nova consulta
+                ((DefaultTableModel) jtConsultaCC.getModel()).removeRow(l - 1);
+
+                //Menos um pois a primeira linha é a linha zero
+                l--;
+            }
+        }
+
+        try {
+
+            CartaoCreditoDAO cartao_c = new CartaoCreditoDAO();
+
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
+
+            rs = cartao_c.CarregaTabela_Cartao_C(Integer.parseInt(txt_id.getText()));
+
+            while (rs.next()) {
+
+                String Col0 = rs.getString("n_cartao_credito");
+                String Col1 = rs.getString("limite");
+                String Col2 = rs.getString("dia_fatura");
+                String Col3 = rs.getString("valor_fatura");
+                String Col4 = rs.getString("bandeira");
+
+                //Redimensiona a tabela
+                //TamanhoColunas();
+                mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4});
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+
+        jtConsultaCC.setAutoCreateRowSorter(true);
+
+    }
+      
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -169,7 +220,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtConsultaCC = new javax.swing.JTable();
         cbbTipo = new javax.swing.JComboBox<>();
-        btPesquisar = new javax.swing.JButton();
+        btPesquisarCC = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txt_DiaFatura = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -321,14 +372,14 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(cbbTipo);
         cbbTipo.setBounds(30, 310, 120, 30);
 
-        btPesquisar.setText("Pesquisar");
-        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisarCC.setText("Pesquisar");
+        btPesquisarCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPesquisarActionPerformed(evt);
+                btPesquisarCCActionPerformed(evt);
             }
         });
-        getContentPane().add(btPesquisar);
-        btPesquisar.setBounds(680, 310, 90, 30);
+        getContentPane().add(btPesquisarCC);
+        btPesquisarCC.setBounds(680, 310, 90, 30);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
@@ -433,9 +484,14 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
         // TODO add your handling code here
+        
+        if(txt_Pesquisa.getText().isEmpty()){
+            RecarregaTabela_CartaoCC();
+        }
+        
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
-    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+    private void btPesquisarCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCCActionPerformed
         // TODO add your handling code here:
         
        if(rbAscendente.isSelected() || rbDescendente.isSelected()){
@@ -527,59 +583,13 @@ public class TelaCartao_credito extends javax.swing.JFrame {
        }
              
         
-    }//GEN-LAST:event_btPesquisarActionPerformed
+    }//GEN-LAST:event_btPesquisarCCActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
-        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCC.getModel();
         
-        int l = mp1.getRowCount();
-        
-        if(l>0){
-            while(l>0){
-                //Limpa tabela sempre que for fazer uma nova consulta
-                ((DefaultTableModel) jtConsultaCC.getModel()).removeRow(l - 1);
-                
-                //Menos um pois a primeira linha é a linha zero
-                l--;
-            }
-        }
-        
-        try{
-            
-            CartaoCreditoDAO cartao_c = new CartaoCreditoDAO();
-            
-            DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();  
-
-            rs = cartao_c.CarregaTabela_Cartao_C(Integer.parseInt(txt_id.getText()));
-
-            while(rs.next()) {
-                
-                String Col0 = rs.getString("n_cartao_credito");
-                String Col1 = rs.getString("limite");
-                String Col2 = rs.getString("dia_fatura");
-                String Col3 = rs.getString("valor_fatura");
-                String Col4 = rs.getString("bandeira");
-                
-                
-                //Redimensiona a tabela
-                //TamanhoColunas();
-                
-                mp.addRow(new String[] {Col0,Col1,Col2,Col3,Col4});
-                
-            }
-            
-            
-            
-        }catch(Exception e){
-            
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            
-        }
-        
-        jtConsultaCC.setAutoCreateRowSorter(true);
-        
+        RecarregaTabela_CartaoCC();
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -677,7 +687,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btPesquisar;
+    private javax.swing.JButton btPesquisarCC;
     private javax.swing.JButton btnConsulta_CC;
     private javax.swing.JButton btn_exclui_cc;
     private javax.swing.JButton btn_inicio_CC;

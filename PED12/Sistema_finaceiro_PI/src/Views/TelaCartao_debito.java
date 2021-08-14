@@ -5,11 +5,14 @@
  */
 package Views;
 
+import DAO.CartaoDebitoDAO;
 import DAO.moduloConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -142,6 +145,58 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     }
      
      
+     void RecarregaTabela_CartaoDB(){
+         
+         DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
+        
+        int l = mp1.getRowCount();
+        
+        if(l>0){
+            while(l>0){
+                //Limpa tabela sempre que for fazer uma nova consulta
+                ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
+                
+                //Menos um pois a primeira linha é a linha zero
+                l--;
+            }
+        }
+        
+        try{
+            
+            CartaoDebitoDAO cartao_c = new CartaoDebitoDAO();
+            
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();  
+
+            rs = cartao_c.CarregaTabela_Cartao_D(Integer.parseInt(txt_id.getText()));
+
+            while(rs.next()) {
+                
+                String Col0 = rs.getString("n_cartao_debito");
+                String Col1 = rs.getString("valor_atual");
+                String Col2 = rs.getString("bandeira");
+                
+                
+                //Redimensiona a tabela
+                //TamanhoColunas();
+                
+                mp.addRow(new String[] {Col0,Col1,Col2});
+                
+            }
+            
+            
+            
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+        }
+        
+        jtConsultaCD.setAutoCreateRowSorter(true);
+         
+         
+     }
+     
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -158,16 +213,32 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txt_NumCartaoD = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txt_Bandeira = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txt_Valor = new javax.swing.JTextField();
+        cbbTipo = new javax.swing.JComboBox<>();
+        txt_Pesquisa = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        rbAscendente = new javax.swing.JRadioButton();
+        rbDescendente = new javax.swing.JRadioButton();
+        btPesquisarCD = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtConsultaCD = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -213,7 +284,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(310, 90, 110, 25);
+        jButton3.setBounds(560, 90, 110, 25);
 
         btnConsultar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnConsultar.setText("Consultar");
@@ -230,35 +301,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(260, 0, 160, 24);
 
-        jTextField1.setText("Saldo da Receita");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(20, 100, 100, 20);
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(20, 130, 400, 27);
-
         jButton7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton7.setText("Excluir Cartão");
         getContentPane().add(jButton7);
         jButton7.setBounds(370, 40, 113, 25);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(530, 290, 140, 130);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1920, 1080);
+        jLabel1.setBounds(0, 0, 1920, 0);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -269,12 +317,118 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         getContentPane().add(txt_id);
         txt_id.setBounds(370, 90, 81, 20);
 
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel4.setText("Número do cartão");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 140, 102, 16);
+        getContentPane().add(txt_NumCartaoD);
+        txt_NumCartaoD.setBounds(30, 160, 400, 27);
+
+        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel5.setText("Bandeira");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 240, 51, 16);
+
+        txt_Bandeira.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_BandeiraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_Bandeira);
+        txt_Bandeira.setBounds(30, 260, 400, 27);
+
+        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel3.setText("Valor");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(30, 190, 100, 16);
+        getContentPane().add(txt_Valor);
+        txt_Valor.setBounds(30, 210, 400, 27);
+
+        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Valor", "Bandeira", " ", " ", " " }));
+        getContentPane().add(cbbTipo);
+        cbbTipo.setBounds(20, 300, 120, 30);
+
+        txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_PesquisaActionPerformed(evt);
+            }
+        });
+        txt_Pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_PesquisaKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txt_Pesquisa);
+        txt_Pesquisa.setBounds(150, 300, 400, 27);
+
+        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel6.setText("Ordenação");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(560, 270, 80, 16);
+
+        rbAscendente.setText("Ascendente");
+        rbAscendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAscendenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbAscendente);
+        rbAscendente.setBounds(560, 290, 100, 23);
+
+        rbDescendente.setText("Descendente");
+        rbDescendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDescendenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbDescendente);
+        rbDescendente.setBounds(560, 310, 110, 23);
+
+        btPesquisarCD.setText("Pesquisar");
+        btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarCDActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btPesquisarCD);
+        btPesquisarCD.setBounds(670, 300, 90, 30);
+
+        jtConsultaCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jtConsultaCD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nº Cartão Débito", "Valor", "Bandeira"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtConsultaCD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtConsultaCDMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtConsultaCD);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 360, 640, 137);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -306,9 +460,162 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         TelaConsulta_CartaoDebito();
     }//GEN-LAST:event_btnConsultarActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txt_BandeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BandeiraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txt_BandeiraActionPerformed
+
+    private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_PesquisaActionPerformed
+
+    private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
+        // TODO add your handling code here
+        
+        if(txt_Pesquisa.getText().isEmpty()){
+            RecarregaTabela_CartaoDB();
+        }
+        
+    }//GEN-LAST:event_txt_PesquisaKeyReleased
+
+    private void rbAscendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAscendenteActionPerformed
+        // TODO add your handling code here:
+
+        if(rbAscendente.isSelected()){
+
+            rbDescendente.setSelected(false);
+
+        }
+
+    }//GEN-LAST:event_rbAscendenteActionPerformed
+
+    private void rbDescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendenteActionPerformed
+        // TODO add your handling code here:
+
+        if(rbDescendente.isSelected()){
+
+            rbAscendente.setSelected(false);
+
+        }
+
+    }//GEN-LAST:event_rbDescendenteActionPerformed
+
+    private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
+        // TODO add your handling code here:
+
+        if(rbAscendente.isSelected() || rbDescendente.isSelected()){
+
+            boolean ordenar = true;
+
+            String tipo = "";
+
+            String escolha = cbbTipo.getSelectedItem().toString().trim();
+
+            if (escolha.equals("Nº Cartão")) {
+                tipo = " " + "n_cartao_debito";
+            }
+
+            if (escolha.equals("Valor")) {
+                tipo = " " + "valor_atual";
+            }
+
+            if (escolha.equals("Bandeira")) {
+                tipo = " " + "bandeira";
+            }
+
+            if (rbAscendente.isSelected()) {
+
+                ordenar = true;
+
+            } else {
+
+                ordenar = false;
+            }
+
+            String argumento = txt_Pesquisa.getText();
+
+            DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
+
+            int l = mp1.getRowCount();
+
+            if (l > 0) {
+                while (l > 0) {
+                    //Limpa tabela sempre que for fazer uma nova consulta
+                    ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
+
+                    //Menos um pois a primeira linha é a linha zero
+                    l--;
+                }
+            }
+
+            try {
+
+                CartaoDebitoDAO cartao_d = new CartaoDebitoDAO();
+
+                DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
+
+                rs = cartao_d.ConsultaCartao_D(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
+
+                while (rs.next()) {
+
+                    String Col0 = rs.getString("n_cartao_debito");
+                    String Col1 = rs.getString("valor_atual");
+                    String Col2 = rs.getString("bandeira");
+
+                    mp.addRow(new String[]{Col0, Col1, Col2});
+
+                }
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(this, e.getMessage());
+
+            }
+
+            jtConsultaCD.setAutoCreateRowSorter(true);
+
+        }else{
+
+            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
+
+        }
+
+    }//GEN-LAST:event_btPesquisarCDActionPerformed
+
+    private void jtConsultaCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaCDMouseClicked
+        // TODO add your handling code here:
+
+        String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+
+        CartaoDebitoDAO cartaoDAO = new CartaoDebitoDAO();
+
+        ResultSet rs = null;
+
+        try {
+
+            rs = cartaoDAO.PreencherCamposCartao_D(num_cartao);
+
+            if(rs.next()){
+
+                txt_NumCartaoD.setText(rs.getString("n_cartao_debito"));
+                txt_Valor.setText(rs.getString("valor_atual"));
+                txt_Bandeira.setText(rs.getString("bandeira"));
+
+            }
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
+        }
+
+    }//GEN-LAST:event_jtConsultaCDMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        
+         RecarregaTabela_CartaoDB();
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -347,7 +654,9 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btPesquisarCD;
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -357,8 +666,17 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jtConsultaCD;
+    private javax.swing.JRadioButton rbAscendente;
+    private javax.swing.JRadioButton rbDescendente;
+    private javax.swing.JTextField txt_Bandeira;
+    private javax.swing.JTextField txt_NumCartaoD;
+    private javax.swing.JTextField txt_Pesquisa;
+    private javax.swing.JTextField txt_Valor;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
