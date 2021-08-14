@@ -65,7 +65,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(560, 60, 68, 27);
+        jButton1.setBounds(560, 60, 63, 25);
 
         jtPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,9 +98,9 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jToggleButton1.setText("Pesquisar");
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(50, 60, 100, 27);
+        jToggleButton1.setBounds(50, 60, 100, 25);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -40, 1920, 1080);
 

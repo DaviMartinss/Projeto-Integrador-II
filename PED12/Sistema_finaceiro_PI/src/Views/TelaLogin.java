@@ -137,12 +137,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(160, 190, 50, 17);
+        jLabel1.setBounds(160, 190, 50, 16);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(160, 260, 37, 17);
+        jLabel2.setBounds(160, 260, 36, 16);
 
         txtEmail.setAlignmentX(1.0F);
         getContentPane().add(txtEmail);
@@ -156,7 +156,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogin);
-        btnLogin.setBounds(160, 390, 80, 27);
+        btnLogin.setBounds(160, 390, 80, 25);
 
         btnCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnCadastro.setText("Cadastrar");
@@ -166,7 +166,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(460, 390, 100, 27);
+        btnCadastro.setBounds(460, 390, 100, 25);
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,11 +176,11 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(txtSenha);
         txtSenha.setBounds(160, 280, 400, 27);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(280, 40, 140, 100);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 1920, 1080);
 

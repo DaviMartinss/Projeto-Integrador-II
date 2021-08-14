@@ -118,29 +118,29 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 70, 67, 17);
+        jLabel1.setBounds(30, 70, 67, 16);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Limite");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 120, 67, 17);
+        jLabel2.setBounds(30, 120, 67, 16);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Dia da fatura");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 170, 67, 17);
+        jLabel3.setBounds(30, 170, 67, 16);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Valor da fatura");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 220, 67, 17);
+        jLabel4.setBounds(30, 220, 67, 16);
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel5.setText("Bandeira");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 270, 67, 17);
+        jLabel5.setBounds(30, 270, 67, 16);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel8);
         jLabel8.setBounds(520, 90, 140, 120);
         getContentPane().add(txt_DiaFatCC);
@@ -180,12 +180,12 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_Consultar);
-        btn_Consultar.setBounds(200, 30, 93, 27);
+        btn_Consultar.setBounds(200, 30, 87, 25);
 
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnAlterar.setText("Alterar");
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(110, 30, 78, 27);
+        btnAlterar.setBounds(110, 30, 71, 25);
 
         btnDeletar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnDeletar.setText("Deletar");
@@ -195,7 +195,7 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDeletar);
-        btnDeletar.setBounds(310, 30, 90, 27);
+        btnDeletar.setBounds(310, 30, 90, 25);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Consulta de Cartão de Crédito");
@@ -210,7 +210,7 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(30, 30, 71, 27);
+        btnVoltar.setBounds(30, 30, 67, 25);
 
         jtConsultaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCC.setModel(new javax.swing.table.DefaultTableModel(
@@ -247,12 +247,12 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(520, 340, 136, 21);
+        txt_id.setBounds(520, 340, 136, 20);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(0, 0, 1968, 1080);
+        jLabel7.setBounds(0, 0, 1958, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
