@@ -241,7 +241,7 @@
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/DAO/teste_icon_pedmeia1.png"/>
+          <Image iconType="3" name="/Imagens/teste_icon_pedmeia1.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -398,7 +398,7 @@
           <Font name="Noto Serif" size="12" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/DAO/fundo_principal.png"/>
+          <Image iconType="3" name="/Imagens/fundo_principal.png"/>
         </Property>
       </Properties>
       <Constraints>

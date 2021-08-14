@@ -177,22 +177,22 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 40, 108, 17);
+        jLabel1.setBounds(150, 40, 102, 16);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Limite");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(150, 100, 40, 14);
+        jLabel2.setBounds(150, 100, 35, 14);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Dia da Fatura");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(150, 220, 90, 17);
+        jLabel4.setBounds(150, 220, 90, 16);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Bandeira");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(150, 280, 60, 17);
+        jLabel6.setBounds(150, 280, 60, 16);
 
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_inicio.setText("Início");
@@ -204,7 +204,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(150, 370, 68, 27);
+        btn_inicio.setBounds(150, 370, 63, 25);
 
         btn_cadastra_cartao.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_cadastra_cartao.setText("Cadastra cartao");
@@ -214,19 +214,19 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastra_cartao);
-        btn_cadastra_cartao.setBounds(420, 370, 130, 27);
+        btn_cadastra_cartao.setBounds(420, 370, 130, 25);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Valor da Fatura");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(150, 160, 93, 20);
+        jLabel7.setBounds(150, 160, 86, 20);
         getContentPane().add(txt_ValorFatura);
         txt_ValorFatura.setBounds(150, 180, 400, 27);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 1968, 1080);
+        jLabel8.setBounds(0, 0, 1958, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

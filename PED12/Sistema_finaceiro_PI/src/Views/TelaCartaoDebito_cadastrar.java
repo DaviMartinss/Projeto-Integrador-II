@@ -171,19 +171,19 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 100, 108, 17);
+        jLabel1.setBounds(30, 100, 102, 16);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Bandeira");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 210, 55, 17);
+        jLabel2.setBounds(30, 210, 51, 16);
 
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setText("Início");
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 60, 68, 27);
+        jButton1.setBounds(30, 60, 63, 25);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/teste_icon_pedmeia1.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel6);
         jLabel6.setBounds(520, 270, 140, 130);
         getContentPane().add(txt_numCartDeb);
@@ -205,16 +205,16 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastraCartDeb);
-        btn_cadastraCartDeb.setBounds(330, 60, 94, 27);
+        btn_cadastraCartDeb.setBounds(330, 60, 89, 25);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor Atual");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 160, 68, 17);
+        jLabel3.setBounds(30, 160, 62, 16);
         getContentPane().add(txt_valorCartaoDeb);
         txt_valorCartaoDeb.setBounds(30, 180, 400, 27);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DAO/fundo_principal.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 1920, 1080);
 
@@ -225,7 +225,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(343, 42, 81, 21);
+        txt_id.setBounds(343, 42, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
