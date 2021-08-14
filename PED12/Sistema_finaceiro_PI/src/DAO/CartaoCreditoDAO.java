@@ -9,6 +9,7 @@ import Model.CartaoCredito;
 import Model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -63,8 +64,88 @@ public class CartaoCreditoDAO {
     
     
     }
-        
     
+    
+    public ResultSet CarregaTabela_Cartao_C(int id_conta) throws SQLException {
+       
+       String consulta = "select * from cartao_credito where conta_id_conta=?";
+       
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+             
+       try{
+           
+           pst.setInt(1, id_conta);
+       
+           rs = pst.executeQuery();
+           
+       }catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+       
+       }
+       
+       return rs;
+       
+   }
+   
+   public ResultSet ConsultaCartao_C(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+       
+       String argumento = "";
+       
+       if(ordenar){
+           
+           argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
+           
+       }else{
+           
+           argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+       }
+
+       String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE " + argumento + "";
+       
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       try {
+
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       } 
+       
+       return rs;
+       
+   }
+   
+   public ResultSet PreencherCamposCartao_C(String num_cartao) throws SQLException {
+ 
+       String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE n_cartao_credito = ?";
+    
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setLong(1, Long.parseLong(num_cartao));
+           
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       }
+
+       return rs;
+       
+   }
     
     
 }

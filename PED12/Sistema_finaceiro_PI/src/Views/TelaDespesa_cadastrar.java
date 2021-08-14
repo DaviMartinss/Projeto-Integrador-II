@@ -39,6 +39,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         txtParcelas.setEnabled(false);
         txt_NumCartao.setEnabled(false);
         this.setLocationRelativeTo(null);
+        txt_id.setVisible(false);
     }
     
     

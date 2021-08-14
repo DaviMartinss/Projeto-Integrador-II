@@ -28,6 +28,7 @@ public class TelaReceita extends javax.swing.JFrame {
         conexao = moduloConexao.conector();
         System.out.println(conexao);
         this.setLocationRelativeTo(null);
+        txt_id.setVisible(false);
     }
     
     void inicio(){

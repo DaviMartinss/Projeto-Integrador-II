@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,13 +18,15 @@ import java.sql.SQLException;
 public class ConsultaDAO {
     
     
-   public static ResultSet carregaTabela() throws SQLException {
+   public static ResultSet carregaTabela(int id_conta) throws SQLException {
        
        Connection conexao = moduloConexao.conector();
        
-       String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito";
+       String consulta = "select * from cartao_credito where conta_id_conta=?";
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       pst.setInt(1, id_conta);
        
        ResultSet rs = pst.executeQuery();
        
@@ -31,13 +34,13 @@ public class ConsultaDAO {
        
    }
    
-   public static ResultSet carregaTabela(String tipo, String arg) throws SQLException {
+   public static ResultSet carregaTabela(String tipo, String arg, int id_conta) throws SQLException {
        
        Connection conexao = moduloConexao.conector();
        
-       String argumento = tipo + " " +"like '" + arg + "%'";
+       String argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'";
        
-       String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito where " + argumento +"";
+       String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE " + argumento + "";
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
        

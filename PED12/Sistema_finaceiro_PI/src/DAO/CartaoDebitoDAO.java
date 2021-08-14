@@ -8,6 +8,7 @@ package DAO;
 import Model.CartaoDebito;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -58,5 +59,88 @@ public class CartaoDebitoDAO {
         }
 
     }
+   
+   public ResultSet CarregaTabela_Cartao_D(int id_conta) throws SQLException {
+       
+       String consulta = "select * from cartao_debito where conta_id_conta=?";
+       
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+             
+       try{
+           
+           pst.setInt(1, id_conta);
+       
+           rs = pst.executeQuery();
+           
+       }catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+       
+       }
+       
+       return rs;
+       
+   }
+   
+   public ResultSet ConsultaCartao_D(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+       
+       String argumento = "";
+       
+       if(ordenar){
+           
+           argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
+           
+       }else{
+           
+           argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+       }
+
+       String consulta = "SELECT n_cartao_debito, valor_atual, bandeira FROM cartao_debito WHERE " + argumento + "";
+       
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       try {
+
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       } 
+       
+       return rs;
+       
+   }
+   
+   public ResultSet PreencherCamposCartao_D(String num_cartao) throws SQLException {
+ 
+       String consulta = "SELECT n_cartao_debito, valor_atual, bandeira FROM cartao_debito WHERE  n_cartao_debito = ?";
+    
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setLong(1, Long.parseLong(num_cartao));
+           
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       }
+
+       return rs;
+       
+   }
+   
+   
     
 }

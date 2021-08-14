@@ -5,6 +5,8 @@
  */
 package Views;
 
+import DAO.ConsultaDAO;
+import static DAO.ConsultaDAO.carregaTabela;
 import DAO.moduloConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,29 +28,31 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         initComponents();
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
+        
+        txt_id.setVisible(false);
     }
     
-    private void consultar(){
-       String sql = "select * from cartao_credito where conta_id_conta =?";
-        
-       try {
-           String id = txt_id.getText();
-           pst = conexao.prepareStatement(sql);
-           pst.setString(1, txt_id.getText());
-           rs=pst.executeQuery();
-           
-           if(rs.next()){
-               txt_SetNumeroCC.setText(rs.getString(1));
-               txt_SetLimiteCC.setText(rs.getString(2));
-               txt_DiaFatCC.setText(rs.getString(3));
-               txt_valorFatCC1.setText(rs.getString(4));
-               txt_SetBandeira.setText(rs.getString(5));
-           }
-           
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Falha ao realizar consulta");
-        }
-    }
+//    private void consultar(){
+//       String sql = "select * from cartao_credito where conta_id_conta =?";
+//        
+//       try {
+//           String id = txt_id.getText();
+//           pst = conexao.prepareStatement(sql);
+//           pst.setString(1, txt_id.getText());
+//           rs=pst.executeQuery();
+//           
+//           if(rs.next()){
+//               txt_Pesquisa.setText(rs.getString(1));
+//               txt_SetLimiteCC.setText(rs.getString(2));
+//               txt_DiaFatCC.setText(rs.getString(3));
+//               txt_valorFatCC1.setText(rs.getString(4));
+//               txt_SetBandeira.setText(rs.getString(5));
+//           }
+//           
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Falha ao realizar consulta");
+//        }
+//    }
     
     void volta_telaCartaoDeCredito() {
        
@@ -85,17 +89,8 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txt_DiaFatCC = new javax.swing.JTextField();
-        txt_SetBandeira = new javax.swing.JTextField();
-        txt_SetNumeroCC = new javax.swing.JTextField();
-        txt_SetLimiteCC = new javax.swing.JTextField();
-        txt_valorFatCC1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txt_Pesquisa = new javax.swing.JTextField();
         btn_Consultar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JToggleButton();
         btnDeletar = new javax.swing.JToggleButton();
@@ -104,7 +99,9 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtConsultaCC = new javax.swing.JTable();
         txt_id = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        cbbTipo = new javax.swing.JComboBox<>();
+
+        jLabel7.setText("jLabel7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -115,62 +112,18 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Número");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 70, 67, 16);
-
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel2.setText("Limite");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 120, 67, 16);
-
-        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel3.setText("Dia da fatura");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 170, 67, 16);
-
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("Valor da fatura");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 220, 67, 16);
-
-        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel5.setText("Bandeira");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 270, 67, 16);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(520, 90, 140, 120);
-        getContentPane().add(txt_DiaFatCC);
-        txt_DiaFatCC.setBounds(30, 190, 400, 27);
-
-        txt_SetBandeira.addActionListener(new java.awt.event.ActionListener() {
+        txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_SetBandeiraActionPerformed(evt);
+                txt_PesquisaActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_SetBandeira);
-        txt_SetBandeira.setBounds(30, 290, 400, 27);
-        getContentPane().add(txt_SetNumeroCC);
-        txt_SetNumeroCC.setBounds(30, 90, 400, 27);
-
-        txt_SetLimiteCC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_SetLimiteCCActionPerformed(evt);
+        txt_Pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_PesquisaKeyReleased(evt);
             }
         });
-        getContentPane().add(txt_SetLimiteCC);
-        txt_SetLimiteCC.setBounds(30, 140, 400, 27);
-
-        txt_valorFatCC1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_valorFatCC1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_valorFatCC1);
-        txt_valorFatCC1.setBounds(30, 240, 400, 27);
+        getContentPane().add(txt_Pesquisa);
+        txt_Pesquisa.setBounds(190, 80, 400, 27);
 
         btn_Consultar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_Consultar.setText("Consultar");
@@ -239,7 +192,7 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtConsultaCC);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 330, 640, 137);
+        jScrollPane1.setBounds(30, 160, 640, 137);
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,10 +202,9 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         getContentPane().add(txt_id);
         txt_id.setBounds(520, 340, 136, 20);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(0, 0, 1958, 1080);
+        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Limite", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
+        getContentPane().add(cbbTipo);
+        cbbTipo.setBounds(16, 80, 120, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -262,20 +214,8 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txt_idActionPerformed
 
-    private void txt_SetBandeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_SetBandeiraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_SetBandeiraActionPerformed
-
-    private void txt_SetLimiteCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_SetLimiteCCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_SetLimiteCCActionPerformed
-
-    private void txt_valorFatCC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_valorFatCC1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_valorFatCC1ActionPerformed
-
     private void btn_ConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConsultarActionPerformed
-        consultar();
+        //consultar();
     }//GEN-LAST:event_btn_ConsultarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -303,19 +243,11 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         
         try{
             
-            String pesquisa = "select * from cartao_credito where conta_id_conta=?";
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();  
 
-            pst = conexao.prepareStatement(pesquisa);
-            
-            pst.setInt(1, Integer.parseInt(txt_id.getText()));
-
-            DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
-            
-            rs = pst.executeQuery();    
+            rs = carregaTabela(Integer.parseInt(txt_id.getText()));
 
             while(rs.next()) {
-               
-                
                 
                 String Col0 = rs.getString("n_cartao_credito");
                 String Col1 = rs.getString("limite");
@@ -349,6 +281,82 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
+        // TODO add your handling code here:
+        
+        String tipo="";
+        
+        String escolha = cbbTipo.getSelectedItem().toString().trim();
+        
+        if(escolha.equals("Nº Cartão")){
+            tipo = " " + "n_cartao_credito";
+        }
+        
+        if(escolha.equals("Limite")){
+            tipo = " " + "limite";
+        }
+        
+        if(escolha.equals("Dia da Fatura")){
+            tipo = " " + "dia_fatura";
+        }
+        
+        if(escolha.equals("Valor da Fatura")){
+            tipo = " " + "valor_fatura";
+        }
+        
+        if(escolha.equals("Bandeira")){
+            tipo = " " + "bandeira";
+        }
+        
+        String argumento = txt_Pesquisa.getText();
+        
+        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCC.getModel();
+        
+        int l = mp1.getRowCount();
+        
+        if(l>0){
+            while(l>0){
+                //Limpa tabela sempre que for fazer uma nova consulta
+                ((DefaultTableModel) jtConsultaCC.getModel()).removeRow(l - 1);
+                
+                //Menos um pois a primeira linha é a linha zero
+                l--;
+            }
+        }
+        
+        try{           
+
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
+
+            rs = carregaTabela(tipo, argumento, Integer.parseInt(txt_id.getText()));
+
+            while(rs.next()) {
+                
+                String Col0 = rs.getString("n_cartao_credito");
+                String Col1 = rs.getString("limite");
+                String Col2 = rs.getString("dia_fatura");
+                String Col3 = rs.getString("valor_fatura");
+                String Col4 = rs.getString("bandeira");
+                
+                mp.addRow(new String[] {Col0,Col1,Col2,Col3,Col4});
+                
+            }
+
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+        }
+        
+        jtConsultaCC.setAutoCreateRowSorter(true);
+   
+        
+    }//GEN-LAST:event_txt_PesquisaKeyReleased
+
+    private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_PesquisaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,22 +399,13 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnDeletar;
     private javax.swing.JToggleButton btnVoltar;
     private javax.swing.JButton btn_Consultar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCC;
-    private javax.swing.JTextField txt_DiaFatCC;
-    private javax.swing.JTextField txt_SetBandeira;
-    private javax.swing.JTextField txt_SetLimiteCC;
-    private javax.swing.JTextField txt_SetNumeroCC;
+    private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
-    private javax.swing.JTextField txt_valorFatCC1;
     // End of variables declaration//GEN-END:variables
 
      public void receberID(String recebe){
