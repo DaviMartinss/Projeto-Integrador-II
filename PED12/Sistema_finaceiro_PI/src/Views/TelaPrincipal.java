@@ -182,6 +182,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(null);
 
+        btnReceitas.setBackground(new java.awt.Color(201, 127, 206));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnReceitas.setText("Receitas");
         btnReceitas.addActionListener(new java.awt.event.ActionListener() {
@@ -190,8 +191,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(10, 10, 83, 25);
+        btnReceitas.setBounds(10, 10, 90, 27);
 
+        btnDespesas.setBackground(new java.awt.Color(201, 127, 206));
         btnDespesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnDespesas.setText("Despesas");
         btnDespesas.setAlignmentY(0.1F);
@@ -201,8 +203,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDespesas);
-        btnDespesas.setBounds(100, 10, 90, 25);
+        btnDespesas.setBounds(100, 10, 90, 27);
 
+        btnCartao_cred.setBackground(new java.awt.Color(201, 127, 206));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnCartao_cred.setText("Cartão de Crédito");
         btnCartao_cred.addActionListener(new java.awt.event.ActionListener() {
@@ -211,8 +214,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(200, 10, 140, 25);
+        btnCartao_cred.setBounds(190, 10, 140, 27);
 
+        btnCartao_Deb.setBackground(new java.awt.Color(201, 127, 206));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnCartao_Deb.setText("Cartão de Débito");
         btnCartao_Deb.addActionListener(new java.awt.event.ActionListener() {
@@ -221,8 +225,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(344, 10, 140, 25);
+        btnCartao_Deb.setBounds(330, 10, 150, 27);
 
+        BtnSair.setBackground(new java.awt.Color(201, 127, 206));
         BtnSair.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         BtnSair.setText("Sair");
         BtnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -231,8 +236,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnSair);
-        BtnSair.setBounds(620, 10, 71, 25);
+        BtnSair.setBounds(621, 10, 70, 27);
 
+        jToggleButton1.setBackground(new java.awt.Color(201, 127, 206));
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jToggleButton1.setText("Consultar User");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +247,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(490, 10, 117, 25);
+        jToggleButton1.setBounds(480, 10, 140, 27);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel2);
