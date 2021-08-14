@@ -89,22 +89,23 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nome");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 100, 33, 16);
+        jLabel1.setBounds(30, 100, 35, 17);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Email");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 160, 31, 16);
+        jLabel2.setBounds(30, 160, 35, 17);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Senha");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 220, 36, 16);
+        jLabel3.setBounds(30, 220, 37, 17);
 
+        jButton1.setBackground(new java.awt.Color(201, 127, 206));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setText("Início");
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 50, 63, 25);
+        jButton1.setBounds(30, 50, 68, 27);
         getContentPane().add(txtNome);
         txtNome.setBounds(30, 120, 400, 27);
         getContentPane().add(txtEmail);
@@ -127,13 +128,14 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Usuário");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(240, 0, 190, 24);
+        jLabel6.setBounds(240, 0, 190, 26);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("avatar");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 280, 36, 16);
+        jLabel4.setBounds(30, 280, 39, 17);
 
+        btnRealizarCadastro.setBackground(new java.awt.Color(201, 127, 206));
         btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnRealizarCadastro.setText("Realizar cadastro");
         btnRealizarCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -142,12 +144,12 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(290, 350, 133, 25);
+        btnRealizarCadastro.setBounds(290, 350, 138, 27);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1958, 1080);
+        jLabel5.setBounds(0, 0, 1968, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

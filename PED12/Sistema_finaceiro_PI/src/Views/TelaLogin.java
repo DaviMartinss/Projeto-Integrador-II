@@ -137,17 +137,18 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(160, 190, 50, 16);
+        jLabel1.setBounds(140, 190, 50, 17);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(160, 260, 36, 16);
+        jLabel2.setBounds(140, 260, 37, 17);
 
         txtEmail.setAlignmentX(1.0F);
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(160, 210, 400, 27);
+        txtEmail.setBounds(140, 210, 400, 27);
 
+        btnLogin.setBackground(new java.awt.Color(201, 127, 206));
         btnLogin.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnLogin.setText("Entrar");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -156,8 +157,9 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogin);
-        btnLogin.setBounds(160, 390, 80, 25);
+        btnLogin.setBounds(140, 360, 110, 27);
 
+        btnCadastro.setBackground(new java.awt.Color(201, 127, 206));
         btnCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnCadastro.setText("Cadastrar");
         btnCadastro.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +168,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(460, 390, 100, 25);
+        btnCadastro.setBounds(420, 360, 120, 27);
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +176,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(160, 280, 400, 27);
+        txtSenha.setBounds(140, 280, 400, 27);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel3);

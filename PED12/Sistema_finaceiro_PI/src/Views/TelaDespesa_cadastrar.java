@@ -233,14 +233,12 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtAno = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         rbCredito = new javax.swing.JRadioButton();
         rbDebito = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         txtParcelas = new javax.swing.JTextField();
-        txt_id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -257,24 +255,25 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         txtAreaDescricao = new javax.swing.JTextArea();
         txtDia = new javax.swing.JTextField();
         txtMes = new javax.swing.JTextField();
+        txtAno = new javax.swing.JTextField();
         btn_CadastrarDespesa = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         rbDinheiro = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txt_NumCartao = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(null);
-        getContentPane().add(txtAno);
-        txtAno.setBounds(2227, 116, 81, 20);
         getContentPane().add(txtCategoria);
         txtCategoria.setBounds(30, 170, 400, 27);
 
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Forma de Pagamento: ");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 370, 127, 16);
+        jLabel8.setBounds(30, 350, 135, 17);
 
         rbCredito.setBackground(new java.awt.Color(142, 185, 236));
         rbCredito.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -285,7 +284,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbCredito);
-        rbCredito.setBounds(100, 390, 80, 25);
+        rbCredito.setBounds(100, 370, 80, 25);
 
         rbDebito.setBackground(new java.awt.Color(142, 185, 236));
         rbDebito.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -296,23 +295,14 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDebito);
-        rbDebito.setBounds(30, 390, 70, 25);
+        rbDebito.setBounds(30, 370, 70, 25);
 
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Nº de Pacelas: ");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(250, 420, 84, 16);
+        jLabel9.setBounds(240, 400, 87, 17);
         getContentPane().add(txtParcelas);
-        txtParcelas.setBounds(250, 440, 50, 27);
-
-        txt_id.setEditable(false);
-        txt_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_idActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_id);
-        txt_id.setBounds(2322, 50, 81, 20);
+        txtParcelas.setBounds(240, 420, 50, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Valor:");
@@ -322,40 +312,41 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Categoria: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 150, 61, 16);
+        jLabel2.setBounds(30, 150, 65, 17);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Descrição: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 200, 64, 16);
+        jLabel3.setBounds(30, 200, 65, 17);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Dia: ");
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel4.setText("Data: (dd/mm/aaaa)");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(2185, 50, 28, 17);
+        jLabel4.setBounds(240, 100, 130, 17);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Mês:");
+        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel5.setText("/");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(2179, 89, 28, 17);
+        jLabel5.setBounds(300, 120, 10, 26);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Ano:");
+        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel6.setText("/");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(2181, 116, 29, 17);
+        jLabel6.setBounds(370, 120, 10, 26);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Status: ");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(30, 320, 43, 16);
+        jLabel7.setBounds(30, 320, 60, 27);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel13);
         jLabel13.setBounds(520, 300, 150, 120);
 
+        jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setText("Início");
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 50, 86, 23);
+        jButton1.setBounds(30, 50, 86, 27);
 
         rbPago.setBackground(new java.awt.Color(142, 185, 236));
         rbPago.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -366,7 +357,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbPago);
-        rbPago.setBounds(30, 340, 59, 25);
+        rbPago.setBounds(80, 320, 60, 27);
 
         rbNaoPago.setBackground(new java.awt.Color(142, 185, 236));
         rbNaoPago.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -377,9 +368,9 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbNaoPago);
-        rbNaoPago.setBounds(90, 340, 87, 25);
+        rbNaoPago.setBounds(140, 320, 90, 27);
         getContentPane().add(txtValor);
-        txtValor.setBounds(30, 120, 400, 27);
+        txtValor.setBounds(30, 120, 150, 27);
 
         txtAreaDescricao.setColumns(20);
         txtAreaDescricao.setRows(5);
@@ -389,9 +380,17 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 220, 400, 81);
         getContentPane().add(txtDia);
-        txtDia.setBounds(2227, 50, 69, 20);
+        txtDia.setBounds(240, 120, 50, 27);
         getContentPane().add(txtMes);
-        txtMes.setBounds(2227, 89, 71, 20);
+        txtMes.setBounds(310, 120, 50, 27);
+
+        txtAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtAno);
+        txtAno.setBounds(380, 120, 50, 27);
 
         btn_CadastrarDespesa.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_CadastrarDespesa.setText("Cadastrar Despesa");
@@ -401,12 +400,12 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_CadastrarDespesa);
-        btn_CadastrarDespesa.setBounds(280, 50, 143, 25);
+        btn_CadastrarDespesa.setBounds(280, 50, 147, 27);
 
         jLabel10.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel10.setText("CADASTRO DE DESPESA");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(240, 0, 230, 24);
+        jLabel10.setBounds(240, 0, 230, 26);
 
         rbDinheiro.setBackground(new java.awt.Color(142, 185, 236));
         rbDinheiro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -417,18 +416,27 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDinheiro);
-        rbDinheiro.setBounds(180, 390, 73, 25);
+        rbDinheiro.setBounds(180, 370, 78, 25);
 
         jLabel11.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel11.setText("Nº do Cartão: ");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(30, 420, 76, 16);
+        jLabel11.setBounds(30, 400, 82, 17);
         getContentPane().add(txt_NumCartao);
-        txt_NumCartao.setBounds(30, 440, 200, 27);
+        txt_NumCartao.setBounds(30, 420, 200, 27);
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel12);
         jLabel12.setBounds(0, 0, 1920, 1080);
+
+        txt_id.setEditable(false);
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_id);
+        txt_id.setBounds(2322, 50, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -530,6 +538,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_rbDinheiroActionPerformed
+
+    private void txtAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnoActionPerformed
 
     /**
      * @param args the command line arguments
