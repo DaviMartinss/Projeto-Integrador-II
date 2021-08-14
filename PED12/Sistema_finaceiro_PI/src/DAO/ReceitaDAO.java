@@ -99,4 +99,104 @@ public class ReceitaDAO {
 
     }
     
+    
+    public ResultSet CarregaTabela_Receita(int id_conta) throws SQLException {
+       
+       String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
+               " receita_data re_da, receita re " +
+               "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita";
+       
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+             
+       try{
+           
+           pst.setInt(1, id_conta);
+       
+           rs = pst.executeQuery();
+           
+       }catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+       
+       }
+       
+       return rs;
+       
+   }
+   
+   public ResultSet Consulta_Receita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+       
+       String argumento = "";
+       
+       if(ordenar){
+           
+           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
+           
+       }else{
+           
+           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+       }
+
+       String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
+               " receita_data re_da, receita re " +
+               "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita" +
+               argumento + "";
+       
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       try {
+           
+           pst.setInt(1, id_conta);
+
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       } 
+       
+       return rs;
+       
+   }
+   
+   public ResultSet PreencherCampos_Receita(String dia, String mes, String ano, String id_conta) throws SQLException {
+ 
+       String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
+               " receita_data re_da, receita re " +
+               "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita " +
+               "and re_da.dia = ? and re_da.mes = ? and re_da.ano = ?";
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setInt(1, Integer.parseInt(id_conta));
+           
+           pst.setInt(2, Integer.parseInt(dia));
+           
+           pst.setInt(3, Integer.parseInt(mes));
+           
+           pst.setInt(4, Integer.parseInt(ano));
+           
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       }
+
+       return rs;
+       
+   }
+   
+   
+    
 }
