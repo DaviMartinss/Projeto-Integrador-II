@@ -20,15 +20,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
 
-    
-    
-   
-    
     public TelaPrincipal() {
         initComponents();
         
         txt_id.setVisible(true);
         this.setLocationRelativeTo(null);
+        txt_id.setVisible(false);
         
     }
     

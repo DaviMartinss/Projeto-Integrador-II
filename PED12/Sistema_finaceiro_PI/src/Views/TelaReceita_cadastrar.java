@@ -27,6 +27,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     public TelaReceita_cadastrar() {
         initComponents();
         this.setLocationRelativeTo(null);
+        txt_id.setVisible(false);
     }
     
     public void cadastro_receita(){

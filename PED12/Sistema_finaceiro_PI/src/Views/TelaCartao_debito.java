@@ -28,6 +28,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         initComponents();
          conexao = moduloConexao.conector();
          this.setLocationRelativeTo(null);
+         txt_id.setVisible(false);
     }
     
     

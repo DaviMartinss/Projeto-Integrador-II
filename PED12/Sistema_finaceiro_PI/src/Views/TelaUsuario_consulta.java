@@ -30,6 +30,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         initComponents();
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
+        
     }
     
 
