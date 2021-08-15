@@ -521,7 +521,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnNovaDespesaActionPerformed
 
-<<<<<<< HEAD
+
     private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_PesquisaActionPerformed
@@ -656,12 +656,12 @@ public class TelaDespesa extends javax.swing.JFrame {
 //        }
 
     }//GEN-LAST:event_jtConsultaCCMouseClicked
-=======
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         inicio();
     }//GEN-LAST:event_jButton1ActionPerformed
->>>>>>> 47db849de9b7948ca21aa85d2218e8ff866361c5
+
 
     /**
      * @param args the command line arguments

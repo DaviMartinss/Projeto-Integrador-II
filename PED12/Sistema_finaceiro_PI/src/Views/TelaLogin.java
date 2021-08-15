@@ -139,25 +139,17 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("Bem Vinde ao Ped1/2");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(230, 0, 220, 26);
+        jLabel5.setBounds(230, 0, 220, 24);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");
         getContentPane().add(jLabel1);
-<<<<<<< HEAD
-        jLabel1.setBounds(140, 190, 50, 16);
-=======
-        jLabel1.setBounds(150, 150, 50, 17);
->>>>>>> 47db849de9b7948ca21aa85d2218e8ff866361c5
+        jLabel1.setBounds(150, 150, 50, 16);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2);
-<<<<<<< HEAD
-        jLabel2.setBounds(140, 260, 36, 16);
-=======
-        jLabel2.setBounds(150, 220, 37, 17);
->>>>>>> 47db849de9b7948ca21aa85d2218e8ff866361c5
+        jLabel2.setBounds(150, 220, 36, 16);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setAlignmentX(1.0F);
@@ -178,9 +170,6 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogin);
-<<<<<<< HEAD
-        btnLogin.setBounds(140, 360, 110, 25);
-=======
         btnLogin.setBounds(150, 290, 150, 27);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
@@ -189,7 +178,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jButton1.setText("Esqueci minha senha!");
         getContentPane().add(jButton1);
         jButton1.setBounds(240, 350, 220, 27);
->>>>>>> 47db849de9b7948ca21aa85d2218e8ff866361c5
 
         btnCadastro.setBackground(new java.awt.Color(105, 69, 219));
         btnCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -201,11 +189,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-<<<<<<< HEAD
-        btnCadastro.setBounds(420, 360, 120, 25);
-=======
         btnCadastro.setBounds(400, 290, 150, 27);
->>>>>>> 47db849de9b7948ca21aa85d2218e8ff866361c5
 
         txtSenha.setBackground(new java.awt.Color(187, 210, 240));
         txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
