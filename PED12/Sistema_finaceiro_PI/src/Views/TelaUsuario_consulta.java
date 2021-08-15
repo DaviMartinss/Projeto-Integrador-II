@@ -43,6 +43,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPesquisa = new javax.swing.JTable();
@@ -58,6 +59,11 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel2.setText("Consulta de Usuário");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(260, 0, 200, 26);
+
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -68,7 +74,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(518, 60, 110, 27);
+        jButton1.setBounds(530, 60, 110, 27);
 
         jtPesquisa.setBackground(new java.awt.Color(187, 210, 240));
         jtPesquisa.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,14 +104,14 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtPesquisa);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(50, 130, 580, 200);
+        jScrollPane1.setBounds(60, 130, 580, 200);
 
         jToggleButton1.setBackground(new java.awt.Color(105, 69, 219));
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Pesquisar");
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(50, 60, 120, 27);
+        jToggleButton1.setBounds(60, 60, 120, 27);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -213,6 +219,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable jtPesquisa;

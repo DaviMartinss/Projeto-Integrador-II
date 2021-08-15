@@ -382,9 +382,8 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Ordenação");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 240, 80, 17);
+        jLabel6.setBounds(470, 240, 80, 17);
 
-        rbAscendente.setBackground(new java.awt.Color(187, 210, 240));
         rbAscendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         rbAscendente.setText("Ascendente");
         rbAscendente.addActionListener(new java.awt.event.ActionListener() {
@@ -393,9 +392,8 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(440, 260, 100, 27);
+        rbAscendente.setBounds(470, 260, 100, 27);
 
-        rbDescendente.setBackground(new java.awt.Color(187, 210, 240));
         rbDescendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         rbDescendente.setText("Descendente");
         rbDescendente.addActionListener(new java.awt.event.ActionListener() {
@@ -404,7 +402,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(540, 260, 110, 27);
+        rbDescendente.setBounds(570, 260, 110, 27);
 
         btPesquisarCD.setBackground(new java.awt.Color(105, 69, 219));
         btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));

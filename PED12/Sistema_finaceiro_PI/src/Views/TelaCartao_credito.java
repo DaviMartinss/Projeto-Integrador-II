@@ -439,14 +439,13 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Ordenação");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 220, 80, 17);
+        jLabel6.setBounds(470, 220, 80, 17);
 
         txt_Limite.setBackground(new java.awt.Color(187, 210, 240));
         txt_Limite.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_Limite);
         txt_Limite.setBounds(470, 140, 200, 27);
 
-        rbDescendente.setBackground(new java.awt.Color(187, 210, 240));
         rbDescendente.setText("Descendente");
         rbDescendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,9 +453,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(540, 240, 110, 27);
+        rbDescendente.setBounds(570, 240, 110, 27);
 
-        rbAscendente.setBackground(new java.awt.Color(187, 210, 240));
         rbAscendente.setText("Ascendente");
         rbAscendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -464,7 +462,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(440, 240, 110, 27);
+        rbAscendente.setBounds(470, 240, 100, 27);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Limite");
