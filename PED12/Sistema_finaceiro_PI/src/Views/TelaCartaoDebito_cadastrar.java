@@ -172,33 +172,42 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 100, 102, 16);
+        jLabel1.setBounds(160, 100, 108, 17);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Bandeira");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 210, 51, 16);
+        jLabel2.setBounds(160, 220, 55, 17);
 
+        jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Início");
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 60, 63, 25);
+        jButton1.setBounds(160, 60, 68, 27);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(520, 270, 140, 130);
-        getContentPane().add(txt_numCartDeb);
-        txt_numCartDeb.setBounds(30, 120, 400, 27);
+        jLabel6.setBounds(520, 290, 140, 130);
 
+        txt_numCartDeb.setBackground(new java.awt.Color(187, 210, 240));
+        txt_numCartDeb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_numCartDeb);
+        txt_numCartDeb.setBounds(160, 120, 400, 27);
+
+        txt_BandCartDeb.setBackground(new java.awt.Color(187, 210, 240));
+        txt_BandCartDeb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_BandCartDeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_BandCartDebActionPerformed(evt);
             }
         });
         getContentPane().add(txt_BandCartDeb);
-        txt_BandCartDeb.setBounds(30, 230, 400, 27);
+        txt_BandCartDeb.setBounds(160, 240, 400, 27);
 
+        btn_cadastraCartDeb.setBackground(new java.awt.Color(105, 69, 219));
         btn_cadastraCartDeb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_cadastraCartDeb.setForeground(new java.awt.Color(255, 255, 255));
         btn_cadastraCartDeb.setText("Cadastrar");
         btn_cadastraCartDeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,14 +215,17 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastraCartDeb);
-        btn_cadastraCartDeb.setBounds(330, 60, 89, 25);
+        btn_cadastraCartDeb.setBounds(160, 290, 94, 27);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor Atual");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 160, 62, 16);
+        jLabel3.setBounds(160, 160, 68, 17);
+
+        txt_valorCartaoDeb.setBackground(new java.awt.Color(187, 210, 240));
+        txt_valorCartaoDeb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_valorCartaoDeb);
-        txt_valorCartaoDeb.setBounds(30, 180, 400, 27);
+        txt_valorCartaoDeb.setBounds(160, 180, 400, 27);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -226,7 +238,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(343, 42, 81, 20);
+        txt_id.setBounds(343, 42, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -245,21 +245,26 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        jTextField1.setBackground(new java.awt.Color(187, 210, 240));
         jTextField1.setText("Usuário");
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(30, 90, 150, 27);
+        jTextField1.setBounds(30, 80, 300, 27);
 
+        jTextField2.setBackground(new java.awt.Color(187, 210, 240));
         jTextField2.setText("Cartão de Crédito");
+        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(190, 90, 150, 27);
+        jTextField2.setBounds(370, 80, 300, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Crédito");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(280, 0, 170, 26);
 
-        btn_inicio_CC.setBackground(new java.awt.Color(189, 137, 212));
+        btn_inicio_CC.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio_CC.setForeground(new java.awt.Color(255, 255, 255));
         btn_inicio_CC.setText("Inicio");
         btn_inicio_CC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,9 +272,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio_CC);
-        btn_inicio_CC.setBounds(20, 40, 90, 27);
+        btn_inicio_CC.setBounds(30, 40, 90, 27);
 
+        btn_receitaCC.setBackground(new java.awt.Color(105, 69, 219));
         btn_receitaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_receitaCC.setForeground(new java.awt.Color(255, 255, 255));
         btn_receitaCC.setText("Receitas");
         btn_receitaCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,9 +284,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_receitaCC);
-        btn_receitaCC.setBounds(120, 40, 100, 27);
+        btn_receitaCC.setBounds(120, 40, 110, 27);
 
+        btn_sairCC.setBackground(new java.awt.Color(105, 69, 219));
         btn_sairCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_sairCC.setForeground(new java.awt.Color(255, 255, 255));
         btn_sairCC.setText("Sair");
         btn_sairCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,9 +296,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_sairCC);
-        btn_sairCC.setBounds(620, 40, 58, 27);
+        btn_sairCC.setBounds(600, 40, 70, 27);
 
+        btn_novoCartao_cc.setBackground(new java.awt.Color(105, 69, 219));
         btn_novoCartao_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_novoCartao_cc.setForeground(new java.awt.Color(255, 255, 255));
         btn_novoCartao_cc.setText("Novo Cartão");
         btn_novoCartao_cc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,9 +308,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_novoCartao_cc);
-        btn_novoCartao_cc.setBounds(480, 40, 130, 27);
+        btn_novoCartao_cc.setBounds(460, 40, 140, 27);
 
+        btnConsulta_CC.setBackground(new java.awt.Color(105, 69, 219));
         btnConsulta_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnConsulta_CC.setForeground(new java.awt.Color(255, 255, 255));
         btnConsulta_CC.setText("Consulta");
         btnConsulta_CC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,10 +322,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(btnConsulta_CC);
         btnConsulta_CC.setBounds(230, 40, 100, 27);
 
+        btn_exclui_cc.setBackground(new java.awt.Color(105, 69, 219));
         btn_exclui_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_exclui_cc.setForeground(new java.awt.Color(255, 255, 255));
         btn_exclui_cc.setText("Exclui cartão");
         getContentPane().add(btn_exclui_cc);
-        btn_exclui_cc.setBounds(340, 40, 130, 27);
+        btn_exclui_cc.setBounds(330, 40, 130, 27);
 
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,7 +340,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(160, 300, 400, 27);
+        txt_Pesquisa.setBounds(160, 280, 400, 27);
 
         jtConsultaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCC.setModel(new javax.swing.table.DefaultTableModel(
@@ -359,12 +374,14 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtConsultaCC);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 340, 640, 160);
+        jScrollPane1.setBounds(30, 320, 640, 140);
 
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Limite", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
         getContentPane().add(cbbTipo);
-        cbbTipo.setBounds(30, 300, 120, 27);
+        cbbTipo.setBounds(30, 280, 120, 27);
 
+        btPesquisarCC.setBackground(new java.awt.Color(105, 69, 219));
+        btPesquisarCC.setForeground(new java.awt.Color(255, 255, 255));
         btPesquisarCC.setText("Pesquisar");
         btPesquisarCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,50 +389,64 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btPesquisarCC);
-        btPesquisarCC.setBounds(570, 300, 100, 27);
+        btPesquisarCC.setBounds(570, 280, 100, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 130, 140, 17);
+        jLabel1.setBounds(30, 120, 140, 17);
+
+        txt_DiaFatura.setBackground(new java.awt.Color(187, 210, 240));
+        txt_DiaFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_DiaFatura);
-        txt_DiaFatura.setBounds(450, 200, 140, 27);
+        txt_DiaFatura.setBounds(470, 190, 200, 27);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor da Fatura");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 180, 110, 17);
+        jLabel3.setBounds(30, 170, 110, 17);
+
+        txt_ValorFatura.setBackground(new java.awt.Color(187, 210, 240));
+        txt_ValorFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_ValorFatura);
-        txt_ValorFatura.setBounds(30, 200, 400, 27);
+        txt_ValorFatura.setBounds(30, 190, 400, 27);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Dia da Fatura");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(450, 180, 100, 17);
+        jLabel4.setBounds(470, 170, 100, 17);
 
+        txt_Bandeira.setBackground(new java.awt.Color(187, 210, 240));
+        txt_Bandeira.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_Bandeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_BandeiraActionPerformed(evt);
             }
         });
         getContentPane().add(txt_Bandeira);
-        txt_Bandeira.setBounds(30, 250, 400, 27);
+        txt_Bandeira.setBounds(30, 240, 400, 27);
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel5.setText("Bandeira");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 230, 80, 17);
+        jLabel5.setBounds(30, 220, 80, 17);
+
+        txt_NumCartaoC.setBackground(new java.awt.Color(187, 210, 240));
+        txt_NumCartaoC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NumCartaoC);
-        txt_NumCartaoC.setBounds(30, 150, 400, 27);
+        txt_NumCartaoC.setBounds(30, 140, 400, 27);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Ordenação");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 230, 80, 17);
-        getContentPane().add(txt_Limite);
-        txt_Limite.setBounds(450, 150, 140, 27);
+        jLabel6.setBounds(440, 220, 80, 17);
 
-        rbDescendente.setBackground(new java.awt.Color(142, 183, 235));
+        txt_Limite.setBackground(new java.awt.Color(187, 210, 240));
+        txt_Limite.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_Limite);
+        txt_Limite.setBounds(470, 140, 200, 27);
+
+        rbDescendente.setBackground(new java.awt.Color(187, 210, 240));
         rbDescendente.setText("Descendente");
         rbDescendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -423,9 +454,9 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(540, 250, 110, 25);
+        rbDescendente.setBounds(540, 240, 110, 27);
 
-        rbAscendente.setBackground(new java.awt.Color(142, 183, 235));
+        rbAscendente.setBackground(new java.awt.Color(187, 210, 240));
         rbAscendente.setText("Ascendente");
         rbAscendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,12 +464,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(440, 250, 110, 25);
+        rbAscendente.setBounds(440, 240, 110, 27);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Limite");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(450, 130, 40, 17);
+        jLabel7.setBounds(470, 120, 40, 17);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel8.setText("jLabel8");

@@ -164,14 +164,25 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(150, 150, 10, 27);
+
+        txt_dia.setBackground(new java.awt.Color(187, 210, 240));
+        txt_dia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_dia);
         txt_dia.setBounds(40, 150, 50, 27);
+
+        txt_mes.setBackground(new java.awt.Color(187, 210, 240));
+        txt_mes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_mes);
         txt_mes.setBounds(100, 150, 50, 27);
+
+        txt_ano.setBackground(new java.awt.Color(187, 210, 240));
+        txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_ano);
         txt_ano.setBounds(160, 150, 50, 27);
 
+        btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio.setForeground(new java.awt.Color(255, 255, 255));
         btn_inicio.setText("Início");
         btn_inicio.setMaximumSize(new java.awt.Dimension(68, 30));
         btn_inicio.setMinimumSize(new java.awt.Dimension(68, 30));
@@ -187,10 +198,15 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(40, 200, 40, 17);
-        getContentPane().add(txt_total);
-        txt_total.setBounds(40, 230, 104, 27);
 
+        txt_total.setBackground(new java.awt.Color(187, 210, 240));
+        txt_total.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_total);
+        txt_total.setBounds(40, 220, 200, 27);
+
+        btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
         btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_NovaReceita.setForeground(new java.awt.Color(255, 255, 255));
         btn_NovaReceita.setText("Cadastrar Receita");
         btn_NovaReceita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,9 +221,9 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(210, 10, 280, 18);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(530, 330, 140, 100);
+        jLabel7.setBounds(290, 60, 410, 370);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel3);

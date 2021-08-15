@@ -37,6 +37,7 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtPesquisa = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -51,6 +52,13 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel3.setText("Consultar Receita");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(260, 0, 170, 20);
+
+        jtPesquisa.setBackground(new java.awt.Color(187, 210, 240));
+        jtPesquisa.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -67,20 +75,21 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtPesquisa.setGridColor(new java.awt.Color(187, 210, 240));
         jScrollPane1.setViewportView(jtPesquisa);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 110, 375, 97);
+        jScrollPane1.setBounds(30, 60, 640, 200);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(540, 300, 130, 130);
+        jLabel2.setBounds(540, 270, 130, 130);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(30, 80, 91, 20);
+        txt_id.setBounds(30, 80, 91, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -175,6 +184,7 @@ public class TelaReceita_Consulta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtPesquisa;
     private javax.swing.JTextField txt_id;

@@ -58,7 +58,9 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Início");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,8 +68,9 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(560, 60, 63, 25);
+        jButton1.setBounds(518, 60, 110, 27);
 
+        jtPesquisa.setBackground(new java.awt.Color(187, 210, 240));
         jtPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -91,15 +94,18 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtPesquisa.setGridColor(new java.awt.Color(187, 210, 240));
         jScrollPane1.setViewportView(jtPesquisa);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(50, 130, 580, 200);
 
+        jToggleButton1.setBackground(new java.awt.Color(105, 69, 219));
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Pesquisar");
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(50, 60, 100, 25);
+        jToggleButton1.setBounds(50, 60, 120, 27);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel1);

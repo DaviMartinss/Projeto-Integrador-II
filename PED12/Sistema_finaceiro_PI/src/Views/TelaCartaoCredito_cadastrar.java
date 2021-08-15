@@ -129,6 +129,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     private void initComponents() {
 
         txt_id = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         txt_NumCC = new javax.swing.JTextField();
         txt_DiaFaturaCC = new javax.swing.JTextField();
         txt_BandeiraCC = new javax.swing.JTextField();
@@ -154,11 +155,24 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         setTitle("Cartão de Crédito");
         setPreferredSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(null);
+
+        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel3.setText("Cadastrar Cartão de Crédito");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(210, 0, 260, 26);
+
+        txt_NumCC.setBackground(new java.awt.Color(187, 210, 240));
+        txt_NumCC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NumCC);
         txt_NumCC.setBounds(150, 60, 400, 27);
+
+        txt_DiaFaturaCC.setBackground(new java.awt.Color(187, 210, 240));
+        txt_DiaFaturaCC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_DiaFaturaCC);
         txt_DiaFaturaCC.setBounds(150, 240, 400, 27);
 
+        txt_BandeiraCC.setBackground(new java.awt.Color(187, 210, 240));
+        txt_BandeiraCC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_BandeiraCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_BandeiraCCActionPerformed(evt);
@@ -167,6 +181,8 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txt_BandeiraCC);
         txt_BandeiraCC.setBounds(150, 300, 400, 27);
 
+        txt_LimiteCC.setBackground(new java.awt.Color(187, 210, 240));
+        txt_LimiteCC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_LimiteCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_LimiteCCActionPerformed(evt);
@@ -178,24 +194,26 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 40, 102, 16);
+        jLabel1.setBounds(150, 40, 108, 17);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Limite");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(150, 100, 35, 14);
+        jLabel2.setBounds(150, 100, 40, 14);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Dia da Fatura");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(150, 220, 90, 16);
+        jLabel4.setBounds(150, 220, 90, 17);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Bandeira");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(150, 280, 60, 16);
+        jLabel6.setBounds(150, 280, 60, 17);
 
+        btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio.setForeground(new java.awt.Color(255, 255, 255));
         btn_inicio.setText("Início");
         btn_inicio.setMaximumSize(new java.awt.Dimension(68, 30));
         btn_inicio.setMinimumSize(new java.awt.Dimension(68, 30));
@@ -205,9 +223,11 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(150, 370, 63, 25);
+        btn_inicio.setBounds(150, 370, 68, 27);
 
+        btn_cadastra_cartao.setBackground(new java.awt.Color(105, 69, 219));
         btn_cadastra_cartao.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_cadastra_cartao.setForeground(new java.awt.Color(255, 255, 255));
         btn_cadastra_cartao.setText("Cadastra cartao");
         btn_cadastra_cartao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,19 +235,22 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastra_cartao);
-        btn_cadastra_cartao.setBounds(420, 370, 130, 25);
+        btn_cadastra_cartao.setBounds(420, 370, 130, 27);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Valor da Fatura");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(150, 160, 86, 20);
+        jLabel7.setBounds(150, 160, 93, 20);
+
+        txt_ValorFatura.setBackground(new java.awt.Color(187, 210, 240));
+        txt_ValorFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_ValorFatura);
         txt_ValorFatura.setBounds(150, 180, 400, 27);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 1958, 1080);
+        jLabel8.setBounds(0, 0, 1968, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -307,6 +330,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     private javax.swing.JButton btn_inicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
