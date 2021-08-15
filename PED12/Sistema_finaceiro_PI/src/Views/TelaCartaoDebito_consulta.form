@@ -81,14 +81,10 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Noto Serif" size="12" style="1"/>
         </Property>
-<<<<<<< HEAD
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="In&#xed;cio"/>
-=======
-        <Property name="text" type="java.lang.String" value="Voltar"/>
->>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_voltarActionPerformed"/>

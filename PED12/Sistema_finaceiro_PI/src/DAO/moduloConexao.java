@@ -21,13 +21,11 @@ public class moduloConexao {
         String driver = "com.mysql.cj.jdbc.Driver";  
         // armazenando infformações rederentes ao banco
         
-        String url = "jdbc:mysql://localhost:3306/bd_pedemeia";          
+        String url = "jdbc:mysql://localhost:3307/bd_pedemeia_2";          
         String user = "root";          
 
-        String password = "14011991";           
-
-
-       
+        String password = "sua_senha";  
+                 
         // estabelecendo a conexão com o banco
         try{
    
@@ -37,7 +35,7 @@ public class moduloConexao {
             return conexao;
         
         } catch(Exception e){
-            System.out.println(e); 
+            System.out.println("Falha ao conectar com o banco de dados " +e); 
             return null;
         }
         
