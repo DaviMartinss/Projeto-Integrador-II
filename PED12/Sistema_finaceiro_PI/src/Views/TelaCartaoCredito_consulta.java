@@ -98,8 +98,9 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtConsultaCC = new javax.swing.JTable();
-        txt_id = new javax.swing.JTextField();
         cbbTipo = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         jLabel7.setText("jLabel7");
 
@@ -112,6 +113,8 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
+        txt_Pesquisa.setBackground(new java.awt.Color(187, 210, 240));
+        txt_Pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_PesquisaActionPerformed(evt);
@@ -123,9 +126,11 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(190, 80, 400, 27);
+        txt_Pesquisa.setBounds(270, 130, 400, 27);
 
+        btn_Consultar.setBackground(new java.awt.Color(105, 69, 219));
         btn_Consultar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_Consultar.setForeground(new java.awt.Color(255, 255, 255));
         btn_Consultar.setText("Consultar");
         btn_Consultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,14 +138,18 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_Consultar);
-        btn_Consultar.setBounds(200, 30, 87, 25);
+        btn_Consultar.setBounds(230, 30, 100, 27);
 
+        btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
         btnAlterar.setText("Alterar");
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(110, 30, 71, 25);
+        btnAlterar.setBounds(130, 30, 90, 27);
 
+        btnDeletar.setBackground(new java.awt.Color(105, 69, 219));
         btnDeletar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnDeletar.setForeground(new java.awt.Color(255, 255, 255));
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,14 +157,16 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDeletar);
-        btnDeletar.setBounds(310, 30, 90, 25);
+        btnDeletar.setBounds(30, 420, 100, 27);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Consulta de Cartão de Crédito");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(220, 0, 280, 20);
 
+        btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
         btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,8 +174,10 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(30, 30, 67, 25);
+        btnVoltar.setBounds(30, 30, 90, 27);
 
+        jtConsultaCC.setBackground(new java.awt.Color(187, 210, 240));
+        jtConsultaCC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jtConsultaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -189,10 +202,22 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtConsultaCC.setSelectionBackground(new java.awt.Color(187, 210, 240));
         jScrollPane1.setViewportView(jtConsultaCC);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 160, 640, 137);
+        jScrollPane1.setBounds(30, 187, 640, 220);
+
+        cbbTipo.setBackground(new java.awt.Color(187, 210, 240));
+        cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Limite", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
+        getContentPane().add(cbbTipo);
+        cbbTipo.setBounds(30, 130, 120, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,11 +225,7 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(520, 340, 136, 20);
-
-        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Limite", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
-        getContentPane().add(cbbTipo);
-        cbbTipo.setBounds(16, 80, 120, 30);
+        txt_id.setBounds(520, 340, 136, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -400,6 +421,7 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnVoltar;
     private javax.swing.JButton btn_Consultar;
     private javax.swing.JComboBox<String> cbbTipo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;

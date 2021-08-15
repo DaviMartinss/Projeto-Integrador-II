@@ -281,6 +281,11 @@ public class TelaDespesa extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(201, 127, 206));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setText("Início");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(30, 40, 63, 25);
 
@@ -516,6 +521,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnNovaDespesaActionPerformed
 
+<<<<<<< HEAD
     private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_PesquisaActionPerformed
@@ -650,6 +656,12 @@ public class TelaDespesa extends javax.swing.JFrame {
 //        }
 
     }//GEN-LAST:event_jtConsultaCCMouseClicked
+=======
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        inicio();
+    }//GEN-LAST:event_jButton1ActionPerformed
+>>>>>>> 47db849de9b7948ca21aa85d2218e8ff866361c5
 
     /**
      * @param args the command line arguments
