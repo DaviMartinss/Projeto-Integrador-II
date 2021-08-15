@@ -134,7 +134,30 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         
     }
 
+   void inicio(){
+         
+         TelaPrincipal TelaPrincipal = null;
+         
+         if (TelaPrincipal == null) {
 
+             TelaPrincipal = new TelaPrincipal();
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.receberID(txt_id.getText());
+
+         } else {
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.setState(TelaPrincipal.NORMAL);
+
+             TelaPrincipal.receberID(txt_id.getText());
+         }
+         
+         this.dispose();
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -181,6 +204,11 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setText("Início");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(30, 60, 63, 25);
 
@@ -253,6 +281,11 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        inicio();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
