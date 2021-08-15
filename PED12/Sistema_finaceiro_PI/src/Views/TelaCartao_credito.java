@@ -256,7 +256,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Crédito");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 0, 170, 26);
+        jLabel2.setBounds(280, 0, 170, 24);
 
         btn_inicio_CC.setBackground(new java.awt.Color(189, 137, 212));
         btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -287,7 +287,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_sairCC);
-        btn_sairCC.setBounds(620, 40, 58, 27);
+        btn_sairCC.setBounds(620, 40, 55, 25);
 
         btn_novoCartao_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_novoCartao_cc.setText("Novo Cartão");
@@ -377,21 +377,21 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 130, 140, 17);
+        jLabel1.setBounds(30, 130, 140, 16);
         getContentPane().add(txt_DiaFatura);
         txt_DiaFatura.setBounds(450, 200, 140, 27);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor da Fatura");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 180, 110, 17);
+        jLabel3.setBounds(30, 180, 110, 16);
         getContentPane().add(txt_ValorFatura);
         txt_ValorFatura.setBounds(30, 200, 400, 27);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Dia da Fatura");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(450, 180, 100, 17);
+        jLabel4.setBounds(450, 180, 100, 16);
 
         txt_Bandeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,14 +404,14 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel5.setText("Bandeira");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 230, 80, 17);
+        jLabel5.setBounds(30, 230, 80, 16);
         getContentPane().add(txt_NumCartaoC);
         txt_NumCartaoC.setBounds(30, 150, 400, 27);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Ordenação");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 230, 80, 17);
+        jLabel6.setBounds(440, 230, 80, 16);
         getContentPane().add(txt_Limite);
         txt_Limite.setBounds(450, 150, 140, 27);
 
@@ -423,7 +423,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(540, 250, 110, 25);
+        rbDescendente.setBounds(540, 250, 110, 23);
 
         rbAscendente.setBackground(new java.awt.Color(142, 183, 235));
         rbAscendente.setText("Ascendente");
@@ -433,12 +433,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(440, 250, 110, 25);
+        rbAscendente.setBounds(440, 250, 110, 23);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Limite");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(450, 130, 40, 17);
+        jLabel7.setBounds(450, 130, 35, 16);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel8.setText("jLabel8");
@@ -453,7 +453,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(620, 100, 81, 21);
+        txt_id.setBounds(620, 100, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

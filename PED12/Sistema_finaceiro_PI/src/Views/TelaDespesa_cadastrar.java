@@ -5,7 +5,9 @@
  */
 package Views;
 
+import DAO.DespesaDAO;
 import DAO.moduloConexao;
+import Model.Despesa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,162 +43,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
     }
-    
-    
-    public void cadastrar_despesa() {
 
-        String id_conta = txt_id.getText();
-        
-        int cod_receita = 0;
-
-        int Id_conta_BD = Integer.parseInt(id_conta);
-
-        String sql1 = "insert into despesa_data (receita_data_cod_receita,dia, mes, ano) values(?,?,?,?)";
-        
-        String sql5 = "select * from receita_data where mes=? and ano=?";
-        
-        try {
-            
-            pst5 = conexao.prepareStatement(sql5);
-                    
-            pst5.setString(1, txtMes.getText());
-            pst5.setString(2, txtAno.getText());
-            
-            rs2 = pst5.executeQuery();
-            
-            if(rs2.next()){
-                
-                cod_receita = rs2.getInt(1);
-            
-            }else {
-                
-                JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
-                
-                FlagErroCadastroDespesa = false;
-            }
-
-            pst1 = conexao.prepareStatement(sql1);
-            pst1.setInt(1, cod_receita);
-            pst1.setString(2, txtDia.getText());
-            pst1.setString(3, txtMes.getText());
-            pst1.setString(4, txtAno.getText());
-            
-            pst1.executeUpdate();
-            
-            int cod_despesa = 0;
-                
-            String sql2 = "select * from despesa_data where dia=? and mes=? and ano=?";
-
-            pst2 = conexao.prepareStatement(sql2);
-            pst2.setString(1, txtDia.getText());
-            pst2.setString(2, txtMes.getText());
-            pst2.setString(3, txtAno.getText());
-
-            rs = pst2.executeQuery();
-            
-            if(rs.next()){
-                
-                cod_despesa = rs.getInt(1);
-
-                String sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, cartao_debito_n_cartao_debito, cartao_credito_n_cartao_credito, estatus, conta_id_conta) values(?,?,?,?,?,?,?,?,?)";
-
-                pst3 = conexao.prepareStatement(sql3);
-                pst3.setInt(1, cod_despesa);
-                pst3.setFloat(2, Float.parseFloat(txtValor.getText()));
-                pst3.setString(3, txtCategoria.getText());
-                pst3.setString(4, txtAreaDescricao.getText());
-
-                if (rbDebito.isSelected()) {
-
-                    pst3.setString(5, "DÉBITO");
-                    
-                    pst3.setLong(6, Long.parseLong(txt_NumCartao.getText()));
-                    
-                    pst3.setString(7, null);
-
-                }else if(rbCredito.isSelected()) {
-
-                    pst3.setString(5, "CRÉDITO");
-                    
-                    pst3.setString(6, null);
-                    
-                    pst3.setLong(7, Long.parseLong(txt_NumCartao.getText()));
-
-                }else{
-                    
-                    
-                    pst3.setString(5, "DINHEIRO");
-                    
-                    pst3.setString(6, null);
-                    pst3.setString(7, null);
-                    
-                }
-
-                if (rbPago.isSelected()) {
-
-                    pst3.setString(8, "PAGO");
-
-                } else {
-
-                    pst3.setString(8, "NÃO PAGO");
-
-                }          
-
-                pst3.setInt(9, Id_conta_BD);
-
-                pst3.executeUpdate();
-
-                if (rbCredito.isSelected()) {
-
-                    String sql4 = "insert into despesa_credito (n_parcelas, despesa_data_cod_despesa) values(?,?)";
-
-                    pst4 = conexao.prepareStatement(sql4);
-                    
-                    pst4.setString(1, txtParcelas.getText());
-                    pst4.setInt(2, cod_despesa);
-                    
-                    pst4.executeUpdate();
-
-                }
-
-            }else{
-                JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
-                FlagErroCadastroDespesa = false;
-            }
-
-            String sql6 = "update receita set total=total-? where conta_id_conta=? and receita_data_cod_receita=?";
-
-            pst6 = conexao.prepareStatement(sql6);
-
-            pst6.setFloat(1, Float.parseFloat(txtValor.getText()));
-            pst6.setInt(2, Integer.parseInt(txt_id.getText()));
-            pst6.setInt(3, cod_receita);
-
-            pst6.executeUpdate();
-
-        } catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null, e);
-            
-            
-            FlagErroCadastroDespesa = false;
-            
-        }
-
-        
-        if(FlagErroCadastroDespesa){
-            
-            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-            Volta_TelaDespesa();
-            
-        }else{
-            
-            JOptionPane.showMessageDialog(null, "Falha ao Cadastrar a Despesa");
-            
-        }
-        
-    }
-    
     void Volta_TelaDespesa() {
 
         TelaDespesa TelaDespesa = null;
@@ -273,7 +120,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Forma de Pagamento: ");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 350, 135, 17);
+        jLabel8.setBounds(30, 350, 127, 16);
 
         rbCredito.setBackground(new java.awt.Color(142, 185, 236));
         rbCredito.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -300,7 +147,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Nº de Pacelas: ");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(240, 400, 87, 17);
+        jLabel9.setBounds(240, 400, 84, 16);
         getContentPane().add(txtParcelas);
         txtParcelas.setBounds(240, 420, 50, 27);
 
@@ -312,27 +159,27 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Categoria: ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 150, 65, 17);
+        jLabel2.setBounds(30, 150, 61, 16);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Descrição: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 200, 65, 17);
+        jLabel3.setBounds(30, 200, 64, 16);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Data: (dd/mm/aaaa)");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(240, 100, 130, 17);
+        jLabel4.setBounds(240, 100, 130, 16);
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("/");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(300, 120, 10, 26);
+        jLabel5.setBounds(300, 120, 10, 24);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(370, 120, 10, 26);
+        jLabel6.setBounds(370, 120, 10, 24);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Status: ");
@@ -346,7 +193,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setText("Início");
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 50, 86, 27);
+        jButton1.setBounds(30, 50, 86, 25);
 
         rbPago.setBackground(new java.awt.Color(142, 185, 236));
         rbPago.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -368,7 +215,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbNaoPago);
-        rbNaoPago.setBounds(140, 320, 90, 27);
+        rbNaoPago.setBounds(140, 320, 87, 27);
         getContentPane().add(txtValor);
         txtValor.setBounds(30, 120, 150, 27);
 
@@ -400,12 +247,12 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_CadastrarDespesa);
-        btn_CadastrarDespesa.setBounds(280, 50, 147, 27);
+        btn_CadastrarDespesa.setBounds(280, 50, 143, 25);
 
         jLabel10.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel10.setText("CADASTRO DE DESPESA");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(240, 0, 230, 26);
+        jLabel10.setBounds(240, 0, 230, 24);
 
         rbDinheiro.setBackground(new java.awt.Color(142, 185, 236));
         rbDinheiro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -416,12 +263,12 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDinheiro);
-        rbDinheiro.setBounds(180, 370, 78, 25);
+        rbDinheiro.setBounds(180, 370, 73, 25);
 
         jLabel11.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel11.setText("Nº do Cartão: ");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(30, 400, 82, 17);
+        jLabel11.setBounds(30, 400, 76, 16);
         getContentPane().add(txt_NumCartao);
         txt_NumCartao.setBounds(30, 420, 200, 27);
 
@@ -436,7 +283,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2322, 50, 81, 21);
+        txt_id.setBounds(2322, 50, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -453,6 +300,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             txtParcelas.setEnabled(false);
 
             rbCredito.setSelected(false);
+            
+            rbPago.setSelected(true);
+            
+            rbNaoPago.setSelected(false);
 
         }
     }//GEN-LAST:event_rbDebitoActionPerformed
@@ -469,6 +320,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             txtParcelas.setEnabled(true);
 
             rbDebito.setSelected(false);
+            
+            rbPago.setSelected(true);
+            
+            rbNaoPago.setSelected(false);
 
         }
         
@@ -520,8 +375,51 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             
         }else{
             
-            cadastrar_despesa();
-
+            //cadastrar_despesa();
+            
+            Despesa despesa = new Despesa( 
+                    Integer.parseInt(txtDia.getText()),
+                    Integer.parseInt(txtMes.getText()),
+                    Integer.parseInt(txtAno.getText()),
+                    Float.parseFloat(txtValor.getText()),
+                    txtCategoria.getText(),
+                    txtAreaDescricao.getText(),
+                    Integer.parseInt(txt_id.getText())
+            );
+            
+            if(rbDebito.isSelected()){
+                
+                despesa.setF_pagamento("DÉBITO");
+                
+                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
+            
+            }else if(rbCredito.isSelected()){
+            
+                despesa.setF_pagamento("CRÉDITO");
+                
+                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
+            
+            }else{
+                
+                despesa.setF_pagamento("DINHEIRO");
+                
+            }
+            
+            if(rbPago.isSelected()){
+                
+                despesa.setEstatus("PAGO");
+            
+            }else{
+                
+                despesa.setEstatus("NÃO PAGO");
+            }
+            
+            DespesaDAO despesaDAO = new DespesaDAO();
+            
+            despesaDAO.CadastrarDespesa(despesa);
+            
+            Volta_TelaDespesa();
+            
         } 
         
     }//GEN-LAST:event_btn_CadastrarDespesaActionPerformed

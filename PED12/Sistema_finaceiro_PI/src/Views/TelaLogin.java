@@ -137,12 +137,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(140, 190, 50, 17);
+        jLabel1.setBounds(140, 190, 50, 16);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(140, 260, 37, 17);
+        jLabel2.setBounds(140, 260, 36, 16);
 
         txtEmail.setAlignmentX(1.0F);
         getContentPane().add(txtEmail);
@@ -157,7 +157,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogin);
-        btnLogin.setBounds(140, 360, 110, 27);
+        btnLogin.setBounds(140, 360, 110, 25);
 
         btnCadastro.setBackground(new java.awt.Color(201, 127, 206));
         btnCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -168,7 +168,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(420, 360, 120, 27);
+        btnCadastro.setBounds(420, 360, 120, 25);
 
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
