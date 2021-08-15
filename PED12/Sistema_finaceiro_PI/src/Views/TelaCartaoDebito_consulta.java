@@ -68,7 +68,7 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
         btnDeletar = new javax.swing.JToggleButton();
         btnAlterar = new javax.swing.JToggleButton();
         btn_Consultar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btn_voltar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txt_numCartDeb = new javax.swing.JTextField();
         txt_BandCartDeb = new javax.swing.JTextField();
@@ -112,12 +112,24 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
         getContentPane().add(btn_Consultar);
         btn_Consultar.setBounds(330, 50, 100, 27);
 
+<<<<<<< HEAD
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Início");
         getContentPane().add(jButton1);
         jButton1.setBounds(30, 50, 68, 27);
+=======
+        btn_voltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_voltar.setText("Voltar");
+        btn_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_voltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_voltar);
+        btn_voltar.setBounds(30, 50, 80, 25);
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -284,6 +296,11 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
         jtConsultaCD.setAutoCreateRowSorter(true);
     }//GEN-LAST:event_formWindowOpened
 
+    private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
+        // TODO add your handling code here:
+        voltaTelaCartao_Debito();
+    }//GEN-LAST:event_btn_voltarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -324,7 +341,7 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnDeletar;
     private javax.swing.JToggleButton btnVoltar;
     private javax.swing.JButton btn_Consultar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

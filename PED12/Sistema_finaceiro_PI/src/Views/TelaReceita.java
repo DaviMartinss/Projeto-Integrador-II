@@ -5,10 +5,14 @@
  */
 package Views;
 
+import DAO.ReceitaDAO;
 import DAO.moduloConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -158,6 +162,53 @@ public class TelaReceita extends javax.swing.JFrame {
     }
     
     
+    void RecarregaTabela_Receita(){
+         
+         DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
+        
+        int l = mp1.getRowCount();
+        
+        if(l>0){
+            while(l>0){
+                //Limpa tabela sempre que for fazer uma nova consulta
+                ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
+                
+                //Menos um pois a primeira linha é a linha zero
+                l--;
+            }
+        }
+        
+        try{
+            
+            ReceitaDAO receita = new ReceitaDAO();
+            
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();  
+
+            rs = receita.CarregaTabela_Receita(Integer.parseInt(txt_id.getText()));
+
+            while(rs.next()) {
+                
+                    String Col0 = rs.getString("total");
+                    String Col1 = rs.getString("dia");
+                    String Col2 = rs.getString("mes");
+                    String Col3 = rs.getString("ano");
+
+                    mp.addRow(new String[]{Col0, Col1, Col2, Col3});
+                   
+            }
+    
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+        }
+        
+        jtConsultaCD.setAutoCreateRowSorter(true);
+         
+         
+     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -182,8 +233,14 @@ public class TelaReceita extends javax.swing.JFrame {
         txt_mes = new javax.swing.JTextField();
         txt_ano = new javax.swing.JTextField();
         btn_NovaReceita = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        cbbTipo = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtConsultaCD = new javax.swing.JTable();
+        txt_Pesquisa = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        rbAscendente = new javax.swing.JRadioButton();
+        rbDescendente = new javax.swing.JRadioButton();
+        btPesquisarCD = new javax.swing.JButton();
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -194,6 +251,11 @@ public class TelaReceita extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
@@ -254,7 +316,11 @@ public class TelaReceita extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
+<<<<<<< HEAD
         jLabel1.setBounds(30, 90, 50, 17);
+=======
+        jLabel1.setBounds(30, 130, 50, 16);
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
 
         txt_total.setBackground(new java.awt.Color(187, 210, 240));
         txt_total.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -263,21 +329,34 @@ public class TelaReceita extends javax.swing.JFrame {
         txt_total.setName(""); // NOI18N
         txt_total.setPreferredSize(new java.awt.Dimension(10, 40));
         getContentPane().add(txt_total);
+<<<<<<< HEAD
         txt_total.setBounds(30, 110, 400, 27);
+=======
+        txt_total.setBounds(30, 150, 300, 27);
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Data (dd/mm/aaaa)");
         getContentPane().add(jLabel4);
+<<<<<<< HEAD
         jLabel4.setBounds(30, 160, 150, 17);
+=======
+        jLabel4.setBounds(30, 200, 24, 16);
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("/");
         getContentPane().add(jLabel5);
+<<<<<<< HEAD
         jLabel5.setBounds(90, 180, 10, 26);
+=======
+        jLabel5.setBounds(100, 200, 27, 16);
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
+<<<<<<< HEAD
         jLabel6.setBounds(160, 180, 10, 26);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
@@ -297,6 +376,15 @@ public class TelaReceita extends javax.swing.JFrame {
         txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_ano);
         txt_ano.setBounds(170, 180, 50, 27);
+=======
+        jLabel6.setBounds(180, 200, 40, 16);
+        getContentPane().add(txt_dia);
+        txt_dia.setBounds(30, 220, 40, 27);
+        getContentPane().add(txt_mes);
+        txt_mes.setBounds(100, 220, 40, 27);
+        getContentPane().add(txt_ano);
+        txt_ano.setBounds(180, 220, 40, 27);
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
 
         btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
         btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -310,6 +398,7 @@ public class TelaReceita extends javax.swing.JFrame {
         getContentPane().add(btn_NovaReceita);
         btn_NovaReceita.setBounds(110, 40, 120, 27);
 
+<<<<<<< HEAD
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(260, 140, 430, 330);
@@ -318,6 +407,90 @@ public class TelaReceita extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 1920, 1080);
+=======
+        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
+        getContentPane().add(cbbTipo);
+        cbbTipo.setBounds(20, 290, 120, 30);
+
+        jtConsultaCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jtConsultaCD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Total", "Dia", "Mês", "Ano"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtConsultaCD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtConsultaCDMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtConsultaCD);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(30, 350, 640, 137);
+
+        txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_PesquisaActionPerformed(evt);
+            }
+        });
+        txt_Pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_PesquisaKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txt_Pesquisa);
+        txt_Pesquisa.setBounds(150, 290, 400, 27);
+
+        jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel7.setText("Ordenação");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(560, 260, 80, 16);
+
+        rbAscendente.setText("Ascendente");
+        rbAscendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAscendenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbAscendente);
+        rbAscendente.setBounds(560, 280, 100, 23);
+
+        rbDescendente.setText("Descendente");
+        rbDescendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDescendenteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbDescendente);
+        rbDescendente.setBounds(560, 300, 110, 23);
+
+        btPesquisarCD.setText("Pesquisar");
+        btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarCDActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btPesquisarCD);
+        btPesquisarCD.setBounds(670, 290, 90, 30);
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -353,6 +526,163 @@ public class TelaReceita extends javax.swing.JFrame {
         cadastra_receita();
         
     }//GEN-LAST:event_btn_NovaReceitaActionPerformed
+
+    private void jtConsultaCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaCDMouseClicked
+        // TODO add your handling code here:
+
+        String dia = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
+        
+        String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
+        
+        String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
+
+        ReceitaDAO receita = new ReceitaDAO();
+
+        ResultSet rs = null;
+
+        try {
+
+            rs = receita.PreencherCampos_Receita(dia, mes, ano, txt_id.getText());
+
+            if(rs.next()){
+
+                txt_total.setText(rs.getString("total"));
+                txt_dia.setText(rs.getString("dia"));
+                txt_mes.setText(rs.getString("mes"));
+                txt_ano.setText(rs.getString("ano"));
+
+            }
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
+        }
+    }//GEN-LAST:event_jtConsultaCDMouseClicked
+
+    private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_PesquisaActionPerformed
+
+    private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
+
+
+        if(txt_Pesquisa.getText().isEmpty()){
+            RecarregaTabela_Receita();
+        }
+
+    }//GEN-LAST:event_txt_PesquisaKeyReleased
+
+    private void rbAscendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAscendenteActionPerformed
+        // TODO add your handling code here:
+
+        if(rbAscendente.isSelected()){
+
+            rbDescendente.setSelected(false);
+
+        }
+    }//GEN-LAST:event_rbAscendenteActionPerformed
+
+    private void rbDescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendenteActionPerformed
+        // TODO add your handling code here:
+
+        if(rbDescendente.isSelected()){
+
+            rbAscendente.setSelected(false);
+
+        }
+    }//GEN-LAST:event_rbDescendenteActionPerformed
+
+    private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
+        // TODO add your handling code here:
+
+        if(rbAscendente.isSelected() || rbDescendente.isSelected()){
+
+            boolean ordenar = true;
+
+            String tipo = "";
+
+            String escolha = cbbTipo.getSelectedItem().toString().trim();
+
+            if (escolha.equals("Total")) {
+                tipo = " " + "total";
+            }
+
+            if (escolha.equals("Dia")) {
+                tipo = " " + "dia";
+            }
+
+            if (escolha.equals("Mês")) {
+                tipo = " " + "mes";
+            }
+            
+            if (escolha.equals("Ano")) {
+                tipo = " " + "ano";
+            }
+
+            if (rbAscendente.isSelected()) {
+
+                ordenar = true;
+
+            } else {
+
+                ordenar = false;
+            }
+
+            String argumento = txt_Pesquisa.getText();
+
+            DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
+
+            int l = mp1.getRowCount();
+
+            if (l > 0) {
+                while (l > 0) {
+                    //Limpa tabela sempre que for fazer uma nova consulta
+                    ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
+
+                    //Menos um pois a primeira linha é a linha zero
+                    l--;
+                }
+            }
+
+            try {
+
+                ReceitaDAO receita = new ReceitaDAO();
+
+                DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
+
+                rs = receita.Consulta_Receita(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
+
+                while (rs.next()) {
+
+                    String Col0 = rs.getString("total");
+                    String Col1 = rs.getString("dia");
+                    String Col2 = rs.getString("mes");
+                    String Col3 = rs.getString("ano");
+
+                    mp.addRow(new String[]{Col0, Col1, Col2, Col3});
+
+                }
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(this, e.getMessage());
+
+            }
+
+            jtConsultaCD.setAutoCreateRowSorter(true);
+
+        }else{
+
+            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
+
+        }
+    }//GEN-LAST:event_btPesquisarCDActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        RecarregaTabela_Receita();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -390,18 +720,26 @@ public class TelaReceita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btPesquisarCD;
     private javax.swing.JButton btnCartao_Deb;
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btn_NovaReceita;
     private javax.swing.JButton btn_despesas;
     private javax.swing.JButton btn_inicio;
+    private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+<<<<<<< HEAD
+=======
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jtConsultaCD;
+    private javax.swing.JRadioButton rbAscendente;
+    private javax.swing.JRadioButton rbDescendente;
+    private javax.swing.JTextField txt_Pesquisa;
+>>>>>>> 03e3e4205b21a877fbec4f1e7bd4c309b7da918f
     private javax.swing.JTextField txt_ano;
     private javax.swing.JTextField txt_dia;
     private javax.swing.JTextField txt_id;
