@@ -40,7 +40,7 @@ public class DespesaDAO {
         
         int cod_receita = 0;
 
-        String sql1 = "insert into despesa_data (receita_data_cod_receita,dia, mes, ano) values(?,?,?,?)";
+        String sql1 = "insert into despesa_data (receita_data_cod_receita,dia, mes, ano, conta_id_conta) values(?,?,?,?,?)";
         
         String sql5 = "select * from receita_data where mes=? and ano=?";
         
@@ -69,17 +69,20 @@ public class DespesaDAO {
             pst1.setInt(2, despesa.getDia());
             pst1.setInt(3, despesa.getMes());
             pst1.setInt(4, despesa.getAno());
+            pst1.setInt(5, despesa.getId_conta());
             
             pst1.executeUpdate();
             
             int cod_despesa = 0;
                 
-            String sql2 = "select * from despesa_data where dia=? and mes=? and ano=?";
+            String sql2 = "select * from despesa_data where conta_id_conta = ? and dia=? and mes=? and ano=?";
 
             pst2 = conexao.prepareStatement(sql2);
-            pst2.setInt(1, despesa.getDia());
-            pst2.setInt(2, despesa.getMes());
-            pst2.setInt(3, despesa.getAno());
+            
+            pst2.setInt(1, despesa.getId_conta());
+            pst2.setInt(2, despesa.getDia());
+            pst2.setInt(3, despesa.getMes());
+            pst2.setInt(4, despesa.getAno());
 
             rs = pst2.executeQuery();
             
@@ -91,11 +94,11 @@ public class DespesaDAO {
                 
                 if (despesa.getF_pagamento().equals("DINHEIRO")){
                     
-                    sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, estatus, conta_id_conta) values(?,?,?,?,?,?,?)";
+                    sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, estatus) values(?,?,?,?,?,?)";
 
                 }else{
                     
-                    sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, num_cartao, estatus, conta_id_conta) values(?,?,?,?,?,?,?,?)";
+                    sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
                 
                 }
 
@@ -111,15 +114,11 @@ public class DespesaDAO {
 
                     pst3.setString(6, despesa.getEstatus());
 
-                    pst3.setInt(7, despesa.getId_conta());
-
                 } else {
 
                     pst3.setLong(6, despesa.getNum_cartao());
 
                     pst3.setString(7, despesa.getEstatus());
-
-                    pst3.setInt(8, despesa.getId_conta());
 
                 }
 
