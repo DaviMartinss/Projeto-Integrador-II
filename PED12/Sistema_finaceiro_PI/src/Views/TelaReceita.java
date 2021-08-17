@@ -7,6 +7,7 @@ package Views;
 
 import DAO.ReceitaDAO;
 import DAO.moduloConexao;
+import Model.Receita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,8 @@ public class TelaReceita extends javax.swing.JFrame {
      */
     Connection conexao = null;
     PreparedStatement pst = null;
+    int salvaMes = 0;
+    int SalvaAno = 0;
     
 
     public TelaReceita() {
@@ -211,6 +214,31 @@ public class TelaReceita extends javax.swing.JFrame {
          
      }
     
+    void update_receita() {
+            
+            Receita receita_atua = new Receita(
+                Integer.parseInt(txt_dia.getText()),
+                Integer.parseInt(txt_mes.getText()),
+                Integer.parseInt(txt_ano.getText()),
+                Float.parseFloat(txt_total.getText()),
+                Integer.parseInt(txt_id.getText()),
+                salvaMes,
+                SalvaAno
+                    
+        );
+
+        ReceitaDAO receita_DAO = new ReceitaDAO();
+
+        try {
+                
+            receita_DAO.UpdateReceita(receita_atua);
+                
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -243,8 +271,8 @@ public class TelaReceita extends javax.swing.JFrame {
         rbDescendente = new javax.swing.JRadioButton();
         btPesquisarCD = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        txt_update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 500));
@@ -470,12 +498,6 @@ public class TelaReceita extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(560, 300, 140, 120);
 
-        jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        jLabel8.setText("Ordenação");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 1920, 1080);
-
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,6 +506,15 @@ public class TelaReceita extends javax.swing.JFrame {
         });
         getContentPane().add(txt_id);
         txt_id.setBounds(0, 0, 60, 20);
+
+        txt_update.setText("Update");
+        txt_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_updateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_update);
+        txt_update.setBounds(570, 110, 67, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -543,6 +574,9 @@ public class TelaReceita extends javax.swing.JFrame {
                 txt_dia.setText(rs.getString("dia"));
                 txt_mes.setText(rs.getString("mes"));
                 txt_ano.setText(rs.getString("ano"));
+                
+                salvaMes = Integer.parseInt(txt_mes.getText());
+                SalvaAno = Integer.parseInt(txt_ano.getText());
 
             }
 
@@ -687,6 +721,12 @@ public class TelaReceita extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbTipoActionPerformed
 
+    private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
+        // TODO add your handling code here:
+        update_receita();
+        RecarregaTabela_Receita();
+    }//GEN-LAST:event_txt_updateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -736,7 +776,6 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCD;
     private javax.swing.JRadioButton rbAscendente;
@@ -747,6 +786,7 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_mes;
     private javax.swing.JTextField txt_total;
+    private javax.swing.JButton txt_update;
     // End of variables declaration//GEN-END:variables
 
 

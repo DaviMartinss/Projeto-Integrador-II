@@ -99,6 +99,41 @@ public class ReceitaDAO {
 
     }
     
+    public boolean UpdateReceita(Receita receita) throws SQLException {
+    
+        PreparedStatement pst = null;
+         
+        String update = "update (receita R join receita_data Rdt on R.receita_data_cod_receita = Rdt.cod_receita) set total = ?, dia = ?, mes = ?, ano = ? where (conta_id_conta = ? and mes = ? and ano = ?)";
+        
+        pst = conexao.prepareStatement(update);
+    
+        try {
+            
+            pst.setFloat(1, receita.getTotal());
+            pst.setInt(2, receita.getDia());
+            pst.setInt(3, receita.getMes());
+            pst.setInt(4, receita.getAno());
+            pst.setInt(5, receita.getId_conta());
+            pst.setInt(6, receita.getSalva_Mes());
+            pst.setInt(7, receita.getSalva_ano());
+            
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+    }
+    
     
     public ResultSet CarregaTabela_Receita(int id_conta) throws SQLException {
        

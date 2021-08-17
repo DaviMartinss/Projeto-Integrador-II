@@ -16,6 +16,9 @@ public class Receita {
     private int ano;
     private float total;
     private int id_conta;
+    private int Salva_Mes;
+    private int Salva_ano;
+
     
     public Receita() {
         
@@ -27,6 +30,16 @@ public class Receita {
         this.ano = ano;
         this.total = total;
         this.id_conta = id_conta;
+    }
+    
+    public Receita(int dia, int mes, int ano, float total, int id_conta, int Salva_Mes, int Salva_ano) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+        this.total = total;
+        this.id_conta = id_conta;
+        this.Salva_Mes = Salva_Mes;
+        this.Salva_ano = Salva_ano;
     }
 
     public int getId_conta() {
@@ -67,6 +80,22 @@ public class Receita {
 
     public void setTotal(float total) {
         this.total = total;
+    }
+    
+    public int getSalva_Mes() {
+        return Salva_Mes;
+    }
+
+    public void setSalva_Mes(int Salva_Mes) {
+        this.Salva_Mes = Salva_Mes;
+    }
+
+    public int getSalva_ano() {
+        return Salva_ano;
+    }
+
+    public void setSalva_ano(int Salva_ano) {
+        this.Salva_ano = Salva_ano;
     }
     
     public boolean verifica_total(){
