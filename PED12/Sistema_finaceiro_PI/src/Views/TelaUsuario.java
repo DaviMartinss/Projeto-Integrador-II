@@ -5,10 +5,12 @@
  */
 package Views;
 
+import DAO.UsuarioDAO;
 import DAO.moduloConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,10 +29,41 @@ public class TelaUsuario extends javax.swing.JFrame {
      * Creates new form TelaUsuario_consulta
      */
     public TelaUsuario() {
+        
         initComponents();
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
         
+        txtNome.setEnabled(false);
+        txtEmail.setEnabled(false);
+        txtSenha.setEnabled(false);
+        
+        txt_id.setVisible(false);
+        
+    }
+    
+     void inicio(){
+         
+         TelaPrincipal TelaPrincipal = null;
+         
+         if (TelaPrincipal == null) {
+
+             TelaPrincipal = new TelaPrincipal();
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.receberID(txt_id.getText());
+
+         } else {
+
+             TelaPrincipal.setVisible(true);
+
+             TelaPrincipal.setState(TelaPrincipal.NORMAL);
+
+             TelaPrincipal.receberID(txt_id.getText());
+         }
+         
+         this.dispose();
     }
     
 
@@ -45,10 +78,17 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtPesquisa = new javax.swing.JTable();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JTextField();
+        btnAlterar = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JToggleButton();
+        btnExcluir = new javax.swing.JToggleButton();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -59,9 +99,9 @@ public class TelaUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel2.setText("Consulta de Usuário");
+        jLabel2.setText("Dados do Usuário");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(260, 0, 200, 24);
+        jLabel2.setBounds(240, 30, 200, 24);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -75,36 +115,6 @@ public class TelaUsuario extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(530, 60, 110, 25);
 
-        jtPesquisa.setBackground(new java.awt.Color(187, 210, 240));
-        jtPesquisa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "id_conta", "nome", "email", "senha", "avatar"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jtPesquisa.setGridColor(new java.awt.Color(187, 210, 240));
-        jScrollPane1.setViewportView(jtPesquisa);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(60, 130, 580, 200);
-
         jToggleButton1.setBackground(new java.awt.Color(105, 69, 219));
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,9 +122,42 @@ public class TelaUsuario extends javax.swing.JFrame {
         getContentPane().add(jToggleButton1);
         jToggleButton1.setBounds(60, 60, 120, 25);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, -40, 1920, 1080);
+        jLabel3.setText("Nome: ");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(80, 140, 34, 14);
+        getContentPane().add(txtNome);
+        txtNome.setBounds(80, 160, 230, 30);
+
+        jLabel4.setText("Email:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(80, 200, 34, 14);
+        getContentPane().add(txtEmail);
+        txtEmail.setBounds(80, 220, 230, 30);
+
+        jLabel5.setText("Senha:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(80, 260, 50, 20);
+        getContentPane().add(txtSenha);
+        txtSenha.setBounds(80, 280, 170, 30);
+
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAlterar);
+        btnAlterar.setBounds(80, 350, 65, 23);
+
+        btnAtualizar.setText("Atualizar");
+        getContentPane().add(btnAtualizar);
+        btnAtualizar.setBounds(160, 350, 75, 23);
+
+        btnExcluir.setText("Excluir");
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(250, 350, 63, 23);
+        getContentPane().add(txt_id);
+        txt_id.setBounds(500, 160, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -122,63 +165,43 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
-        DefaultTableModel mp1 = (DefaultTableModel) jtPesquisa.getModel();
-        
-        int l = mp1.getRowCount();
-        
-        if(l>0){
-            while(l>0){
-                //Limpa tabela sempre que for fazer uma nova consulta
-                ((DefaultTableModel) jtPesquisa.getModel()).removeRow(l - 1);
-                
-                //Menos um pois a primeira linha é a linha zero
-                l--;
+        UsuarioDAO usuario = new UsuarioDAO();
+
+        ResultSet rs = null;
+
+        try {
+
+            rs = usuario.PreencherCampos_Usuario(txt_id.getText());
+
+            if(rs.next()){
+
+                txtNome.setText(rs.getString("nome"));
+                txtEmail.setText(rs.getString("email"));
+                txtSenha.setText(rs.getString("senha"));
+
             }
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(this, "Erro ao inserir os dados nos campos!!");
         }
-        
-        try{
-            
-            String pesquisa = "select * from conta";
-
-            pst = conexao.prepareStatement(pesquisa);
-
-            DefaultTableModel mp = (DefaultTableModel) jtPesquisa.getModel();
-            
-            rs = pst.executeQuery();    
-
-            while(rs.next()) {
-               
-                
-                
-                String Col0 = rs.getString("id_conta");
-                String Col1 = rs.getString("nome");
-                String Col2 = rs.getString("email");
-                String Col3 = rs.getString("senha");
-                String Col4 = rs.getString("avatar");
-                
-                
-                //Redimensiona a tabela
-                //TamanhoColunas();
-                
-                mp.addRow(new String[] {Col0,Col1,Col2,Col3});
-                
-            }
-            
-            
-            
-        }catch(Exception e){
-            
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            
-        }
-        
-        jtPesquisa.setAutoCreateRowSorter(true);
         
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        inicio();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        
+        txtNome.setEnabled(true);
+        txtEmail.setEnabled(true);
+        txtSenha.setEnabled(true);
+        
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,18 +240,24 @@ public class TelaUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JToggleButton btnAtualizar;
+    private javax.swing.JToggleButton btnExcluir;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JTable jtPesquisa;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtSenha;
+    private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
-    public void TamanhoColunas(){
-        
-        jtPesquisa.getColumnModel().getColumn(0).setMinWidth(100);
-        jtPesquisa.getColumnModel().getColumn(0).setMinWidth(250);
+    public void receberID(String recebe){
+
+        txt_id.setText(recebe);
     }
 
 

@@ -5,10 +5,13 @@
  */
 package Views;
 
+import DAO.UsuarioDAO;
 import DAO.moduloConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,11 +32,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }
     
-    void TelaUsuario_consultar() {
+    void TelaUsuario() {
         
-        TelaUsuario  TelaUsuario_consulta = new TelaUsuario();
-     
-        TelaUsuario_consulta.setVisible(true);
+        TelaUsuario TelaUsuario = null;
+
+           if (TelaUsuario == null) {
+
+               TelaUsuario = new TelaUsuario();
+
+               TelaUsuario.setVisible(true);
+               
+               TelaUsuario.receberID(txt_id.getText());
+
+           } else {
+
+               TelaUsuario.setVisible(true);
+
+               TelaUsuario.setState(TelaPrincipal.NORMAL);
+
+               TelaUsuario.receberID(txt_id.getText());
+                
+           }
+        
+        this.dispose();
         
     }
     
@@ -165,11 +186,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BtnSair = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        labelNome = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
@@ -252,11 +279,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(130, 90, 440, 360);
+        jLabel2.setBounds(60, 210, 520, 270);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(-170, -20, 1870, 1080);
+        labelNome.setText("NOMEUSER");
+        getContentPane().add(labelNome);
+        labelNome.setBounds(80, 110, 270, 50);
+
+        labelEmail.setText("EMAILUSER");
+        getContentPane().add(labelEmail);
+        labelEmail.setBounds(80, 150, 250, 40);
 
         txt_id.setEditable(false);
         txt_id.setBackground(new java.awt.Color(150, 175, 231));
@@ -301,12 +332,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
         
-        TelaUsuario_consultar();
+        TelaUsuario();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        UsuarioDAO usuario = new UsuarioDAO();
+
+        ResultSet rs = null;
+
+        try {
+
+            rs = usuario.PreencherCampos_Usuario(txt_id.getText());
+
+            if(rs.next()){
+
+                labelNome.setText(rs.getString("nome"));
+                labelEmail.setText(rs.getString("email"));
+                
+            }
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(this, "Erro ao inserir os dados nos campos!!");
+        }
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -351,10 +407,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnReceitas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelNome;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 

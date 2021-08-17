@@ -3,6 +3,7 @@ package DAO;
 import Model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -52,6 +53,31 @@ public class UsuarioDAO {
         }
 
     }
+    
+     public ResultSet PreencherCampos_Usuario(String id_conta) throws SQLException {
+ 
+       String consulta = "SELECT * FROM conta WHERE id_conta = ?";
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setInt(1, Integer.parseInt(id_conta));
+           
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       }
+
+       return rs;
+       
+   }
+    
     
     
 }
