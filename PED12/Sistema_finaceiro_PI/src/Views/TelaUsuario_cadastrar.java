@@ -89,17 +89,17 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nome");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 100, 35, 17);
+        jLabel1.setBounds(30, 100, 50, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Email");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 160, 35, 17);
+        jLabel2.setBounds(30, 160, 50, 27);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Senha");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 220, 37, 17);
+        jLabel3.setBounds(30, 220, 60, 27);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -144,9 +144,9 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel6.setBounds(240, 0, 190, 26);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("avatar");
+        jLabel4.setText("Avatar");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 280, 39, 17);
+        jLabel4.setBounds(30, 280, 60, 27);
 
         btnRealizarCadastro.setBackground(new java.awt.Color(105, 69, 219));
         btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N

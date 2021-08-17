@@ -139,17 +139,17 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("Bem Vinde ao Ped1/2");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(230, 0, 220, 24);
+        jLabel5.setBounds(230, 0, 220, 26);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 150, 50, 16);
+        jLabel1.setBounds(150, 150, 60, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(150, 220, 36, 16);
+        jLabel2.setBounds(150, 220, 50, 27);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setAlignmentX(1.0F);

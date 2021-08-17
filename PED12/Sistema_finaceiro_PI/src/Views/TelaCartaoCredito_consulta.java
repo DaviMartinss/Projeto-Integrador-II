@@ -113,7 +113,8 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        txt_Pesquisa.setBackground(new java.awt.Color(187, 210, 240));
+        txt_Pesquisa.setColumns(100);
+        txt_Pesquisa.setText("Pesquisar");
         txt_Pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,14 +139,14 @@ public class TelaCartaoCredito_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_Consultar);
-        btn_Consultar.setBounds(230, 30, 100, 27);
+        btn_Consultar.setBounds(570, 30, 100, 27);
 
         btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
         btnAlterar.setText("Alterar");
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(130, 30, 90, 27);
+        btnAlterar.setBounds(290, 30, 90, 27);
 
         btnDeletar.setBackground(new java.awt.Color(105, 69, 219));
         btnDeletar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N

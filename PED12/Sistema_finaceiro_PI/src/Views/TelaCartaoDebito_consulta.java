@@ -146,7 +146,7 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor Atual");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 150, 68, 17);
+        jLabel3.setBounds(30, 150, 80, 27);
 
         txt_valorCartaoDeb.setBackground(new java.awt.Color(187, 210, 240));
         txt_valorCartaoDeb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -156,12 +156,12 @@ public class TelaCartaoDebito_consulta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 100, 108, 17);
+        jLabel1.setBounds(30, 100, 120, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Bandeira");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 200, 55, 17);
+        jLabel2.setBounds(30, 200, 80, 27);
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {

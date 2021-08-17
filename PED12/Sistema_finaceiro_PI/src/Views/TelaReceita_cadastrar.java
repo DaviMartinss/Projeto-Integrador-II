@@ -153,32 +153,32 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Data: (dd/mm/aaaa)");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 120, 170, 16);
+        jLabel4.setBounds(40, 120, 170, 27);
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         jLabel5.setText("/");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(90, 150, 10, 27);
+        jLabel5.setBounds(90, 140, 10, 27);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(150, 150, 10, 27);
+        jLabel6.setBounds(150, 140, 10, 27);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_dia);
-        txt_dia.setBounds(40, 150, 50, 27);
+        txt_dia.setBounds(40, 140, 50, 27);
 
         txt_mes.setBackground(new java.awt.Color(187, 210, 240));
         txt_mes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_mes);
-        txt_mes.setBounds(100, 150, 50, 27);
+        txt_mes.setBounds(100, 140, 50, 27);
 
         txt_ano.setBackground(new java.awt.Color(187, 210, 240));
         txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_ano);
-        txt_ano.setBounds(160, 150, 50, 27);
+        txt_ano.setBounds(160, 140, 50, 27);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -192,12 +192,12 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(40, 60, 63, 25);
+        btn_inicio.setBounds(40, 60, 68, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 200, 40, 16);
+        jLabel1.setBounds(40, 200, 60, 27);
 
         txt_total.setBackground(new java.awt.Color(187, 210, 240));
         txt_total.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -214,7 +214,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(40, 300, 150, 25);
+        btn_NovaReceita.setBounds(40, 300, 150, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("CADASTRAR NOVA RECEITA");

@@ -326,7 +326,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Número do cartão");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 70, 108, 17);
+        jLabel4.setBounds(30, 70, 140, 27);
 
         txt_NumCartaoD.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartaoD.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -336,7 +336,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel5.setText("Bandeira");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 170, 55, 17);
+        jLabel5.setBounds(30, 170, 70, 27);
 
         txt_Bandeira.setBackground(new java.awt.Color(187, 210, 240));
         txt_Bandeira.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -351,7 +351,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 120, 100, 17);
+        jLabel3.setBounds(30, 120, 100, 27);
 
         txt_Valor.setBackground(new java.awt.Color(187, 210, 240));
         txt_Valor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -364,7 +364,8 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         getContentPane().add(cbbTipo);
         cbbTipo.setBounds(30, 230, 120, 27);
 
-        txt_Pesquisa.setBackground(new java.awt.Color(187, 210, 240));
+        txt_Pesquisa.setColumns(100);
+        txt_Pesquisa.setText("Pesquisar");
         txt_Pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -382,9 +383,9 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Ordenação");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(470, 240, 80, 17);
+        jLabel6.setBounds(470, 240, 80, 27);
 
-        rbAscendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        rbAscendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbAscendente.setText("Ascendente");
         rbAscendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,7 +395,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         getContentPane().add(rbAscendente);
         rbAscendente.setBounds(470, 260, 100, 27);
 
-        rbDescendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        rbDescendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDescendente.setText("Descendente");
         rbDescendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,6 +406,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         rbDescendente.setBounds(570, 260, 110, 27);
 
         btPesquisarCD.setBackground(new java.awt.Color(105, 69, 219));
+        btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
         btPesquisarCD.setText("Pesquisar");
         btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
@@ -450,7 +452,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtConsultaCD);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 330, 640, 137);
+        jScrollPane1.setBounds(30, 320, 640, 180);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel7.setText("jLabel7");

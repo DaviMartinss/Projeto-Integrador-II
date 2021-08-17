@@ -40,9 +40,8 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txt_Pesquisa">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="f0" green="d2" red="bb" type="rgb"/>
-        </Property>
+        <Property name="columns" type="int" value="100"/>
+        <Property name="text" type="java.lang.String" value="Pesquisar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true"/>
@@ -77,7 +76,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="230" y="30" width="100" height="-1"/>
+          <AbsoluteConstraints x="570" y="30" width="100" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -96,7 +95,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="130" y="30" width="90" height="-1"/>
+          <AbsoluteConstraints x="290" y="30" width="90" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

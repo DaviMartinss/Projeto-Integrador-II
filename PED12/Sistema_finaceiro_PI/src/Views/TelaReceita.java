@@ -260,7 +260,7 @@ public class TelaReceita extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel7.setText("Receitas");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(320, 0, 90, 24);
+        jLabel7.setBounds(320, 0, 90, 26);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -274,7 +274,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(30, 40, 80, 25);
+        btn_inicio.setBounds(30, 40, 80, 27);
 
         btn_despesas.setBackground(new java.awt.Color(105, 69, 219));
         btn_despesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -286,7 +286,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_despesas);
-        btn_despesas.setBounds(230, 40, 110, 25);
+        btn_despesas.setBounds(230, 40, 110, 27);
 
         btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -298,7 +298,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(340, 40, 170, 25);
+        btnCartao_cred.setBounds(340, 40, 170, 27);
 
         btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -310,12 +310,12 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(510, 40, 160, 25);
+        btnCartao_Deb.setBounds(510, 40, 160, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 90, 50, 16);
+        jLabel1.setBounds(30, 90, 50, 27);
 
         txt_total.setBackground(new java.awt.Color(187, 210, 240));
         txt_total.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -329,17 +329,17 @@ public class TelaReceita extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Data (dd/mm/aaaa)");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 150, 150, 16);
+        jLabel4.setBounds(30, 150, 150, 27);
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("/");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 170, 10, 24);
+        jLabel5.setBounds(80, 170, 10, 26);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(140, 170, 10, 24);
+        jLabel6.setBounds(140, 170, 10, 26);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -374,7 +374,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(110, 40, 120, 25);
+        btn_NovaReceita.setBounds(110, 40, 120, 27);
 
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -419,7 +419,8 @@ public class TelaReceita extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 290, 530, 137);
 
-        txt_Pesquisa.setBackground(new java.awt.Color(187, 210, 240));
+        txt_Pesquisa.setColumns(200);
+        txt_Pesquisa.setText("Pesquisar");
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_PesquisaActionPerformed(evt);
@@ -433,6 +434,7 @@ public class TelaReceita extends javax.swing.JFrame {
         getContentPane().add(txt_Pesquisa);
         txt_Pesquisa.setBounds(160, 210, 400, 27);
 
+        rbAscendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbAscendente.setText("Ascendente");
         rbAscendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -440,8 +442,9 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(30, 250, 100, 23);
+        rbAscendente.setBounds(30, 250, 100, 25);
 
+        rbDescendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDescendente.setText("Descendente");
         rbDescendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -449,9 +452,11 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(130, 250, 110, 23);
+        rbDescendente.setBounds(130, 250, 110, 25);
 
         btPesquisarCD.setBackground(new java.awt.Color(105, 69, 219));
+        btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
         btPesquisarCD.setText("Pesquisar");
         btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -478,7 +483,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 20);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

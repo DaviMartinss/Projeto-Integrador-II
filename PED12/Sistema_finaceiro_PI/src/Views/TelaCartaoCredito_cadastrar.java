@@ -194,22 +194,22 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 40, 108, 17);
+        jLabel1.setBounds(150, 40, 120, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Limite");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(150, 100, 40, 14);
+        jLabel2.setBounds(150, 100, 60, 27);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Dia da Fatura");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(150, 220, 90, 17);
+        jLabel4.setBounds(150, 220, 90, 27);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Bandeira");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(150, 280, 60, 17);
+        jLabel6.setBounds(150, 280, 70, 27);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -240,7 +240,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Valor da Fatura");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(150, 160, 93, 20);
+        jLabel7.setBounds(150, 160, 100, 27);
 
         txt_ValorFatura.setBackground(new java.awt.Color(187, 210, 240));
         txt_ValorFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
