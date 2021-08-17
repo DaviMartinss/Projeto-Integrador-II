@@ -17,6 +17,9 @@ public class CartaoCredito {
     private float valor_fatura;
     private String bandeira;
     private int id_conta;
+    private long  n_cartao_aux;
+
+    
     
     public CartaoCredito() {
         
@@ -31,7 +34,19 @@ public class CartaoCredito {
         this.bandeira = bandeira;
         this.id_conta = id_conta;
     }
-
+    
+    
+    public CartaoCredito(long n_cartao_credito, float limite, int dia_fatura, float valor_fatura, String bandeira, int id_conta, long n_aux) {
+        
+        this.n_cartao_credito = n_cartao_credito;
+        this.limite = limite;
+        this.dia_fatura = dia_fatura;
+        this.valor_fatura = valor_fatura;
+        this.bandeira = bandeira;
+        this.id_conta = id_conta;
+        this.n_cartao_aux = n_aux;
+    }
+    
     public long getN_cartao_credito() {
         return n_cartao_credito;
     }
@@ -80,7 +95,13 @@ public class CartaoCredito {
         this.bandeira = bandeira;
     }
     
-    
+    public long getN_cartao_aux() {
+        return n_cartao_aux;
+    }
+
+    public void setN_cartao_aux(long n_cartao_aux) {
+        this.n_cartao_aux = n_cartao_aux;
+    }
     
      public boolean verifica_dia_fatura(){
          

@@ -65,6 +65,40 @@ public class CartaoCreditoDAO {
     
     }
     
+    public boolean UpdateCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
+    
+        PreparedStatement pst = null;
+         
+        String update = "update cartao_credito set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=? where n_cartao_credito=?";
+        
+        pst = conexao.prepareStatement(update);
+    
+        try {
+
+            pst.setLong(1, cartao_credito.getN_cartao_credito());
+            pst.setFloat(2, cartao_credito.getLimite());
+            pst.setInt(3, cartao_credito.getDia_fatura());
+            pst.setFloat(4, cartao_credito.getValor_fatura());
+            pst.setString(5, cartao_credito.getBandeira());
+            pst.setLong(6, cartao_credito.getN_cartao_aux());
+
+            
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+    }
     
     public ResultSet CarregaTabela_Cartao_C(int id_conta) throws SQLException {
        

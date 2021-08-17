@@ -7,6 +7,7 @@ package Views;
 
 import DAO.CartaoCreditoDAO;
 import DAO.moduloConexao;
+import Model.CartaoCredito;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-   
+    long salva_num_cartao = 0;
     
     
     public TelaCartao_credito() {
@@ -170,7 +171,44 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jtConsultaCC.setAutoCreateRowSorter(true);
 
     }
-      
+     void update_cartao_credito() {
+            
+            CartaoCredito cartao_c = new CartaoCredito(
+                Long.parseLong(txt_NumCartaoC.getText()),
+                Float.parseFloat(txt_Limite.getText()),
+                Integer.parseInt(txt_DiaFatura.getText()),
+                Float.parseFloat(txt_ValorFatura.getText()),
+                txt_Bandeira.getText(),
+                Integer.parseInt(txt_id.getText()),
+                salva_num_cartao    
+                    
+        );
+
+        CartaoCreditoDAO cartao_creditoDAO = new CartaoCreditoDAO();
+
+        try {
+            
+            if (cartao_c.varifica_valor_fatura()
+                    && cartao_c.verifica_bandeira_credito()
+                    && cartao_c.verifica_dia_fatura()
+                    && cartao_c.verifica_limite())
+            {
+                
+                cartao_creditoDAO.UpdateCartaoCredito(cartao_c);
+                
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(null, "Dados Inválidos, impossível atuzalizar!!");
+                
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    } 
       
     /**
      * This method is called from within the constructor to initialize the form.
@@ -207,8 +245,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         rbDescendente = new javax.swing.JRadioButton();
         rbAscendente = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        btn_update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -436,12 +474,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(470, 120, 50, 27);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        jLabel8.setPreferredSize(new java.awt.Dimension(1920, 1080));
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(-80, 0, 1920, 1080);
-
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,6 +482,15 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         });
         getContentPane().add(txt_id);
         txt_id.setBounds(620, 100, 81, 20);
+
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_update);
+        btn_update.setBounds(510, 10, 67, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -641,6 +682,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 txt_ValorFatura.setText(rs.getString("valor_fatura"));
                 txt_DiaFatura.setText(rs.getString("dia_fatura"));
                 txt_Bandeira.setText(rs.getString("bandeira"));
+                salva_num_cartao = Long.parseLong(txt_NumCartaoC.getText());
                 
             }
             
@@ -650,6 +692,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jtConsultaCCMouseClicked
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        update_cartao_credito();
+        RecarregaTabela_CartaoCC();
+    }//GEN-LAST:event_btn_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -693,6 +741,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JButton btn_novoCartao_cc;
     private javax.swing.JButton btn_receitaCC;
     private javax.swing.JButton btn_sairCC;
+    private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -701,7 +750,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
