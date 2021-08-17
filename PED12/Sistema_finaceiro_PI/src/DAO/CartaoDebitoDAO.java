@@ -59,6 +59,37 @@ public class CartaoDebitoDAO {
         }
 
     }
+   public boolean UpdateCartaoDebito(CartaoDebito cartao_debito) throws SQLException {
+    
+        PreparedStatement pst = null;
+         
+        String update = "update cartao_debito set n_cartao_debito=?, valor_atual= ?, bandeira=? where n_cartao_debito=?";
+        
+        pst = conexao.prepareStatement(update);
+    
+        try {
+
+            pst.setLong(1, cartao_debito.getN_cartao_debito());
+            pst.setFloat(2, cartao_debito.getValor_atual());
+            pst.setString(3, cartao_debito.getBandeira());
+            pst.setLong(4, cartao_debito.getN_cartao_aux());
+            
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+    }
    
    public ResultSet CarregaTabela_Cartao_D(int id_conta) throws SQLException {
        

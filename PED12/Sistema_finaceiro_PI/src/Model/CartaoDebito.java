@@ -15,6 +15,9 @@ public class CartaoDebito {
     private float valor_atual;
     private String bandeira;
     private int id_conta;
+    private long n_cartao_aux;
+
+    
     
     public CartaoDebito() {
         
@@ -27,7 +30,16 @@ public class CartaoDebito {
         this.bandeira = bandeira;
         this.id_conta = id_conta;
     }
-
+    
+    public CartaoDebito(long n_cartao_debito, float valor_atual, String bandeira, int id_conta, long num_cart_aux) {
+        
+        this.n_cartao_debito = n_cartao_debito;
+        this.valor_atual = valor_atual;
+        this.bandeira = bandeira;
+        this.id_conta = id_conta;
+        this.n_cartao_aux = num_cart_aux;
+    }
+    
     public int getId_conta() {
         return id_conta;
     }
@@ -58,6 +70,14 @@ public class CartaoDebito {
 
     public void setBandeira(String bandeira) {
         this.bandeira = bandeira;
+    }
+    
+    public long getN_cartao_aux() {
+        return n_cartao_aux;
+    }
+
+    public void setN_cartao_aux(long n_cartao_aux) {
+        this.n_cartao_aux = n_cartao_aux;
     }
     
     public boolean verifica_valor_atual(){

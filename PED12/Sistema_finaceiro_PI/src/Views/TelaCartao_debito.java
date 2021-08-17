@@ -7,6 +7,7 @@ package Views;
 
 import DAO.CartaoDebitoDAO;
 import DAO.moduloConexao;
+import Model.CartaoDebito;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    long salva_num_cartao_debito = 0;
     
     public TelaCartao_debito() {
         initComponents();
@@ -169,6 +171,43 @@ public class TelaCartao_debito extends javax.swing.JFrame {
          
      }
      
+     void update_cartao_debito() {
+            
+            CartaoDebito cartao_d = new CartaoDebito(
+                Long.parseLong(txt_NumCartaoD.getText()),
+                Float.parseFloat(txt_Valor.getText()),
+                txt_Bandeira.getText(),
+                Integer.parseInt(txt_id.getText()),
+                salva_num_cartao_debito
+                
+                    
+        );
+
+        CartaoDebitoDAO cartao_debitoDAO = new CartaoDebitoDAO();
+
+        try {
+            
+            if (cartao_d.verifica_Bandeira_cartao_deb()
+                    && cartao_d.verifica_valor_atual())
+                    
+            {
+                
+                cartao_debitoDAO.UpdateCartaoDebito(cartao_d);
+                
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(null, "Dados Inválidos, impossível atuzalizar!!");
+                
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
+     
      
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,8 +240,8 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         btPesquisarCD = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtConsultaCD = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        btn_update = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -414,11 +453,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 320, 640, 180);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(0, 0, 1920, 1080);
-
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,6 +461,15 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         });
         getContentPane().add(txt_id);
         txt_id.setBounds(370, 90, 81, 20);
+
+        btn_update.setText("Update");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_update);
+        btn_update.setBounds(580, 130, 67, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -594,6 +637,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                 txt_NumCartaoD.setText(rs.getString("n_cartao_debito"));
                 txt_Valor.setText(rs.getString("valor_atual"));
                 txt_Bandeira.setText(rs.getString("bandeira"));
+                salva_num_cartao_debito = Long.parseLong(txt_NumCartaoD.getText());
 
             }
 
@@ -611,6 +655,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
          RecarregaTabela_CartaoDB();
         
     }//GEN-LAST:event_formWindowOpened
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        update_cartao_debito();
+        RecarregaTabela_CartaoDB();
+    }//GEN-LAST:event_btn_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -650,6 +700,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPesquisarCD;
+    private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -663,7 +714,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCD;
     private javax.swing.JRadioButton rbAscendente;
