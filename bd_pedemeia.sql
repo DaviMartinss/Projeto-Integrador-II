@@ -13,6 +13,7 @@ PRIMARY KEY (id_conta)
 
 
 CREATE TABLE cartao_debito (
+
 n_cartao_debito bigint NOT NULL ,
 valor_atual float NOT NULL,
 bandeira varchar(60) NOT NULL,
@@ -350,7 +351,7 @@ insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pag
 insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
 (4556318364323101, 18, 40.00, "CARRO", "CRÉDITO", "NÃO PAGO");
 insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 19, 20.00, "CASA", "DÉBITO", "PAGO");
+(4556318364323101, 19, 20.00, "CASA", "CRÉDITO", "PAGO");
 insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
 (4556318364323101, 20, 10.00, "MOTO", "CRÉDITO", "NÃO PAGO");
 

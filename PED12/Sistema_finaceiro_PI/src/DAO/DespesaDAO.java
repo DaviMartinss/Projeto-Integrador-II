@@ -6,9 +6,11 @@
 package DAO;
 
 import Model.Despesa;
+import Model.Receita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -178,4 +180,150 @@ public class DespesaDAO {
         }
         
     }
+    
+    public ResultSet CarregaTabela_Despesa(int id_conta) throws SQLException {
+       
+        String consulta = 
+                "(select\n"
+                + "des_d.dia,\n"
+                + "des_d.mes,\n"
+                + "des_d.ano,\n"
+                + "des.valor,\n"
+                + "des.categoria,\n"
+                + "des.f_pagamento,\n"
+                + "des.num_cartao,\n"
+                + "des_c.n_parcelas,\n"
+                + "des.estatus,\n"
+                + "des.descricao\n"
+                + "from despesa des\n"
+                + " LEFT OUTER JOIN despesa_data des_d on\n"
+                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+                + " LEFT OUTER JOIN despesa_credito des_c on \n"
+                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+                + "WHERE des_d.conta_id_conta = ?)";
+
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+             
+       try{
+           
+           pst.setInt(1, id_conta);
+       
+           rs = pst.executeQuery();
+           
+       }catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+       
+       }
+       
+       return rs;
+       
+   }
+    
+    public ResultSet Consulta_Despesa(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException {
+       
+       String argumento = "";
+       
+       if(ordenar){
+           
+           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
+           
+       }else{
+           
+           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+       }
+
+       String consulta =
+               "(select\n"
+                + "des_d.dia,\n"
+                + "des_d.mes,\n"
+                + "des_d.ano,\n"
+                + "des.valor,\n"
+                + "des.categoria,\n"
+                + "des.f_pagamento,\n"
+                + "des.num_cartao,\n"
+                + "des_c.n_parcelas,\n"
+                + "des.estatus,\n"
+                + "des.descricao\n"
+                + "from despesa des\n"
+                + " LEFT OUTER JOIN despesa_data des_d on\n"
+                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+                + " LEFT OUTER JOIN despesa_credito des_c on \n"
+                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+                + "WHERE des_d.conta_id_conta = ? and des_d.mes = ? and des_d.ano = ?"
+                + argumento + " );";
+       
+       ResultSet rs = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       try {
+           
+           pst.setInt(1, receita.getId_conta());
+           pst.setInt(2, receita.getMes());
+           pst.setInt(3, receita.getAno());
+
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       } 
+       
+       return rs;
+       
+   }
+   
+   public ResultSet PreencherCampos_Despesa(String dia, String mes, String ano, String id_conta) throws SQLException {
+ 
+       String consulta =
+               "(select\n"
+                + "des_d.dia,\n"
+                + "des_d.mes,\n"
+                + "des_d.ano,\n"
+                + "des.valor,\n"
+                + "des.categoria,\n"
+                + "des.f_pagamento,\n"
+                + "des.num_cartao,\n"
+                + "des_c.n_parcelas,\n"
+                + "des.estatus,\n"
+                + "des.descricao\n"
+                + "from despesa des\n"
+                + " LEFT OUTER JOIN despesa_data des_d on\n"
+                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+                + " LEFT OUTER JOIN despesa_credito des_c on \n"
+                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+                + "WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ?);";
+
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setInt(1, Integer.parseInt(id_conta));
+           
+           pst.setInt(2, Integer.parseInt(dia));
+           
+           pst.setInt(3, Integer.parseInt(mes));
+           
+           pst.setInt(4, Integer.parseInt(ano));
+           
+           rs = pst.executeQuery();
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       }
+
+       return rs;
+       
+   }
+    
+    
 }
