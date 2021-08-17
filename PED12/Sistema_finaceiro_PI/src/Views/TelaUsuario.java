@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Alan
  */
-public class TelaUsuario_consulta extends javax.swing.JFrame {
+public class TelaUsuario extends javax.swing.JFrame {
 
     Connection conexao = null;
     PreparedStatement pst = null;
@@ -26,7 +26,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
     /**
      * Creates new form TelaUsuario_consulta
      */
-    public TelaUsuario_consulta() {
+    public TelaUsuario() {
         initComponents();
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
@@ -51,7 +51,6 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -62,7 +61,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Consulta de Usuário");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(260, 0, 200, 26);
+        jLabel2.setBounds(260, 0, 200, 24);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -74,7 +73,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(530, 60, 110, 27);
+        jButton1.setBounds(530, 60, 110, 25);
 
         jtPesquisa.setBackground(new java.awt.Color(187, 210, 240));
         jtPesquisa.setModel(new javax.swing.table.DefaultTableModel(
@@ -111,7 +110,7 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
         jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton1.setText("Pesquisar");
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(60, 60, 120, 27);
+        jToggleButton1.setBounds(60, 60, 120, 25);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -198,20 +197,21 @@ public class TelaUsuario_consulta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaUsuario_consulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaUsuario_consulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaUsuario_consulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaUsuario_consulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaUsuario_consulta().setVisible(true);
+                new TelaUsuario().setVisible(true);
             }
         });
     }

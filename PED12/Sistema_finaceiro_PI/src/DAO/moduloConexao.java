@@ -25,7 +25,7 @@ public class moduloConexao {
         String user = "root";          
 
 
-        String password = "14011991";           
+        String password = "admin";           
                  
 
         // estabelecendo a conexão com o banco

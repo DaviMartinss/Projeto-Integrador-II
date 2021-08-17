@@ -6,7 +6,6 @@
 package Views;
 
 import DAO.CartaoCreditoDAO;
-import static DAO.ConsultaDAO.carregaTabela;
 import DAO.moduloConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +29,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
    
-    TelaCartaoCredito_consulta Tela_CartaoConsulta;
+    
     
     public TelaCartao_credito() {
         initComponents();
@@ -71,31 +70,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
          this.dispose();
     }
     
-   void TelaConsulta_CartaoCredito(){
-        
-        TelaCartaoCredito_consulta TelaConsulta = null;
-
-        if (TelaConsulta == null) {
-
-            TelaConsulta = new TelaCartaoCredito_consulta();
-
-            TelaConsulta.setVisible(true);
-
-            TelaConsulta.receberID(txt_id.getText());
-
-        } else {
-
-            TelaConsulta.setVisible(true);
-
-            TelaConsulta.setState(TelaCartaoCredito_cadastrar.NORMAL);
-
-            TelaConsulta.receberID(txt_id.getText());
-
-        }
-
-        this.dispose();
-        
-    }
+   
     
     void receita(){
         
@@ -213,7 +188,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         btn_receitaCC = new javax.swing.JButton();
         btn_sairCC = new javax.swing.JButton();
         btn_novoCartao_cc = new javax.swing.JButton();
-        btnConsulta_CC = new javax.swing.JButton();
         btn_exclui_cc = new javax.swing.JButton();
         txt_Pesquisa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -260,7 +234,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Crédito");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 0, 170, 26);
+        jLabel2.setBounds(280, 0, 170, 24);
 
         btn_inicio_CC.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -296,7 +270,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_sairCC);
-        btn_sairCC.setBounds(600, 40, 70, 27);
+        btn_sairCC.setBounds(600, 40, 70, 25);
 
         btn_novoCartao_cc.setBackground(new java.awt.Color(105, 69, 219));
         btn_novoCartao_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -309,18 +283,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         });
         getContentPane().add(btn_novoCartao_cc);
         btn_novoCartao_cc.setBounds(460, 40, 140, 27);
-
-        btnConsulta_CC.setBackground(new java.awt.Color(105, 69, 219));
-        btnConsulta_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnConsulta_CC.setForeground(new java.awt.Color(255, 255, 255));
-        btnConsulta_CC.setText("Consulta");
-        btnConsulta_CC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsulta_CCActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnConsulta_CC);
-        btnConsulta_CC.setBounds(230, 40, 100, 27);
 
         btn_exclui_cc.setBackground(new java.awt.Color(105, 69, 219));
         btn_exclui_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -487,7 +449,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(620, 100, 81, 21);
+        txt_id.setBounds(620, 100, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -515,12 +477,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
-
-    private void btnConsulta_CCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsulta_CCActionPerformed
-        // TODO add your handling code here:
-        TelaConsulta_CartaoCredito();
-        //Tela_CartaoConsulta.receberID(txt_id.getText());
-    }//GEN-LAST:event_btnConsulta_CCActionPerformed
 
     private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
         // TODO add your handling code here:
@@ -732,7 +688,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPesquisarCC;
-    private javax.swing.JButton btnConsulta_CC;
     private javax.swing.JButton btn_exclui_cc;
     private javax.swing.JButton btn_inicio_CC;
     private javax.swing.JButton btn_novoCartao_cc;

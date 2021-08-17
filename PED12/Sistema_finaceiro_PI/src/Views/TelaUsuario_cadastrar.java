@@ -57,7 +57,12 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
   
     }
     
-    
+    void VoltarLogin(){
+         //telaCliente cadastroCliente = new telaCliente();
+         TelaLogin tela_login = new TelaLogin();
+         tela_login.setVisible(true);
+         this.dispose();
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,7 +76,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
@@ -101,12 +106,17 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(30, 220, 60, 27);
 
-        jButton1.setBackground(new java.awt.Color(105, 69, 219));
-        jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Início");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(30, 50, 100, 27);
+        btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
+        btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Início");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(30, 50, 100, 27);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -141,7 +151,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Usuário");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(240, 0, 190, 26);
+        jLabel6.setBounds(240, 0, 190, 24);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Avatar");
@@ -158,13 +168,13 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(290, 350, 138, 27);
+        btnRealizarCadastro.setBounds(290, 350, 133, 27);
 
         jLabel5.setBackground(new java.awt.Color(187, 210, 240));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1968, 1080);
+        jLabel5.setBounds(0, 0, 1958, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -188,6 +198,14 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_btnRealizarCadastroActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        
+        VoltarLogin();
+        
+        
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,7 +245,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRealizarCadastro;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
