@@ -201,6 +201,8 @@ public class DespesaDAO {
                 + " LEFT OUTER JOIN despesa_credito des_c on \n"
                 + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
                 + "WHERE des_d.conta_id_conta = ?)";
+        
+        
 
        ResultSet rs = null;
        
