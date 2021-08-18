@@ -213,7 +213,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(150, 60, 68, 27);
+        jButton1.setBounds(150, 60, 63, 25);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel6);
@@ -244,7 +244,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastraCartDeb);
-        btn_cadastraCartDeb.setBounds(150, 290, 94, 27);
+        btn_cadastraCartDeb.setBounds(150, 290, 89, 25);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Valor Atual");
@@ -267,7 +267,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(343, 42, 81, 21);
+        txt_id.setBounds(343, 42, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
