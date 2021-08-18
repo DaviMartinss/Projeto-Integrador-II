@@ -281,8 +281,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         txtMes = new javax.swing.JTextField();
         txtAno = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
-        rbDebito = new javax.swing.JRadioButton();
-        rbCredito = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         txtParcelas = new javax.swing.JTextField();
         btnNovaDespesa = new javax.swing.JToggleButton();
@@ -299,10 +297,11 @@ public class TelaDespesa extends javax.swing.JFrame {
         txtAnoReceita = new javax.swing.JTextField();
         rbDescendente = new javax.swing.JRadioButton();
         rbAscendente = new javax.swing.JRadioButton();
-        rbDinheiro = new javax.swing.JRadioButton();
         txt_NumCartao = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        rbDebito = new javax.swing.JRadioButton();
+        rbCredito = new javax.swing.JRadioButton();
+        rbDinheiro = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -370,7 +369,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Data: (dd/mm/aaaa)");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(430, 60, 130, 27);
+        jLabel4.setBounds(440, 50, 130, 27);
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         jLabel5.setText("/");
@@ -460,27 +459,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         txtCategoria.setBackground(new java.awt.Color(187, 210, 240));
         getContentPane().add(txtCategoria);
-        txtCategoria.setBounds(220, 80, 200, 27);
-
-        rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbDebito.setText("Débito");
-        rbDebito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDebitoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDebito);
-        rbDebito.setBounds(230, 180, 63, 20);
-
-        rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbCredito.setText("Crédito");
-        rbCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCreditoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbCredito);
-        rbCredito.setBounds(230, 200, 65, 27);
+        txtCategoria.setBounds(230, 80, 200, 27);
 
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Nº de Pacelas: ");
@@ -631,16 +610,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         getContentPane().add(rbAscendente);
         rbAscendente.setBounds(360, 250, 100, 27);
 
-        rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbDinheiro.setText("Dinheiro");
-        rbDinheiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDinheiroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDinheiro);
-        rbDinheiro.setBounds(230, 220, 90, 27);
-
         txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NumCartao);
@@ -651,10 +620,35 @@ public class TelaDespesa extends javax.swing.JFrame {
         getContentPane().add(jLabel14);
         jLabel14.setBounds(20, 110, 76, 27);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        jLabel15.setText("jLabel15");
-        getContentPane().add(jLabel15);
-        jLabel15.setBounds(0, 0, 1920, 1080);
+        rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbDebito.setText("Débito");
+        rbDebito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDebitoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbDebito);
+        rbDebito.setBounds(220, 210, 70, 27);
+
+        rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbCredito.setText("Crédito");
+        rbCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCreditoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbCredito);
+        rbCredito.setBounds(220, 190, 80, 27);
+
+        rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbDinheiro.setText("Dinheiro");
+        rbDinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDinheiroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbDinheiro);
+        rbDinheiro.setBounds(300, 190, 90, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -699,31 +693,6 @@ public class TelaDespesa extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_rbNaoPagoActionPerformed
-
-    private void rbDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDebitoActionPerformed
-        // TODO add your handling code here:
-        
-        if(rbDebito.isSelected()){
-            
-            txtParcelas.setEnabled(false);
-            
-            rbCredito.setSelected(false);
-            
-        }
-    }//GEN-LAST:event_rbDebitoActionPerformed
-
-    private void rbCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCreditoActionPerformed
-        // TODO add your handling code here:
-        
-        if(rbCredito.isSelected()){
-            
-            txtParcelas.setEnabled(true);
-            
-            rbDebito.setSelected(false);
-            
-        }
-        
-    }//GEN-LAST:event_rbCreditoActionPerformed
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
@@ -1035,14 +1004,14 @@ public class TelaDespesa extends javax.swing.JFrame {
                 if(rs.getString("f_pagamento").equals("CRÉDITO")){
                     
                     rbCredito.setSelected(true);
-                    rbDebito.setSelected(false);
+                    rbCredito.setSelected(false);
                     rbDinheiro.setSelected(false);
                     
                 }
                 
                 if(rs.getString("f_pagamento").equals("DÉBITO")){
                     
-                    rbDebito.setSelected(true);
+                    rbCredito.setSelected(true);
                     rbCredito.setSelected(false);
                     rbDinheiro.setSelected(false);
                     
@@ -1051,7 +1020,7 @@ public class TelaDespesa extends javax.swing.JFrame {
                 if(rs.getString("f_pagamento").equals("DINHEIRO")){
                     
                     rbDinheiro.setSelected(true);
-                    rbDebito.setSelected(false);
+                    rbCredito.setSelected(false);
                     rbCredito.setSelected(false);
                 }
                 
@@ -1116,6 +1085,56 @@ public class TelaDespesa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rbAscendenteActionPerformed
 
+    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValorActionPerformed
+
+    private void rbDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDebitoActionPerformed
+        // TODO add your handling code here:
+
+        if(rbDebito.isSelected()){
+
+            txt_NumCartao.setEnabled(true);
+
+            rbDinheiro.setSelected(false);
+
+            txtParcelas.setEnabled(false);
+
+            rbCredito.setSelected(false);
+
+            rbPago.setSelected(true);
+
+            rbNaoPago.setSelected(false);
+
+        }
+    }//GEN-LAST:event_rbDebitoActionPerformed
+
+    private void rbCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCreditoActionPerformed
+        // TODO add your handling code here:
+
+        if(rbCredito.isSelected()){
+
+            txt_NumCartao.setEnabled(true);
+
+            rbDinheiro.setSelected(false);
+            
+            rbDebito.setSelected(false);
+
+            txtParcelas.setEnabled(true);
+
+            rbPago.setSelected(true);
+
+            rbNaoPago.setSelected(false);
+
+        }
+
+        if(rbCredito.isSelected() == false){
+
+            txtParcelas.setEnabled(false);
+
+        }
+    }//GEN-LAST:event_rbCreditoActionPerformed
+
     private void rbDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDinheiroActionPerformed
         // TODO add your handling code here:
 
@@ -1128,10 +1147,6 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_rbDinheiroActionPerformed
-
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
 
 
     /**
@@ -1184,7 +1199,6 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
