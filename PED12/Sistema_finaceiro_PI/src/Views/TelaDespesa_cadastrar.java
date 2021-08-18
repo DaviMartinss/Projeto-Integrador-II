@@ -140,6 +140,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         txtCategoria.setBackground(new java.awt.Color(187, 210, 240));

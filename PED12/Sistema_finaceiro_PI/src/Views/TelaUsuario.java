@@ -88,9 +88,12 @@ public class TelaUsuario extends javax.swing.JFrame {
         btnAlterar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JToggleButton();
         btnExcluir = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -101,7 +104,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Dados do Usuário");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(240, 30, 200, 24);
+        jLabel2.setBounds(250, 0, 180, 26);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -113,33 +116,45 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(530, 60, 110, 25);
+        jButton1.setBounds(30, 40, 110, 27);
 
-        jToggleButton1.setBackground(new java.awt.Color(105, 69, 219));
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("Pesquisar");
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        jToggleButton1.setBorderPainted(false);
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(60, 60, 120, 25);
+        jToggleButton1.setBounds(620, 90, 40, 40);
 
         jLabel3.setText("Nome: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(80, 140, 34, 14);
+        jLabel3.setBounds(30, 80, 42, 17);
+
+        txtNome.setBackground(new java.awt.Color(187, 210, 240));
+        txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtNome);
-        txtNome.setBounds(80, 160, 230, 30);
+        txtNome.setBounds(30, 100, 400, 27);
 
         jLabel4.setText("Email:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(80, 200, 34, 14);
+        jLabel4.setBounds(30, 140, 60, 17);
+
+        txtEmail.setBackground(new java.awt.Color(187, 210, 240));
+        txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(80, 220, 230, 30);
+        txtEmail.setBounds(30, 160, 400, 27);
 
         jLabel5.setText("Senha:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 260, 50, 20);
-        getContentPane().add(txtSenha);
-        txtSenha.setBounds(80, 280, 170, 30);
+        jLabel5.setBounds(30, 200, 70, 20);
 
+        txtSenha.setBackground(new java.awt.Color(187, 210, 240));
+        txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtSenha);
+        txtSenha.setBounds(30, 220, 400, 27);
+
+        btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
+        btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,17 +162,28 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(80, 350, 65, 23);
+        btnAlterar.setBounds(530, 270, 140, 27);
 
+        btnAtualizar.setBackground(new java.awt.Color(105, 69, 219));
+        btnAtualizar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnAtualizar.setText("Atualizar");
         getContentPane().add(btnAtualizar);
-        btnAtualizar.setBounds(160, 350, 75, 23);
+        btnAtualizar.setBounds(530, 310, 140, 27);
 
+        btnExcluir.setBackground(new java.awt.Color(105, 69, 219));
+        btnExcluir.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         getContentPane().add(btnExcluir);
-        btnExcluir.setBounds(250, 350, 63, 23);
+        btnExcluir.setBounds(530, 350, 140, 27);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(500, 160, 60, 20);
+        txt_id.setBounds(500, 160, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -244,6 +270,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAtualizar;
     private javax.swing.JToggleButton btnExcluir;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

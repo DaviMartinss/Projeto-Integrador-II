@@ -259,6 +259,7 @@ public class TelaReceita extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         txt_dia = new javax.swing.JTextField();
         txt_mes = new javax.swing.JTextField();
         txt_ano = new javax.swing.JTextField();
@@ -270,9 +271,9 @@ public class TelaReceita extends javax.swing.JFrame {
         rbAscendente = new javax.swing.JRadioButton();
         rbDescendente = new javax.swing.JRadioButton();
         btPesquisarCD = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        txt_id = new javax.swing.JTextField();
         txt_update = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 500));
@@ -288,7 +289,7 @@ public class TelaReceita extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel7.setText("Receitas");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(320, 0, 90, 24);
+        jLabel7.setBounds(320, 0, 90, 26);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -302,7 +303,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(30, 40, 80, 25);
+        btn_inicio.setBounds(30, 40, 80, 27);
 
         btn_despesas.setBackground(new java.awt.Color(105, 69, 219));
         btn_despesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -314,7 +315,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_despesas);
-        btn_despesas.setBounds(230, 40, 110, 25);
+        btn_despesas.setBounds(120, 40, 110, 27);
 
         btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -326,7 +327,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(340, 40, 170, 25);
+        btnCartao_cred.setBounds(240, 40, 170, 27);
 
         btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -338,12 +339,12 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(510, 40, 160, 25);
+        btnCartao_Deb.setBounds(420, 40, 160, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 90, 50, 27);
+        jLabel1.setBounds(30, 290, 50, 27);
 
         txt_total.setBackground(new java.awt.Color(187, 210, 240));
         txt_total.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -351,23 +352,33 @@ public class TelaReceita extends javax.swing.JFrame {
         txt_total.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_total.setName(""); // NOI18N
         txt_total.setPreferredSize(new java.awt.Dimension(10, 40));
+        txt_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_totalActionPerformed(evt);
+            }
+        });
         getContentPane().add(txt_total);
-        txt_total.setBounds(30, 110, 400, 27);
+        txt_total.setBounds(30, 320, 400, 27);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Data (dd/mm/aaaa)");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 150, 150, 27);
+        jLabel4.setBounds(30, 350, 150, 27);
 
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("/");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 170, 10, 24);
+        jLabel5.setBounds(80, 370, 10, 26);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(140, 170, 10, 24);
+        jLabel6.setBounds(140, 370, 10, 26);
+
+        jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel8.setText("Pesquisar por");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(30, 70, 120, 17);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -378,19 +389,19 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_dia);
-        txt_dia.setBounds(30, 170, 50, 27);
+        txt_dia.setBounds(30, 370, 50, 27);
 
         txt_mes.setBackground(new java.awt.Color(187, 210, 240));
         txt_mes.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         txt_mes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_mes);
-        txt_mes.setBounds(90, 170, 50, 27);
+        txt_mes.setBounds(90, 370, 50, 27);
 
         txt_ano.setBackground(new java.awt.Color(187, 210, 240));
         txt_ano.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_ano);
-        txt_ano.setBounds(150, 170, 50, 27);
+        txt_ano.setBounds(150, 370, 50, 27);
 
         btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
         btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -402,7 +413,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(110, 40, 120, 25);
+        btn_NovaReceita.setBounds(530, 370, 140, 27);
 
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -411,7 +422,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cbbTipo);
-        cbbTipo.setBounds(30, 210, 120, 27);
+        cbbTipo.setBounds(30, 90, 150, 27);
 
         jtConsultaCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCD.setModel(new javax.swing.table.DefaultTableModel(
@@ -445,10 +456,10 @@ public class TelaReceita extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtConsultaCD);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 290, 530, 137);
+        jScrollPane1.setBounds(30, 170, 640, 120);
 
         txt_Pesquisa.setColumns(200);
-        txt_Pesquisa.setText("Pesquisar");
+        txt_Pesquisa.setText("Pesquisa");
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_PesquisaActionPerformed(evt);
@@ -460,7 +471,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(160, 210, 400, 27);
+        txt_Pesquisa.setBounds(190, 90, 480, 27);
 
         rbAscendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbAscendente.setText("Ascendente");
@@ -470,7 +481,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(30, 250, 100, 25);
+        rbAscendente.setBounds(30, 130, 100, 25);
 
         rbDescendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDescendente.setText("Descendente");
@@ -480,23 +491,35 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(130, 250, 110, 25);
+        rbDescendente.setBounds(130, 130, 110, 25);
 
-        btPesquisarCD.setBackground(new java.awt.Color(105, 69, 219));
         btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
-        btPesquisarCD.setText("Pesquisar");
+        btPesquisarCD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        btPesquisarCD.setBorderPainted(false);
         btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPesquisarCDActionPerformed(evt);
             }
         });
         getContentPane().add(btPesquisarCD);
-        btPesquisarCD.setBounds(430, 250, 130, 27);
+        btPesquisarCD.setBounds(630, 120, 40, 40);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(560, 300, 140, 120);
+        txt_update.setBackground(new java.awt.Color(105, 69, 219));
+        txt_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        txt_update.setForeground(new java.awt.Color(255, 255, 255));
+        txt_update.setText("Atualizar");
+        txt_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_updateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_update);
+        txt_update.setBounds(530, 320, 140, 27);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -505,16 +528,7 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 20);
-
-        txt_update.setText("Update");
-        txt_update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_updateActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_update);
-        txt_update.setBounds(570, 110, 67, 23);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -727,6 +741,10 @@ public class TelaReceita extends javax.swing.JFrame {
         RecarregaTabela_Receita();
     }//GEN-LAST:event_txt_updateActionPerformed
 
+    private void txt_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_totalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_totalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -771,11 +789,12 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JButton btn_inicio;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCD;
     private javax.swing.JRadioButton rbAscendente;

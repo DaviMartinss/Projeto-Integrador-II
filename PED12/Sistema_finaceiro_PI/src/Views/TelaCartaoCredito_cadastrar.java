@@ -154,6 +154,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cartão de Crédito");
         setPreferredSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N

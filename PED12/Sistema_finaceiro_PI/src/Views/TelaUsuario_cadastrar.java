@@ -89,6 +89,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -109,7 +110,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
         btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        btnVoltar.setText("Início");
+        btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
@@ -151,7 +152,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Usuário");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(240, 0, 190, 24);
+        jLabel6.setBounds(240, 0, 190, 26);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Avatar");
@@ -168,13 +169,13 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(290, 350, 133, 27);
+        btnRealizarCadastro.setBounds(290, 350, 138, 27);
 
         jLabel5.setBackground(new java.awt.Color(187, 210, 240));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1958, 1080);
+        jLabel5.setBounds(0, 0, 1968, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
