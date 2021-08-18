@@ -185,6 +185,7 @@ public class DespesaDAO {
        
         String consulta = 
                 "(select\n"
+                + "des_d.cod_despesa,\n"
                 + "des_d.dia,\n"
                 + "des_d.mes,\n"
                 + "des_d.ano,\n"
@@ -239,6 +240,7 @@ public class DespesaDAO {
 
        String consulta =
                "(select\n"
+                + "des_d.cod_despesa,\n"
                 + "des_d.dia,\n"
                 + "des_d.mes,\n"
                 + "des_d.ano,\n"

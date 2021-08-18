@@ -187,7 +187,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         labelNome = new javax.swing.JLabel();
-        labelEmail = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -216,7 +215,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(20, 40, 90, 27);
+        btnReceitas.setBounds(20, 40, 90, 25);
 
         btnDespesas.setBackground(new java.awt.Color(105, 69, 219));
         btnDespesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -229,7 +228,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDespesas);
-        btnDespesas.setBounds(110, 40, 100, 27);
+        btnDespesas.setBounds(110, 40, 100, 25);
 
         btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -241,7 +240,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(210, 40, 140, 27);
+        btnCartao_cred.setBounds(210, 40, 140, 25);
 
         btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -253,7 +252,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(350, 40, 140, 27);
+        btnCartao_Deb.setBounds(350, 40, 140, 25);
 
         BtnSair.setBackground(new java.awt.Color(105, 69, 219));
         BtnSair.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -265,7 +264,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnSair);
-        BtnSair.setBounds(600, 40, 80, 27);
+        BtnSair.setBounds(600, 40, 80, 25);
 
         jToggleButton1.setBackground(new java.awt.Color(105, 69, 219));
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -277,7 +276,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(490, 40, 110, 27);
+        jToggleButton1.setBounds(490, 40, 110, 25);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -285,15 +284,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         labelNome.setFont(new java.awt.Font("Noto Serif", 3, 18)); // NOI18N
         labelNome.setForeground(new java.awt.Color(81, 63, 252));
-        labelNome.setText("Nome");
         getContentPane().add(labelNome);
-        labelNome.setBounds(20, 0, 200, 27);
-
-        labelEmail.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        labelEmail.setForeground(new java.awt.Color(81, 63, 252));
-        labelEmail.setText("Login");
-        getContentPane().add(labelEmail);
-        labelEmail.setBounds(530, 470, 170, 27);
+        labelNome.setBounds(20, 10, 200, 27);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -308,7 +300,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 21);
+        txt_id.setBounds(0, 0, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -364,7 +356,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             if(rs.next()){
 
                 labelNome.setText(rs.getString("nome"));
-                labelEmail.setText(rs.getString("email"));
                 
             }
 
@@ -422,7 +413,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelNome;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
