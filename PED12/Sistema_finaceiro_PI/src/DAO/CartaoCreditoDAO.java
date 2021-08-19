@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -100,11 +101,14 @@ public class CartaoCreditoDAO {
         }
     }
     
-    public ResultSet CarregaTabela_Cartao_C(int id_conta) throws SQLException {
+    
+    public LinkedList<CartaoCredito> CarregaTabela_Cartao_C(int id_conta) throws SQLException {
        
        String consulta = "select * from cartao_credito where conta_id_conta=?";
        
        ResultSet rs = null;
+       
+       LinkedList<CartaoCredito> lista_CC = new LinkedList();
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
              
@@ -114,17 +118,34 @@ public class CartaoCreditoDAO {
        
            rs = pst.executeQuery();
            
+           while(rs.next()){
+               
+               lista_CC.add(new CartaoCredito(
+                 Long.parseLong(rs.getString("n_cartao_credito")),
+                 Float.parseFloat(rs.getString("limite")),
+                 Integer.parseInt(rs.getString("dia_fatura")),
+                 Float.parseFloat(rs.getString("valor_fatura")),
+                 rs.getString("bandeira"),
+                 id_conta)         
+               );
+               
+               
+           }
+           
+           
        }catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
        
        }
        
-       return rs;
+       return lista_CC;
        
    }
+    
    
-   public ResultSet ConsultaCartao_C(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+   
+   public LinkedList<CartaoCredito> ConsultaCartao_C(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
        
        String argumento = "";
        
@@ -143,9 +164,27 @@ public class CartaoCreditoDAO {
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
        
+       LinkedList<CartaoCredito> lista_CC = new LinkedList();
+       
        try {
 
            rs = pst.executeQuery();
+           
+           
+           while(rs.next()){
+               
+               lista_CC.add(new CartaoCredito(
+                 Long.parseLong(rs.getString("n_cartao_credito")),
+                 Float.parseFloat(rs.getString("limite")),
+                 Integer.parseInt(rs.getString("dia_fatura")),
+                 Float.parseFloat(rs.getString("valor_fatura")),
+                 rs.getString("bandeira"),
+                 id_conta)         
+               );
+               
+               
+           }
+   
 
        } catch (Exception e) {
 
@@ -153,11 +192,11 @@ public class CartaoCreditoDAO {
 
        } 
        
-       return rs;
+       return lista_CC;
        
    }
    
-   public ResultSet PreencherCamposCartao_C(String num_cartao) throws SQLException {
+   public LinkedList<CartaoCredito> PreencherCamposCartao_C(String num_cartao, int id_conta) throws SQLException {
  
        String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE n_cartao_credito = ?";
     
@@ -165,11 +204,27 @@ public class CartaoCreditoDAO {
        
        ResultSet rs = null;
        
+       LinkedList<CartaoCredito> lista_CC = new LinkedList();
+       
        try {
            
            pst.setLong(1, Long.parseLong(num_cartao));
            
            rs = pst.executeQuery();
+           
+           while(rs.next()){
+               
+               lista_CC.add(new CartaoCredito(
+                 Long.parseLong(rs.getString("n_cartao_credito")),
+                 Float.parseFloat(rs.getString("limite")),
+                 Integer.parseInt(rs.getString("dia_fatura")),
+                 Float.parseFloat(rs.getString("valor_fatura")),
+                 rs.getString("bandeira"),
+                 id_conta)         
+               );
+               
+               
+           }
 
        } catch (Exception e) {
 
@@ -177,7 +232,7 @@ public class CartaoCreditoDAO {
 
        }
 
-       return rs;
+       return lista_CC;
        
    }
     

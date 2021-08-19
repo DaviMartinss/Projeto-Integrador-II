@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -143,24 +144,24 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         try {
 
             CartaoCreditoDAO cartao_c = new CartaoCreditoDAO();
-
+            
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
+            
+            LinkedList<CartaoCredito> lista_CC = cartao_c.CarregaTabela_Cartao_C(Integer.parseInt(txt_id.getText()));
+            
+            for (CartaoCredito cartao : lista_CC) {
 
-            rs = cartao_c.CarregaTabela_Cartao_C(Integer.parseInt(txt_id.getText()));
+                String Col0 = Long.toString(cartao.getN_cartao_credito());
+                String Col1 = Float.toString(cartao.getLimite());
+                String Col2 = Integer.toString(cartao.getDia_fatura());
+                String Col3 = Float.toString(cartao.getValor_fatura());
+                String Col4 = cartao.getBandeira();
 
-            while (rs.next()) {
-
-                String Col0 = rs.getString("n_cartao_credito");
-                String Col1 = rs.getString("limite");
-                String Col2 = rs.getString("dia_fatura");
-                String Col3 = rs.getString("valor_fatura");
-                String Col4 = rs.getString("bandeira");
-
-                //Redimensiona a tabela
-                //TamanhoColunas();
                 mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4});
 
             }
+            
+            lista_CC.clear();
 
         } catch (Exception e) {
 
@@ -168,9 +169,9 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
         }
 
-        jtConsultaCC.setAutoCreateRowSorter(true);
-
     }
+      
+      
      void update_cartao_credito() {
             
             CartaoCredito cartao_c = new CartaoCredito(
@@ -280,7 +281,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Crédito");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 0, 170, 26);
+        jLabel2.setBounds(280, 0, 170, 24);
 
         btn_inicio_CC.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -316,7 +317,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_sairCC);
-        btn_sairCC.setBounds(600, 30, 70, 27);
+        btn_sairCC.setBounds(600, 30, 70, 25);
 
         btn_novoCartao_cc.setBackground(new java.awt.Color(105, 69, 219));
         btn_novoCartao_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -338,7 +339,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         btn_exclui_cc.setBounds(530, 410, 140, 27);
 
         txt_Pesquisa.setColumns(20);
-        txt_Pesquisa.setText("Pesquisar");
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_PesquisaActionPerformed(evt);
@@ -405,7 +405,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Pesquisar por");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 60, 100, 17);
+        jLabel9.setBounds(30, 60, 100, 16);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
@@ -510,7 +510,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 21);
+        txt_id.setBounds(0, 0, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -614,27 +614,27 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
                DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
 
-               rs = cartao_c.ConsultaCartao_C(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
+               LinkedList<CartaoCredito> lista_CC = cartao_c.ConsultaCartao_C(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
 
-               while (rs.next()) {
+               for (CartaoCredito cartao : lista_CC) {
 
-                   String Col0 = rs.getString("n_cartao_credito");
-                   String Col1 = rs.getString("limite");
-                   String Col2 = rs.getString("dia_fatura");
-                   String Col3 = rs.getString("valor_fatura");
-                   String Col4 = rs.getString("bandeira");
+                   String Col0 = Long.toString(cartao.getN_cartao_credito());
+                   String Col1 = Float.toString(cartao.getLimite());
+                   String Col2 = Integer.toString(cartao.getDia_fatura());
+                   String Col3 = Float.toString(cartao.getValor_fatura());
+                   String Col4 = cartao.getBandeira();
 
                    mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4});
 
                }
+
+               lista_CC.clear();
 
            } catch (Exception e) {
 
                JOptionPane.showMessageDialog(this, e.getMessage());
 
            }
-
-           jtConsultaCC.setAutoCreateRowSorter(true);
            
            
        }else{
@@ -684,27 +684,22 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String num_cartao = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 0);
-        
 
-        
         CartaoCreditoDAO cartaoDAO = new CartaoCreditoDAO();
         
         ResultSet rs = null;
         
         try {
             
-            rs = cartaoDAO.PreencherCamposCartao_C(num_cartao);
+            LinkedList<CartaoCredito> lista_CC = cartaoDAO.PreencherCamposCartao_C(num_cartao, Integer.parseInt(txt_id.getText()));
             
-            if(rs.next()){
-                
-                txt_NumCartaoC.setText(rs.getString("n_cartao_credito"));
-                txt_Limite.setText(rs.getString("limite"));
-                txt_ValorFatura.setText(rs.getString("valor_fatura"));
-                txt_DiaFatura.setText(rs.getString("dia_fatura"));
-                txt_Bandeira.setText(rs.getString("bandeira"));
-                salva_num_cartao = Long.parseLong(txt_NumCartaoC.getText());
-                
-            }
+            txt_NumCartaoC.setText(Long.toString(lista_CC.element().getN_cartao_credito()));
+            txt_Limite.setText(Float.toString(lista_CC.element().getLimite()));
+            txt_ValorFatura.setText(Float.toString(lista_CC.element().getValor_fatura()));
+            txt_DiaFatura.setText(Integer.toString(lista_CC.element().getDia_fatura()));
+            txt_Bandeira.setText(lista_CC.element().getBandeira());
+            salva_num_cartao = lista_CC.element().getN_cartao_credito();
+            
             
         } catch (SQLException ex) {
             
@@ -797,5 +792,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         txt_id.setText(recebe);
     }
 
+   
 
 }
