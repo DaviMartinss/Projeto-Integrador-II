@@ -100,9 +100,8 @@ public class CartaoDebito {
     public boolean verifica_Bandeira_cartao_deb(){
         
         Cartao cartao_aux = new Cartao();
-        boolean ver_bandeira;
-        ver_bandeira = cartao_aux.verifica_bandeira(bandeira);
-        return ver_bandeira;
+        
+        return (cartao_aux.verifica_bandeira(bandeira));
     }
     // falta verificar o número do cartão
 }

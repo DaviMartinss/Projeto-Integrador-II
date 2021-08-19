@@ -35,22 +35,25 @@ public class Cartao {
     }
     
      public boolean  verifica_bandeira(String bandeira){
-                 
-        int cont = 0;
-        for (int i = 0; i < bandeira.length(); i++) {
-            char aux = bandeira.charAt(i);
+        
+        String bandeira_aux = bandeira.replace(" ", "");
+        
+        boolean soLetra = true;
+        
+        for (int i = 0; i < bandeira_aux.length(); i++) {
+            
+            char aux = bandeira_aux.charAt(i);
+            
                 if (!(Character.isLetter(aux))) {
-                    cont++;
+                    soLetra = false;
             }
         }
         
-        if (cont != 0) {
-            System.out.println("Nome da bandeira inválido - o nome deve conter apenas letras");
+        if (!(soLetra)) {
             return  false;
-
-        } else {
-             return  true;
         }
+        
+        return true;
     }
      
     // falta a função de verificar o número do cartão de credito

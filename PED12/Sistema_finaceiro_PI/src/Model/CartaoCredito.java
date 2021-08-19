@@ -110,32 +110,30 @@ public class CartaoCredito {
         this.n_cartao_aux = n_cartao_aux;
     }
     
+    
      public boolean verifica_dia_fatura(){
          
         Data dia_aux = new Data();
         
         dia_aux.setDia(getDia_fatura());
+        
         if(dia_aux.verifica_dia()){
             return  true;
-        }else{
-            return false;
-        }
-         /*
-        if(getDia_fatura() > 0 && getDia_fatura() <= 31){
-            
-            return true;
             
         }else{
             
             return false;
         }
-*/
+        
     }
      
      public boolean verifica_limite(){
          if (getLimite() > 0) {
+             
              return true;
+             
          } else {
+             
              return false;
          }
      }
@@ -152,9 +150,7 @@ public class CartaoCredito {
         
          Cartao cartao_aux = new Cartao();
          
-       boolean ver_bandeira;
-       ver_bandeira = cartao_aux.verifica_bandeira(bandeira);
-       return ver_bandeira;
+        return (cartao_aux.verifica_bandeira(bandeira));
        
     }         
    // falta verificar o número do cartão
