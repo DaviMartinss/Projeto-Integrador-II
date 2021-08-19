@@ -22,8 +22,12 @@ public class Despesa {
     private String estatus;
     private int num_parcelas;
     private int id_conta;
+    private int cod_despesa;
 
+    
+     
     public Despesa() {
+    
     }
     
     public Despesa(int dia, int mes, int ano, float valor, String categoria, String descricao, int id_conta) {
@@ -35,7 +39,46 @@ public class Despesa {
         this.descricao = descricao;
         this.id_conta = id_conta;
     }
+    
+    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, int num_parcelas, String estatus, String descricao, int cod_despesa) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+        this.valor = valor;
+        this.categoria = categoria;
+        this.descricao = descricao;
+        this.f_pagamento = f_pagamento;
+        this.num_cartao = num_cartao;
+        this.estatus = estatus;
+        this.num_parcelas = num_parcelas;
+        this.cod_despesa = cod_despesa;
+    }
 
+    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, String estatus, String descricao, int cod_despesa) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+        this.valor = valor;
+        this.categoria = categoria;
+        this.f_pagamento = f_pagamento;
+        this.num_cartao = num_cartao;
+        this.estatus = estatus;
+        this.descricao = descricao;
+        this.cod_despesa = cod_despesa;
+    }
+
+    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, String estatus, String descricao,int cod_despesa) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+        this.valor = valor;
+        this.categoria = categoria;
+        this.f_pagamento = f_pagamento;
+        this.estatus = estatus;
+        this.descricao = descricao;
+        this.cod_despesa = cod_despesa;
+    }
+    
     public int getDia() {
         return dia;
     }
@@ -124,6 +167,13 @@ public class Despesa {
         this.id_conta = id_conta;
     }
     
+    public int getCod_despesa() {
+        return cod_despesa;
+    }
+
+    public void setCod_despesa(int cod_despesa) {
+        this.cod_despesa = cod_despesa;
+    }
     
     
     

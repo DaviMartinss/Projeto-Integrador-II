@@ -181,6 +181,118 @@ public class DespesaDAO {
         
     }
     
+    public boolean UpdateDespesa(Despesa despesa) throws SQLException {
+         
+        if(despesa.getF_pagamento().equals("CRÉDITO")){
+            
+            PreparedStatement pst1 = null;
+            String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa LEFT OUTER JOIN despesa_credito on (despesa.despesa_data_cod_despesa = despesa_credito.despesa_data_cod_despesa) SET dia = ?, mes = ?, ano = ?, valor = ?, categoria = ?, f_pagamento = ?, num_cartao=?, n_parcelas = ?, estatus=?, descricao=? where cod_despesa = ?";
+        
+            pst1 = conexao.prepareStatement(update);
+    
+            try {
+            
+                pst1.setInt(1, despesa.getDia());
+                pst1.setInt(2, despesa.getMes());
+                pst1.setInt(3, despesa.getAno());
+                pst1.setFloat(4, despesa.getValor());
+                pst1.setString(5, despesa.getCategoria());
+                pst1.setString(6, despesa.getF_pagamento());
+                pst1.setLong(7, despesa.getNum_cartao());
+                pst1.setInt(8, despesa.getNum_parcelas());
+                pst1.setString(9, despesa.getEstatus());
+                pst1.setString(10, despesa.getDescricao());
+                pst1.setInt(11, despesa.getCod_despesa());
+                
+            
+                pst1.executeUpdate();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            }finally{
+            
+                pst1.close();
+            
+            }
+            
+        }else if (despesa.getF_pagamento().equals("DÉBITO")){
+            
+            PreparedStatement pst2 = null;
+            String update = "update despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria = ?, f_pagamento = ?, num_cartao=?, estatus = ?, descricao = ? where cod_despesa = ?";
+        
+            pst2 = conexao.prepareStatement(update);
+    
+            try {
+            
+                pst2.setInt(1, despesa.getDia());
+                pst2.setInt(2, despesa.getMes());
+                pst2.setInt(3, despesa.getAno());
+                pst2.setFloat(4, despesa.getValor());
+                pst2.setString(5, despesa.getCategoria());
+                pst2.setString(6, despesa.getF_pagamento());
+                pst2.setLong(7, despesa.getNum_cartao());
+                pst2.setString(8, despesa.getEstatus());
+                pst2.setString(9, despesa.getDescricao());
+                pst2.setInt(10, despesa.getCod_despesa());
+                
+            
+                pst2.executeUpdate();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            }finally{
+            
+                pst2.close();
+            
+            }
+            
+        }else{
+             // é dinheiro
+             PreparedStatement pst3 = null;
+            String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria=?, f_pagamento=?, estatus = ?, descricao=? where cod_despesa= ?";
+        
+            pst3 = conexao.prepareStatement(update);
+    
+            try {
+            
+                pst3.setInt(1, despesa.getDia());
+                pst3.setInt(2, despesa.getMes());
+                pst3.setInt(3, despesa.getAno());
+                pst3.setFloat(4, despesa.getValor());
+                pst3.setString(5, despesa.getCategoria());
+                pst3.setString(6, despesa.getF_pagamento());
+                pst3.setString(7, despesa.getEstatus());
+                pst3.setString(8, despesa.getDescricao());
+                pst3.setInt(9, despesa.getCod_despesa());
+                
+            
+                pst3.executeUpdate();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            }finally{
+            
+                pst3.close();
+            
+            }
+
+        }
+
+        return true;
+    }
+    
     public ResultSet CarregaTabela_Despesa(int id_conta) throws SQLException {
        
         String consulta = 
