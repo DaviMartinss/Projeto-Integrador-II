@@ -29,6 +29,13 @@ public class Despesa {
     public Despesa() {
     
     }
+
+    public Despesa(int cod_despesa) {
+        
+        this.cod_despesa = cod_despesa;
+    }
+    
+    
     
     public Despesa(int dia, int mes, int ano, float valor, String categoria, String descricao, int id_conta) {
         this.dia = dia;

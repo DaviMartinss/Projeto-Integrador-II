@@ -293,6 +293,35 @@ public class DespesaDAO {
         return true;
     }
     
+    public boolean Deletedespesa(Despesa despesa) throws SQLException {
+    
+        PreparedStatement pst = null;
+         
+        String update = "delete from despesa_data where cod_despesa = ?";
+        
+        pst = conexao.prepareStatement(update);
+    
+        try {
+
+            pst.setLong(1, despesa.getCod_despesa());
+            
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+    }
+    
     public ResultSet CarregaTabela_Despesa(int id_conta) throws SQLException {
        
         String consulta = 

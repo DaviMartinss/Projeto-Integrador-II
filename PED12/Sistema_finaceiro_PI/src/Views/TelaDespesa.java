@@ -332,6 +332,24 @@ public class TelaDespesa extends javax.swing.JFrame {
         }
 
     }
+     
+      void delete_despesa() {
+            
+            Despesa despesa = new Despesa(
+                salvaCodigoDespesa
+        );
+
+        DespesaDAO despesaDAO = new DespesaDAO();
+
+        try {
+           
+             despesaDAO.Deletedespesa(despesa);
+                   
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -388,6 +406,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         txt_NumCartao = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         btn_update = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -758,6 +777,15 @@ public class TelaDespesa extends javax.swing.JFrame {
         });
         getContentPane().add(btn_update);
         btn_update.setBounds(450, 30, 67, 23);
+
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_excluir);
+        btn_excluir.setBounds(570, 30, 63, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1168,6 +1196,12 @@ public class TelaDespesa extends javax.swing.JFrame {
         RecarregaTabela_Despesa();
     }//GEN-LAST:event_btn_updateActionPerformed
 
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        // TODO add your handling code here:
+        delete_despesa();
+        RecarregaTabela_Despesa();
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -1210,6 +1244,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JToggleButton btnNovaDespesa;
     private javax.swing.JButton btnReceitas;
+    private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_inicio;
     private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbbTipo;
