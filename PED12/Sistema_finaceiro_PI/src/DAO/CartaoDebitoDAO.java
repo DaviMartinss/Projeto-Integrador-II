@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -121,11 +122,13 @@ public class CartaoDebitoDAO {
         }
     }
    
-   public ResultSet CarregaTabela_Cartao_D(int id_conta) throws SQLException {
+   public LinkedList<CartaoDebito> CarregaTabela_Cartao_D(int id_conta) throws SQLException {
        
        String consulta = "select * from cartao_debito where conta_id_conta=?";
        
        ResultSet rs = null;
+       
+       LinkedList<CartaoDebito> lista_CD = new LinkedList();
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
              
@@ -135,17 +138,30 @@ public class CartaoDebitoDAO {
        
            rs = pst.executeQuery();
            
+           while(rs.next()){
+               
+               lista_CD.add(new CartaoDebito(
+                 Long.parseLong(rs.getString("n_cartao_debito")),
+                 Float.parseFloat(rs.getString("valor_atual")),
+                 rs.getString("bandeira"),
+                 id_conta)         
+                );
+           }
+           
        }catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
        
+       }finally{
+           
+           pst.close();
        }
        
-       return rs;
+       return lista_CD;
        
    }
    
-   public ResultSet ConsultaCartao_D(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+   public LinkedList<CartaoDebito> ConsultaCartao_D(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
        
        String argumento = "";
        
@@ -162,27 +178,44 @@ public class CartaoDebitoDAO {
        
        ResultSet rs = null;
        
+       LinkedList<CartaoDebito> lista_CD = new LinkedList();
+       
        PreparedStatement pst = conexao.prepareStatement(consulta);
        
        try {
 
            rs = pst.executeQuery();
+           
+           while(rs.next()){
+               
+               lista_CD.add(new CartaoDebito(
+                 Long.parseLong(rs.getString("n_cartao_debito")),
+                 Float.parseFloat(rs.getString("valor_atual")),
+                 rs.getString("bandeira"),
+                 id_conta)         
+                );
+           }
 
        } catch (Exception e) {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
-       } 
+       } finally{
+           
+           pst.close();
+       }
        
-       return rs;
+       return lista_CD;
        
    }
    
-   public ResultSet PreencherCamposCartao_D(String num_cartao) throws SQLException {
+   public LinkedList<CartaoDebito> PreencherCamposCartao_D(String num_cartao, int id_conta) throws SQLException {
  
        String consulta = "SELECT n_cartao_debito, valor_atual, bandeira FROM cartao_debito WHERE  n_cartao_debito = ?";
     
        PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       LinkedList<CartaoDebito> lista_CD = new LinkedList();
        
        ResultSet rs = null;
        
@@ -191,14 +224,27 @@ public class CartaoDebitoDAO {
            pst.setLong(1, Long.parseLong(num_cartao));
            
            rs = pst.executeQuery();
+           
+            while(rs.next()){
+               
+               lista_CD.add(new CartaoDebito(
+                 Long.parseLong(rs.getString("n_cartao_debito")),
+                 Float.parseFloat(rs.getString("valor_atual")),
+                 rs.getString("bandeira"),
+                 id_conta)         
+                );
+           }
 
        } catch (Exception e) {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
+       }finally{
+           
+           pst.close();
        }
 
-       return rs;
+       return lista_CD;
        
    }
    

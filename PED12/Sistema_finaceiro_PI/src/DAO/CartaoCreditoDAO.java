@@ -165,6 +165,9 @@ public class CartaoCreditoDAO {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
        
+       }finally{
+           
+           pst.close();
        }
        
        return lista_CC;
@@ -218,6 +221,9 @@ public class CartaoCreditoDAO {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
+       }finally{
+           
+           pst.close();
        } 
        
        return lista_CC;
@@ -258,6 +264,9 @@ public class CartaoCreditoDAO {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
+       }finally{
+           
+           pst.close();
        }
 
        return lista_CC;

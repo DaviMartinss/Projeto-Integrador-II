@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -142,31 +143,26 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();  
 
-            rs = cartao_c.CarregaTabela_Cartao_D(Integer.parseInt(txt_id.getText()));
+            LinkedList<CartaoDebito> lista_CD = cartao_c.CarregaTabela_Cartao_D(Integer.parseInt(txt_id.getText()));
 
-            while(rs.next()) {
-                
-                String Col0 = rs.getString("n_cartao_debito");
-                String Col1 = rs.getString("valor_atual");
-                String Col2 = rs.getString("bandeira");
-                
-                
-                //Redimensiona a tabela
-                //TamanhoColunas();
-                
-                mp.addRow(new String[] {Col0,Col1,Col2});
-                
+            for (CartaoDebito cartao : lista_CD) {
+
+                String Col0 = Long.toString(cartao.getN_cartao_debito());
+                String Col1 = Float.toString(cartao.getValor_atual());
+                String Col2 = cartao.getBandeira();
+
+                mp.addRow(new String[]{Col0, Col1, Col2});
+
             }
             
-            
-            
+            lista_CD.clear();
+
         }catch(Exception e){
             
             JOptionPane.showMessageDialog(this, e.getMessage());
             
         }
-        
-        jtConsultaCD.setAutoCreateRowSorter(true);
+       
          
          
      }
@@ -396,7 +392,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         cbbTipo.setBounds(30, 80, 140, 27);
 
         txt_Pesquisa.setColumns(100);
-        txt_Pesquisa.setText("Pesquisa");
         txt_Pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -631,25 +626,25 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
                 DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
-                rs = cartao_d.ConsultaCartao_D(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
+                LinkedList<CartaoDebito> lista_CD = cartao_d.ConsultaCartao_D(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
 
-                while (rs.next()) {
+                for (CartaoDebito cartao : lista_CD) {
 
-                    String Col0 = rs.getString("n_cartao_debito");
-                    String Col1 = rs.getString("valor_atual");
-                    String Col2 = rs.getString("bandeira");
+                    String Col0 = Long.toString(cartao.getN_cartao_debito());
+                    String Col1 = Float.toString(cartao.getValor_atual());
+                    String Col2 = cartao.getBandeira();
 
                     mp.addRow(new String[]{Col0, Col1, Col2});
 
                 }
+            
+                lista_CD.clear();
 
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(this, e.getMessage());
 
             }
-
-            jtConsultaCD.setAutoCreateRowSorter(true);
 
         }else{
 
@@ -666,20 +661,17 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
         CartaoDebitoDAO cartaoDAO = new CartaoDebitoDAO();
 
-        ResultSet rs = null;
-
         try {
 
-            rs = cartaoDAO.PreencherCamposCartao_D(num_cartao);
+            LinkedList<CartaoDebito> lista_CD = cartaoDAO.PreencherCamposCartao_D(num_cartao,
+                                                Integer.parseInt(txt_id.getText()));
 
-            if(rs.next()){
+            txt_NumCartaoD.setText(Long.toString(lista_CD.element().getN_cartao_debito()));
+            txt_Valor.setText(Float.toString(lista_CD.element().getValor_atual()));
+            txt_Bandeira.setText(lista_CD.element().getBandeira());
+            salva_num_cartao_debito = lista_CD.element().getN_cartao_debito();
 
-                txt_NumCartaoD.setText(rs.getString("n_cartao_debito"));
-                txt_Valor.setText(rs.getString("valor_atual"));
-                txt_Bandeira.setText(rs.getString("bandeira"));
-                salva_num_cartao_debito = Long.parseLong(txt_NumCartaoD.getText());
-
-            }
+            lista_CD.clear();
 
         } catch (SQLException ex) {
 
