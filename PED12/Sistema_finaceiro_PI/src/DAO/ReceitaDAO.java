@@ -134,6 +134,66 @@ public class ReceitaDAO {
         }
     }
     
+    public boolean DeleteReceita(Receita receita) throws SQLException {
+
+        PreparedStatement pst = null;
+        PreparedStatement pst1 = null;
+        ResultSet rs = null;
+
+        String sql = "select cod_receita from (receita R join receita_data Rdt on R.receita_data_cod_receita = Rdt.cod_receita) where (conta_id_conta = ? and mes = ? and ano = ?)";
+        try {
+
+            pst = conexao.prepareStatement(sql);
+
+            pst.setInt(1, receita.getId_conta());
+            pst.setInt(2, receita.getMes());
+            pst.setInt(3, receita.getAno());
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                
+                receita.setCod_receita(rs.getInt(1));
+                System.out.println("o cod da receita é "+receita.getCod_receita());
+                
+                
+                String delete = "delete from receita_data where cod_receita = ?";
+                
+                
+                pst1 = conexao.prepareStatement(delete);
+                
+                
+                try {
+                    
+                    pst1.setInt(1, receita.getCod_receita());
+                    pst1.executeUpdate();
+                    
+                } catch (Exception e) {
+                    
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                    return false;
+                
+                } finally{
+                    
+                     pst1.close();
+                }
+                
+                
+            }
+            
+        }catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, e.toString());
+            return  false;
+            
+        }finally{
+            
+            pst.close();   
+        }
+
+            return true;
+    }
+    
     
     public ResultSet CarregaTabela_Receita(int id_conta) throws SQLException {
        
