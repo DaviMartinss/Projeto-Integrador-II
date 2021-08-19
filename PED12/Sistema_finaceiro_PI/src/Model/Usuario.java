@@ -21,6 +21,9 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
+    private String senhaConfirma;
+
+    
     private int id_conta;
     
     
@@ -34,6 +37,18 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public Usuario(String senha, String senhaConfirma, int id_conta) {
+        this.senha = senha;
+        this.senhaConfirma = senhaConfirma;
+        this.id_conta = id_conta;
+    }
+    
+    public Usuario(int id_conta, String nome, String email) {
+        this.id_conta = id_conta;
+        this.nome = nome;
+        this.email = email;
+        
+    }
     
     public String getEmail() {
         return email;
@@ -70,6 +85,14 @@ public class Usuario {
      */
     public int getId_conta() {
         return id_conta;
+    }
+    
+    public String getSenhaConfirma() {
+        return senhaConfirma;
+    }
+
+    public void setSenhaConfirma(String senhaConfirma) {
+        this.senhaConfirma = senhaConfirma;
     }
 
     /**

@@ -54,6 +54,72 @@ public class UsuarioDAO {
 
     }
     
+     public boolean UpdateUser(Usuario usuario) throws SQLException {
+        
+        PreparedStatement pst = null;
+
+        String insert = "update conta set nome= ? , email = ? where id_conta = ?";
+
+        pst = conexao.prepareStatement(insert);
+
+        try {
+
+            pst.setString(1, usuario.getNome());
+            pst.setString(2, usuario.getEmail());
+            pst.setInt(3, usuario.getId_conta());
+
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+
+    }
+    
+    
+    public boolean UpdateSenha(Usuario usuario) throws SQLException {
+        
+        PreparedStatement pst = null;
+
+        String insert = "update conta set senha = ? where id_conta = ?";
+
+        pst = conexao.prepareStatement(insert);
+
+        try {
+
+            pst.setString(1, usuario.getSenha());
+            pst.setInt(2, usuario.getId_conta());
+            
+
+            
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+
+    }
+    
      public ResultSet PreencherCampos_Usuario(String id_conta) throws SQLException {
  
        String consulta = "SELECT * FROM conta WHERE id_conta = ?";
@@ -78,6 +144,17 @@ public class UsuarioDAO {
        
    }
     
-    
+   
+      public boolean valida_UpdateSenha(String senha1, String senha2){
+        
+        if (senha1.equals(senha2)) {
+            return true;
+            
+        } else {
+            
+            return false;
+            
+        }
+      }
     
 }

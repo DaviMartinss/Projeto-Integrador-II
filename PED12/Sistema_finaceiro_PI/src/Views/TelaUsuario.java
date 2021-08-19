@@ -7,6 +7,7 @@ package Views;
 
 import DAO.UsuarioDAO;
 import DAO.moduloConexao;
+import Model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +35,9 @@ public class TelaUsuario extends javax.swing.JFrame {
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
         
-        txtNome.setEnabled(false);
-        txtEmail.setEnabled(false);
+        //txtNome.setEnabled(false);
+        //txtEmail.setEnabled(false);
+        
         txtSenha.setEnabled(false);
         
         txt_id.setVisible(false);
@@ -66,7 +68,55 @@ public class TelaUsuario extends javax.swing.JFrame {
          this.dispose();
     }
     
+     void TelaUsuario_senha(){
+         
+         TelaUsuario_senha TelaUser_senha = null;
+         
+         if (TelaUser_senha == null) {
 
+             TelaUser_senha = new TelaUsuario_senha();
+
+             TelaUser_senha.setVisible(true);
+
+             TelaUser_senha.receberID(txt_id.getText());
+
+         } else {
+
+             TelaUser_senha.setVisible(true);
+
+             TelaUser_senha.setState(TelaPrincipal.NORMAL);
+
+             TelaUser_senha.receberID(txt_id.getText());
+         }
+         
+         this.dispose();
+    }
+     
+    void telaUpdateUser(){
+     
+            int id = Integer.parseInt(this.txt_id.getText());
+            
+            Usuario user = new Usuario(
+                id,
+                txtNome.getText(),
+                txtEmail.getText()
+                
+                
+        );
+          System.out.println("O nome do usuario é " +txtNome.getText());
+          System.out.println("O email do usuario é " +txtEmail.getText());
+        UsuarioDAO UserDao = new UsuarioDAO();
+
+        try {
+            UserDao.UpdateUser(user);
+            
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,9 +126,10 @@ public class TelaUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -86,10 +137,14 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
-        btnAtualizar = new javax.swing.JToggleButton();
         btnExcluir = new javax.swing.JToggleButton();
+        btn_update = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+
+        jButton2.setText("jButton2");
+
+        jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 500));
@@ -117,13 +172,6 @@ public class TelaUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(30, 40, 110, 27);
-
-        jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
-        jToggleButton1.setBorderPainted(false);
-        getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(620, 90, 40, 40);
 
         jLabel3.setText("Nome: ");
         getContentPane().add(jLabel3);
@@ -155,31 +203,35 @@ public class TelaUsuario extends javax.swing.JFrame {
         btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnAlterar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAlterar.setText("Alterar");
+        btnAlterar.setText("Alterar Senha");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(530, 270, 140, 27);
+        btnAlterar.setBounds(530, 310, 140, 27);
 
-        btnAtualizar.setBackground(new java.awt.Color(105, 69, 219));
-        btnAtualizar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtualizar.setText("Atualizar");
-        getContentPane().add(btnAtualizar);
-        btnAtualizar.setBounds(530, 310, 140, 27);
-
-        btnExcluir.setBackground(new java.awt.Color(105, 69, 219));
+        btnExcluir.setBackground(new java.awt.Color(210, 59, 233));
         btnExcluir.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         getContentPane().add(btnExcluir);
         btnExcluir.setBounds(530, 350, 140, 27);
 
+        btn_update.setBackground(new java.awt.Color(105, 69, 219));
+        btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_update.setForeground(new java.awt.Color(255, 255, 255));
+        btn_update.setText("Atualizar");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_update);
+        btn_update.setBounds(530, 270, 140, 27);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
@@ -222,12 +274,19 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        
+        TelaUsuario_senha();
+        /*
         txtNome.setEnabled(true);
         txtEmail.setEnabled(true);
         txtSenha.setEnabled(true);
+       */
         
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+        telaUpdateUser();
+    }//GEN-LAST:event_btn_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,15 +326,16 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JToggleButton btnAtualizar;
     private javax.swing.JToggleButton btnExcluir;
+    private javax.swing.JButton btn_update;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;
