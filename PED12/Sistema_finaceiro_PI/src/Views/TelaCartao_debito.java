@@ -208,6 +208,26 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     }
      
+     void delete_cartao_debito() {
+            
+            CartaoDebito cartao_d = new CartaoDebito(
+                Long.parseLong(txt_NumCartaoD.getText())
+                    
+        );
+
+        CartaoDebitoDAO cartao_debitoDAO = new CartaoDebitoDAO();
+
+        try {
+
+            cartao_debitoDAO.DeleteCartaoDebito(cartao_d);
+                
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
      
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,7 +285,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 30, 90, 27);
+        jButton1.setBounds(30, 30, 90, 25);
 
         jButton2.setBackground(new java.awt.Color(105, 69, 219));
         jButton2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -277,7 +297,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(580, 30, 90, 27);
+        jButton2.setBounds(580, 30, 90, 25);
 
         jButton4.setBackground(new java.awt.Color(105, 69, 219));
         jButton4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -289,14 +309,14 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(120, 30, 110, 27);
+        jButton4.setBounds(120, 30, 110, 25);
 
         jButton5.setBackground(new java.awt.Color(105, 69, 219));
         jButton5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Usuário");
         getContentPane().add(jButton5);
-        jButton5.setBounds(490, 30, 90, 27);
+        jButton5.setBounds(490, 30, 90, 25);
 
         jButton3.setBackground(new java.awt.Color(105, 69, 219));
         jButton3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -308,19 +328,24 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(530, 340, 140, 27);
+        jButton3.setBounds(530, 340, 140, 25);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Débito");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(270, 0, 160, 26);
+        jLabel2.setBounds(270, 0, 160, 24);
 
         jButton7.setBackground(new java.awt.Color(210, 59, 239));
         jButton7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Excluir Cartão");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton7);
-        jButton7.setBounds(530, 440, 140, 27);
+        jButton7.setBounds(530, 440, 140, 25);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 0);
 
@@ -332,7 +357,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Pesquisar por");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 60, 100, 17);
+        jLabel8.setBounds(30, 60, 100, 16);
 
         txt_NumCartaoD.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartaoD.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -471,7 +496,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(530, 390, 140, 27);
+        btn_update.setBounds(530, 390, 140, 25);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel7);
@@ -484,7 +509,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 21);
+        txt_id.setBounds(0, 0, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -676,6 +701,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         update_cartao_debito();
         RecarregaTabela_CartaoDB();
     }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        delete_cartao_debito();
+        RecarregaTabela_CartaoDB();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

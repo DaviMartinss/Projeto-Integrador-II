@@ -22,7 +22,12 @@ public class CartaoDebito {
     public CartaoDebito() {
         
     }
-
+    
+     public CartaoDebito(long n_cartao_debito) {
+        
+         this.n_cartao_debito = n_cartao_debito;
+    }
+     
     public CartaoDebito(long n_cartao_debito, float valor_atual, String bandeira, int id_conta) {
         
         this.n_cartao_debito = n_cartao_debito;

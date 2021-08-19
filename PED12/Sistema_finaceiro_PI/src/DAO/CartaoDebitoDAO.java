@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.CartaoCredito;
 import Model.CartaoDebito;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,6 +74,35 @@ public class CartaoDebitoDAO {
             pst.setFloat(2, cartao_debito.getValor_atual());
             pst.setString(3, cartao_debito.getBandeira());
             pst.setLong(4, cartao_debito.getN_cartao_aux());
+            
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+    }
+    
+   public boolean DeleteCartaoDebito(CartaoDebito cartao_debito) throws SQLException {
+    
+        PreparedStatement pst = null;
+         
+        String update = "delete from cartao_debito where n_cartao_debito = ?";
+        
+        pst = conexao.prepareStatement(update);
+    
+        try {
+
+            pst.setLong(1, cartao_debito.getN_cartao_debito());
             
             pst.executeUpdate();
             
