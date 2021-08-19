@@ -330,7 +330,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(btn_novoCartao_cc);
         btn_novoCartao_cc.setBounds(530, 310, 140, 27);
 
-        btn_exclui_cc.setBackground(new java.awt.Color(105, 69, 219));
+        btn_exclui_cc.setBackground(new java.awt.Color(210, 59, 239));
         btn_exclui_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_exclui_cc.setForeground(new java.awt.Color(255, 255, 255));
         btn_exclui_cc.setText("Exclui cartão");

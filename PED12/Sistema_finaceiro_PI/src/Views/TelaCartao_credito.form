@@ -175,7 +175,7 @@
     <Component class="javax.swing.JButton" name="btn_exclui_cc">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="db" green="45" red="69" type="rgb"/>
+          <Color blue="ef" green="3b" red="d2" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Noto Serif" size="12" style="1"/>

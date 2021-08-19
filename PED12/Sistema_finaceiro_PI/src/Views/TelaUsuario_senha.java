@@ -104,13 +104,16 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_NovaSenha = new javax.swing.JPasswordField();
         txt_ConfirmaSenha = new javax.swing.JPasswordField();
         btn_alteraSenha = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         btn_voltar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -125,73 +128,76 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 500));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel4.setText("Nova Senha");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(290, 0, 140, 26);
+
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nova senha");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(250, 80, 80, 17);
 
-        jLabel2.setText("Confirma SENHA");
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel2.setText("Repita a nova senha");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(250, 130, 120, 17);
 
-        btn_alteraSenha.setText("CONFIRMAR");
+        txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
+        txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_NovaSenha);
+        txt_NovaSenha.setBounds(250, 100, 200, 27);
+        txt_NovaSenha.getAccessibleContext().setAccessibleName("Senha");
+        txt_NovaSenha.getAccessibleContext().setAccessibleDescription("Digite a nova senha aqui");
+
+        txt_ConfirmaSenha.setBackground(new java.awt.Color(187, 210, 240));
+        txt_ConfirmaSenha.setColumns(10);
+        txt_ConfirmaSenha.setToolTipText("senha");
+        txt_ConfirmaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_ConfirmaSenha);
+        txt_ConfirmaSenha.setBounds(250, 150, 200, 27);
+        txt_ConfirmaSenha.getAccessibleContext().setAccessibleName("Repetir a senha");
+        txt_ConfirmaSenha.getAccessibleContext().setAccessibleDescription("Digite a nova senha aqui");
+
+        btn_alteraSenha.setBackground(new java.awt.Color(105, 69, 219));
+        btn_alteraSenha.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_alteraSenha.setForeground(new java.awt.Color(255, 255, 255));
+        btn_alteraSenha.setText("Salvar");
         btn_alteraSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_alteraSenhaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_alteraSenha);
+        btn_alteraSenha.setBounds(300, 190, 100, 27);
+        btn_alteraSenha.getAccessibleContext().setAccessibleDescription("Botão de confirmação");
 
+        btn_voltar.setBackground(new java.awt.Color(105, 69, 219));
+        btn_voltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_voltar.setForeground(new java.awt.Color(255, 255, 255));
         btn_voltar.setText("Voltar");
         btn_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_voltarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_voltar);
+        btn_voltar.setBounds(40, 40, 100, 27);
+        btn_voltar.getAccessibleContext().setAccessibleDescription("Botão para voltar sem cadastrar nova senha");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_NovaSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                    .addComponent(txt_ConfirmaSenha))
-                .addGap(33, 33, 33)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_voltar)
-                    .addComponent(btn_alteraSenha))
-                .addGap(149, 149, 149))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txt_NovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(txt_ConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(72, 72, 72)
-                .addComponent(btn_alteraSenha)
-                .addGap(32, 32, 32)
-                .addComponent(btn_voltar)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(280, 280, 140, 130);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 1920, 1080);
+        getContentPane().add(txt_id);
+        txt_id.setBounds(0, 0, 54, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -249,6 +255,9 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;

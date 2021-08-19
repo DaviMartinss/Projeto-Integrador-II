@@ -130,7 +130,6 @@ public class TelaUsuario extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -138,10 +137,10 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
-        btnAtualizar = new javax.swing.JToggleButton();
         btnExcluir = new javax.swing.JToggleButton();
-        txt_id = new javax.swing.JTextField();
         btn_update = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         jButton2.setText("jButton2");
 
@@ -160,7 +159,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Dados do Usuário");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(250, 0, 180, 24);
+        jLabel2.setBounds(250, 0, 180, 26);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -172,18 +171,11 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 40, 110, 25);
-
-        jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
-        jToggleButton1.setBorderPainted(false);
-        getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(620, 90, 40, 40);
+        jButton1.setBounds(30, 40, 110, 27);
 
         jLabel3.setText("Nome: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 80, 34, 14);
+        jLabel3.setBounds(30, 80, 42, 17);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -192,7 +184,7 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         jLabel4.setText("Email:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 140, 60, 14);
+        jLabel4.setBounds(30, 140, 60, 17);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -218,32 +210,32 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(530, 270, 140, 27);
+        btnAlterar.setBounds(530, 310, 140, 27);
 
-        btnAtualizar.setBackground(new java.awt.Color(105, 69, 219));
-        btnAtualizar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtualizar.setText("Atualizar");
-        getContentPane().add(btnAtualizar);
-        btnAtualizar.setBounds(530, 310, 140, 27);
-
-        btnExcluir.setBackground(new java.awt.Color(105, 69, 219));
+        btnExcluir.setBackground(new java.awt.Color(210, 59, 233));
         btnExcluir.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         getContentPane().add(btnExcluir);
         btnExcluir.setBounds(530, 350, 140, 27);
-        getContentPane().add(txt_id);
-        txt_id.setBounds(500, 160, 60, 20);
 
-        btn_update.setText("Update");
+        btn_update.setBackground(new java.awt.Color(105, 69, 219));
+        btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_update.setForeground(new java.awt.Color(255, 255, 255));
+        btn_update.setText("Atualizar");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_updateActionPerformed(evt);
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(560, 210, 67, 23);
+        btn_update.setBounds(530, 270, 140, 27);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
+        getContentPane().add(txt_id);
+        txt_id.setBounds(500, 160, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -334,17 +326,16 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JToggleButton btnAtualizar;
     private javax.swing.JToggleButton btnExcluir;
     private javax.swing.JButton btn_update;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;

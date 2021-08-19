@@ -315,7 +315,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(270, 0, 160, 26);
 
-        jButton7.setBackground(new java.awt.Color(105, 69, 219));
+        jButton7.setBackground(new java.awt.Color(210, 59, 239));
         jButton7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Excluir Cartão");
