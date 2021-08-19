@@ -101,6 +101,34 @@ public class CartaoCreditoDAO {
         }
     }
     
+    public boolean DeleteCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
+    
+        PreparedStatement pst = null;
+         
+        String update = "delete from cartao_credito where n_cartao_credito = ?";
+        
+        pst = conexao.prepareStatement(update);
+    
+        try {
+
+            pst.setLong(1, cartao_credito.getN_cartao_credito());
+            
+            pst.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }finally{
+            
+            pst.close();
+            
+        }
+    }
     
     public LinkedList<CartaoCredito> CarregaTabela_Cartao_C(int id_conta) throws SQLException {
        

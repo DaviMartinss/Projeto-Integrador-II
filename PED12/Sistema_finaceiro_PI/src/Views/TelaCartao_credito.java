@@ -210,7 +210,26 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         }
 
     } 
-      
+     
+     void delete_cartao_credito() {
+            
+            CartaoCredito cartao_c = new CartaoCredito(
+                salva_num_cartao                  
+        );
+
+        CartaoCreditoDAO cartao_creditoDAO = new CartaoCreditoDAO();
+
+        try {
+           
+             cartao_creditoDAO.DeleteCartaoCredito(cartao_c);
+                   
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+     
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -335,6 +354,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         btn_exclui_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_exclui_cc.setForeground(new java.awt.Color(255, 255, 255));
         btn_exclui_cc.setText("Exclui cartão");
+        btn_exclui_cc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_exclui_ccActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_exclui_cc);
         btn_exclui_cc.setBounds(530, 410, 140, 27);
 
@@ -717,6 +741,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void btn_exclui_ccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exclui_ccActionPerformed
+        // TODO add your handling code here:
+        delete_cartao_credito();
+        RecarregaTabela_CartaoCC();
+    }//GEN-LAST:event_btn_exclui_ccActionPerformed
 
     /**
      * @param args the command line arguments

@@ -24,7 +24,13 @@ public class CartaoCredito {
     public CartaoCredito() {
         
     }
-
+    
+    public CartaoCredito(long n_cartao_credito) {
+        
+        this.n_cartao_credito = n_cartao_credito;
+        
+    }
+    
     public CartaoCredito(long n_cartao_credito, float limite, int dia_fatura, float valor_fatura, String bandeira, int id_conta) {
         
         this.n_cartao_credito = n_cartao_credito;

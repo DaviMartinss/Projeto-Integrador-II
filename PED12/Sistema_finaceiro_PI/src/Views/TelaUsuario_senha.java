@@ -135,17 +135,17 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel4.setText("Nova Senha");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(290, 0, 140, 26);
+        jLabel4.setBounds(290, 0, 140, 24);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nova senha");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(250, 80, 80, 17);
+        jLabel1.setBounds(250, 80, 80, 16);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Repita a nova senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(250, 130, 120, 17);
+        jLabel2.setBounds(250, 130, 120, 16);
 
         txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
         txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -173,7 +173,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_alteraSenha);
-        btn_alteraSenha.setBounds(300, 190, 100, 27);
+        btn_alteraSenha.setBounds(300, 190, 100, 25);
         btn_alteraSenha.getAccessibleContext().setAccessibleDescription("Botão de confirmação");
 
         btn_voltar.setBackground(new java.awt.Color(105, 69, 219));
@@ -186,7 +186,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_voltar);
-        btn_voltar.setBounds(40, 40, 100, 27);
+        btn_voltar.setBounds(40, 40, 100, 25);
         btn_voltar.getAccessibleContext().setAccessibleDescription("Botão para voltar sem cadastrar nova senha");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
@@ -197,7 +197,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 54, 21);
+        txt_id.setBounds(0, 0, 54, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

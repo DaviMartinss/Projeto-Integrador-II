@@ -160,7 +160,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel3.setText("Cadastrar Cartão de Crédito");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(210, 0, 260, 26);
+        jLabel3.setBounds(210, 0, 260, 24);
 
         txt_NumCC.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -224,7 +224,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(150, 370, 68, 27);
+        btn_inicio.setBounds(150, 370, 63, 25);
 
         btn_cadastra_cartao.setBackground(new java.awt.Color(105, 69, 219));
         btn_cadastra_cartao.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -236,7 +236,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastra_cartao);
-        btn_cadastra_cartao.setBounds(420, 370, 130, 27);
+        btn_cadastra_cartao.setBounds(420, 370, 130, 25);
 
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel7.setText("Valor da Fatura");
@@ -251,7 +251,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 1968, 1080);
+        jLabel8.setBounds(0, 0, 1958, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
