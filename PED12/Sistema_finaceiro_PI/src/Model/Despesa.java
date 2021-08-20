@@ -47,6 +47,20 @@ public class Despesa {
         this.id_conta = id_conta;
     }
     
+    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, int num_parcelas, String estatus, String descricao) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+        this.valor = valor;
+        this.categoria = categoria;
+        this.descricao = descricao;
+        this.f_pagamento = f_pagamento;
+        this.num_cartao = num_cartao;
+        this.estatus = estatus;
+        this.num_parcelas = num_parcelas;
+
+    }
+    
     public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, int num_parcelas, String estatus, String descricao, int cod_despesa) {
         this.dia = dia;
         this.mes = mes;

@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -322,7 +323,7 @@ public class DespesaDAO {
         }
     }
     
-    public ResultSet CarregaTabela_Despesa(int id_conta) throws SQLException {
+    public LinkedList<Despesa> CarregaTabela_Despesa(int id_conta) throws SQLException {
        
         String consulta = 
                 "(select\n"
@@ -343,30 +344,53 @@ public class DespesaDAO {
                 + " LEFT OUTER JOIN despesa_credito des_c on \n"
                 + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
                 + "WHERE des_d.conta_id_conta = ?)";
-        
-        
 
        ResultSet rs = null;
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
-             
+       
+       LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+       
        try{
            
            pst.setInt(1, id_conta);
        
            rs = pst.executeQuery();
+     
+           while (rs.next()) {
+
+               lista_despesa.add(new Despesa(
+                       rs.getInt("dia"),
+                       rs.getInt("mes"),
+                       rs.getInt("ano"),
+                       rs.getFloat("valor"),
+                       rs.getString("categoria"),
+                       rs.getString("f_pagamento"),
+                       rs.getLong("num_cartao"),
+                       rs.getInt("n_parcelas"),
+                       rs.getString("estatus"),
+                       rs.getString("descricao"),
+                       rs.getInt("cod_despesa")
+               ));
+
+
+           }
            
        }catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
-       
+            JOptionPane.showMessageDialog(null, e.getMessage() + "     TUTUTUTUTU");
+ 
        }
        
-       return rs;
+       return lista_despesa;
        
    }
     
-    public ResultSet Consulta_Despesa(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException {
+    
+ 
+    
+    
+    public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException {
        
        String argumento = "";
        
@@ -404,6 +428,8 @@ public class DespesaDAO {
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
        
+       LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+       
        try {
            
            pst.setInt(1, receita.getId_conta());
@@ -411,6 +437,26 @@ public class DespesaDAO {
            pst.setInt(3, receita.getAno());
 
            rs = pst.executeQuery();
+           
+           while(rs.next()) {
+                
+                lista_despesa.add(
+                        
+                       new Despesa(
+                               rs.getInt("dia"),
+                               rs.getInt("mes"),
+                               rs.getInt("ano"),
+                               rs.getFloat("valor"),
+                               rs.getString("categoria"),
+                               rs.getString("f_pagamento"),
+                               rs.getLong("num_cartao"),
+                               rs.getInt("n_parcelas"),
+                               rs.getString("estatus"),
+                               rs.getString("descricao"),
+                               rs.getInt("cod_despesa")
+                       )
+                );
+           }
 
        } catch (Exception e) {
 
@@ -418,11 +464,11 @@ public class DespesaDAO {
 
        } 
        
-       return rs;
+       return lista_despesa;
        
    }
    
-   public ResultSet PreencherCampos_Despesa(String dia, String mes, String ano, String id_conta) throws SQLException {
+   public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String id_conta) throws SQLException {
  
        String consulta =
                "(select\n"
@@ -448,6 +494,8 @@ public class DespesaDAO {
        
        ResultSet rs = null;
        
+       LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+       
        try {
            
            pst.setInt(1, Integer.parseInt(id_conta));
@@ -459,6 +507,25 @@ public class DespesaDAO {
            pst.setInt(4, Integer.parseInt(ano));
            
            rs = pst.executeQuery();
+           
+           while(rs.next()) {
+                
+                lista_despesa.add(
+                        
+                       new Despesa(
+                               rs.getInt("dia"),
+                               rs.getInt("mes"),
+                               rs.getInt("ano"),
+                               rs.getFloat("valor"),
+                               rs.getString("categoria"),
+                               rs.getString("f_pagamento"),
+                               rs.getLong("num_cartao"),
+                               rs.getInt("n_parcelas"),
+                               rs.getString("estatus"),
+                               rs.getString("descricao")
+                       )
+                );
+           }
 
        } catch (Exception e) {
 
@@ -466,7 +533,7 @@ public class DespesaDAO {
 
        }
 
-       return rs;
+       return lista_despesa;
        
    }
     

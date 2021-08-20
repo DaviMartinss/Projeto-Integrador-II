@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -135,7 +136,7 @@ public class ReceitaDAO {
     }
     
     
-    public ResultSet CarregaTabela_Receita(int id_conta) throws SQLException {
+    public LinkedList<Receita> CarregaTabela_Receita(int id_conta) throws SQLException {
        
        String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
                " receita_data re_da, receita re " +
@@ -144,6 +145,8 @@ public class ReceitaDAO {
        ResultSet rs = null;
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       LinkedList<Receita> lista_receita = new LinkedList();
              
        try{
            
@@ -151,17 +154,34 @@ public class ReceitaDAO {
        
            rs = pst.executeQuery();
            
+           
+           while(rs.next()){
+               
+               lista_receita.add(new Receita(
+                 rs.getInt("dia"),
+                 rs.getInt("mes"),
+                 rs.getInt("ano"),
+                 rs.getFloat("total"),
+                 id_conta)         
+               );
+   
+           }
+           
+           
        }catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
        
+       }finally{
+           
+           pst.close();
        }
        
-       return rs;
+       return lista_receita;
        
    }
    
-   public ResultSet Consulta_Receita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+   public LinkedList<Receita> Consulta_Receita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
        
        String argumento = "";
        
@@ -183,23 +203,40 @@ public class ReceitaDAO {
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
        
+       LinkedList<Receita> lista_receita = new LinkedList();
+       
        try {
            
            pst.setInt(1, id_conta);
 
            rs = pst.executeQuery();
 
+           while(rs.next()){
+               
+               lista_receita.add(new Receita(
+                 Integer.parseInt(rs.getString("dia")),
+                 Integer.parseInt(rs.getString("mes")),
+                 Integer.parseInt(rs.getString("ano")),
+                 Float.parseFloat(rs.getString("total")),
+                 id_conta)         
+               );
+   
+           }
+
        } catch (Exception e) {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
+       }finally{
+           
+           pst.close();
        } 
        
-       return rs;
+       return lista_receita;
        
    }
    
-   public ResultSet PreencherCampos_Receita(String dia, String mes, String ano, String id_conta) throws SQLException {
+   public LinkedList<Receita> PreencherCampos_Receita(String dia, String mes, String ano, String id_conta) throws SQLException {
  
        String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
                " receita_data re_da, receita re " +
@@ -209,6 +246,8 @@ public class ReceitaDAO {
        PreparedStatement pst = conexao.prepareStatement(consulta);
        
        ResultSet rs = null;
+       
+       LinkedList<Receita> lista_receita = new LinkedList();
        
        try {
            
@@ -221,14 +260,29 @@ public class ReceitaDAO {
            pst.setInt(4, Integer.parseInt(ano));
            
            rs = pst.executeQuery();
+           
+           while(rs.next()){
+               
+               lista_receita.add(new Receita(
+                 Integer.parseInt(rs.getString("dia")),
+                 Integer.parseInt(rs.getString("mes")),
+                 Integer.parseInt(rs.getString("ano")),
+                 Float.parseFloat(rs.getString("total")),
+                 Integer.parseInt(id_conta))         
+               );
+   
+           }
 
        } catch (Exception e) {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
+       }finally{
+           
+           pst.close();
        }
 
-       return rs;
+       return lista_receita;
        
    }
    

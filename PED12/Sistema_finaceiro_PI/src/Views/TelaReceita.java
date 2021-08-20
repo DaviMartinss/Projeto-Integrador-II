@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static javax.swing.text.html.HTML.Tag.HEAD;
@@ -186,22 +187,24 @@ public class TelaReceita extends javax.swing.JFrame {
         
         try{
             
-            ReceitaDAO receita = new ReceitaDAO();
+            ReceitaDAO receitaDAO = new ReceitaDAO();
             
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();  
 
-            rs = receita.CarregaTabela_Receita(Integer.parseInt(txt_id.getText()));
+            LinkedList<Receita> lista_receita = receitaDAO.CarregaTabela_Receita(Integer.parseInt(txt_id.getText()));
 
-            while(rs.next()) {
+            for (Receita receita : lista_receita) {
                 
-                    String Col0 = rs.getString("total");
-                    String Col1 = rs.getString("dia");
-                    String Col2 = rs.getString("mes");
-                    String Col3 = rs.getString("ano");
+                    String Col0 = Float.toString(receita.getTotal());
+                    String Col1 = Integer.toString(receita.getDia());
+                    String Col2 = Integer.toString(receita.getMes());
+                    String Col3 = Integer.toString(receita.getAno());
 
                     mp.addRow(new String[]{Col0, Col1, Col2, Col3});
                    
             }
+            
+            lista_receita.clear();
     
         }catch(Exception e){
             
@@ -576,23 +579,18 @@ public class TelaReceita extends javax.swing.JFrame {
 
         ReceitaDAO receita = new ReceitaDAO();
 
-        ResultSet rs = null;
 
         try {
 
-            rs = receita.PreencherCampos_Receita(dia, mes, ano, txt_id.getText());
+            LinkedList<Receita> lista_receita = receita.PreencherCampos_Receita(dia, mes, ano, txt_id.getText());
 
-            if(rs.next()){
+            txt_total.setText(Float.toString(lista_receita.element().getTotal()));
+            txt_dia.setText(Integer.toString(lista_receita.element().getDia()));
+            txt_mes.setText(Integer.toString(lista_receita.element().getMes()));
+            txt_ano.setText(Integer.toString(lista_receita.element().getAno()));
 
-                txt_total.setText(rs.getString("total"));
-                txt_dia.setText(rs.getString("dia"));
-                txt_mes.setText(rs.getString("mes"));
-                txt_ano.setText(rs.getString("ano"));
-                
-                salvaMes = Integer.parseInt(txt_mes.getText());
-                SalvaAno = Integer.parseInt(txt_ano.getText());
-
-            }
+            salvaMes = Integer.parseInt(txt_mes.getText());
+            SalvaAno = Integer.parseInt(txt_ano.getText());
 
         } catch (SQLException ex) {
 
@@ -686,25 +684,25 @@ public class TelaReceita extends javax.swing.JFrame {
             }
 
             try {
-                
-                ResultSet rs = null;
 
-                ReceitaDAO receita = new ReceitaDAO();
+                ReceitaDAO receitaDAO = new ReceitaDAO();
 
                 DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
-                rs = receita.Consulta_Receita(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
+                LinkedList<Receita> lista_receita = receitaDAO.Consulta_Receita(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
 
-                while (rs.next()) {
+                for (Receita receita : lista_receita) {
 
-                    String Col0 = rs.getString("total");
-                    String Col1 = rs.getString("dia");
-                    String Col2 = rs.getString("mes");
-                    String Col3 = rs.getString("ano");
+                    String Col0 = Float.toString(receita.getTotal());
+                    String Col1 = Integer.toString(receita.getDia());
+                    String Col2 = Integer.toString(receita.getMes());
+                    String Col3 = Integer.toString(receita.getAno());
 
                     mp.addRow(new String[]{Col0, Col1, Col2, Col3});
 
                 }
+
+                lista_receita.clear();
 
             } catch (Exception e) {
 

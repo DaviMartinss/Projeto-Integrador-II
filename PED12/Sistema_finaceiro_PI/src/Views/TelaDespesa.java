@@ -11,6 +11,7 @@ import Model.Despesa;
 import Model.Receita;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -192,30 +193,28 @@ public class TelaDespesa extends javax.swing.JFrame {
             String Col8 = null;
             String Col9 = null;
             String Col10 = null;  
-
-            ResultSet rs = null;
             
-            DespesaDAO despesa = new DespesaDAO ();
+            DespesaDAO despesaDAO = new DespesaDAO ();
             
             DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();  
 
-            rs = despesa.CarregaTabela_Despesa(Integer.parseInt(txt_id.getText()));
+            LinkedList<Despesa> lista_despesa = despesaDAO.CarregaTabela_Despesa(Integer.parseInt(txt_id.getText()));
 
-            while(rs.next()) {
+            for(Despesa despesa : lista_despesa) {
                 
-                    Col0 = rs.getString("cod_despesa");
-                    Col1 = rs.getString("dia");
-                    Col2 = rs.getString("mes");
-                    Col3 = rs.getString("ano");
-                    Col4 = rs.getString("valor");
-                    Col5 = rs.getString("categoria");
-                    Col6 = rs.getString("f_pagamento");
-                    Col7 = rs.getString("num_cartao");
-                    Col8 = rs.getString("n_parcelas");
-                    Col9 = rs.getString("estatus");
-                    Col10 = rs.getString("descricao");
+                    Col0 = Integer.toString(despesa.getCod_despesa());
+                    Col1 = Integer.toString(despesa.getDia());
+                    Col2 = Integer.toString(despesa.getMes());
+                    Col3 = Integer.toString(despesa.getAno());
+                    Col4 = Float.toString(despesa.getValor());
+                    Col5 = despesa.getCategoria();
+                    Col6 = despesa.getF_pagamento();
+                    Col7 = Long.toString(despesa.getNum_cartao());
+                    Col8 = Integer.toString(despesa.getNum_parcelas());
+                    Col9 = despesa.getEstatus();
+                    Col10 = despesa.getDescricao();
                     
-                    if(Col7 == null){
+                    if(Col7.equals("0")){
                         
                          Col7 = "----";   
          
@@ -226,8 +225,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                         Col8 = "----";
                                 
                     }
-
-                    Col9 = rs.getString("estatus");
                     
                     if(Col10 == null){
                         
@@ -243,12 +240,9 @@ public class TelaDespesa extends javax.swing.JFrame {
     
         }catch(Exception e){
             
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage() + "LALALALALLALALA");
             
         }
-        
-        jtConsultaDespesa.setAutoCreateRowSorter(true);
-         
          
      }
     
@@ -837,8 +831,9 @@ public class TelaDespesa extends javax.swing.JFrame {
         if(rbDebito.isSelected()){
             salvaF_pagamento = "DÉBITO";
             txtParcelas.setEnabled(false);
-            
+            txt_NumCartao.setEnabled(true);
             rbCredito.setSelected(false);
+            rbDinheiro.setSelected(false);
             
         }
     }//GEN-LAST:event_rbDebitoActionPerformed
@@ -849,8 +844,9 @@ public class TelaDespesa extends javax.swing.JFrame {
         if(rbCredito.isSelected()){
             salvaF_pagamento = "CRÉDITO";
             txtParcelas.setEnabled(true);
-            
+            txt_NumCartao.setEnabled(true);
             rbDebito.setSelected(false);
+            rbDinheiro.setSelected(false);
             
         }
         
@@ -875,9 +871,9 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
         // TODO add your handling code here
 
-//        if(txt_Pesquisa.getText().isEmpty()){
-//            RecarregaTabela_CartaoCC();
-//        }
+        if(txt_Pesquisa.getText().isEmpty()){
+            RecarregaTabela_Despesa();
+        }
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
@@ -986,45 +982,43 @@ public class TelaDespesa extends javax.swing.JFrame {
 
                     DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
 
-                    rs = despesaDAO.Consulta_Despesa(tipo, argumento, ordenar, receita);
+                    LinkedList<Despesa> lista_despesa = despesaDAO.Consulta_Despesa(tipo, argumento, ordenar, receita);
 
-                    while (rs.next()) {
+                    for (Despesa despesa : lista_despesa) {
 
-                    Col0 = rs.getString("cod_despesa");
-                    Col1 = rs.getString("dia");
-                    Col2 = rs.getString("mes");
-                    Col3 = rs.getString("ano");
-                    Col4 = rs.getString("valor");
-                    Col5 = rs.getString("categoria");
-                    Col6 = rs.getString("f_pagamento");
-                    Col7 = rs.getString("num_cartao");
-                    Col8 = rs.getString("n_parcelas");
-                    Col9 = rs.getString("estatus");
-                    Col10 = rs.getString("descricao");
-                    
-                    if(Col7 == null){
-                        
-                         Col7 = "----";   
-         
-                    }
+                        Col0 = Integer.toString(despesa.getCod_despesa());
+                        Col1 = Integer.toString(despesa.getDia());
+                        Col2 = Integer.toString(despesa.getMes());
+                        Col3 = Integer.toString(despesa.getAno());
+                        Col4 = Float.toString(despesa.getValor());
+                        Col5 = despesa.getCategoria();
+                        Col6 = despesa.getF_pagamento();
+                        Col7 = Long.toString(despesa.getNum_cartao());
+                        Col8 = Integer.toString(despesa.getNum_parcelas());
+                        Col9 = despesa.getEstatus();
+                        Col10 = despesa.getDescricao();
 
-                    if(Col8 == null){
-                        
-                        Col8 = "----";
-                                
-                    }
+                        if (Col7 == null) {
 
-                    Col9 = rs.getString("estatus");
-                    
-                    if(Col10 == null){
-                        
-                        Col10 = "----";
-                        
-                    }
+                            Col7 = "----";
 
-                    mp.addRow(new String[]{Col0, Col1, Col2, Col3,
-                                           Col4, Col5, Col6, Col7,
-                                           Col8, Col9, Col10});
+                        }
+
+                        if (Col8 == null) {
+
+                            Col8 = "----";
+
+                        }
+
+                        if (Col10 == null) {
+
+                            Col10 = "----";
+
+                        }
+
+                        mp.addRow(new String[]{Col0, Col1, Col2, Col3,
+                            Col4, Col5, Col6, Col7,
+                            Col8, Col9, Col10});
 
                     }
 
@@ -1064,64 +1058,58 @@ public class TelaDespesa extends javax.swing.JFrame {
         String id = null;
         id = (String) jtConsultaDespesa.getValueAt(linhSel, 0);
         salvaCodigoDespesa = Integer.parseInt(id);
-        
-        
-        ResultSet rs = null;
+
 
         try {
 
-            rs = despesaDAO.PreencherCampos_Despesa(dia, mes, ano, txt_id.getText());
+            LinkedList<Despesa> lista_despesa = despesaDAO.PreencherCampos_Despesa(dia, mes, ano, txt_id.getText());
 
-            if(rs.next()){
+            txtValor.setText(Float.toString(lista_despesa.element().getValor()));
+            txtCategoria.setText(lista_despesa.element().getCategoria());
+            txtDia.setText(Integer.toString(lista_despesa.element().getDia()));
+            txtMes.setText(Integer.toString(lista_despesa.element().getMes()));
+            txtAno.setText(Integer.toString(lista_despesa.element().getAno()));
+            txtAreaDescricao.setText(lista_despesa.element().getDescricao());
+            txtParcelas.setText(Integer.toString(lista_despesa.element().getNum_parcelas()));
+            txt_NumCartao.setText(Long.toString(lista_despesa.element().getNum_cartao()));
 
-                txtValor.setText(rs.getString("valor"));
-                txtCategoria.setText(rs.getString("categoria"));
-                txtDia.setText(rs.getString("dia"));
-                txtMes.setText(rs.getString("mes"));
-                txtAno.setText(rs.getString("ano"));
-                txtAreaDescricao.setText(rs.getString("descricao"));
-                txtParcelas.setText(rs.getString("n_parcelas"));
-                txt_NumCartao.setText(rs.getString("num_cartao"));
-                
-                if(rs.getString("f_pagamento").equals("CRÉDITO")){
-                    
-                    salvaF_pagamento = "CRÉDITO";
-                    rbCredito.setSelected(true);
-                    rbDebito.setSelected(false);
-                    rbDinheiro.setSelected(false);
-                    
-                }
-                
-                if(rs.getString("f_pagamento").equals("DÉBITO")){
-                    
-                    salvaF_pagamento = "DÉBITO";
-                    rbDebito.setSelected(true);
-                    rbCredito.setSelected(false);
-                    rbDinheiro.setSelected(false);
-                    
-                }
-                
-                if(rs.getString("f_pagamento").equals("DINHEIRO")){
-                    
-                    salvaF_pagamento = "DINHEIRO";
-                    rbDinheiro.setSelected(true);
-                    rbDebito.setSelected(false);
-                    rbCredito.setSelected(false);
-                }
-                
-                if(rs.getString("estatus").equals("PAGO")){
-                    
-                    salvaStatus = "PAGO";
-                    rbPago.setSelected(true);
-                    rbNaoPago.setSelected(false);
-                
-                }else{
-                    
-                    salvaStatus = "NÃO PAGO";
-                    rbNaoPago.setSelected(true);
-                    rbPago.setSelected(false);
-                }
+            if (lista_despesa.element().getF_pagamento().equals("CRÉDITO")) {
 
+                salvaF_pagamento = "CRÉDITO";
+                rbCredito.setSelected(true);
+                rbDebito.setSelected(false);
+                rbDinheiro.setSelected(false);
+
+            }
+
+            if (lista_despesa.element().getF_pagamento().equals("DÉBITO")) {
+
+                salvaF_pagamento = "DÉBITO";
+                rbDebito.setSelected(true);
+                rbCredito.setSelected(false);
+                rbDinheiro.setSelected(false);
+
+            }
+
+            if (lista_despesa.element().getF_pagamento().equals("DINHEIRO")) {
+
+                salvaF_pagamento = "DINHEIRO";
+                rbDinheiro.setSelected(true);
+                rbDebito.setSelected(false);
+                rbCredito.setSelected(false);
+            }
+
+            if (lista_despesa.element().getEstatus().equals("PAGO")) {
+
+                salvaStatus = "PAGO";
+                rbPago.setSelected(true);
+                rbNaoPago.setSelected(false);
+
+            } else {
+
+                salvaStatus = "NÃO PAGO";
+                rbNaoPago.setSelected(true);
+                rbPago.setSelected(false);
             }
 
         } catch (SQLException ex) {
