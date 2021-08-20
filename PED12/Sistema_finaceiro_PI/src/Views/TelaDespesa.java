@@ -24,6 +24,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     String salvaF_pagamento = null;
     String salvaStatus = null;
     int salvaCodigoDespesa = -1;
+    boolean salvaLinhaAtiva = false;
     
     public TelaDespesa() {
         initComponents();
@@ -165,7 +166,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     
     
     void RecarregaTabela_Despesa(){
-         
+         salvaLinhaAtiva = false;
          DefaultTableModel mp1 = (DefaultTableModel) jtConsultaDespesa.getModel();
         
         int l = mp1.getRowCount();
@@ -248,6 +249,11 @@ public class TelaDespesa extends javax.swing.JFrame {
     
      void telaUpdateDespesa(){
          
+          if(!(salvaLinhaAtiva)){
+                JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser atualizda");
+                return;
+            }
+         
         if (salvaF_pagamento.equals("CRÉDITO")) {
 
             Despesa despesa = new Despesa(
@@ -329,6 +335,10 @@ public class TelaDespesa extends javax.swing.JFrame {
      
       void delete_despesa() {
             
+           if(!(salvaLinhaAtiva)){
+            JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser deletada");
+            return;
+        }
             Despesa despesa = new Despesa(
                 salvaCodigoDespesa
         );
@@ -1058,7 +1068,13 @@ public class TelaDespesa extends javax.swing.JFrame {
         String id = null;
         id = (String) jtConsultaDespesa.getValueAt(linhSel, 0);
         salvaCodigoDespesa = Integer.parseInt(id);
-
+          
+        int selLinha = -1;
+        selLinha = jtConsultaDespesa.getSelectedRow();
+        
+        if(selLinha != -1){
+            salvaLinhaAtiva = true;
+        }
 
         try {
 
