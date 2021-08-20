@@ -223,7 +223,7 @@ public class TelaReceita extends javax.swing.JFrame {
     void update_receita() {
         
         if(!(salvaLinhaAtiva)){
-            JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada´para ser atualizda");
+            JOptionPane.showMessageDialog(null, "Nenhuma receita foi selecionada para ser atualizda");
             return;
         }
         
@@ -259,7 +259,10 @@ public class TelaReceita extends javax.swing.JFrame {
     }
     
      void delete_receita() {
-            
+             if(!(salvaLinhaAtiva)){
+                JOptionPane.showMessageDialog(null, "Nenhuma receita foi selecionada para ser deletada");
+            return;
+        }
             Receita receita= new Receita(
                     
             Integer.parseInt(txt_id.getText()),
@@ -621,6 +624,11 @@ public class TelaReceita extends javax.swing.JFrame {
 
         ReceitaDAO receita = new ReceitaDAO();
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 314d3ede46e0fbeeee795badd7e67c675623bad0
         
         int selLinha = -1;
         selLinha = jtConsultaCD.getSelectedRow();
