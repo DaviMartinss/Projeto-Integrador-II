@@ -7,6 +7,7 @@ package Views;
 
 import DAO.ReceitaDAO;
 import DAO.moduloConexao;
+import Model.Data;
 import Model.Receita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -215,7 +216,10 @@ public class TelaReceita extends javax.swing.JFrame {
      }
     
     void update_receita() {
-            
+        Receita receita_aux = new Receita();
+        
+        if(!(receita_aux.UpdateEhVazio(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText() ))){
+             
             Receita receita_atua = new Receita(
                 Integer.parseInt(txt_dia.getText()),
                 Integer.parseInt(txt_mes.getText()),
@@ -237,7 +241,9 @@ public class TelaReceita extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
+      }else{
+            JOptionPane.showMessageDialog(null, "Altere pelo menos um campo para realizar o update");
+        }
     }
     
      void delete_receita() {

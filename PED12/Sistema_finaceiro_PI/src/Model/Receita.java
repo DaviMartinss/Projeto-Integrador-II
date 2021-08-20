@@ -134,4 +134,23 @@ public class Receita {
             return false;
         }
     }
+    
+     public boolean valorEhVazio(String valor){
+         if(valor == null || valor.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+     
+    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor){
+        Data data_aux = new Data();
+        
+        if(data_aux.dataEhVazia(dia, mes, ano) || valorEhVazio(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
