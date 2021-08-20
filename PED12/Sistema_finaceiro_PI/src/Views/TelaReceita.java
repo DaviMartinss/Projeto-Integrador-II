@@ -7,6 +7,7 @@ package Views;
 
 import DAO.ReceitaDAO;
 import DAO.moduloConexao;
+import Model.Data;
 import Model.Receita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class TelaReceita extends javax.swing.JFrame {
     PreparedStatement pst = null;
     int salvaMes = 0;
     int SalvaAno = 0;
-    
+    boolean salvaLinhaAtiva = false;
 
     public TelaReceita() {
         initComponents();
@@ -169,6 +170,8 @@ public class TelaReceita extends javax.swing.JFrame {
     
     void RecarregaTabela_Receita(){
         
+        salvaLinhaAtiva = false;
+        
         ResultSet rs = null;
          
          DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
@@ -218,7 +221,17 @@ public class TelaReceita extends javax.swing.JFrame {
      }
     
     void update_receita() {
-            
+        
+        if(!(salvaLinhaAtiva)){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada´para ser atualizda");
+            return;
+        }
+        
+        
+        Receita receita_aux = new Receita();
+        
+        if(!(receita_aux.UpdateEhVazio(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText() ))){
+             
             Receita receita_atua = new Receita(
                 Integer.parseInt(txt_dia.getText()),
                 Integer.parseInt(txt_mes.getText()),
@@ -240,9 +253,33 @@ public class TelaReceita extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
+      }else{
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode ser nulo");
+        }
     }
     
+     void delete_receita() {
+            
+            Receita receita= new Receita(
+                    
+            Integer.parseInt(txt_id.getText()),
+            Integer.parseInt(txt_mes.getText()),
+            Integer.parseInt(txt_ano.getText())
+        );
+
+            ReceitaDAO receitaDAO = new ReceitaDAO();
+
+        try {
+           
+             receitaDAO.DeleteReceita(receita);
+                   
+        } catch (Exception e) {
+             
+            System.out.println("Foi no delete_receita");
+            JOptionPane.showMessageDialog(null, e.toString());
+        }
+    }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -275,8 +312,8 @@ public class TelaReceita extends javax.swing.JFrame {
         rbDescendente = new javax.swing.JRadioButton();
         btPesquisarCD = new javax.swing.JButton();
         txt_update = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        btn_excluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 500));
@@ -520,10 +557,6 @@ public class TelaReceita extends javax.swing.JFrame {
         getContentPane().add(txt_update);
         txt_update.setBounds(530, 320, 140, 27);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1920, 1080);
-
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,7 +564,16 @@ public class TelaReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 20);
+        txt_id.setBounds(20, 10, 60, 20);
+
+        btn_excluir.setText("Excluir");
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_excluir);
+        btn_excluir.setBounds(560, 430, 63, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -578,7 +620,19 @@ public class TelaReceita extends javax.swing.JFrame {
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
         ReceitaDAO receita = new ReceitaDAO();
+<<<<<<< HEAD
 
+=======
+        
+        int selLinha = -1;
+        selLinha = jtConsultaCD.getSelectedRow();
+        
+        if(selLinha != -1){
+            salvaLinhaAtiva = true;
+        }
+        
+        ResultSet rs = null;
+>>>>>>> a571928114861a7d9d9a31e46d6ae2282ecc6edd
 
         try {
 
@@ -743,6 +797,12 @@ public class TelaReceita extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_totalActionPerformed
 
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        // TODO add your handling code here:
+        delete_receita();
+        RecarregaTabela_Receita();
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -784,10 +844,10 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btn_NovaReceita;
     private javax.swing.JButton btn_despesas;
+    private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_inicio;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

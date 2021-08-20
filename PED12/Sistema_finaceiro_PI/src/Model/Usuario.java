@@ -11,6 +11,7 @@ package Model;
  */
 
     
+import com.mysql.cj.util.StringUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,5 +102,36 @@ public class Usuario {
     public void setId_conta(int id_conta) {
         this.id_conta = id_conta;
     }
-     
+    
+   public boolean validaNomeUser(String nome){
+       
+        String nomeAux = nome.replace(" ", "");
+        
+        boolean soLetra = true;
+        
+        for(int i = 0; i < nomeAux.length(); i++){
+            char aux = nomeAux.charAt(i);
+            if(!(Character.isLetter(aux))){
+                soLetra = false;
+            }
+        }
+        if(!(soLetra)){
+           return false;
+        }
+        
+        return true;
+    }
+
+    
+    public boolean validaTamSenha(String senha){
+        if(senha.length() >= 6){
+            
+            return  true;
+            
+        }else{
+            
+            return  false;
+        }
+    }
+    
 }

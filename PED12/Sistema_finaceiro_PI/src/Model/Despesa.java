@@ -196,6 +196,29 @@ public class Despesa {
         this.cod_despesa = cod_despesa;
     }
     
+    public boolean validaDataDespesa(){
+        
+        Data data_aux = new Data(getDia(), getMes(), getAno());
+        
+        if(data_aux.verifica_data()){
+            
+            return true;
+            
+        }else{
+            
+            return false;
+        }
+    }
     
+    public boolean validaNumParcelas(){
+        
+        if(getNum_parcelas() > 0){
+            
+            return true;
+        }else{
+            
+            return false;
+        }
+    }
     
 }

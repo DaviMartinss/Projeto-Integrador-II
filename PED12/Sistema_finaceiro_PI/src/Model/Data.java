@@ -81,4 +81,36 @@ public class Data {
             return false;
         }
     }
+    
+    public boolean diaEhVazio(String dia){
+        if(dia == null || dia.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean MesEhVazio(String Mes){
+        if(Mes == null || Mes.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean AnoEhVazio(String ano){
+        if(ano == null || ano.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean dataEhVazia(String dia, String mes, String ano){
+        if(diaEhVazio(dia) || MesEhVazio(mes) || AnoEhVazio(ano)){
+            return  true;
+        }else{
+            return false;
+        }
+    }
 }

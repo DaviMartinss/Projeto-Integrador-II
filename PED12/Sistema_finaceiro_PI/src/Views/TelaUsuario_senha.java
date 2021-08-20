@@ -72,9 +72,17 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             
             if (UserSenhaDAO.valida_UpdateSenha(senha1, senha2)){
                 
-                UserSenhaDAO.UpdateSenha(senhaUser);
-                JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso");
-                Volta_TelaConta();
+                if(senhaUser.validaTamSenha(senha1)){
+                    
+                    UserSenhaDAO.UpdateSenha(senhaUser);
+                    JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso");
+                    Volta_TelaConta();
+                    
+                }else{
+                    
+                    JOptionPane.showMessageDialog(null, "Falha,A senha dever ter no mínimo 6 caracteres!");
+                }
+                
                 
             }else{
                 

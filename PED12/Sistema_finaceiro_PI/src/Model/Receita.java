@@ -18,7 +18,7 @@ public class Receita {
     private int id_conta;
     private int Salva_Mes;
     private int Salva_ano;
-
+    private int cod_receita;
     
     public Receita() {
         
@@ -31,6 +31,15 @@ public class Receita {
         this.total = total;
         this.id_conta = id_conta;
     }
+
+    public Receita(int id_conta, int mes, int ano ) {
+        this.id_conta = id_conta;
+        this.mes = mes;
+        this.ano = ano;
+        
+    }
+    
+    
     
     public Receita(int dia, int mes, int ano, float total, int id_conta, int Salva_Mes, int Salva_ano) {
         this.dia = dia;
@@ -98,6 +107,15 @@ public class Receita {
         this.Salva_ano = Salva_ano;
     }
     
+    public int getCod_receita() {
+        return cod_receita;
+    }
+
+    public void setCod_receita(int cod_receita) {
+        this.cod_receita = cod_receita;
+    }
+
+    
     public boolean verifica_total(){
         if (getTotal() > 0) {
             return  true;
@@ -116,4 +134,23 @@ public class Receita {
             return false;
         }
     }
+    
+     public boolean valorEhVazio(String valor){
+         if(valor == null || valor.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+     
+    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor){
+        Data data_aux = new Data();
+        
+        if(data_aux.dataEhVazia(dia, mes, ano) || valorEhVazio(valor)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
