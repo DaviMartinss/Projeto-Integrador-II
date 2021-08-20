@@ -7,11 +7,14 @@ package Views;
 
 import DAO.DespesaDAO;
 import DAO.ReceitaDAO;
+import Model.Data;
 import Model.Despesa;
 import Model.Receita;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -246,8 +249,156 @@ public class TelaDespesa extends javax.swing.JFrame {
          
      }
     
-     void telaUpdateDespesa(){
-         
+    
+    void PesquisaDespesa() {
+
+        boolean ordenar = true;
+
+        String tipo = "";
+
+        String escolha = cbbTipo.getSelectedItem().toString().trim();
+
+        if (escolha.equals("Valor")) {
+            tipo = " " + "valor";
+        }
+
+        if (escolha.equals("Categoria")) {
+            tipo = " " + "categoria";
+        }
+
+        if (escolha.equals("Número do Cartão")) {
+            tipo = " " + "num_cartao";
+        }
+
+        if (escolha.equals("Dia")) {
+            tipo = " " + "dia";
+        }
+
+        if (escolha.equals("Mês")) {
+            tipo = " " + "mes";
+        }
+
+        if (escolha.equals("Ano")) {
+            tipo = " " + "ano";
+        }
+
+        if (escolha.equals("Descrição")) {
+            tipo = " " + "descricao";
+        }
+
+        if (escolha.equals("Nº Parcelas")) {
+            tipo = " " + "n_parcelas";
+        }
+
+        if (escolha.equals("Forma de Pagamento")) {
+            tipo = " " + "f_pagamento";
+        }
+
+        if (escolha.equals("Estatus")) {
+            tipo = " " + "estatus";
+        }
+
+        if (rbAscendente.isSelected()) {
+
+            ordenar = true;
+
+        } else {
+
+            ordenar = false;
+        }
+
+        String argumento = txt_Pesquisa.getText();
+
+        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaDespesa.getModel();
+
+        int l = mp1.getRowCount();
+
+        if (l > 0) {
+            while (l > 0) {
+                //Limpa tabela sempre que for fazer uma nova consulta
+                ((DefaultTableModel) jtConsultaDespesa.getModel()).removeRow(l - 1);
+
+                //Menos um pois a primeira linha é a linha zero
+                l--;
+            }
+        }
+
+        try {
+
+            String Col0 = null;
+            String Col1 = null;
+            String Col2 = null;
+            String Col3 = null;
+            String Col4 = null;
+            String Col5 = null;
+            String Col6 = null;
+            String Col7 = null;
+            String Col8 = null;
+            String Col9 = null;
+            String Col10 = null;
+
+            ResultSet rs = null;
+
+            DespesaDAO despesaDAO = new DespesaDAO();
+
+            Receita receita = new Receita();
+
+            receita.setId_conta(Integer.parseInt(txt_id.getText()));
+            receita.setMes(Integer.parseInt(txtMesReceita.getText()));
+            receita.setAno(Integer.parseInt(txtAnoReceita.getText()));
+
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
+
+            LinkedList<Despesa> lista_despesa = despesaDAO.Consulta_Despesa(tipo, argumento, ordenar, receita);
+
+            for (Despesa despesa : lista_despesa) {
+
+                Col0 = Integer.toString(despesa.getCod_despesa());
+                Col1 = Integer.toString(despesa.getDia());
+                Col2 = Integer.toString(despesa.getMes());
+                Col3 = Integer.toString(despesa.getAno());
+                Col4 = Float.toString(despesa.getValor());
+                Col5 = despesa.getCategoria();
+                Col6 = despesa.getF_pagamento();
+                Col7 = Long.toString(despesa.getNum_cartao());
+                Col8 = Integer.toString(despesa.getNum_parcelas());
+                Col9 = despesa.getEstatus();
+                Col10 = despesa.getDescricao();
+
+                if (Col7 == null) {
+
+                    Col7 = "----";
+
+                }
+
+                if (Col8 == null) {
+
+                    Col8 = "----";
+
+                }
+
+                if (Col10 == null) {
+
+                    Col10 = "----";
+
+                }
+
+                mp.addRow(new String[]{Col0, Col1, Col2, Col3,
+                    Col4, Col5, Col6, Col7,
+                    Col8, Col9, Col10});
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+
+    }
+    
+     void telaUpdateDespesa() {
+
         if (salvaF_pagamento.equals("CRÉDITO")) {
 
             Despesa despesa = new Despesa(
@@ -262,7 +413,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
-                    
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
@@ -274,8 +424,8 @@ public class TelaDespesa extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
-        }else if(salvaF_pagamento.equals("DÉBITO")){
-              Despesa despesa = new Despesa(
+        } else if (salvaF_pagamento.equals("DÉBITO")) {
+            Despesa despesa = new Despesa(
                     Integer.parseInt(txtDia.getText().trim()),
                     Integer.parseInt(txtMes.getText()),
                     Integer.parseInt(txtAno.getText()),
@@ -286,7 +436,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
-                    
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
@@ -297,9 +446,9 @@ public class TelaDespesa extends javax.swing.JFrame {
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
-            }  
-            
-        }else{
+            }
+
+        } else {
             Despesa despesa = new Despesa(
                     Integer.parseInt(txtDia.getText().trim()),
                     Integer.parseInt(txtMes.getText()),
@@ -310,7 +459,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
-                    
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
@@ -321,8 +469,8 @@ public class TelaDespesa extends javax.swing.JFrame {
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
-            }  
-            
+            }
+
         }
 
     }
@@ -880,168 +1028,40 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void btPesquisarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarDespesaActionPerformed
         // TODO add your handling code here:
         
+        DespesaDAO despesaDAO = new DespesaDAO();
+        
         if (!(txtMesReceita.getText().isEmpty()) && !(txtAnoReceita.getText().isEmpty())) {
-
-            if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
-
-                boolean ordenar = true;
-
-                String tipo = "";
-
-                String escolha = cbbTipo.getSelectedItem().toString().trim();
-
-                if (escolha.equals("Valor")) {
-                    tipo = " " + "valor";
-                }
-
-                if (escolha.equals("Categoria")) {
-                    tipo = " " + "categoria";
-                }
-
-                if (escolha.equals("Número do Cartão")) {
-                    tipo = " " + "num_cartao";
-                }
-
+            
+            try {
                 
-                if (escolha.equals("Dia")) {
-                    tipo = " " + "dia";
-                }
-                
-                if (escolha.equals("Mês")) {
-                    tipo = " " + "mes";
-                }
-                
-                if (escolha.equals("Ano")) {
-                    tipo = " " + "ano";
-                }
-                
-                if (escolha.equals("Descrição")) {
-                    tipo = " " + "descricao";
-                }
-
-                if (escolha.equals("Nº Parcelas")) {
-                    tipo = " " + "n_parcelas";
-                }
-                
-                if (escolha.equals("Forma de Pagamento")) {
-                    tipo = " " + "f_pagamento";
-                }
-                
-                if (escolha.equals("Estatus")) {
-                    tipo = " " + "estatus";
-                }
-                
-                if (rbAscendente.isSelected()) {
-
-                    ordenar = true;
-
+                if(despesaDAO.ValidaConsulta_Despesa(Integer.parseInt(txtMesReceita.getText()), Integer.parseInt(txtAnoReceita.getText()))){
+                    
+                    if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
+                        
+                        PesquisaDespesa();
+                        
+                    } else {
+                        
+                        JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
+                        
+                    }
+                    
                 } else {
-
-                    ordenar = false;
+                    
+                    JOptionPane.showMessageDialog(this, "Mês ou Ano da receita inválidos ou inexistentes!");
                 }
-
-                String argumento = txt_Pesquisa.getText();
-
-                DefaultTableModel mp1 = (DefaultTableModel) jtConsultaDespesa.getModel();
-
-                int l = mp1.getRowCount();
-
-                if (l > 0) {
-                    while (l > 0) {
-                        //Limpa tabela sempre que for fazer uma nova consulta
-                        ((DefaultTableModel) jtConsultaDespesa.getModel()).removeRow(l - 1);
-
-                        //Menos um pois a primeira linha é a linha zero
-                        l--;
-                    }
-                }
-
-                try {
-
-                    String Col0 = null;
-                    String Col1 = null;
-                    String Col2 = null;
-                    String Col3 = null;
-                    String Col4 = null;
-                    String Col5 = null;
-                    String Col6 = null;
-                    String Col7 = null;
-                    String Col8 = null;
-                    String Col9 = null;
-                    String Col10 = null;
-
-                    ResultSet rs = null;
-
-                    DespesaDAO despesaDAO = new DespesaDAO();
-
-                    Receita receita = new Receita();
-
-                    receita.setId_conta(Integer.parseInt(txt_id.getText()));
-                    receita.setMes(Integer.parseInt(txtMesReceita.getText()));
-                    receita.setAno(Integer.parseInt(txtAnoReceita.getText()));
-
-                    DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
-
-                    LinkedList<Despesa> lista_despesa = despesaDAO.Consulta_Despesa(tipo, argumento, ordenar, receita);
-
-                    for (Despesa despesa : lista_despesa) {
-
-                        Col0 = Integer.toString(despesa.getCod_despesa());
-                        Col1 = Integer.toString(despesa.getDia());
-                        Col2 = Integer.toString(despesa.getMes());
-                        Col3 = Integer.toString(despesa.getAno());
-                        Col4 = Float.toString(despesa.getValor());
-                        Col5 = despesa.getCategoria();
-                        Col6 = despesa.getF_pagamento();
-                        Col7 = Long.toString(despesa.getNum_cartao());
-                        Col8 = Integer.toString(despesa.getNum_parcelas());
-                        Col9 = despesa.getEstatus();
-                        Col10 = despesa.getDescricao();
-
-                        if (Col7 == null) {
-
-                            Col7 = "----";
-
-                        }
-
-                        if (Col8 == null) {
-
-                            Col8 = "----";
-
-                        }
-
-                        if (Col10 == null) {
-
-                            Col10 = "----";
-
-                        }
-
-                        mp.addRow(new String[]{Col0, Col1, Col2, Col3,
-                            Col4, Col5, Col6, Col7,
-                            Col8, Col9, Col10});
-
-                    }
-
-                } catch (Exception e) {
-
-                    JOptionPane.showMessageDialog(this, e.getMessage());
-
-                }
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-
+                
+            } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
+                
             }
-
+            
         } else {
-
-            JOptionPane.showMessageDialog(this, "Informe o dia e mês da receita correspondente!!");
-
+            
+            JOptionPane.showMessageDialog(this, "Informe o mês e ano de uma receita existente!!");
         }
            
-           
-
     }//GEN-LAST:event_btPesquisarDespesaActionPerformed
 
     private void jtConsultaDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaDespesaMouseClicked

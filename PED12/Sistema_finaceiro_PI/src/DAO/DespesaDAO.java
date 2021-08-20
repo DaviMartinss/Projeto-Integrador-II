@@ -380,7 +380,11 @@ public class DespesaDAO {
 
             JOptionPane.showMessageDialog(null, e.getMessage() + "     TUTUTUTUTU");
  
-       }
+       }finally{
+            
+            pst.close();
+            
+        }
        
        return lista_despesa;
        
@@ -462,11 +466,53 @@ public class DespesaDAO {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
-       } 
+       }finally{
+            
+            pst.close();
+            
+        } 
        
        return lista_despesa;
        
    }
+    
+   public boolean ValidaConsulta_Despesa(int mes, int ano) throws SQLException{
+       
+       String consulta = "select * from receita_data where mes = ? and ano = ?";
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try{
+           
+           pst.setInt(1, mes);
+           
+           pst.setInt(2, ano);
+           
+           rs = pst.executeQuery();
+           
+           if(rs.next()){
+               
+               return true;
+               
+           }else{
+               
+               return false;
+           }
+           
+           
+       }catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           
+           return false;
+       
+       }
+       
+       
+   }
+   
    
    public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String id_conta) throws SQLException {
  
@@ -531,7 +577,11 @@ public class DespesaDAO {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
-       }
+       }finally{
+            
+            pst.close();
+            
+        }
 
        return lista_despesa;
        

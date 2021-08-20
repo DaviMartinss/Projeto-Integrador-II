@@ -620,9 +620,7 @@ public class TelaReceita extends javax.swing.JFrame {
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
         ReceitaDAO receita = new ReceitaDAO();
-<<<<<<< HEAD
 
-=======
         
         int selLinha = -1;
         selLinha = jtConsultaCD.getSelectedRow();
@@ -632,7 +630,7 @@ public class TelaReceita extends javax.swing.JFrame {
         }
         
         ResultSet rs = null;
->>>>>>> a571928114861a7d9d9a31e46d6ae2282ecc6edd
+
 
         try {
 

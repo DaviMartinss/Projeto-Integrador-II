@@ -17,6 +17,11 @@ public class Data {
     public Data() {
     
     }
+    
+     public Data(int mes, int ano) {
+        this.mes = mes;
+        this.ano = ano;
+    }
 
     public Data(int dia, int mes, int ano) {
         this.dia = dia;
@@ -58,14 +63,14 @@ public class Data {
         }
     }
     
-    private boolean verifica_mes(){
+    public boolean verifica_mes(){
         if (getMes() > 0 && getMes() <= 12) {
             return true;
         } else {
             return false;
         }
     }
-    private boolean verifica_ano(){
+    public boolean verifica_ano(){
         if (getAno() > 0) {
             return true;
         } else {
