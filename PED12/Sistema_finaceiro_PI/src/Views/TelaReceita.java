@@ -30,7 +30,7 @@ public class TelaReceita extends javax.swing.JFrame {
     PreparedStatement pst = null;
     int salvaMes = 0;
     int SalvaAno = 0;
-    
+    boolean salvaLinhaAtiva = false;
 
     public TelaReceita() {
         initComponents();
@@ -169,6 +169,8 @@ public class TelaReceita extends javax.swing.JFrame {
     
     void RecarregaTabela_Receita(){
         
+        salvaLinhaAtiva = false;
+        
         ResultSet rs = null;
          
          DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
@@ -216,6 +218,13 @@ public class TelaReceita extends javax.swing.JFrame {
      }
     
     void update_receita() {
+        
+        if(!(salvaLinhaAtiva)){
+            JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada´para ser atualizda");
+            return;
+        }
+        
+        
         Receita receita_aux = new Receita();
         
         if(!(receita_aux.UpdateEhVazio(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText() ))){
@@ -242,7 +251,7 @@ public class TelaReceita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
       }else{
-            JOptionPane.showMessageDialog(null, "Altere pelo menos um campo para realizar o update");
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode ser nulo");
         }
     }
     
@@ -608,7 +617,14 @@ public class TelaReceita extends javax.swing.JFrame {
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
         ReceitaDAO receita = new ReceitaDAO();
-
+        
+        int selLinha = -1;
+        selLinha = jtConsultaCD.getSelectedRow();
+        
+        if(selLinha != -1){
+            salvaLinhaAtiva = true;
+        }
+        
         ResultSet rs = null;
 
         try {
