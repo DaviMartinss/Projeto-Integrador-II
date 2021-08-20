@@ -29,6 +29,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     long salva_num_cartao_debito = 0;
+    boolean salvaLinhaAtiva = false;
     
     public TelaCartao_debito() {
         initComponents();
@@ -122,7 +123,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
      
     
      void RecarregaTabela_CartaoDB(){
-         
+         salvaLinhaAtiva = false;
          DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
         
         int l = mp1.getRowCount();
@@ -168,6 +169,10 @@ public class TelaCartao_debito extends javax.swing.JFrame {
      }
      
      void update_cartao_debito() {
+            if(!(salvaLinhaAtiva)){
+                JOptionPane.showMessageDialog(null, "Nenhum Cartão de Credito foi selecionada para ser atualizado");
+                return;
+            }
             
             CartaoDebito cartao_d = new CartaoDebito(
                 Long.parseLong(txt_NumCartaoD.getText()),
@@ -205,7 +210,10 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     }
      
      void delete_cartao_debito() {
-            
+           if(!(salvaLinhaAtiva)){
+                JOptionPane.showMessageDialog(null, "Nenhum Cartão de Débito foi selecionada para ser deletado");
+                return;
+            } 
             CartaoDebito cartao_d = new CartaoDebito(
                 Long.parseLong(txt_NumCartaoD.getText())
                     
@@ -574,7 +582,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
         // TODO add your handling code here:
-
+         
         if(rbAscendente.isSelected() || rbDescendente.isSelected()){
 
             boolean ordenar = true;
@@ -670,8 +678,18 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             txt_Valor.setText(Float.toString(lista_CD.element().getValor_atual()));
             txt_Bandeira.setText(lista_CD.element().getBandeira());
             salva_num_cartao_debito = lista_CD.element().getN_cartao_debito();
-
+            
+            
+             
+            int selLinha = -1;
+            selLinha = jtConsultaCD.getSelectedRow();
+        
+            if(selLinha != -1){
+                salvaLinhaAtiva = true;
+            }
+            
             lista_CD.clear();
+            
 
         } catch (SQLException ex) {
 

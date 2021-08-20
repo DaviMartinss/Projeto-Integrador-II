@@ -31,6 +31,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     long salva_num_cartao = 0;
+    boolean salvaLinhaAtiva = false;
     
     
     public TelaCartao_credito() {
@@ -126,7 +127,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
       
       
       void RecarregaTabela_CartaoCC() {
-
+        
+          boolean salvaLinhaAtiva = false;
         DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCC.getModel();
 
         int l = mp1.getRowCount();
@@ -173,7 +175,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
       
       
      void update_cartao_credito() {
-            
+         if(!(salvaLinhaAtiva)){
+                JOptionPane.showMessageDialog(null, "Nenhum Cartão de Credito foi selecionada para ser atualizado");
+                return;
+            }   
+         
             CartaoCredito cartao_c = new CartaoCredito(
                 Long.parseLong(txt_NumCartaoC.getText()),
                 Float.parseFloat(txt_Limite.getText()),
@@ -213,6 +219,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
      
      void delete_cartao_credito() {
             
+         if(!(salvaLinhaAtiva)){
+                JOptionPane.showMessageDialog(null, "Nenhum Cartão de Credito foi selecionado para ser atualizado");
+                return;
+            }
+         
             CartaoCredito cartao_c = new CartaoCredito(
                 salva_num_cartao                  
         );
@@ -724,7 +735,13 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             txt_Bandeira.setText(lista_CC.element().getBandeira());
             salva_num_cartao = lista_CC.element().getN_cartao_credito();
             
-            
+            int selLinha = -1;
+            selLinha = jtConsultaCC.getSelectedRow();
+        
+            if(selLinha != -1){
+                salvaLinhaAtiva = true;
+            }
+        
         } catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
