@@ -250,7 +250,7 @@ public class TelaDespesa extends javax.swing.JFrame {
          
      }
     
-<<<<<<< HEAD
+
     
     void PesquisaDespesa() {
 
@@ -401,15 +401,13 @@ public class TelaDespesa extends javax.swing.JFrame {
     
      void telaUpdateDespesa() {
 
-=======
-     void telaUpdateDespesa(){
          
           if(!(salvaLinhaAtiva)){
                 JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser atualizda");
                 return;
             }
          
->>>>>>> 314d3ede46e0fbeeee795badd7e67c675623bad0
+
         if (salvaF_pagamento.equals("CRÉDITO")) {
 
             Despesa despesa = new Despesa(

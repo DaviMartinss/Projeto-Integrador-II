@@ -5,53 +5,40 @@
  */
 package Views;
 
-import java.sql.*;
-import DAO.moduloConexao;
+import DAO.UsuarioDAO;
 import javax.swing.JOptionPane;
 import Model.Usuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author pc
  */
 public class TelaLogin extends javax.swing.JFrame {
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    
-    private int id = 0;
-    
-    Usuario usuario_conta = new Usuario();
     /**
      * Creates new form TelaLogin
      */
     
     public TelaLogin() {
         initComponents();
-        conexao = moduloConexao.conector();
-        System.out.println(conexao);
-        
         this.setLocationRelativeTo(null);
-      
-        
     }
 
     TelaPrincipal TelaPrincipal;
     
-    public void logar(){
-        String sql = "select * from conta where email=? and senha=?";
+    public void logar() throws SQLException{   
+        
+        Usuario user = new Usuario(txtEmail.getText(), txtSenha.getText());
+
+        UsuarioDAO userDAO = new UsuarioDAO();
+        
+//        boolean logar = userDAO.logar(user);
+        
         try {
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtEmail.getText());
-            pst.setString(2, txtSenha.getText());
             
-            rs = pst.executeQuery();
-            
-            if(rs.next()){
-                
-                usuario_conta.setId_conta(rs.getInt(1));
-                
-                id = usuario_conta.getId_conta();
+            if(userDAO.logar(user)){
 
                 if (TelaPrincipal == null) {
 
@@ -59,7 +46,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
                     TelaPrincipal.setVisible(true);
 
-                    String id = Integer.toString(usuario_conta.getId_conta());
+                    String id = Integer.toString(user.getId_conta());
 
                     TelaPrincipal.receberID(id);
                     
@@ -69,7 +56,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
                     TelaPrincipal.setState(TelaPrincipal.NORMAL);
 
-                    String id = Integer.toString(usuario_conta.getId_conta());
+                    String id = Integer.toString(user.getId_conta());
 
                     TelaPrincipal.receberID(id);
                 }
@@ -215,7 +202,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
        
-       logar();
+        try {
+            logar();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao logar");
+        }
 
     }//GEN-LAST:event_btnLoginActionPerformed
 

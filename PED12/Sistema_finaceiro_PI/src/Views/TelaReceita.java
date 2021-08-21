@@ -39,6 +39,11 @@ public class TelaReceita extends javax.swing.JFrame {
         System.out.println(conexao);
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
+        
+        txt_total.setEditable(false);
+        txt_dia.setEditable(false);
+        txt_mes.setEditable(false);
+        txt_ano.setEditable(false);
     }
     
     void inicio(){
@@ -314,7 +319,7 @@ public class TelaReceita extends javax.swing.JFrame {
         rbAscendente = new javax.swing.JRadioButton();
         rbDescendente = new javax.swing.JRadioButton();
         btPesquisarCD = new javax.swing.JButton();
-        txt_update = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
         txt_id = new javax.swing.JTextField();
         btn_excluir = new javax.swing.JButton();
 
@@ -502,7 +507,6 @@ public class TelaReceita extends javax.swing.JFrame {
         jScrollPane1.setBounds(30, 170, 640, 120);
 
         txt_Pesquisa.setColumns(200);
-        txt_Pesquisa.setText("Pesquisa");
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_PesquisaActionPerformed(evt);
@@ -548,17 +552,17 @@ public class TelaReceita extends javax.swing.JFrame {
         getContentPane().add(btPesquisarCD);
         btPesquisarCD.setBounds(630, 120, 40, 40);
 
-        txt_update.setBackground(new java.awt.Color(105, 69, 219));
-        txt_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        txt_update.setForeground(new java.awt.Color(255, 255, 255));
-        txt_update.setText("Atualizar");
-        txt_update.addActionListener(new java.awt.event.ActionListener() {
+        btn_update.setBackground(new java.awt.Color(105, 69, 219));
+        btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_update.setForeground(new java.awt.Color(255, 255, 255));
+        btn_update.setText("Alterar");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_updateActionPerformed(evt);
+                btn_updateActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_update);
-        txt_update.setBounds(530, 320, 140, 27);
+        getContentPane().add(btn_update);
+        btn_update.setBounds(530, 320, 140, 27);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -623,12 +627,6 @@ public class TelaReceita extends javax.swing.JFrame {
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
         ReceitaDAO receita = new ReceitaDAO();
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 314d3ede46e0fbeeee795badd7e67c675623bad0
         
         int selLinha = -1;
         selLinha = jtConsultaCD.getSelectedRow();
@@ -793,11 +791,36 @@ public class TelaReceita extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbTipoActionPerformed
 
-    private void txt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_updateActionPerformed
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-        update_receita();
-        RecarregaTabela_Receita();
-    }//GEN-LAST:event_txt_updateActionPerformed
+        
+        if(btn_update.getText().equals("Alterar")){
+            
+            btn_update.setText("Atualizar");
+            
+            txt_total.setEditable(true);
+            txt_dia.setEditable(true);
+            txt_mes.setEditable(true);
+            txt_ano.setEditable(true);
+        
+        }else{
+            
+            btn_update.setText("Alterar");
+            
+            txt_total.setEditable(false);
+            txt_dia.setEditable(false);
+            txt_mes.setEditable(false);
+            txt_ano.setEditable(false);
+            
+            update_receita();
+            
+            RecarregaTabela_Receita();
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_btn_updateActionPerformed
 
     private void txt_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_totalActionPerformed
         // TODO add your handling code here:
@@ -852,6 +875,7 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JButton btn_despesas;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_inicio;
+    private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
@@ -869,7 +893,6 @@ public class TelaReceita extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_mes;
     private javax.swing.JTextField txt_total;
-    private javax.swing.JButton txt_update;
     // End of variables declaration//GEN-END:variables
 
 

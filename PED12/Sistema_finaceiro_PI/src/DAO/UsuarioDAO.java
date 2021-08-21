@@ -21,6 +21,49 @@ public class UsuarioDAO {
         
     }
     
+    public boolean logar(Usuario user) throws SQLException {
+
+        String sql = "select * from conta where email=? and senha=?";
+        
+        PreparedStatement pst = null;
+        
+        try {
+            
+            pst = conexao.prepareStatement(sql);
+            
+            pst.setString(1, user.getEmail());
+            pst.setString(2, user.getSenha());
+
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                user.setId_conta(rs.getInt(1));
+                
+                return true;
+
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
+                
+                return false;
+            }
+        } catch (Exception e) {
+        
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            
+            return false;
+        
+        }finally{
+            
+            pst.close();
+            
+        }
+
+    }
+    
+    
+    
     public boolean CadastrarUsuario(Usuario usuario) throws SQLException {
 
         PreparedStatement pst = null;

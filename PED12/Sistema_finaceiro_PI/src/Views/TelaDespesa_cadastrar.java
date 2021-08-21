@@ -372,10 +372,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             txtParcelas.setEnabled(true);
 
             rbDebito.setSelected(false);
-            
-            rbPago.setSelected(true);
-            
-            rbNaoPago.setSelected(false);
 
         }
         
@@ -483,6 +479,8 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
             rbCredito.setSelected(false);
             rbDebito.setSelected(false);
+            rbPago.setSelected(true);
+            rbNaoPago.setSelected(false);
             txt_NumCartao.setEnabled(false);
             txtParcelas.setEnabled(false);
 
