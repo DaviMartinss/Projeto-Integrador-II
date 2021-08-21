@@ -186,18 +186,50 @@ public class UsuarioDAO {
        return rs;
        
    }
+     
+    public String NomeUsuario(String id_conta) throws SQLException {
+ 
+       String consulta = "SELECT nome FROM conta WHERE id_conta = ?";
+       
+       String nome = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setInt(1, Integer.parseInt(id_conta));
+           
+           rs = pst.executeQuery();
+           
+           if(rs.next()){
+               
+               nome = rs.getString("nome");
+               
+           }
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+
+       }
+
+       return nome;
+       
+   }
     
    
-      public boolean valida_UpdateSenha(String senha1, String senha2){
-        
+    public boolean valida_UpdateSenha(String senha1, String senha2) {
+
         if (senha1.equals(senha2)) {
             return true;
-            
+
         } else {
-            
+
             return false;
-            
+
         }
-      }
-    
+    }
+
 }

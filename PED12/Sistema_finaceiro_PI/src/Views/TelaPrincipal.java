@@ -351,17 +351,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         try {
 
-            rs = usuario.PreencherCampos_Usuario(txt_id.getText());
-
-            if(rs.next()){
-
-                labelNome.setText(rs.getString("nome"));
-                
-            }
+            labelNome.setText(usuario.NomeUsuario(txt_id.getText()));
 
         } catch (SQLException ex) {
 
-            JOptionPane.showMessageDialog(this, "Erro ao inserir os dados nos campos!!");
+            JOptionPane.showMessageDialog(this, "Erro ao pegar nome do usuario!!");
         }
         
     }//GEN-LAST:event_formWindowOpened

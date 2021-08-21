@@ -288,6 +288,15 @@ public class TelaReceita extends javax.swing.JFrame {
         }
     }
      
+    void LimpaCampos_Receita(){
+         
+        txt_total.setText("");
+        txt_dia.setText("");
+        txt_mes.setText(""); 
+        txt_ano.setText(""); 
+        
+     }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -816,6 +825,7 @@ public class TelaReceita extends javax.swing.JFrame {
             
             RecarregaTabela_Receita();
             
+            LimpaCampos_Receita();
         }
         
         

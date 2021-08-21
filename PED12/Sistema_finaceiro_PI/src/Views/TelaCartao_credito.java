@@ -6,6 +6,7 @@
 package Views;
 
 import DAO.CartaoCreditoDAO;
+import DAO.UsuarioDAO;
 import DAO.moduloConexao;
 import Model.CartaoCredito;
 import java.sql.Connection;
@@ -27,18 +28,28 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     /**
      * Creates new form TelaCartao_credito
      */
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+//    Connection conexao = null;
+//    PreparedStatement pst = null;
+//    ResultSet rs = null;
+    
     long salva_num_cartao = 0;
     boolean salvaLinhaAtiva = false;
     
     
     public TelaCartao_credito() {
         initComponents();
-        conexao = moduloConexao.conector();
+        
+//        conexao = moduloConexao.conector();
+        
         this.setLocationRelativeTo(null);
+        
         txt_id.setVisible(false);
+        txt_NumCartaoC.setEditable(false);
+        txt_ValorFatura.setEditable(false);
+        txt_Bandeira.setEditable(false);
+        txt_Limite.setEditable(false);
+        txt_DiaFatura.setEditable(false);
+        
     }
     void inicio(){
          
@@ -241,6 +252,17 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     }
      
      
+    void LimpaCampos_CC(){
+         
+        txt_NumCartaoC.setText("");
+        txt_ValorFatura.setText("");
+        txt_Bandeira.setText(""); 
+        txt_Bandeira.setText("");
+        txt_Limite.setText("");
+        txt_DiaFatura.setText("");
+                
+     }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -250,8 +272,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btn_inicio_CC = new javax.swing.JButton();
         btn_receitaCC = new javax.swing.JButton();
@@ -290,23 +310,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(null);
-
-        jTextField1.setBackground(new java.awt.Color(187, 210, 240));
-        jTextField1.setText("Usuário");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(30, 260, 300, 27);
-
-        jTextField2.setBackground(new java.awt.Color(187, 210, 240));
-        jTextField2.setText("Cartão de Crédito");
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(370, 260, 300, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Crédito");
@@ -525,7 +528,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_update.setForeground(new java.awt.Color(255, 255, 255));
-        btn_update.setText("Update");
+        btn_update.setText("Alterar");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_updateActionPerformed(evt);
@@ -683,8 +686,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        
-        
+
         RecarregaTabela_CartaoCC();
         
     }//GEN-LAST:event_formWindowOpened
@@ -751,13 +753,37 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-        update_cartao_credito();
-        RecarregaTabela_CartaoCC();
+        
+         if(btn_update.getText().equals("Alterar")){
+            
+            btn_update.setText("Atualizar");
+            
+            txt_NumCartaoC.setEditable(true);
+            txt_ValorFatura.setEditable(true);
+            txt_Bandeira.setEditable(true);
+            txt_Limite.setEditable(true);
+            txt_DiaFatura.setEditable(true);
+        
+        }else{
+            
+            btn_update.setText("Alterar");
+            
+            txt_NumCartaoC.setEditable(false);
+            txt_ValorFatura.setEditable(false);
+            txt_Bandeira.setEditable(false);
+            txt_Limite.setEditable(false);
+            txt_DiaFatura.setEditable(false);
+            
+            update_cartao_credito();
+            RecarregaTabela_CartaoCC();
+            
+            LimpaCampos_CC();
+            
+        }
+        
+        
+        
     }//GEN-LAST:event_btn_updateActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btn_exclui_ccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exclui_ccActionPerformed
         // TODO add your handling code here:
@@ -819,8 +845,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable jtConsultaCC;
     private javax.swing.JRadioButton rbAscendente;
     private javax.swing.JRadioButton rbDescendente;

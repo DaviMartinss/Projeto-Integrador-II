@@ -8,6 +8,7 @@ package Views;
 import DAO.CartaoDebitoDAO;
 import DAO.moduloConexao;
 import Model.CartaoDebito;
+import java.awt.FlowLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,17 +26,19 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     /**
      * Creates new form TelaCartao_debito
      */
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+
     long salva_num_cartao_debito = 0;
     boolean salvaLinhaAtiva = false;
-    
+
     public TelaCartao_debito() {
         initComponents();
-         conexao = moduloConexao.conector();
-         this.setLocationRelativeTo(null);
-         txt_id.setVisible(false);
+        
+        this.setLocationRelativeTo(null);
+        txt_id.setVisible(false);
+
+        txt_NumCartaoD.setEditable(false);
+        txt_Valor.setEditable(false);
+        txt_Bandeira.setEditable(false);
     }
     
     
@@ -232,6 +235,14 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         }
 
     }
+     
+     void LimpaCampos_CD(){
+         
+        txt_NumCartaoD.setText("");
+        txt_Valor.setText("");
+        txt_Bandeira.setText(""); 
+         
+     }
      
     /**
      * This method is called from within the constructor to initialize the form.
@@ -492,7 +503,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_update.setForeground(new java.awt.Color(255, 255, 255));
-        btn_update.setText("Atualizar");
+        btn_update.setText("Alterar");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_updateActionPerformed(evt);
@@ -708,8 +719,31 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-        update_cartao_debito();
-        RecarregaTabela_CartaoDB();
+        
+         if(btn_update.getText().equals("Alterar")){
+            
+            btn_update.setText("Atualizar");
+            
+            txt_NumCartaoD.setEditable(true);
+            txt_Valor.setEditable(true);
+            txt_Bandeira.setEditable(true);
+        
+        } else {
+
+            btn_update.setText("Alterar");
+
+            txt_NumCartaoD.setEditable(false);
+            txt_Valor.setEditable(false);
+            txt_Bandeira.setEditable(false);
+
+            update_cartao_debito();
+            RecarregaTabela_CartaoDB();
+            
+            LimpaCampos_CD();
+
+        }
+
+        
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

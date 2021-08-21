@@ -35,10 +35,9 @@ public class TelaUsuario extends javax.swing.JFrame {
         conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
         
-        //txtNome.setEnabled(false);
-        //txtEmail.setEnabled(false);
-        
-        txtSenha.setEnabled(false);
+        txtNome.setEditable(false);
+        txtEmail.setEditable(false);
+        txtSenha.setEditable(false);
         
         txt_id.setVisible(false);
         
@@ -222,7 +221,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_update.setForeground(new java.awt.Color(255, 255, 255));
-        btn_update.setText("Atualizar");
+        btn_update.setText("Alterar");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_updateActionPerformed(evt);
@@ -285,7 +284,28 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-        telaUpdateUser();
+        
+        if(btn_update.getText().equals("Alterar")){
+            
+            btn_update.setText("Atualizar");
+            
+            txtNome.setEditable(true);
+            txtEmail.setEditable(true);
+            txtSenha.setEditable(true);
+        
+        }else{
+            
+            btn_update.setText("Alterar");
+            
+            txtNome.setEditable(false);
+            txtEmail.setEditable(false);
+            txtSenha.setEditable(false);
+            
+            telaUpdateUser();
+            
+        }
+        
+        
     }//GEN-LAST:event_btn_updateActionPerformed
 
     /**
