@@ -221,4 +221,73 @@ public class Despesa {
         }
     }
     
+    
+     public boolean valorEhVazio(String valor){
+         if(valor == null || valor.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+     
+     
+     
+       public boolean EhVazio(String rec){
+        if(rec == null || rec.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+       
+    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag, 
+            String num_cartao, String num_parc, String status, String desc){
+        
+        if(!(EhVazio(f_pag))){
+            
+            if(f_pag.equals("CRÉDITO")){
+                
+                if(EhVazio(dia) || EhVazio(mes)|| EhVazio(ano)|| EhVazio(valor)
+                   || EhVazio(categoria) || EhVazio(num_cartao) || EhVazio(num_parc)
+                   || EhVazio(status) || EhVazio(desc)){
+                
+                    return true;
+                    
+                }else{
+                    
+                    return false;
+                }
+                    
+            }else if(f_pag.equals("DÉBITO")){
+                
+                if(EhVazio(dia) || EhVazio(mes)|| EhVazio(ano)|| EhVazio(valor)
+                   || EhVazio(categoria) || EhVazio(num_parc)
+                   || EhVazio(status) || EhVazio(desc)){
+                
+                    return true;
+                    
+                }else{
+                    
+                    return false;
+                }
+                
+            }else{
+                
+                if(EhVazio(dia) || EhVazio(mes)|| EhVazio(ano)|| EhVazio(valor)
+                   || EhVazio(categoria) || EhVazio(status) || EhVazio(desc)){
+                
+                    return true;
+                    
+                }else{
+                    
+                    return  false;
+                }
+            }
+        }else{
+            
+            return  true;
+        }
+    }
+    
+    
 }

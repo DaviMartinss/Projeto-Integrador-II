@@ -409,6 +409,13 @@ public class TelaDespesa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser atualizda");
             return;
         }
+        
+        Despesa despesa_aux = new Despesa();
+        
+        if(despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), txtCategoria.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(),salvaStatus, txtAreaDescricao.getText())){
+            JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
+            return;
+         }
 
         if (salvaF_pagamento.equals("CRÉDITO")) {
 
