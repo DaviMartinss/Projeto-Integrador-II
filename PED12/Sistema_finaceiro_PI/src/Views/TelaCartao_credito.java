@@ -190,6 +190,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nenhum Cartão de Credito foi selecionada para ser atualizado");
                 return;
             }   
+            CartaoCredito cartao_aux = new CartaoCredito();
+         
+         if(cartao_aux.UpdateEhVazio(txt_NumCartaoC.getText(), txt_ValorFatura.getText(), txt_Limite.getText(), txt_Bandeira.getText(), txt_DiaFatura.getText())){
+            JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
+            return;
+         }
          
             CartaoCredito cartao_c = new CartaoCredito(
                 Long.parseLong(txt_NumCartaoC.getText()),

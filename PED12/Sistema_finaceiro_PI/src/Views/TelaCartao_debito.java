@@ -177,6 +177,11 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                 return;
             }
             
+            CartaoDebito cartao_aux = new CartaoDebito();
+            if(cartao_aux.UpdateEhVazio(txt_NumCartaoD.getText(), txt_Valor.getText(), txt_Bandeira.getText())){
+                JOptionPane.showMessageDialog(null, "Nenhum Campo pode ser nulo no Update");
+                return;
+            }
             CartaoDebito cartao_d = new CartaoDebito(
                 Long.parseLong(txt_NumCartaoD.getText()),
                 Float.parseFloat(txt_Valor.getText()),

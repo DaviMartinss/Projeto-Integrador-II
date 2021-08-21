@@ -107,6 +107,12 @@ public class TelaUsuario extends javax.swing.JFrame {
         UsuarioDAO UserDao = new UsuarioDAO();
 
         try {
+            
+            if(user.UpdateEhVazio()){
+                JOptionPane.showMessageDialog(null, "Nenehum campo ser vazio para realizar o update");
+                return;
+            }
+            
             UserDao.UpdateUser(user);
             
 

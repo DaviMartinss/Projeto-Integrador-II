@@ -154,4 +154,27 @@ public class CartaoCredito {
        
     }         
    // falta verificar o número do cartão
+     
+     
+     public boolean EhVazio(String rec){
+        if(rec == null || rec.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+       
+      public boolean UpdateEhVazio(String num_cartao, String valor, String limite, String bandeira, String dia){
+        
+        
+       if(EhVazio(num_cartao) || EhVazio(valor) || EhVazio(limite) || EhVazio(bandeira) || EhVazio(dia)){
+           
+           return true;
+           
+       }else{
+           return  false;
+       }
+    }
+      
 }

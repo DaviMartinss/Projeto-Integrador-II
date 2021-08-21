@@ -104,4 +104,22 @@ public class CartaoDebito {
         return (cartao_aux.verifica_bandeira(bandeira));
     }
     // falta verificar o número do cartão
+    
+        public boolean EhVazio(String rec){
+        if(rec == null || rec.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+      public boolean UpdateEhVazio(String num_cartao, String valor, String bandeira){
+           
+       if(EhVazio(num_cartao) || EhVazio(valor) ||EhVazio(bandeira)){
+           
+           return true;
+           
+       }else{
+           return  false;
+       }
+    }
 }

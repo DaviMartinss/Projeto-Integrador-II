@@ -139,4 +139,24 @@ public class Usuario {
         }
     }
     
+    public boolean EhVazio(String rec){
+        if(rec == null || rec.trim().equals("")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean UpdateEhVazio(){
+           
+       if(EhVazio(getNome()) || EhVazio(getEmail()) ){
+           
+           return true;
+           
+       }else{
+           
+           return  false;
+       }
+    }
+    
 }
