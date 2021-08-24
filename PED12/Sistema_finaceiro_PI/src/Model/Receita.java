@@ -155,5 +155,65 @@ public class Receita {
             return false;
         }
     }
+    
+    public boolean ehNum(String res){
+        
+        boolean isNumeric = true;
+            
+            for(int i = 0; i < res.length(); i++){
+                if(!Character.isDigit(res.charAt(i))){
+                    isNumeric = false;
+                }
+            }
+            if(isNumeric){
+                
+                return  true;
+                
+            }else{
+                
+                return  false;
+            }
+        
+     }
+        
+
+    public int converteParaInt(String valor){
+        if(ehNum(valor)){
+            return Integer.parseInt(valor);
+          }
+          
+          return -1;
+    }
+    
+     public float converteParaFloat(String valor){
+        if(ehNum(valor)){
+            return Float.parseFloat(valor);
+          }
+          
+          return -1;
+    }
+     
+    public boolean Update_CamposValidos(String dia, String mes, String ano, String valor){
+        int dia_aux = converteParaInt(dia);
+        int mes_aux = converteParaInt(mes);
+        int ano_aux = converteParaInt(ano);
+        float valor_aux = converteParaFloat(valor);
+        
+        if(dia_aux != -1 && mes_aux != -1 && ano_aux != -1 && valor_aux != -1){
+            setDia(dia_aux);
+            setMes(mes_aux);
+            setAno(ano_aux);
+            setTotal(valor_aux);
+            
+            if(verifica_ReceitaValida()){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }else{
+            return false;
+        }
+    }
 
 }

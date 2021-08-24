@@ -232,8 +232,12 @@ public class TelaReceita extends javax.swing.JFrame {
             return;
         }
         
-        
         Receita receita_aux = new Receita();
+        
+        if(!( receita_aux.ehNum(txt_dia.getText()) && receita_aux.ehNum(txt_mes.getText()) && receita_aux.ehNum(txt_ano.getText()) && receita_aux.ehNum(txt_total.getText()) )){
+            JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+            return;
+        }
         
         if(!(receita_aux.UpdateEhVazio(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText() ))){
              
@@ -251,9 +255,12 @@ public class TelaReceita extends javax.swing.JFrame {
         ReceitaDAO receita_DAO = new ReceitaDAO();
 
         try {
-               
-            receita_DAO.UpdateReceita(receita_atua);
-                
+             if(receita_atua.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())){
+                 receita_DAO.UpdateReceita(receita_atua);
+             }else{
+                 JOptionPane.showMessageDialog(null, "Valor Inválido");
+             }  
+            
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());

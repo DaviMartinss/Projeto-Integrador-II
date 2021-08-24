@@ -31,7 +31,12 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     }
     
     public void cadastro_receita(){
-
+        Receita receita_aux = new Receita();
+        if(!( receita_aux.ehNum(txt_dia.getText()) && receita_aux.ehNum(txt_mes.getText()) && receita_aux.ehNum(txt_ano.getText()) && receita_aux.ehNum(txt_total.getText()) )){
+            JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+            return;
+        }
+        
         Receita receita = new Receita(
                 Integer.parseInt(txt_dia.getText()),
                 Integer.parseInt(txt_mes.getText()),
@@ -43,6 +48,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         ReceitaDAO receitaDAO = new ReceitaDAO();
 
         try {
+            
             
             if (receita.verifica_ReceitaValida())
             {
