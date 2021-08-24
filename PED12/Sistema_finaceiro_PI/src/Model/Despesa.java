@@ -221,6 +221,16 @@ public class Despesa {
         }
     }
     
+    public boolean validaValor(){
+        
+        if(getValor() > 0){
+            
+            return true;
+        }else{
+            
+            return false;
+        }
+    }
     
      public boolean valorEhVazio(String valor){
          if(valor == null || valor.trim().equals("")){
@@ -239,6 +249,40 @@ public class Despesa {
             return false;
         }
     }
+     
+       
+       public boolean  verifica_Categoria(String categoria){
+        
+        String categoria_aux = categoria.replace(" ", "");
+        
+        boolean soLetra = true;
+        
+        for (int i = 0; i < categoria_aux.length(); i++) {
+            
+            char aux = categoria_aux.charAt(i);
+            
+                if (!(Character.isLetter(aux))) {
+                    soLetra = false;
+            }
+        }
+        
+        if (!(soLetra)) {
+            return  false;
+        }
+        
+        return true;
+    }
+       
+      public boolean verifica_DespesaValida(){
+        
+        if(validaValor() && validaDataDespesa() &&verifica_Categoria(getCategoria())){
+            return true;
+        }else{
+            return false;
+        }
+    } 
+       
+       
        
     public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag, 
             String num_cartao, String num_parc, String status, String desc){

@@ -464,9 +464,19 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             
             DespesaDAO despesaDAO = new DespesaDAO();
             
-            despesaDAO.CadastrarDespesa(despesa);
+            try{
+                if(despesa.verifica_DespesaValida()){
+                    
+                    despesaDAO.CadastrarDespesa(despesa);
+                    Volta_TelaDespesa();
+                }else{
+                    
+                    JOptionPane.showMessageDialog(null, "Dados Inválidos!!");
+                }
+            }catch(Exception e){
+                
+            }
             
-            Volta_TelaDespesa();
             
         } 
         
