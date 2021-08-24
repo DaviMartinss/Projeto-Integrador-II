@@ -251,7 +251,7 @@ public class TelaReceita extends javax.swing.JFrame {
         ReceitaDAO receita_DAO = new ReceitaDAO();
 
         try {
-                
+               
             receita_DAO.UpdateReceita(receita_atua);
                 
         } catch (Exception e) {
