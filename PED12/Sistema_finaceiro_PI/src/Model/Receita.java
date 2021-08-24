@@ -118,8 +118,10 @@ public class Receita {
     
     public boolean verifica_total(){
         if (getTotal() > 0) {
+            
             return  true;
         } else {
+            
             return false;
         }
     }
@@ -128,7 +130,7 @@ public class Receita {
         
         Data data_aux = new Data(dia, mes, ano);
         
-        if(data_aux.verifica_data()){
+        if(data_aux.verifica_data() && verifica_total()){
             return true;
         }else{
             return false;
@@ -149,6 +151,7 @@ public class Receita {
         if(data_aux.dataEhVazia(dia, mes, ano) || valorEhVazio(valor)){
             return true;
         }else{
+            
             return false;
         }
     }
