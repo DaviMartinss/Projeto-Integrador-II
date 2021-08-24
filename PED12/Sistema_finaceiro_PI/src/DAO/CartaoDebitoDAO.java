@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Model.CartaoCredito;
 import Model.CartaoDebito;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -248,6 +247,41 @@ public class CartaoDebitoDAO {
        
    }
    
-   
+   public boolean CartaoExiste(CartaoDebito cartao) throws SQLException{
+       
+       String consulta = "select n_cartao_debito from cartao_debito where n_cartao_debito = ? and conta_id_conta =?";
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try{
+           
+           pst.setLong(1, cartao.getN_cartao_debito());
+           
+           pst.setInt(2, cartao.getId_conta());
+           
+           rs = pst.executeQuery();
+           
+           if(rs.next()){
+               
+               return true;
+               
+           }else{
+               
+               return false;
+           }
+           
+           
+       }catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           
+           return false;
+       
+       }
+       
+       
+   }
     
 }

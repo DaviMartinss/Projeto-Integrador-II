@@ -272,6 +272,43 @@ public class CartaoCreditoDAO {
        return lista_CC;
        
    }
+   
+   public boolean CartaoExiste(CartaoCredito cartao) throws SQLException{
+       
+       String consulta = "select n_cartao_credito from cartao_credito where n_cartao_credito = ? and conta_id_conta =?";
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try{
+           
+           pst.setLong(1, cartao.getN_cartao_credito());
+           
+           pst.setInt(2, cartao.getId_conta());
+           
+           rs = pst.executeQuery();
+           
+           if(rs.next()){
+               
+               return true;
+               
+           }else{
+               
+               return false;
+           }
+           
+           
+       }catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, e.getMessage());
+           
+           return false;
+       
+       }
+       
+       
+   }
     
     
 }

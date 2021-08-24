@@ -9,12 +9,15 @@ import DAO.UsuarioDAO;
 import Model.CartaoCredito;
 import DAO.moduloConexao;
 import DAO.CartaoCreditoDAO;
+import Model.Cartao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import Views.TelaLogin;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -267,7 +270,76 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             
         }else{
             
-            cadastro_cartao_credito();
+            boolean cadastra = true;
+            
+            CartaoCreditoDAO cartaoDAO = new CartaoCreditoDAO();
+            
+            CartaoCredito cartaoCC = new CartaoCredito(
+                                      Long.parseLong(txt_NumCC.getText()),
+                                      Float.parseFloat(txt_LimiteCC.getText()),
+                                      Integer.parseInt(txt_DiaFaturaCC.getText()),
+                                      Float.parseFloat(txt_ValorFatura.getText()),
+                                      txt_BandeiraCC.getText(),
+                                      Integer.parseInt(txt_id.getText())
+                                            
+            );
+            
+            try {
+                if(cartaoDAO.CartaoExiste(cartaoCC)){
+                            
+                    JOptionPane.showMessageDialog(null, "Número do cartão de crédito já existe","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    
+                    cadastra = false;
+                    
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaCartaoCredito_cadastrar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            if(!(cartaoCC.verifica_num_cartao_credito())){
+                
+                JOptionPane.showMessageDialog(null, "Número do cartão de crédito inválido","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+            
+            if(!(cartaoCC.verifica_bandeira_credito())){
+                
+                JOptionPane.showMessageDialog(null, "Bandeira inválida","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+            
+            if(!(cartaoCC.varifica_valor_fatura())){
+                
+                JOptionPane.showMessageDialog(null, "Valor da fatura inválido","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+            
+            if(!(cartaoCC.verifica_dia_fatura())){
+                
+                JOptionPane.showMessageDialog(null, "Dia da fatura inválido","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+            
+            if(!(cartaoCC.verifica_limite())){
+                
+                    JOptionPane.showMessageDialog(null, "Limite do cartão de crédito inválido","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+            
+            if(cadastra){
+                
+                cadastro_cartao_credito();
+                
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!", "INFORMATION_MESSAGE" , JOptionPane.INFORMATION_MESSAGE);
+                
+            }
 
         }
 

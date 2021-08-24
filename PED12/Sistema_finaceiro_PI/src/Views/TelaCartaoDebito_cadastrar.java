@@ -12,6 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import Model.CartaoDebito;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 /**
  *
  * @author pc
@@ -281,7 +285,62 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             
         }else{
             
-            cadastro_cartao_debito();
+            boolean cadastra = true;
+            
+            CartaoDebitoDAO cartaoDAO = new CartaoDebitoDAO();
+            
+            CartaoDebito cartaoDB = new CartaoDebito(
+                                      Long.parseLong(txt_numCartDeb.getText()),
+                                      Float.parseFloat(txt_valorCartaoDeb.getText()),
+                                      txt_BandCartDeb.getText(),
+                                      Integer.parseInt(txt_id.getText())
+                                            
+            );
+            
+            try {
+                if(cartaoDAO.CartaoExiste(cartaoDB)){
+                            
+                    JOptionPane.showMessageDialog(null, "Número do cartão de débito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    
+                    cadastra = false;
+                    
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            if(!(cartaoDB.verifica_num_cartao_deb())){
+                
+                JOptionPane.showMessageDialog(null, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+            
+            if(!(cartaoDB.verifica_valor_atual())){
+                
+                JOptionPane.showMessageDialog(null, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+            
+            if(!(cartaoDB.verifica_Bandeira_cartao_deb())){
+                
+                JOptionPane.showMessageDialog(null, "Bandeira inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                
+                cadastra = false;
+            }
+     
+            if(cadastra){
+                
+                cadastro_cartao_debito();
+                
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!", "INFORMATION_MESSAGE" , JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
+            
 
         } 
  

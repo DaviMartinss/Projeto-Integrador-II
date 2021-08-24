@@ -153,8 +153,15 @@ public class CartaoCredito {
         return (cartao_aux.verifica_bandeira(bandeira));
        
     }         
-   // falta verificar o número do cartão
      
+   // falta verificar o número do cartão
+     public boolean  verifica_num_cartao_credito(){
+        
+         Cartao cartao_aux = new Cartao();
+         
+        return (cartao_aux.ValidaNUM_Cartao(Long.toString(n_cartao_credito)));
+       
+    }  
      
      public boolean EhVazio(String rec){
         if(rec == null || rec.trim().equals("")){
