@@ -14,6 +14,9 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import Model.Data;
 import Model.Receita;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Alan
@@ -246,7 +249,84 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             
         }else{
             
-            cadastro_receita();
+            boolean cadastra = true;
+            
+            ReceitaDAO receitaDAO = new ReceitaDAO();
+            
+            Receita receita = new Receita(
+                                      
+                                      Integer.parseInt(txt_dia.getText()),
+                                      Integer.parseInt(txt_mes.getText()),
+                                      Integer.parseInt(txt_ano.getText()),
+                                      Float.parseFloat(txt_total.getText()),
+                                      Integer.parseInt(txt_id.getText())
+                                            
+            );
+            
+            Data data = new Data(Integer.parseInt(txt_dia.getText()),
+                                 Integer.parseInt(txt_mes.getText()),
+                                 Integer.parseInt(txt_ano.getText())
+            );
+            
+             try {
+                if(receitaDAO.ReceitaExiste(receita)){
+                            
+                    JOptionPane.showMessageDialog(null, "Receita já existe!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    
+                    cadastra = false;
+                    
+                }
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
+            if(!(receita.verifica_total())){
+                
+                
+                JOptionPane.showMessageDialog(null, "Valor inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    
+                cadastra = false;
+                
+            }
+            
+            if(!(data.verifica_dia())){
+                
+                
+                JOptionPane.showMessageDialog(null, "Dia inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    
+                cadastra = false;
+                
+            }
+            
+            if(!(data.verifica_mes())){
+                
+                
+                JOptionPane.showMessageDialog(null, "Mês inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    
+                cadastra = false;
+                
+            }
+            
+            
+            if(!(data.verifica_ano())){
+                
+                
+                JOptionPane.showMessageDialog(null, "Ano inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    
+                cadastra = false;
+                
+            }
+            
+            
+            if(cadastra){
+                
+                cadastro_receita();
+                
+                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!", "INFORMATION_MESSAGE" , JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
 
         }
         

@@ -6,11 +6,17 @@
 package Views;
 
 import DAO.DespesaDAO;
+import DAO.ReceitaDAO;
 import DAO.moduloConexao;
+import Model.Data;
 import Model.Despesa;
+import Model.Receita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,10 +34,9 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     PreparedStatement pst6 = null;
     ResultSet rs = null;
     ResultSet rs2 = null;
-    
+
     boolean FlagErroCadastroDespesa = true;
-    
-    
+
     /**
      * Creates new form TelaDespesa_cadastrar
      */
@@ -48,7 +53,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
         TelaDespesa TelaDespesa = null;
 
-        if (TelaDespesa== null) {
+        if (TelaDespesa == null) {
 
             TelaDespesa = new TelaDespesa();
 
@@ -67,14 +72,14 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         }
 
         this.dispose();
-        
+
     }
-    
+
     void Volta_TelaPrincipal() {
 
         TelaPrincipal Telaprin = null;
 
-        if (Telaprin== null) {
+        if (Telaprin == null) {
 
             Telaprin = new TelaPrincipal();
 
@@ -93,7 +98,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         }
 
         this.dispose();
-        
+
     }
 
     /**
@@ -343,42 +348,75 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private void rbDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDebitoActionPerformed
         // TODO add your handling code here:
 
-        if(rbDebito.isSelected()){
+        if (rbDebito.isSelected()) {
 
             txt_NumCartao.setEnabled(true);
 
             rbDinheiro.setSelected(false);
-            
+
             txtParcelas.setEnabled(false);
 
             rbCredito.setSelected(false);
-            
+
+            rbPago.setEnabled(false);
+
+            rbNaoPago.setEnabled(false);
+
             rbPago.setSelected(true);
-            
+
             rbNaoPago.setSelected(false);
 
+        } else {
+
+            txtParcelas.setEnabled(false);
+            txt_NumCartao.setEnabled(false);
+
+            rbPago.setSelected(false);
+
+            rbNaoPago.setSelected(false);
+
+            rbPago.setEnabled(true);
+
+            rbNaoPago.setEnabled(true);
+
         }
+
+
     }//GEN-LAST:event_rbDebitoActionPerformed
 
     private void rbCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCreditoActionPerformed
         // TODO add your handling code here:
 
-        if(rbCredito.isSelected()){
-            
+        if (rbCredito.isSelected()) {
+
             txt_NumCartao.setEnabled(true);
-            
+
             rbDinheiro.setSelected(false);
 
             txtParcelas.setEnabled(true);
 
             rbDebito.setSelected(false);
 
-        }
-        
-        
-        if(rbCredito.isSelected() == false){
+            rbPago.setEnabled(false);
+
+            rbNaoPago.setEnabled(false);
+
+            rbPago.setSelected(false);
+
+            rbNaoPago.setSelected(true);
+
+        } else {
 
             txtParcelas.setEnabled(false);
+            txt_NumCartao.setEnabled(false);
+
+            rbPago.setSelected(false);
+
+            rbNaoPago.setSelected(false);
+
+            rbPago.setEnabled(true);
+
+            rbNaoPago.setEnabled(true);
 
         }
 
@@ -390,7 +428,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
     private void rbPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPagoActionPerformed
         // TODO add your handling code here:
-        if(rbPago.isSelected()){
+        if (rbPago.isSelected()) {
 
             rbNaoPago.setSelected(false);
 
@@ -401,31 +439,31 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private void rbNaoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNaoPagoActionPerformed
         // TODO add your handling code here:
 
-        if(rbNaoPago.isSelected()){
+        if (rbNaoPago.isSelected()) {
 
             rbPago.setSelected(false);
 
         }
+
     }//GEN-LAST:event_rbNaoPagoActionPerformed
 
     private void btn_CadastrarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarDespesaActionPerformed
         // TODO add your handling code here:
-        
-        if(  txtValor.getText().isEmpty() || txtCategoria.getText().isEmpty()   ||
-             txtDia.getText().isEmpty() ||
-             txtMes.getText().isEmpty() || txtAno.getText().isEmpty()           || 
-            (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)   ||
-            (rbDebito.isSelected() == false && rbCredito.isSelected() == false && rbDinheiro.isSelected() == false)||
-            ((rbDebito.isSelected() == true || rbCredito.isSelected() == true) && txt_NumCartao.getText().isEmpty() )||
-            (rbCredito.isSelected() && txtParcelas.getText().isEmpty())){
-            
+
+        if (txtValor.getText().isEmpty() || txtCategoria.getText().isEmpty()
+                || txtDia.getText().isEmpty()
+                || txtMes.getText().isEmpty() || txtAno.getText().isEmpty()
+                || (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)
+                || (rbDebito.isSelected() == false && rbCredito.isSelected() == false && rbDinheiro.isSelected() == false)
+                || ((rbDebito.isSelected() == true || rbCredito.isSelected() == true) && txt_NumCartao.getText().isEmpty())
+                || (rbCredito.isSelected() && txtParcelas.getText().isEmpty())) {
+
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
-            
-        }else{
-            
+
+        } else {
+
             //cadastrar_despesa();
-            
-            Despesa despesa = new Despesa( 
+            Despesa despesa = new Despesa(
                     Integer.parseInt(txtDia.getText()),
                     Integer.parseInt(txtMes.getText()),
                     Integer.parseInt(txtAno.getText()),
@@ -434,63 +472,159 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                     txtAreaDescricao.getText(),
                     Integer.parseInt(txt_id.getText())
             );
-            
-            if(rbDebito.isSelected()){
-                
+
+            Data data = new Data(Integer.parseInt(txtDia.getText()),
+                                 Integer.parseInt(txtMes.getText()),
+                                 Integer.parseInt(txtAno.getText()));
+
+            if (rbDebito.isSelected()) {
+
                 despesa.setF_pagamento("DÉBITO");
-                
+
                 despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-            
-            }else if(rbCredito.isSelected()){
-            
+
+            } else if (rbCredito.isSelected()) {
+
                 despesa.setF_pagamento("CRÉDITO");
-                
+
                 despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-            
-            }else{
-                
+
+            } else {
+
                 despesa.setF_pagamento("DINHEIRO");
-                
+
             }
-            
-            if(rbPago.isSelected()){
-                
+
+            if (rbPago.isSelected()) {
+
                 despesa.setEstatus("PAGO");
-            
-            }else{
-                
+
+            } else {
+
                 despesa.setEstatus("NÃO PAGO");
             }
-            
+
             DespesaDAO despesaDAO = new DespesaDAO();
             
-            try{
-                if(despesa.verifica_DespesaValida()){
+            ReceitaDAO receitaDAO = new ReceitaDAO();
+            
+            Receita receita = new Receita(Integer.parseInt(txt_id.getText()),
+                                          Integer.parseInt(txtMes.getText()),
+                                          Integer.parseInt(txtAno.getText())
+            );
+            
+            boolean cadastra = true;
+
+            try {
+                
+                try {
                     
+                    if (despesaDAO.DespesaExiste(despesa)) {
+
+                        JOptionPane.showMessageDialog(null, "Já existe uma despesa nesse dia!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                        cadastra = false;
+
+                    }
+                    
+                    if (!(receitaDAO.ReceitaExiste(receita))) {
+
+                        JOptionPane.showMessageDialog(null, "Não existe receita correspondente para essa despesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+                        cadastra = false;
+
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                if (!(data.verifica_dia())) {
+
+                    JOptionPane.showMessageDialog(null, "Dia inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    cadastra = false;
+
+                }
+
+                if (!(data.verifica_mes())) {
+
+                    JOptionPane.showMessageDialog(null, "Mês inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    cadastra = false;
+
+                }
+
+                if (!(data.verifica_ano())) {
+
+                    JOptionPane.showMessageDialog(null, "Ano inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    cadastra = false;
+
+                }
+                
+                if (!(despesa.verifica_Categoria(txtCategoria.getText()))) {
+
+                    JOptionPane.showMessageDialog(null, "Categoria inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    cadastra = false;
+
+                }
+                
+                if (!(despesa.validaValor())) {
+
+                    JOptionPane.showMessageDialog(null, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    cadastra = false;
+
+                }
+                
+                if (!(despesa.verifica_num_cartao_despesa())) {
+
+                    JOptionPane.showMessageDialog(null, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    cadastra = false;
+
+                }
+                
+                if (!(despesa.validaNumParcelas())) {
+
+                    JOptionPane.showMessageDialog(null, "Número de parcelas inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    cadastra = false;
+
+                }
+
+                if (despesa.verifica_DespesaValida()) {
+
                     despesaDAO.CadastrarDespesa(despesa);
                     Volta_TelaDespesa();
-                }else{
-                    
+                } else {
+
                     JOptionPane.showMessageDialog(null, "Dados Inválidos!!");
                 }
-            }catch(Exception e){
-                
+            } catch (Exception e) {
+
             }
-            
-            
-        } 
-        
+
+        }
+
     }//GEN-LAST:event_btn_CadastrarDespesaActionPerformed
 
     private void rbDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDinheiroActionPerformed
         // TODO add your handling code here:
-        
-        if(rbDinheiro.isSelected()){
+
+        if (rbDinheiro.isSelected()) {
 
             rbCredito.setSelected(false);
             rbDebito.setSelected(false);
-            rbPago.setSelected(true);
+
+            rbNaoPago.setEnabled(true);
+            rbPago.setEnabled(true);
+
             rbNaoPago.setSelected(false);
+            rbPago.setSelected(false);
+
             txt_NumCartao.setEnabled(false);
             txtParcelas.setEnabled(false);
 
@@ -574,12 +708,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
-
     public void receberID(String recebe) {
 
         txt_id.setText(recebe);
-    
-    }
 
+    }
 
 }

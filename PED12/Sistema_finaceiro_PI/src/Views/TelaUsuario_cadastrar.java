@@ -26,6 +26,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         initComponents();
         //conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
+        txtAvatar.setEnabled(false);
         
     }
     

@@ -587,5 +587,42 @@ public class DespesaDAO {
        
    }
     
-    
+    public boolean DespesaExiste(Despesa despesa) throws SQLException {
+
+        String consulta = "select * from despesa_data where dia = ? and mes = ? and ano = ? and conta_id_conta = ?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        try {
+
+            pst.setInt(1, despesa.getDia());
+            
+            pst.setInt(2, despesa.getMes());
+
+            pst.setInt(3, despesa.getAno());
+            
+            pst.setInt(4, despesa.getId_conta());
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }
+
+    }
 }

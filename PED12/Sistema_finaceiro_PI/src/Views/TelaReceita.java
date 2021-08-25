@@ -27,16 +27,13 @@ public class TelaReceita extends javax.swing.JFrame {
     /**
      * Creates new form TelaReceita
      */
-    Connection conexao = null;
-    PreparedStatement pst = null;
+
     int salvaMes = 0;
     int SalvaAno = 0;
     boolean salvaLinhaAtiva = false;
 
     public TelaReceita() {
         initComponents();
-        conexao = moduloConexao.conector();
-        System.out.println(conexao);
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
         

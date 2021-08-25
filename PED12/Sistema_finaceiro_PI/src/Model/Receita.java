@@ -39,7 +39,13 @@ public class Receita {
         
     }
     
-    
+    public Receita(int id_conta,int dia, int mes, int ano ) {
+        this.id_conta = id_conta;
+        this.mes = mes;
+        this.ano = ano;
+        this.dia = dia;
+        
+    }
     
     public Receita(int dia, int mes, int ano, float total, int id_conta, int Salva_Mes, int Salva_ano) {
         this.dia = dia;

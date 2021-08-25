@@ -20,54 +20,54 @@ import javax.swing.JOptionPane;
  * @author Alan
  */
 public class ReceitaDAO {
-    
+
     private Connection conexao = null;
 
     public ReceitaDAO() {
-        
+
         conexao = moduloConexao.conector();
-    
+
     }
-    
+
     public boolean CadastrarReceita(Receita receita) throws SQLException {
-    
+
         int cod_receita = 0;
-        
+
         PreparedStatement pst1 = null;
         PreparedStatement pst2 = null;
         PreparedStatement pst3 = null;
-        
+
         ResultSet rs = null;
 
         String sql1 = "insert into receita_data (dia, mes, ano) values(?,?,?)";
-        
+
         String sql2 = "select * from receita_data where dia=? and mes=? and ano=?";
-        
+
         String sql3 = "insert into receita (receita_data_cod_receita, total, conta_id_conta) values(?,?,?)";
 
         pst1 = conexao.prepareStatement(sql1);
-    
+
         try {
 
             pst1 = conexao.prepareStatement(sql1);
             pst1.setInt(1, receita.getDia());
             pst1.setInt(2, receita.getMes());
             pst1.setInt(3, receita.getAno());
-        
+
             pst1.executeUpdate();
-            
+
             pst2 = conexao.prepareStatement(sql2);
-            
+
             pst2.setInt(1, receita.getDia());
             pst2.setInt(2, receita.getMes());
             pst2.setInt(3, receita.getAno());
-                   
+
             rs = pst2.executeQuery();
-            
-            if(rs.next()){
-                
+
+            if (rs.next()) {
+
                 cod_receita = rs.getInt(1);
-                
+
                 pst3 = conexao.prepareStatement(sql3);
 
                 pst3.setInt(1, cod_receita);
@@ -75,14 +75,14 @@ public class ReceitaDAO {
                 pst3.setInt(3, receita.getId_conta());
 
                 pst3.executeUpdate();
-                
+
                 return true;
-                
-            }else{
-                
+
+            } else {
+
                 JOptionPane.showMessageDialog(null, "ERRO CADASTRO DE RECEITA");
                 return false;
-            } 
+            }
 
         } catch (Exception e) {
 
@@ -90,28 +90,26 @@ public class ReceitaDAO {
 
             return false;
 
-        }finally{
-            
+        } finally {
+
             pst1.close();
             pst2.close();
             pst3.close();
-            
+
         }
 
     }
-    
+
     public boolean UpdateReceita(Receita receita) throws SQLException {
-        
-        
-        
+
         PreparedStatement pst = null;
-         
+
         String update = "update (receita R join receita_data Rdt on R.receita_data_cod_receita = Rdt.cod_receita) set total = ?, dia = ?, mes = ?, ano = ? where (conta_id_conta = ? and mes = ? and ano = ?)";
-        
+
         pst = conexao.prepareStatement(update);
-    
+
         try {
-            
+
             pst.setFloat(1, receita.getTotal());
             pst.setInt(2, receita.getDia());
             pst.setInt(3, receita.getMes());
@@ -119,9 +117,9 @@ public class ReceitaDAO {
             pst.setInt(5, receita.getId_conta());
             pst.setInt(6, receita.getSalva_Mes());
             pst.setInt(7, receita.getSalva_ano());
-            
+
             pst.executeUpdate();
-            
+
             return true;
 
         } catch (Exception e) {
@@ -130,13 +128,13 @@ public class ReceitaDAO {
 
             return false;
 
-        }finally{
-            
+        } finally {
+
             pst.close();
-            
+
         }
     }
-    
+
     public boolean DeleteReceita(Receita receita) throws SQLException {
 
         PreparedStatement pst = null;
@@ -155,199 +153,225 @@ public class ReceitaDAO {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                
+
                 receita.setCod_receita(rs.getInt(1));
-                System.out.println("o cod da receita é "+receita.getCod_receita());
-                
-                
+                System.out.println("o cod da receita é " + receita.getCod_receita());
+
                 String delete = "delete from receita_data where cod_receita = ?";
-                
-                
+
                 pst1 = conexao.prepareStatement(delete);
-                
-                
+
                 try {
-                    
+
                     pst1.setInt(1, receita.getCod_receita());
                     pst1.executeUpdate();
-                    
+
                 } catch (Exception e) {
-                    
+
                     JOptionPane.showMessageDialog(null, e.getMessage());
                     return false;
-                
-                } finally{
-                    
-                     pst1.close();
+
+                } finally {
+
+                    pst1.close();
                 }
-                
-                
+
             }
-            
-        }catch (Exception e) {
-            
+
+        } catch (Exception e) {
+
             JOptionPane.showMessageDialog(null, e.toString());
-            return  false;
-            
-        }finally{
-            
-            pst.close();   
+            return false;
+
+        } finally {
+
+            pst.close();
         }
 
-            return true;
+        return true;
     }
-    
-    
+
     public LinkedList<Receita> CarregaTabela_Receita(int id_conta) throws SQLException {
-       
-       String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
-               " receita_data re_da, receita re " +
-               "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita";
-       
-       ResultSet rs = null;
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       LinkedList<Receita> lista_receita = new LinkedList();
-             
-       try{
-           
-           pst.setInt(1, id_conta);
-       
-           rs = pst.executeQuery();
-           
-           
-           while(rs.next()){
-               
-               lista_receita.add(new Receita(
-                 rs.getInt("dia"),
-                 rs.getInt("mes"),
-                 rs.getInt("ano"),
-                 rs.getFloat("total"),
-                 id_conta)         
-               );
-   
-           }
-           
-           
-       }catch (Exception e) {
+
+        String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM"
+                + " receita_data re_da, receita re "
+                + "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita";
+
+        ResultSet rs = null;
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Receita> lista_receita = new LinkedList();
+
+        try {
+
+            pst.setInt(1, id_conta);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_receita.add(new Receita(
+                        rs.getInt("dia"),
+                        rs.getInt("mes"),
+                        rs.getInt("ano"),
+                        rs.getFloat("total"),
+                        id_conta)
+                );
+
+            }
+
+        } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
-       
-       }finally{
-           
-           pst.close();
-       }
-       
-       return lista_receita;
-       
-   }
-   
-   public LinkedList<Receita> Consulta_Receita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
-       
-       String argumento = "";
-       
-       if(ordenar){
-           
-           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
-           
-       }else{
-           
-           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
-       }
 
-       String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
-               " receita_data re_da, receita re " +
-               "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita" +
-               argumento + "";
-       
-       ResultSet rs = null;
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       LinkedList<Receita> lista_receita = new LinkedList();
-       
-       try {
-           
-           pst.setInt(1, id_conta);
+        } finally {
 
-           rs = pst.executeQuery();
+            pst.close();
+        }
 
-           while(rs.next()){
-               
-               lista_receita.add(new Receita(
-                 Integer.parseInt(rs.getString("dia")),
-                 Integer.parseInt(rs.getString("mes")),
-                 Integer.parseInt(rs.getString("ano")),
-                 Float.parseFloat(rs.getString("total")),
-                 id_conta)         
-               );
-   
-           }
+        return lista_receita;
 
-       } catch (Exception e) {
+    }
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
+    public LinkedList<Receita> Consulta_Receita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
 
-       }finally{
-           
-           pst.close();
-       } 
-       
-       return lista_receita;
-       
-   }
-   
-   public LinkedList<Receita> PreencherCampos_Receita(String dia, String mes, String ano, String id_conta) throws SQLException {
- 
-       String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM" +
-               " receita_data re_da, receita re " +
-               "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita " +
-               "and re_da.dia = ? and re_da.mes = ? and re_da.ano = ?";
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       LinkedList<Receita> lista_receita = new LinkedList();
-       
-       try {
-           
-           pst.setInt(1, Integer.parseInt(id_conta));
-           
-           pst.setInt(2, Integer.parseInt(dia));
-           
-           pst.setInt(3, Integer.parseInt(mes));
-           
-           pst.setInt(4, Integer.parseInt(ano));
-           
-           rs = pst.executeQuery();
-           
-           while(rs.next()){
-               
-               lista_receita.add(new Receita(
-                 Integer.parseInt(rs.getString("dia")),
-                 Integer.parseInt(rs.getString("mes")),
-                 Integer.parseInt(rs.getString("ano")),
-                 Float.parseFloat(rs.getString("total")),
-                 Integer.parseInt(id_conta))         
-               );
-   
-           }
+        String argumento = "";
 
-       } catch (Exception e) {
+        if (ordenar) {
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
+            argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
 
-       }finally{
-           
-           pst.close();
-       }
+        } else {
 
-       return lista_receita;
-       
-   }
-   
-   
-    
+            argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+        }
+
+        String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM"
+                + " receita_data re_da, receita re "
+                + "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita"
+                + argumento + "";
+
+        ResultSet rs = null;
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Receita> lista_receita = new LinkedList();
+
+        try {
+
+            pst.setInt(1, id_conta);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_receita.add(new Receita(
+                        Integer.parseInt(rs.getString("dia")),
+                        Integer.parseInt(rs.getString("mes")),
+                        Integer.parseInt(rs.getString("ano")),
+                        Float.parseFloat(rs.getString("total")),
+                        id_conta)
+                );
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        } finally {
+
+            pst.close();
+        }
+
+        return lista_receita;
+
+    }
+
+    public LinkedList<Receita> PreencherCampos_Receita(String dia, String mes, String ano, String id_conta) throws SQLException {
+
+        String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM"
+                + " receita_data re_da, receita re "
+                + "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita "
+                + "and re_da.dia = ? and re_da.mes = ? and re_da.ano = ?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        LinkedList<Receita> lista_receita = new LinkedList();
+
+        try {
+
+            pst.setInt(1, Integer.parseInt(id_conta));
+
+            pst.setInt(2, Integer.parseInt(dia));
+
+            pst.setInt(3, Integer.parseInt(mes));
+
+            pst.setInt(4, Integer.parseInt(ano));
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_receita.add(new Receita(
+                        Integer.parseInt(rs.getString("dia")),
+                        Integer.parseInt(rs.getString("mes")),
+                        Integer.parseInt(rs.getString("ano")),
+                        Float.parseFloat(rs.getString("total")),
+                        Integer.parseInt(id_conta))
+                );
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        } finally {
+
+            pst.close();
+        }
+
+        return lista_receita;
+
+    }
+
+    public boolean ReceitaExiste(Receita receita) throws SQLException {
+
+        String consulta = "select * from receita_data where mes = ? and ano = ?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        try {
+
+            pst.setInt(1, receita.getMes());
+
+            pst.setInt(2, receita.getAno());
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }
+
+    }
+
 }

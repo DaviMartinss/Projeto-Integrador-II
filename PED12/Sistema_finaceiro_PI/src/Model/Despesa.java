@@ -10,7 +10,7 @@ package Model;
  * @author Alan
  */
 public class Despesa {
-    
+
     private int dia;
     private int mes;
     private int ano;
@@ -24,19 +24,15 @@ public class Despesa {
     private int id_conta;
     private int cod_despesa;
 
-    
-     
     public Despesa() {
-    
+
     }
 
     public Despesa(int cod_despesa) {
-        
+
         this.cod_despesa = cod_despesa;
     }
-    
-    
-    
+
     public Despesa(int dia, int mes, int ano, float valor, String categoria, String descricao, int id_conta) {
         this.dia = dia;
         this.mes = mes;
@@ -46,7 +42,7 @@ public class Despesa {
         this.descricao = descricao;
         this.id_conta = id_conta;
     }
-    
+
     public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, int num_parcelas, String estatus, String descricao) {
         this.dia = dia;
         this.mes = mes;
@@ -60,7 +56,7 @@ public class Despesa {
         this.num_parcelas = num_parcelas;
 
     }
-    
+
     public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, int num_parcelas, String estatus, String descricao, int cod_despesa) {
         this.dia = dia;
         this.mes = mes;
@@ -88,7 +84,7 @@ public class Despesa {
         this.cod_despesa = cod_despesa;
     }
 
-    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, String estatus, String descricao,int cod_despesa) {
+    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, String estatus, String descricao, int cod_despesa) {
         this.dia = dia;
         this.mes = mes;
         this.ano = ano;
@@ -99,7 +95,7 @@ public class Despesa {
         this.descricao = descricao;
         this.cod_despesa = cod_despesa;
     }
-    
+
     public int getDia() {
         return dia;
     }
@@ -187,7 +183,7 @@ public class Despesa {
     public void setId_conta(int id_conta) {
         this.id_conta = id_conta;
     }
-    
+
     public int getCod_despesa() {
         return cod_despesa;
     }
@@ -195,143 +191,145 @@ public class Despesa {
     public void setCod_despesa(int cod_despesa) {
         this.cod_despesa = cod_despesa;
     }
-    
-    public boolean validaDataDespesa(){
-        
+
+    public boolean validaDataDespesa() {
+
         Data data_aux = new Data(getDia(), getMes(), getAno());
-        
-        if(data_aux.verifica_data()){
-            
+
+        if (data_aux.verifica_data()) {
+
             return true;
-            
-        }else{
-            
+
+        } else {
+
+            return false;
+        }
+    }
+
+    public boolean validaNumParcelas() {
+
+        if (this.getNum_parcelas() > 0 && this.getNum_parcelas() <= 12) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    public boolean validaValor() {
+
+        if (getValor() > 0) {
+
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    public boolean valorEhVazio(String valor) {
+        if (valor == null || valor.trim().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean EhVazio(String rec) {
+        if (rec == null || rec.trim().equals("")) {
+            return true;
+        } else {
             return false;
         }
     }
     
-    public boolean validaNumParcelas(){
-        
-        if(getNum_parcelas() > 0){
-            
-            return true;
-        }else{
-            
-            return false;
-        }
+    public boolean verifica_num_cartao_despesa() {
+
+        Cartao cartao_aux = new Cartao();
+
+        return (cartao_aux.ValidaNUM_Cartao(Long.toString(num_cartao)));
+
     }
-    
-    public boolean validaValor(){
-        
-        if(getValor() > 0){
-            
-            return true;
-        }else{
-            
-            return false;
-        }
-    }
-    
-     public boolean valorEhVazio(String valor){
-         if(valor == null || valor.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-     
-     
-     
-       public boolean EhVazio(String rec){
-        if(rec == null || rec.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-     
-       
-       public boolean  verifica_Categoria(String categoria){
-        
+
+    public boolean verifica_Categoria(String categoria) {
+
         String categoria_aux = categoria.replace(" ", "");
-        
+
         boolean soLetra = true;
-        
+
         for (int i = 0; i < categoria_aux.length(); i++) {
-            
+
             char aux = categoria_aux.charAt(i);
-            
-                if (!(Character.isLetter(aux))) {
-                    soLetra = false;
+
+            if (!(Character.isLetter(aux))) {
+                soLetra = false;
             }
         }
-        
+
         if (!(soLetra)) {
-            return  false;
+            return false;
         }
-        
+
         return true;
     }
-       
-      public boolean verifica_DespesaValida(){
-        
-        if(validaValor() && validaDataDespesa() &&verifica_Categoria(getCategoria())){
+
+    public boolean verifica_DespesaValida() {
+
+        if (validaValor() && validaDataDespesa() && verifica_Categoria(getCategoria())) {
             return true;
-        }else{
+        } else {
             return false;
         }
-    } 
-       
-       
-       
-    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag, 
-            String num_cartao, String num_parc, String status, String desc){
-        
-        if(!(EhVazio(f_pag))){
-            
-            if(f_pag.equals("CRÉDITO")){
-                
-                if(EhVazio(dia) || EhVazio(mes)|| EhVazio(ano)|| EhVazio(valor)
-                   || EhVazio(categoria) || EhVazio(num_cartao) || EhVazio(num_parc)
-                   || EhVazio(status) || EhVazio(desc)){
-                
+    }
+
+    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag,
+            String num_cartao, String num_parc, String status, String desc) {
+
+        if (!(EhVazio(f_pag))) {
+
+            if (f_pag.equals("CRÉDITO")) {
+
+                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
+                        || EhVazio(categoria) || EhVazio(num_cartao) || EhVazio(num_parc)
+                        || EhVazio(status) || EhVazio(desc)) {
+
                     return true;
-                    
-                }else{
-                    
+
+                } else {
+
                     return false;
                 }
-                    
-            }else if(f_pag.equals("DÉBITO")){
-                
-                if(EhVazio(dia) || EhVazio(mes)|| EhVazio(ano)|| EhVazio(valor)
-                   || EhVazio(categoria) || EhVazio(num_parc)
-                   || EhVazio(status) || EhVazio(desc)){
-                
+
+            } else if (f_pag.equals("DÉBITO")) {
+
+                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
+                        || EhVazio(categoria) || EhVazio(num_parc)
+                        || EhVazio(status) || EhVazio(desc)) {
+
                     return true;
-                    
-                }else{
-                    
+
+                } else {
+
                     return false;
                 }
-                
-            }else{
-                
-                if(EhVazio(dia) || EhVazio(mes)|| EhVazio(ano)|| EhVazio(valor)
-                   || EhVazio(categoria) || EhVazio(status) || EhVazio(desc)){
-                
+
+            } else {
+
+                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
+                        || EhVazio(categoria) || EhVazio(status) || EhVazio(desc)) {
+
                     return true;
-                    
-                }else{
-                    
-                    return  false;
+
+                } else {
+
+                    return false;
                 }
             }
-        }else{
-            
-            return  true;
+        } else {
+
+            return true;
         }
     }
-    
-    
+
 }
