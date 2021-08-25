@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import ValidacaoComum.Validacao;
 /**
  *
  * @author Alan
@@ -410,13 +410,29 @@ public class TelaDespesa extends javax.swing.JFrame {
             return;
         }
         
+        
         Despesa despesa_aux = new Despesa();
         
         if(despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), txtCategoria.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(),salvaStatus, txtAreaDescricao.getText())){
             JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
             return;
          }
-
+        
+        if( !(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText(), txtCategoria.getText() ))){
+            
+            JOptionPane.showMessageDialog(null, "O valor informado é inválido");
+            return;     
+        }
+         
+        
+        if (salvaF_pagamento.equals("CRÉDITO")) {
+            Validacao valida = new Validacao();
+            if(!(valida.ehNum(txtParcelas.getText()))){
+                JOptionPane.showMessageDialog(null, "Número de parcelas inválido");
+                return;     
+            }
+        }
+        
         if (salvaF_pagamento.equals("CRÉDITO")) {
 
             Despesa despesa = new Despesa(

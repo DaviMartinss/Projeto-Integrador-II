@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static javax.swing.text.html.HTML.Tag.HEAD;
-
+import ValidacaoComum.Validacao;
 /**
  *
  * @author pc
@@ -229,6 +229,12 @@ public class TelaReceita extends javax.swing.JFrame {
             return;
         }
         
+        Validacao valida = new Validacao();
+        
+        if(!( valida.ehNum(txt_dia.getText()) && valida.ehNum(txt_mes.getText()) && valida.ehNum(txt_ano.getText()) && valida.ehNum(txt_total.getText()) )){
+            JOptionPane.showMessageDialog(null, "Informe um valor numérico!!");
+            return;
+        }
         
         Receita receita_aux = new Receita();
         
@@ -248,9 +254,12 @@ public class TelaReceita extends javax.swing.JFrame {
         ReceitaDAO receita_DAO = new ReceitaDAO();
 
         try {
-               
-            receita_DAO.UpdateReceita(receita_atua);
-                
+             if(receita_atua.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())){
+                 receita_DAO.UpdateReceita(receita_atua);
+             }else{
+                 JOptionPane.showMessageDialog(null, "Valor Inválido");
+             }  
+            
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
