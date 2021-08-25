@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  *
@@ -50,7 +51,7 @@ public class UsuarioDAO {
             }
         } catch (Exception e) {
         
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao logar", "ERROR_MESSAGE", ERROR_MESSAGE);
             
             return false;
         

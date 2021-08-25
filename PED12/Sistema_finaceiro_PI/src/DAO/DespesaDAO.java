@@ -19,19 +19,19 @@ import javax.swing.JOptionPane;
  * @author Alan
  */
 public class DespesaDAO {
-    
+
     private Connection conexao = null;
 
     public DespesaDAO() {
-        
+
         conexao = moduloConexao.conector();
-    
+
     }
-    
+
     public void CadastrarDespesa(Despesa despesa) {
-        
+
         boolean FlagErroCadastroDespesa = true;
-        
+
         PreparedStatement pst1 = null;
         PreparedStatement pst2 = null;
         PreparedStatement pst3 = null;
@@ -40,30 +40,30 @@ public class DespesaDAO {
         PreparedStatement pst6 = null;
         ResultSet rs = null;
         ResultSet rs2 = null;
-        
+
         int cod_receita = 0;
 
         String sql1 = "insert into despesa_data (receita_data_cod_receita,dia, mes, ano, conta_id_conta) values(?,?,?,?,?)";
-        
+
         String sql5 = "select * from receita_data where mes=? and ano=?";
-        
+
         try {
-            
+
             pst5 = conexao.prepareStatement(sql5);
-                    
+
             pst5.setInt(1, despesa.getMes());
             pst5.setInt(2, despesa.getAno());
-            
+
             rs2 = pst5.executeQuery();
-            
-            if(rs2.next()){
-                
+
+            if (rs2.next()) {
+
                 cod_receita = rs2.getInt(1);
-            
-            }else {
-                
+
+            } else {
+
                 JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
-                
+
                 FlagErroCadastroDespesa = false;
             }
 
@@ -73,36 +73,36 @@ public class DespesaDAO {
             pst1.setInt(3, despesa.getMes());
             pst1.setInt(4, despesa.getAno());
             pst1.setInt(5, despesa.getId_conta());
-            
+
             pst1.executeUpdate();
-            
+
             int cod_despesa = 0;
-                
+
             String sql2 = "select * from despesa_data where conta_id_conta = ? and dia=? and mes=? and ano=?";
 
             pst2 = conexao.prepareStatement(sql2);
-            
+
             pst2.setInt(1, despesa.getId_conta());
             pst2.setInt(2, despesa.getDia());
             pst2.setInt(3, despesa.getMes());
             pst2.setInt(4, despesa.getAno());
 
             rs = pst2.executeQuery();
-            
-            if(rs.next()){
-                
+
+            if (rs.next()) {
+
                 cod_despesa = rs.getInt(1);
-                
+
                 String sql3 = "";
-                
-                if (despesa.getF_pagamento().equals("DINHEIRO")){
-                    
+
+                if (despesa.getF_pagamento().equals("DINHEIRO")) {
+
                     sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, estatus) values(?,?,?,?,?,?)";
 
-                }else{
-                    
+                } else {
+
                     sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
-                
+
                 }
 
                 pst3 = conexao.prepareStatement(sql3);
@@ -110,7 +110,7 @@ public class DespesaDAO {
                 pst3.setFloat(2, despesa.getValor());
                 pst3.setString(3, despesa.getCategoria());
                 pst3.setString(4, despesa.getDescricao());
-                
+
                 pst3.setString(5, despesa.getF_pagamento());
 
                 if (despesa.getF_pagamento().equals("DINHEIRO")) {
@@ -132,19 +132,19 @@ public class DespesaDAO {
                     String sql4 = "insert into despesa_credito (n_parcelas, despesa_data_cod_despesa) values(?,?)";
 
                     pst4 = conexao.prepareStatement(sql4);
-                    
+
                     pst4.setInt(1, despesa.getNum_parcelas());
                     pst4.setInt(2, cod_despesa);
-                    
+
                     pst4.executeUpdate();
 
                 }
 
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "ERRO AO CADASTRAR DESPESA");
                 FlagErroCadastroDespesa = false;
             }
-            
+
             if (despesa.getF_pagamento().equals("CRÉDITO")
                     || despesa.getF_pagamento().equals("DÉBITO")
                     || (despesa.getF_pagamento().equals("DINHEIRO") && despesa.getEstatus().equals("PAGO"))) {
@@ -162,37 +162,36 @@ public class DespesaDAO {
             }
 
         } catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null, e);
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
             FlagErroCadastroDespesa = false;
-            
+
         }
 
-        
-        if(FlagErroCadastroDespesa){
-            
+        if (FlagErroCadastroDespesa) {
+
             JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-            
-        }else{
-            
+
+        } else {
+
             JOptionPane.showMessageDialog(null, "Falha ao Cadastrar a Despesa");
-            
+
         }
-        
+
     }
-    
+
     public boolean UpdateDespesa(Despesa despesa) throws SQLException {
-         
-        if(despesa.getF_pagamento().equals("CRÉDITO")){
-            
+
+        if (despesa.getF_pagamento().equals("CRÉDITO")) {
+
             PreparedStatement pst1 = null;
             String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa LEFT OUTER JOIN despesa_credito on (despesa.despesa_data_cod_despesa = despesa_credito.despesa_data_cod_despesa) SET dia = ?, mes = ?, ano = ?, valor = ?, categoria = ?, f_pagamento = ?, num_cartao=?, n_parcelas = ?, estatus=?, descricao=? where cod_despesa = ?";
-        
+
             pst1 = conexao.prepareStatement(update);
-    
+
             try {
-            
+
                 pst1.setInt(1, despesa.getDia());
                 pst1.setInt(2, despesa.getMes());
                 pst1.setInt(3, despesa.getAno());
@@ -204,8 +203,7 @@ public class DespesaDAO {
                 pst1.setString(9, despesa.getEstatus());
                 pst1.setString(10, despesa.getDescricao());
                 pst1.setInt(11, despesa.getCod_despesa());
-                
-            
+
                 pst1.executeUpdate();
 
             } catch (Exception e) {
@@ -214,21 +212,21 @@ public class DespesaDAO {
 
                 return false;
 
-            }finally{
-            
+            } finally {
+
                 pst1.close();
-            
+
             }
-            
-        }else if (despesa.getF_pagamento().equals("DÉBITO")){
-            
+
+        } else if (despesa.getF_pagamento().equals("DÉBITO")) {
+
             PreparedStatement pst2 = null;
             String update = "update despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria = ?, f_pagamento = ?, num_cartao=?, estatus = ?, descricao = ? where cod_despesa = ?";
-        
+
             pst2 = conexao.prepareStatement(update);
-    
+
             try {
-            
+
                 pst2.setInt(1, despesa.getDia());
                 pst2.setInt(2, despesa.getMes());
                 pst2.setInt(3, despesa.getAno());
@@ -239,8 +237,7 @@ public class DespesaDAO {
                 pst2.setString(8, despesa.getEstatus());
                 pst2.setString(9, despesa.getDescricao());
                 pst2.setInt(10, despesa.getCod_despesa());
-                
-            
+
                 pst2.executeUpdate();
 
             } catch (Exception e) {
@@ -249,21 +246,21 @@ public class DespesaDAO {
 
                 return false;
 
-            }finally{
-            
+            } finally {
+
                 pst2.close();
-            
+
             }
-            
-        }else{
-             // é dinheiro
-             PreparedStatement pst3 = null;
+
+        } else {
+            // é dinheiro
+            PreparedStatement pst3 = null;
             String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria=?, f_pagamento=?, estatus = ?, descricao=? where cod_despesa= ?";
-        
+
             pst3 = conexao.prepareStatement(update);
-    
+
             try {
-            
+
                 pst3.setInt(1, despesa.getDia());
                 pst3.setInt(2, despesa.getMes());
                 pst3.setInt(3, despesa.getAno());
@@ -273,8 +270,7 @@ public class DespesaDAO {
                 pst3.setString(7, despesa.getEstatus());
                 pst3.setString(8, despesa.getDescricao());
                 pst3.setInt(9, despesa.getCod_despesa());
-                
-            
+
                 pst3.executeUpdate();
 
             } catch (Exception e) {
@@ -283,31 +279,31 @@ public class DespesaDAO {
 
                 return false;
 
-            }finally{
-            
+            } finally {
+
                 pst3.close();
-            
+
             }
 
         }
 
         return true;
     }
-    
+
     public boolean Deletedespesa(Despesa despesa) throws SQLException {
-    
+
         PreparedStatement pst = null;
-         
+
         String update = "delete from despesa_data where cod_despesa = ?";
-        
+
         pst = conexao.prepareStatement(update);
-    
+
         try {
 
             pst.setLong(1, despesa.getCod_despesa());
-            
+
             pst.executeUpdate();
-            
+
             return true;
 
         } catch (Exception e) {
@@ -316,17 +312,17 @@ public class DespesaDAO {
 
             return false;
 
-        }finally{
-            
+        } finally {
+
             pst.close();
-            
+
         }
     }
-    
+
     public LinkedList<Despesa> CarregaTabela_Despesa(int id_conta) throws SQLException {
-       
-        String consulta = 
-                "(select\n"
+
+        String consulta
+                = "(select\n"
                 + "des_d.cod_despesa,\n"
                 + "des_d.dia,\n"
                 + "des_d.mes,\n"
@@ -345,70 +341,65 @@ public class DespesaDAO {
                 + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
                 + "WHERE des_d.conta_id_conta = ?)";
 
-       ResultSet rs = null;
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
-       
-       try{
-           
-           pst.setInt(1, id_conta);
-       
-           rs = pst.executeQuery();
-     
-           while (rs.next()) {
+        ResultSet rs = null;
 
-               lista_despesa.add(new Despesa(
-                       rs.getInt("dia"),
-                       rs.getInt("mes"),
-                       rs.getInt("ano"),
-                       rs.getFloat("valor"),
-                       rs.getString("categoria"),
-                       rs.getString("f_pagamento"),
-                       rs.getLong("num_cartao"),
-                       rs.getInt("n_parcelas"),
-                       rs.getString("estatus"),
-                       rs.getString("descricao"),
-                       rs.getInt("cod_despesa")
-               ));
+        PreparedStatement pst = conexao.prepareStatement(consulta);
 
+        LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
 
-           }
-           
-       }catch (Exception e) {
+        try {
+
+            pst.setInt(1, id_conta);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_despesa.add(new Despesa(
+                        rs.getInt("dia"),
+                        rs.getInt("mes"),
+                        rs.getInt("ano"),
+                        rs.getFloat("valor"),
+                        rs.getString("categoria"),
+                        rs.getString("f_pagamento"),
+                        rs.getLong("num_cartao"),
+                        rs.getInt("n_parcelas"),
+                        rs.getString("estatus"),
+                        rs.getString("descricao"),
+                        rs.getInt("cod_despesa")
+                ));
+
+            }
+
+        } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage() + "     TUTUTUTUTU");
- 
-       }finally{
-            
-            pst.close();
-            
-        }
-       
-       return lista_despesa;
-       
-   }
-    
-    
- 
-    
-    
-    public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException {
-       
-       String argumento = "";
-       
-       if(ordenar){
-           
-           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
-           
-       }else{
-           
-           argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
-       }
 
-       String consulta =
-               "(select\n"
+        } finally {
+
+            pst.close();
+
+        }
+
+        return lista_despesa;
+
+    }
+
+    public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException {
+
+        String argumento = "";
+
+        if (ordenar) {
+
+            argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
+
+        } else {
+
+            argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+        }
+
+        String consulta
+                = "(select\n"
                 + "des_d.cod_despesa,\n"
                 + "des_d.dia,\n"
                 + "des_d.mes,\n"
@@ -427,169 +418,57 @@ public class DespesaDAO {
                 + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
                 + "WHERE des_d.conta_id_conta = ? and des_d.mes = ? and des_d.ano = ?"
                 + argumento + " );";
-       
-       ResultSet rs = null;
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
-       
-       try {
-           
-           pst.setInt(1, receita.getId_conta());
-           pst.setInt(2, receita.getMes());
-           pst.setInt(3, receita.getAno());
 
-           rs = pst.executeQuery();
-           
-           while(rs.next()) {
-                
+        ResultSet rs = null;
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+
+        try {
+
+            pst.setInt(1, receita.getId_conta());
+            pst.setInt(2, receita.getMes());
+            pst.setInt(3, receita.getAno());
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
                 lista_despesa.add(
-                        
-                       new Despesa(
-                               rs.getInt("dia"),
-                               rs.getInt("mes"),
-                               rs.getInt("ano"),
-                               rs.getFloat("valor"),
-                               rs.getString("categoria"),
-                               rs.getString("f_pagamento"),
-                               rs.getLong("num_cartao"),
-                               rs.getInt("n_parcelas"),
-                               rs.getString("estatus"),
-                               rs.getString("descricao"),
-                               rs.getInt("cod_despesa")
-                       )
+                        new Despesa(
+                                rs.getInt("dia"),
+                                rs.getInt("mes"),
+                                rs.getInt("ano"),
+                                rs.getFloat("valor"),
+                                rs.getString("categoria"),
+                                rs.getString("f_pagamento"),
+                                rs.getLong("num_cartao"),
+                                rs.getInt("n_parcelas"),
+                                rs.getString("estatus"),
+                                rs.getString("descricao"),
+                                rs.getInt("cod_despesa")
+                        )
                 );
-           }
+            }
 
-       } catch (Exception e) {
+        } catch (Exception e) {
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
-       }finally{
-            
+        } finally {
+
             pst.close();
-            
-        } 
-       
-       return lista_despesa;
-       
-   }
-    
-   public boolean ValidaConsulta_Despesa(int mes, int ano) throws SQLException{
-       
-       String consulta = "select * from receita_data where mes = ? and ano = ?";
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       try{
-           
-           pst.setInt(1, mes);
-           
-           pst.setInt(2, ano);
-           
-           rs = pst.executeQuery();
-           
-           if(rs.next()){
-               
-               return true;
-               
-           }else{
-               
-               return false;
-           }
-           
-           
-       }catch (Exception e) {
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
-           
-           return false;
-       
-       }
-       
-       
-   }
-   
-   
-   public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String id_conta) throws SQLException {
- 
-       String consulta =
-               "(select\n"
-                + "des_d.dia,\n"
-                + "des_d.mes,\n"
-                + "des_d.ano,\n"
-                + "des.valor,\n"
-                + "des.categoria,\n"
-                + "des.f_pagamento,\n"
-                + "des.num_cartao,\n"
-                + "des_c.n_parcelas,\n"
-                + "des.estatus,\n"
-                + "des.descricao\n"
-                + "from despesa des\n"
-                + " LEFT OUTER JOIN despesa_data des_d on\n"
-                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
-                + " LEFT OUTER JOIN despesa_credito des_c on \n"
-                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
-                + "WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ?);";
-
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
-       
-       try {
-           
-           pst.setInt(1, Integer.parseInt(id_conta));
-           
-           pst.setInt(2, Integer.parseInt(dia));
-           
-           pst.setInt(3, Integer.parseInt(mes));
-           
-           pst.setInt(4, Integer.parseInt(ano));
-           
-           rs = pst.executeQuery();
-           
-           while(rs.next()) {
-                
-                lista_despesa.add(
-                        
-                       new Despesa(
-                               rs.getInt("dia"),
-                               rs.getInt("mes"),
-                               rs.getInt("ano"),
-                               rs.getFloat("valor"),
-                               rs.getString("categoria"),
-                               rs.getString("f_pagamento"),
-                               rs.getLong("num_cartao"),
-                               rs.getInt("n_parcelas"),
-                               rs.getString("estatus"),
-                               rs.getString("descricao")
-                       )
-                );
-           }
-
-       } catch (Exception e) {
-
-           JOptionPane.showMessageDialog(null, e.getMessage());
-
-       }finally{
-            
-            pst.close();
-            
         }
 
-       return lista_despesa;
-       
-   }
-    
-    public boolean DespesaExiste(Despesa despesa) throws SQLException {
+        return lista_despesa;
 
-        String consulta = "select * from despesa_data where dia = ? and mes = ? and ano = ? and conta_id_conta = ?";
+    }
+
+    public boolean ValidaConsulta_Despesa(int mes, int ano) throws SQLException {
+
+        String consulta = "select * from receita_data where mes = ? and ano = ?";
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
@@ -597,13 +476,9 @@ public class DespesaDAO {
 
         try {
 
-            pst.setInt(1, despesa.getDia());
-            
-            pst.setInt(2, despesa.getMes());
+            pst.setInt(1, mes);
 
-            pst.setInt(3, despesa.getAno());
-            
-            pst.setInt(4, despesa.getId_conta());
+            pst.setInt(2, ano);
 
             rs = pst.executeQuery();
 
@@ -623,6 +498,125 @@ public class DespesaDAO {
             return false;
 
         }
+
+    }
+
+    public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String id_conta) throws SQLException {
+
+        String consulta
+                = "(select\n"
+                + "des_d.dia,\n"
+                + "des_d.mes,\n"
+                + "des_d.ano,\n"
+                + "des.valor,\n"
+                + "des.categoria,\n"
+                + "des.f_pagamento,\n"
+                + "des.num_cartao,\n"
+                + "des_c.n_parcelas,\n"
+                + "des.estatus,\n"
+                + "des.descricao\n"
+                + "from despesa des\n"
+                + " LEFT OUTER JOIN despesa_data des_d on\n"
+                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+                + " LEFT OUTER JOIN despesa_credito des_c on \n"
+                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+                + "WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ?);";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+
+        try {
+
+            pst.setInt(1, Integer.parseInt(id_conta));
+
+            pst.setInt(2, Integer.parseInt(dia));
+
+            pst.setInt(3, Integer.parseInt(mes));
+
+            pst.setInt(4, Integer.parseInt(ano));
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_despesa.add(
+                        new Despesa(
+                                rs.getInt("dia"),
+                                rs.getInt("mes"),
+                                rs.getInt("ano"),
+                                rs.getFloat("valor"),
+                                rs.getString("categoria"),
+                                rs.getString("f_pagamento"),
+                                rs.getLong("num_cartao"),
+                                rs.getInt("n_parcelas"),
+                                rs.getString("estatus"),
+                                rs.getString("descricao")
+                        )
+                );
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        } finally {
+
+            pst.close();
+
+        }
+
+        return lista_despesa;
+
+    }
+
+    public boolean DespesaExiste(Despesa despesa) throws SQLException {
+
+        String consulta1 = "select \n"
+                         + "dia, \n"
+                         + "mes, \n"
+                         + "ano, \n"
+                         + "categoria \n"
+                         + "from \n"
+                         + "despesa_data, despesa \n"
+                         + "where despesa.despesa_data_cod_despesa = despesa_data.cod_despesa \n"
+                         + "and dia = ? and mes = ? and ano = ? and categoria = ? and conta_id_conta = ?;";
+
+        PreparedStatement pst1 = conexao.prepareStatement(consulta1);
+
+        ResultSet rs1 = null;
+
+        try {
+
+            pst1.setInt(1, despesa.getDia());
+
+            pst1.setInt(2, despesa.getMes());
+
+            pst1.setInt(3, despesa.getAno());
+            
+            pst1.setString(4, despesa.getCategoria());
+
+            pst1.setInt(5, despesa.getId_conta());
+
+            rs1 = pst1.executeQuery();
+
+            if (rs1.next()) {
+
+                return true;
+                
+            } 
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }
+        
+        return false;
 
     }
 }

@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package Model;
+
 import ValidacaoComum.Validacao;
+
 /**
  *
  * @author Alan
@@ -216,20 +218,10 @@ public class Despesa {
             return false;
         }
     }
-<<<<<<< HEAD
 
     public boolean validaValor() {
 
         if (getValor() > 0) {
-
-=======
-    
-    
-    public boolean validaValor(){
-        
-        if(getValor() > 0){
-            
->>>>>>> d169f2cfcb20336c59aa2dd2413c0ede06f50576
             return true;
         } else {
 
@@ -252,12 +244,12 @@ public class Despesa {
             return false;
         }
     }
-    
+
     public boolean verifica_num_cartao_despesa() {
 
         Cartao cartao_aux = new Cartao();
 
-        return (cartao_aux.ValidaNUM_Cartao(Long.toString(num_cartao)));
+        return (cartao_aux.ValidaNUM_Cartao(Long.toString(this.num_cartao)));
 
     }
 
@@ -282,22 +274,45 @@ public class Despesa {
 
         return true;
     }
-<<<<<<< HEAD
 
     public boolean verifica_DespesaValida() {
 
         if (validaValor() && validaDataDespesa() && verifica_Categoria(getCategoria())) {
-=======
-       
-      public boolean verifica_DespesaValida(){
-        
-        if(validaValor() && validaDataDespesa() && verifica_Categoria(getCategoria())){
->>>>>>> d169f2cfcb20336c59aa2dd2413c0ede06f50576
+
             return true;
         } else {
             return false;
         }
-<<<<<<< HEAD
+
+    }
+       
+
+    public boolean Update_CamposValidos(String valor, String dia, String mes, String ano, String categoria) {
+        Validacao valida = new Validacao();
+
+        int dia_aux = valida.converteParaInt(dia);
+        int mes_aux = valida.converteParaInt(mes);
+        int ano_aux = valida.converteParaInt(ano);
+        float valor_aux = valida.converteParaFloat(valor);
+
+        if (dia_aux != -1 && mes_aux != -1 && ano_aux != -1 && valor_aux != -1) {
+            setDia(dia_aux);
+            setMes(mes_aux);
+            setAno(ano_aux);
+            setValor(valor_aux);
+            setCategoria(categoria);
+
+            if (verifica_DespesaValida()) {
+
+                return true;
+            } else {
+                return false;
+            }
+
+        } else {
+
+            return false;
+        }
     }
 
     public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag,
@@ -310,56 +325,7 @@ public class Despesa {
                 if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
                         || EhVazio(categoria) || EhVazio(num_cartao) || EhVazio(num_parc)
                         || EhVazio(status) || EhVazio(desc)) {
-
-=======
-    } 
-       
-      
-      public boolean Update_CamposValidos(String valor, String dia, String mes, String ano, String categoria){
-        Validacao valida = new Validacao();
-           
-        
-        int dia_aux = valida.converteParaInt(dia);
-        int mes_aux = valida.converteParaInt(mes);
-        int ano_aux = valida.converteParaInt(ano);
-        float valor_aux = valida.converteParaFloat(valor);
-        
-        
-        
-        if(dia_aux != -1 && mes_aux != -1 && ano_aux != -1 && valor_aux != -1){
-            setDia(dia_aux);
-            setMes(mes_aux);
-            setAno(ano_aux);
-            setValor(valor_aux);
-            setCategoria(categoria);
-            
-            if(verifica_DespesaValida()){
-                
-                return true;
-            }else{
-                return false;
-            }
-            
-        }else{
-            
-            return false;
-        }
-    }
-      
-      
-       
-    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag, 
-            String num_cartao, String num_parc, String status, String desc){
-        
-        if(!(EhVazio(f_pag))){
-            
-            if(f_pag.equals("CRÉDITO")){
-                
-                if(EhVazio(dia) || EhVazio(mes)|| EhVazio(ano)|| EhVazio(valor)
-                   || EhVazio(categoria) || EhVazio(num_cartao) || EhVazio(num_parc)
-                   || EhVazio(status) || EhVazio(desc)){
-                
->>>>>>> d169f2cfcb20336c59aa2dd2413c0ede06f50576
+                    
                     return true;
 
                 } else {

@@ -14,13 +14,10 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import Model.Data;
 import Model.Receita;
-<<<<<<< HEAD
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-=======
 import ValidacaoComum.Validacao;
->>>>>>> d169f2cfcb20336c59aa2dd2413c0ede06f50576
 /**
  *
  * @author Alan
