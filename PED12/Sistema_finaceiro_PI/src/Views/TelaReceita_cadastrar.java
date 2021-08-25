@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import Model.Data;
 import Model.Receita;
+import ValidacaoComum.Validacao;
 /**
  *
  * @author Alan
@@ -31,8 +32,9 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     }
     
     public void cadastro_receita(){
-        Receita receita_aux = new Receita();
-        if(!( receita_aux.ehNum(txt_dia.getText()) && receita_aux.ehNum(txt_mes.getText()) && receita_aux.ehNum(txt_ano.getText()) && receita_aux.ehNum(txt_total.getText()) )){
+        Validacao valida = new Validacao();
+        
+        if(!( valida.ehNum(txt_dia.getText()) && valida.ehNum(txt_mes.getText()) && valida.ehNum(txt_ano.getText()) && valida.ehNum(txt_total.getText()) )){
             JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
             return;
         }

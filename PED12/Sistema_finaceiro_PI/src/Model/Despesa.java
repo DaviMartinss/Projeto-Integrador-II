@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Model;
-
+import ValidacaoComum.Validacao;
 /**
  *
  * @author Alan
@@ -221,6 +221,7 @@ public class Despesa {
         }
     }
     
+    
     public boolean validaValor(){
         
         if(getValor() > 0){
@@ -275,14 +276,46 @@ public class Despesa {
        
       public boolean verifica_DespesaValida(){
         
-        if(validaValor() && validaDataDespesa() &&verifica_Categoria(getCategoria())){
+        if(validaValor() && validaDataDespesa() && verifica_Categoria(getCategoria())){
             return true;
         }else{
             return false;
         }
     } 
        
-       
+      
+      public boolean Update_CamposValidos(String valor, String dia, String mes, String ano, String categoria){
+        Validacao valida = new Validacao();
+           
+        
+        int dia_aux = valida.converteParaInt(dia);
+        int mes_aux = valida.converteParaInt(mes);
+        int ano_aux = valida.converteParaInt(ano);
+        float valor_aux = valida.converteParaFloat(valor);
+        
+        
+        
+        if(dia_aux != -1 && mes_aux != -1 && ano_aux != -1 && valor_aux != -1){
+            setDia(dia_aux);
+            setMes(mes_aux);
+            setAno(ano_aux);
+            setValor(valor_aux);
+            setCategoria(categoria);
+            
+            if(verifica_DespesaValida()){
+                
+                return true;
+            }else{
+                return false;
+            }
+            
+        }else{
+            
+            return false;
+        }
+    }
+      
+      
        
     public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag, 
             String num_cartao, String num_parc, String status, String desc){
