@@ -10,6 +10,7 @@ import Model.CartaoCredito;
 import DAO.moduloConexao;
 import DAO.CartaoCreditoDAO;
 import Model.Cartao;
+import ValidacaoComum.Validacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,7 +86,14 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     }
 
     public void cadastro_cartao_credito() {
-
+        
+        CartaoCredito cartao_aux = new CartaoCredito();
+        
+        if(cartao_aux.UpdateEhVazio(txt_NumCC.getText(), txt_ValorFatura.getText(), txt_LimiteCC.getText(), txt_BandeiraCC.getText(), txt_DiaFaturaCC.getText())){
+            JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
+            return;
+         }
+        
         CartaoCredito cartao_c = new CartaoCredito(
                 Long.parseLong(txt_NumCC.getText()),
                 Float.parseFloat(txt_LimiteCC.getText()),
@@ -269,6 +277,16 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
             
         }else{
+            
+            
+            Validacao valida = new Validacao();
+            
+            
+            if(!(valida.ehNum(txt_NumCC.getText())&& valida.ehNum(txt_ValorFatura.getText()) && valida.ehNum(txt_LimiteCC.getText()) && valida.ehNum(txt_DiaFaturaCC.getText())  )){
+                JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+                return;
+            } 
+            
             
             boolean cadastra = true;
             
