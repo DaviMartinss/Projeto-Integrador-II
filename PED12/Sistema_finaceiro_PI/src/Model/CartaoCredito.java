@@ -141,7 +141,7 @@ public class CartaoCredito {
      }
      public boolean varifica_valor_fatura(){
          
-         if(getValor_fatura() > 0 && getValor_fatura() < getLimite()){
+         if(getValor_fatura() > 0 && getValor_fatura() <= getLimite()){
              return true;
          }else{
              return false;
