@@ -1088,7 +1088,12 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     private void btPesquisarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarDespesaActionPerformed
         // TODO add your handling code here:
-
+        Validacao valida = new Validacao();
+        if(!(valida.ehNum(txtMesReceita.getText()) && valida.ehNum(txtAnoReceita.getText()) )){
+            JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
+            return;
+        }
+        
         DespesaDAO despesaDAO = new DespesaDAO();
 
         if (!(txtMesReceita.getText().isEmpty()) && !(txtAnoReceita.getText().isEmpty())) {
