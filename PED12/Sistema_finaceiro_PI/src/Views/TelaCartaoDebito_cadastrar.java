@@ -281,7 +281,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         if(  txt_numCartDeb.getText().isEmpty() || txt_valorCartaoDeb.getText().isEmpty()   ||
              txt_BandCartDeb.getText().isEmpty()){
             
-            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
             

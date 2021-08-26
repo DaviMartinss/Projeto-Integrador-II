@@ -523,7 +523,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         try {
 
-            despesaDAO.Deletedespesa(despesa);
+            despesaDAO.DeleteDespesa(despesa);
 
         } catch (Exception e) {
 

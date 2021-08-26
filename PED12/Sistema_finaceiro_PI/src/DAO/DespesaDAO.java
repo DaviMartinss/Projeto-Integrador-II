@@ -162,6 +162,8 @@ public class DespesaDAO {
             }
 
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:CadastrarDespesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -207,6 +209,8 @@ public class DespesaDAO {
                 pst1.executeUpdate();
 
             } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:UpdateDespesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -241,6 +245,8 @@ public class DespesaDAO {
                 pst2.executeUpdate();
 
             } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:UpdateDespesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -274,6 +280,8 @@ public class DespesaDAO {
                 pst3.executeUpdate();
 
             } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:UpdateDespesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
                 JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -290,7 +298,7 @@ public class DespesaDAO {
         return true;
     }
 
-    public boolean Deletedespesa(Despesa despesa) throws SQLException {
+    public boolean DeleteDespesa(Despesa despesa) throws SQLException {
 
         PreparedStatement pst = null;
 
@@ -307,6 +315,8 @@ public class DespesaDAO {
             return true;
 
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:DeleteDespesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -372,8 +382,10 @@ public class DespesaDAO {
             }
 
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:CarregaTabela_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
-            JOptionPane.showMessageDialog(null, e.getMessage() + "     TUTUTUTUTU");
+            JOptionPane.showMessageDialog(null, e.getMessage());
 
         } finally {
 
@@ -453,6 +465,8 @@ public class DespesaDAO {
             }
 
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:Consulta_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -492,6 +506,8 @@ public class DespesaDAO {
             }
 
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:ValidaConsulta_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -559,6 +575,8 @@ public class DespesaDAO {
             }
 
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:PreencherCampos_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -609,6 +627,8 @@ public class DespesaDAO {
             } 
 
         } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:DespesaExiste!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             JOptionPane.showMessageDialog(null, e.getMessage());
 

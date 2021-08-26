@@ -266,7 +266,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             txt_ValorFatura.getText().isEmpty() || txt_DiaFaturaCC.getText().isEmpty() ||
             txt_BandeiraCC.getText().isEmpty()){
             
-            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
             

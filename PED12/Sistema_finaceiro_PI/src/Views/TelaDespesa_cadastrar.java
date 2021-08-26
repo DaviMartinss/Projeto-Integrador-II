@@ -464,7 +464,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                 || ((rbDebito.isSelected() == true || rbCredito.isSelected() == true) && txt_NumCartao.getText().isEmpty())
                 || (rbCredito.isSelected() && txtParcelas.getText().isEmpty())) {
 
-            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
         } else {
 

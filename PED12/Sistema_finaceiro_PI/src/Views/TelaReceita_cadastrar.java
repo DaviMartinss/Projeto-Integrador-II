@@ -253,7 +253,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         if(  txt_dia.getText().isEmpty() || txt_mes.getText().isEmpty()   ||
              txt_ano.getText().isEmpty() || txt_total.getText().isEmpty()){
             
-            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
             
@@ -286,7 +286,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
                 }
                 
             } catch (SQLException ex) {
-                Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Erro na validação de existência!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             }
              
             if(!(receita.verifica_total())){

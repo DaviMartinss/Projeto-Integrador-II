@@ -53,7 +53,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             
         } catch (Exception e) {
             
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
   
     }
@@ -191,7 +191,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         if(  txtNome.getText().isEmpty() || txtEmail.getText().isEmpty()   ||
              txtSenha.getText().isEmpty()){
             
-            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!");
+            JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
             
