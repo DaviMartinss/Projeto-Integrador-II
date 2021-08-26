@@ -26,13 +26,8 @@ public class moduloConexao {
         String url = "jdbc:mysql://localhost:3306/bd_pedemeia";          
         String user = "root";          
 
-<<<<<<< HEAD
         String password = "admin";  
-=======
-        String password = "14011991";  
->>>>>>> 17a75a19896b3fde1e9bca9164b261e7a946593e
-
-                 
+  
 
         // estabelecendo a conexão com o banco
         try{

@@ -517,7 +517,7 @@ public class DespesaDAO {
 
     }
 
-    public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String id_conta) throws SQLException {
+    public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String categoria, String id_conta) throws SQLException {
 
         String consulta
                 = "(select\n"
@@ -536,7 +536,7 @@ public class DespesaDAO {
                 + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
                 + " LEFT OUTER JOIN despesa_credito des_c on \n"
                 + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
-                + "WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ?);";
+                + "WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ? and des.categoria = ?);";
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
@@ -553,6 +553,8 @@ public class DespesaDAO {
             pst.setInt(3, Integer.parseInt(mes));
 
             pst.setInt(4, Integer.parseInt(ano));
+            
+            pst.setString(5, categoria);
 
             rs = pst.executeQuery();
 
