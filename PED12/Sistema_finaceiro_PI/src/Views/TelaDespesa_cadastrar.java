@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+import ValidacaoComum.Validacao;
 /**
  *
  * @author Alan
@@ -467,7 +467,29 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
         } else {
-
+                   
+            Validacao valida = new Validacao();
+            
+            if(!(valida.ehNum(txtDia.getText()) && valida.ehNum(txtMes.getText()) && valida.ehNum(txtAno.getText()) && valida.ehNum(txtValor.getText()) )){
+                JOptionPane.showMessageDialog(null, "Valor inválido!");
+                return;
+            }
+            if(!(rbDinheiro.isSelected())){
+                
+                if(rbCredito.isSelected()){
+                    
+                    if(!(valida.ehNum(txtParcelas.getText()))){
+                        JOptionPane.showMessageDialog(null, "Valor inválido!");
+                        return;
+                    }
+                }
+                
+                if(!(valida.ehNum(txt_NumCartao.getText()))){
+                    JOptionPane.showMessageDialog(null, "Valor inválido!");
+                    return;
+                }
+            }
+            
             Despesa despesa = new Despesa(
                     Integer.parseInt(txtDia.getText()),
                     Integer.parseInt(txtMes.getText()),
