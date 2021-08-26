@@ -204,17 +204,17 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(40, 60, 63, 25);
+        btn_inicio.setBounds(40, 60, 90, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 200, 60, 27);
+        jLabel1.setBounds(40, 180, 60, 27);
 
         txt_total.setBackground(new java.awt.Color(187, 210, 240));
         txt_total.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_total);
-        txt_total.setBounds(40, 220, 200, 27);
+        txt_total.setBounds(40, 210, 200, 27);
 
         btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
         btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -226,16 +226,16 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(40, 300, 150, 25);
+        btn_NovaReceita.setBounds(40, 260, 150, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("CADASTRAR NOVA RECEITA");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(210, 10, 280, 18);
+        jLabel2.setBounds(280, 0, 280, 18);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(290, 60, 410, 370);
+        jLabel7.setBounds(390, 180, 410, 370);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel3);

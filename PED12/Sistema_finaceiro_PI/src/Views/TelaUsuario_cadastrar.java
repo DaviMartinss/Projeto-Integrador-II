@@ -89,24 +89,24 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nome");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 100, 50, 27);
+        jLabel1.setBounds(200, 100, 50, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Email");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(30, 160, 50, 27);
+        jLabel2.setBounds(200, 160, 50, 27);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Senha");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 220, 60, 27);
+        jLabel3.setBounds(200, 220, 60, 27);
 
         btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
         btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -123,17 +123,17 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtNome);
-        txtNome.setBounds(30, 120, 400, 27);
+        txtNome.setBounds(200, 120, 400, 27);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(30, 180, 400, 27);
+        txtEmail.setBounds(200, 180, 400, 27);
 
         txtSenha.setBackground(new java.awt.Color(187, 210, 240));
         txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(30, 240, 400, 27);
+        txtSenha.setBounds(200, 240, 400, 27);
 
         txtAvatar.setBackground(new java.awt.Color(187, 210, 240));
         txtAvatar.setToolTipText("");
@@ -144,21 +144,21 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtAvatar);
-        txtAvatar.setBounds(30, 300, 400, 27);
+        txtAvatar.setBounds(200, 300, 400, 27);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(550, 270, 140, 120);
+        jLabel7.setBounds(630, 390, 140, 120);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Usuário");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(240, 0, 190, 24);
+        jLabel6.setBounds(300, 0, 190, 26);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Avatar");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 280, 60, 27);
+        jLabel4.setBounds(200, 280, 60, 27);
 
         btnRealizarCadastro.setBackground(new java.awt.Color(105, 69, 219));
         btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -170,13 +170,13 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(290, 350, 133, 27);
+        btnRealizarCadastro.setBounds(330, 350, 138, 27);
 
         jLabel5.setBackground(new java.awt.Color(187, 210, 240));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1958, 1080);
+        jLabel5.setBounds(0, 0, 1968, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

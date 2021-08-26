@@ -152,7 +152,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 500));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -164,7 +164,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Dados do Usuário");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(250, 0, 180, 24);
+        jLabel2.setBounds(310, 0, 170, 26);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -176,34 +176,37 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 40, 110, 25);
+        jButton1.setBounds(40, 40, 110, 27);
 
+        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Nome: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 80, 34, 14);
+        jLabel3.setBounds(200, 130, 42, 17);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtNome);
-        txtNome.setBounds(30, 100, 400, 27);
+        txtNome.setBounds(200, 150, 400, 27);
 
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Email:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 140, 60, 14);
+        jLabel4.setBounds(200, 190, 60, 17);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(30, 160, 400, 27);
+        txtEmail.setBounds(200, 210, 400, 27);
 
+        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel5.setText("Senha:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(30, 200, 70, 20);
+        jLabel5.setBounds(200, 250, 70, 20);
 
         txtSenha.setBackground(new java.awt.Color(187, 210, 240));
         txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(30, 220, 400, 27);
+        txtSenha.setBounds(200, 270, 400, 27);
 
         btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -215,14 +218,14 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(530, 310, 140, 27);
+        btnAlterar.setBounds(350, 380, 140, 27);
 
         btnExcluir.setBackground(new java.awt.Color(210, 59, 233));
         btnExcluir.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("Excluir");
         getContentPane().add(btnExcluir);
-        btnExcluir.setBounds(530, 350, 140, 27);
+        btnExcluir.setBounds(350, 420, 140, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -234,13 +237,13 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(530, 270, 140, 27);
+        btn_update.setBounds(350, 340, 140, 27);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(500, 160, 60, 20);
+        txt_id.setBounds(500, 160, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
