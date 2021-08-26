@@ -5,6 +5,8 @@
  */
 package Model;
 
+import ValidacaoComum.Validacao;
+
 /**
  *
  * @author pc
@@ -182,6 +184,40 @@ public class CartaoCredito {
        }else{
            return  false;
        }
+    }
+      
+    public boolean verifica_cartaoCreditoValido(){
+          
+          if(varifica_valor_fatura() && verifica_bandeira_credito() && verifica_limite() && verifica_dia_fatura()){
+              return true;
+          }else{
+              return false;
+          }
+              
+      }  
+      
+      public boolean Update_CamposValidos(String valorFat, String bandeira, String limite, String diaFat){
+        Validacao valida = new Validacao();
+        
+        float valorFat_aux = valida.converteParaFloat(valorFat);
+        float limite_aux  = valida.converteParaFloat(limite);
+        int dia_aux = valida.converteParaInt(diaFat);
+        
+        if(valorFat_aux != -1 && limite_aux != -1 && dia_aux != -1 ){
+            setValor_fatura(valorFat_aux);
+            setLimite(limite_aux);
+            setDia_fatura(dia_aux);
+            setBandeira(bandeira);
+            
+            if(verifica_cartaoCreditoValido()){
+                return true;
+            }else{
+                return false;
+            }
+            
+        }else{
+            return false;
+        }
     }
       
 }

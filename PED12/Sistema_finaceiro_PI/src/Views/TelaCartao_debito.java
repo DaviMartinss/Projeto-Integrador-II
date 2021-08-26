@@ -8,6 +8,7 @@ package Views;
 import DAO.CartaoDebitoDAO;
 import DAO.moduloConexao;
 import Model.CartaoDebito;
+import ValidacaoComum.Validacao;
 import java.awt.FlowLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -182,6 +183,14 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nenhum Campo pode ser nulo no Update");
                 return;
             }
+            
+            Validacao valida = new Validacao();
+            
+            if(!( valida.ehNum(txt_NumCartaoD.getText()) && valida.ehNum(txt_Valor.getText()))) {
+                JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+                return;
+            }
+            
             CartaoDebito cartao_d = new CartaoDebito(
                 Long.parseLong(txt_NumCartaoD.getText()),
                 Float.parseFloat(txt_Valor.getText()),

@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import Model.CartaoDebito;
+import ValidacaoComum.Validacao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -284,6 +285,14 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
+            
+            Validacao valida = new Validacao();
+            
+            if(!( valida.ehNum(txt_numCartDeb.getText()) && valida.ehNum(txt_valorCartaoDeb.getText()))) {
+                JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+                return;
+            }
+            
             
             boolean cadastra = true;
             

@@ -256,6 +256,12 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
+            Validacao valida = new Validacao();
+        
+                if(!( valida.ehNum(txt_dia.getText()) && valida.ehNum(txt_mes.getText()) && valida.ehNum(txt_ano.getText()) && valida.ehNum(txt_total.getText()) )){
+                JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+                return;
+            }
             
             boolean cadastra = true;
             

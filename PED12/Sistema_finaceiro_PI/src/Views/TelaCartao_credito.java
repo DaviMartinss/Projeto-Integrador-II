@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import ValidacaoComum.Validacao;
 /**
  *
  * @author pc
@@ -195,6 +195,17 @@ public class TelaCartao_credito extends javax.swing.JFrame {
          if(cartao_aux.UpdateEhVazio(txt_NumCartaoC.getText(), txt_ValorFatura.getText(), txt_Limite.getText(), txt_Bandeira.getText(), txt_DiaFatura.getText())){
             JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
             return;
+         }
+         
+         if(!(cartao_aux.Update_CamposValidos(txt_ValorFatura.getText(), txt_Bandeira.getText(), txt_Limite.getText(), txt_DiaFatura.getText()))){
+             JOptionPane.showMessageDialog(null, "Valor inválido");
+             return;
+         }
+         Validacao valida = new Validacao();
+         
+         if(!(valida.ehNum(txt_NumCartaoC.getText()))){
+             JOptionPane.showMessageDialog(null, "Valor inválido");
+             return;
          }
          
             CartaoCredito cartao_c = new CartaoCredito(
