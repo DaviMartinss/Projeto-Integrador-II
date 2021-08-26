@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ValidacaoComum.Validacao;
+
 /**
  *
  * @author Alan
@@ -409,30 +410,28 @@ public class TelaDespesa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser atualizda");
             return;
         }
-        
-        
+
         Despesa despesa_aux = new Despesa();
-        
-        if(despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), txtCategoria.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(),salvaStatus, txtAreaDescricao.getText())){
+
+        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), txtCategoria.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus, txtAreaDescricao.getText())) {
             JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
             return;
-         }
-        
-        if( !(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText(), txtCategoria.getText() ))){
-            
-            JOptionPane.showMessageDialog(null, "O valor informado é inválido");
-            return;     
         }
-         
-        
+
+        if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText(), txtCategoria.getText()))) {
+
+            JOptionPane.showMessageDialog(null, "O valor informado é inválido");
+            return;
+        }
+
         if (salvaF_pagamento.equals("CRÉDITO")) {
             Validacao valida = new Validacao();
-            if(!(valida.ehNum(txtParcelas.getText()))){
+            if (!(valida.ehNum(txtParcelas.getText()))) {
                 JOptionPane.showMessageDialog(null, "Número de parcelas inválido");
-                return;     
+                return;
             }
         }
-        
+
         if (salvaF_pagamento.equals("CRÉDITO")) {
 
             Despesa despesa = new Despesa(
@@ -1302,12 +1301,85 @@ public class TelaDespesa extends javax.swing.JFrame {
             rbCredito.setEnabled(false);
             rbDinheiro.setEnabled(false);
 
-            telaUpdateDespesa();
-            RecarregaTabela_Despesa();
+            Despesa despesa = new Despesa(
+                    Integer.parseInt(txtDia.getText()),
+                    Integer.parseInt(txtMes.getText()),
+                    Integer.parseInt(txtAno.getText()),
+                    Float.parseFloat(txtValor.getText()),
+                    txtCategoria.getText(),
+                    txtAreaDescricao.getText(),
+                    Integer.parseInt(txt_id.getText())
+            );
 
-            LimpaCampos_Despesa();
+            Data data = new Data(Integer.parseInt(txtDia.getText()),
+                    Integer.parseInt(txtMes.getText()),
+                    Integer.parseInt(txtAno.getText()));
+
+            if (rbDebito.isSelected()) {
+
+                despesa.setF_pagamento("DÉBITO");
+
+                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
+
+            } else if (rbCredito.isSelected()) {
+
+                despesa.setF_pagamento("CRÉDITO");
+
+                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
+
+            } else {
+
+                despesa.setF_pagamento("DINHEIRO");
+
+            }
+
+            if (rbPago.isSelected()) {
+
+                despesa.setEstatus("PAGO");
+
+            } else {
+
+                despesa.setEstatus("NÃO PAGO");
+            }
+
+            DespesaDAO despesaDAO = new DespesaDAO();
+
+            ReceitaDAO receitaDAO = new ReceitaDAO();
+
+            Receita receita = new Receita(Integer.parseInt(txt_id.getText()),
+                    Integer.parseInt(txtMes.getText()),
+                    Integer.parseInt(txtAno.getText())
+            );
+
+            boolean atualiza = true;
+
+            if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
+
+                if (!(despesa.verifica_num_cartao_despesa())) {
+
+                    JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                    atualiza = false;
+
+                }
+
+            }
+            
+            if (atualiza) {
+
+                telaUpdateDespesa();
+                RecarregaTabela_Despesa();
+                LimpaCampos_Despesa();
+
+                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Erro ao atualizar", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+            }
+
         }
-
 
     }//GEN-LAST:event_btn_updateActionPerformed
 

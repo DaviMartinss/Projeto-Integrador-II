@@ -19,24 +19,23 @@ import javax.swing.JOptionPane;
  * @author Alan
  */
 public class CartaoCreditoDAO {
-    
+
     private Connection conexao = null;
 
     public CartaoCreditoDAO() {
-        
+
         conexao = moduloConexao.conector();
-    
+
     }
-    
-    
+
     public boolean CadastrarCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
-    
+
         PreparedStatement pst = null;
 
         String insert = "insert into cartao_credito (n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira, conta_id_conta) values(?,?,?,?,?,?)";
 
         pst = conexao.prepareStatement(insert);
-    
+
         try {
 
             pst.setLong(1, cartao_credito.getN_cartao_credito());
@@ -46,9 +45,8 @@ public class CartaoCreditoDAO {
             pst.setString(5, cartao_credito.getBandeira());
             pst.setFloat(6, cartao_credito.getId_conta());
 
-            
             pst.executeUpdate();
-            
+
             return true;
 
         } catch (Exception e) {
@@ -57,23 +55,22 @@ public class CartaoCreditoDAO {
 
             return false;
 
-        }finally{
-            
+        } finally {
+
             pst.close();
-            
+
         }
-    
-    
+
     }
-    
+
     public boolean UpdateCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
-    
+
         PreparedStatement pst = null;
-         
+
         String update = "update cartao_credito set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=? where n_cartao_credito=?";
-        
+
         pst = conexao.prepareStatement(update);
-    
+
         try {
 
             pst.setLong(1, cartao_credito.getN_cartao_credito());
@@ -83,9 +80,8 @@ public class CartaoCreditoDAO {
             pst.setString(5, cartao_credito.getBandeira());
             pst.setLong(6, cartao_credito.getN_cartao_aux());
 
-            
             pst.executeUpdate();
-            
+
             return true;
 
         } catch (Exception e) {
@@ -94,27 +90,27 @@ public class CartaoCreditoDAO {
 
             return false;
 
-        }finally{
-            
+        } finally {
+
             pst.close();
-            
+
         }
     }
-    
+
     public boolean DeleteCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
-    
+
         PreparedStatement pst = null;
-         
+
         String update = "delete from cartao_credito where n_cartao_credito = ?";
-        
+
         pst = conexao.prepareStatement(update);
-    
+
         try {
 
             pst.setLong(1, cartao_credito.getN_cartao_credito());
-            
+
             pst.executeUpdate();
-            
+
             return true;
 
         } catch (Exception e) {
@@ -123,192 +119,181 @@ public class CartaoCreditoDAO {
 
             return false;
 
-        }finally{
-            
+        } finally {
+
             pst.close();
-            
+
         }
     }
-    
+
     public LinkedList<CartaoCredito> CarregaTabela_Cartao_C(int id_conta) throws SQLException {
-       
-       String consulta = "select * from cartao_credito where conta_id_conta=?";
-       
-       ResultSet rs = null;
-       
-       LinkedList<CartaoCredito> lista_CC = new LinkedList();
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-             
-       try{
-           
-           pst.setInt(1, id_conta);
-       
-           rs = pst.executeQuery();
-           
-           while(rs.next()){
-               
-               lista_CC.add(new CartaoCredito(
-                 Long.parseLong(rs.getString("n_cartao_credito")),
-                 Float.parseFloat(rs.getString("limite")),
-                 Integer.parseInt(rs.getString("dia_fatura")),
-                 Float.parseFloat(rs.getString("valor_fatura")),
-                 rs.getString("bandeira"),
-                 id_conta)         
-               );
-               
-               
-           }
-           
-           
-       }catch (Exception e) {
+
+        String consulta = "select * from cartao_credito where conta_id_conta=?";
+
+        ResultSet rs = null;
+
+        LinkedList<CartaoCredito> lista_CC = new LinkedList();
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        try {
+
+            pst.setInt(1, id_conta);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_CC.add(new CartaoCredito(
+                        Long.parseLong(rs.getString("n_cartao_credito")),
+                        Float.parseFloat(rs.getString("limite")),
+                        Integer.parseInt(rs.getString("dia_fatura")),
+                        Float.parseFloat(rs.getString("valor_fatura")),
+                        rs.getString("bandeira"),
+                        id_conta)
+                );
+
+            }
+
+        } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
-       
-       }finally{
-           
-           pst.close();
-       }
-       
-       return lista_CC;
-       
-   }
-    
-   
-   
-   public LinkedList<CartaoCredito> ConsultaCartao_C(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
-       
-       String argumento = "";
-       
-       if(ordenar){
-           
-           argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
-           
-       }else{
-           
-           argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
-       }
 
-       String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE " + argumento + "";
-       
-       ResultSet rs = null;
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       LinkedList<CartaoCredito> lista_CC = new LinkedList();
-       
-       try {
+        } finally {
 
-           rs = pst.executeQuery();
-           
-           
-           while(rs.next()){
-               
-               lista_CC.add(new CartaoCredito(
-                 Long.parseLong(rs.getString("n_cartao_credito")),
-                 Float.parseFloat(rs.getString("limite")),
-                 Integer.parseInt(rs.getString("dia_fatura")),
-                 Float.parseFloat(rs.getString("valor_fatura")),
-                 rs.getString("bandeira"),
-                 id_conta)         
-               );
-               
-               
-           }
-   
+            pst.close();
+        }
 
-       } catch (Exception e) {
+        return lista_CC;
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
+    }
 
-       }finally{
-           
-           pst.close();
-       } 
-       
-       return lista_CC;
-       
-   }
-   
-   public LinkedList<CartaoCredito> PreencherCamposCartao_C(String num_cartao, int id_conta) throws SQLException {
- 
-       String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE n_cartao_credito = ?";
-    
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       LinkedList<CartaoCredito> lista_CC = new LinkedList();
-       
-       try {
-           
-           pst.setLong(1, Long.parseLong(num_cartao));
-           
-           rs = pst.executeQuery();
-           
-           while(rs.next()){
-               
-               lista_CC.add(new CartaoCredito(
-                 Long.parseLong(rs.getString("n_cartao_credito")),
-                 Float.parseFloat(rs.getString("limite")),
-                 Integer.parseInt(rs.getString("dia_fatura")),
-                 Float.parseFloat(rs.getString("valor_fatura")),
-                 rs.getString("bandeira"),
-                 id_conta)         
-               );
-               
-               
-           }
+    public LinkedList<CartaoCredito> ConsultaCartao_C(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
 
-       } catch (Exception e) {
+        String argumento = "";
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
+        if (ordenar) {
 
-       }finally{
-           
-           pst.close();
-       }
+            argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
 
-       return lista_CC;
-       
-   }
-   
-   public boolean CartaoExiste(CartaoCredito cartao) throws SQLException{
-       
-       String consulta = "select n_cartao_credito from cartao_credito where n_cartao_credito = ? and conta_id_conta =?";
-       
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       try{
-           
-           pst.setLong(1, cartao.getN_cartao_credito());
-           
-           pst.setInt(2, cartao.getId_conta());
-           
-           rs = pst.executeQuery();
-           
-           if(rs.next()){
-               
-               return true;
-               
-           }else{
-               
-               return false;
-           }
-           
-           
-       }catch (Exception e) {
+        } else {
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
-           
-           return false;
-       
-       }
-       
-       
-   }
-    
-    
+            argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+        }
+
+        String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE " + argumento + "";
+
+        ResultSet rs = null;
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<CartaoCredito> lista_CC = new LinkedList();
+
+        try {
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_CC.add(new CartaoCredito(
+                        Long.parseLong(rs.getString("n_cartao_credito")),
+                        Float.parseFloat(rs.getString("limite")),
+                        Integer.parseInt(rs.getString("dia_fatura")),
+                        Float.parseFloat(rs.getString("valor_fatura")),
+                        rs.getString("bandeira"),
+                        id_conta)
+                );
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        } finally {
+
+            pst.close();
+        }
+
+        return lista_CC;
+
+    }
+
+    public LinkedList<CartaoCredito> PreencherCamposCartao_C(String num_cartao, int id_conta) throws SQLException {
+
+        String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE n_cartao_credito = ?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        LinkedList<CartaoCredito> lista_CC = new LinkedList();
+
+        try {
+
+            pst.setLong(1, Long.parseLong(num_cartao));
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_CC.add(new CartaoCredito(
+                        Long.parseLong(rs.getString("n_cartao_credito")),
+                        Float.parseFloat(rs.getString("limite")),
+                        Integer.parseInt(rs.getString("dia_fatura")),
+                        Float.parseFloat(rs.getString("valor_fatura")),
+                        rs.getString("bandeira"),
+                        id_conta)
+                );
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        } finally {
+
+            pst.close();
+        }
+
+        return lista_CC;
+
+    }
+
+    public boolean CartaoCreditoExiste(CartaoCredito cartao) throws SQLException {
+
+        String consulta = "select n_cartao_credito from cartao_credito where n_cartao_credito = ? and conta_id_conta =?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        try {
+
+            pst.setLong(1, cartao.getN_cartao_credito());
+
+            pst.setInt(2, cartao.getId_conta());
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }
+
+    }
+
 }

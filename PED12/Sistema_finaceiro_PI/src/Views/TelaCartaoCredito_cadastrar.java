@@ -303,7 +303,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             );
             
             try {
-                if(cartaoDAO.CartaoExiste(cartaoCC)){
+                if(cartaoDAO.CartaoCreditoExiste(cartaoCC)){
                             
                     JOptionPane.showMessageDialog(null, "Número do cartão de crédito já existe","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                     

@@ -247,7 +247,7 @@ public class CartaoDebitoDAO {
        
    }
    
-   public boolean CartaoExiste(CartaoDebito cartao) throws SQLException{
+   public boolean CartaoDebitoExiste(CartaoDebito cartao) throws SQLException{
        
        String consulta = "select n_cartao_debito from cartao_debito where n_cartao_debito = ? and conta_id_conta =?";
        

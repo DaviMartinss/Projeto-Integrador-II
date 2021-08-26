@@ -18,14 +18,11 @@ import javax.swing.JOptionPane;
  * @author pc
  */
 public class TelaUsuario_senha extends javax.swing.JFrame {
-
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
     
     public TelaUsuario_senha() {
         initComponents();
-        conexao = moduloConexao.conector();
+
+        this.setLocationRelativeTo(null);
     }
     void Volta_TelaConta() {
 

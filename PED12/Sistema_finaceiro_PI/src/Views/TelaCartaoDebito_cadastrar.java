@@ -57,55 +57,6 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     
     
    public void cadastro_cartao_debito(){
-        
-//         String id_conta = txt_id.getText();
-//         
-//         int Id_conta_BD = Integer.parseInt(id_conta);
-//
-//        String sql = "insert into cartao_debito (n_cartao_debito,valor_atual, bandeira, conta_id_conta) values(?,?, ?, ?)";
-//        
-//        try {
-//            
-//            pst = conexao.prepareStatement(sql);
-//
-//            pst.setString(1, txt_numCartDeb.getText());
-//            pst.setString(2, txt_valorCartaoDeb.getText());
-//            pst.setString(3, txt_BandCartDeb.getText());
-//            pst.setInt(4, Id_conta_BD);
-//            
-//            int n_cartao_debito = Integer.parseInt(txt_numCartDeb.getText());
-//            float valor_atual = Float.parseFloat(txt_valorCartaoDeb.getText());
-//            String bandeira = txt_BandCartDeb.getText();
-//                    
-//            CartaoDebito cartao_aux = new CartaoDebito(n_cartao_debito, valor_atual, bandeira);
-//            if(!(cartao_aux.verifica_Bandeira_cartao_deb())){
-//                flag_Suc_bandeira = false;
-//                JOptionPane.showMessageDialog(null, "A bandeira deve conter apenas letras");
-//                
-//            }
-//            
-//            if(!(cartao_aux.verifica_valor_atual())){
-//                flag_Suc_valorAtual = false;
-//                JOptionPane.showMessageDialog(null, "O valor atual deve ser positivo");
-//                
-//                
-//            }
-//            if(flag_Suc_bandeira && flag_Suc_valorAtual){
-//                pst.executeUpdate();
-//            }
-//           
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o cartão de debito");
-//   
-//        }
-//        
-//        if(flag_Suc_bandeira && flag_Suc_valorAtual){
-//            
-//            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso");
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Falha ao cadastrar o cartão de debito");
-//        }
-
 
         CartaoDebito cartao_db = new CartaoDebito(
                 Long.parseLong(txt_numCartDeb.getText()),
@@ -307,7 +258,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             );
             
             try {
-                if(cartaoDAO.CartaoExiste(cartaoDB)){
+                if(cartaoDAO.CartaoDebitoExiste(cartaoDB)){
                             
                     JOptionPane.showMessageDialog(null, "Número do cartão de débito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                     
