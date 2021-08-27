@@ -106,7 +106,7 @@ public class DespesaDAO {
                          if(consulta_aux.CartaoDebitoExiste(despesa.getNum_cartao())){
                              sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
                          }else{
-                             System.out.println("Cartãoa de debito não existe");
+                             
                              FlagErroCadastroDespesa = false;
                          }
                         
@@ -117,7 +117,7 @@ public class DespesaDAO {
                        if(consulta_auxCD.CartaoCreditoExiste(despesa.getNum_cartao())){
                            sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
                        }else{
-                           System.out.println("Cartãop de crédito não existe");
+                           
                            FlagErroCadastroDespesa = false;
                        } 
                         
