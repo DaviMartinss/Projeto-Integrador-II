@@ -60,24 +60,29 @@ public class CartaoDebitoDAO {
         }
 
     }
-   public boolean UpdateCartaoDebito(CartaoDebito cartao_debito) throws SQLException {
-    
-        PreparedStatement pst = null;
-         
-        String update = "update cartao_debito set n_cartao_debito=?, valor_atual= ?, bandeira=? where n_cartao_debito=?";
-        
-        pst = conexao.prepareStatement(update);
-    
+   public boolean DespesaCartaoExiste(long num_cartao) throws SQLException {
+
+        String consulta = "select distinct num_cartao from despesa where num_cartao = ?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
         try {
 
-            pst.setLong(1, cartao_debito.getN_cartao_debito());
-            pst.setFloat(2, cartao_debito.getValor_atual());
-            pst.setString(3, cartao_debito.getBandeira());
-            pst.setLong(4, cartao_debito.getN_cartao_aux());
-            
-            pst.executeUpdate();
-            
-            return true;
+            pst.setLong(1, num_cartao);
+
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
 
         } catch (Exception e) {
 
@@ -85,11 +90,76 @@ public class CartaoDebitoDAO {
 
             return false;
 
-        }finally{
-            
-            pst.close();
-            
         }
+
+    }
+   
+   public boolean UpdateCartaoDebito(CartaoDebito cartao_debito) throws SQLException {
+       if(!(DespesaCartaoExiste(cartao_debito.getN_cartao_aux()))){
+           
+           PreparedStatement pst = null;
+         
+            String update = "update cartao_debito set n_cartao_debito=?, valor_atual= ?, bandeira=? where n_cartao_debito=?";
+
+            pst = conexao.prepareStatement(update);
+
+            try {
+
+                pst.setLong(1, cartao_debito.getN_cartao_debito());
+                pst.setFloat(2, cartao_debito.getValor_atual());
+                pst.setString(3, cartao_debito.getBandeira());
+                pst.setLong(4, cartao_debito.getN_cartao_aux());
+
+                pst.executeUpdate();
+
+                return true;
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            }finally{
+
+                pst.close();
+
+            }
+            
+      }else{
+           
+           PreparedStatement pst1 = null;
+         
+            String update = "update cartao_debito LEFT OUTER JOIN  despesa on cartao_debito.n_cartao_debito = despesa.num_cartao set n_cartao_debito = ?, valor_atual= ?, bandeira=?, num_cartao=?  where n_cartao_debito= ?";
+
+           pst1 = conexao.prepareStatement(update);
+
+            try {
+
+                pst1.setLong(1, cartao_debito.getN_cartao_debito());
+                pst1.setFloat(2, cartao_debito.getValor_atual());
+                pst1.setString(3, cartao_debito.getBandeira());
+                pst1.setLong(4, cartao_debito.getN_cartao_debito());
+                pst1.setLong(5, cartao_debito.getN_cartao_aux());
+
+                pst1.executeUpdate();
+
+                return true;
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            }finally{
+
+                pst1.close();
+
+            }
+           
+       }
+       
     }
     
    public boolean DeleteCartaoDebito(CartaoDebito cartao_debito) throws SQLException {

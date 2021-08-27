@@ -62,27 +62,30 @@ public class CartaoCreditoDAO {
         }
 
     }
+    
+    public boolean DespesaCartaoExiste(long num_cartao) throws SQLException {
 
-    public boolean UpdateCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
+        String consulta = "select distinct num_cartao from despesa where num_cartao = ?";
 
-        PreparedStatement pst = null;
+        PreparedStatement pst = conexao.prepareStatement(consulta);
 
-        String update = "update cartao_credito set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=? where n_cartao_credito=?";
-
-        pst = conexao.prepareStatement(update);
+        ResultSet rs = null;
 
         try {
 
-            pst.setLong(1, cartao_credito.getN_cartao_credito());
-            pst.setFloat(2, cartao_credito.getLimite());
-            pst.setInt(3, cartao_credito.getDia_fatura());
-            pst.setFloat(4, cartao_credito.getValor_fatura());
-            pst.setString(5, cartao_credito.getBandeira());
-            pst.setLong(6, cartao_credito.getN_cartao_aux());
+            pst.setLong(1, num_cartao);
 
-            pst.executeUpdate();
 
-            return true;
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
 
         } catch (Exception e) {
 
@@ -90,13 +93,81 @@ public class CartaoCreditoDAO {
 
             return false;
 
-        } finally {
-
-            pst.close();
-
         }
+
     }
 
+    public boolean UpdateCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
+            
+        if(DespesaCartaoExiste(cartao_credito.getN_cartao_aux())){
+            
+            PreparedStatement pst = null;
+
+            String update = "update cartao_credito LEFT OUTER JOIN  despesa on cartao_credito.n_cartao_credito = despesa.num_cartao set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=?, num_cartao= ? where (n_cartao_credito= ?);";
+
+            pst = conexao.prepareStatement(update);
+
+            try {
+
+                pst.setLong(1, cartao_credito.getN_cartao_credito());
+                pst.setFloat(2, cartao_credito.getLimite());
+                pst.setInt(3, cartao_credito.getDia_fatura());
+                pst.setFloat(4, cartao_credito.getValor_fatura());
+                pst.setString(5, cartao_credito.getBandeira());
+                pst.setLong(6, cartao_credito.getN_cartao_credito());
+                pst.setLong(7, cartao_credito.getN_cartao_aux());
+
+                pst.executeUpdate();
+
+                return true;
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            } finally {
+
+                pst.close();
+
+            }
+            
+        }else{
+            
+            PreparedStatement pst1 = null;
+
+            String update = "update cartao_credito set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=? where n_cartao_credito=?";
+
+            pst1 = conexao.prepareStatement(update);
+
+            try {
+
+                pst1.setLong(1, cartao_credito.getN_cartao_credito());
+                pst1.setFloat(2, cartao_credito.getLimite());
+                pst1.setInt(3, cartao_credito.getDia_fatura());
+                pst1.setFloat(4, cartao_credito.getValor_fatura());
+                pst1.setString(5, cartao_credito.getBandeira());
+                pst1.setLong(6, cartao_credito.getN_cartao_aux());
+
+                pst1.executeUpdate();
+
+                return true;
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            } finally {
+
+                pst1.close();
+
+            }
+            
+        }
+    }
     public boolean DeleteCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
 
         PreparedStatement pst = null;

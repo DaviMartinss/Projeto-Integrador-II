@@ -515,6 +515,8 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                 despesa.setF_pagamento("CRÉDITO");
 
                 despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
+                
+                despesa.setNum_parcelas(Integer.parseInt((txtParcelas.getText())));
 
             } else {
 
