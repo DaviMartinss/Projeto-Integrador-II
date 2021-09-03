@@ -23,10 +23,10 @@ public class moduloConexao {
         
         // armazenando infformações rederentes ao banco
         
-        String url = "jdbc:mysql://localhost:3307/bd_pedemeia_3";          
+        String url = "jdbc:mysql://localhost:3306/bd_pedemeia";          
         String user = "root";          
 
-        String password = "07052002davi";  
+        String password = "admin";  
   
 
         // estabelecendo a conexão com o banco
@@ -38,7 +38,7 @@ public class moduloConexao {
             return conexao;
         
         } catch(Exception e){
-            System.out.println("Falha ao conectar com o banco de dados " +e); 
+            System.out.println("Falha ao conectar com o banco de dados " + e); 
             return null;
         }
         

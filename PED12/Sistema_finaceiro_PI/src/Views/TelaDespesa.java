@@ -176,6 +176,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     }
 
     void RecarregaTabela_Despesa() {
+        
         salvaLinhaAtiva = false;
         DefaultTableModel mp1 = (DefaultTableModel) jtConsultaDespesa.getModel();
 
@@ -257,7 +258,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }
 
-    void PesquisaDespesa() {
+    void PesquisaDespesa(boolean despesas) {
 
         boolean ordenar = true;
 
@@ -349,15 +350,19 @@ public class TelaDespesa extends javax.swing.JFrame {
             DespesaDAO despesaDAO = new DespesaDAO();
 
             Receita receita = new Receita();
-
+            
             receita.setId_conta(Integer.parseInt(txt_id.getText()));
-            receita.setMes(Integer.parseInt(txtMesReceita.getText()));
-            receita.setAno(Integer.parseInt(txtAnoReceita.getText()));
+            
+            if(!(despesas)){
+                
+                receita.setMes(Integer.parseInt(txtMesReceita.getText()));
+                receita.setAno(Integer.parseInt(txtAnoReceita.getText()));
+            }
 
             DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
 
-            LinkedList<Despesa> lista_despesa = despesaDAO.Consulta_Despesa(tipo, argumento, ordenar, receita);
-
+            LinkedList<Despesa> lista_despesa = despesaDAO.Consulta_Despesa(tipo, argumento, ordenar, despesas, txt_id.getText(), receita);
+            
             for (Despesa despesa : lista_despesa) {
 
                 Col0 = Integer.toString(despesa.getCod_despesa());
@@ -398,7 +403,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro:PesquisaDespesa - " + e.getMessage());
 
         }
 
@@ -1108,16 +1113,36 @@ public class TelaDespesa extends javax.swing.JFrame {
         }
         
         DespesaDAO despesaDAO = new DespesaDAO();
+        
+        boolean despesas = false;
+        
+        if (txtMesReceita.getText().isEmpty() && txtAnoReceita.getText().isEmpty()) {   
+            
+            despesas = true;
+            
+        }
+        
+        if (despesas) {
 
-        if (!(txtMesReceita.getText().isEmpty()) && !(txtAnoReceita.getText().isEmpty())) {
+            if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
 
+                PesquisaDespesa(despesas);
+
+             } else {
+
+                JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
+
+            }
+
+        }else{
+            
             try {
 
                 if (despesaDAO.ValidaConsulta_Despesa(Integer.parseInt(txtMesReceita.getText()), Integer.parseInt(txtAnoReceita.getText()))) {
 
                     if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
 
-                        PesquisaDespesa();
+                        PesquisaDespesa(despesas);
 
                     } else {
 
@@ -1135,11 +1160,41 @@ public class TelaDespesa extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
 
             }
-
-        } else {
-
-            JOptionPane.showMessageDialog(this, "Informe o mês e ano de uma receita existente!!");
+            
+            
         }
+
+//        if (!(txtMesReceita.getText().isEmpty()) && !(txtAnoReceita.getText().isEmpty())) {
+
+//            try {
+//
+//                if (despesaDAO.ValidaConsulta_Despesa(Integer.parseInt(txtMesReceita.getText()), Integer.parseInt(txtAnoReceita.getText()))) {
+//
+//                    if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
+//
+//                        PesquisaDespesa(despesas);
+//
+//                    } else {
+//
+//                        JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
+//
+//                    }
+//
+//                } else {
+//
+//                    JOptionPane.showMessageDialog(this, "Mês ou Ano da receita inválidos ou inexistentes!");
+//                }
+//
+//            } catch (SQLException ex) {
+//
+//                JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
+//
+//            }
+
+//        } else {
+//
+//            JOptionPane.showMessageDialog(this, "Informe o mês e ano de uma receita existente!!");
+//        }
 
     }//GEN-LAST:event_btPesquisarDespesaActionPerformed
 

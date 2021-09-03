@@ -9,10 +9,11 @@ import ValidacaoComum.Validacao;
  *
  * @author pc
  */
-public class Data {
-    public int dia;
-    public int mes;
-    public int ano;
+public class Data{
+    
+    private int dia;
+    private int mes;
+    private int ano;
 
     public Data() {
     

@@ -496,9 +496,10 @@ public class DespesaDAO {
 
     }
 
-    public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException {
+    public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, boolean despesas, String id_conta, Receita receita) throws SQLException {
 
         String argumento = "";
+        
 
         if (ordenar) {
 
@@ -508,72 +509,144 @@ public class DespesaDAO {
 
             argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
         }
-
-        String consulta
-                = "(select\n"
-                + "des_d.cod_despesa,\n"
-                + "des_d.dia,\n"
-                + "des_d.mes,\n"
-                + "des_d.ano,\n"
-                + "des.valor,\n"
-                + "des.categoria,\n"
-                + "des.f_pagamento,\n"
-                + "des.num_cartao,\n"
-                + "des_c.n_parcelas,\n"
-                + "des.estatus,\n"
-                + "des.descricao\n"
-                + "from despesa des\n"
-                + " LEFT OUTER JOIN despesa_data des_d on\n"
-                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
-                + " LEFT OUTER JOIN despesa_credito des_c on \n"
-                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
-                + "WHERE des_d.conta_id_conta = ? and des_d.mes = ? and des_d.ano = ?"
-                + argumento + " );";
-
+        
+        String consulta = null;
+        
         ResultSet rs = null;
-
-        PreparedStatement pst = conexao.prepareStatement(consulta);
+        
+        PreparedStatement pst = null;
 
         LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
 
-        try {
+        if (despesas) {
+            
+            consulta
+                    = "(select\n"
+                    + "des_d.cod_despesa,\n"
+                    + "des_d.dia,\n"
+                    + "des_d.mes,\n"
+                    + "des_d.ano,\n"
+                    + "des.valor,\n"
+                    + "des.categoria,\n"
+                    + "des.f_pagamento,\n"
+                    + "des.num_cartao,\n"
+                    + "des_c.n_parcelas,\n"
+                    + "des.estatus,\n"
+                    + "des.descricao\n"
+                    + "from despesa des\n"
+                    + " LEFT OUTER JOIN despesa_data des_d on\n"
+                    + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+                    + " LEFT OUTER JOIN despesa_credito des_c on \n"
+                    + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+                    + "WHERE des_d.conta_id_conta = ?"
+                    + argumento + " );";
 
-            pst.setInt(1, receita.getId_conta());
-            pst.setInt(2, receita.getMes());
-            pst.setInt(3, receita.getAno());
+            try {
+                
+                pst = conexao.prepareStatement(consulta);
 
-            rs = pst.executeQuery();
+                pst.setInt(1, Integer.parseInt(id_conta));
 
-            while (rs.next()) {
+                rs = pst.executeQuery();
 
-                lista_despesa.add(
-                        new Despesa(
-                                rs.getInt("dia"),
-                                rs.getInt("mes"),
-                                rs.getInt("ano"),
-                                rs.getFloat("valor"),
-                                rs.getString("categoria"),
-                                rs.getString("f_pagamento"),
-                                rs.getLong("num_cartao"),
-                                rs.getInt("n_parcelas"),
-                                rs.getString("estatus"),
-                                rs.getString("descricao"),
-                                rs.getInt("cod_despesa")
-                        )
-                );
+                while (rs.next()) {
+
+                    lista_despesa.add(
+                            new Despesa(
+                                    rs.getInt("dia"),
+                                    rs.getInt("mes"),
+                                    rs.getInt("ano"),
+                                    rs.getFloat("valor"),
+                                    rs.getString("categoria"),
+                                    rs.getString("f_pagamento"),
+                                    rs.getLong("num_cartao"),
+                                    rs.getInt("n_parcelas"),
+                                    rs.getString("estatus"),
+                                    rs.getString("descricao"),
+                                    rs.getInt("cod_despesa")
+                            )
+                    );
+                }
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:Consulta_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+            } finally {
+
+                pst.close();
+
+            }
+            
+
+        } else {
+
+            consulta
+                    = "(select\n"
+                    + "des_d.cod_despesa,\n"
+                    + "des_d.dia,\n"
+                    + "des_d.mes,\n"
+                    + "des_d.ano,\n"
+                    + "des.valor,\n"
+                    + "des.categoria,\n"
+                    + "des.f_pagamento,\n"
+                    + "des.num_cartao,\n"
+                    + "des_c.n_parcelas,\n"
+                    + "des.estatus,\n"
+                    + "des.descricao\n"
+                    + "from despesa des\n"
+                    + " LEFT OUTER JOIN despesa_data des_d on\n"
+                    + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+                    + " LEFT OUTER JOIN despesa_credito des_c on \n"
+                    + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+                    + "WHERE des_d.conta_id_conta = ? and des_d.mes = ? and des_d.ano = ?"
+                    + argumento + " );";
+
+            try {
+                
+                pst = conexao.prepareStatement(consulta);
+
+                pst.setInt(1, receita.getId_conta());
+                pst.setInt(2, receita.getMes());
+                pst.setInt(3, receita.getAno());
+
+                rs = pst.executeQuery();
+
+                while (rs.next()) {
+
+                    lista_despesa.add(
+                            new Despesa(
+                                    rs.getInt("dia"),
+                                    rs.getInt("mes"),
+                                    rs.getInt("ano"),
+                                    rs.getFloat("valor"),
+                                    rs.getString("categoria"),
+                                    rs.getString("f_pagamento"),
+                                    rs.getLong("num_cartao"),
+                                    rs.getInt("n_parcelas"),
+                                    rs.getString("estatus"),
+                                    rs.getString("descricao"),
+                                    rs.getInt("cod_despesa")
+                            )
+                    );
+                }
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:Consulta_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+            } finally {
+
+                pst.close();
+
             }
 
-        } catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:Consulta_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        } finally {
-
-            pst.close();
-
         }
+
 
         return lista_despesa;
 
