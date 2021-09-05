@@ -32,7 +32,7 @@ public class CartaoCreditoDAO {
 
         PreparedStatement pst = null;
 
-        String insert = "insert into cartao_credito (n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira, conta_id_conta) values(?,?,?,?,?,?)";
+        String insert = "insert into cartao_credito (n_cartao_credito, limite, credito, dia_fatura, valor_fatura, bandeira, conta_id_conta) values(?,?,?,?,?,?,?)";
 
         pst = conexao.prepareStatement(insert);
 
@@ -40,10 +40,11 @@ public class CartaoCreditoDAO {
 
             pst.setLong(1, cartao_credito.getN_cartao_credito());
             pst.setFloat(2, cartao_credito.getLimite());
-            pst.setInt(3, cartao_credito.getDia_fatura());
-            pst.setFloat(4, cartao_credito.getValor_fatura());
-            pst.setString(5, cartao_credito.getBandeira());
-            pst.setFloat(6, cartao_credito.getId_conta());
+            pst.setFloat(3, cartao_credito.getLimite());
+            pst.setInt(4, cartao_credito.getDia_fatura());
+            pst.setFloat(5, cartao_credito.getValor_fatura());
+            pst.setString(6, cartao_credito.getBandeira());
+            pst.setFloat(7, cartao_credito.getId_conta());
 
             pst.executeUpdate();
 
@@ -218,6 +219,7 @@ public class CartaoCreditoDAO {
                 lista_CC.add(new CartaoCredito(
                         Long.parseLong(rs.getString("n_cartao_credito")),
                         Float.parseFloat(rs.getString("limite")),
+                        Float.parseFloat(rs.getString("credito")),
                         Integer.parseInt(rs.getString("dia_fatura")),
                         Float.parseFloat(rs.getString("valor_fatura")),
                         rs.getString("bandeira"),
@@ -252,7 +254,7 @@ public class CartaoCreditoDAO {
             argumento = "conta_id_conta = " + id_conta + " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
         }
 
-        String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE " + argumento + "";
+        String consulta = "SELECT n_cartao_credito, limite, credito, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE " + argumento + "";
 
         ResultSet rs = null;
 
@@ -269,6 +271,7 @@ public class CartaoCreditoDAO {
                 lista_CC.add(new CartaoCredito(
                         Long.parseLong(rs.getString("n_cartao_credito")),
                         Float.parseFloat(rs.getString("limite")),
+                        Float.parseFloat(rs.getString("credito")),
                         Integer.parseInt(rs.getString("dia_fatura")),
                         Float.parseFloat(rs.getString("valor_fatura")),
                         rs.getString("bandeira"),
@@ -292,7 +295,7 @@ public class CartaoCreditoDAO {
 
     public LinkedList<CartaoCredito> PreencherCamposCartao_C(String num_cartao, int id_conta) throws SQLException {
 
-        String consulta = "SELECT n_cartao_credito, limite, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE n_cartao_credito = ?";
+        String consulta = "SELECT n_cartao_credito, limite, credito, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE n_cartao_credito = ?";
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
@@ -311,6 +314,7 @@ public class CartaoCreditoDAO {
                 lista_CC.add(new CartaoCredito(
                         Long.parseLong(rs.getString("n_cartao_credito")),
                         Float.parseFloat(rs.getString("limite")),
+                        Float.parseFloat(rs.getString("credito")),
                         Integer.parseInt(rs.getString("dia_fatura")),
                         Float.parseFloat(rs.getString("valor_fatura")),
                         rs.getString("bandeira"),

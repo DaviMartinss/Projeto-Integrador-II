@@ -186,11 +186,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
                 String Col0 = Long.toString(cartao.getN_cartao_credito());
                 String Col1 = Float.toString(cartao.getLimite());
-                String Col2 = Integer.toString(cartao.getDia_fatura());
-                String Col3 = Float.toString(cartao.getValor_fatura());
-                String Col4 = cartao.getBandeira();
+                String Col2 = Float.toString(cartao.getCredito());
+                String Col3 = Integer.toString(cartao.getDia_fatura());
+                String Col4 = Float.toString(cartao.getValor_fatura());
+                String Col5 = cartao.getBandeira();
 
-                mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4});
+                mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5});
 
             }
 
@@ -348,7 +349,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Crédito");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(330, 0, 170, 26);
+        jLabel2.setBounds(330, 0, 170, 24);
 
         btn_inicio_CC.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -430,14 +431,14 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nº Cartão Crédito", "Limite", "Dia da Fatura", "Valor da Fatura", "Bandeira"
+                "Nº Cartão Crédito", "Limite", "Crédito", "Dia da Fatura", "Valor da Fatura", "Bandeira"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -478,7 +479,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Pesquisar por");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 80, 100, 17);
+        jLabel9.setBounds(30, 80, 100, 16);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
@@ -600,7 +601,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(30, 10, 81, 21);
+        txt_id.setBounds(30, 10, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -710,11 +711,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
                     String Col0 = Long.toString(cartao.getN_cartao_credito());
                     String Col1 = Float.toString(cartao.getLimite());
-                    String Col2 = Integer.toString(cartao.getDia_fatura());
-                    String Col3 = Float.toString(cartao.getValor_fatura());
-                    String Col4 = cartao.getBandeira();
+                    String Col2 = Float.toString(cartao.getCredito());
+                    String Col3 = Integer.toString(cartao.getDia_fatura());
+                    String Col4 = Float.toString(cartao.getValor_fatura());
+                    String Col5 = cartao.getBandeira();
 
-                    mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4});
+                    mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5});
 
                 }
 

@@ -34,6 +34,7 @@ public class Despesa {
 
         this.cod_despesa = cod_despesa;
     }
+    
 
     public Despesa(int dia, int mes, int ano, float valor, String categoria, String descricao, int id_conta) {
         this.dia = dia;
@@ -98,6 +99,8 @@ public class Despesa {
         this.cod_despesa = cod_despesa;
     }
 
+
+    
     public int getDia() {
         return dia;
     }

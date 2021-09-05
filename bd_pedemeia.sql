@@ -28,6 +28,7 @@ CREATE TABLE cartao_credito (
 
 n_cartao_credito bigint NOT NULL ,
 limite float NOT NULL,
+credito float NOT NULL,
 dia_fatura int(11) NOT NULL,
 valor_fatura float NOT NULL,
 bandeira varchar(60) NOT NULL,
@@ -154,46 +155,46 @@ VALUES("JOANA","tururu@gmail.com", 453);
 
 #Cartão de credito
 
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5402464256786436, 200.00, 1200.00, 12, "MASTERCARD", 1);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5339614010424884, 100.00, 12700.00, 11, "ELO", 4);
-INSERT INTO cartao_credito(n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5376135993298206, 150.00, 1400.00, 17, "VISA", 6);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5513474009191087, 240.00, 1600.00, 20, "MASTERCARD", 8);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5290461435867355, 220.00, 1900.00, 1, "MASTERCARD", 2);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5509872318609200, 110.00, 15600.00, 16, "VISA", 5);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5399281592280295 ,112.00, 11100.00, 25, "MASTERCARD", 7);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5393080943450730, 300.00, 12900.00, 14, "VISA", 3);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5340349537691502, 400.00, 3600.00, 8, "ELO", 10);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5211962375229981, 600.00, 4900.00, 19, "MASTERCARD", 9);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(5492766980608202, 530.00, 6200.00, 20, "ELO", 15);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4024007144661955, 70.00, 12900.00, 6, "MASTERCARD", 12);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4929212774788591, 400.00, 4689.00, 11, "MASTERCARD", 11);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4671742332509642, 452.00, 16710.00, 17, "VISA", 14);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4024007130173411, 234.00, 1698.00, 15, "ELO", 13);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4929701861005489, 178.00, 3978.00, 18, "MASTERCARD", 19);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4556240699893873, 160.00, 7856.00, 16, "VISA", 16);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira, conta_id_conta)
-VALUES(4539985320844966, 125.00, 3974.00, 14, "VISA", 18);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4716574779316232, 350.00, 1596.00, 16, "MASTERCARD", 20);
-INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, dia_fatura, bandeira,conta_id_conta)
-VALUES(4556318364323101, 1000.00, 2397.00, 13, "ELO", 17);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5402464256786436, 200.00, 1200.00, 1200.00, 12, "MASTERCARD", 1);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5339614010424884, 100.00, 12700.00, 12700.00, 11, "ELO", 4);
+INSERT INTO cartao_credito(n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5376135993298206, 150.00, 1400.00, 1400.00, 17, "VISA", 6);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5513474009191087, 240.00, 1600.00, 1600.00, 20, "MASTERCARD", 8);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5290461435867355, 220.00, 1900.00, 1900.00, 1, "MASTERCARD", 2);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5509872318609200, 110.00, 15600.00, 15600.00, 16, "VISA", 5);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5399281592280295 ,112.00, 11100.00, 11100.00, 25, "MASTERCARD", 7);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5393080943450730, 300.00, 12900.00, 12900.00, 14, "VISA", 3);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5340349537691502, 400.00, 3600.00, 3600.00, 8, "ELO", 10);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5211962375229981, 600.00, 4900.00, 4900.00, 19, "MASTERCARD", 9);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(5492766980608202, 530.00, 6200.00, 6200.00, 20, "ELO", 15);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4024007144661955, 70.00, 12900.00, 12900.00, 6, "MASTERCARD", 12);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4929212774788591, 400.00, 4689.00, 4689.00, 11, "MASTERCARD", 11);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4671742332509642, 452.00, 16710.00, 16710.00, 17, "VISA", 14);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4024007130173411, 234.00, 1698.00, 1698.00, 15, "ELO", 13);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4929701861005489, 178.00, 3978.00, 3978.00, 18, "MASTERCARD", 19);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4556240699893873, 160.00, 7856.00, 7856.00, 16, "VISA", 16);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira, conta_id_conta)
+VALUES(4539985320844966, 125.00, 3974.00, 3974.00, 14, "VISA", 18);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4716574779316232, 350.00, 1596.00, 1596.00, 16, "MASTERCARD", 20);
+INSERT INTO cartao_credito (n_cartao_credito, valor_fatura, limite, credito, dia_fatura, bandeira,conta_id_conta)
+VALUES(4556318364323101, 1000.00, 2397.00, 2397.00, 13, "ELO", 17);
 
 #Cartão débito
 

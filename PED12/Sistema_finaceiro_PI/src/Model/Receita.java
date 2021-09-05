@@ -5,11 +5,13 @@
  */
 package Model;
 import ValidacaoComum.Validacao;
+import java.util.Comparator;
 /**
  *
  * @author pc
  */
-public class Receita {
+
+public class Receita{
     
     private int dia;
     private int mes;

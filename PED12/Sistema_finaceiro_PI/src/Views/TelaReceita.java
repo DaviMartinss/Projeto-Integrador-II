@@ -9,6 +9,14 @@ import DAO.ReceitaDAO;
 import DAO.moduloConexao;
 import Model.Data;
 import Model.Receita;
+import ReceitaOrdenacao.ReceitaAnoASC;
+import ReceitaOrdenacao.ReceitaAnoDESC;
+import ReceitaOrdenacao.ReceitaTotalDESC;
+import ReceitaOrdenacao.ReceitaTotalASC;
+import ReceitaOrdenacao.ReceitaDiaDESC;
+import ReceitaOrdenacao.ReceitaDiaASC;
+import ReceitaOrdenacao.ReceitaMesASC;
+import ReceitaOrdenacao.ReceitaMesDESC;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,12 +26,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static javax.swing.text.html.HTML.Tag.HEAD;
 import ValidacaoComum.Validacao;
+import java.util.Collections;
 
 /**
  *
  * @author pc
  */
-public class TelaReceita extends javax.swing.JFrame {
+public class TelaReceita extends javax.swing.JFrame{
 
     /**
      * Creates new form TelaReceita
@@ -762,7 +771,45 @@ public class TelaReceita extends javax.swing.JFrame {
                 DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
                 LinkedList<Receita> lista_receita = receitaDAO.Consulta_Receita(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
+      
+                if (ordenar) {
+                    
+                    if (escolha.equals("Total")) {
+                        Collections.sort(lista_receita, new ReceitaTotalASC());
+                    }
 
+                    if (escolha.equals("Dia")) {
+                        Collections.sort(lista_receita, new ReceitaDiaASC());
+                    }
+
+                    if (escolha.equals("Mês")) {
+                        Collections.sort(lista_receita, new ReceitaMesASC());
+                    }
+
+                    if (escolha.equals("Ano")) {
+                        Collections.sort(lista_receita, new ReceitaAnoASC());
+                    }
+                
+                }else{
+                    
+                    if (escolha.equals("Total")) {
+                        Collections.sort(lista_receita, new ReceitaTotalDESC());
+                    }
+
+                    if (escolha.equals("Dia")) {
+                        Collections.sort(lista_receita, new ReceitaDiaDESC());
+                    }
+
+                    if (escolha.equals("Mês")) {
+                        Collections.sort(lista_receita, new ReceitaMesDESC());
+                    }
+
+                    if (escolha.equals("Ano")) {
+                        Collections.sort(lista_receita, new ReceitaAnoDESC());
+                    }
+                }
+
+                
                 for (Receita receita : lista_receita) {
 
                     String Col0 = Float.toString(receita.getTotal());

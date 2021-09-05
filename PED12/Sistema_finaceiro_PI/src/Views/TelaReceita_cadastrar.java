@@ -70,7 +70,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage() + "ACHOU");
         }
 
         
