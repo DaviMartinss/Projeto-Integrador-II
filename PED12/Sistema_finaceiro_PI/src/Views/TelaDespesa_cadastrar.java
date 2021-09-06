@@ -5,9 +5,11 @@
  */
 package Views;
 
+import DAO.CategoriaDAO;
 import DAO.DespesaDAO;
 import DAO.ReceitaDAO;
 import DAO.moduloConexao;
+import Model.Categoria;
 import Model.Data;
 import Model.Despesa;
 import Model.Receita;
@@ -19,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ValidacaoComum.Validacao;
+import java.util.LinkedList;
+
 /**
  *
  * @author Alan
@@ -100,6 +104,31 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         this.dispose();
 
     }
+    
+     void CarregaCategoria(){
+        
+        CategoriaDAO categoria = new CategoriaDAO();
+            
+        try {
+           int id_aux = Integer.parseInt(txt_id.getText()); 
+            
+            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(20);
+            
+            
+            for (Categoria cat : lista_categoria) {
+
+                String Cat_aux =  cat.getCategoria_aux();
+                cbb_categoria.addItem(Cat_aux);
+            }
+
+            lista_categoria.clear();
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Falha listar categoria");
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,20 +167,25 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         rbDinheiro = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txt_NumCartao = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        cbb_categoria = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         txtCategoria.setBackground(new java.awt.Color(187, 210, 240));
         txtCategoria.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtCategoria);
-        txtCategoria.setBounds(370, 110, 300, 27);
+        txtCategoria.setBounds(420, 50, 300, 27);
 
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Forma de Pagamento: ");
@@ -329,10 +363,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txt_NumCartao);
         txt_NumCartao.setBounds(30, 320, 300, 27);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(0, 0, 1920, 1080);
-
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,6 +371,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         });
         getContentPane().add(txt_id);
         txt_id.setBounds(2322, 50, 81, 20);
+
+        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbb_categoria);
+        cbb_categoria.setBounds(370, 120, 90, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -365,7 +399,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             rbPago.setSelected(true);
 
             rbNaoPago.setSelected(false);
-            
+
             txt_NumCartao.setText("");
             txtParcelas.setText("");
 
@@ -407,7 +441,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             rbPago.setSelected(false);
 
             rbNaoPago.setSelected(true);
-            
+
             txt_NumCartao.setText("");
             txtParcelas.setText("");
 
@@ -467,29 +501,29 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
         } else {
-                   
+
             Validacao valida = new Validacao();
-            
-            if(!(valida.ehNum(txtDia.getText()) && valida.ehNum(txtMes.getText()) && valida.ehNum(txtAno.getText()) && valida.ehNum(txtValor.getText()) )){
+
+            if (!(valida.ehNum(txtDia.getText()) && valida.ehNum(txtMes.getText()) && valida.ehNum(txtAno.getText()) && valida.ehNum(txtValor.getText()))) {
                 JOptionPane.showMessageDialog(null, "Valor inválido!");
                 return;
             }
-            if(!(rbDinheiro.isSelected())){
-                
-                if(rbCredito.isSelected()){
-                    
-                    if(!(valida.ehNum(txtParcelas.getText()))){
+            if (!(rbDinheiro.isSelected())) {
+
+                if (rbCredito.isSelected()) {
+
+                    if (!(valida.ehNum(txtParcelas.getText()))) {
                         JOptionPane.showMessageDialog(null, "Valor inválido!");
                         return;
                     }
                 }
-                
-                if(!(valida.ehNum(txt_NumCartao.getText()))){
+
+                if (!(valida.ehNum(txt_NumCartao.getText()))) {
                     JOptionPane.showMessageDialog(null, "Valor inválido!");
                     return;
                 }
             }
-            
+
             Despesa despesa = new Despesa(
                     Integer.parseInt(txtDia.getText()),
                     Integer.parseInt(txtMes.getText()),
@@ -515,7 +549,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                 despesa.setF_pagamento("CRÉDITO");
 
                 despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-                
+
                 despesa.setNum_parcelas(Integer.parseInt((txtParcelas.getText())));
 
             } else {
@@ -550,7 +584,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
                     if (despesaDAO.DespesaExiste(despesa)) {
 
-                        JOptionPane.showMessageDialog(null, "Já existe uma despesa nesse dia!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Já existe uma despesa nesse dia!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
                         cadastra = false;
 
@@ -558,15 +592,59 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
                     if (!(receitaDAO.ReceitaExiste(receita))) {
 
-                        JOptionPane.showMessageDialog(null, "Não existe receita correspondente para essa despesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Não existe receita correspondente para essa despesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
                         cadastra = false;
 
                     }
 
+                    if (despesa.getF_pagamento().equals("CRÉDITO")) {
+
+                        if (!(despesaDAO.DespesaTemCartaoCredito(despesa.getNum_cartao(), despesa.getId_conta()))) {
+
+                            JOptionPane.showMessageDialog(this, "Não existe cartão de credito registrado com este número", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+                            cadastra = false;
+
+                        } else {
+
+                            if (!(despesaDAO.DespesaCC_TemCredito(despesa.getNum_cartao(), despesa.getValor(), despesa.getId_conta()))) {
+
+                                JOptionPane.showMessageDialog(this, "Cartão de Crédito informado não possui crédito disponível", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+                                cadastra = false;
+
+                            }
+
+                        }
+
+                    }
+
+                    if (despesa.getF_pagamento().equals("DÉBITO")) {
+
+                        if (!(despesaDAO.DespesaTemCartaoDebito(despesa.getNum_cartao(), despesa.getId_conta()))) {
+
+                            JOptionPane.showMessageDialog(this, "Não existe cartão de débito registrado com este número", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+                            cadastra = false;
+
+                        } else {
+
+                            if (!(despesaDAO.DespesaCD_TemSaldo(receita, despesa.getValor()))) {
+
+                                JOptionPane.showMessageDialog(this, "Receita correspondente não possui Saldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+                                cadastra = false;
+
+                            }
+
+                        }
+
+                    }
+
                 } catch (SQLException ex) {
 
-                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
 
                 if (!(data.verifica_dia())) {
@@ -632,7 +710,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
                 }
 
-
                 if (cadastra) {
 
                     despesaDAO.CadastrarDespesa(despesa);
@@ -670,7 +747,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
             txt_NumCartao.setEnabled(false);
             txtParcelas.setEnabled(false);
-            
+
             txt_NumCartao.setText("");
             txtParcelas.setText("");
 
@@ -685,6 +762,14 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
         Volta_TelaPrincipal();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        CarregaCategoria();
+        
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -723,11 +808,11 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CadastrarDespesa;
+    private javax.swing.JComboBox<String> cbb_categoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

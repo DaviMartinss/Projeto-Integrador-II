@@ -5,8 +5,10 @@
  */
 package Views;
 
+import DAO.CategoriaDAO;
 import DAO.DespesaDAO;
 import DAO.ReceitaDAO;
+import Model.Categoria;
 import Model.Data;
 import Model.Despesa;
 import Model.Receita;
@@ -173,6 +175,33 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         this.dispose();
 
+    }
+    
+    
+    
+    void CarregaCategoria(){
+        
+        CategoriaDAO categoria = new CategoriaDAO();
+            
+        try {
+           int id_aux = Integer.parseInt(txt_id.getText()); 
+            
+            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(20);
+            
+            
+            for (Categoria cat : lista_categoria) {
+
+                String Cat_aux =  cat.getCategoria_aux();
+                cbb_categoria.addItem(Cat_aux);
+            }
+
+            lista_categoria.clear();
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Falha listar categoria");
+        }
+        
     }
 
     void RecarregaTabela_Despesa() {
@@ -613,8 +642,8 @@ public class TelaDespesa extends javax.swing.JFrame {
         btn_update = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        cbb_categoria = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -849,7 +878,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
         getContentPane().add(txtParcelas);
-        txtParcelas.setBounds(200, 340, 50, 27);
+        txtParcelas.setBounds(440, 470, 110, 27);
 
         btnNovaDespesa.setBackground(new java.awt.Color(105, 69, 219));
         btnNovaDespesa.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -995,10 +1024,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(190, 60, 180, 27);
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        getContentPane().add(jLabel17);
-        jLabel17.setBounds(0, 0, 1920, 1080);
-
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1007,6 +1032,10 @@ public class TelaDespesa extends javax.swing.JFrame {
         });
         getContentPane().add(txt_id);
         txt_id.setBounds(2360, 119, 81, 20);
+
+        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbb_categoria);
+        cbb_categoria.setBounds(200, 350, 90, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1163,39 +1192,6 @@ public class TelaDespesa extends javax.swing.JFrame {
             
             
         }
-
-//        if (!(txtMesReceita.getText().isEmpty()) && !(txtAnoReceita.getText().isEmpty())) {
-
-//            try {
-//
-//                if (despesaDAO.ValidaConsulta_Despesa(Integer.parseInt(txtMesReceita.getText()), Integer.parseInt(txtAnoReceita.getText()))) {
-//
-//                    if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
-//
-//                        PesquisaDespesa(despesas);
-//
-//                    } else {
-//
-//                        JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-//
-//                    }
-//
-//                } else {
-//
-//                    JOptionPane.showMessageDialog(this, "Mês ou Ano da receita inválidos ou inexistentes!");
-//                }
-//
-//            } catch (SQLException ex) {
-//
-//                JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
-//
-//            }
-
-//        } else {
-//
-//            JOptionPane.showMessageDialog(this, "Informe o mês e ano de uma receita existente!!");
-//        }
-
     }//GEN-LAST:event_btPesquisarDespesaActionPerformed
 
     private void jtConsultaDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaDespesaMouseClicked
@@ -1288,7 +1284,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-
+        CarregaCategoria();
         RecarregaTabela_Despesa();
     }//GEN-LAST:event_formWindowOpened
 
@@ -1510,6 +1506,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JButton btn_inicio;
     private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbbTipo;
+    private javax.swing.JComboBox<String> cbb_categoria;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1518,7 +1515,6 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

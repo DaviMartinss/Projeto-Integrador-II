@@ -39,6 +39,8 @@ conta (id_conta) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
+
+
 create table receita_data(
 
 cod_receita int not null auto_increment,
@@ -79,6 +81,15 @@ FOREIGN KEY (conta_id_conta) REFERENCES conta (id_conta) ON DELETE CASCADE ON UP
 );
 
 
+CREATE TABLE categoria (
+  categoriaId int(11) NOT NULL AUTO_INCREMENT,
+  categoriaTipo varchar(50) NOT NULL,
+  conta_id_conta int(11) NOT NULL,
+  PRIMARY KEY (categoriaId),
+  FOREIGN KEY (conta_id_conta) REFERENCES
+conta (id_conta) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 
 CREATE TABLE despesa (
 
@@ -92,8 +103,26 @@ estatus varchar(20) NOT NULL,
 FOREIGN KEY (despesa_data_cod_despesa) REFERENCES
 despesa_data (cod_despesa) ON DELETE CASCADE ON UPDATE CASCADE
 
-
 );
+
+
+#CREATE TABLE despesa (
+#despesa_data_cod_despesa int(11) NOT NULL,
+#valor float NOT NULL,
+#categoria_id int(11) NOT NULL,
+#descricao varchar(250) DEFAULT NULL,
+#f_pagamento varchar(45) NOT NULL,
+#num_cartao BIGINT(20) DEFAULT NULL,
+#estatus varchar(20) NOT NULL,
+#FOREIGN KEY (despesa_data_cod_despesa) REFERENCES
+#despesa_data (cod_despesa) ON DELETE CASCADE ON UPDATE CASCADE,
+
+#FOREIGN KEY (categoria_id) REFERENCES
+#categoria (categoriaId) ON DELETE CASCADE ON UPDATE CASCADE
+
+#);
+
+
 
 CREATE TABLE despesa_credito (
 
