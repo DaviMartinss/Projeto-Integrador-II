@@ -49,6 +49,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         rbDebito.setEnabled(false);
         rbCredito.setEnabled(false);
         rbDinheiro.setEnabled(false);
+        cbb_categoria.removeAllItems();
     }
 
     void inicio() {

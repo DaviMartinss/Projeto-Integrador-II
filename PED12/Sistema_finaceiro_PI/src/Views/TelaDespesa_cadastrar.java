@@ -51,6 +51,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         txt_NumCartao.setEnabled(false);
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
+        cbb_categoria.removeAllItems();
     }
 
     void Volta_TelaDespesa() {

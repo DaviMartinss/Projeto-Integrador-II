@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.Categoria;
 import Model.Despesa;
 import Model.Receita;
 import java.sql.Connection;
@@ -32,7 +33,8 @@ public class DespesaDAO {
     public void CadastrarDespesa(Despesa despesa) {
 
         boolean FlagErroCadastroDespesa = true;
-
+        int idCategoria  = -1;
+        
         PreparedStatement pst1 = null;
         PreparedStatement pst2 = null;
         PreparedStatement pst3 = null;
@@ -98,15 +100,39 @@ public class DespesaDAO {
                 String sql3 = "";
 
                 if (despesa.getF_pagamento().equals("DINHEIRO")) {
-
-                    sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, estatus) values(?,?,?,?,?,?)";
+                    
+                    CategoriaDAO categoriaNova = new CategoriaDAO();
+                    
+                    
+                    Categoria categoria = new Categoria(
+                        despesa.getCategoria(),
+                        despesa.getId_conta()
+                        );
+                    
+                    categoriaNova.CadastrarCategoria(categoria);
+                    
+                    idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(categoria);   
+                    
+                    sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria_id, descricao, f_pagamento, estatus) values(?,?,?,?,?,?)";
 
                 } else {
 
                     if (despesa.getF_pagamento().equals("DÉBITO")) {
-                        ConsultaDAO consulta_aux = new ConsultaDAO();
+                       ConsultaDAO consulta_aux = new ConsultaDAO();
+                        
+                       CategoriaDAO categoriaNova = new CategoriaDAO();
+                         
+                         
+                         Categoria categoria = new Categoria(
+                            despesa.getCategoria(),
+                            despesa.getId_conta()
+                        );
+                         
+                         categoriaNova.CadastrarCategoria(categoria);
+                         idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(categoria); 
+                    
                         if (consulta_aux.CartaoDebitoExiste(despesa.getNum_cartao())) {
-                            sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
+                            sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria_id, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
                         } else {
 
                             FlagErroCadastroDespesa = false;
@@ -115,9 +141,20 @@ public class DespesaDAO {
                     } else {
 
                         ConsultaDAO consulta_auxCD = new ConsultaDAO();
-
+                        
+                        CategoriaDAO categoriaNova = new CategoriaDAO();
+                         
+                         
+                         Categoria categoria = new Categoria(
+                            despesa.getCategoria(),
+                            despesa.getId_conta()
+                        );
+                         
+                         categoriaNova.CadastrarCategoria(categoria);
+                         idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(categoria);
+                        
                         if (consulta_auxCD.CartaoCreditoExiste(despesa.getNum_cartao())) {
-                            sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
+                            sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria_id, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
                         } else {
 
                             FlagErroCadastroDespesa = false;
@@ -130,7 +167,7 @@ public class DespesaDAO {
                 pst3 = conexao.prepareStatement(sql3);
                 pst3.setInt(1, cod_despesa);
                 pst3.setFloat(2, despesa.getValor());
-                pst3.setString(3, despesa.getCategoria());
+                pst3.setInt(3, idCategoria);
                 pst3.setString(4, despesa.getDescricao());
 
                 pst3.setString(5, despesa.getF_pagamento());
@@ -171,7 +208,8 @@ public class DespesaDAO {
 
                     pst7.setLong(2, despesa.getNum_cartao());
 
-                    pst7.setLong(2, despesa.getId_conta());
+                    //pst7.setLong(2, despesa.getId_conta());
+                    pst7.setLong(3, despesa.getId_conta());
 
                     pst7.executeUpdate();
 
@@ -553,7 +591,7 @@ public class DespesaDAO {
     }
 
     public LinkedList<Despesa> CarregaTabela_Despesa(int id_conta) throws SQLException {
-
+        /*
         String consulta
                 = "(select\n"
                 + "des_d.cod_despesa,\n"
@@ -573,7 +611,31 @@ public class DespesaDAO {
                 + " LEFT OUTER JOIN despesa_credito des_c on \n"
                 + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
                 + "WHERE des_d.conta_id_conta = ?)";
-
+            */
+        
+        String consulta  
+            = "select\n"
+            + "des_d.cod_despesa,\n" 
+            + "des_d.dia,\n"
+            + "des_d.mes,\n"
+            + "des_d.ano,\n"
+            + "des.valor,\n"
+            + "des.categoria_id,\n"
+            + "des.f_pagamento,\n"
+            + "des.num_cartao,\n"
+            + "des_c.n_parcelas,\n"
+            + "des.estatus,\n"
+            + "des.descricao,\n"
+            + "C.categoriaTipo\n"
+            + "from despesa des\n"
+            + "        LEFT OUTER JOIN despesa_data des_d on\n"
+            + "        des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+            + "        LEFT OUTER JOIN despesa_credito des_c on\n" 
+            + "        (des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+            + "    left join categoria C on\n" 
+            + "    (C.categoriaId = des.categoria_id)\n"
+            + "        WHERE des_d.conta_id_conta = ?\n";
+        
         ResultSet rs = null;
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
@@ -587,7 +649,7 @@ public class DespesaDAO {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-
+                /*
                 lista_despesa.add(new Despesa(
                         rs.getInt("dia"),
                         rs.getInt("mes"),
@@ -601,6 +663,21 @@ public class DespesaDAO {
                         rs.getString("descricao"),
                         rs.getInt("cod_despesa")
                 ));
+                    */
+                lista_despesa.add(new Despesa(
+                        rs.getInt("dia"),
+                        rs.getInt("mes"),
+                        rs.getInt("ano"),
+                        rs.getFloat("valor"),
+                        rs.getString("categoriaTipo"),
+                        rs.getString("f_pagamento"),
+                        rs.getLong("num_cartao"),
+                        rs.getInt("n_parcelas"),
+                        rs.getString("estatus"),
+                        rs.getString("descricao"),
+                        rs.getInt("cod_despesa")
+                ));
+
 
             }
 
@@ -650,7 +727,7 @@ public class DespesaDAO {
                     + "des_d.mes,\n"
                     + "des_d.ano,\n"
                     + "des.valor,\n"
-                    + "des.categoria,\n"
+                    + "des.categoria_id,\n"
                     + "des.f_pagamento,\n"
                     + "des.num_cartao,\n"
                     + "des_c.n_parcelas,\n"
@@ -680,7 +757,7 @@ public class DespesaDAO {
                                     rs.getInt("mes"),
                                     rs.getInt("ano"),
                                     rs.getFloat("valor"),
-                                    rs.getString("categoria"),
+                                    rs.getString("categoria_id"), // tem que mudar 
                                     rs.getString("f_pagamento"),
                                     rs.getLong("num_cartao"),
                                     rs.getInt("n_parcelas"),
@@ -712,7 +789,7 @@ public class DespesaDAO {
                     + "des_d.mes,\n"
                     + "des_d.ano,\n"
                     + "des.valor,\n"
-                    + "des.categoria,\n"
+                    + "des.categoria_id,\n"
                     + "des.f_pagamento,\n"
                     + "des.num_cartao,\n"
                     + "des_c.n_parcelas,\n"
@@ -744,7 +821,7 @@ public class DespesaDAO {
                                     rs.getInt("mes"),
                                     rs.getInt("ano"),
                                     rs.getFloat("valor"),
-                                    rs.getString("categoria"),
+                                    rs.getString("categoria_id"),
                                     rs.getString("f_pagamento"),
                                     rs.getLong("num_cartao"),
                                     rs.getInt("n_parcelas"),
@@ -811,7 +888,7 @@ public class DespesaDAO {
     }
 
     public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String categoria, String id_conta) throws SQLException {
-
+        /*
         String consulta
                 = "(select\n"
                 + "des_d.dia,\n"
@@ -830,7 +907,31 @@ public class DespesaDAO {
                 + " LEFT OUTER JOIN despesa_credito des_c on \n"
                 + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
                 + "WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ? and des.categoria = ?);";
-
+            */
+        
+        String consulta  
+            = "select\n"
+            + "des_d.cod_despesa,\n" 
+            + "des_d.dia,\n"
+            + "des_d.mes,\n"
+            + "des_d.ano,\n"
+            + "des.valor,\n"
+            + "des.categoria_id,\n"
+            + "des.f_pagamento,\n"
+            + "des.num_cartao,\n"
+            + "des_c.n_parcelas,\n"
+            + "des.estatus,\n"
+            + "des.descricao,\n"
+            + "C.categoriaTipo\n"
+            + "from despesa des\n"
+            + "        LEFT OUTER JOIN despesa_data des_d on\n"
+            + "        des.despesa_data_cod_despesa = des_d.cod_despesa\n"
+            + "        LEFT OUTER JOIN despesa_credito des_c on\n" 
+            + "        (des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
+            + "    left join categoria C on\n" 
+            + "    (C.categoriaId = des.categoria_id)\n"
+            + "        WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ? and C.categoriaTipo = ?\n";
+        
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
         ResultSet rs = null;
@@ -859,7 +960,8 @@ public class DespesaDAO {
                                 rs.getInt("mes"),
                                 rs.getInt("ano"),
                                 rs.getFloat("valor"),
-                                rs.getString("categoria"),
+                                //rs.getString("categoria"),categoriaTipo
+                                rs.getString("categoriaTipo"),
                                 rs.getString("f_pagamento"),
                                 rs.getLong("num_cartao"),
                                 rs.getInt("n_parcelas"),
@@ -891,11 +993,11 @@ public class DespesaDAO {
                 + "dia, \n"
                 + "mes, \n"
                 + "ano, \n"
-                + "categoria \n"
+                + "categoria_id \n"
                 + "from \n"
                 + "despesa_data, despesa \n"
                 + "where despesa.despesa_data_cod_despesa = despesa_data.cod_despesa \n"
-                + "and dia = ? and mes = ? and ano = ? and categoria = ? and conta_id_conta = ?;";
+                + "and dia = ? and mes = ? and ano = ? and categoria_id = ? and conta_id_conta = ?;";
 
         PreparedStatement pst1 = conexao.prepareStatement(consulta1);
 
