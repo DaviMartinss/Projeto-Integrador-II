@@ -5,7 +5,7 @@
  */
 package CategoriaOrdenacao;
 
-/*
+
 
 import java.util.Comparator;
 import Model.Categoria;
@@ -34,4 +34,3 @@ public class CategoriaDESC implements Comparator<Categoria>{
         }
     }
 }
-*/

@@ -6,10 +6,10 @@
 package CategoriaOrdenacao;
 
 import java.util.Comparator;
-// falta a importação de categoria
+import Model.Categoria;
 import java.text.Collator;
 
-/*
+
 
 public class CategoriaAsc implements Comparator<Categoria> {
      public CategoriaAsc() {
@@ -32,7 +32,5 @@ public class CategoriaAsc implements Comparator<Categoria> {
             return 0;
         }
     
-
     }
 }
-*/

@@ -25,67 +25,86 @@ public class CategoriaDAO {
     }
 
     public boolean CadastrarCategoria(Categoria categoria) throws SQLException {
+        
+        Categoria categoria_aux  = new Categoria();
+        
+        if(!(categoria_aux.valorEhVazio(categoria.getCategoriaTipo()))){
+        
+            if(!(CategoriaExiste(categoria.getCategoriaTipo(), categoria.getId_conta()))){
+                PreparedStatement pst = null;
 
-        PreparedStatement pst = null;
+                String insert = "insert into categoria (categoriaTipo, conta_id_conta) values(?, ?);";
 
-        String insert = "insert into categoria (categoriaTipo, conta_id_conta) values(?, ?);";
+                pst = conexao.prepareStatement(insert);
 
-        pst = conexao.prepareStatement(insert);
+                try {
 
-        try {
+                    pst.setString(1, categoria.getCategoriaTipo().toUpperCase());
+                    pst.setInt(2, categoria.getId_conta());
 
-            pst.setString(1, categoria.getCategoriaTipo());
-            pst.setInt(2, categoria.getId_conta());
+                    pst.executeUpdate();
+
+                    return true;
+
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+
+                    return false;
+
+                } finally {
+
+                    pst.close();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Essa categoria já foi cadastrada");
+
+                return false;
+            }
+        }else{
             
-            pst.executeUpdate();
-
-            return true;
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode ser nulo");
 
             return false;
-
-        } finally {
-
-            pst.close();
         }
-    }
+   }
     
     public boolean UpdateCategoria(Categoria categoria) throws SQLException {
+         
+        if(!(CategoriaExiste(categoria.getCategoriaTipo(), categoria.getId_conta() ))){
 
-        PreparedStatement pst = null;
-        
-        System.out.println("categoriaTipo "+categoria.getCategoriaTipo());
-        System.out.println("categoriaAux "+categoria.getCategoria_aux());
-        
-        
-        String update = "update categoria set categoriaTipo=? where categoriaTipo = ?;";
+            PreparedStatement pst = null;
 
-        pst = conexao.prepareStatement(update);
+            String update = "update categoria set categoriaTipo=? where categoriaTipo = ?;";
 
-        try {
+            pst = conexao.prepareStatement(update);
 
-            pst.setString(1, categoria.getCategoriaTipo());
-            pst.setString(2, categoria.getCategoria_aux());
+            try {
+                
+                pst.setString(1, categoria.getCategoriaTipo().toUpperCase());
+                pst.setString(2, categoria.getCategoria_aux());
+
+
+                pst.executeUpdate();
+
+                return true;
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            } finally {
+
+                pst.close();
+            }
+        }else{
             
-
-            pst.executeUpdate();
-
-            return true;
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
+            JOptionPane.showMessageDialog(null, "Essa categoria já foi cadastrada");
+            
             return false;
-
-        } finally {
-
-            pst.close();
         }
-
     }
     
     
@@ -121,17 +140,18 @@ public class CategoriaDAO {
     
     
     // busca o id de uma categoria pelo o id da despesa
-    public int ConsultaIdCategoria_despesa(int codDesp) throws SQLException {
+    public int ConsultaIdCategoria_despesa(Categoria categoria) throws SQLException {
 
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String consulta = "select categoriaId from categoria where categoria_cod_despesa = ?";
+        String consulta = "select categoriaId from categoria where (categoriaTipo = ? and conta_id_conta = ?)";
 
         pst = conexao.prepareStatement(consulta);
 
         try {
             
-            pst.setInt(1, codDesp);
+            pst.setString(1, categoria.getCategoriaTipo());
+            pst.setInt(2, categoria.getId_conta());
             
              rs = pst.executeQuery();
             
@@ -157,39 +177,7 @@ public class CategoriaDAO {
         }
 
     }
-    
-    
-    public boolean CadastrarCategoria_aux(String cat, int codDespesa) throws SQLException {
-
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        String insert = "insert into categoria (categoriaTipo, categoria_cod_despesa) values (?, ?)";
-
-        pst = conexao.prepareStatement(insert);
-
-        try {
-
-            pst.setString(1, cat);
-            pst.setInt(2, codDespesa);
-            
-
-             pst.executeUpdate();
-            
-            
-            return true;
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-            return false;
-
-        } finally {
-
-            pst.close();
-        }
-
-    }
+   
     
     // parte para ser modificada
     
@@ -258,12 +246,6 @@ public class CategoriaDAO {
                     
                 );
                 
-                /*
-                lista_categoria.add(new Categoria(
-                    rs.getString("categoriaTipo"))
-                    
-                );
-                 */
             }
 
         } catch (Exception e) {
@@ -278,6 +260,41 @@ public class CategoriaDAO {
         
         return lista_categoria;
 
+    }
+    
+        
+    public boolean CategoriaExiste(String cat, int id_conta) throws SQLException {
+
+        String consulta = "select * from categoria where (categoriaTipo = ? and conta_id_conta= ?)";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        try {
+
+            pst.setString(1, cat);
+
+            pst.setInt(2, id_conta);
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }
     }
     
 }

@@ -11,36 +11,41 @@ package Model;
  */
 public class Categoria {
 
-    private int CategiaId;
+     private int CategiaId;
     private String CategoriaTipo;
     private int id_conta;
     private String Categoria_aux;
-
-    public Categoria() {
-
+    
+    
+    public Categoria(){
+    
     }
-
-    public Categoria(String nome, int idConta) {
+    
+    public Categoria(String nome, int idConta){
         this.CategoriaTipo = nome;
         this.id_conta = idConta;
     }
-
+    
+   
     public Categoria(int CategiaId, String CategoriaTipo) {
         this.CategiaId = CategiaId;
         this.CategoriaTipo = CategoriaTipo;
     }
 
+    
     public Categoria(String Categoria_aux) {
-
+        
         this.Categoria_aux = Categoria_aux;
-
+        
     }
 
-    public Categoria(String CategoriaTipo, String Categoria_aux) {
+    public Categoria(String CategoriaTipo, String Categoria_aux, int id_conta) {
         this.CategoriaTipo = CategoriaTipo;
         this.Categoria_aux = Categoria_aux;
+        this.id_conta = id_conta;
     }
-
+    
+   
     public int getCategiaId() {
         return CategiaId;
     }
@@ -56,7 +61,7 @@ public class Categoria {
     public void setCategoriaTipo(String CategoriaTipo) {
         this.CategoriaTipo = CategoriaTipo;
     }
-
+    
     public int getId_conta() {
         return id_conta;
     }
@@ -64,7 +69,8 @@ public class Categoria {
     public void setId_conta(int id_conta) {
         this.id_conta = id_conta;
     }
-
+    
+    
     public String getCategoria_aux() {
         return Categoria_aux;
     }
@@ -72,11 +78,12 @@ public class Categoria {
     public void setCategoria_aux(String Categoria_aux) {
         this.Categoria_aux = Categoria_aux;
     }
-
-    public boolean valorEhVazio(String valor) {
-        if (valor == null || valor.trim().equals("")) {
+    
+    
+    public boolean valorEhVazio(String valor){
+         if(valor == null || valor.trim().equals("")){
             return true;
-        } else {
+        }else{
             return false;
         }
     }

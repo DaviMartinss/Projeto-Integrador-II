@@ -73,31 +73,30 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     }
     
     
-    public void cadastro_categoria() {
-
+   public void cadastro_categoria() {
+        
         Categoria cartategoria_aux = new Categoria();
-
+          
         Categoria categoria = new Categoria(
               txt_categoria.getText(),
               Integer.parseInt(txt_id.getText())
-
+                
         );
-
+        
         CategoriaDAO categoriaDAO = new CategoriaDAO();
 
         try {
-
+            
                 categoriaDAO.CadastrarCategoria(categoria);
                  volta_telaCategoria();
-
-
+                
+            
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }
-    
     
     
 
@@ -171,7 +170,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         
         cadastro_categoria();
         
-        inicio();
+        volta_telaCategoria();
     }//GEN-LAST:event_btn_cadastarCategoriaActionPerformed
 
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed
