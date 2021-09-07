@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
-import CategoriaOrdenacao.CategoriaAsc;
+import CategoriaOrdenacao.CategoriaASC;
 import CategoriaOrdenacao.CategoriaDESC;
 /**
  *
@@ -194,7 +194,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
                 if(rb_Ascendente.isSelected()){
                        
-                   Collections.sort(lista_categoria, new CategoriaAsc() );
+                   Collections.sort(lista_categoria, new CategoriaASC() );
                    
                    for (Categoria cat : lista_categoria) {
 
@@ -250,10 +250,13 @@ public class TelaCategoria extends javax.swing.JFrame {
         btn_voltaInicio = new javax.swing.JButton();
         btn_cadastraCategoria = new javax.swing.JButton();
         btn_deletaCategoria = new javax.swing.JButton();
-        btn_updateCategoria = new javax.swing.JButton();
         rb_Ascendente = new javax.swing.JRadioButton();
-        rb_descendente = new javax.swing.JRadioButton();
+        rb_Descendente = new javax.swing.JRadioButton();
         btn_ordenar = new javax.swing.JButton();
+        btn_updateCategoria = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        txt_Pesquisa = new javax.swing.JTextField();
+        btPesquisarCD = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -313,13 +316,6 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
 
-        btn_updateCategoria.setText("Alterar");
-        btn_updateCategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_updateCategoriaActionPerformed(evt);
-            }
-        });
-
         rb_Ascendente.setText("Ascendente");
         rb_Ascendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,10 +323,10 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
 
-        rb_descendente.setText("Descendente");
-        rb_descendente.addActionListener(new java.awt.event.ActionListener() {
+        rb_Descendente.setText("Descendente");
+        rb_Descendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_descendenteActionPerformed(evt);
+                rb_DescendenteActionPerformed(evt);
             }
         });
 
@@ -341,66 +337,120 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
 
+        btn_updateCategoria.setBackground(new java.awt.Color(105, 69, 219));
+        btn_updateCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_updateCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        btn_updateCategoria.setText("Alterar");
+        btn_updateCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateCategoriaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel8.setText("Pesquisar");
+
+        txt_Pesquisa.setColumns(200);
+        txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_PesquisaActionPerformed(evt);
+            }
+        });
+        txt_Pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_PesquisaKeyReleased(evt);
+            }
+        });
+
+        btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
+        btPesquisarCD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        btPesquisarCD.setBorderPainted(false);
+        btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarCDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_voltaInicio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btPesquisarCD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 152, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btn_voltaInicio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(rb_Ascendente)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(rb_Ascendente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rb_Descendente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_ordenar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rb_descendente)))
-                .addGap(132, 132, 132)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btn_deletaCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_updateCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_cadastraCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-                    .addComponent(btn_ordenar))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_cadastraCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_deletaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_updateCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_cadastraCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_voltaInicio)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_voltaInicio)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btPesquisarCD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rb_Ascendente)
-                            .addComponent(rb_descendente))
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 96, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_deletaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rb_Descendente)
+                            .addComponent(btn_ordenar))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_updateCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
+                                .addGap(23, 23, 23)
                                 .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16)
-                        .addComponent(btn_ordenar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_cadastraCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_deletaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_updateCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103))))
         );
 
         pack();
@@ -454,14 +504,6 @@ public class TelaCategoria extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_deletaCategoriaActionPerformed
 
-    private void btn_updateCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateCategoriaActionPerformed
-        // TODO add your handling code here:
-        
-        update_categoria();
-        RecarregaTabela_Categoria(ordena);
-        
-    }//GEN-LAST:event_btn_updateCategoriaActionPerformed
-
     private void btn_voltaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltaInicioActionPerformed
         // TODO add your handling code here:
         
@@ -472,7 +514,7 @@ public class TelaCategoria extends javax.swing.JFrame {
     private void btn_ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ordenarActionPerformed
         // TODO add your handling code here:
         
-         if (rb_Ascendente.isSelected() || rb_descendente.isSelected()) {
+         if (rb_Ascendente.isSelected() || rb_Descendente.isSelected()) {
             RecarregaTabela_Categoria(ordena);
         }else{
             
@@ -484,25 +526,135 @@ public class TelaCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
           if (rb_Ascendente.isSelected()) {
             ordena = true;
-            rb_descendente.setSelected(false);
+            rb_Descendente.setSelected(false);
             
         }
     }//GEN-LAST:event_rb_AscendenteActionPerformed
 
-    private void rb_descendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_descendenteActionPerformed
+    private void rb_DescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_DescendenteActionPerformed
         // TODO add your handling code here:
         
-        if (rb_descendente.isSelected()) {
+        if (rb_Descendente.isSelected()) {
             ordena = true;
             rb_Ascendente.setSelected(false);
 
         }
-    }//GEN-LAST:event_rb_descendenteActionPerformed
+    }//GEN-LAST:event_rb_DescendenteActionPerformed
 
     private void btn_cadastraCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastraCategoriaActionPerformed
         // TODO add your handling code here:
          cadastra_categoria();
     }//GEN-LAST:event_btn_cadastraCategoriaActionPerformed
+
+    private void btn_updateCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateCategoriaActionPerformed
+        // TODO add your handling code here:
+
+        if (btn_updateCategoria.getText().equals("Alterar")) {
+
+            btn_updateCategoria.setText("Atualizar");
+
+            txt_NomeCategoria.setEditable(true);
+
+        } else {
+
+            btn_updateCategoria.setText("Alterar");
+
+            txt_NomeCategoria.setEditable(false);
+
+            update_categoria();
+
+            RecarregaTabela_Categoria(true);
+
+            limpa_campo();
+        }
+
+    }//GEN-LAST:event_btn_updateCategoriaActionPerformed
+
+    private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_PesquisaActionPerformed
+
+    private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
+
+        if (txt_Pesquisa.getText().isEmpty()) {
+            RecarregaTabela_Categoria(true);
+        }
+    }//GEN-LAST:event_txt_PesquisaKeyReleased
+
+    private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
+        // TODO add your handling code here:
+
+        if (rb_Ascendente.isSelected() || rb_Descendente.isSelected()) {
+
+            boolean ordenar = true;
+
+            if (rb_Ascendente.isSelected()) {
+
+                ordenar = true;
+
+            } else {
+
+                ordenar = false;
+            }
+
+            String argumento = txt_Pesquisa.getText();
+
+            DefaultTableModel mp1 = (DefaultTableModel) jt_categoria.getModel();
+
+            int l = mp1.getRowCount();
+
+            if (l > 0) {
+                while (l > 0) {
+                    //Limpa tabela sempre que for fazer uma nova consulta
+                    ((DefaultTableModel) jt_categoria.getModel()).removeRow(l - 1);
+
+                    //Menos um pois a primeira linha é a linha zero
+                    l--;
+                }
+            }
+
+            try {
+
+                CategoriaDAO categoriaDAO = new CategoriaDAO();
+
+                DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
+
+                LinkedList<Categoria> lista_categoria = categoriaDAO.Consulta_Categoria(argumento, Integer.parseInt(txt_id.getText()), ordenar);
+
+                if (ordenar) {
+
+                    Collections.sort(lista_categoria, new CategoriaASC());
+
+                    
+
+                } else {
+
+                    Collections.sort(lista_categoria, new CategoriaDESC());
+                }
+                
+                
+                for (Categoria categoria : lista_categoria) {
+
+                        String Col0 = categoria.getCategoriaTipo();
+
+                        mp.addRow(new String[]{Col0});
+
+                }
+
+                lista_categoria.clear();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(this, e.getMessage());
+
+            }
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
+
+        }
+    }//GEN-LAST:event_btPesquisarCDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,16 +692,19 @@ public class TelaCategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btPesquisarCD;
     private javax.swing.JButton btn_cadastraCategoria;
     private javax.swing.JButton btn_deletaCategoria;
     private javax.swing.JButton btn_ordenar;
     private javax.swing.JButton btn_updateCategoria;
     private javax.swing.JButton btn_voltaInicio;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jt_categoria;
     private javax.swing.JRadioButton rb_Ascendente;
-    private javax.swing.JRadioButton rb_descendente;
+    private javax.swing.JRadioButton rb_Descendente;
     private javax.swing.JTextField txt_NomeCategoria;
+    private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 

@@ -138,6 +138,58 @@ public class CategoriaDAO {
 
     }
     
+    public LinkedList<Categoria> Consulta_Categoria(String arg, int id_conta, boolean ordenar) throws SQLException {
+
+        String argumento = "";
+
+        if (ordenar) {
+
+            argumento = " and categoriaTipo" + " " + "like '" + arg + "%'";
+
+        } else {
+
+            argumento = " and categoriaTipo" + " " + "like '" + arg + "%'";
+        }
+
+        String consulta = "SELECT categoriaTipo from categoria where categoria.conta_id_conta = ?"
+                        + argumento + "";
+        
+        ResultSet rs = null;
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Categoria> lista_categoria = new LinkedList();
+
+        try {
+
+            pst.setInt(1, id_conta);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                lista_categoria.add(new Categoria(
+                        rs.getString("categoriaTipo"),
+                        id_conta)
+                );
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        } finally {
+
+            pst.close();
+        }
+
+        return lista_categoria;
+
+    }
+    
+    
+    
     
     // busca o id de uma categoria pelo o id da despesa
     public int ConsultaIdCategoria_despesa(String cat, int id_conta) throws SQLException {

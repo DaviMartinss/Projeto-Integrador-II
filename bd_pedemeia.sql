@@ -74,8 +74,7 @@ mes int(11) NOT NULL,
 ano int(11) NOT NULL,
 conta_id_conta int(11) NOT NULL,
 primary key(cod_despesa),
-FOREIGN KEY (receita_data_cod_receita) REFERENCES
-receita_data (cod_receita) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (receita_data_cod_receita) REFERENCES receita_data (cod_receita) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (conta_id_conta) REFERENCES conta (id_conta) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
@@ -89,6 +88,8 @@ CREATE TABLE categoria (
   FOREIGN KEY (conta_id_conta) REFERENCES
 conta (id_conta) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
 
 #CREATE TABLE despesa (
@@ -312,6 +313,68 @@ INSERT INTO receita (total, receita_data_cod_receita, conta_id_conta) VALUES (13
 INSERT INTO receita (total, receita_data_cod_receita, conta_id_conta) VALUES (140000, 16,17);
 INSERT INTO receita (total, receita_data_cod_receita, conta_id_conta) VALUES (15000, 17,18);
 INSERT INTO receita (total, receita_data_cod_receita, conta_id_conta) VALUES (16000, 18,19);
+
+#Categoria 
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("CARRO", 1);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("MOTO", 2);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("ALUGUEL", 3);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("ROUPA", 4);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("CASA", 5);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("WIFI", 6);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("LUZ", 7);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("ÁGUA", 8);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("CARRO", 9);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("SAPATO", 10);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("ALIMENTAÇÃO", 11);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("TV", 12);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("CELULAR", 13);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("NOTEBOOK", 14);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("MOCHILA", 15);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("REFORMA", 16);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("MÓVEIS", 17);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("ELETRODOMÉSTICO", 18);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("MATERIAL DE LIMPEZA", 19);
+
+INSERT INTO categoria (categoriaTipo,conta_id_conta)
+VALUES("BUGIGANGAS", 20);
 
 
 #Despesa data
