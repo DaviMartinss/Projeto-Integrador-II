@@ -178,8 +178,6 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }
     
-    
-    
     void CarregaCategoria(){
         
         CategoriaDAO categoria = new CategoriaDAO();
@@ -1124,7 +1122,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         cadastrar_despesa();
 
     }//GEN-LAST:event_btnNovaDespesaActionPerformed
-
 
     private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
         // TODO add your handling code here:

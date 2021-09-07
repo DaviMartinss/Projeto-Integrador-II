@@ -107,8 +107,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
         try {
             
-            if (cartao_c.varifica_valor_fatura()
-                    && cartao_c.verifica_bandeira_credito()
+            if (cartao_c.verifica_bandeira_credito()
                     && cartao_c.verifica_dia_fatura()
                     && cartao_c.verifica_limite())
             {
@@ -332,7 +331,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
                 cadastra = false;
             }
             
-            if(!(cartaoCC.varifica_valor_fatura())){
+            if(cartaoCC.getValor_fatura() < 0 || cartaoCC.getLimite() < cartaoCC.getValor_fatura()){
                 
                 JOptionPane.showMessageDialog(null, "Valor da fatura inválido","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 

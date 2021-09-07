@@ -179,16 +179,18 @@ public class DespesaDAO {
 
                     pst4.executeUpdate();
 
-                    String sql7 = "update cartao_credito set credito = (credito - ?) where n_cartao_credito = ? and conta_id_conta = ?";
+                    String sql7 = "update cartao_credito set credito = (credito - ?), valor_fatura = ( valor_fatura + ?) where n_cartao_credito = ? and conta_id_conta = ?";
 
                     pst7 = conexao.prepareStatement(sql7);
 
                     pst7.setFloat(1, despesa.getValor());
+                    
+                    pst7.setFloat(2, despesa.getValor());
 
-                    pst7.setLong(2, despesa.getNum_cartao());
+                    pst7.setLong(3, despesa.getNum_cartao());
 
                     //pst7.setLong(2, despesa.getId_conta());
-                    pst7.setLong(3, despesa.getId_conta());
+                    pst7.setLong(4, despesa.getId_conta());
 
                     pst7.executeUpdate();
 

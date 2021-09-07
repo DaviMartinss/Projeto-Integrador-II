@@ -22,70 +22,68 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      */
-
     public TelaPrincipal() {
         initComponents();
-        
+
         txt_id.setVisible(true);
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
-        
+
     }
-    
+
     void TelaUsuario() {
-        
+
         TelaUsuario TelaUsuario = null;
 
-           if (TelaUsuario == null) {
+        if (TelaUsuario == null) {
 
-               TelaUsuario = new TelaUsuario();
+            TelaUsuario = new TelaUsuario();
 
-               TelaUsuario.setVisible(true);
-               
-               TelaUsuario.receberID(txt_id.getText());
+            TelaUsuario.setVisible(true);
 
-           } else {
+            TelaUsuario.receberID(txt_id.getText());
 
-               TelaUsuario.setVisible(true);
+        } else {
 
-               TelaUsuario.setState(TelaPrincipal.NORMAL);
+            TelaUsuario.setVisible(true);
 
-               TelaUsuario.receberID(txt_id.getText());
-                
-           }
-        
+            TelaUsuario.setState(TelaPrincipal.NORMAL);
+
+            TelaUsuario.receberID(txt_id.getText());
+
+        }
+
         this.dispose();
-        
+
     }
-    
-    
-      void receita() {
-  
+
+    void receita() {
+
         TelaReceita TelaReceita = null;
 
-           if (TelaReceita == null) {
+        if (TelaReceita == null) {
 
-               TelaReceita = new TelaReceita();
+            TelaReceita = new TelaReceita();
 
-               TelaReceita.setVisible(true);
-               
-               TelaReceita.receberID(txt_id.getText());
+            TelaReceita.setVisible(true);
 
-           } else {
+            TelaReceita.receberID(txt_id.getText());
 
-               TelaReceita.setVisible(true);
+        } else {
 
-               TelaReceita.setState(TelaPrincipal.NORMAL);
+            TelaReceita.setVisible(true);
 
-               TelaReceita.receberID(txt_id.getText());
-                
-           }
-        
+            TelaReceita.setState(TelaPrincipal.NORMAL);
+
+            TelaReceita.receberID(txt_id.getText());
+
+        }
+
         this.dispose();
-        
-      }
-      
-      void cartao_debito() {
+
+    }
+
+    void cartao_debito() {
 
         TelaCartao_debito TelaCartao_debito = null;
 
@@ -109,8 +107,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         this.dispose();
     }
-      
-       void cartao_credito() {
+
+    void cartao_credito() {
 
         TelaCartao_credito TelaCartao_credito = null;
 
@@ -134,10 +132,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         this.dispose();
     }
-       
-       
-    void despesa(){
-        
+
+    void despesa() {
+
         TelaDespesa TelaDespesa = null;
 
         if (TelaDespesa == null) {
@@ -159,12 +156,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
 
         this.dispose();
-        
-    }
-     
-     void categoria() {
 
-        
+    }
+
+    void categoria() {
+
         TelaCategoria Telacategoria = null;
 
         if (Telacategoria == null) {
@@ -187,13 +183,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         this.dispose();
     }
-       
-    void sair(){
-         //telaCliente cadastroCliente = new telaCliente();
-         TelaLogin tela_login = new TelaLogin();
-         tela_login.setVisible(true);
-         this.dispose();
+
+    void sair() {
+        //telaCliente cadastroCliente = new telaCliente();
+        TelaLogin tela_login = new TelaLogin();
+        tela_login.setVisible(true);
+        this.dispose();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -337,7 +334,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnCartao_credActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartao_credActionPerformed
         // TODO add your handling code here:
         cartao_credito();
-        
+
     }//GEN-LAST:event_btnCartao_credActionPerformed
 
     private void BtnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSairActionPerformed
@@ -357,13 +354,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed
         // TODO add your handling code here:
-       
+
         despesa();
     }//GEN-LAST:event_btnDespesasActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        
+
         TelaUsuario();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -373,7 +370,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        
+
         UsuarioDAO usuario = new UsuarioDAO();
 
         ResultSet rs = null;
@@ -386,7 +383,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "Erro ao pegar nome do usuario!!");
         }
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -428,8 +425,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSair;
@@ -445,11 +441,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
-
-    public void receberID(String recebe){
+    public void receberID(String recebe) {
 
         txt_id.setText(recebe);
     }
 
 }
-

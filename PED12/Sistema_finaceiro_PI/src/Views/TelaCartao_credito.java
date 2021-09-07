@@ -26,12 +26,6 @@ import ValidacaoComum.Validacao;
  */
 public class TelaCartao_credito extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCartao_credito
-     */
-//    Connection conexao = null;
-//    PreparedStatement pst = null;
-//    ResultSet rs = null;
     long salva_num_cartao = 0;
     boolean salvaLinhaAtiva = false;
 
@@ -155,6 +149,31 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
         this.dispose();
 
+    }
+    
+    void TelaCartaoCredito_ListaFaturas() {
+
+        TelaCartaoCredito_ListaFaturas TelaCC_ListaFaturas = null;
+
+        if (TelaCC_ListaFaturas == null) {
+
+            TelaCC_ListaFaturas = new TelaCartaoCredito_ListaFaturas();
+
+            TelaCC_ListaFaturas.setVisible(true);
+
+            TelaCC_ListaFaturas.receberID(txt_id.getText());
+
+        } else {
+
+            TelaCC_ListaFaturas.setVisible(true);
+
+            TelaCC_ListaFaturas.setState(TelaPrincipal.NORMAL);
+
+            TelaCC_ListaFaturas.receberID(txt_id.getText());
+
+        }
+
+        this.dispose();
     }
 
     void RecarregaTabela_CartaoCC() {
@@ -284,7 +303,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-
+    
     void LimpaCampos_CC() {
 
         txt_NumCartaoC.setText("");
@@ -333,8 +352,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         btn_update = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        btn_ListarFaturas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -409,7 +428,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_exclui_cc);
-        btn_exclui_cc.setBounds(630, 410, 140, 27);
+        btn_exclui_cc.setBounds(630, 450, 140, 27);
 
         txt_Pesquisa.setColumns(20);
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -590,10 +609,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(170, 80, 160, 27);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 1920, 1080);
-
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -602,6 +617,15 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         });
         getContentPane().add(txt_id);
         txt_id.setBounds(30, 10, 81, 20);
+
+        btn_ListarFaturas.setText("Listar Faturas");
+        btn_ListarFaturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ListarFaturasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_ListarFaturas);
+        btn_ListarFaturas.setBounds(630, 400, 140, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -878,6 +902,12 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         TelaUsuario();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void btn_ListarFaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ListarFaturasActionPerformed
+        // TODO add your handling code here:
+        
+        TelaCartaoCredito_ListaFaturas();
+    }//GEN-LAST:event_btn_ListarFaturasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -915,6 +945,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPesquisarCC;
+    private javax.swing.JButton btn_ListarFaturas;
     private javax.swing.JButton btn_exclui_cc;
     private javax.swing.JButton btn_inicio_CC;
     private javax.swing.JButton btn_novoCartao_cc;
@@ -931,7 +962,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCC;

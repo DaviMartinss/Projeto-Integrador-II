@@ -34,6 +34,17 @@ public class CartaoCredito {
         this.n_cartao_credito = n_cartao_credito;
         
     }
+
+    public CartaoCredito(long n_cartao_credito, int dia_fatura,  float valor_fatura, String bandeira, int id_conta) {
+        
+        this.dia_fatura = dia_fatura;
+        this.n_cartao_credito = n_cartao_credito;
+        this.valor_fatura = valor_fatura;
+        this.bandeira = bandeira;
+        this.id_conta = id_conta;
+    }
+    
+    
     
      public CartaoCredito(long n_cartao_credito, float limite, int dia_fatura, float valor_fatura, String bandeira, int id_conta) {
         
