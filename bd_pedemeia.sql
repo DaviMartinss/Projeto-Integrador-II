@@ -402,52 +402,51 @@ insert into despesa_data(receita_data_cod_receita, dia, mes, ano, conta_id_conta
 
 #Despesa
 
-insert into despesa(num_cartao, despesa_data_cod_despesa, valor, categoria, f_pagamento, estatus) values
-(3526940881025759, 1, 999.00, "WIFI", "DÉBITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(3526940881025759, 2,666.00, "CASA", "DÉBITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(3526940881025759, 3,333.00, "COMIDA", "DÉBITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(3526940881025759, 4,444.00, "CASA", "DÉBITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(3526940881025759, 5,210.00, "CARRO", "DÉBITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa, valor, categoria_id, f_pagamento, estatus) values
+(3526940881025759, 1, 999.00, 1, "DÉBITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(3526940881025759, 2,666.00, 2, "DÉBITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(3526940881025759, 3,333.00, 3, "DÉBITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(3526940881025759, 4,444.00, 4, "DÉBITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(3526940881025759, 5,210.00, 5, "DÉBITO", "PAGO");
 
 
-insert into despesa(despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(6, 80.00, "CARRO", "DINHEIRO", "NÃO PAGO");
-insert into despesa(despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(7, 50.00, "CASA", "DINHEIRO", "PAGO");
-insert into despesa(despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(8, 120.00, "ALUGUEL", "DINHEIRO", "PAGO");
-insert into despesa(despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(9, 230.00, "CARRO", "DINHEIRO", "PAGO");
-insert into despesa(despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(10, 300.00, "CARRO", "DINHEIRO", "NÃO PAGO");
+insert into despesa(despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(6, 80.00, 6, "DINHEIRO", "NÃO PAGO");
+insert into despesa(despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(7, 50.00, 7, "DINHEIRO", "PAGO");
+insert into despesa(despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(8, 120.00, 8, "DINHEIRO", "PAGO");
+insert into despesa(despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(9, 230.00, 9, "DINHEIRO", "PAGO");
+insert into despesa(despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(10, 300.00, 10, "DINHEIRO", "NÃO PAGO");
 
 
 
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 11, 888.00, "CARRO", "CRÉDITO", "NÃO PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 12, 777.00, "CASA", "CRÉDITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 13, 555.00, "LUZ", "CRÉDITO", "NÃO PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 14, 222.00, "CASA", "CRÉDITO", "NÃO PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 15, 90.00, "CASA", "CRÉDITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 16, 70.00, "FEIRA", "CRÉDITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 17, 60.00, "CARRO", "CRÉDITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 18, 40.00, "CARRO", "CRÉDITO", "NÃO PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 19, 20.00, "CASA", "CRÉDITO", "PAGO");
-insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria, f_pagamento, estatus) values
-(4556318364323101, 20, 10.00, "MOTO", "CRÉDITO", "NÃO PAGO");
-
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 11, 888.00, 11, "CRÉDITO", "NÃO PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 12, 777.00, 12, "CRÉDITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 13, 555.00, 13, "CRÉDITO", "NÃO PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 14, 222.00, 14, "CRÉDITO", "NÃO PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 15, 90.00, 15, "CRÉDITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 16, 70.00, 16, "CRÉDITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 17, 60.00, 17, "CRÉDITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 18, 40.00, 18, "CRÉDITO", "NÃO PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 19, 20.00, 19, "CRÉDITO", "PAGO");
+insert into despesa(num_cartao, despesa_data_cod_despesa,valor, categoria_id, f_pagamento, estatus) values
+(4556318364323101, 20, 10.00, 20, "CRÉDITO", "NÃO PAGO");
 
 
 #Despesa credito
