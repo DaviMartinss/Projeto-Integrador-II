@@ -140,7 +140,7 @@ public class CategoriaDAO {
     
     
     // busca o id de uma categoria pelo o id da despesa
-    public int ConsultaIdCategoria_despesa(Categoria categoria) throws SQLException {
+    public int ConsultaIdCategoria_despesa(String cat, int id_conta) throws SQLException {
 
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -150,8 +150,8 @@ public class CategoriaDAO {
 
         try {
             
-            pst.setString(1, categoria.getCategoriaTipo());
-            pst.setInt(2, categoria.getId_conta());
+            pst.setString(1, cat);
+            pst.setInt(2, id_conta);
             
              rs = pst.executeQuery();
             

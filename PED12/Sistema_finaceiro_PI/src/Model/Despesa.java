@@ -280,7 +280,7 @@ public class Despesa {
 
     public boolean verifica_DespesaValida() {
 
-        if (validaValor() && validaDataDespesa() && verifica_Categoria(getCategoria())) {
+        if (validaValor() && validaDataDespesa() ) {
 
             return true;
         } else {
@@ -290,7 +290,7 @@ public class Despesa {
     }
        
 
-    public boolean Update_CamposValidos(String valor, String dia, String mes, String ano, String categoria) {
+    public boolean Update_CamposValidos(String valor, String dia, String mes, String ano) {
         Validacao valida = new Validacao();
 
         int dia_aux = valida.converteParaInt(dia);
@@ -303,7 +303,6 @@ public class Despesa {
             setMes(mes_aux);
             setAno(ano_aux);
             setValor(valor_aux);
-            setCategoria(categoria);
 
             if (verifica_DespesaValida()) {
 
@@ -318,7 +317,7 @@ public class Despesa {
         }
     }
 
-    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String categoria, String f_pag,
+    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String f_pag,
             String num_cartao, String num_parc, String status, String desc) {
 
         if (!(EhVazio(f_pag))) {
@@ -326,7 +325,7 @@ public class Despesa {
             if (f_pag.equals("CRÉDITO")) {
 
                 if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
-                        || EhVazio(categoria) || EhVazio(num_cartao) || EhVazio(num_parc)
+                        || EhVazio(num_cartao) || EhVazio(num_parc)
                         || EhVazio(status) || EhVazio(desc)) {
                     
                     return true;
@@ -339,7 +338,7 @@ public class Despesa {
             } else if (f_pag.equals("DÉBITO")) {
 
                 if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
-                        || EhVazio(categoria) || EhVazio(num_parc)
+                        || EhVazio(num_parc)
                         || EhVazio(status) || EhVazio(desc)) {
 
                     return true;
@@ -352,7 +351,7 @@ public class Despesa {
             } else {
 
                 if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
-                        || EhVazio(categoria) || EhVazio(status) || EhVazio(desc)) {
+                        || EhVazio(status) || EhVazio(desc)) {
 
                     return true;
 

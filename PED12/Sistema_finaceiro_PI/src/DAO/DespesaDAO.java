@@ -88,7 +88,7 @@ public class DespesaDAO {
             pst2 = conexao.prepareStatement(sql2);
 
             pst2.setInt(1, despesa.getId_conta());
-            //pst2.setString(5, despesa.getCategoria());
+            
 
             rs = pst2.executeQuery();
 
@@ -103,15 +103,7 @@ public class DespesaDAO {
                     
                     CategoriaDAO categoriaNova = new CategoriaDAO();
                     
-                    
-                    Categoria categoria = new Categoria(
-                        despesa.getCategoria(),
-                        despesa.getId_conta()
-                        );
-                    
-                    categoriaNova.CadastrarCategoria(categoria);
-                    
-                    idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(categoria);   
+                    idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(despesa.getCategoria(), despesa.getId_conta());   
                     
                     sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria_id, descricao, f_pagamento, estatus) values(?,?,?,?,?,?)";
 
@@ -122,14 +114,7 @@ public class DespesaDAO {
                         
                        CategoriaDAO categoriaNova = new CategoriaDAO();
                          
-                         
-                         Categoria categoria = new Categoria(
-                            despesa.getCategoria(),
-                            despesa.getId_conta()
-                        );
-                         
-                         categoriaNova.CadastrarCategoria(categoria);
-                         idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(categoria); 
+                         idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(despesa.getCategoria(), despesa.getId_conta()); 
                     
                         if (consulta_aux.CartaoDebitoExiste(despesa.getNum_cartao())) {
                             sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria_id, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
@@ -144,14 +129,7 @@ public class DespesaDAO {
                         
                         CategoriaDAO categoriaNova = new CategoriaDAO();
                          
-                         
-                         Categoria categoria = new Categoria(
-                            despesa.getCategoria(),
-                            despesa.getId_conta()
-                        );
-                         
-                         categoriaNova.CadastrarCategoria(categoria);
-                         idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(categoria);
+                         idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(despesa.getCategoria(), despesa.getId_conta());
                         
                         if (consulta_auxCD.CartaoCreditoExiste(despesa.getNum_cartao())) {
                             sql3 = "insert into despesa (despesa_data_cod_despesa, valor, categoria_id, descricao, f_pagamento, num_cartao, estatus) values(?,?,?,?,?,?,?)";
@@ -159,6 +137,7 @@ public class DespesaDAO {
 
                             FlagErroCadastroDespesa = false;
                         }
+
 
                     }
 
@@ -434,13 +413,22 @@ public class DespesaDAO {
 
     }
 
-    public boolean UpdateDespesa(Despesa despesa) throws SQLException {
-
+    public boolean UpdateDespesa(Despesa despesa, int id_conta) throws SQLException {
+        int idCategoria = -1;
+        
+        CategoriaDAO categoriaNova = new CategoriaDAO();
+        
+        
+        idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(despesa.getCategoria(), id_conta);
+        
+        
         if (despesa.getF_pagamento().equals("CRÉDITO")) {
-
-            if (DespesaTemCartaoCredito(despesa.getNum_cartao(), despesa.getId_conta())) {
+            
+            
+            if (DespesaTemCartaoCredito(despesa.getNum_cartao(), id_conta)) {
+                
                 PreparedStatement pst1 = null;
-                String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa LEFT OUTER JOIN despesa_credito on (despesa.despesa_data_cod_despesa = despesa_credito.despesa_data_cod_despesa) SET dia = ?, mes = ?, ano = ?, valor = ?, categoria = ?, f_pagamento = ?, num_cartao=?, n_parcelas = ?, estatus=?, descricao=? where cod_despesa = ?";
+                String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa LEFT OUTER JOIN despesa_credito on (despesa.despesa_data_cod_despesa = despesa_credito.despesa_data_cod_despesa) SET dia = ?, mes = ?, ano = ?, valor = ?, categoria_id = ?, f_pagamento = ?, num_cartao=?, n_parcelas = ?, estatus=?, descricao=? where cod_despesa = ?";
 
                 pst1 = conexao.prepareStatement(update);
 
@@ -450,7 +438,7 @@ public class DespesaDAO {
                     pst1.setInt(2, despesa.getMes());
                     pst1.setInt(3, despesa.getAno());
                     pst1.setFloat(4, despesa.getValor());
-                    pst1.setString(5, despesa.getCategoria());
+                    pst1.setInt(5, idCategoria);
                     pst1.setString(6, despesa.getF_pagamento());
                     pst1.setLong(7, despesa.getNum_cartao());
                     pst1.setInt(8, despesa.getNum_parcelas());
@@ -480,9 +468,9 @@ public class DespesaDAO {
             }
 
         } else if (despesa.getF_pagamento().equals("DÉBITO")) {
-            if (DespesaTemCartaoDebito(despesa.getNum_cartao(), despesa.getId_conta())) {
+            if (DespesaTemCartaoDebito(despesa.getNum_cartao(), id_conta)) {
                 PreparedStatement pst2 = null;
-                String update = "update despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria = ?, f_pagamento = ?, num_cartao=?, estatus = ?, descricao = ? where cod_despesa = ?";
+                String update = "update despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria_id = ?, f_pagamento = ?, num_cartao=?, estatus = ?, descricao = ? where cod_despesa = ?";
 
                 pst2 = conexao.prepareStatement(update);
 
@@ -492,7 +480,7 @@ public class DespesaDAO {
                     pst2.setInt(2, despesa.getMes());
                     pst2.setInt(3, despesa.getAno());
                     pst2.setFloat(4, despesa.getValor());
-                    pst2.setString(5, despesa.getCategoria());
+                    pst2.setInt(5, idCategoria);
                     pst2.setString(6, despesa.getF_pagamento());
                     pst2.setLong(7, despesa.getNum_cartao());
                     pst2.setString(8, despesa.getEstatus());
@@ -520,19 +508,21 @@ public class DespesaDAO {
             }
 
         } else {
+            
             // é dinheiro
+            System.out.println("é dinheiro");
             PreparedStatement pst3 = null;
-            String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria=?, f_pagamento=?, estatus = ?, descricao=? where cod_despesa= ?";
-
+            String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria_id=?, f_pagamento=?, estatus = ?, descricao=? where cod_despesa= ?";
+             
             pst3 = conexao.prepareStatement(update);
 
             try {
-
+                        
                 pst3.setInt(1, despesa.getDia());
                 pst3.setInt(2, despesa.getMes());
                 pst3.setInt(3, despesa.getAno());
                 pst3.setFloat(4, despesa.getValor());
-                pst3.setString(5, despesa.getCategoria());
+                pst3.setInt(5, idCategoria);
                 pst3.setString(6, despesa.getF_pagamento());
                 pst3.setString(7, despesa.getEstatus());
                 pst3.setString(8, despesa.getDescricao());

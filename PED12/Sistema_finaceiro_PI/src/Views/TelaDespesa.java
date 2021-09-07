@@ -187,7 +187,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         try {
            int id_aux = Integer.parseInt(txt_id.getText()); 
             
-            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(20);
+            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(id_aux);
             
             
             for (Categoria cat : lista_categoria) {
@@ -448,12 +448,12 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         Despesa despesa_aux = new Despesa();
 
-        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), txtCategoria.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus, txtAreaDescricao.getText())) {
+        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus, txtAreaDescricao.getText())) {
             JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
             return;
         }
 
-        if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText(), txtCategoria.getText()))) {
+        if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText()))) {
 
             JOptionPane.showMessageDialog(null, "O valor informado é inválido");
             return;
@@ -466,7 +466,8 @@ public class TelaDespesa extends javax.swing.JFrame {
                 return;
             }
         }
-
+        String categoria = cbb_categoria.getSelectedItem().toString().trim();
+        
         if (salvaF_pagamento.equals("CRÉDITO")) {
 
             Despesa despesa = new Despesa(
@@ -474,19 +475,21 @@ public class TelaDespesa extends javax.swing.JFrame {
                     Integer.parseInt(txtMes.getText()),
                     Integer.parseInt(txtAno.getText()),
                     Float.parseFloat(txtValor.getText()),
-                    txtCategoria.getText(),
+                    categoria,
                     salvaF_pagamento,
                     Long.parseLong(txt_NumCartao.getText()),
                     Integer.parseInt(txtParcelas.getText()),
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
+                    //Integer.parseInt(txt_id.getText())
+                    
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
 
             try {
-                despesaDao.UpdateDespesa(despesa);
+                despesaDao.UpdateDespesa(despesa, Integer.parseInt(txt_id.getText()));
 
             } catch (Exception e) {
 
@@ -498,18 +501,19 @@ public class TelaDespesa extends javax.swing.JFrame {
                     Integer.parseInt(txtMes.getText()),
                     Integer.parseInt(txtAno.getText()),
                     Float.parseFloat(txtValor.getText()),
-                    txtCategoria.getText(),
+                    categoria,
                     salvaF_pagamento,
                     Long.parseLong(txt_NumCartao.getText()),
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
+                    //Integer.parseInt(txt_id.getText())
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
 
             try {
-                despesaDao.UpdateDespesa(despesa);
+                despesaDao.UpdateDespesa(despesa, Integer.parseInt(txt_id.getText()));
 
             } catch (Exception e) {
 
@@ -522,17 +526,18 @@ public class TelaDespesa extends javax.swing.JFrame {
                     Integer.parseInt(txtMes.getText()),
                     Integer.parseInt(txtAno.getText()),
                     Float.parseFloat(txtValor.getText()),
-                    txtCategoria.getText(),
+                    categoria,
                     salvaF_pagamento,
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
+                    //Integer.parseInt(txt_id.getText())
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
 
             try {
-                despesaDao.UpdateDespesa(despesa);
+                despesaDao.UpdateDespesa(despesa, Integer.parseInt(txt_id.getText()));
 
             } catch (Exception e) {
 

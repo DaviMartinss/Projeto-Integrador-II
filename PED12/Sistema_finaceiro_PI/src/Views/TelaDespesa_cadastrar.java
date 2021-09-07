@@ -113,7 +113,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         try {
            int id_aux = Integer.parseInt(txt_id.getText()); 
             
-            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(20);
+            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(id_aux);
             
             
             for (Categoria cat : lista_categoria) {
@@ -140,7 +140,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCategoria = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         rbCredito = new javax.swing.JRadioButton();
         rbDebito = new javax.swing.JRadioButton();
@@ -182,11 +181,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(null);
-
-        txtCategoria.setBackground(new java.awt.Color(187, 210, 240));
-        txtCategoria.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txtCategoria);
-        txtCategoria.setBounds(420, 50, 300, 27);
 
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Forma de Pagamento: ");
@@ -490,9 +484,9 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
     private void btn_CadastrarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CadastrarDespesaActionPerformed
         // TODO add your handling code here:
-
-        if (txtValor.getText().isEmpty() || txtCategoria.getText().isEmpty()
-                || txtDia.getText().isEmpty()
+        String categoria = cbb_categoria.getSelectedItem().toString().trim();
+        
+        if (txtValor.getText().isEmpty() || txtDia.getText().isEmpty()
                 || txtMes.getText().isEmpty() || txtAno.getText().isEmpty()
                 || (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)
                 || (rbDebito.isSelected() == false && rbCredito.isSelected() == false && rbDinheiro.isSelected() == false)
@@ -530,7 +524,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                     Integer.parseInt(txtMes.getText()),
                     Integer.parseInt(txtAno.getText()),
                     Float.parseFloat(txtValor.getText()),
-                    txtCategoria.getText(),
+                    categoria,
                     txtAreaDescricao.getText(),
                     Integer.parseInt(txt_id.getText())
             );
@@ -667,14 +661,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                 if (!(data.verifica_ano())) {
 
                     JOptionPane.showMessageDialog(this, "Ano inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-
-                    cadastra = false;
-
-                }
-
-                if (!(despesa.verifica_Categoria(txtCategoria.getText()))) {
-
-                    JOptionPane.showMessageDialog(this, "Categoria inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
                     cadastra = false;
 
@@ -831,7 +817,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbPago;
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextArea txtAreaDescricao;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtParcelas;
