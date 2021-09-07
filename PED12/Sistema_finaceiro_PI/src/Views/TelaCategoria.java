@@ -31,6 +31,7 @@ public class TelaCategoria extends javax.swing.JFrame {
      * Creates new form TelaCategoria
      */
     public TelaCategoria() {
+        
         initComponents();
 
         this.setLocationRelativeTo(null);
@@ -59,6 +60,12 @@ public class TelaCategoria extends javax.swing.JFrame {
         }
 
         this.dispose();
+    }
+    
+    void limpa_campo(){
+        
+        txt_NomeCategoria.setText("");
+        
     }
 
     void cadastra_categoria() {
@@ -110,6 +117,8 @@ public class TelaCategoria extends javax.swing.JFrame {
             try {
                 
                  categoria_DAO.UpdateCategoria(categoria_atua);
+                 
+                 limpa_campo();
 
             } catch (Exception e) {
 
@@ -140,7 +149,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         try {
             
             categoriaDAO.DeleteCategoria(categoria);
-            
+            limpa_campo();
 
         } catch (Exception e) {
 

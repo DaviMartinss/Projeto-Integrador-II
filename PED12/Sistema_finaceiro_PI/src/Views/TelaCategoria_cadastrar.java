@@ -19,7 +19,11 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
      * Creates new form TelaCategoria_cadastrar
      */
     public TelaCategoria_cadastrar() {
+        
         initComponents();
+        
+        this.setLocationRelativeTo(null);
+        
     }
     
     void inicio(){
@@ -70,6 +74,12 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         }
 
         this.dispose();
+    }
+    
+    void limpa_campo(){
+        
+        txt_categoria.setText("");
+        
     }
     
     
@@ -170,7 +180,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         
         cadastro_categoria();
         
-        volta_telaCategoria();
+        
     }//GEN-LAST:event_btn_cadastarCategoriaActionPerformed
 
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed
