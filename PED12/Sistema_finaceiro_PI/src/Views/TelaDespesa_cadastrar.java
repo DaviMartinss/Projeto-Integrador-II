@@ -623,17 +623,14 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
                             cadastra = false;
 
-                        } else {
+                        } 
+                    }
+                    
+                     if (!(despesaDAO.DespesaCD_TemSaldo(receita, despesa.getValor()))) {
 
-                            if (!(despesaDAO.DespesaCD_TemSaldo(receita, despesa.getValor()))) {
+                        JOptionPane.showMessageDialog(this, "Receita correspondente não possui Saldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
-                                JOptionPane.showMessageDialog(this, "Receita correspondente não possui Saldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-                                cadastra = false;
-
-                            }
-
-                        }
+                        cadastra = false;
 
                     }
 

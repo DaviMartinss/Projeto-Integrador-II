@@ -24,13 +24,13 @@ gato
 
 
 # NetBeans specific #
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
+PED12/Sistema_finaceiro_PI/nbproject/private/
+PED12/Sistema_finaceiro_PI/build/
+PED12/Sistema_finaceiro_PI/nbbuild/
+PED12/Sistema_finaceiro_PI/dist/
+PED12/Sistema_finaceiro_PI/nbdist/
+PED12/Sistema_finaceiro_PI/nbactions.xml
+PED12/Sistema_finaceiro_PI/nb-configuration.xml
 
 # Class Files #
 *.class

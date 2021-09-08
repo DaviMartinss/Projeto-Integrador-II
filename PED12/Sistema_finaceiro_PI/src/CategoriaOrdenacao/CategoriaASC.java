@@ -12,7 +12,8 @@ import java.text.Collator;
 
 
 public class CategoriaASC implements Comparator<Categoria> {
-     public CategoriaASC() {
+     
+    public CategoriaASC() {
     
      }
      
