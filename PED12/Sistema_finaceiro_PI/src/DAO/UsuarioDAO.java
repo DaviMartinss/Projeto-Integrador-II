@@ -220,6 +220,32 @@ public class UsuarioDAO {
        
    }
     
+   public boolean DeleteUser(int id) throws SQLException {
+
+        PreparedStatement pst = null;
+
+        String delete = "delete from conta where id_conta = ?";
+        try {
+
+            pst = conexao.prepareStatement(delete);
+
+            pst.setInt(1, id);
+
+            pst.executeUpdate();
+           
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.toString());
+            return false;
+
+        } finally {
+
+            pst.close();
+        }
+
+        return true;
+    }
+    
    
     public boolean valida_UpdateSenha(String senha1, String senha2) {
 
