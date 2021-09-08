@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import Model.Categoria;
+import Model.Despesa;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 /**
@@ -107,34 +108,38 @@ public class CategoriaDAO {
         }
     }
     
-    
-    
-    public boolean DeleteCategoria(Categoria categoria) throws SQLException {
+    public boolean DeleteCategoria(Categoria categoria, int id) throws SQLException {
 
         PreparedStatement pst = null;
+       
+       if(consultaCat_desData(categoria, id, ConsultaIdCategoria_despesa(categoria.getCategoria_aux(), id))){
+           
+        
+            String delete = "delete from categoria where categoriaTipo = ?";
 
-        String delete = "delete from categoria where categoriaTipo = ?";
 
-        pst = conexao.prepareStatement(delete);
+            pst = conexao.prepareStatement(delete);
 
-        try {
+            try {
 
-            pst.setString(1, categoria.getCategoria_aux());
-            
-            pst.executeUpdate();
+                pst.setString(1, categoria.getCategoria_aux());
 
-            return true;
+                pst.executeUpdate();
+                return true;
 
-        } catch (Exception e) {
+            } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                return false;
 
-            return false;
+            } finally {
 
-        } finally {
-
-            pst.close();
-        }
+                pst.close();
+            }
+        }else{
+           JOptionPane.showMessageDialog(null, "Falha: Voce têm uma despesa com essa categoria");
+           return false;
+       }
 
     }
     
@@ -348,5 +353,51 @@ public class CategoriaDAO {
 
         }
     }
+    
+    public boolean consultaCat_desData(Categoria cat, int id, int id_apag){
+        
+        PreparedStatement pst1 = null;
+        ResultSet rs1 = null;
+        
+        boolean apa = true;
+        
+        String consulta1 = "select categoria_id from despesa_data dt left join despesa d on dt.cod_despesa = d.despesa_data_cod_despesa where dt.conta_id_conta = ?";
+        
+        try{
+            
+            pst1= conexao.prepareStatement(consulta1);
+            
+            pst1.setInt(1, id);
+            
+            rs1 = pst1.executeQuery();
+           
+            while (rs1.next()) {
+                
+                Despesa Desp_cat_aux = new Despesa();
+                
+                Desp_cat_aux.setId_categoria(rs1.getInt("categoria_id"));
+                
+                if(id_apag == rs1.getInt("categoria_id")){
+                    apa = false;
+                }
+            }
+            
+            
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Falha ao consultar as categorias da despesas");
+        }
+        
+        if(apa){
+            
+            return true;
+            
+        }else{
+            
+            return false;
+        }
+        
+    }
+   
     
 }

@@ -25,6 +25,8 @@ public class Despesa {
     private int num_parcelas;
     private int id_conta;
     private int cod_despesa;
+    private int id_categoria;
+
 
     public Despesa() {
 
@@ -196,7 +198,15 @@ public class Despesa {
     public void setCod_despesa(int cod_despesa) {
         this.cod_despesa = cod_despesa;
     }
+    
+    public int getId_categoria() {
+        return id_categoria;
+    }
 
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+    
     public boolean validaDataDespesa() {
 
         Data data_aux = new Data(getDia(), getMes(), getAno());

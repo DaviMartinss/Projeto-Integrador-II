@@ -148,7 +148,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
         try {
             
-            categoriaDAO.DeleteCategoria(categoria);
+            categoriaDAO.DeleteCategoria(categoria, Integer.parseInt(txt_id.getText()));
             limpa_campo();
 
         } catch (Exception e) {
