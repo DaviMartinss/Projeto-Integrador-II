@@ -145,12 +145,12 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nova senha");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(310, 160, 80, 17);
+        jLabel1.setBounds(310, 160, 100, 17);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Repita a nova senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(310, 210, 120, 17);
+        jLabel2.setBounds(310, 210, 140, 17);
 
         txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
         txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));

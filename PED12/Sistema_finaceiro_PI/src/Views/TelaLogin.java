@@ -113,7 +113,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         btnCadastro = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
@@ -127,24 +126,24 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("Bem Vinde ao Ped1/2");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(310, 0, 220, 26);
+        jLabel5.setBounds(300, 0, 220, 26);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(200, 150, 60, 27);
+        jLabel1.setBounds(200, 190, 60, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(200, 220, 50, 27);
+        jLabel2.setBounds(200, 260, 50, 27);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setAlignmentX(1.0F);
         txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txtEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(200, 170, 400, 27);
+        txtEmail.setBounds(200, 210, 400, 27);
         txtEmail.getAccessibleContext().setAccessibleName("Digite seu e-mail ou login");
         txtEmail.getAccessibleContext().setAccessibleDescription("Digite aqui o seu e-mail ou seu login");
 
@@ -158,14 +157,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnLogin);
-        btnLogin.setBounds(200, 290, 150, 27);
-
-        jButton1.setBackground(new java.awt.Color(105, 69, 219));
-        jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Esqueci minha senha!");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(290, 350, 220, 27);
+        btnLogin.setBounds(200, 330, 150, 27);
 
         btnCadastro.setBackground(new java.awt.Color(105, 69, 219));
         btnCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -177,7 +169,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastro);
-        btnCadastro.setBounds(450, 290, 150, 27);
+        btnCadastro.setBounds(450, 330, 150, 27);
 
         txtSenha.setBackground(new java.awt.Color(187, 210, 240));
         txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -187,11 +179,11 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(200, 240, 400, 27);
+        txtSenha.setBounds(200, 280, 400, 27);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(330, 40, 130, 100);
+        jLabel3.setBounds(320, 70, 130, 100);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -258,7 +250,6 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

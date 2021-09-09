@@ -246,7 +246,6 @@ public class TelaCategoria extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_categoria = new javax.swing.JTable();
         txt_NomeCategoria = new javax.swing.JTextField();
-        txt_id = new javax.swing.JTextField();
         btn_voltaInicio = new javax.swing.JButton();
         btn_cadastraCategoria = new javax.swing.JButton();
         btn_deletaCategoria = new javax.swing.JButton();
@@ -257,13 +256,21 @@ public class TelaCategoria extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txt_Pesquisa = new javax.swing.JTextField();
         btPesquisarCD = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         jt_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -295,47 +302,78 @@ public class TelaCategoria extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jt_categoria);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(150, 240, 200, 199);
+        getContentPane().add(txt_NomeCategoria);
+        txt_NomeCategoria.setBounds(150, 200, 200, 27);
+
+        btn_voltaInicio.setBackground(new java.awt.Color(105, 69, 219));
+        btn_voltaInicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_voltaInicio.setForeground(new java.awt.Color(255, 255, 255));
         btn_voltaInicio.setText("Inicio");
         btn_voltaInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_voltaInicioActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_voltaInicio);
+        btn_voltaInicio.setBounds(40, 40, 80, 27);
 
+        btn_cadastraCategoria.setBackground(new java.awt.Color(105, 69, 219));
+        btn_cadastraCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_cadastraCategoria.setForeground(new java.awt.Color(255, 255, 255));
         btn_cadastraCategoria.setText("Cadastrar");
         btn_cadastraCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cadastraCategoriaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cadastraCategoria);
+        btn_cadastraCategoria.setBounds(540, 270, 140, 27);
 
-        btn_deletaCategoria.setText("Deletar");
+        btn_deletaCategoria.setBackground(new java.awt.Color(210, 59, 239));
+        btn_deletaCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_deletaCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        btn_deletaCategoria.setText("Excluir");
         btn_deletaCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_deletaCategoriaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_deletaCategoria);
+        btn_deletaCategoria.setBounds(540, 350, 140, 27);
 
+        rb_Ascendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         rb_Ascendente.setText("Ascendente");
         rb_Ascendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rb_AscendenteActionPerformed(evt);
             }
         });
+        getContentPane().add(rb_Ascendente);
+        rb_Ascendente.setBounds(150, 150, 96, 25);
 
+        rb_Descendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         rb_Descendente.setText("Descendente");
         rb_Descendente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rb_DescendenteActionPerformed(evt);
             }
         });
+        getContentPane().add(rb_Descendente);
+        rb_Descendente.setBounds(250, 150, 103, 25);
 
+        btn_ordenar.setBackground(new java.awt.Color(105, 69, 219));
+        btn_ordenar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_ordenar.setForeground(new java.awt.Color(255, 255, 255));
         btn_ordenar.setText("Ordenar");
         btn_ordenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ordenarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_ordenar);
+        btn_ordenar.setBounds(370, 150, 120, 27);
 
         btn_updateCategoria.setBackground(new java.awt.Color(105, 69, 219));
         btn_updateCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -346,9 +384,13 @@ public class TelaCategoria extends javax.swing.JFrame {
                 btn_updateCategoriaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_updateCategoria);
+        btn_updateCategoria.setBounds(540, 310, 140, 27);
 
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Pesquisar");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(150, 90, 90, 27);
 
         txt_Pesquisa.setColumns(200);
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -361,6 +403,8 @@ public class TelaCategoria extends javax.swing.JFrame {
                 txt_PesquisaKeyReleased(evt);
             }
         });
+        getContentPane().add(txt_Pesquisa);
+        txt_Pesquisa.setBounds(150, 110, 520, 27);
 
         btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
@@ -371,87 +415,30 @@ public class TelaCategoria extends javax.swing.JFrame {
                 btPesquisarCDActionPerformed(evt);
             }
         });
+        getContentPane().add(btPesquisarCD);
+        btPesquisarCD.setBounds(630, 140, 40, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_voltaInicio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btPesquisarCD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 152, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(rb_Ascendente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rb_Descendente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btn_ordenar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btn_cadastraCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_deletaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btn_updateCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_voltaInicio)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btPesquisarCD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rb_Ascendente)
-                            .addComponent(rb_Descendente)
-                            .addComponent(btn_ordenar))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(txt_NomeCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(49, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_cadastraCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_deletaCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_updateCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(103, 103, 103))))
-        );
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel4.setText("Nome");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(150, 180, 60, 17);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(620, 390, 140, 120);
+
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel2.setText("Categorias");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(360, 0, 110, 26);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
+        getContentPane().add(txt_id);
+        txt_id.setBounds(0, 0, 49, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -698,6 +685,10 @@ public class TelaCategoria extends javax.swing.JFrame {
     private javax.swing.JButton btn_ordenar;
     private javax.swing.JButton btn_updateCategoria;
     private javax.swing.JButton btn_voltaInicio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jt_categoria;

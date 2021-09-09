@@ -204,7 +204,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(40, 60, 90, 25);
+        btn_inicio.setBounds(40, 60, 90, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
@@ -226,7 +226,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(40, 260, 150, 25);
+        btn_NovaReceita.setBounds(40, 260, 150, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("CADASTRAR NOVA RECEITA");

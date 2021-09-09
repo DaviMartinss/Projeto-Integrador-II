@@ -119,58 +119,59 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txt_id = new javax.swing.JTextField();
         txt_categoria = new javax.swing.JTextField();
         btn_inicio = new javax.swing.JButton();
         btn_cadastarCategoria = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
+        getContentPane().setLayout(null);
+        getContentPane().add(txt_categoria);
+        txt_categoria.setBounds(210, 130, 400, 27);
 
+        btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
+        btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio.setForeground(new java.awt.Color(255, 255, 255));
         btn_inicio.setText("Inicio");
         btn_inicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_inicioActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_inicio);
+        btn_inicio.setBounds(40, 50, 90, 27);
 
+        btn_cadastarCategoria.setBackground(new java.awt.Color(105, 69, 219));
+        btn_cadastarCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_cadastarCategoria.setForeground(new java.awt.Color(255, 255, 255));
         btn_cadastarCategoria.setText("Cadastrar");
         btn_cadastarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cadastarCategoriaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cadastarCategoria);
+        btn_cadastarCategoria.setBounds(340, 170, 140, 27);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(87, 87, 87)
-                        .addComponent(btn_inicio))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(txt_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(btn_cadastarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_inicio))
-                .addGap(91, 91, 91)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cadastarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel3.setText("Cadastrar Categoria");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(310, 0, 230, 26);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(210, 200, 420, 350);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1920, 1080);
+        getContentPane().add(txt_id);
+        txt_id.setBounds(0, 0, 49, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,6 +229,9 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cadastarCategoria;
     private javax.swing.JButton btn_inicio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txt_categoria;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables

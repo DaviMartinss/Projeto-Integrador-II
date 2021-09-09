@@ -114,7 +114,6 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtFaturas = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         cbbTipo = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -123,16 +122,22 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         rbAscendente = new javax.swing.JRadioButton();
         rbDescendente = new javax.swing.JRadioButton();
         btPesquisarCC = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel1.setText("Lista de Faturas");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(330, 0, 170, 26);
 
         jtFaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,6 +164,9 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtFaturas);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(25, 190, 750, 232);
+
         btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
         btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,22 +176,23 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 btnVoltarActionPerformed(evt);
             }
         });
-
-        txt_id.setEditable(false);
-        txt_id.setBackground(new java.awt.Color(150, 175, 231));
-        txt_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_idActionPerformed(evt);
-            }
-        });
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(20, 40, 100, 27);
 
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Pesquisar por");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(30, 100, 100, 27);
 
+        cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
+        getContentPane().add(cbbTipo);
+        cbbTipo.setBounds(30, 120, 130, 27);
 
         jLabel10.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel10.setText("Digite sua pesquisa aqui");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(170, 100, 160, 27);
 
         txt_Pesquisa.setColumns(20);
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -196,9 +205,13 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 txt_PesquisaKeyReleased(evt);
             }
         });
+        getContentPane().add(txt_Pesquisa);
+        txt_Pesquisa.setBounds(170, 120, 330, 27);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel6.setText("Ordenação");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(510, 100, 80, 27);
 
         rbAscendente.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         rbAscendente.setText("Ascendente");
@@ -207,6 +220,8 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 rbAscendenteActionPerformed(evt);
             }
         });
+        getContentPane().add(rbAscendente);
+        rbAscendente.setBounds(510, 120, 100, 27);
 
         rbDescendente.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         rbDescendente.setText("Descendente");
@@ -215,6 +230,8 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 rbDescendenteActionPerformed(evt);
             }
         });
+        getContentPane().add(rbDescendente);
+        rbDescendente.setBounds(610, 120, 110, 27);
 
         btPesquisarCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarCC.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,70 +242,22 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 btPesquisarCCActionPerformed(evt);
             }
         });
+        getContentPane().add(btPesquisarCC);
+        btPesquisarCC.setBounds(730, 120, 40, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(176, 176, 176)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbAscendente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbDescendente, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(btPesquisarCC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(4, 4, 4)
-                        .addComponent(cbbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(rbAscendente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(rbDescendente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btPesquisarCC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1920, 1080);
+
+        txt_id.setEditable(false);
+        txt_id.setBackground(new java.awt.Color(150, 175, 231));
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_id);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -470,6 +439,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;

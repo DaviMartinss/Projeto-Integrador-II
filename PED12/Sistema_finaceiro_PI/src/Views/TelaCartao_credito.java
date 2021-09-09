@@ -352,8 +352,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         btn_update = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
-        btn_ListarFaturas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -368,7 +368,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Crédito");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(330, 0, 170, 24);
+        jLabel2.setBounds(330, 0, 170, 26);
 
         btn_inicio_CC.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -428,7 +428,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_exclui_cc);
-        btn_exclui_cc.setBounds(630, 450, 140, 27);
+        btn_exclui_cc.setBounds(630, 410, 140, 27);
 
         txt_Pesquisa.setColumns(20);
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -479,6 +479,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 150, 740, 110);
 
+        cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Limite", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
         getContentPane().add(cbbTipo);
         cbbTipo.setBounds(30, 100, 130, 27);
@@ -498,7 +499,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Pesquisar por");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 80, 100, 16);
+        jLabel9.setBounds(30, 80, 100, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Número do cartão");
@@ -609,6 +610,10 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(170, 80, 160, 27);
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(0, 0, 1920, 1080);
+
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -616,16 +621,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(30, 10, 81, 20);
-
-        btn_ListarFaturas.setText("Listar Faturas");
-        btn_ListarFaturas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ListarFaturasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_ListarFaturas);
-        btn_ListarFaturas.setBounds(630, 400, 140, 30);
+        txt_id.setBounds(30, 10, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -945,7 +941,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPesquisarCC;
-    private javax.swing.JButton btn_ListarFaturas;
     private javax.swing.JButton btn_exclui_cc;
     private javax.swing.JButton btn_inicio_CC;
     private javax.swing.JButton btn_novoCartao_cc;
@@ -962,6 +957,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCC;
