@@ -433,17 +433,18 @@ public class ReceitaDAO {
 
     public boolean ReceitaExiste(Receita receita) throws SQLException {
 
-        String consulta = "select * from receita_data where mes = ? and ano = ?";
+        //String consulta = "select * from receita_data where mes = ? and ano = ?";
+        String consulta = "select * from receita_data rdt inner join receita R on (rdt.cod_receita = R.receita_data_cod_receita) where R.conta_id_conta = ? and mes = ? and ano = ?";
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
         ResultSet rs = null;
 
         try {
-
-            pst.setInt(1, receita.getMes());
-
-            pst.setInt(2, receita.getAno());
+            
+            pst.setInt(1, receita.getId_conta());
+            pst.setInt(2, receita.getMes());
+            pst.setInt(3, receita.getAno());
 
             rs = pst.executeQuery();
 
