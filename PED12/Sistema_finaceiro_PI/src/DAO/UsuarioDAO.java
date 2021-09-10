@@ -244,6 +244,7 @@ public class UsuarioDAO {
         PreparedStatement pst = null;
 
         String delete = "delete from conta where id_conta = ?";
+        
         try {
 
             pst = conexao.prepareStatement(delete);
@@ -251,7 +252,7 @@ public class UsuarioDAO {
             pst.setInt(1, id);
 
             pst.executeUpdate();
-           
+            
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.toString());

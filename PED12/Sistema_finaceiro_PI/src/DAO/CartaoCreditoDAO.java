@@ -103,6 +103,10 @@ public class CartaoCreditoDAO {
         if(DespesaCartaoExiste(cartao_credito.getN_cartao_aux())){
             
             PreparedStatement pst = null;
+            PreparedStatement pst2 = null;
+            PreparedStatement pst3 = null;
+            
+            ResultSet rs = null;
 
             String update = "update cartao_credito LEFT OUTER JOIN  despesa on cartao_credito.n_cartao_credito = despesa.num_cartao set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=?, num_cartao= ? where (n_cartao_credito= ?);";
 
@@ -119,6 +123,36 @@ public class CartaoCreditoDAO {
                 pst.setLong(7, cartao_credito.getN_cartao_aux());
 
                 pst.executeUpdate();
+                
+                //Aqui desconta do limite do cartão de crédito se a dispesa for deste tipo
+                    
+                String sql2 = "select credito from cartao_credito where n_cartao_credito = ? and conta_id_conta = ?";
+
+                pst2 = conexao.prepareStatement(sql2);
+
+                pst2.setFloat(1, cartao_credito.getN_cartao_credito());
+
+                pst2.setLong(2, cartao_credito.getId_conta());
+                
+                rs = pst2.executeQuery();
+                
+                if(rs.next()){
+                    
+                    float credito = rs.getFloat("credito");
+                    
+                    String sql3 = "update cartao_credito set credito = (credito + ?) where n_cartao_credito = ? and conta_id_conta = ?";
+
+                    pst3 = conexao.prepareStatement(sql2);
+
+                    pst3.setFloat(1, (cartao_credito.getLimite() - credito));
+
+                    pst3.setFloat(2, cartao_credito.getN_cartao_credito());
+
+                    pst3.setLong(3, cartao_credito.getId_conta());
+
+                    pst3.executeUpdate();
+
+                }
 
                 return true;
 

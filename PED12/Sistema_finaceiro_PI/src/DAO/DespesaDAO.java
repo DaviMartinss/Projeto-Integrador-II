@@ -416,6 +416,7 @@ public class DespesaDAO {
     }
 
     public boolean UpdateDespesa(Despesa despesa, int id_conta) throws SQLException {
+        
         int idCategoria = -1;
         
         CategoriaDAO categoriaNova = new CategoriaDAO();
@@ -430,6 +431,8 @@ public class DespesaDAO {
             if (DespesaTemCartaoCredito(despesa.getNum_cartao(), id_conta)) {
                 
                 PreparedStatement pst1 = null;
+                PreparedStatement pst2 = null;
+                
                 String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa LEFT OUTER JOIN despesa_credito on (despesa.despesa_data_cod_despesa = despesa_credito.despesa_data_cod_despesa) SET dia = ?, mes = ?, ano = ?, valor = ?, categoria_id = ?, f_pagamento = ?, num_cartao=?, n_parcelas = ?, estatus=?, descricao=? where cod_despesa = ?";
 
                 pst1 = conexao.prepareStatement(update);
@@ -449,6 +452,26 @@ public class DespesaDAO {
                     pst1.setInt(11, despesa.getCod_despesa());
 
                     pst1.executeUpdate();
+
+                    //Aqui desconta do limite do cartão de crédito se a dispesa for deste tipo
+                    if (despesa.getF_pagamento().equals("CRÉDITO")) {
+
+                        String sql2 = "update cartao_credito set credito = (credito - ?), valor_fatura = ( valor_fatura + ?) where n_cartao_credito = ? and conta_id_conta = ?";
+
+                        pst2 = conexao.prepareStatement(sql2);
+
+                        pst2.setFloat(1, despesa.getValor());
+
+                        pst2.setFloat(2, despesa.getValor());
+
+                        pst2.setLong(3, despesa.getNum_cartao());
+
+                        //pst7.setLong(2, despesa.getId_conta());
+                        pst2.setLong(4, despesa.getId_conta());
+
+                        pst2.executeUpdate();
+
+                    }
 
                 } catch (Exception e) {
 
