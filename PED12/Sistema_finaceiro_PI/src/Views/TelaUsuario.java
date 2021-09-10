@@ -101,9 +101,9 @@ public class TelaUsuario extends javax.swing.JFrame {
                 txtEmail.getText()
                 
                 
+                
         );
-          System.out.println("O nome do usuario é " +txtNome.getText());
-          System.out.println("O email do usuario é " +txtEmail.getText());
+          
         UsuarioDAO UserDao = new UsuarioDAO();
 
         try {
@@ -189,7 +189,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Dados do Usuário");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(310, 0, 170, 26);
+        jLabel2.setBounds(310, 0, 170, 24);
 
         jButton1.setBackground(new java.awt.Color(105, 69, 219));
         jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -201,12 +201,12 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(40, 50, 110, 27);
+        jButton1.setBounds(40, 50, 110, 25);
 
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Nome: ");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 130, 70, 17);
+        jLabel3.setBounds(200, 130, 70, 16);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -216,7 +216,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Email:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(200, 190, 60, 17);
+        jLabel4.setBounds(200, 190, 60, 16);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -273,7 +273,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(500, 160, 60, 21);
+        txt_id.setBounds(500, 160, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

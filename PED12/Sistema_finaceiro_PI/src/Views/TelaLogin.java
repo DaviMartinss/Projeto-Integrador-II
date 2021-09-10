@@ -126,7 +126,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("Bem Vinde ao Ped1/2");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(300, 0, 220, 26);
+        jLabel5.setBounds(300, 0, 220, 24);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");

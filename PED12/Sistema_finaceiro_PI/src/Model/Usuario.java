@@ -22,6 +22,7 @@ public class Usuario {
     private String email;
     private String senha;
     private String senhaConfirma;
+    private String salvaEmail_aux;
 
     
     private int id_conta;
@@ -105,6 +106,14 @@ public class Usuario {
      */
     public void setId_conta(int id_conta) {
         this.id_conta = id_conta;
+    }
+    
+    public String getSalvaEmail_aux() {
+        return salvaEmail_aux;
+    }
+
+    public void setSalvaEmail_aux(String salvaEmail_aux) {
+        this.salvaEmail_aux = salvaEmail_aux;
     }
     
    public boolean validaNomeUser(String nome){

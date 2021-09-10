@@ -63,72 +63,91 @@ public class UsuarioDAO {
 
     }
     
-    
-    
     public boolean CadastrarUsuario(Usuario usuario) throws SQLException {
+        
+        if(!(verificaEmailExiste(usuario.getEmail()))){
+            PreparedStatement pst = null;
 
-        PreparedStatement pst = null;
+            String insert = "insert into conta (nome, email, senha) values(?,?,?)";
 
-        String insert = "insert into conta (nome, email, senha) values(?,?,?)";
+            pst = conexao.prepareStatement(insert);
 
-        pst = conexao.prepareStatement(insert);
+            try {
 
-        try {
+                pst.setString(1, usuario.getNome());
+                pst.setString(2, usuario.getEmail());
+                pst.setString(3, usuario.getSenha());
 
-            pst.setString(1, usuario.getNome());
-            pst.setString(2, usuario.getEmail());
-            pst.setString(3, usuario.getSenha());
+                //pst.setString(5, txtCadastraAvatar.getText());
+                pst.executeUpdate();
 
-            //pst.setString(5, txtCadastraAvatar.getText());
-            pst.executeUpdate();
+                return true;
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e.getMessage());
+
+                return false;
+
+            }finally{
+
+                pst.close();
+
+            }
+        }else{
             
-            return true;
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
+            JOptionPane.showMessageDialog(null, "Email já é cadastrado");
             return false;
-
-        }finally{
-            
-            pst.close();
-            
         }
 
     }
     
      public boolean UpdateUser(Usuario usuario) throws SQLException {
+            
+         String email_aux = consultaEmail(usuario.getId_conta());
         
-        PreparedStatement pst = null;
-
-        String insert = "update conta set nome= ? , email = ? where id_conta = ?";
-
-        pst = conexao.prepareStatement(insert);
-
-        try {
-
-            pst.setString(1, usuario.getNome());
-            pst.setString(2, usuario.getEmail());
-            pst.setInt(3, usuario.getId_conta());
-
-            pst.executeUpdate();
+        if (email_aux != usuario.getEmail()) {
             
+            if (!(verificaEmailExiste(usuario.getEmail()))) {
+                
+                PreparedStatement pst = null;
+
+                String insert = "update conta set nome= ? , email = ? where id_conta = ?";
+
+                pst = conexao.prepareStatement(insert);
+
+                try {
+
+                    pst.setString(1, usuario.getNome());
+                    pst.setString(2, usuario.getEmail());
+                    pst.setInt(3, usuario.getId_conta());
+
+                    pst.executeUpdate();
+
+                    return true;
+
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+
+                    return false;
+
+                } finally {
+
+                    pst.close();
+
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Esse email já foi cadastrado");
+                return false;
+            }
+        }else{
+            // é igual ao seu email atual
             return true;
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-            return false;
-
-        }finally{
-            
-            pst.close();
-            
         }
 
     }
+
     
     
     public boolean UpdateSenha(Usuario usuario) throws SQLException {
@@ -257,6 +276,70 @@ public class UsuarioDAO {
             return false;
 
         }
+    }
+    
+    public boolean verificaEmailExiste(String email)throws SQLException {
+        
+        String consulta = "select id_conta from conta where email = ?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+
+        try {
+
+            pst.setString(1, email);
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+            return false;
+
+        }
+    }
+    
+    public String consultaEmail(int id) throws SQLException{
+       
+       String consulta = "select email from conta where id_conta = ?";
+
+       String email = null;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setInt(1, id);
+           
+           rs = pst.executeQuery();
+           
+           if(rs.next()){
+               
+               email = rs.getString("email");
+               
+           }
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, "Falha ao consultar email");
+
+       }
+       
+       return email;
+       
     }
 
 }
