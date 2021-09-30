@@ -137,7 +137,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel1.setText("Lista de Faturas");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(330, 0, 170, 26);
+        jLabel1.setBounds(330, 0, 170, 24);
 
         jtFaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -177,7 +177,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(20, 40, 100, 27);
+        btnVoltar.setBounds(20, 40, 100, 25);
 
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Pesquisar por");
@@ -257,7 +257,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 21);
+        txt_id.setBounds(0, 0, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

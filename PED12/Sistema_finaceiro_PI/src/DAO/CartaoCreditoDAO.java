@@ -63,7 +63,7 @@ public class CartaoCreditoDAO {
         }
 
     }
-    
+
     public boolean DespesaCartaoExiste(long num_cartao) throws SQLException {
 
         String consulta = "select distinct num_cartao from despesa where num_cartao = ?";
@@ -75,7 +75,6 @@ public class CartaoCreditoDAO {
         try {
 
             pst.setLong(1, num_cartao);
-
 
             rs = pst.executeQuery();
 
@@ -98,14 +97,55 @@ public class CartaoCreditoDAO {
 
     }
 
+    public void DescontaCredito(CartaoCredito cartao_credito) {
+
+        //Aqui desconta do limite do cartão de crédito se a dispesa for deste tipo
+        String sql = "select limite from cartao_credito where n_cartao_credito = ? and conta_id_conta = ?";
+
+        try {
+
+            PreparedStatement pst1 = conexao.prepareStatement(sql);
+
+            pst1.setLong(1, cartao_credito.getN_cartao_credito());
+
+            pst1.setInt(2, cartao_credito.getId_conta());
+
+            ResultSet consulta = pst1.executeQuery();
+
+            if (consulta.next()) {
+
+                float limite_antigo = consulta.getFloat("limite");
+                
+                float descontar = cartao_credito.getLimite() - limite_antigo;
+
+                String sql2 = "update cartao_credito set credito = (credito + ?) where n_cartao_credito = ? and conta_id_conta = ?";
+
+                PreparedStatement pst2 = conexao.prepareStatement(sql2);
+
+                pst2.setFloat(1, (cartao_credito.getLimite() - limite_antigo));
+
+                pst2.setLong(2, cartao_credito.getN_cartao_credito());
+
+                pst2.setInt(3, cartao_credito.getId_conta());
+
+                pst2.executeUpdate();
+
+            };
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
     public boolean UpdateCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
-            
-        if(DespesaCartaoExiste(cartao_credito.getN_cartao_aux())){
-            
+
+        if (DespesaCartaoExiste(cartao_credito.getN_cartao_aux())) {
+
             PreparedStatement pst = null;
             PreparedStatement pst2 = null;
             PreparedStatement pst3 = null;
-            
+
             ResultSet rs = null;
 
             String update = "update cartao_credito LEFT OUTER JOIN  despesa on cartao_credito.n_cartao_credito = despesa.num_cartao set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=?, num_cartao= ? where (n_cartao_credito= ?);";
@@ -122,38 +162,10 @@ public class CartaoCreditoDAO {
                 pst.setLong(6, cartao_credito.getN_cartao_credito());
                 pst.setLong(7, cartao_credito.getN_cartao_aux());
 
+                DescontaCredito(cartao_credito);
+                
                 pst.executeUpdate();
                 
-                //Aqui desconta do limite do cartão de crédito se a dispesa for deste tipo
-                    
-                String sql2 = "select credito from cartao_credito where n_cartao_credito = ? and conta_id_conta = ?";
-
-                pst2 = conexao.prepareStatement(sql2);
-
-                pst2.setFloat(1, cartao_credito.getN_cartao_credito());
-
-                pst2.setLong(2, cartao_credito.getId_conta());
-                
-                rs = pst2.executeQuery();
-                
-                if(rs.next()){
-                    
-                    float credito = rs.getFloat("credito");
-                    
-                    String sql3 = "update cartao_credito set credito = (credito + ?) where n_cartao_credito = ? and conta_id_conta = ?";
-
-                    pst3 = conexao.prepareStatement(sql2);
-
-                    pst3.setFloat(1, (cartao_credito.getLimite() - credito));
-
-                    pst3.setFloat(2, cartao_credito.getN_cartao_credito());
-
-                    pst3.setLong(3, cartao_credito.getId_conta());
-
-                    pst3.executeUpdate();
-
-                }
-
                 return true;
 
             } catch (Exception e) {
@@ -167,9 +179,9 @@ public class CartaoCreditoDAO {
                 pst.close();
 
             }
-            
-        }else{
-            
+
+        } else {
+
             PreparedStatement pst1 = null;
 
             String update = "update cartao_credito set n_cartao_credito=?, limite=?, dia_fatura=?, valor_fatura=?, bandeira=? where n_cartao_credito=?";
@@ -185,6 +197,8 @@ public class CartaoCreditoDAO {
                 pst1.setString(5, cartao_credito.getBandeira());
                 pst1.setLong(6, cartao_credito.getN_cartao_aux());
 
+                DescontaCredito(cartao_credito);
+                
                 pst1.executeUpdate();
 
                 return true;
@@ -200,9 +214,10 @@ public class CartaoCreditoDAO {
                 pst1.close();
 
             }
-            
+
         }
     }
+
     public boolean DeleteCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
 
         PreparedStatement pst = null;
@@ -274,17 +289,16 @@ public class CartaoCreditoDAO {
         return lista_CC;
 
     }
-    
-    
+
     public LinkedList<CartaoCredito> Carrega_Faturas(int id_conta) throws SQLException {
 
         String consulta = "SELECT   \n"
-                        + "CC.n_cartao_credito,\n"
-                        + "CC.dia_fatura,\n"
-                        + "CC.valor_fatura\n"
-                        + "CC.bandeira\n"
-                        + "FROM cartao_credito CC \n"
-                        + "where CC.conta_id_conta = 1;";
+                + "CC.n_cartao_credito,\n"
+                + "CC.dia_fatura,\n"
+                + "CC.valor_fatura\n"
+                + "CC.bandeira\n"
+                + "FROM cartao_credito CC \n"
+                + "where CC.conta_id_conta = 1;";
 
         ResultSet rs = null;
 
@@ -410,12 +424,12 @@ public class CartaoCreditoDAO {
             JOptionPane.showMessageDialog(null, e.getMessage());
 
         } finally {
-
+            
             pst.close();
         }
 
         return lista_CC;
-
+        
     }
 
     public boolean CartaoCreditoExiste(CartaoCredito cartao) throws SQLException {
@@ -452,5 +466,4 @@ public class CartaoCreditoDAO {
         }
 
     }
-
 }

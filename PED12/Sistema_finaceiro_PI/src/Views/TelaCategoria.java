@@ -351,7 +351,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rb_Ascendente);
-        rb_Ascendente.setBounds(150, 150, 96, 25);
+        rb_Ascendente.setBounds(150, 150, 93, 25);
 
         rb_Descendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         rb_Descendente.setText("Descendente");
@@ -361,7 +361,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rb_Descendente);
-        rb_Descendente.setBounds(250, 150, 103, 25);
+        rb_Descendente.setBounds(250, 150, 101, 25);
 
         btn_ordenar.setBackground(new java.awt.Color(105, 69, 219));
         btn_ordenar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -385,7 +385,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_updateCategoria);
-        btn_updateCategoria.setBounds(540, 310, 140, 27);
+        btn_updateCategoria.setBounds(540, 310, 140, 25);
 
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Pesquisar");
@@ -421,7 +421,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Nome");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(150, 180, 60, 17);
+        jLabel4.setBounds(150, 180, 60, 16);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -431,14 +431,14 @@ public class TelaCategoria extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Categorias");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(360, 0, 110, 26);
+        jLabel2.setBounds(360, 0, 110, 24);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 21);
+        txt_id.setBounds(0, 0, 49, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
