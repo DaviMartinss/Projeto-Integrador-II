@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
 import CategoriaOrdenacao.CategoriaASC;
 import CategoriaOrdenacao.CategoriaDESC;
+import Controllers.ControlerTabela;
 /**
  *
  * @author Alan
@@ -161,17 +162,7 @@ public class TelaCategoria extends javax.swing.JFrame {
                 
         boolean salvaLinhaAtiva = false;
         
-        DefaultTableModel mp1 = (DefaultTableModel) jt_categoria.getModel();
-
-        int l = mp1.getRowCount();
-
-        if (l > 0) {
-            while (l > 0) {
-                ((DefaultTableModel) jt_categoria.getModel()).removeRow(l - 1);
-
-                l--;
-            }
-        }
+        ControlerTabela.LimpaTabela(jt_categoria);
         
         try {
 
@@ -586,19 +577,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
             String argumento = txt_Pesquisa.getText();
 
-            DefaultTableModel mp1 = (DefaultTableModel) jt_categoria.getModel();
-
-            int l = mp1.getRowCount();
-
-            if (l > 0) {
-                while (l > 0) {
-                    //Limpa tabela sempre que for fazer uma nova consulta
-                    ((DefaultTableModel) jt_categoria.getModel()).removeRow(l - 1);
-
-                    //Menos um pois a primeira linha é a linha zero
-                    l--;
-                }
-            }
+            ControlerTabela.LimpaTabela(jt_categoria);
 
             try {
 
@@ -612,13 +591,10 @@ public class TelaCategoria extends javax.swing.JFrame {
 
                     Collections.sort(lista_categoria, new CategoriaASC());
 
-                    
-
                 } else {
 
                     Collections.sort(lista_categoria, new CategoriaDESC());
                 }
-                
                 
                 for (Categoria categoria : lista_categoria) {
 

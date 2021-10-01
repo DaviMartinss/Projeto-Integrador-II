@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Controllers.ControlerTabela;
 import DAO.CategoriaDAO;
 import DAO.DespesaDAO;
 import DAO.ReceitaDAO;
@@ -205,20 +206,9 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     void RecarregaTabela_Despesa() {
         
-        salvaLinhaAtiva = false;
-        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaDespesa.getModel();
-
-        int l = mp1.getRowCount();
-
-        if (l > 0) {
-            while (l > 0) {
-                //Limpa tabela sempre que for fazer uma nova consulta
-                ((DefaultTableModel) jtConsultaDespesa.getModel()).removeRow(l - 1);
-
-                //Menos um pois a primeira linha é a linha zero
-                l--;
-            }
-        }
+        salvaLinhaAtiva = false;     
+        
+        ControlerTabela.LimpaTabela(jtConsultaDespesa);
 
         try {
 
@@ -345,19 +335,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         String argumento = txt_Pesquisa.getText();
 
-        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaDespesa.getModel();
-
-        int l = mp1.getRowCount();
-
-        if (l > 0) {
-            while (l > 0) {
-                //Limpa tabela sempre que for fazer uma nova consulta
-                ((DefaultTableModel) jtConsultaDespesa.getModel()).removeRow(l - 1);
-
-                //Menos um pois a primeira linha é a linha zero
-                l--;
-            }
-        }
+        ControlerTabela.LimpaTabela(jtConsultaDespesa);
 
         try {
 

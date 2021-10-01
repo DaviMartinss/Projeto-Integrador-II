@@ -13,6 +13,7 @@ import java.awt.FlowLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import Controllers.ControlerTabela;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -150,19 +151,8 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     void RecarregaTabela_CartaoDB() {
         salvaLinhaAtiva = false;
-        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
 
-        int l = mp1.getRowCount();
-
-        if (l > 0) {
-            while (l > 0) {
-                //Limpa tabela sempre que for fazer uma nova consulta
-                ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
-
-                //Menos um pois a primeira linha é a linha zero
-                l--;
-            }
-        }
+        ControlerTabela.LimpaTabela(jtConsultaCD);
 
         try {
 
@@ -662,20 +652,8 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
 
             String argumento = txt_Pesquisa.getText();
-
-            DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
-
-            int l = mp1.getRowCount();
-
-            if (l > 0) {
-                while (l > 0) {
-                    //Limpa tabela sempre que for fazer uma nova consulta
-                    ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
-
-                    //Menos um pois a primeira linha é a linha zero
-                    l--;
-                }
-            }
+            
+            ControlerTabela.LimpaTabela(jtConsultaCD);
 
             try {
 

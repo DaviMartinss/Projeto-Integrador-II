@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Controllers.ControlerTabela;
 import DAO.ReceitaDAO;
 import DAO.moduloConexao;
 import Model.Data;
@@ -184,19 +185,7 @@ public class TelaReceita extends javax.swing.JFrame{
 
         ResultSet rs = null;
 
-        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
-
-        int l = mp1.getRowCount();
-
-        if (l > 0) {
-            while (l > 0) {
-                //Limpa tabela sempre que for fazer uma nova consulta
-                ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
-
-                //Menos um pois a primeira linha é a linha zero
-                l--;
-            }
-        }
+        ControlerTabela.LimpaTabela(jtConsultaCD);
 
         try {
 
@@ -750,19 +739,7 @@ public class TelaReceita extends javax.swing.JFrame{
 
             String argumento = txt_Pesquisa.getText();
 
-            DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCD.getModel();
-
-            int l = mp1.getRowCount();
-
-            if (l > 0) {
-                while (l > 0) {
-                    //Limpa tabela sempre que for fazer uma nova consulta
-                    ((DefaultTableModel) jtConsultaCD.getModel()).removeRow(l - 1);
-
-                    //Menos um pois a primeira linha é a linha zero
-                    l--;
-                }
-            }
+            ControlerTabela.LimpaTabela(jtConsultaCD);
 
             try {
 

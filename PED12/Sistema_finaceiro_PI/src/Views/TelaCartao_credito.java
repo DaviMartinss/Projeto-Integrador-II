@@ -5,6 +5,7 @@
  */
 package Views;
 
+import Controllers.ControlerTabela;
 import DAO.CartaoCreditoDAO;
 import DAO.UsuarioDAO;
 import DAO.moduloConexao;
@@ -32,7 +33,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     public TelaCartao_credito() {
         initComponents();
 
-//        conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
 
         txt_id.setVisible(false);
@@ -179,19 +179,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     void RecarregaTabela_CartaoCC() {
 
         boolean salvaLinhaAtiva = false;
-        DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCC.getModel();
-
-        int l = mp1.getRowCount();
-
-        if (l > 0) {
-            while (l > 0) {
-                //Limpa tabela sempre que for fazer uma nova consulta
-                ((DefaultTableModel) jtConsultaCC.getModel()).removeRow(l - 1);
-
-                //Menos um pois a primeira linha é a linha zero
-                l--;
-            }
-        }
+        
+        ControlerTabela.LimpaTabela(jtConsultaCC);
 
         try {
 
@@ -710,19 +699,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
             String argumento = txt_Pesquisa.getText();
 
-            DefaultTableModel mp1 = (DefaultTableModel) jtConsultaCC.getModel();
-
-            int l = mp1.getRowCount();
-
-            if (l > 0) {
-                while (l > 0) {
-                    //Limpa tabela sempre que for fazer uma nova consulta
-                    ((DefaultTableModel) jtConsultaCC.getModel()).removeRow(l - 1);
-
-                    //Menos um pois a primeira linha é a linha zero
-                    l--;
-                }
-            }
+            ControlerTabela.LimpaTabela(jtConsultaCC);
 
             try {
 
