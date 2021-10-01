@@ -31,7 +31,12 @@ public class Usuario {
     public Usuario() {
        
     }
-
+    
+    // recupera senha
+    public Usuario(String email){
+        this.email = email;
+    }
+    
     public Usuario(String email, String senha) {
         this.email = email;
         this.senha = senha;
@@ -48,6 +53,9 @@ public class Usuario {
         this.senhaConfirma = senhaConfirma;
         this.id_conta = id_conta;
     }
+    
+    
+    
     
     public Usuario(int id_conta, String nome, String email) {
         this.id_conta = id_conta;

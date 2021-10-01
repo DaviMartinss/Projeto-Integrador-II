@@ -342,5 +342,39 @@ public class UsuarioDAO {
        return email;
        
     }
+    
+    
+    public int consultaId(String email) throws SQLException{
+       
+       String consulta = "select id_conta from conta where email = ?";
+
+       int id = -1;
+       
+       PreparedStatement pst = conexao.prepareStatement(consulta);
+       
+       ResultSet rs = null;
+       
+       try {
+           
+           pst.setString(1, email);
+           
+           rs = pst.executeQuery();
+           
+           if(rs.next()){
+               
+              id = rs.getInt("id_conta");
+               
+           }
+
+       } catch (Exception e) {
+
+           JOptionPane.showMessageDialog(null, "Falha ao consultar Id");
+
+       }
+       
+       return id;
+       
+    }
+    
 
 }

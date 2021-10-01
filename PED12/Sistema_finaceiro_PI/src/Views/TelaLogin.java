@@ -79,24 +79,26 @@ public class TelaLogin extends javax.swing.JFrame {
     }
     
     
-    /*
-    public int consultaIdconta(){
-        
-        int id_conta = -1;
-        try {
-            
-             id_conta=rs.getInt(1);
-                
-            SalvaIdconta(id_conta);
-        } catch (Exception e) {
-         
-            JOptionPane.showMessageDialog(null, e);
+    void Recupera_senha() {
+
+        Tela_RecuperaSenha Tela_RecuperaSenha = null;
+
+        if (Tela_RecuperaSenha == null) {
+
+            Tela_RecuperaSenha = new Tela_RecuperaSenha();
+
+            Tela_RecuperaSenha.setVisible(true);
+
+        } else {
+
+            Tela_RecuperaSenha.setVisible(true);
+
+            Tela_RecuperaSenha.setState(TelaPrincipal.NORMAL);
+
         }
-        
-        return id_conta;
-        
+
+        this.dispose();
     }
-    */
     
 
     /**
@@ -116,7 +118,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnCadastro = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -185,9 +187,14 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(320, 70, 130, 100);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 1920, 1080);
+        jButton1.setText("Recuperar senha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(660, 340, 130, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,6 +218,11 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Recupera_senha();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,10 +262,10 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtSenha;
