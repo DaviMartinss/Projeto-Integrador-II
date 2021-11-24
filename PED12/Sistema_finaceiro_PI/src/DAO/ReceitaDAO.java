@@ -32,164 +32,80 @@ public class ReceitaDAO {
 
     }
 
-    public void CadastrarReceita(Receita receita){
-
-        int cod_receita = 0;
-
-        PreparedStatement pst1 = null;
-        PreparedStatement pst2 = null;
-        PreparedStatement pst3 = null;
-        PreparedStatement pst4 = null;
-        PreparedStatement pst5 = null;
-        PreparedStatement pst6 = null;
-        PreparedStatement pst7 = null;
+    public Receita GetUltimaReceita(int conta_id) throws SQLException{
         
-        ResultSet rs1 = null;
+        String SelectReceita = 
+                            "SELECT Max(cod_receita) cod_receita, R.mes, R.ano FROM receita R \n"
+                            + "WHERE R.conta_id_conta = ? AND R.cod_receita = (SELECT Max(cod_receita) FROM receita);";
         
-        ResultSet rs2 = null;
+        Receita receita = new Receita();
         
-        ResultSet rs3 = null;
-        
-        ResultSet rs4 = null;
-        
-        String sql1 = "select COUNT(cod_receita) qtd_receita from receita_data";
-        
-        String sql2 = "select mes, ano, conta_id_conta from receita_data rdt left join receita R on\n"
-                     + " (rdt.cod_receita = R.receita_data_cod_receita)\n"
-                     + "where cod_receita = (select max(cod_receita) from receita_data) and R.conta_id_conta = ?;";
-        
-        String sql3 = "select cod_despesa, dia, mes, ano, estatus\n"
-                     + "from \n"
-                     + "(despesa des left join despesa_data dt on des.despesa_data_cod_despesa = dt.cod_despesa)\n"
-                     + "where (estatus <> \"PAGO\" and mes = ? and ano = ? and conta_id_conta = ?);";
-
-        String sql4 = "update despesa_data set mes = ?, ano = ? where (cod_despesa = ? and conta_id_conta = ?)";
-        
-        String sql5 = "insert into receita_data (dia, mes, ano) values(?,?,?)";
-
-        String sql6 = "select * from receita_data where dia = ? and mes = ? and ano = ?";
-
-        String sql7 = "insert into receita (receita_data_cod_receita, total, conta_id_conta) values(?,?,?)";
-
-        try{
+        try
+        {
+            PreparedStatement pst_SelectReceita = conexao.prepareStatement(SelectReceita);
             
-            pst1 = conexao.prepareStatement(sql1);
-                
-                rs1 = pst1.executeQuery();
-                
-                if(rs1.next()){
-                    
-                    if (rs1.getInt("qtd_receita") > 0) {
-
-                        pst2 = conexao.prepareStatement(sql2);
-
-                        pst2.setInt(1, receita.getId_conta());
-
-                        rs2 = pst2.executeQuery();
-
-                        if (rs2.next()) {
-
-                            pst3 = conexao.prepareStatement(sql3);
-
-                            pst3.setInt(1, rs2.getInt("mes"));
-                            pst3.setInt(2, rs2.getInt("ano"));
-                            pst3.setInt(3, receita.getId_conta());
-
-                            rs3 = pst3.executeQuery();
-
-                            //Np == Não Paga
-                            LinkedList<Despesa> lista_despesaNp = new LinkedList();
-
-                            while (rs3.next()) {
-
-                                Despesa despesa_aux = new Despesa();
-
-                                despesa_aux.setMes(receita.getMes());
-
-                                despesa_aux.setMes(receita.getAno());
-
-                                despesa_aux.setCod_despesa(rs3.getInt("cod_despesa"));
-                                
-                                despesa_aux.setId_conta(receita.getId_conta());
-
-                                lista_despesaNp.add(despesa_aux);
-
-                            }
-                            
-                            pst4 = conexao.prepareStatement(sql4);
-                            
-                            for (Despesa despesa : lista_despesaNp) {
-
-                                pst4.setInt(1, receita.getMes());
-                                pst4.setInt(2, receita.getAno());
-                                pst4.setInt(3, despesa.getCod_despesa());
-                                pst4.setInt(4, receita.getId_conta());
-                                
-                                pst4.executeUpdate();
-
-                            }
-                            
-                        }
-
-                    }
-                
-                }
+            pst_SelectReceita.setInt(1, conta_id);
             
-                //return true;
+            ResultSet rs_SelectReceita = pst_SelectReceita.executeQuery();
             
+            if(rs_SelectReceita.next()){
+                receita.setCod_receita(rs_SelectReceita.getInt("cod_receita"));
+                receita.setMes(rs_SelectReceita.getInt("mes"));
+                receita.setAno(rs_SelectReceita.getInt("ano"));
+                receita.setId_conta(conta_id);
+            }
+               
+                  
         }catch(Exception e){
             
-            JOptionPane.showMessageDialog(null, e.getMessage() + "ERRO NA TRANSFERENCIA DE DESPESA");
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
-            //return false;
-            
+            JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
         }
-       
+        
+        return receita;
+    }
+
+    public void CadastrarReceita(Receita receita_nova){
+        
+        ReceitaDAO receitaDAO = new ReceitaDAO();
+            
+        DespesaDAO despesaDAO = new DespesaDAO();
+        
+        String insertReceita = "INSERT INTO receita (dia, mes, ano, conta_id_conta, total) VALUES(?, ?, ?, ?, ?);";
+   
+        PreparedStatement pst_InsertReceita = null;
 
         try {
 
-            pst5 = conexao.prepareStatement(sql5);
-            
-            pst5.setInt(1, receita.getDia());
-            pst5.setInt(2, receita.getMes());
-            pst5.setInt(3, receita.getAno());
+           Receita ultima_receita = receitaDAO.GetUltimaReceita(receita_nova.getId_conta());   
+           
+            if (ultima_receita != null) {
 
-            pst5.executeUpdate();
+                LinkedList<Despesa> lista_despesasNp = despesaDAO.GetListaDespesasNpUltimaReceita(ultima_receita);
 
-            pst6 = conexao.prepareStatement(sql6);
+                pst_InsertReceita = conexao.prepareStatement(insertReceita);
 
-            pst6.setInt(1, receita.getDia());
-            pst6.setInt(2, receita.getMes());
-            pst6.setInt(3, receita.getAno());
+                pst_InsertReceita.setInt(1, receita_nova.getDia());
+                pst_InsertReceita.setInt(2, receita_nova.getMes());
+                pst_InsertReceita.setInt(3, receita_nova.getAno());
+                pst_InsertReceita.setInt(4, receita_nova.getId_conta());
+                pst_InsertReceita.setFloat(5, receita_nova.getTotal());
 
-            rs4 = pst6.executeQuery();
+                pst_InsertReceita.executeUpdate();
+                
+                receita_nova = receitaDAO.GetUltimaReceita(receita_nova.getId_conta());
 
-            if (rs4.next()) {
+                despesaDAO.TransferirDespesasEntreReceitas(lista_despesasNp, receita_nova);
 
-                cod_receita = rs4.getInt(1);
-                    
-                pst7 = conexao.prepareStatement(sql7);
-
-                pst7.setInt(1, cod_receita);
-                pst7.setFloat(2, receita.getTotal());
-                pst7.setInt(3, receita.getId_conta());
-
-                pst7.executeUpdate();
-
-                //return true;
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "ERRO CADASTRO DE RECEITA");
-                //return false;
             }
-
+            
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            JOptionPane.showMessageDialog(null, "ERRO:CadastrarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     public boolean UpdateReceita(Receita receita) throws SQLException {

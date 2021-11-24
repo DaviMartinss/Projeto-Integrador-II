@@ -58,6 +58,7 @@ public class DespesaDAO {
 
             pst5.setInt(1, despesa.getMes());
             pst5.setInt(2, despesa.getAno());
+           
 
             rs2 = pst5.executeQuery();
 
@@ -1051,4 +1052,71 @@ public class DespesaDAO {
         return false;
 
     }
+    
+    public LinkedList<Despesa> GetListaDespesasNpUltimaReceita(Receita receita) throws SQLException{
+
+        String SelectDespesasNp = "SELECT cod_despesa FROM despesa WHERE conta_id_conta = ? AND estatus = 'NÃO PAGO' AND receita_cod_receita = ?;";
+        
+        try
+        {
+            PreparedStatement pst_SelectDespesasNp = conexao.prepareStatement(SelectDespesasNp);
+            
+            pst_SelectDespesasNp.setInt(1, receita.getId_conta());
+            pst_SelectDespesasNp.setInt(2, receita.getCod_receita());
+            
+            ResultSet rs_SelectDespesas = pst_SelectDespesasNp.executeQuery();
+            
+            LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+
+            while (rs_SelectDespesas.next()) {
+
+                Despesa despesa_aux = new Despesa();
+
+                despesa_aux.setCod_despesa(rs_SelectDespesas.getInt("cod_despesa"));
+
+                despesa_aux.setId_conta(receita.getId_conta());
+
+                lista_despesa.add(despesa_aux);
+
+            }
+                
+           return lista_despesa;
+                  
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            JOptionPane.showMessageDialog(null, "Erro:GetListaDespesasNpUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            return null;
+        }   
+    } 
+    
+    public void TransferirDespesasEntreReceitas(LinkedList<Despesa> lista_despesasNp, Receita receita_nova) throws SQLException{
+        
+        String sql_UpdateDespesa = "UPDATE despesa SET mes = ?, ano = ?, receita_cod_receita = ? WHERE (cod_despesa = ? AND conta_id_conta = ?)";
+        
+        try{
+            
+            PreparedStatement pst_UpdateDespesa = conexao.prepareStatement(sql_UpdateDespesa);;
+            
+            for (Despesa despesa : lista_despesasNp) 
+            {
+                pst_UpdateDespesa.setInt(1, receita_nova.getMes());
+                pst_UpdateDespesa.setInt(2, receita_nova.getAno());
+                pst_UpdateDespesa.setInt(3, receita_nova.getCod_receita());
+                pst_UpdateDespesa.setInt(4, despesa.getCod_despesa());
+                pst_UpdateDespesa.setInt(5, receita_nova.getId_conta());
+
+                pst_UpdateDespesa.executeUpdate();
+            }
+            
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            JOptionPane.showMessageDialog(null, "Erro:TransferirDespesasEntreReceitas", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+ 
 }

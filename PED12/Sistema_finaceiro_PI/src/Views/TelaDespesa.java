@@ -270,7 +270,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(this, e.getMessage() + "LALALALALLALALA");
+            JOptionPane.showMessageDialog(this, e.getMessage());
 
         }
 
