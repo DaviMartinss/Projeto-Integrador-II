@@ -87,19 +87,34 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_NovaSenha = new javax.swing.JPasswordField();
         txt_ConfirmaSenha = new javax.swing.JPasswordField();
         btn_AlteraSenha = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("senha");
+        jLabel5.setText("Atualização de Senha");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(150, 10, 140, 17);
 
-        jLabel3.setText("Confirma seenha");
+        jLabel1.setText("Nova Senha");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(130, 100, 160, 17);
+
+        jLabel3.setText("Repita a Senha");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(130, 150, 160, 17);
+        getContentPane().add(txt_NovaSenha);
+        txt_NovaSenha.setBounds(130, 120, 167, 21);
+        getContentPane().add(txt_ConfirmaSenha);
+        txt_ConfirmaSenha.setBounds(130, 170, 167, 21);
 
         btn_AlteraSenha.setText("Salvar");
         btn_AlteraSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -107,39 +122,13 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
                 btn_AlteraSenhaActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_AlteraSenha);
+        btn_AlteraSenha.setBounds(170, 240, 71, 27);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_AlteraSenha)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txt_NovaSenha)
-                        .addComponent(txt_ConfirmaSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_NovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_ConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(btn_AlteraSenha)
-                .addContainerGap(151, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -189,6 +178,8 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField txt_ConfirmaSenha;
     private javax.swing.JPasswordField txt_NovaSenha;
     // End of variables declaration//GEN-END:variables

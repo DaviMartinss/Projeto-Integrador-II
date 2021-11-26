@@ -161,17 +161,17 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel3.setText("Cadastrar Categoria");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(310, 0, 230, 24);
+        jLabel3.setBounds(310, 0, 230, 26);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(210, 200, 420, 350);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 20);
+        txt_id.setBounds(0, 0, 49, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -233,11 +233,11 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(280, 0, 280, 18);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-280x200.png"))); // NOI18N
         getContentPane().add(jLabel7);
         jLabel7.setBounds(390, 180, 410, 370);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(-150, -150, 1920, 1080);
 

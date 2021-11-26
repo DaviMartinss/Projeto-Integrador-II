@@ -238,7 +238,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(90, 40, 100, 25);
+        btnReceitas.setBounds(90, 40, 100, 27);
 
         btnDespesas.setBackground(new java.awt.Color(105, 69, 219));
         btnDespesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -251,7 +251,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDespesas);
-        btnDespesas.setBounds(190, 40, 100, 25);
+        btnDespesas.setBounds(190, 40, 100, 27);
 
         btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -263,7 +263,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(290, 40, 150, 25);
+        btnCartao_cred.setBounds(290, 40, 150, 27);
 
         btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -275,7 +275,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(440, 40, 150, 25);
+        btnCartao_Deb.setBounds(440, 40, 150, 27);
 
         BtnSair.setBackground(new java.awt.Color(105, 69, 219));
         BtnSair.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -287,7 +287,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnSair);
-        BtnSair.setBounds(710, 40, 80, 25);
+        BtnSair.setBounds(710, 40, 80, 27);
 
         jToggleButton1.setBackground(new java.awt.Color(105, 69, 219));
         jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -299,7 +299,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(10, 40, 80, 25);
+        jToggleButton1.setBounds(10, 40, 80, 27);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -320,9 +320,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(590, 40, 120, 25);
+        jButton1.setBounds(590, 40, 120, 27);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 1080);
 
@@ -334,7 +334,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 20);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

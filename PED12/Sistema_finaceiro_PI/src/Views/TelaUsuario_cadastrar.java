@@ -85,8 +85,8 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnRealizarCadastro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        btnRealizarCadastro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -148,17 +148,23 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(630, 390, 140, 120);
+        jLabel7.setBounds(630, 390, 0, 120);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Usuário");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(300, 0, 190, 24);
+        jLabel6.setBounds(300, 0, 190, 26);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Avatar");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(200, 280, 60, 27);
+
+        jLabel5.setBackground(new java.awt.Color(187, 210, 240));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 1920, 1080);
 
         btnRealizarCadastro.setBackground(new java.awt.Color(105, 69, 219));
         btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -170,13 +176,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(330, 350, 133, 27);
-
-        jLabel5.setBackground(new java.awt.Color(187, 210, 240));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1958, 1080);
+        btnRealizarCadastro.setBounds(330, 350, 138, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

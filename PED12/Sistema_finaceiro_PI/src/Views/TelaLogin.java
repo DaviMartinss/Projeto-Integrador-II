@@ -119,6 +119,7 @@ public class TelaLogin extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -128,7 +129,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("Bem Vinde ao Ped1/2");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(300, 0, 220, 24);
+        jLabel5.setBounds(300, 0, 220, 26);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Email");
@@ -183,9 +184,9 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(txtSenha);
         txtSenha.setBounds(200, 280, 400, 27);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(320, 70, 130, 100);
+        jLabel3.setBounds(320, 70, 140, 100);
 
         jButton1.setText("Recuperar senha");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +195,12 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(660, 340, 130, 23);
+        jButton1.setBounds(660, 340, 130, 27);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -266,6 +272,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtSenha;

@@ -345,7 +345,7 @@ public class TelaReceita extends javax.swing.JFrame{
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel7.setText("Receitas");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(360, 0, 90, 24);
+        jLabel7.setBounds(360, 0, 90, 26);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -424,17 +424,17 @@ public class TelaReceita extends javax.swing.JFrame{
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("/");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 440, 10, 24);
+        jLabel5.setBounds(80, 440, 10, 26);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(140, 440, 10, 24);
+        jLabel6.setBounds(140, 440, 10, 26);
 
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Pesquisar por");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 70, 120, 16);
+        jLabel8.setBounds(30, 70, 120, 17);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -584,7 +584,7 @@ public class TelaReceita extends javax.swing.JFrame{
         getContentPane().add(btn_excluir);
         btn_excluir.setBounds(630, 470, 140, 27);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 1920, 1080);
 
@@ -595,7 +595,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 20);
+        txt_id.setBounds(20, 10, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

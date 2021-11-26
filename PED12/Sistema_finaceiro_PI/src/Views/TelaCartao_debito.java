@@ -366,12 +366,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(630, 340, 140, 25);
+        jButton3.setBounds(630, 340, 140, 27);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel2.setText("Cartão de Débito");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(320, 0, 160, 24);
+        jLabel2.setBounds(320, 0, 160, 26);
 
         jButton7.setBackground(new java.awt.Color(210, 59, 239));
         jButton7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -383,7 +383,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton7);
-        jButton7.setBounds(630, 440, 140, 25);
+        jButton7.setBounds(630, 440, 140, 27);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1920, 0);
 
@@ -533,14 +533,14 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(630, 390, 140, 25);
+        btn_update.setBounds(630, 390, 140, 27);
 
         jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel9.setText("Digite sua pesquisa aqui");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(170, 70, 170, 27);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel7);
         jLabel7.setBounds(0, 0, 1920, 1080);
 
@@ -551,7 +551,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 20);
+        txt_id.setBounds(0, 0, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

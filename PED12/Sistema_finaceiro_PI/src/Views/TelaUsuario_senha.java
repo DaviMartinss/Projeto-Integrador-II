@@ -140,17 +140,17 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel4.setText("Nova Senha");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(340, 0, 140, 24);
+        jLabel4.setBounds(340, 0, 140, 26);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nova senha");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(310, 160, 100, 16);
+        jLabel1.setBounds(310, 160, 100, 17);
 
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Repita a nova senha");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(310, 210, 140, 16);
+        jLabel2.setBounds(310, 210, 140, 17);
 
         txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
         txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -178,7 +178,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_alteraSenha);
-        btn_alteraSenha.setBounds(360, 300, 100, 25);
+        btn_alteraSenha.setBounds(360, 300, 100, 27);
         btn_alteraSenha.getAccessibleContext().setAccessibleDescription("Botão de confirmação");
 
         btn_voltar.setBackground(new java.awt.Color(105, 69, 219));
@@ -191,18 +191,18 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_voltar);
-        btn_voltar.setBounds(40, 60, 100, 25);
+        btn_voltar.setBounds(40, 60, 100, 27);
         btn_voltar.getAccessibleContext().setAccessibleDescription("Botão para voltar sem cadastrar nova senha");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
         getContentPane().add(jLabel5);
         jLabel5.setBounds(340, 360, 140, 130);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 54, 20);
+        txt_id.setBounds(0, 0, 54, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

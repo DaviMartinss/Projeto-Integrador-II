@@ -212,7 +212,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txt_valorCartaoDeb);
         txt_valorCartaoDeb.setBounds(200, 220, 400, 27);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_principal.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 1920, 1080);
 
@@ -223,7 +223,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(343, 42, 81, 20);
+        txt_id.setBounds(343, 42, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
