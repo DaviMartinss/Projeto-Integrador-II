@@ -156,7 +156,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(330, 350, 138, 27);
+        btnRealizarCadastro.setBounds(330, 350, 133, 27);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
         getContentPane().add(jLabel7);
@@ -165,7 +165,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Usuário");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(300, 0, 190, 26);
+        jLabel6.setBounds(300, 0, 190, 24);
 
         jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Avatar");
