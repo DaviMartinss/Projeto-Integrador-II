@@ -7,8 +7,6 @@ package Views;
 
 import Controllers.ControlerTabela;
 import DAO.ReceitaDAO;
-import DAO.moduloConexao;
-import Model.Data;
 import Model.Receita;
 import ReceitaOrdenacao.ReceitaAnoASC;
 import ReceitaOrdenacao.ReceitaAnoDESC;
@@ -18,14 +16,11 @@ import ReceitaOrdenacao.ReceitaDiaDESC;
 import ReceitaOrdenacao.ReceitaDiaASC;
 import ReceitaOrdenacao.ReceitaMesASC;
 import ReceitaOrdenacao.ReceitaMesDESC;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import static javax.swing.text.html.HTML.Tag.HEAD;
 import ValidacaoComum.Validacao;
 import java.util.Collections;
 
@@ -193,7 +188,7 @@ public class TelaReceita extends javax.swing.JFrame{
 
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
-            LinkedList<Receita> lista_receita = receitaDAO.CarregaTabela_Receita(Integer.parseInt(txt_id.getText()));
+            LinkedList<Receita> lista_receita = receitaDAO.GetListaReceita(Integer.parseInt(txt_id.getText()));
 
             for (Receita receita : lista_receita) {
 
@@ -345,7 +340,7 @@ public class TelaReceita extends javax.swing.JFrame{
         jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel7.setText("Receitas");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(360, 0, 90, 26);
+        jLabel7.setBounds(360, 0, 90, 24);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -424,17 +419,17 @@ public class TelaReceita extends javax.swing.JFrame{
         jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel5.setText("/");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 440, 10, 26);
+        jLabel5.setBounds(80, 440, 10, 24);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("/");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(140, 440, 10, 26);
+        jLabel6.setBounds(140, 440, 10, 24);
 
         jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel8.setText("Pesquisar por");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 70, 120, 17);
+        jLabel8.setBounds(30, 70, 120, 16);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -595,7 +590,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 21);
+        txt_id.setBounds(20, 10, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -634,6 +629,8 @@ public class TelaReceita extends javax.swing.JFrame{
     private void jtConsultaCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaCDMouseClicked
         // TODO add your handling code here:
 
+        String total = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+        
         String dia = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
 
         String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
@@ -653,17 +650,17 @@ public class TelaReceita extends javax.swing.JFrame{
 
         try {
 
-            LinkedList<Receita> lista_receita = receita.PreencherCampos_Receita(dia, mes, ano, txt_id.getText());
+            //LinkedList<Receita> lista_receita = receita.PreencherCampos_Receita(dia, mes, ano, txt_id.getText());
 
-            txt_total.setText(Float.toString(lista_receita.element().getTotal()));
-            txt_dia.setText(Integer.toString(lista_receita.element().getDia()));
-            txt_mes.setText(Integer.toString(lista_receita.element().getMes()));
-            txt_ano.setText(Integer.toString(lista_receita.element().getAno()));
+            txt_total.setText(total);
+            txt_dia.setText(dia);
+            txt_mes.setText(mes);
+            txt_ano.setText(ano);
 
             salvaMes = Integer.parseInt(txt_mes.getText());
             SalvaAno = Integer.parseInt(txt_ano.getText());
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
 
             JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
         }
@@ -866,6 +863,8 @@ public class TelaReceita extends javax.swing.JFrame{
         // TODO add your handling code here:
         delete_receita();
         RecarregaTabela_Receita();
+        LimpaCampos_Receita();
+        
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     /**

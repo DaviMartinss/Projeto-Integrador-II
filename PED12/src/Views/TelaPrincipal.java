@@ -207,6 +207,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         labelNome = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txt_id = new javax.swing.JTextField();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -323,6 +324,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(txt_id);
         txt_id.setBounds(0, 0, 60, 20);
 
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("jLabel1");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 800, 600);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -424,6 +430,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSair;
+    private javax.swing.JLabel background;
     private javax.swing.JButton btnCartao_Deb;
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btnDespesas;
