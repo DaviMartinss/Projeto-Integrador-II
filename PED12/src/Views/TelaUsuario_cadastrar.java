@@ -82,11 +82,11 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         txtAvatar = new javax.swing.JTextField();
+        btnRealizarCadastro = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnRealizarCadastro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -146,9 +146,21 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txtAvatar);
         txtAvatar.setBounds(200, 300, 400, 27);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
+        btnRealizarCadastro.setBackground(new java.awt.Color(105, 69, 219));
+        btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnRealizarCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        btnRealizarCadastro.setText("Realizar cadastro");
+        btnRealizarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarCadastroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRealizarCadastro);
+        btnRealizarCadastro.setBounds(330, 350, 138, 27);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(630, 390, 0, 120);
+        jLabel7.setBounds(600, 430, 140, 100);
 
         jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         jLabel6.setText("Cadastro de Usuário");
@@ -165,18 +177,6 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 1920, 1080);
-
-        btnRealizarCadastro.setBackground(new java.awt.Color(105, 69, 219));
-        btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnRealizarCadastro.setForeground(new java.awt.Color(255, 255, 255));
-        btnRealizarCadastro.setText("Realizar cadastro");
-        btnRealizarCadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRealizarCadastroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(330, 350, 138, 27);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
