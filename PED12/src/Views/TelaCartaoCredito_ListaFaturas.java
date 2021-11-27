@@ -110,7 +110,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        PageTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtFaturas = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
@@ -126,7 +126,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -134,10 +134,10 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel1.setText("Lista de Faturas");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(330, 0, 170, 26);
+        PageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        PageTitle.setText("Lista de Faturas");
+        getContentPane().add(PageTitle);
+        PageTitle.setBounds(330, 0, 170, 26);
 
         jtFaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -434,10 +434,10 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel PageTitle;
     private javax.swing.JButton btPesquisarCC;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cbbTipo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
