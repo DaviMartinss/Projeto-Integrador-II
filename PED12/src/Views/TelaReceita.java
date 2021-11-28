@@ -243,7 +243,18 @@ public class TelaReceita extends javax.swing.JFrame{
 
             try {
                 if (receita_atua.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())) {
-                    receita_DAO.UpdateReceita(receita_atua);
+                    
+                    if(!receita_DAO.ReceitaExiste(receita_atua)){
+                        
+                         receita_DAO.UpdateReceita(receita_atua);
+                         
+                          JOptionPane.showMessageDialog(null, "TRUE");
+                    
+                    }else{
+                        
+                        JOptionPane.showMessageDialog(null, "Já existe uma receita com MÊS e ANO informados!\n Não foi possível atualizar!", "ALERTA", JOptionPane.WARNING_MESSAGE );
+                    }
+                       
                 } else {
                     JOptionPane.showMessageDialog(null, "Valor Inválido");
                 }
@@ -630,14 +641,12 @@ public class TelaReceita extends javax.swing.JFrame{
         // TODO add your handling code here:
 
         String total = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
-        
+
         String dia = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
 
         String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
 
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
-
-        ReceitaDAO receita = new ReceitaDAO();
 
         int selLinha = -1;
         selLinha = jtConsultaCD.getSelectedRow();
@@ -646,24 +655,15 @@ public class TelaReceita extends javax.swing.JFrame{
             salvaLinhaAtiva = true;
         }
 
-        ResultSet rs = null;
+        txt_total.setText(total);
+        txt_dia.setText(dia);
+        txt_mes.setText(mes);
+        txt_ano.setText(ano);
 
-        try {
+        salvaMes = Integer.parseInt(txt_mes.getText());
+        SalvaAno = Integer.parseInt(txt_ano.getText());
 
-            //LinkedList<Receita> lista_receita = receita.PreencherCampos_Receita(dia, mes, ano, txt_id.getText());
 
-            txt_total.setText(total);
-            txt_dia.setText(dia);
-            txt_mes.setText(mes);
-            txt_ano.setText(ano);
-
-            salvaMes = Integer.parseInt(txt_mes.getText());
-            SalvaAno = Integer.parseInt(txt_ano.getText());
-
-        } catch (Exception ex) {
-
-            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
-        }
     }//GEN-LAST:event_jtConsultaCDMouseClicked
 
     private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
@@ -674,6 +674,9 @@ public class TelaReceita extends javax.swing.JFrame{
 
         if (txt_Pesquisa.getText().isEmpty()) {
             RecarregaTabela_Receita();
+            
+            rbDescendente.setSelected(false);
+            rbAscendente.setSelected(false);
         }
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
@@ -845,6 +848,7 @@ public class TelaReceita extends javax.swing.JFrame{
             txt_mes.setEditable(false);
             txt_ano.setEditable(false);
 
+            
             update_receita();
 
             RecarregaTabela_Receita();
