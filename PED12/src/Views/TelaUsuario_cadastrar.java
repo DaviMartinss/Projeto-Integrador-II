@@ -74,51 +74,29 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnVoltar = new javax.swing.JButton();
+        pageTitle = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtSenha = new javax.swing.JTextField();
         txtAvatar = new javax.swing.JTextField();
+        btnVoltar = new javax.swing.JButton();
         btnRealizarCadastro = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        nameTitle = new javax.swing.JLabel();
+        emailTitle = new javax.swing.JLabel();
+        passwdTitle = new javax.swing.JLabel();
+        avatarTitle = new javax.swing.JLabel();
+        iconPed12 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Nome");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(200, 100, 50, 27);
-
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel2.setText("Email");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(200, 160, 50, 27);
-
-        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel3.setText("Senha");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 220, 60, 27);
-
-        btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
-        btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        btnVoltar.setText("Voltar");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(30, 50, 100, 27);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Cadastro de Usuário");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(300, 0, 190, 26);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -146,6 +124,18 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txtAvatar);
         txtAvatar.setBounds(200, 300, 400, 27);
 
+        btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
+        btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(30, 50, 100, 27);
+
         btnRealizarCadastro.setBackground(new java.awt.Color(105, 69, 219));
         btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnRealizarCadastro.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,27 +146,37 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(330, 350, 133, 27);
+        btnRealizarCadastro.setBounds(330, 350, 138, 27);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(600, 430, 140, 100);
+        nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        nameTitle.setText("Nome");
+        getContentPane().add(nameTitle);
+        nameTitle.setBounds(200, 100, 50, 27);
 
-        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel6.setText("Cadastro de Usuário");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(300, 0, 190, 24);
+        emailTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        emailTitle.setText("Email");
+        getContentPane().add(emailTitle);
+        emailTitle.setBounds(200, 160, 50, 27);
 
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("Avatar");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(200, 280, 60, 27);
+        passwdTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        passwdTitle.setText("Senha");
+        getContentPane().add(passwdTitle);
+        passwdTitle.setBounds(200, 220, 60, 27);
 
-        jLabel5.setBackground(new java.awt.Color(187, 210, 240));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 1920, 1080);
+        avatarTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        avatarTitle.setText("Avatar");
+        getContentPane().add(avatarTitle);
+        avatarTitle.setBounds(200, 280, 60, 27);
+
+        iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
+        getContentPane().add(iconPed12);
+        iconPed12.setBounds(600, 430, 140, 100);
+
+        background.setBackground(new java.awt.Color(187, 210, 240));
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("jLabel5");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -246,15 +246,15 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel avatarTitle;
+    private javax.swing.JLabel background;
     private javax.swing.JButton btnRealizarCadastro;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel emailTitle;
+    private javax.swing.JLabel iconPed12;
+    private javax.swing.JLabel nameTitle;
+    private javax.swing.JLabel pageTitle;
+    private javax.swing.JLabel passwdTitle;
     private javax.swing.JTextField txtAvatar;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;

@@ -299,31 +299,31 @@ public class TelaReceita extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
+        cbbTipo = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtConsultaCD = new javax.swing.JTable();
+        txt_total = new javax.swing.JTextField();
+        txt_dia = new javax.swing.JTextField();
+        txt_mes = new javax.swing.JTextField();
+        txt_ano = new javax.swing.JTextField();
+        txt_Pesquisa = new javax.swing.JTextField();
+        rbAscendente = new javax.swing.JRadioButton();
+        rbDescendente = new javax.swing.JRadioButton();
         btn_inicio = new javax.swing.JButton();
         btn_despesas = new javax.swing.JButton();
         btnCartao_cred = new javax.swing.JButton();
         btnCartao_Deb = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        txt_total = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txt_dia = new javax.swing.JTextField();
-        txt_mes = new javax.swing.JTextField();
-        txt_ano = new javax.swing.JTextField();
         btn_NovaReceita = new javax.swing.JButton();
-        cbbTipo = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtConsultaCD = new javax.swing.JTable();
-        txt_Pesquisa = new javax.swing.JTextField();
-        rbAscendente = new javax.swing.JRadioButton();
-        rbDescendente = new javax.swing.JRadioButton();
         btPesquisarCD = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        findByTitle = new javax.swing.JLabel();
+        totalTitle = new javax.swing.JLabel();
+        dateTitle = new javax.swing.JLabel();
+        dayBarTitle = new javax.swing.JLabel();
+        monthBarTitle = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -337,134 +337,10 @@ public class TelaReceita extends javax.swing.JFrame{
         });
         getContentPane().setLayout(null);
 
-        jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel7.setText("Receitas");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(360, 0, 90, 24);
-
-        btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
-        btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btn_inicio.setForeground(new java.awt.Color(255, 255, 255));
-        btn_inicio.setText("Início");
-        btn_inicio.setMaximumSize(new java.awt.Dimension(68, 30));
-        btn_inicio.setMinimumSize(new java.awt.Dimension(68, 30));
-        btn_inicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_inicioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(30, 40, 140, 27);
-
-        btn_despesas.setBackground(new java.awt.Color(105, 69, 219));
-        btn_despesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btn_despesas.setForeground(new java.awt.Color(255, 255, 255));
-        btn_despesas.setText("Despesas");
-        btn_despesas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_despesasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_despesas);
-        btn_despesas.setBounds(270, 40, 140, 27);
-
-        btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
-        btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnCartao_cred.setForeground(new java.awt.Color(255, 255, 255));
-        btnCartao_cred.setText("Cartão de Crédito");
-        btnCartao_cred.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCartao_credActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(450, 40, 140, 27);
-
-        btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
-        btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnCartao_Deb.setForeground(new java.awt.Color(255, 255, 255));
-        btnCartao_Deb.setText("Cartão de Débito");
-        btnCartao_Deb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCartao_DebActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(630, 40, 140, 27);
-
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Total: ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 360, 50, 27);
-
-        txt_total.setBackground(new java.awt.Color(187, 210, 240));
-        txt_total.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        txt_total.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txt_total.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txt_total.setName(""); // NOI18N
-        txt_total.setPreferredSize(new java.awt.Dimension(10, 40));
-        txt_total.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_totalActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_total);
-        txt_total.setBounds(30, 390, 400, 27);
-
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("Data (dd/mm/aaaa)");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(30, 420, 150, 27);
-
-        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel5.setText("/");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 440, 10, 24);
-
-        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel6.setText("/");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(140, 440, 10, 24);
-
-        jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel8.setText("Pesquisar por");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 70, 120, 16);
-
-        txt_dia.setBackground(new java.awt.Color(187, 210, 240));
-        txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        txt_dia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txt_dia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_diaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_dia);
-        txt_dia.setBounds(30, 440, 50, 27);
-
-        txt_mes.setBackground(new java.awt.Color(187, 210, 240));
-        txt_mes.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        txt_mes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_mes);
-        txt_mes.setBounds(90, 440, 50, 27);
-
-        txt_ano.setBackground(new java.awt.Color(187, 210, 240));
-        txt_ano.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_ano);
-        txt_ano.setBounds(150, 440, 50, 27);
-
-        btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
-        btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btn_NovaReceita.setForeground(new java.awt.Color(255, 255, 255));
-        btn_NovaReceita.setText("Nova Receita");
-        btn_NovaReceita.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_NovaReceitaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(630, 430, 140, 27);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Receitas");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(360, 0, 90, 26);
 
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -509,6 +385,43 @@ public class TelaReceita extends javax.swing.JFrame{
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 170, 740, 180);
 
+        txt_total.setBackground(new java.awt.Color(187, 210, 240));
+        txt_total.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        txt_total.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_total.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txt_total.setName(""); // NOI18N
+        txt_total.setPreferredSize(new java.awt.Dimension(10, 40));
+        txt_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_totalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_total);
+        txt_total.setBounds(30, 390, 400, 27);
+
+        txt_dia.setBackground(new java.awt.Color(187, 210, 240));
+        txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        txt_dia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txt_dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_diaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_dia);
+        txt_dia.setBounds(30, 440, 50, 27);
+
+        txt_mes.setBackground(new java.awt.Color(187, 210, 240));
+        txt_mes.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        txt_mes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_mes);
+        txt_mes.setBounds(90, 440, 50, 27);
+
+        txt_ano.setBackground(new java.awt.Color(187, 210, 240));
+        txt_ano.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_ano);
+        txt_ano.setBounds(150, 440, 50, 27);
+
         txt_Pesquisa.setColumns(200);
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,6 +455,68 @@ public class TelaReceita extends javax.swing.JFrame{
         });
         getContentPane().add(rbDescendente);
         rbDescendente.setBounds(130, 130, 110, 25);
+
+        btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
+        btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_inicio.setForeground(new java.awt.Color(255, 255, 255));
+        btn_inicio.setText("Início");
+        btn_inicio.setMaximumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.setMinimumSize(new java.awt.Dimension(68, 30));
+        btn_inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inicioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_inicio);
+        btn_inicio.setBounds(30, 40, 140, 27);
+
+        btn_despesas.setBackground(new java.awt.Color(105, 69, 219));
+        btn_despesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_despesas.setForeground(new java.awt.Color(255, 255, 255));
+        btn_despesas.setText("Despesas");
+        btn_despesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_despesasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_despesas);
+        btn_despesas.setBounds(310, 40, 140, 27);
+
+        btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
+        btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnCartao_cred.setForeground(new java.awt.Color(255, 255, 255));
+        btnCartao_cred.setText("Cartão de Crédito");
+        btnCartao_cred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartao_credActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCartao_cred);
+        btnCartao_cred.setBounds(470, 40, 140, 27);
+
+        btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
+        btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnCartao_Deb.setForeground(new java.awt.Color(255, 255, 255));
+        btnCartao_Deb.setText("Cartão de Débito");
+        btnCartao_Deb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartao_DebActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCartao_Deb);
+        btnCartao_Deb.setBounds(630, 40, 140, 27);
+
+        btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
+        btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_NovaReceita.setForeground(new java.awt.Color(255, 255, 255));
+        btn_NovaReceita.setText("Nova Receita");
+        btn_NovaReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NovaReceitaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_NovaReceita);
+        btn_NovaReceita.setBounds(630, 430, 140, 27);
 
         btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
@@ -579,9 +554,34 @@ public class TelaReceita extends javax.swing.JFrame{
         getContentPane().add(btn_excluir);
         btn_excluir.setBounds(630, 470, 140, 27);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1920, 1080);
+        findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        findByTitle.setText("Pesquisar por");
+        getContentPane().add(findByTitle);
+        findByTitle.setBounds(30, 70, 120, 17);
+
+        totalTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        totalTitle.setText("Total: ");
+        getContentPane().add(totalTitle);
+        totalTitle.setBounds(30, 360, 50, 27);
+
+        dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        dateTitle.setText("Data (dd/mm/aaaa)");
+        getContentPane().add(dateTitle);
+        dateTitle.setBounds(30, 420, 150, 27);
+
+        dayBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        dayBarTitle.setText("/");
+        getContentPane().add(dayBarTitle);
+        dayBarTitle.setBounds(80, 440, 10, 26);
+
+        monthBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        monthBarTitle.setText("/");
+        getContentPane().add(monthBarTitle);
+        monthBarTitle.setBounds(140, 440, 10, 26);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -590,7 +590,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 20);
+        txt_id.setBounds(20, 10, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -903,6 +903,7 @@ public class TelaReceita extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btPesquisarCD;
     private javax.swing.JButton btnCartao_Deb;
     private javax.swing.JButton btnCartao_cred;
@@ -912,17 +913,16 @@ public class TelaReceita extends javax.swing.JFrame{
     private javax.swing.JButton btn_inicio;
     private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbbTipo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel dateTitle;
+    private javax.swing.JLabel dayBarTitle;
+    private javax.swing.JLabel findByTitle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCD;
+    private javax.swing.JLabel monthBarTitle;
+    private javax.swing.JLabel pageTitle;
     private javax.swing.JRadioButton rbAscendente;
     private javax.swing.JRadioButton rbDescendente;
+    private javax.swing.JLabel totalTitle;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_ano;
     private javax.swing.JTextField txt_dia;

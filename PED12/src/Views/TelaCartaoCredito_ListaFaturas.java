@@ -111,18 +111,18 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
     private void initComponents() {
 
         PageTitle = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        dataTable = new javax.swing.JScrollPane();
         jtFaturas = new javax.swing.JTable();
-        btnVoltar = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        cbbTipo = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        txt_Pesquisa = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        rbAscendente = new javax.swing.JRadioButton();
-        rbDescendente = new javax.swing.JRadioButton();
-        btPesquisarCC = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        selectorType = new javax.swing.JComboBox<>();
+        findField = new javax.swing.JTextField();
+        seletorUp = new javax.swing.JRadioButton();
+        seletorDown = new javax.swing.JRadioButton();
+        backButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        findTitle = new javax.swing.JLabel();
+        selectorTitle = new javax.swing.JLabel();
+        orientationTitle = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -137,7 +137,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         PageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         PageTitle.setText("Lista de Faturas");
         getContentPane().add(PageTitle);
-        PageTitle.setBounds(330, 0, 170, 26);
+        PageTitle.setBounds(330, 0, 170, 27);
 
         jtFaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -162,92 +162,92 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jtFaturas);
+        dataTable.setViewportView(jtFaturas);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(25, 190, 750, 232);
+        getContentPane().add(dataTable);
+        dataTable.setBounds(25, 190, 750, 232);
 
-        btnVoltar.setBackground(new java.awt.Color(105, 69, 219));
-        btnVoltar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        btnVoltar.setText("Voltar");
-        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+        selectorType.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        selectorType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
+        getContentPane().add(selectorType);
+        selectorType.setBounds(30, 120, 130, 27);
+
+        findField.setColumns(20);
+        findField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVoltarActionPerformed(evt);
+                findFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(20, 40, 100, 27);
-
-        jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel9.setText("Pesquisar por");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 100, 100, 27);
-
-        cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Dia da Fatura", "Valor da Fatura", "Bandeira", " ", " ", " " }));
-        getContentPane().add(cbbTipo);
-        cbbTipo.setBounds(30, 120, 130, 27);
-
-        jLabel10.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel10.setText("Digite sua pesquisa aqui");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(170, 100, 160, 27);
-
-        txt_Pesquisa.setColumns(20);
-        txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_PesquisaActionPerformed(evt);
-            }
-        });
-        txt_Pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+        findField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_PesquisaKeyReleased(evt);
+                findFieldKeyReleased(evt);
             }
         });
-        getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(170, 120, 330, 27);
+        getContentPane().add(findField);
+        findField.setBounds(170, 120, 330, 27);
 
-        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel6.setText("Ordenação");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(510, 100, 80, 27);
-
-        rbAscendente.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        rbAscendente.setText("Ascendente");
-        rbAscendente.addActionListener(new java.awt.event.ActionListener() {
+        seletorUp.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        seletorUp.setText("Ascendente");
+        seletorUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbAscendenteActionPerformed(evt);
+                seletorUpActionPerformed(evt);
             }
         });
-        getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(510, 120, 100, 27);
+        getContentPane().add(seletorUp);
+        seletorUp.setBounds(510, 120, 100, 27);
 
-        rbDescendente.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        rbDescendente.setText("Descendente");
-        rbDescendente.addActionListener(new java.awt.event.ActionListener() {
+        seletorDown.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        seletorDown.setText("Descendente");
+        seletorDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDescendenteActionPerformed(evt);
+                seletorDownActionPerformed(evt);
             }
         });
-        getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(610, 120, 110, 27);
+        getContentPane().add(seletorDown);
+        seletorDown.setBounds(610, 120, 110, 27);
 
-        btPesquisarCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btPesquisarCC.setForeground(new java.awt.Color(255, 255, 255));
-        btPesquisarCC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
-        btPesquisarCC.setBorderPainted(false);
-        btPesquisarCC.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(105, 69, 219));
+        backButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPesquisarCCActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(btPesquisarCC);
-        btPesquisarCC.setBounds(730, 120, 40, 40);
+        getContentPane().add(backButton);
+        backButton.setBounds(30, 40, 100, 27);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1920, 1080);
+        searchButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        searchButton.setForeground(new java.awt.Color(255, 255, 255));
+        searchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        searchButton.setBorderPainted(false);
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(searchButton);
+        searchButton.setBounds(730, 120, 40, 40);
+
+        findTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        findTitle.setText("Digite sua pesquisa aqui");
+        getContentPane().add(findTitle);
+        findTitle.setBounds(170, 100, 160, 27);
+
+        selectorTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        selectorTitle.setText("Pesquisar por");
+        getContentPane().add(selectorTitle);
+        selectorTitle.setBounds(30, 100, 100, 27);
+
+        orientationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        orientationTitle.setText("Ordenação");
+        getContentPane().add(orientationTitle);
+        orientationTitle.setBounds(510, 100, 80, 27);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.setBackground(new java.awt.Color(150, 175, 231));
@@ -262,10 +262,10 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         cartao_credito();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
@@ -279,48 +279,48 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
-    private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
+    private void findFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_PesquisaActionPerformed
+    }//GEN-LAST:event_findFieldActionPerformed
 
-    private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
+    private void findFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_findFieldKeyReleased
         // TODO add your handling code here
 
-        if (txt_Pesquisa.getText().isEmpty()) {
+        if (findField.getText().isEmpty()) {
             RecarregaTabela_CartaoCC_Faturas();
         }
-    }//GEN-LAST:event_txt_PesquisaKeyReleased
+    }//GEN-LAST:event_findFieldKeyReleased
 
-    private void rbAscendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAscendenteActionPerformed
+    private void seletorUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seletorUpActionPerformed
         // TODO add your handling code here:
 
-        if (rbAscendente.isSelected()) {
+        if (seletorUp.isSelected()) {
 
-            rbDescendente.setSelected(false);
+            seletorDown.setSelected(false);
 
         }
-    }//GEN-LAST:event_rbAscendenteActionPerformed
+    }//GEN-LAST:event_seletorUpActionPerformed
 
-    private void rbDescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendenteActionPerformed
+    private void seletorDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seletorDownActionPerformed
         // TODO add your handling code here:
 
-        if (rbDescendente.isSelected()) {
+        if (seletorDown.isSelected()) {
 
-            rbAscendente.setSelected(false);
+            seletorUp.setSelected(false);
 
         }
-    }//GEN-LAST:event_rbDescendenteActionPerformed
+    }//GEN-LAST:event_seletorDownActionPerformed
 
-    private void btPesquisarCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCCActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
 
-        if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
+        if (seletorUp.isSelected() || seletorDown.isSelected()) {
 
             boolean ordenar = true;
 
             String tipo = "";
 
-            String escolha = cbbTipo.getSelectedItem().toString().trim();
+            String escolha = selectorType.getSelectedItem().toString().trim();
 
             if (escolha.equals("Nº Cartão")) {
                 tipo = " " + "n_cartao_credito";
@@ -338,7 +338,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 tipo = " " + "bandeira";
             }
 
-            if (rbAscendente.isSelected()) {
+            if (seletorUp.isSelected()) {
 
                 ordenar = true;
 
@@ -347,7 +347,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
                 ordenar = false;
             }
 
-            String argumento = txt_Pesquisa.getText();
+            String argumento = findField.getText();
 
             DefaultTableModel mp1 = (DefaultTableModel) jtFaturas.getModel();
 
@@ -396,7 +396,7 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_btPesquisarCCActionPerformed
+    }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -435,18 +435,18 @@ public class TelaCartaoCredito_ListaFaturas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PageTitle;
-    private javax.swing.JButton btPesquisarCC;
-    private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cbbTipo;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton backButton;
+    private javax.swing.JLabel background;
+    private javax.swing.JScrollPane dataTable;
+    private javax.swing.JTextField findField;
+    private javax.swing.JLabel findTitle;
     private javax.swing.JTable jtFaturas;
-    private javax.swing.JRadioButton rbAscendente;
-    private javax.swing.JRadioButton rbDescendente;
-    private javax.swing.JTextField txt_Pesquisa;
+    private javax.swing.JLabel orientationTitle;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JLabel selectorTitle;
+    private javax.swing.JComboBox<String> selectorType;
+    private javax.swing.JRadioButton seletorDown;
+    private javax.swing.JRadioButton seletorUp;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 

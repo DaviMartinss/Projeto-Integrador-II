@@ -197,17 +197,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
+        accountButton = new javax.swing.JToggleButton();
         btnReceitas = new javax.swing.JButton();
         btnDespesas = new javax.swing.JButton();
         btnCartao_cred = new javax.swing.JButton();
         btnCartao_Deb = new javax.swing.JButton();
+        categoryButton = new javax.swing.JButton();
         BtnSair = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
         labelNome = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        txt_id = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -219,10 +219,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel3.setText("Ped1/2 (Pé de meia) - Tela Inicial ");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(260, 0, 310, 20);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Ped1/2 (Pé de meia) - Tela Inicial ");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(260, 0, 310, 27);
+
+        accountButton.setBackground(new java.awt.Color(105, 69, 219));
+        accountButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        accountButton.setForeground(new java.awt.Color(255, 255, 255));
+        accountButton.setText("Conta");
+        accountButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(accountButton);
+        accountButton.setBounds(10, 40, 80, 27);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -234,7 +246,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(90, 40, 100, 25);
+        btnReceitas.setBounds(90, 40, 100, 27);
 
         btnDespesas.setBackground(new java.awt.Color(105, 69, 219));
         btnDespesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -247,7 +259,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDespesas);
-        btnDespesas.setBounds(190, 40, 100, 25);
+        btnDespesas.setBounds(190, 40, 100, 27);
 
         btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -259,7 +271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(290, 40, 150, 25);
+        btnCartao_cred.setBounds(290, 40, 150, 27);
 
         btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -271,7 +283,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(440, 40, 150, 25);
+        btnCartao_Deb.setBounds(440, 40, 150, 27);
+
+        categoryButton.setBackground(new java.awt.Color(105, 69, 219));
+        categoryButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        categoryButton.setForeground(new java.awt.Color(255, 255, 255));
+        categoryButton.setText("Categorias");
+        categoryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(categoryButton);
+        categoryButton.setBounds(590, 40, 120, 27);
 
         BtnSair.setBackground(new java.awt.Color(105, 69, 219));
         BtnSair.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -283,36 +307,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnSair);
-        BtnSair.setBounds(710, 40, 80, 25);
-
-        jToggleButton1.setBackground(new java.awt.Color(105, 69, 219));
-        jToggleButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jToggleButton1.setText("Conta");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(10, 40, 80, 25);
+        BtnSair.setBounds(710, 40, 80, 27);
 
         labelNome.setFont(new java.awt.Font("Noto Serif", 3, 18)); // NOI18N
         labelNome.setForeground(new java.awt.Color(81, 63, 252));
         getContentPane().add(labelNome);
-        labelNome.setBounds(20, 10, 200, 27);
+        labelNome.setBounds(10, 10, 200, 27);
 
-        jButton1.setBackground(new java.awt.Color(105, 69, 219));
-        jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Categorias");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(590, 40, 120, 25);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("background");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.setBackground(new java.awt.Color(150, 175, 231));
@@ -322,12 +327,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 20);
-
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        background.setText("jLabel1");
-        getContentPane().add(background);
-        background.setBounds(0, 0, 800, 600);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -359,11 +359,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         despesa();
     }//GEN-LAST:event_btnDespesasActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
         // TODO add your handling code here:
 
         TelaUsuario();
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_accountButtonActionPerformed
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
@@ -387,10 +387,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void categoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryButtonActionPerformed
         // TODO add your handling code here:
         categoria();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_categoryButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -430,15 +430,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnSair;
+    private javax.swing.JToggleButton accountButton;
     private javax.swing.JLabel background;
     private javax.swing.JButton btnCartao_Deb;
     private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnReceitas;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton categoryButton;
     private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel pageTitle;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 

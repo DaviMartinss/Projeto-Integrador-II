@@ -109,15 +109,15 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
         txt_NovaSenha = new javax.swing.JPasswordField();
         txt_ConfirmaSenha = new javax.swing.JPasswordField();
         btn_alteraSenha = new javax.swing.JButton();
         btn_voltar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        newPasswd = new javax.swing.JLabel();
+        rpNewPasswd = new javax.swing.JLabel();
+        iconPed12 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         jPasswordField1.setText("jPasswordField1");
@@ -137,20 +137,10 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel4.setText("Nova Senha");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(340, 0, 140, 26);
-
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Nova senha");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(310, 160, 100, 17);
-
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel2.setText("Repita a nova senha");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(310, 210, 140, 17);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Nova Senha");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(340, 0, 140, 26);
 
         txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
         txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -194,13 +184,23 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         btn_voltar.setBounds(40, 60, 100, 27);
         btn_voltar.getAccessibleContext().setAccessibleDescription("Botão para voltar sem cadastrar nova senha");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(340, 360, 140, 130);
+        newPasswd.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        newPasswd.setText("Nova senha");
+        getContentPane().add(newPasswd);
+        newPasswd.setBounds(310, 160, 100, 17);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1920, 1080);
+        rpNewPasswd.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        rpNewPasswd.setText("Repita a nova senha");
+        getContentPane().add(rpNewPasswd);
+        rpNewPasswd.setBounds(310, 210, 140, 17);
+
+        iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
+        getContentPane().add(iconPed12);
+        iconPed12.setBounds(340, 360, 140, 130);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
         txt_id.setBounds(0, 0, 54, 21);
 
@@ -253,19 +253,19 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btn_alteraSenha;
     private javax.swing.JButton btn_voltar;
+    private javax.swing.JLabel iconPed12;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JLabel newPasswd;
+    private javax.swing.JLabel pageTitle;
+    private javax.swing.JLabel rpNewPasswd;
     private javax.swing.JPasswordField txt_ConfirmaSenha;
     private javax.swing.JPasswordField txt_NovaSenha;
     private javax.swing.JTextField txt_id;

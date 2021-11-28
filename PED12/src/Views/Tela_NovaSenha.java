@@ -87,35 +87,38 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
         txt_NovaSenha = new javax.swing.JPasswordField();
         txt_ConfirmaSenha = new javax.swing.JPasswordField();
         btn_AlteraSenha = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        newPasswd = new javax.swing.JLabel();
+        rpNewpasswd = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel5.setText("Atualização de Senha");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(150, 10, 140, 17);
+        pageTitle.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Atualização de Senha");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(300, 0, 210, 26);
 
-        jLabel1.setText("Nova Senha");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(130, 100, 160, 17);
-
-        jLabel3.setText("Repita a Senha");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(130, 150, 160, 17);
+        txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
+        txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NovaSenha);
-        txt_NovaSenha.setBounds(130, 120, 167, 21);
-        getContentPane().add(txt_ConfirmaSenha);
-        txt_ConfirmaSenha.setBounds(130, 170, 167, 21);
+        txt_NovaSenha.setBounds(300, 130, 200, 27);
 
+        txt_ConfirmaSenha.setBackground(new java.awt.Color(187, 210, 240));
+        txt_ConfirmaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_ConfirmaSenha);
+        txt_ConfirmaSenha.setBounds(300, 180, 200, 27);
+
+        btn_AlteraSenha.setBackground(new java.awt.Color(105, 69, 219));
+        btn_AlteraSenha.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         btn_AlteraSenha.setText("Salvar");
         btn_AlteraSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,12 +126,22 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_AlteraSenha);
-        btn_AlteraSenha.setBounds(170, 240, 71, 27);
+        btn_AlteraSenha.setBounds(360, 270, 90, 27);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 1920, 1080);
+        newPasswd.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        newPasswd.setText("Nova Senha");
+        getContentPane().add(newPasswd);
+        newPasswd.setBounds(300, 110, 160, 17);
+
+        rpNewpasswd.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        rpNewpasswd.setText("Repita a Senha");
+        getContentPane().add(rpNewpasswd);
+        rpNewpasswd.setBounds(300, 160, 160, 17);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("jLabel4");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,12 +187,12 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btn_AlteraSenha;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel newPasswd;
+    private javax.swing.JLabel pageTitle;
+    private javax.swing.JLabel rpNewpasswd;
     private javax.swing.JPasswordField txt_ConfirmaSenha;
     private javax.swing.JPasswordField txt_NovaSenha;
     // End of variables declaration//GEN-END:variables

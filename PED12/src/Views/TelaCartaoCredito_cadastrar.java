@@ -138,20 +138,20 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
         txt_NumCC = new javax.swing.JTextField();
         txt_DiaFaturaCC = new javax.swing.JTextField();
         txt_BandeiraCC = new javax.swing.JTextField();
         txt_LimiteCC = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        txt_ValorFatura = new javax.swing.JTextField();
+        cardNum = new javax.swing.JLabel();
+        cardLimit = new javax.swing.JLabel();
+        invoiceValue = new javax.swing.JLabel();
+        invoiceDay = new javax.swing.JLabel();
+        cardFlag = new javax.swing.JLabel();
         btn_inicio = new javax.swing.JButton();
         btn_cadastra_cartao = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        txt_ValorFatura = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,10 +160,10 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel3.setText("Cadastrar Cartão de Crédito");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(280, 0, 260, 26);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Cadastrar Cartão de Crédito");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(280, 0, 260, 27);
 
         txt_NumCC.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -195,25 +195,35 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txt_LimiteCC);
         txt_LimiteCC.setBounds(210, 180, 400, 27);
 
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Número do cartão");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(210, 100, 120, 27);
+        txt_ValorFatura.setBackground(new java.awt.Color(187, 210, 240));
+        txt_ValorFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_ValorFatura);
+        txt_ValorFatura.setBounds(210, 240, 400, 27);
 
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel2.setText("Limite");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(210, 160, 60, 27);
+        cardNum.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cardNum.setText("Número do cartão");
+        getContentPane().add(cardNum);
+        cardNum.setBounds(210, 100, 120, 27);
 
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("Dia da Fatura");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(210, 280, 90, 27);
+        cardLimit.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cardLimit.setText("Limite");
+        getContentPane().add(cardLimit);
+        cardLimit.setBounds(210, 160, 60, 27);
 
-        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel6.setText("Bandeira");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(210, 340, 70, 27);
+        invoiceValue.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        invoiceValue.setText("Valor da Fatura");
+        getContentPane().add(invoiceValue);
+        invoiceValue.setBounds(210, 220, 100, 27);
+
+        invoiceDay.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        invoiceDay.setText("Dia da Fatura");
+        getContentPane().add(invoiceDay);
+        invoiceDay.setBounds(210, 280, 90, 27);
+
+        cardFlag.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cardFlag.setText("Bandeira");
+        getContentPane().add(cardFlag);
+        cardFlag.setBounds(210, 340, 70, 27);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -241,20 +251,10 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         getContentPane().add(btn_cadastra_cartao);
         btn_cadastra_cartao.setBounds(210, 410, 150, 27);
 
-        jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel7.setText("Valor da Fatura");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(210, 220, 100, 27);
-
-        txt_ValorFatura.setBackground(new java.awt.Color(187, 210, 240));
-        txt_ValorFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_ValorFatura);
-        txt_ValorFatura.setBounds(210, 240, 400, 27);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 1920, 1080);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("jLabel8");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -418,15 +418,15 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btn_cadastra_cartao;
     private javax.swing.JButton btn_inicio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel cardFlag;
+    private javax.swing.JLabel cardLimit;
+    private javax.swing.JLabel cardNum;
+    private javax.swing.JLabel invoiceDay;
+    private javax.swing.JLabel invoiceValue;
+    private javax.swing.JLabel pageTitle;
     private javax.swing.JTextField txt_BandeiraCC;
     private javax.swing.JTextField txt_DiaFaturaCC;
     private javax.swing.JTextField txt_LimiteCC;

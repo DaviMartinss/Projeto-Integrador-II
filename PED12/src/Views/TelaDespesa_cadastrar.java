@@ -140,35 +140,35 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel8 = new javax.swing.JLabel();
-        rbCredito = new javax.swing.JRadioButton();
-        rbDebito = new javax.swing.JRadioButton();
-        jLabel9 = new javax.swing.JLabel();
-        txtParcelas = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        rbPago = new javax.swing.JRadioButton();
-        rbNaoPago = new javax.swing.JRadioButton();
-        txtValor = new javax.swing.JTextField();
+        pageTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaDescricao = new javax.swing.JTextArea();
+        cbb_categoria = new javax.swing.JComboBox<>();
+        txtParcelas = new javax.swing.JTextField();
+        txtValor = new javax.swing.JTextField();
         txtDia = new javax.swing.JTextField();
         txtMes = new javax.swing.JTextField();
         txtAno = new javax.swing.JTextField();
-        btn_CadastrarDespesa = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        rbDinheiro = new javax.swing.JRadioButton();
-        jLabel11 = new javax.swing.JLabel();
         txt_NumCartao = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        cbb_categoria = new javax.swing.JComboBox<>();
+        rbCredito = new javax.swing.JRadioButton();
+        rbDebito = new javax.swing.JRadioButton();
+        rbDinheiro = new javax.swing.JRadioButton();
+        rbPago = new javax.swing.JRadioButton();
+        rbNaoPago = new javax.swing.JRadioButton();
+        startButton = new javax.swing.JButton();
+        btn_CadastrarDespesa = new javax.swing.JButton();
+        valueTitle = new javax.swing.JLabel();
+        catSelectTitle = new javax.swing.JLabel();
+        descriptionTitle = new javax.swing.JLabel();
+        dateTitle = new javax.swing.JLabel();
+        dayBarTitle = new javax.swing.JLabel();
+        monthBarTitle = new javax.swing.JLabel();
+        statusTitle = new javax.swing.JLabel();
+        payFormTitle = new javax.swing.JLabel();
+        invoiceTitle = new javax.swing.JLabel();
+        cardNumTitle = new javax.swing.JLabel();
+        iconPed12 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -183,116 +183,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel8.setText("Forma de Pagamento: ");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(30, 260, 140, 27);
-
-        rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbCredito.setText("Crédito");
-        rbCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCreditoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbCredito);
-        rbCredito.setBounds(100, 280, 80, 27);
-
-        rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbDebito.setText("Débito");
-        rbDebito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDebitoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDebito);
-        rbDebito.setBounds(30, 280, 70, 27);
-
-        jLabel9.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel9.setText("Nº de Pacelas: ");
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(640, 260, 110, 27);
-
-        txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
-        txtParcelas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txtParcelas);
-        txtParcelas.setBounds(640, 280, 130, 27);
-
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Valor:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 90, 50, 27);
-
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel2.setText("Categoria: ");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(420, 90, 80, 27);
-
-        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel3.setText("Descrição: ");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(30, 140, 80, 27);
-
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("Data: (dd/mm/aaaa)");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(230, 90, 130, 27);
-
-        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
-        jLabel5.setText("/");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(280, 110, 10, 27);
-
-        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
-        jLabel6.setText("/");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(340, 110, 10, 27);
-
-        jLabel7.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel7.setText("Status: ");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(570, 90, 60, 27);
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(620, 340, 150, 120);
-
-        jButton1.setBackground(new java.awt.Color(105, 69, 219));
-        jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Início");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(30, 50, 150, 27);
-
-        rbPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbPago.setText("Pago");
-        rbPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPagoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbPago);
-        rbPago.setBounds(570, 110, 80, 27);
-
-        rbNaoPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbNaoPago.setText("Não pago");
-        rbNaoPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbNaoPagoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbNaoPago);
-        rbNaoPago.setBounds(650, 110, 120, 27);
-
-        txtValor.setBackground(new java.awt.Color(187, 210, 240));
-        txtValor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txtValor);
-        txtValor.setBounds(30, 110, 180, 27);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("CADASTRO DE DESPESA");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(280, 0, 230, 26);
 
         txtAreaDescricao.setColumns(20);
         txtAreaDescricao.setRows(5);
@@ -301,6 +195,21 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 160, 740, 103);
+
+        cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbb_categoria);
+        cbb_categoria.setBounds(420, 110, 130, 27);
+
+        txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
+        txtParcelas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtParcelas);
+        txtParcelas.setBounds(640, 280, 130, 27);
+
+        txtValor.setBackground(new java.awt.Color(187, 210, 240));
+        txtValor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtValor);
+        txtValor.setBounds(30, 110, 180, 27);
 
         txtDia.setBackground(new java.awt.Color(187, 210, 240));
         txtDia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -322,6 +231,73 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txtAno);
         txtAno.setBounds(350, 110, 50, 27);
 
+        txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
+        txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_NumCartao);
+        txt_NumCartao.setBounds(300, 280, 300, 27);
+
+        rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbCredito.setText("Crédito");
+        rbCredito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCreditoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbCredito);
+        rbCredito.setBounds(100, 280, 80, 27);
+
+        rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbDebito.setText("Débito");
+        rbDebito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDebitoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbDebito);
+        rbDebito.setBounds(30, 280, 70, 27);
+
+        rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbDinheiro.setText("Dinheiro");
+        rbDinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDinheiroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbDinheiro);
+        rbDinheiro.setBounds(180, 280, 90, 27);
+
+        rbPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbPago.setText("Pago");
+        rbPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbPagoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbPago);
+        rbPago.setBounds(570, 110, 80, 27);
+
+        rbNaoPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
+        rbNaoPago.setText("Não pago");
+        rbNaoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbNaoPagoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbNaoPago);
+        rbNaoPago.setBounds(650, 110, 120, 27);
+
+        startButton.setBackground(new java.awt.Color(105, 69, 219));
+        startButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        startButton.setForeground(new java.awt.Color(255, 255, 255));
+        startButton.setText("Início");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(startButton);
+        startButton.setBounds(30, 50, 150, 27);
+
         btn_CadastrarDespesa.setBackground(new java.awt.Color(105, 69, 219));
         btn_CadastrarDespesa.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_CadastrarDespesa.setForeground(new java.awt.Color(255, 255, 255));
@@ -334,39 +310,63 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         getContentPane().add(btn_CadastrarDespesa);
         btn_CadastrarDespesa.setBounds(30, 330, 200, 27);
 
-        jLabel10.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel10.setText("CADASTRO DE DESPESA");
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(280, 0, 230, 26);
+        valueTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        valueTitle.setText("Valor:");
+        getContentPane().add(valueTitle);
+        valueTitle.setBounds(30, 90, 50, 27);
 
-        rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbDinheiro.setText("Dinheiro");
-        rbDinheiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDinheiroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDinheiro);
-        rbDinheiro.setBounds(180, 280, 90, 27);
+        catSelectTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        catSelectTitle.setText("Categoria: ");
+        getContentPane().add(catSelectTitle);
+        catSelectTitle.setBounds(420, 90, 80, 27);
 
-        jLabel11.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel11.setText("Nº do Cartão: ");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(300, 260, 120, 27);
+        descriptionTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        descriptionTitle.setText("Descrição: ");
+        getContentPane().add(descriptionTitle);
+        descriptionTitle.setBounds(30, 140, 80, 27);
 
-        txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
-        txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_NumCartao);
-        txt_NumCartao.setBounds(300, 280, 300, 27);
+        dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        dateTitle.setText("Data: (dd/mm/aaaa)");
+        getContentPane().add(dateTitle);
+        dateTitle.setBounds(230, 90, 130, 27);
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        getContentPane().add(jLabel12);
-        jLabel12.setBounds(0, 0, 1920, 1080);
+        dayBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
+        dayBarTitle.setText("/");
+        getContentPane().add(dayBarTitle);
+        dayBarTitle.setBounds(280, 110, 10, 27);
 
-        cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cbb_categoria);
-        cbb_categoria.setBounds(420, 110, 130, 27);
+        monthBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
+        monthBarTitle.setText("/");
+        getContentPane().add(monthBarTitle);
+        monthBarTitle.setBounds(340, 110, 10, 27);
+
+        statusTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        statusTitle.setText("Status: ");
+        getContentPane().add(statusTitle);
+        statusTitle.setBounds(570, 90, 60, 27);
+
+        payFormTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        payFormTitle.setText("Forma de Pagamento: ");
+        getContentPane().add(payFormTitle);
+        payFormTitle.setBounds(30, 260, 140, 27);
+
+        invoiceTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        invoiceTitle.setText("Nº de Pacelas: ");
+        getContentPane().add(invoiceTitle);
+        invoiceTitle.setBounds(640, 260, 110, 27);
+
+        cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cardNumTitle.setText("Nº do Cartão: ");
+        getContentPane().add(cardNumTitle);
+        cardNumTitle.setBounds(300, 260, 120, 27);
+
+        iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
+        getContentPane().add(iconPed12);
+        iconPed12.setBounds(620, 340, 150, 120);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -748,10 +748,10 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAnoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         Volta_TelaPrincipal();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_startButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -797,28 +797,27 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btn_CadastrarDespesa;
+    private javax.swing.JLabel cardNumTitle;
+    private javax.swing.JLabel catSelectTitle;
     private javax.swing.JComboBox<String> cbb_categoria;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel dateTitle;
+    private javax.swing.JLabel dayBarTitle;
+    private javax.swing.JLabel descriptionTitle;
+    private javax.swing.JLabel iconPed12;
+    private javax.swing.JLabel invoiceTitle;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel monthBarTitle;
+    private javax.swing.JLabel pageTitle;
+    private javax.swing.JLabel payFormTitle;
     private javax.swing.JRadioButton rbCredito;
     private javax.swing.JRadioButton rbDebito;
     private javax.swing.JRadioButton rbDinheiro;
     private javax.swing.JRadioButton rbNaoPago;
     private javax.swing.JRadioButton rbPago;
+    private javax.swing.JButton startButton;
+    private javax.swing.JLabel statusTitle;
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextArea txtAreaDescricao;
     private javax.swing.JTextField txtDia;
@@ -827,6 +826,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     private javax.swing.JTextField txtValor;
     private javax.swing.JTextField txt_NumCartao;
     private javax.swing.JTextField txt_id;
+    private javax.swing.JLabel valueTitle;
     // End of variables declaration//GEN-END:variables
 
     public void receberID(String recebe) {

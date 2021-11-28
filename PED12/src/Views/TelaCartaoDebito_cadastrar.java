@@ -124,17 +124,17 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
+        cardNumber = new javax.swing.JLabel();
+        currentValue = new javax.swing.JLabel();
+        cardFlag = new javax.swing.JLabel();
+        ped12Icon = new javax.swing.JLabel();
         txt_numCartDeb = new javax.swing.JTextField();
         txt_BandCartDeb = new javax.swing.JTextField();
-        btn_cadastraCartDeb = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         txt_valorCartaoDeb = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        btn_cadastraCartDeb = new javax.swing.JButton();
+        startButton = new javax.swing.JButton();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
@@ -144,36 +144,29 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel5.setText("Cadastrar Cartão de Débito");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(280, 0, 260, 17);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Cadastrar Cartão de Débito");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(280, 0, 260, 27);
 
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Número do cartão");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(200, 140, 130, 27);
+        cardNumber.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cardNumber.setText("Número do cartão");
+        getContentPane().add(cardNumber);
+        cardNumber.setBounds(200, 140, 130, 27);
 
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel2.setText("Bandeira");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(200, 260, 70, 27);
+        currentValue.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        currentValue.setText("Valor Atual");
+        getContentPane().add(currentValue);
+        currentValue.setBounds(200, 200, 80, 27);
 
-        jButton1.setBackground(new java.awt.Color(105, 69, 219));
-        jButton1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Início");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(40, 60, 100, 27);
+        cardFlag.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        cardFlag.setText("Bandeira");
+        getContentPane().add(cardFlag);
+        cardFlag.setBounds(200, 260, 70, 27);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/teste_icon_pedmeia1.png"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(620, 360, 140, 130);
+        ped12Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
+        getContentPane().add(ped12Icon);
+        ped12Icon.setBounds(620, 400, 140, 130);
 
         txt_numCartDeb.setBackground(new java.awt.Color(187, 210, 240));
         txt_numCartDeb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -190,6 +183,11 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txt_BandCartDeb);
         txt_BandCartDeb.setBounds(200, 280, 400, 27);
 
+        txt_valorCartaoDeb.setBackground(new java.awt.Color(187, 210, 240));
+        txt_valorCartaoDeb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_valorCartaoDeb);
+        txt_valorCartaoDeb.setBounds(200, 220, 400, 27);
+
         btn_cadastraCartDeb.setBackground(new java.awt.Color(105, 69, 219));
         btn_cadastraCartDeb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_cadastraCartDeb.setForeground(new java.awt.Color(255, 255, 255));
@@ -202,19 +200,21 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         getContentPane().add(btn_cadastraCartDeb);
         btn_cadastraCartDeb.setBounds(200, 340, 150, 27);
 
-        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel3.setText("Valor Atual");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(200, 200, 80, 27);
+        startButton.setBackground(new java.awt.Color(105, 69, 219));
+        startButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        startButton.setForeground(new java.awt.Color(255, 255, 255));
+        startButton.setText("Início");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(startButton);
+        startButton.setBounds(40, 60, 100, 27);
 
-        txt_valorCartaoDeb.setBackground(new java.awt.Color(187, 210, 240));
-        txt_valorCartaoDeb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_valorCartaoDeb);
-        txt_valorCartaoDeb.setBounds(200, 220, 400, 27);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 1920, 1080);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -314,10 +314,10 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         inicio();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_startButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,15 +356,15 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btn_cadastraCartDeb;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel cardFlag;
+    private javax.swing.JLabel cardNumber;
+    private javax.swing.JLabel currentValue;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel pageTitle;
+    private javax.swing.JLabel ped12Icon;
+    private javax.swing.JButton startButton;
     private javax.swing.JTextField txt_BandCartDeb;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_numCartDeb;

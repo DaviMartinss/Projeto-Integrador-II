@@ -122,9 +122,10 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         txt_categoria = new javax.swing.JTextField();
         btn_inicio = new javax.swing.JButton();
         btn_cadastarCategoria = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        categoryTitle = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
+        iconPed12 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -132,7 +133,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
         getContentPane().add(txt_categoria);
-        txt_categoria.setBounds(210, 130, 400, 27);
+        txt_categoria.setBounds(160, 130, 500, 27);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -156,20 +157,24 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastarCategoria);
-        btn_cadastarCategoria.setBounds(340, 170, 140, 27);
+        btn_cadastarCategoria.setBounds(310, 170, 200, 27);
 
-        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel3.setText("Cadastrar Categoria");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(310, 0, 230, 26);
+        categoryTitle.setText("Nova Categoria");
+        getContentPane().add(categoryTitle);
+        categoryTitle.setBounds(160, 110, 200, 27);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Icon_Pedemeia_principal.png"))); // NOI18N
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(210, 200, 420, 350);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Cadastrar Categoria");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(320, 0, 210, 27);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1920, 1080);
+        iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-280x200.png"))); // NOI18N
+        getContentPane().add(iconPed12);
+        iconPed12.setBounds(200, 210, 420, 350);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
         txt_id.setBounds(0, 0, 49, 21);
 
@@ -227,11 +232,12 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btn_cadastarCategoria;
     private javax.swing.JButton btn_inicio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel categoryTitle;
+    private javax.swing.JLabel iconPed12;
+    private javax.swing.JLabel pageTitle;
     private javax.swing.JTextField txt_categoria;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables

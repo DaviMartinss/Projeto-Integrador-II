@@ -122,46 +122,55 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
+        emailTitle = new javax.swing.JLabel();
         txt_RecuperaSenha_email = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        checkButton = new javax.swing.JButton();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Informe seu Email");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(100, 110, 110, 17);
-        getContentPane().add(txt_RecuperaSenha_email);
-        txt_RecuperaSenha_email.setBounds(100, 130, 198, 21);
+        pageTitle.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Recuperação de Senha");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(290, 0, 210, 27);
 
-        jButton1.setText("Verificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        emailTitle.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        emailTitle.setText("Informe seu Email");
+        getContentPane().add(emailTitle);
+        emailTitle.setBounds(270, 170, 120, 27);
+
+        txt_RecuperaSenha_email.setBackground(new java.awt.Color(187, 210, 240));
+        txt_RecuperaSenha_email.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_RecuperaSenha_email);
+        txt_RecuperaSenha_email.setBounds(270, 190, 250, 27);
+
+        checkButton.setBackground(new java.awt.Color(105, 69, 219));
+        checkButton.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        checkButton.setText("Verificar");
+        checkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                checkButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(160, 210, 85, 27);
+        getContentPane().add(checkButton);
+        checkButton.setBounds(340, 260, 110, 27);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 1920, 1080);
-
-        jLabel3.setText("Recuperação de Senha");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(130, 0, 150, 20);
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/waning_back.png"))); // NOI18N
+        background.setText("jLabel2");
+        getContentPane().add(background);
+        background.setBounds(-380, -130, 1280, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
         // TODO add your handling code here:
         RecuperaSenha();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_checkButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,10 +208,10 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel background;
+    private javax.swing.JButton checkButton;
+    private javax.swing.JLabel emailTitle;
+    private javax.swing.JLabel pageTitle;
     private javax.swing.JTextField txt_RecuperaSenha_email;
     // End of variables declaration//GEN-END:variables
 }

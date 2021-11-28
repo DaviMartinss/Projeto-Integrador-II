@@ -110,36 +110,26 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        pageTitle = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         btnCadastro = new javax.swing.JButton();
-        txtSenha = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        recoveryPasswdButton = new javax.swing.JButton();
+        iconPed12 = new javax.swing.JLabel();
+        emailTitle = new javax.swing.JLabel();
+        passwordTitle = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel5.setText("Bem Vinde ao Ped1/2");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(300, 0, 220, 24);
-
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Email");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(200, 190, 60, 27);
-
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel2.setText("Senha");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(200, 260, 50, 27);
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Bem Vinde ao Ped1/2");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(300, 0, 220, 26);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setAlignmentX(1.0F);
@@ -149,6 +139,16 @@ public class TelaLogin extends javax.swing.JFrame {
         txtEmail.setBounds(200, 210, 400, 27);
         txtEmail.getAccessibleContext().setAccessibleName("Digite seu e-mail ou login");
         txtEmail.getAccessibleContext().setAccessibleDescription("Digite aqui o seu e-mail ou seu login");
+
+        txtSenha.setBackground(new java.awt.Color(187, 210, 240));
+        txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtSenha);
+        txtSenha.setBounds(200, 280, 400, 27);
 
         btnLogin.setBackground(new java.awt.Color(105, 69, 219));
         btnLogin.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -174,33 +174,35 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(btnCadastro);
         btnCadastro.setBounds(450, 330, 150, 27);
 
-        txtSenha.setBackground(new java.awt.Color(187, 210, 240));
-        txtSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+        recoveryPasswdButton.setBackground(new java.awt.Color(210, 59, 235));
+        recoveryPasswdButton.setForeground(new java.awt.Color(255, 255, 255));
+        recoveryPasswdButton.setText("Recuperação de senha");
+        recoveryPasswdButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
+                recoveryPasswdButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSenha);
-        txtSenha.setBounds(200, 280, 400, 27);
+        getContentPane().add(recoveryPasswdButton);
+        recoveryPasswdButton.setBounds(320, 490, 200, 27);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(320, 70, 140, 100);
+        iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
+        getContentPane().add(iconPed12);
+        iconPed12.setBounds(320, 70, 140, 100);
 
-        jButton1.setText("Recuperar senha");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(660, 340, 130, 23);
+        emailTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        emailTitle.setText("Email");
+        getContentPane().add(emailTitle);
+        emailTitle.setBounds(200, 190, 60, 27);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 1920, 1080);
+        passwordTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        passwordTitle.setText("Senha");
+        getContentPane().add(passwordTitle);
+        passwordTitle.setBounds(200, 260, 50, 27);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("jLabel4");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -225,10 +227,10 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void recoveryPasswdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recoveryPasswdButtonActionPerformed
         // TODO add your handling code here:
         Recupera_senha();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_recoveryPasswdButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,14 +268,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel emailTitle;
+    private javax.swing.JLabel iconPed12;
+    private javax.swing.JLabel pageTitle;
+    private javax.swing.JLabel passwordTitle;
+    private javax.swing.JButton recoveryPasswdButton;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables

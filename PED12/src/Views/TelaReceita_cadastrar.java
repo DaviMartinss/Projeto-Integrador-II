@@ -136,18 +136,18 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     private void initComponents() {
 
         txt_id = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         txt_dia = new javax.swing.JTextField();
         txt_mes = new javax.swing.JTextField();
         txt_ano = new javax.swing.JTextField();
-        btn_inicio = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         txt_total = new javax.swing.JTextField();
+        btn_inicio = new javax.swing.JButton();
         btn_NovaReceita = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        dateTitle = new javax.swing.JLabel();
+        dayBarTitle = new javax.swing.JLabel();
+        monthBarTitle = new javax.swing.JLabel();
+        iconPed12 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         txt_id.setEditable(false);
@@ -162,20 +162,10 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("Data: (dd/mm/aaaa)");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 120, 170, 27);
-
-        jLabel5.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
-        jLabel5.setText("/");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(90, 140, 10, 27);
-
-        jLabel6.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
-        jLabel6.setText("/");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(150, 140, 10, 27);
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        jLabel2.setText("CADASTRAR NOVA RECEITA");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(280, 0, 280, 27);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -192,6 +182,11 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         getContentPane().add(txt_ano);
         txt_ano.setBounds(160, 140, 50, 27);
 
+        txt_total.setBackground(new java.awt.Color(187, 210, 240));
+        txt_total.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_total);
+        txt_total.setBounds(40, 210, 200, 27);
+
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_inicio.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,16 +201,6 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         getContentPane().add(btn_inicio);
         btn_inicio.setBounds(40, 60, 90, 27);
 
-        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel1.setText("Total: ");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 180, 60, 27);
-
-        txt_total.setBackground(new java.awt.Color(187, 210, 240));
-        txt_total.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_total);
-        txt_total.setBounds(40, 210, 200, 27);
-
         btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
         btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_NovaReceita.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,14 +213,29 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         getContentPane().add(btn_NovaReceita);
         btn_NovaReceita.setBounds(40, 260, 150, 27);
 
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel2.setText("CADASTRAR NOVA RECEITA");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 0, 280, 18);
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel1.setText("Total: ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(40, 180, 60, 27);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-280x200.png"))); // NOI18N
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(390, 180, 410, 370);
+        dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        dateTitle.setText("Data: (dd/mm/aaaa)");
+        getContentPane().add(dateTitle);
+        dateTitle.setBounds(40, 120, 170, 27);
+
+        dayBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
+        dayBarTitle.setText("/");
+        getContentPane().add(dayBarTitle);
+        dayBarTitle.setBounds(90, 140, 10, 27);
+
+        monthBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
+        monthBarTitle.setText("/");
+        getContentPane().add(monthBarTitle);
+        monthBarTitle.setBounds(150, 140, 10, 27);
+
+        iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-280x200.png"))); // NOI18N
+        getContentPane().add(iconPed12);
+        iconPed12.setBounds(390, 180, 410, 370);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -390,13 +390,13 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_NovaReceita;
     private javax.swing.JButton btn_inicio;
+    private javax.swing.JLabel dateTitle;
+    private javax.swing.JLabel dayBarTitle;
+    private javax.swing.JLabel iconPed12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel monthBarTitle;
     private javax.swing.JTextField txt_ano;
     private javax.swing.JTextField txt_dia;
     private javax.swing.JTextField txt_id;

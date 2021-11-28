@@ -183,7 +183,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
             }else{
 
-                if(rb_Ascendente.isSelected()){
+                if(selectorUp.isSelected()){
                        
                    Collections.sort(lista_categoria, new CategoriaASC() );
                    
@@ -234,21 +234,22 @@ public class TelaCategoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pageTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_categoria = new javax.swing.JTable();
         txt_NomeCategoria = new javax.swing.JTextField();
+        txt_Pesquisa = new javax.swing.JTextField();
+        selectorUp = new javax.swing.JRadioButton();
+        selectorDown = new javax.swing.JRadioButton();
         btn_voltaInicio = new javax.swing.JButton();
         btn_cadastraCategoria = new javax.swing.JButton();
         btn_deletaCategoria = new javax.swing.JButton();
-        rb_Ascendente = new javax.swing.JRadioButton();
-        rb_Descendente = new javax.swing.JRadioButton();
         btn_ordenar = new javax.swing.JButton();
         btn_updateCategoria = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        txt_Pesquisa = new javax.swing.JTextField();
         btPesquisarCD = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        findTextTitle = new javax.swing.JLabel();
+        nameTitle = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -260,6 +261,11 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(null);
+
+        pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        pageTitle.setText("Categorias");
+        getContentPane().add(pageTitle);
+        pageTitle.setBounds(360, 0, 110, 26);
 
         jt_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -292,9 +298,43 @@ public class TelaCategoria extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jt_categoria);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(150, 240, 200, 199);
+        jScrollPane1.setBounds(150, 250, 300, 199);
         getContentPane().add(txt_NomeCategoria);
-        txt_NomeCategoria.setBounds(150, 200, 200, 27);
+        txt_NomeCategoria.setBounds(150, 200, 300, 27);
+
+        txt_Pesquisa.setColumns(200);
+        txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_PesquisaActionPerformed(evt);
+            }
+        });
+        txt_Pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_PesquisaKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txt_Pesquisa);
+        txt_Pesquisa.setBounds(150, 110, 520, 27);
+
+        selectorUp.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        selectorUp.setText("Ascendente");
+        selectorUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectorUpActionPerformed(evt);
+            }
+        });
+        getContentPane().add(selectorUp);
+        selectorUp.setBounds(150, 150, 96, 27);
+
+        selectorDown.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        selectorDown.setText("Descendente");
+        selectorDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectorDownActionPerformed(evt);
+            }
+        });
+        getContentPane().add(selectorDown);
+        selectorDown.setBounds(250, 150, 103, 27);
 
         btn_voltaInicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_voltaInicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -318,7 +358,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastraCategoria);
-        btn_cadastraCategoria.setBounds(540, 270, 140, 27);
+        btn_cadastraCategoria.setBounds(540, 340, 140, 27);
 
         btn_deletaCategoria.setBackground(new java.awt.Color(210, 59, 239));
         btn_deletaCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -330,27 +370,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_deletaCategoria);
-        btn_deletaCategoria.setBounds(540, 350, 140, 27);
-
-        rb_Ascendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        rb_Ascendente.setText("Ascendente");
-        rb_Ascendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_AscendenteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rb_Ascendente);
-        rb_Ascendente.setBounds(150, 150, 93, 25);
-
-        rb_Descendente.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        rb_Descendente.setText("Descendente");
-        rb_Descendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rb_DescendenteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rb_Descendente);
-        rb_Descendente.setBounds(250, 150, 101, 25);
+        btn_deletaCategoria.setBounds(540, 420, 140, 27);
 
         btn_ordenar.setBackground(new java.awt.Color(105, 69, 219));
         btn_ordenar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -374,26 +394,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_updateCategoria);
-        btn_updateCategoria.setBounds(540, 310, 140, 25);
-
-        jLabel8.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel8.setText("Pesquisar");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(150, 90, 90, 27);
-
-        txt_Pesquisa.setColumns(200);
-        txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_PesquisaActionPerformed(evt);
-            }
-        });
-        txt_Pesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_PesquisaKeyReleased(evt);
-            }
-        });
-        getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(150, 110, 520, 27);
+        btn_updateCategoria.setBounds(540, 380, 140, 27);
 
         btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
@@ -407,17 +408,24 @@ public class TelaCategoria extends javax.swing.JFrame {
         getContentPane().add(btPesquisarCD);
         btPesquisarCD.setBounds(630, 140, 40, 40);
 
-        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        jLabel4.setText("Nome");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(150, 180, 60, 16);
+        findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        findTextTitle.setText("Pesquisar");
+        getContentPane().add(findTextTitle);
+        findTextTitle.setBounds(150, 90, 60, 27);
 
-        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
-        jLabel2.setText("Categorias");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(360, 0, 110, 24);
+        nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        nameTitle.setText("Nome");
+        getContentPane().add(nameTitle);
+        nameTitle.setBounds(150, 180, 60, 27);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("jLabel1");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
+        background.getAccessibleContext().setAccessibleName("background");
+
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 20);
+        txt_id.setBounds(0, 0, 49, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -480,7 +488,7 @@ public class TelaCategoria extends javax.swing.JFrame {
     private void btn_ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ordenarActionPerformed
         // TODO add your handling code here:
         
-         if (rb_Ascendente.isSelected() || rb_Descendente.isSelected()) {
+         if (selectorUp.isSelected() || selectorDown.isSelected()) {
             RecarregaTabela_Categoria(ordena);
         }else{
             
@@ -488,24 +496,24 @@ public class TelaCategoria extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_ordenarActionPerformed
 
-    private void rb_AscendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_AscendenteActionPerformed
+    private void selectorUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectorUpActionPerformed
         // TODO add your handling code here:
-          if (rb_Ascendente.isSelected()) {
+          if (selectorUp.isSelected()) {
             ordena = true;
-            rb_Descendente.setSelected(false);
+            selectorDown.setSelected(false);
             
         }
-    }//GEN-LAST:event_rb_AscendenteActionPerformed
+    }//GEN-LAST:event_selectorUpActionPerformed
 
-    private void rb_DescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_DescendenteActionPerformed
+    private void selectorDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectorDownActionPerformed
         // TODO add your handling code here:
         
-        if (rb_Descendente.isSelected()) {
+        if (selectorDown.isSelected()) {
             ordena = true;
-            rb_Ascendente.setSelected(false);
+            selectorUp.setSelected(false);
 
         }
-    }//GEN-LAST:event_rb_DescendenteActionPerformed
+    }//GEN-LAST:event_selectorDownActionPerformed
 
     private void btn_cadastraCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastraCategoriaActionPerformed
         // TODO add your handling code here:
@@ -550,11 +558,11 @@ public class TelaCategoria extends javax.swing.JFrame {
     private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
         // TODO add your handling code here:
 
-        if (rb_Ascendente.isSelected() || rb_Descendente.isSelected()) {
+        if (selectorUp.isSelected() || selectorDown.isSelected()) {
 
             boolean ordenar = true;
 
-            if (rb_Ascendente.isSelected()) {
+            if (selectorUp.isSelected()) {
 
                 ordenar = true;
 
@@ -643,19 +651,20 @@ public class TelaCategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btPesquisarCD;
     private javax.swing.JButton btn_cadastraCategoria;
     private javax.swing.JButton btn_deletaCategoria;
     private javax.swing.JButton btn_ordenar;
     private javax.swing.JButton btn_updateCategoria;
     private javax.swing.JButton btn_voltaInicio;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel findTextTitle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jt_categoria;
-    private javax.swing.JRadioButton rb_Ascendente;
-    private javax.swing.JRadioButton rb_Descendente;
+    private javax.swing.JLabel nameTitle;
+    private javax.swing.JLabel pageTitle;
+    private javax.swing.JRadioButton selectorDown;
+    private javax.swing.JRadioButton selectorUp;
     private javax.swing.JTextField txt_NomeCategoria;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
