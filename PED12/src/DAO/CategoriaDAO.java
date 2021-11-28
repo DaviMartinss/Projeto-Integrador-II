@@ -194,7 +194,45 @@ public class CategoriaDAO {
     }
     
     
-    
+    public int GetCategoriaId(int id_conta, String categoria) throws SQLException {
+
+        String SelectCategoriaId = "SELECT categoriaId FROM categoria WHERE (categoriaTipo = ? AND conta_id_conta = ?);";
+
+        PreparedStatement pst_SelectCategoriaId = null;
+        ResultSet rs_SelectCategoriaId = null;
+
+        try {
+
+            pst_SelectCategoriaId = conexao.prepareStatement(SelectCategoriaId);
+            
+            pst_SelectCategoriaId.setString(1, categoria);
+            
+            pst_SelectCategoriaId.setInt(2, id_conta);
+           
+            rs_SelectCategoriaId = pst_SelectCategoriaId.executeQuery();
+
+            if (rs_SelectCategoriaId.next()) 
+                return rs_SelectCategoriaId.getInt("categoriaId");
+            else 
+                return 0;
+            
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:GetCategoriaId", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return 0;
+
+        } finally {
+
+            pst_SelectCategoriaId.close();
+            rs_SelectCategoriaId.close();
+
+        }
+
+    }
     
     // busca o id de uma categoria pelo o id da despesa
     public int ConsultaIdCategoria_despesa(String cat, int id_conta) throws SQLException {

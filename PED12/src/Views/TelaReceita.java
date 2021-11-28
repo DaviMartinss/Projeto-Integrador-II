@@ -17,7 +17,6 @@ import ReceitaOrdenacao.ReceitaDiaASC;
 import ReceitaOrdenacao.ReceitaMesASC;
 import ReceitaOrdenacao.ReceitaMesDESC;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -244,12 +243,11 @@ public class TelaReceita extends javax.swing.JFrame{
             try {
                 if (receita_atua.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())) {
                     
+                    //Não deixa atualizar para o MÊS E ANO de uma receita PRÉ-EXISTENTE
                     if(!receita_DAO.ReceitaExiste(receita_atua)){
                         
                          receita_DAO.UpdateReceita(receita_atua);
-                         
-                          JOptionPane.showMessageDialog(null, "TRUE");
-                    
+                        
                     }else{
                         
                         JOptionPane.showMessageDialog(null, "Já existe uma receita com MÊS e ANO informados!\n Não foi possível atualizar!", "ALERTA", JOptionPane.WARNING_MESSAGE );

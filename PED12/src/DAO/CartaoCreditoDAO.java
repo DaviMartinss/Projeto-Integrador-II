@@ -28,6 +28,51 @@ public class CartaoCreditoDAO {
 
     }
 
+    
+    public boolean UpdateCreditoCartaoCredito(int id_conta, float valor, long num_cartao) throws SQLException {
+
+        String UpdateCredito = "UPDATE cartao_credito SET \n"
+                            + "credito = (credito - ?), \n"
+                            + "valor_fatura = ( valor_fatura + ?) \n"
+                            + "WHERE n_cartao_credito = ? AND conta_id_conta = ?;";
+        
+
+        PreparedStatement pst_UpdateCredito = null;
+
+        try {
+
+            pst_UpdateCredito = conexao.prepareStatement(UpdateCredito);
+
+            pst_UpdateCredito.setFloat(1, valor);
+
+            pst_UpdateCredito.setFloat(2, valor);
+
+            pst_UpdateCredito.setLong(3, num_cartao);
+
+            pst_UpdateCredito.setLong(4, id_conta);
+
+            pst_UpdateCredito.executeUpdate();
+            
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:UpdateCreditoCartaoCredito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return false;
+
+        } finally {
+
+            pst_UpdateCredito.close();
+
+        }
+
+    }
+    
+    
+    
     public boolean CadastrarCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
 
         PreparedStatement pst = null;

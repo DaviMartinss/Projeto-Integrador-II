@@ -28,46 +28,51 @@ public class ReceitaDAO {
 
     }
 
-    public Receita GetUltimaReceita(int conta_id) throws SQLException {
+    public boolean ReceitaTemSaldo(Receita receita, float valor) throws SQLException {
 
-        String SelectReceita
-                = "SELECT Max(cod_receita) cod_receita, R.mes, R.ano FROM receita R \n"
-                + "WHERE R.conta_id_conta = ? AND R.cod_receita = (SELECT Max(cod_receita) FROM receita);";
+        String SelectSaldo = "SELECT total FROM receita WHERE conta_id_conta = ? AND mes = ? AND ano = ?; ";
 
-        Receita receita = new Receita();
+        PreparedStatement pst_SelectSaldo = null;
 
-        PreparedStatement pst_SelectReceita = null;
-
-        ResultSet rs_SelectReceita = null;
+        ResultSet rs_SelectSaldo = null;
 
         try {
-            pst_SelectReceita = conexao.prepareStatement(SelectReceita);
 
-            pst_SelectReceita.setInt(1, conta_id);
+            pst_SelectSaldo = conexao.prepareStatement(SelectSaldo);
+            
+            pst_SelectSaldo.setLong(1, receita.getId_conta());
+            
+            pst_SelectSaldo.setLong(2, receita.getMes());
+            
+            pst_SelectSaldo.setLong(3, receita.getAno());
 
-            rs_SelectReceita = pst_SelectReceita.executeQuery();
+            rs_SelectSaldo = pst_SelectSaldo.executeQuery();
 
-            if (rs_SelectReceita.next()) {
-                receita.setCod_receita(rs_SelectReceita.getInt("cod_receita"));
-                receita.setMes(rs_SelectReceita.getInt("mes"));
-                receita.setAno(rs_SelectReceita.getInt("ano"));
-                receita.setId_conta(conta_id);
-            }
+            if (rs_SelectSaldo.next()) {
+
+                if (valor <= rs_SelectSaldo.getFloat("total"))                  
+                    return true;
+                else
+                    return false;
+
+            }else
+                return false;
 
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            JOptionPane.showMessageDialog(null, "Erro:ReceitaTemSaldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
-            JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            return false;
 
         } finally {
 
-            pst_SelectReceita.close();
-            rs_SelectReceita.close();
+            pst_SelectSaldo.close();
+            rs_SelectSaldo.close();
 
         }
 
-        return receita;
     }
 
     public boolean CadastrarReceita(Receita receita_nova) throws SQLException {
@@ -237,6 +242,122 @@ public class ReceitaDAO {
         return lista_receita;
 
     }
+    
+    public Receita GetUltimaReceita(int conta_id) throws SQLException {
+
+        String SelectReceita
+                = "SELECT Max(cod_receita) cod_receita, R.mes, R.ano FROM receita R \n"
+                + "WHERE R.conta_id_conta = ? AND R.cod_receita = (SELECT Max(cod_receita) FROM receita);";
+
+        Receita receita = new Receita();
+
+        PreparedStatement pst_SelectReceita = null;
+
+        ResultSet rs_SelectReceita = null;
+
+        try {
+            pst_SelectReceita = conexao.prepareStatement(SelectReceita);
+
+            pst_SelectReceita.setInt(1, conta_id);
+
+            rs_SelectReceita = pst_SelectReceita.executeQuery();
+
+            if (rs_SelectReceita.next()) {
+                receita.setCod_receita(rs_SelectReceita.getInt("cod_receita"));
+                receita.setMes(rs_SelectReceita.getInt("mes"));
+                receita.setAno(rs_SelectReceita.getInt("ano"));
+                receita.setId_conta(conta_id);
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+        } finally {
+
+            pst_SelectReceita.close();
+            rs_SelectReceita.close();
+
+        }
+
+        return receita;
+    }
+    
+    public boolean UpdateTotalReceita(int id_conta, float valor, int cod_receita) throws SQLException {
+
+        String UpdateTotal = "UPDATE receita SET total = (total - ?) WHERE conta_id_conta = ? AND cod_receita = ?";
+
+        PreparedStatement pst_UpdateTotal = null;
+
+        try {
+
+            pst_UpdateTotal = conexao.prepareStatement(UpdateTotal);
+
+            pst_UpdateTotal.setFloat(1, valor);
+            pst_UpdateTotal.setInt(2, id_conta);
+            pst_UpdateTotal.setInt(3, cod_receita);
+
+            pst_UpdateTotal.executeUpdate();
+
+            return true;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:UpdateTotalReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return false;
+
+        } finally {
+
+            pst_UpdateTotal.close();
+
+        }
+
+    }
+    
+    public int GetCodigoReceita(int id_conta, int mes, int ano) throws SQLException {
+
+        String SelectCodReceita
+                = "SELECT cod_receita FROM receita WHERE conta_id_conta = ? AND mes = ? AND ano = ?;";
+
+        PreparedStatement pst_SelectCodReceita = null;
+
+        ResultSet rs_SelectCodReceita = null;
+
+        try {
+            pst_SelectCodReceita = conexao.prepareStatement(SelectCodReceita);
+
+            pst_SelectCodReceita.setInt(1, id_conta);
+            pst_SelectCodReceita.setInt(2, mes);
+            pst_SelectCodReceita.setInt(3, ano);
+
+            rs_SelectCodReceita = pst_SelectCodReceita.executeQuery();
+
+            if (rs_SelectCodReceita.next()) 
+                return rs_SelectCodReceita.getInt("cod_receita");
+            else
+                return 0;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:GetCodigoReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            return 0;
+
+        } finally {
+
+            pst_SelectCodReceita.close();
+            rs_SelectCodReceita.close();
+
+        }
+
+    }
 
     public LinkedList<Receita> Consulta_Receita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
 
@@ -369,14 +490,11 @@ public class ReceitaDAO {
 
             rs_SelectReceitaExiste.next();
 
-            if (rs_SelectReceitaExiste.getInt("count") == 1) {
-
+            if (rs_SelectReceitaExiste.getInt("count") == 1) 
                 return true;
-
-            } else {
-
+            else 
                 return false;
-            }
+            
 
         } catch (Exception e) {
 

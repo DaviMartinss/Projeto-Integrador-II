@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Views;
 
 import DAO.CategoriaDAO;
@@ -17,8 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ValidacaoComum.Validacao;
 import java.util.LinkedList;
@@ -186,7 +179,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("CADASTRO DE DESPESA");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(280, 0, 230, 26);
+        pageTitle.setBounds(280, 0, 230, 24);
 
         txtAreaDescricao.setColumns(20);
         txtAreaDescricao.setRows(5);
@@ -194,7 +187,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtAreaDescricao);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 160, 740, 103);
+        jScrollPane1.setBounds(30, 160, 740, 113);
 
         cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -358,7 +351,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
         getContentPane().add(cardNumTitle);
-        cardNumTitle.setBounds(300, 260, 120, 27);
+        cardNumTitle.setBounds(300, 270, 120, 27);
 
         iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
         getContentPane().add(iconPed12);
@@ -375,7 +368,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2322, 50, 81, 21);
+        txt_id.setBounds(2322, 50, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -632,7 +625,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                         } 
                     }
                     
-                     if (!(despesaDAO.DespesaCD_TemSaldo(receita, despesa.getValor()))) {
+                     if (!(receitaDAO.ReceitaTemSaldo(receita, despesa.getValor()))) {
 
                         JOptionPane.showMessageDialog(this, "Receita correspondente não possui Saldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
@@ -711,7 +704,9 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Dados Inválidos!!");
                 }
 
-            } catch (Exception e) {
+            } catch (SQLException e) {
+                
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
                 JOptionPane.showMessageDialog(this, "Erro no cadastro!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
