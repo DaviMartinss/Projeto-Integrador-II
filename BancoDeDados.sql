@@ -102,10 +102,11 @@ CREATE TABLE `despesa` (
 CREATE TABLE despesa_credito (
 
 n_parcelas int(11) NOT NULL,
+valor_parcela float(12) NOT NULL,
+n_parcelas_pagas int(11) NOT NULL,
 despesa_cod_despesa int(11) NOT NULL,
 FOREIGN KEY (despesa_cod_despesa) REFERENCES
 despesa (cod_despesa) ON DELETE CASCADE ON UPDATE CASCADE
-
 );
 
 INSERT INTO conta (nome,email,senha)
@@ -303,20 +304,20 @@ insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categori
 (11, 10, 07, 2009, 1, 10, 4904628247877647, 300.00, "DINHEIRO", "NÃO PAGO");
 
 
-insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(12, 11, 12 ,2010, 1, 11, 4716717904817299,	888.00, "CRÉDITO", "NÃO PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
-(13, 12, 09, 2011, 1, 12, 5402464256786436,	777.00, "CRÉDITO", "PAGO");
+(12, 11, 12 ,2010, 1, 11, 5339614010424884,	888.00, "CRÉDITO", "NÃO PAGO");
+insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
+(13, 12, 09, 2011, 1, 12, 5339614010424884,	777.00, "CRÉDITO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
 (14, 13, 08, 2012, 1, 13, 5339614010424884,	555.00, "CRÉDITO", "NÃO PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
-(15, 14, 07, 2013, 1, 14, 5376135993298206,	222.00, "CRÉDITO", "NÃO PAGO");
+(15, 14, 07, 2013, 1, 14, 5339614010424884,	222.00, "CRÉDITO", "NÃO PAGO");
 
 
 #Despesa credito
 
-insert into despesa_credito(n_parcelas, despesa_cod_despesa) values(12, 11);
-insert into despesa_credito(n_parcelas, despesa_cod_despesa) values(09, 12);
-insert into despesa_credito(n_parcelas, despesa_cod_despesa) values(08, 13);
-insert into despesa_credito(n_parcelas, despesa_cod_despesa) values(07, 14);
+insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(12, 6, 20, 11);
+insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(09, 4, 60, 12);
+insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(08, 2, 70, 13);
+insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(07, 0, 80, 14);
 

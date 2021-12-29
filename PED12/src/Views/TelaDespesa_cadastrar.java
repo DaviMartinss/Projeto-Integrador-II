@@ -197,7 +197,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
         txtParcelas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtParcelas);
-        txtParcelas.setBounds(640, 280, 130, 27);
+        txtParcelas.setBounds(640, 300, 130, 27);
 
         txtValor.setBackground(new java.awt.Color(187, 210, 240));
         txtValor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -227,7 +227,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NumCartao);
-        txt_NumCartao.setBounds(300, 280, 300, 27);
+        txt_NumCartao.setBounds(300, 300, 300, 27);
 
         rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbCredito.setText("Crédito");
@@ -237,7 +237,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbCredito);
-        rbCredito.setBounds(100, 280, 80, 27);
+        rbCredito.setBounds(100, 300, 80, 27);
 
         rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDebito.setText("Débito");
@@ -247,7 +247,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDebito);
-        rbDebito.setBounds(30, 280, 70, 27);
+        rbDebito.setBounds(30, 300, 70, 27);
 
         rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDinheiro.setText("Dinheiro");
@@ -257,7 +257,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDinheiro);
-        rbDinheiro.setBounds(180, 280, 90, 27);
+        rbDinheiro.setBounds(180, 300, 90, 27);
 
         rbPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbPago.setText("Pago");
@@ -301,7 +301,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_CadastrarDespesa);
-        btn_CadastrarDespesa.setBounds(30, 330, 200, 27);
+        btn_CadastrarDespesa.setBounds(30, 350, 200, 27);
 
         valueTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         valueTitle.setText("Valor:");
@@ -341,12 +341,12 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         payFormTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         payFormTitle.setText("Forma de Pagamento: ");
         getContentPane().add(payFormTitle);
-        payFormTitle.setBounds(30, 260, 140, 27);
+        payFormTitle.setBounds(30, 270, 140, 27);
 
         invoiceTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         invoiceTitle.setText("Nº de Pacelas: ");
         getContentPane().add(invoiceTitle);
-        invoiceTitle.setBounds(640, 260, 110, 27);
+        invoiceTitle.setBounds(640, 270, 110, 27);
 
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
@@ -355,7 +355,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
 
         iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
         getContentPane().add(iconPed12);
-        iconPed12.setBounds(620, 340, 150, 120);
+        iconPed12.setBounds(620, 370, 150, 120);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);

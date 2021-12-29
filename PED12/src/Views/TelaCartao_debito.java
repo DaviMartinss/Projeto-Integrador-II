@@ -548,7 +548,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 21);
+        txt_id.setBounds(0, 0, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -690,33 +690,13 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+        String valor = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
+        String bandeira = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
 
-        CartaoDebitoDAO cartaoDAO = new CartaoDebitoDAO();
-
-        try {
-
-            LinkedList<CartaoDebito> lista_CD = cartaoDAO.PreencherCamposCartao_D(num_cartao,
-                    Integer.parseInt(txt_id.getText()));
-
-            txt_NumCartaoD.setText(Long.toString(lista_CD.element().getN_cartao_debito()));
-            txt_Valor.setText(Float.toString(lista_CD.element().getValor_atual()));
-            txt_Bandeira.setText(lista_CD.element().getBandeira());
-            salva_num_cartao_debito = lista_CD.element().getN_cartao_debito();
-
-            int selLinha = -1;
-            selLinha = jtConsultaCD.getSelectedRow();
-
-            if (selLinha != -1) {
-                salvaLinhaAtiva = true;
-            }
-
-            lista_CD.clear();
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
-        }
-
+        txt_NumCartaoD.setText(num_cartao);
+        txt_Valor.setText(valor);
+        txt_Bandeira.setText(bandeira);
+        salva_num_cartao_debito = Long.parseLong(num_cartao);
     }//GEN-LAST:event_jtConsultaCDMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

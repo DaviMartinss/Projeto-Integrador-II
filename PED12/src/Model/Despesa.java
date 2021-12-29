@@ -23,6 +23,8 @@ public class Despesa {
     private Long num_cartao;
     private String estatus;
     private int num_parcelas;
+    private int num_parcelas_pagas;
+    private float valor_parcela;
     private int id_conta;
     private int cod_despesa;
     private int id_categoria;
@@ -99,6 +101,22 @@ public class Despesa {
         this.estatus = estatus;
         this.descricao = descricao;
         this.cod_despesa = cod_despesa;
+    }
+
+    public int getNum_parcelas_pagas() {
+        return num_parcelas_pagas;
+    }
+
+    public void setNum_parcelas_pagas(int num_parcelas_pagas) {
+        this.num_parcelas_pagas = num_parcelas_pagas;
+    }
+
+    public float getValor_parcela() {
+        return valor_parcela;
+    }
+
+    public void setValor_parcela(float valor_parcela) {
+        this.valor_parcela = valor_parcela;
     }
 
 

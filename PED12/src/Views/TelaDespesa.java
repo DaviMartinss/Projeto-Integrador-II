@@ -819,7 +819,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDebito);
-        rbDebito.setBounds(20, 390, 62, 27);
+        rbDebito.setBounds(20, 390, 63, 27);
 
         rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbCredito.setText("Crédito");
@@ -936,7 +936,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         descriptionTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         descriptionTitle.setText("Descrição: ");
         getContentPane().add(descriptionTitle);
-        descriptionTitle.setBounds(340, 320, 65, 27);
+        descriptionTitle.setBounds(340, 320, 64, 27);
 
         dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         dateTitle.setText("Data: (dd/mm/aaaa)");
@@ -951,12 +951,12 @@ public class TelaDespesa extends javax.swing.JFrame {
         payFormTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         payFormTitle.setText("Forma de Pagamento: ");
         getContentPane().add(payFormTitle);
-        payFormTitle.setBounds(20, 370, 135, 27);
+        payFormTitle.setBounds(20, 370, 127, 27);
 
         instNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         instNumTitle.setText("Nº de Pacelas: ");
         getContentPane().add(instNumTitle);
-        instNumTitle.setBounds(210, 320, 87, 27);
+        instNumTitle.setBounds(210, 320, 84, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findByTitle.setText("Pesquisar por");
@@ -971,12 +971,12 @@ public class TelaDespesa extends javax.swing.JFrame {
         categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         categoryTitle.setText("Categoria: ");
         getContentPane().add(categoryTitle);
-        categoryTitle.setBounds(120, 270, 65, 27);
+        categoryTitle.setBounds(120, 270, 61, 27);
 
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
         getContentPane().add(cardNumTitle);
-        cardNumTitle.setBounds(340, 270, 82, 27);
+        cardNumTitle.setBounds(340, 270, 76, 27);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTextTitle.setText("Digite sua pesquisa aqui");
@@ -1000,7 +1000,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2360, 119, 81, 21);
+        txt_id.setBounds(2360, 119, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1146,12 +1146,59 @@ public class TelaDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String dia = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 1);
-
         String mes = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 2);
-
         String ano = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 3);
-        
+        String valor = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 4);
         String categoria = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 5);
+        String formaPagamento = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 6);
+        String numCartao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 7);
+        String numParcelas = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 8);
+        String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
+        String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
+        
+        txtDia.setText(dia);
+        txtMes.setText(mes);
+        txtAno.setText(ano);
+        txtValor.setText(valor);
+        txtCategoria.setText(categoria);
+        txt_NumCartao.setText(numCartao);
+        txtParcelas.setText(numParcelas);
+        txtAreaDescricao.setText(descricao);
+            
+        if (formaPagamento.equals("CRÉDITO")) 
+        {
+            salvaF_pagamento = "CRÉDITO";
+            rbCredito.setSelected(true);
+            rbDebito.setSelected(false);
+            rbDinheiro.setSelected(false);
+        }
+        else if (formaPagamento.equals("DÉBITO"))
+        {
+            salvaF_pagamento = "DÉBITO";
+            rbDebito.setSelected(true);
+            rbCredito.setSelected(false);
+            rbDinheiro.setSelected(false);
+        }
+        else
+        {
+            salvaF_pagamento = "DINHEIRO";
+            rbDinheiro.setSelected(true);
+            rbDebito.setSelected(false);
+            rbCredito.setSelected(false);
+        }
+        
+        if (status.equals("PAGO")) 
+        {
+            salvaStatus = "PAGO";
+            rbPago.setSelected(true);
+            rbNaoPago.setSelected(false);
+        } 
+        else 
+        {
+            salvaStatus = "NÃO PAGO";
+            rbNaoPago.setSelected(true);
+            rbPago.setSelected(false);
+        }
 
         DespesaDAO despesaDAO = new DespesaDAO();
         int linhSel = jtConsultaDespesa.getSelectedRow();
@@ -1166,62 +1213,62 @@ public class TelaDespesa extends javax.swing.JFrame {
             salvaLinhaAtiva = true;
         }
 
-        try {
-
-            LinkedList<Despesa> lista_despesa = despesaDAO.PreencherCampos_Despesa(dia, mes, ano, categoria, txt_id.getText());
-
-            txtValor.setText(Float.toString(lista_despesa.element().getValor()));
-            txtCategoria.setText(lista_despesa.element().getCategoria());
-            txtDia.setText(Integer.toString(lista_despesa.element().getDia()));
-            txtMes.setText(Integer.toString(lista_despesa.element().getMes()));
-            txtAno.setText(Integer.toString(lista_despesa.element().getAno()));
-            txtAreaDescricao.setText(lista_despesa.element().getDescricao());
-            txtParcelas.setText(Integer.toString(lista_despesa.element().getNum_parcelas()));
-            txt_NumCartao.setText(Long.toString(lista_despesa.element().getNum_cartao()));
-
-            if (lista_despesa.element().getF_pagamento().equals("CRÉDITO")) {
-
-                salvaF_pagamento = "CRÉDITO";
-                rbCredito.setSelected(true);
-                rbDebito.setSelected(false);
-                rbDinheiro.setSelected(false);
-
-            }
-
-            if (lista_despesa.element().getF_pagamento().equals("DÉBITO")) {
-
-                salvaF_pagamento = "DÉBITO";
-                rbDebito.setSelected(true);
-                rbCredito.setSelected(false);
-                rbDinheiro.setSelected(false);
-
-            }
-
-            if (lista_despesa.element().getF_pagamento().equals("DINHEIRO")) {
-
-                salvaF_pagamento = "DINHEIRO";
-                rbDinheiro.setSelected(true);
-                rbDebito.setSelected(false);
-                rbCredito.setSelected(false);
-            }
-
-            if (lista_despesa.element().getEstatus().equals("PAGO")) {
-
-                salvaStatus = "PAGO";
-                rbPago.setSelected(true);
-                rbNaoPago.setSelected(false);
-
-            } else {
-
-                salvaStatus = "NÃO PAGO";
-                rbNaoPago.setSelected(true);
-                rbPago.setSelected(false);
-            }
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
-        }
+//        try {
+//
+//            LinkedList<Despesa> lista_despesa = despesaDAO.PreencherCampos_Despesa(dia, mes, ano, categoria, txt_id.getText());
+//
+//            txtValor.setText(Float.toString(lista_despesa.element().getValor()));
+//            txtCategoria.setText(lista_despesa.element().getCategoria());
+//            txtDia.setText(Integer.toString(lista_despesa.element().getDia()));
+//            txtMes.setText(Integer.toString(lista_despesa.element().getMes()));
+//            txtAno.setText(Integer.toString(lista_despesa.element().getAno()));
+//            txtAreaDescricao.setText(lista_despesa.element().getDescricao());
+//            txtParcelas.setText(Integer.toString(lista_despesa.element().getNum_parcelas()));
+//            txt_NumCartao.setText(Long.toString(lista_despesa.element().getNum_cartao()));
+//
+//            if (lista_despesa.element().getF_pagamento().equals("CRÉDITO")) {
+//
+//                salvaF_pagamento = "CRÉDITO";
+//                rbCredito.setSelected(true);
+//                rbDebito.setSelected(false);
+//                rbDinheiro.setSelected(false);
+//
+//            }
+//
+//            if (lista_despesa.element().getF_pagamento().equals("DÉBITO")) {
+//
+//                salvaF_pagamento = "DÉBITO";
+//                rbDebito.setSelected(true);
+//                rbCredito.setSelected(false);
+//                rbDinheiro.setSelected(false);
+//
+//            }
+//
+//            if (lista_despesa.element().getF_pagamento().equals("DINHEIRO")) {
+//
+//                salvaF_pagamento = "DINHEIRO";
+//                rbDinheiro.setSelected(true);
+//                rbDebito.setSelected(false);
+//                rbCredito.setSelected(false);
+//            }
+//
+//            if (lista_despesa.element().getEstatus().equals("PAGO")) {
+//
+//                salvaStatus = "PAGO";
+//                rbPago.setSelected(true);
+//                rbNaoPago.setSelected(false);
+//
+//            } else {
+//
+//                salvaStatus = "NÃO PAGO";
+//                rbNaoPago.setSelected(true);
+//                rbPago.setSelected(false);
+//            }
+//
+//        } catch (SQLException ex) {
+//
+//            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
+//        }
 
     }//GEN-LAST:event_jtConsultaDespesaMouseClicked
 

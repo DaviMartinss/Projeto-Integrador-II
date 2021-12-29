@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Model.CartaoCredito;
 import Model.Despesa;
 import Model.Receita;
 import java.sql.Connection;
@@ -183,12 +184,14 @@ public class DespesaDAO {
 
                 int cod_despesa = despesaDAO.GetCodigoDespesa(despesa.getId_conta(), despesa.getDia(), despesa.getMes(), despesa.getAno());
 
-                String InsertDespesaCredito = "INSERT INTO despesa_credito (n_parcelas, despesa_cod_despesa) VALUES(?,?)";
+                String InsertDespesaCredito = "INSERT INTO despesa_credito (n_parcelas, valor_parcela, n_parcelas_pagas, despesa_cod_despesa) VALUES(?,?,?,?)";
 
                 pst_InsertDespesaCredito = conexao.prepareStatement(InsertDespesaCredito);
 
                 pst_InsertDespesaCredito.setInt(1, despesa.getNum_parcelas());
-                pst_InsertDespesaCredito.setInt(2, cod_despesa);
+                pst_InsertDespesaCredito.setFloat(2, (despesa.getValor()/despesa.getNum_parcelas()));
+                pst_InsertDespesaCredito.setInt(3, 0);
+                pst_InsertDespesaCredito.setInt(4, cod_despesa);
 
                 pst_InsertDespesaCredito.executeUpdate();
 
@@ -1046,5 +1049,142 @@ public class DespesaDAO {
             JOptionPane.showMessageDialog(null, "Erro:TransferirDespesasEntreReceitas", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
         }
     }
- 
+    
+    public LinkedList<Despesa> GetListaDespesaFatura(Long numCartaoCredito, int id_conta) throws SQLException{
+
+        String SelectDespesasFatura = "SELECT \n"
+                                    + "des.dia,\n"
+                                    + "des.mes,\n"
+                                    + "des.ano,\n"
+                                    + "des.valor,\n"
+                                    + "des.estatus,\n"
+                                    + "des.categoria_id,\n"
+                                    + "des_c.n_parcelas,\n"
+                                    + "des_c.n_parcelas_pagas,\n"
+                                    + "des_c.valor_parcela,\n"
+                                    + "des.descricao\n"
+                                    + "FROM despesa des LEFT JOIN despesa_credito des_c\n"
+                                    + "ON des.cod_despesa = des_c.despesa_cod_despesa\n"
+                                    + "WHERE des.num_cartao_credito = ? AND des.conta_id_conta = ?";
+        
+        PreparedStatement pst_SelectDespesasFatura = null;
+        ResultSet rs_SelectDespesasFatura = null;
+        
+        try
+        {
+            pst_SelectDespesasFatura = conexao.prepareStatement(SelectDespesasFatura);
+            
+            pst_SelectDespesasFatura.setLong(1, numCartaoCredito);
+            pst_SelectDespesasFatura.setInt(2, id_conta);
+            
+            rs_SelectDespesasFatura = pst_SelectDespesasFatura.executeQuery();
+            
+            LinkedList<Despesa> lista_despesaFatura = new LinkedList<Despesa>();
+
+            while (rs_SelectDespesasFatura.next()) {
+
+                Despesa despesa = new Despesa();
+                
+                despesa.setDia(rs_SelectDespesasFatura.getInt("dia"));
+                despesa.setMes(rs_SelectDespesasFatura.getInt("mes"));
+                despesa.setAno(rs_SelectDespesasFatura.getInt("ano"));
+                despesa.setValor(rs_SelectDespesasFatura.getFloat("valor"));
+                despesa.setEstatus(rs_SelectDespesasFatura.getString("estatus"));
+                despesa.setId_categoria(rs_SelectDespesasFatura.getInt("categoria_id"));
+                despesa.setNum_parcelas(rs_SelectDespesasFatura.getInt("n_parcelas"));
+                despesa.setNum_parcelas_pagas(rs_SelectDespesasFatura.getInt("n_parcelas_pagas"));
+                despesa.setValor_parcela(rs_SelectDespesasFatura.getFloat("valor_parcela"));
+                
+                despesa.setDescricao(rs_SelectDespesasFatura.getString("descricao"));
+
+                lista_despesaFatura.add(despesa);
+            }
+                
+           return lista_despesaFatura;
+                  
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            JOptionPane.showMessageDialog(null, "Erro:GetListaDespesaFatura", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            return null;
+        }
+        finally
+        {
+            pst_SelectDespesasFatura.close();
+            rs_SelectDespesasFatura.close();
+        }   
+    }
+    
+    public LinkedList<Despesa> ConsultaDespesaFatura(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+
+        String argumento = "";
+        
+        if(ordenar)
+            argumento =  "des.conta_id_conta = " + id_conta + " AND " + "cat.conta_id_conta = " + id_conta + " AND " + tipo + " " + "LIKE '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
+        else
+            argumento =  "des.conta_id_conta = " + id_conta + " AND " + "cat.conta_id_conta = " + id_conta + " AND " + tipo + " " + "LIKE '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+       
+        
+        String consulta = "SELECT \n"
+                        + "des.dia,\n"
+                        + "des.mes,\n"
+                        + "des.ano,\n"
+                        + "des.valor,\n"
+                        + "des.estatus,\n"
+                        + "cat.categoriaTipo,\n"
+                        + "des_c.n_parcelas,\n"
+                        + "des_c.n_parcelas_pagas,\n"
+                        + "des_c.valor_parcela\n"
+                        + "FROM despesa des INNER JOIN despesa_credito des_c \n"
+                        + "on des_c.despesa_cod_despesa = des.cod_despesa\n"
+                        + "INNER JOIN categoria cat \n"
+                        + "on cat.categoriaId = des.categoria_id\n"
+                        + "WHERE " + argumento + "";
+
+        ResultSet rs = null;
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Despesa> ListaDespesaFatura = new LinkedList<Despesa>();
+
+        try {
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                Despesa despesa = new Despesa();
+                
+                despesa.setDia(rs.getInt("dia"));
+                despesa.setMes(rs.getInt("mes"));
+                despesa.setAno(rs.getInt("ano"));
+                despesa.setValor(rs.getFloat("valor"));
+                despesa.setEstatus(rs.getString("estatus"));
+                despesa.setCategoria(rs.getString("categoriaTipo"));
+                despesa.setNum_parcelas(rs.getInt("n_parcelas"));
+                despesa.setNum_parcelas_pagas(rs.getInt("n_parcelas_pagas"));
+                despesa.setValor_parcela(rs.getFloat("valor_parcela"));
+                despesa.setId_conta(id_conta);
+                
+                ListaDespesaFatura.add(despesa);
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:ConsultaDespesaFatura", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+        } finally {
+
+            pst.close();
+            rs.close();
+        }
+
+        return ListaDespesaFatura;
+
+    }
 }

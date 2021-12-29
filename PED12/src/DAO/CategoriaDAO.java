@@ -1,8 +1,6 @@
 
 package DAO;
 
-import DAO.moduloConexao;
-import Model.CartaoCredito;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -316,48 +314,6 @@ public class CategoriaDAO {
 
     }
     
-    
-    public LinkedList<Categoria> PreencherCamposCategoria(String cat, int id_conta) throws SQLException {
-
-        String consulta = "select * from categoria where (categoriaTipo = ? and conta_id_conta = ?)";
-
-        PreparedStatement pst = conexao.prepareStatement(consulta);
-
-        ResultSet rs = null;
-
-        LinkedList<Categoria> lista_categoria = new LinkedList();
-
-        try {
-            pst.setString(1, cat);
-            pst.setInt(2, id_conta);
-
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                 
-                
-                lista_categoria.add(new Categoria(
-                    rs.getString("categoriaTipo"))
-                    
-                );
-                
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        } finally {
-
-            pst.close();
-        }
-        
-        
-        return lista_categoria;
-
-    }
-    
-        
     public boolean CategoriaExiste(String cat, int id_conta) throws SQLException {
 
         String consulta = "select * from categoria where (categoriaTipo = ? and conta_id_conta= ?)";
@@ -436,6 +392,46 @@ public class CategoriaDAO {
         }
         
     }
+    
+    public String GetTipoCategoria(int id_categoria, int id_conta) throws SQLException{
+        
+        String GetTipoCategoria = "SELECT categoriaTipo FROM categoria WHERE (categoriaId = ? AND conta_id_conta= ?)";
+
+        PreparedStatement pst_GetTipoCategoria = null;
+
+        ResultSet rs_GetTipoCategoria = null;
+
+        try {
+            
+            pst_GetTipoCategoria = conexao.prepareStatement(GetTipoCategoria);
+
+            pst_GetTipoCategoria.setInt(1, id_categoria);
+
+            pst_GetTipoCategoria.setInt(2, id_conta);
+
+            rs_GetTipoCategoria = pst_GetTipoCategoria.executeQuery();
+
+            if (rs_GetTipoCategoria.next()) {
+
+                return rs_GetTipoCategoria.getString("categoriaTipo");
+            } 
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            JOptionPane.showMessageDialog(null, "Erro:GetTipoCategoria", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        finally
+        {
+            pst_GetTipoCategoria.close();
+            rs_GetTipoCategoria.close();
+        }
+        
+        return null;
+    }
+    
    
     
 }

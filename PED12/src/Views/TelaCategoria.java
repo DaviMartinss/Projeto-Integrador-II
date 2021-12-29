@@ -265,7 +265,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Categorias");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 110, 26);
+        pageTitle.setBounds(360, 0, 110, 24);
 
         jt_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -324,7 +324,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(selectorUp);
-        selectorUp.setBounds(150, 150, 96, 27);
+        selectorUp.setBounds(150, 150, 93, 27);
 
         selectorDown.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         selectorDown.setText("Descendente");
@@ -334,7 +334,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(selectorDown);
-        selectorDown.setBounds(250, 150, 103, 27);
+        selectorDown.setBounds(250, 150, 101, 27);
 
         btn_voltaInicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_voltaInicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -425,7 +425,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         background.getAccessibleContext().setAccessibleName("background");
 
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 21);
+        txt_id.setBounds(0, 0, 49, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -434,33 +434,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         String cat = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
-
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
-
-        int selLinha = -1;
-        selLinha = jt_categoria.getSelectedRow();
-
-        if (selLinha != -1) {
-            salvaLinhaAtiva = true;
-        }
-
-        ResultSet rs = null;
-
-        try {
-
-            LinkedList<Categoria> lista_categoria = categoriaDAO.PreencherCamposCategoria(cat, Integer.parseInt(txt_id.getText()));
-
-            txt_NomeCategoria.setText(lista_categoria.element().getCategoria_aux()); 
-
-            salvaCategoria = txt_NomeCategoria.getText();
-
-            System.out.println("Salvando categoria "+salvaCategoria);
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
-        }
-        
+        txt_NomeCategoria.setText(cat);
         
     }//GEN-LAST:event_jt_categoriaMouseClicked
 

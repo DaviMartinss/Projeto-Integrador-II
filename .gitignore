@@ -1,14 +1,14 @@
 #
-# Exclusões específicas do projeto
+# Exclusï¿½es especï¿½ficas do projeto
 #
 
 gato
 
 #
-# Exclusão padrão
+# Exclusï¿½o padrï¿½o
 #
 
-# Binários
+# Binï¿½rios
 * .7z
 * .dmg
 * .gz
@@ -39,3 +39,4 @@ PED12/Sistema_finaceiro_PI/nb-configuration.xml
 *.jar
 *.war
 *.ear
+/PED12/dist/

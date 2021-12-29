@@ -129,7 +129,7 @@ public class TelaLogin extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Bem Vinde ao Ped1/2");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(300, 0, 220, 26);
+        pageTitle.setBounds(300, 0, 220, 24);
 
         txtEmail.setBackground(new java.awt.Color(187, 210, 240));
         txtEmail.setAlignmentX(1.0F);

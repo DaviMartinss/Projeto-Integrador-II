@@ -278,45 +278,6 @@ public class CartaoDebitoDAO {
        
    }
    
-   public LinkedList<CartaoDebito> PreencherCamposCartao_D(String num_cartao, int id_conta) throws SQLException {
- 
-       String consulta = "SELECT n_cartao_debito, valor_atual, bandeira FROM cartao_debito WHERE  n_cartao_debito = ?";
-    
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       LinkedList<CartaoDebito> lista_CD = new LinkedList();
-       
-       ResultSet rs = null;
-       
-       try {
-           
-           pst.setLong(1, Long.parseLong(num_cartao));
-           
-           rs = pst.executeQuery();
-           
-            while(rs.next()){
-               
-               lista_CD.add(new CartaoDebito(
-                 Long.parseLong(rs.getString("n_cartao_debito")),
-                 Float.parseFloat(rs.getString("valor_atual")),
-                 rs.getString("bandeira"),
-                 id_conta)         
-                );
-           }
-
-       } catch (Exception e) {
-
-           JOptionPane.showMessageDialog(null, e.getMessage());
-
-       }finally{
-           
-           pst.close();
-       }
-
-       return lista_CD;
-       
-   }
-   
    public boolean CartaoDebitoExiste(CartaoDebito cartao) throws SQLException{
        
        String consulta = "select n_cartao_debito from cartao_debito where n_cartao_debito = ? and conta_id_conta =?";

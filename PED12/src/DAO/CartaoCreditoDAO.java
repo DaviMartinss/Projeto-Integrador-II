@@ -6,7 +6,6 @@
 package DAO;
 
 import Model.CartaoCredito;
-import Model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -434,49 +433,6 @@ public class CartaoCreditoDAO {
 
     }
 
-    public LinkedList<CartaoCredito> PreencherCamposCartao_C(String num_cartao, int id_conta) throws SQLException {
-
-        String consulta = "SELECT n_cartao_credito, limite, credito, dia_fatura, valor_fatura, bandeira FROM cartao_credito WHERE n_cartao_credito = ?";
-
-        PreparedStatement pst = conexao.prepareStatement(consulta);
-
-        ResultSet rs = null;
-
-        LinkedList<CartaoCredito> lista_CC = new LinkedList();
-
-        try {
-
-            pst.setLong(1, Long.parseLong(num_cartao));
-
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-
-                lista_CC.add(new CartaoCredito(
-                        Long.parseLong(rs.getString("n_cartao_credito")),
-                        Float.parseFloat(rs.getString("limite")),
-                        Float.parseFloat(rs.getString("credito")),
-                        Integer.parseInt(rs.getString("dia_fatura")),
-                        Float.parseFloat(rs.getString("valor_fatura")),
-                        rs.getString("bandeira"),
-                        id_conta)
-                );
-
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        } finally {
-            
-            pst.close();
-        }
-
-        return lista_CC;
-        
-    }
-
     public boolean CartaoCreditoExiste(CartaoCredito cartao) throws SQLException {
 
         String consulta = "select n_cartao_credito from cartao_credito where n_cartao_credito = ? and conta_id_conta =?";
@@ -509,6 +465,54 @@ public class CartaoCreditoDAO {
             return false;
 
         }
+    }
+    
+    public CartaoCredito GetCartaoCredito(long numCartao, int id_conta) throws SQLException {
 
+        String consulta = "SELECT \n"
+                        + "n_cartao_credito,\n"
+                        + "limite,\n"
+                        + "credito,\n"
+                        + "dia_fatura,\n"
+                        + "valor_fatura,\n"
+                        + "bandeira,\n"
+                        + "conta_id_conta\n"
+                        + "FROM cartao_credito\n"
+                        + "WHERE n_cartao_credito = ? AND conta_id_conta = ?";
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        ResultSet rs = null;
+        
+        CartaoCredito cartao = new CartaoCredito();
+
+        try {
+
+            pst.setLong(1, numCartao);
+
+            pst.setInt(2, id_conta);
+
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                cartao.setId_conta(rs.getInt("conta_id_conta"));
+                cartao.setDia_fatura(rs.getInt("dia_fatura"));
+                cartao.setLimite(rs.getFloat("limite"));
+                cartao.setCredito(rs.getFloat("credito"));
+                cartao.setValor_fatura(rs.getFloat("valor_fatura"));
+                cartao.setBandeira(rs.getString("bandeira"));    
+            }
+            
+            return cartao;
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:GetCartaoCredito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return null;
+        }
     }
 }

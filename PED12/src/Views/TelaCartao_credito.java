@@ -7,16 +7,8 @@ package Views;
 
 import Controllers.ControlerTabela;
 import DAO.CartaoCreditoDAO;
-import DAO.UsuarioDAO;
-import DAO.moduloConexao;
 import Model.CartaoCredito;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ValidacaoComum.Validacao;
@@ -151,29 +143,36 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     }
     
-    void TelaCartaoCredito_ListaFaturas() {
+    void TelaFatura() {
 
-        TelaCartaoCredito_ListaFaturas TelaCC_ListaFaturas = null;
+        TelaFatura telaFatura = null;
+        
+        if (!txt_NumCartaoC.getText().isEmpty()) {
+            
+            if (telaFatura == null) {
 
-        if (TelaCC_ListaFaturas == null) {
+                telaFatura = new TelaFatura();
 
-            TelaCC_ListaFaturas = new TelaCartaoCredito_ListaFaturas();
+                telaFatura.setVisible(true);
 
-            TelaCC_ListaFaturas.setVisible(true);
+                telaFatura.receberIdAndNumCartao(txt_NumCartaoC.getText(),txt_id.getText());
 
-            TelaCC_ListaFaturas.receberID(txt_id.getText());
+            } else {
 
-        } else {
+                telaFatura.setVisible(true);
 
-            TelaCC_ListaFaturas.setVisible(true);
+                telaFatura.setState(TelaPrincipal.NORMAL);
+                  
+                telaFatura.receberIdAndNumCartao(txt_NumCartaoC.getText(),txt_id.getText());
 
-            TelaCC_ListaFaturas.setState(TelaPrincipal.NORMAL);
-
-            TelaCC_ListaFaturas.receberID(txt_id.getText());
-
+            }
+            
+             this.dispose();
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Selecione um Cartão de Crédito", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
 
-        this.dispose();
     }
 
     void RecarregaTabela_CartaoCC() {
@@ -358,7 +357,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Cartão de Crédito");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(330, 0, 170, 26);
+        pageTitle.setBounds(330, 0, 170, 24);
 
         jtConsultaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCC.setModel(new javax.swing.table.DefaultTableModel(
@@ -624,7 +623,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(30, 10, 81, 21);
+        txt_id.setBounds(30, 10, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -785,34 +784,24 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String num_cartao = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 0);
+        String limite = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 1);
+        String diaFatura = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 3);
+        String valorFatura = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 4);
+        String bandeira = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 5);
+        
+        txt_NumCartaoC.setText(num_cartao);
+        txt_Limite.setText(limite);
+        txt_ValorFatura.setText(diaFatura);
+        txt_DiaFatura.setText(valorFatura);
+        txt_Bandeira.setText(bandeira);
+        salva_num_cartao = Long.parseLong(num_cartao);
+        
+        int selLinha = -1;
+        selLinha = jtConsultaCC.getSelectedRow();
 
-        CartaoCreditoDAO cartaoDAO = new CartaoCreditoDAO();
-
-        ResultSet rs = null;
-
-        try {
-
-            LinkedList<CartaoCredito> lista_CC = cartaoDAO.PreencherCamposCartao_C(num_cartao, Integer.parseInt(txt_id.getText()));
-
-            txt_NumCartaoC.setText(Long.toString(lista_CC.element().getN_cartao_credito()));
-            txt_Limite.setText(Float.toString(lista_CC.element().getLimite()));
-            txt_ValorFatura.setText(Float.toString(lista_CC.element().getValor_fatura()));
-            txt_DiaFatura.setText(Integer.toString(lista_CC.element().getDia_fatura()));
-            txt_Bandeira.setText(lista_CC.element().getBandeira());
-            salva_num_cartao = lista_CC.element().getN_cartao_credito();
-
-            int selLinha = -1;
-            selLinha = jtConsultaCC.getSelectedRow();
-
-            if (selLinha != -1) {
-                salvaLinhaAtiva = true;
-            }
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
+        if (selLinha != -1) {
+            salvaLinhaAtiva = true;
         }
-
     }//GEN-LAST:event_jtConsultaCCMouseClicked
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
@@ -892,12 +881,11 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private void btn_ListarFaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ListarFaturasActionPerformed
         // TODO add your handling code here:
         
-        TelaCartaoCredito_ListaFaturas();
     }//GEN-LAST:event_btn_ListarFaturasActionPerformed
 
     private void btnListaFaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaFaturasActionPerformed
         // TODO add your handling code here:
-        TelaCartaoCredito_ListaFaturas();
+        TelaFatura();
     }//GEN-LAST:event_btnListaFaturasActionPerformed
 
     /**

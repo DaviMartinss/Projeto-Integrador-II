@@ -417,59 +417,6 @@ public class ReceitaDAO {
 
     }
 
-    public LinkedList<Receita> PreencherCampos_Receita(String dia, String mes, String ano, String id_conta) throws SQLException {
-
-        String consulta = "SELECT re.total, re_da.dia, re_da.mes, re_da.ano FROM"
-                + " receita_data re_da, receita re "
-                + "WHERE re.conta_id_conta = ? and re.receita_data_cod_receita = re_da.cod_receita "
-                + "and re_da.dia = ? and re_da.mes = ? and re_da.ano = ?";
-
-        PreparedStatement pst = conexao.prepareStatement(consulta);
-
-        ResultSet rs = null;
-
-        LinkedList<Receita> lista_receita = new LinkedList();
-
-        try {
-
-            pst.setInt(1, Integer.parseInt(id_conta));
-
-            pst.setInt(2, Integer.parseInt(dia));
-
-            pst.setInt(3, Integer.parseInt(mes));
-
-            pst.setInt(4, Integer.parseInt(ano));
-
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-
-                lista_receita.add(new Receita(
-                        Integer.parseInt(rs.getString("dia")),
-                        Integer.parseInt(rs.getString("mes")),
-                        Integer.parseInt(rs.getString("ano")),
-                        Float.parseFloat(rs.getString("total")),
-                        Integer.parseInt(id_conta))
-                );
-
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-            JOptionPane.showMessageDialog(null, "ERRO:PreencherCampos_Receita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-        } finally {
-
-            pst.close();
-            rs.close();
-        }
-
-        return lista_receita;
-
-    }
-
     public boolean ReceitaExiste(Receita receita) throws SQLException {
 
         String SelectReceitaExiste = "SELECT COUNT(*) count FROM receita WHERE conta_id_conta = ? AND mes = ? AND ano = ?;";

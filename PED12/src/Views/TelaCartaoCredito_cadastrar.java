@@ -9,7 +9,7 @@ import DAO.UsuarioDAO;
 import Model.CartaoCredito;
 import DAO.moduloConexao;
 import DAO.CartaoCreditoDAO;
-import Model.Cartao;
+import Model.CartaoCredito;
 import ValidacaoComum.Validacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -263,7 +263,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 4, 21);
+        txt_id.setBounds(0, 0, 6, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
