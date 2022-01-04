@@ -17,6 +17,7 @@ public class CategoriaDAO {
     
     private Connection conexao = null;
 
+    // Criar Classe
     public CategoriaDAO() {
 
         conexao = moduloConexao.conector();
@@ -141,7 +142,7 @@ public class CategoriaDAO {
 
     }
     
-    public LinkedList<Categoria> Consulta_Categoria(String arg, int id_conta, boolean ordenar) throws SQLException {
+    public LinkedList<Categoria> ConsultaCategoria(String arg, int id_conta, boolean ordenar) throws SQLException {
 
         String argumento = "";
 
@@ -191,8 +192,7 @@ public class CategoriaDAO {
 
     }
     
-    
-    public int GetCategoriaId(int id_conta, String categoria) throws SQLException {
+    public int GetIdCategoria(int id_conta, String categoria) throws SQLException {
 
         String SelectCategoriaId = "SELECT categoriaId FROM categoria WHERE (categoriaTipo = ? AND conta_id_conta = ?);";
 
@@ -233,7 +233,7 @@ public class CategoriaDAO {
     }
     
     // busca o id de uma categoria pelo o id da despesa
-    public int ConsultaIdCategoria_despesa(String cat, int id_conta) throws SQLException {
+    public int GetDespesaCategoria(String cat, int id_conta) throws SQLException {
 
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -275,7 +275,7 @@ public class CategoriaDAO {
     // parte para ser modificada
     
     
-    public LinkedList<Categoria> CarregaTabela_categoria(int id_conta) throws SQLException {
+    public LinkedList<Categoria> TabelaCategoria(int id_conta) throws SQLException {
 
         String consulta = "select * from categoria where conta_id_conta = ?";
 
@@ -348,7 +348,7 @@ public class CategoriaDAO {
         }
     }
     
-    public boolean consultaCat_desData(Categoria cat, int id, int id_apag){
+    public boolean GetDataCategoria(Categoria cat, int id, int id_apag){
         
         PreparedStatement pst1 = null;
         ResultSet rs1 = null;
@@ -431,7 +431,4 @@ public class CategoriaDAO {
         
         return null;
     }
-    
-   
-    
 }

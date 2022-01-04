@@ -15,7 +15,7 @@ public class moduloConexao {
         
         String driver = "com.mysql.cj.jdbc.Driver";  
         
-        String url = "jdbc:mysql://localhost:3306/bd_pedemeia";          
+        String url = "jdbc:mysql://127.0.0.1:3306/bd_pedemeia";          
         String user = "root";          
 
         String password = "";  
