@@ -6,15 +6,9 @@
 package Views;
 
 import DAO.CartaoDebitoDAO;
-import DAO.moduloConexao;
 import Model.CartaoDebito;
 import ValidacaoComum.Validacao;
-import java.awt.FlowLayout;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import Controllers.ControlerTabela;
-import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
