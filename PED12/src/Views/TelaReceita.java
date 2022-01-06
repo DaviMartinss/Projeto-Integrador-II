@@ -759,8 +759,6 @@ public class TelaReceita extends javax.swing.JFrame{
         if (txt_Pesquisa.getText().isEmpty()) {
             RecarregaTabela();
             
-            rbDescendente.setSelected(false);
-            rbAscendente.setSelected(false);
         }
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
