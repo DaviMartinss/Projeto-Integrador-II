@@ -1,4 +1,3 @@
-
 package DAO;
 
 import java.sql.Connection;
@@ -9,12 +8,13 @@ import Model.Categoria;
 import Model.Despesa;
 import java.sql.ResultSet;
 import java.util.LinkedList;
+
 /**
  *
  * @author pc
  */
 public class CategoriaDAO {
-    
+
     private Connection conexao = null;
 
     // Criar Classe
@@ -25,15 +25,15 @@ public class CategoriaDAO {
     }
 
     public boolean CadastrarCategoria(Categoria categoria) throws SQLException {
-        
-        Categoria categoria_aux  = new Categoria();
-        
-        if(!(categoria_aux.valorEhVazio(categoria.getCategoriaTipo()))){
-        
-            if(!(CategoriaExiste(categoria.getCategoriaTipo(), categoria.getId_conta()))){
+
+        Categoria categoria_aux = new Categoria();
+
+        if (!(categoria_aux.valorEhVazio(categoria.getCategoriaTipo()))) {
+
+            if (!(CategoriaExiste(categoria.getCategoriaTipo(), categoria.getId_conta()))) {
                 PreparedStatement pst = null;
 
-                String insert = "insert into categoria (categoriaTipo, conta_id_conta) values(?, ?);";
+                String insert = "INSERT INTO categoria (categoriaTipo, conta_id_conta) VALUES (?, ?);";
 
                 pst = conexao.prepareStatement(insert);
 
@@ -56,34 +56,33 @@ public class CategoriaDAO {
 
                     pst.close();
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Essa categoria já foi cadastrada");
 
                 return false;
             }
-        }else{
-            
+        } else {
+
             JOptionPane.showMessageDialog(null, "Nenhum campo pode ser nulo");
 
             return false;
         }
-   }
-    
+    }
+
     public boolean UpdateCategoria(Categoria categoria) throws SQLException {
-         
-        if(!(CategoriaExiste(categoria.getCategoriaTipo(), categoria.getId_conta() ))){
+
+        if (!(CategoriaExiste(categoria.getCategoriaTipo(), categoria.getId_conta()))) {
 
             PreparedStatement pst = null;
 
-            String update = "update categoria set categoriaTipo=? where categoriaTipo = ?;";
+            String update = "UPDATE categoria SET categoriaTipo=? WHERE categoriaTipo = ?;";
 
             pst = conexao.prepareStatement(update);
 
             try {
-                
+
                 pst.setString(1, categoria.getCategoriaTipo().toUpperCase());
                 pst.setString(2, categoria.getCategoria_aux());
-
 
                 pst.executeUpdate();
 
@@ -99,23 +98,21 @@ public class CategoriaDAO {
 
                 pst.close();
             }
-        }else{
-            
+        } else {
+
             JOptionPane.showMessageDialog(null, "Essa categoria já foi cadastrada");
-            
+
             return false;
         }
     }
-    
+
     public boolean DeleteCategoria(Categoria categoria, int id) throws SQLException {
 
         PreparedStatement pst = null;
-       
-       if(consultaCat_desData(categoria, id, ConsultaIdCategoria_despesa(categoria.getCategoria_aux(), id))){
-           
-        
-            String delete = "delete from categoria where categoriaTipo = ?";
 
+        if (GetCategoriaData(categoria, id, GetDespesaCategoria(categoria.getCategoria_aux(), id))) {
+
+            String delete = "DELETE FROM categoria WHERE categoriaTipo = ?";
 
             pst = conexao.prepareStatement(delete);
 
@@ -135,29 +132,29 @@ public class CategoriaDAO {
 
                 pst.close();
             }
-        }else{
-           JOptionPane.showMessageDialog(null, "Falha: Voce têm uma despesa com essa categoria");
-           return false;
-       }
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha: Voce têm uma despesa com essa categoria");
+            return false;
+        }
 
     }
-    
+
     public LinkedList<Categoria> ConsultaCategoria(String arg, int id_conta, boolean ordenar) throws SQLException {
 
         String argumento = "";
 
         if (ordenar) {
 
-            argumento = " and categoriaTipo" + " " + "like '" + arg + "%'";
+            argumento = " AND categoriaTipo" + " " + "LIKE '" + arg + "%'";
 
         } else {
 
-            argumento = " and categoriaTipo" + " " + "like '" + arg + "%'";
+            argumento = " AND categoriaTipo" + " " + "LIKE '" + arg + "%'";
         }
 
-        String consulta = "SELECT categoriaTipo from categoria where categoria.conta_id_conta = ?"
-                        + argumento + "";
-        
+        String consulta = "SELECT categoriaTipo FROM categoria WHERE categoria.conta_id_conta = ?"
+                + argumento + "";
+
         ResultSet rs = null;
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
@@ -191,8 +188,8 @@ public class CategoriaDAO {
         return lista_categoria;
 
     }
-    
-    public int GetIdCategoria(int id_conta, String categoria) throws SQLException {
+
+    public int GetCategoriaId(int id_conta, String categoria) throws SQLException {
 
         String SelectCategoriaId = "SELECT categoriaId FROM categoria WHERE (categoriaTipo = ? AND conta_id_conta = ?);";
 
@@ -202,18 +199,18 @@ public class CategoriaDAO {
         try {
 
             pst_SelectCategoriaId = conexao.prepareStatement(SelectCategoriaId);
-            
+
             pst_SelectCategoriaId.setString(1, categoria);
-            
+
             pst_SelectCategoriaId.setInt(2, id_conta);
-           
+
             rs_SelectCategoriaId = pst_SelectCategoriaId.executeQuery();
 
-            if (rs_SelectCategoriaId.next()) 
+            if (rs_SelectCategoriaId.next()) {
                 return rs_SelectCategoriaId.getInt("categoriaId");
-            else 
+            } else {
                 return 0;
-            
+            }
 
         } catch (Exception e) {
 
@@ -231,27 +228,26 @@ public class CategoriaDAO {
         }
 
     }
-    
+
     // busca o id de uma categoria pelo o id da despesa
     public int GetDespesaCategoria(String cat, int id_conta) throws SQLException {
 
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String consulta = "select categoriaId from categoria where (categoriaTipo = ? and conta_id_conta = ?)";
+        String consulta = "SELECT categoriaId FROM categoria WHERE (categoriaTipo = ? AND conta_id_conta = ?)";
 
         pst = conexao.prepareStatement(consulta);
 
         try {
-            
+
             pst.setString(1, cat);
             pst.setInt(2, id_conta);
-            
-             rs = pst.executeQuery();
-            
-            
+
+            rs = pst.executeQuery();
+
             if (rs.next()) {
 
-                 return rs.getInt(1);
+                return rs.getInt(1);
 
             } else {
 
@@ -270,14 +266,11 @@ public class CategoriaDAO {
         }
 
     }
-   
-    
+
     // parte para ser modificada
-    
-    
     public LinkedList<Categoria> TabelaCategoria(int id_conta) throws SQLException {
 
-        String consulta = "select * from categoria where conta_id_conta = ?";
+        String consulta = "SELECT * FROM categoria WHERE conta_id_conta = ?";
 
         ResultSet rs = null;
 
@@ -290,13 +283,11 @@ public class CategoriaDAO {
             pst.setInt(1, id_conta);
 
             rs = pst.executeQuery();
-                
-           
+
             while (rs.next()) {
 
                 lista_Categoria.add(new Categoria(
                         rs.getString("categoriaTipo"))
-                        
                 );
 
             }
@@ -313,10 +304,10 @@ public class CategoriaDAO {
         return lista_Categoria;
 
     }
-    
+
     public boolean CategoriaExiste(String cat, int id_conta) throws SQLException {
 
-        String consulta = "select * from categoria where (categoriaTipo = ? and conta_id_conta= ?)";
+        String consulta = "SELECT * FROM categoria WHERE (categoriaTipo = ? AND conta_id_conta= ?)";
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
@@ -347,54 +338,53 @@ public class CategoriaDAO {
 
         }
     }
-    
-    public boolean GetDataCategoria(Categoria cat, int id, int id_apag){
-        
+
+    public boolean GetCategoriaData(Categoria cat, int id, int id_apag) {
+
         PreparedStatement pst1 = null;
         ResultSet rs1 = null;
-        
+
         boolean apa = true;
-        
-        String consulta1 = "select categoria_id from despesa_data dt left join despesa d on dt.cod_despesa = d.despesa_data_cod_despesa where dt.conta_id_conta = ?";
-        
-        try{
-            
-            pst1= conexao.prepareStatement(consulta1);
-            
+
+        String consulta1 = "SELECT categoria_id FROM despesa_data dt left join despesa d on dt.cod_despesa = d.despesa_data_cod_despesa where dt.conta_id_conta = ?";
+
+        try {
+
+            pst1 = conexao.prepareStatement(consulta1);
+
             pst1.setInt(1, id);
-            
+
             rs1 = pst1.executeQuery();
-           
+
             while (rs1.next()) {
-                
+
                 Despesa Desp_cat_aux = new Despesa();
-                
+
                 Desp_cat_aux.setId_categoria(rs1.getInt("categoria_id"));
-                
-                if(id_apag == rs1.getInt("categoria_id")){
+
+                if (id_apag == rs1.getInt("categoria_id")) {
                     apa = false;
                 }
             }
-            
-            
-        }catch(Exception e){
-            
+
+        } catch (Exception e) {
+
             JOptionPane.showMessageDialog(null, "Falha ao consultar as categorias da despesas");
         }
-        
-        if(apa){
-            
+
+        if (apa) {
+
             return true;
-            
-        }else{
-            
+
+        } else {
+
             return false;
         }
-        
+
     }
-    
-    public String GetTipoCategoria(int id_categoria, int id_conta) throws SQLException{
-        
+
+    public String GetTipoCategoria(int id_categoria, int id_conta) throws SQLException {
+
         String GetTipoCategoria = "SELECT categoriaTipo FROM categoria WHERE (categoriaId = ? AND conta_id_conta= ?)";
 
         PreparedStatement pst_GetTipoCategoria = null;
@@ -402,7 +392,7 @@ public class CategoriaDAO {
         ResultSet rs_GetTipoCategoria = null;
 
         try {
-            
+
             pst_GetTipoCategoria = conexao.prepareStatement(GetTipoCategoria);
 
             pst_GetTipoCategoria.setInt(1, id_categoria);
@@ -414,21 +404,18 @@ public class CategoriaDAO {
             if (rs_GetTipoCategoria.next()) {
 
                 return rs_GetTipoCategoria.getString("categoriaTipo");
-            } 
+            }
 
         } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
+
             JOptionPane.showMessageDialog(null, "Erro:GetTipoCategoria", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
-        }
-        finally
-        {
+        } finally {
             pst_GetTipoCategoria.close();
             rs_GetTipoCategoria.close();
         }
-        
+
         return null;
     }
 }

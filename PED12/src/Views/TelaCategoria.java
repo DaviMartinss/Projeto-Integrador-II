@@ -5,13 +5,9 @@
  */
 package Views;
 
-import DAO.CartaoCreditoDAO;
 import Model.Categoria;
 import javax.swing.JOptionPane;
 import DAO.CategoriaDAO;
-import Model.CartaoCredito;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Collections;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
@@ -170,7 +166,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
 
             
-            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(Integer.parseInt(txt_id.getText()));
+            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(Integer.parseInt(txt_id.getText()));
         
             if(!(ordena)){    
                     
@@ -555,7 +551,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
                 DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
 
-                LinkedList<Categoria> lista_categoria = categoriaDAO.Consulta_Categoria(argumento, Integer.parseInt(txt_id.getText()), ordenar);
+                LinkedList<Categoria> lista_categoria = categoriaDAO.ConsultaCategoria(argumento, Integer.parseInt(txt_id.getText()), ordenar);
 
                 if (ordenar) {
 

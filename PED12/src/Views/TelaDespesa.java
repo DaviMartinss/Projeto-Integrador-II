@@ -16,8 +16,6 @@ import Model.Receita;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ValidacaoComum.Validacao;
@@ -186,8 +184,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         try {
            int id_aux = Integer.parseInt(txt_id.getText()); 
             
-            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(id_aux);
-            
+            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(id_aux);
             
             for (Categoria cat : lista_categoria) {
 

@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package Model;
-import ValidacaoComum.Validacao;
-import java.util.Comparator;
 /**
  *
  * @author pc
  */
 
 public class Receita{
+    
+    //MUDAR O NOME DOS MÉTODOS DE VÁLIDAÇÃO E MELHORAR A LÓGICA ENVOLVIDA
     
     private int dia;
     private int mes;
@@ -203,12 +203,11 @@ public class Receita{
      */
     
     public boolean Update_CamposValidos(String dia, String mes, String ano, String valor){
-        Validacao valida = new Validacao();
         
-        int dia_aux = valida.converteParaInt(dia);
-        int mes_aux = valida.converteParaInt(mes);
-        int ano_aux = valida.converteParaInt(ano);
-        float valor_aux = valida.converteParaFloat(valor);
+        int dia_aux = Integer.parseInt(dia);
+        int mes_aux = Integer.parseInt(mes);
+        int ano_aux = Integer.parseInt(ano);
+        float valor_aux = Float.parseFloat(valor);
         
         if(dia_aux != -1 && mes_aux != -1 && ano_aux != -1 && valor_aux != -1){
             setDia(dia_aux);

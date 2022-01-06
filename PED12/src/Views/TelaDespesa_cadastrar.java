@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControlerReceita;
 import DAO.CategoriaDAO;
 import DAO.DespesaDAO;
 import DAO.ReceitaDAO;
@@ -31,6 +32,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
     PreparedStatement pst6 = null;
     ResultSet rs = null;
     ResultSet rs2 = null;
+    ControlerReceita controlerReceita= null;
 
     boolean FlagErroCadastroDespesa = true;
 
@@ -106,7 +108,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         try {
            int id_aux = Integer.parseInt(txt_id.getText()); 
             
-            LinkedList<Categoria> lista_categoria = categoria.CarregaTabela_categoria(id_aux);
+            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(id_aux);
             
             
             for (Categoria cat : lista_categoria) {
@@ -625,7 +627,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                         } 
                     }
                     
-                     if (!(receitaDAO.ReceitaTemSaldo(receita, despesa.getValor()))) {
+                     if (!(controlerReceita.ReceitaTemSaldo(receita, despesa.getValor()))) {
 
                         JOptionPane.showMessageDialog(this, "Receita correspondente não possui Saldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 

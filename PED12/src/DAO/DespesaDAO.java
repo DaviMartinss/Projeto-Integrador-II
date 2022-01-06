@@ -362,7 +362,7 @@ public class DespesaDAO {
         CategoriaDAO categoriaNova = new CategoriaDAO();
         
         
-        idCategoria =  categoriaNova.ConsultaIdCategoria_despesa(despesa.getCategoria(), id_conta);
+        idCategoria =  categoriaNova.GetDespesaCategoria(despesa.getCategoria(), id_conta);
         
         
         if (despesa.getF_pagamento().equals("CRÉDITO")) {
@@ -839,7 +839,6 @@ public class DespesaDAO {
             return false;
 
         }
-
     }
 
     public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String categoria, String id_conta) throws SQLException {
