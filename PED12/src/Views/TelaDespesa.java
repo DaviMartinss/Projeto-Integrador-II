@@ -201,6 +201,79 @@ public class TelaDespesa extends javax.swing.JFrame {
         
     }
 
+       void RecarregaTabela_DespesaCredito() {
+        
+        salvaLinhaAtiva = false;     
+        
+        ControlerTabela.LimpaTabela(jtConsultaDespesa);
+
+        try {
+
+            String Col0 = null;
+            String Col1 = null;
+            String Col2 = null;
+            String Col3 = null;
+            String Col4 = null;
+            String Col5 = null;
+            String Col6 = null;
+            String Col7 = null;
+            String Col8 = null;
+            String Col9 = null;
+            String Col10 = null;
+
+            DespesaDAO despesaDAO = new DespesaDAO();
+
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
+
+            LinkedList<Despesa> lista_despesa = despesaDAO.CarregaTabela_DespesaCredito(Integer.parseInt(txt_id.getText()));
+
+            for (Despesa despesa : lista_despesa) {
+
+                Col0 = Integer.toString(despesa.getCod_despesa());
+                Col1 = Integer.toString(despesa.getDia());
+                Col2 = Integer.toString(despesa.getMes());
+                Col3 = Integer.toString(despesa.getAno());
+                Col4 = Float.toString(despesa.getValor());
+                Col5 = despesa.getCategoria();
+                Col6 = despesa.getF_pagamento();
+                Col7 = Long.toString(despesa.getNum_cartao());
+                Col8 = Integer.toString(despesa.getNum_parcelas());
+                Col9 = despesa.getEstatus();
+                Col10 = despesa.getDescricao();
+
+                if (Col7.equals("0")) {
+
+                    Col7 = "----";
+
+                }
+
+                if (Col8 == null) {
+
+                    Col8 = "----";
+
+                }
+
+                if (Col10 == null) {
+
+                    Col10 = "----";
+
+                }
+
+                mp.addRow(new String[]{Col0, Col1, Col2, Col3,
+                    Col4, Col5, Col6, Col7,
+                    Col8, Col9, Col10});
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+
+    } 
+    
+    
     void RecarregaTabela_Despesa() {
         
         salvaLinhaAtiva = false;     
@@ -273,6 +346,78 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }
 
+    void RecarregaTabela_DespesaDebito() {
+        
+        salvaLinhaAtiva = false;     
+        
+        ControlerTabela.LimpaTabela(jtConsultaDespesa);
+
+        try {
+
+            String Col0 = null;
+            String Col1 = null;
+            String Col2 = null;
+            String Col3 = null;
+            String Col4 = null;
+            String Col5 = null;
+            String Col6 = null;
+            String Col7 = null;
+            String Col8 = null;
+            String Col9 = null;
+            String Col10 = null;
+
+            DespesaDAO despesaDAO = new DespesaDAO();
+
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
+
+            LinkedList<Despesa> lista_despesa = despesaDAO.CarregaTabela_DespesaDebito(Integer.parseInt(txt_id.getText()));
+
+            for (Despesa despesa : lista_despesa) {
+
+                Col0 = Integer.toString(despesa.getCod_despesa());
+                Col1 = Integer.toString(despesa.getDia());
+                Col2 = Integer.toString(despesa.getMes());
+                Col3 = Integer.toString(despesa.getAno());
+                Col4 = Float.toString(despesa.getValor());
+                Col5 = despesa.getCategoria();
+                Col6 = despesa.getF_pagamento();
+                Col7 = Long.toString(despesa.getNum_cartao());
+                Col8 = Integer.toString(despesa.getNum_parcelas());
+                Col9 = despesa.getEstatus();
+                Col10 = despesa.getDescricao();
+
+                if (Col7.equals("0")) {
+
+                    Col7 = "----";
+
+                }
+
+                if (Col8 == null) {
+
+                    Col8 = "----";
+
+                }
+
+                if (Col10 == null) {
+
+                    Col10 = "----";
+
+                }
+
+                mp.addRow(new String[]{Col0, Col1, Col2, Col3,
+                    Col4, Col5, Col6, Col7,
+                    Col8, Col9, Col10});
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+
+    } 
+    
     void PesquisaDespesa(boolean despesas) {
 
         boolean ordenar = true;
@@ -1074,6 +1219,9 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         if (txt_Pesquisa.getText().isEmpty()) {
             RecarregaTabela_Despesa();
+            //RecarregaTabela_DespesaCredito();
+            //RecarregaTabela_DespesaDebito();
+            
         }
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
@@ -1278,6 +1426,8 @@ public class TelaDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
         CarregaCategoria();
         RecarregaTabela_Despesa();
+        //RecarregaTabela_DespesaCredito();
+        //RecarregaTabela_DespesaDebito();
     }//GEN-LAST:event_formWindowOpened
 
     private void txtMesReceitaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMesReceitaKeyPressed
@@ -1432,6 +1582,8 @@ public class TelaDespesa extends javax.swing.JFrame {
             if (atualiza) {
 
                 telaUpdateDespesa();
+                //RecarregaTabela_DespesaCredito();
+                //RecarregaTabela_DespesaDebito();
                 RecarregaTabela_Despesa();
                 LimpaCampos_Despesa();
 
@@ -1450,6 +1602,8 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         // TODO add your handling code here:
         delete_despesa();
+        //RecarregaTabela_DespesaCredito();
+        //RecarregaTabela_DespesaDebito();
         RecarregaTabela_Despesa();
     }//GEN-LAST:event_btn_excluirActionPerformed
 

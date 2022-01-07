@@ -102,7 +102,22 @@ public class Despesa {
         this.descricao = descricao;
         this.cod_despesa = cod_despesa;
     }
-
+    // construtor -> Crédito
+    
+    public Despesa(int dia, int mes, int ano, float valor, int categoria, String f_pagamento, Long num_cartao_credito, int num_parcelas, String status, String descricao, int cod_despesa) {
+        this.dia = dia;
+        this.mes = mes;
+        this.ano = ano;
+        this.valor = valor;
+        this.categoria = "teste";
+        this.f_pagamento = f_pagamento;
+        this.num_cartao = num_cartao_credito;
+        this.num_parcelas = num_parcelas;
+        this.estatus = estatus;
+        this.descricao = descricao;
+        this.cod_despesa = cod_despesa;
+    }
+    
     public int getNum_parcelas_pagas() {
         return num_parcelas_pagas;
     }

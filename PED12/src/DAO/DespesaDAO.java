@@ -545,52 +545,29 @@ public class DespesaDAO {
         }
     }
 
-    public LinkedList<Despesa> CarregaTabela_Despesa(int id_conta) throws SQLException {
-        /*
+    public LinkedList<Despesa> CarregaTabela_DespesaCredito(int id_conta) throws SQLException {
+        
         String consulta
                 = "(select\n"
-                + "des_d.cod_despesa,\n"
-                + "des_d.dia,\n"
-                + "des_d.mes,\n"
-                + "des_d.ano,\n"
-                + "des.valor,\n"
-                + "des.categoria,\n"
-                + "des.f_pagamento,\n"
-                + "des.num_cartao,\n"
-                + "des_c.n_parcelas,\n"
-                + "des.estatus,\n"
-                + "des.descricao\n"
-                + "from despesa des\n"
-                + " LEFT OUTER JOIN despesa_data des_d on\n"
-                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
-                + " LEFT OUTER JOIN despesa_credito des_c on \n"
-                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
-                + "WHERE des_d.conta_id_conta = ?)";
-            */
-        
-        String consulta  
-            = "select\n"
-            + "des_d.cod_despesa,\n" 
-            + "des_d.dia,\n"
-            + "des_d.mes,\n"
-            + "des_d.ano,\n"
-            + "des.valor,\n"
-            + "des.categoria_id,\n"
-            + "des.f_pagamento,\n"
-            + "des.num_cartao,\n"
-            + "des_c.n_parcelas,\n"
-            + "des.estatus,\n"
-            + "des.descricao,\n"
-            + "C.categoriaTipo\n"
-            + "from despesa des\n"
-            + "        LEFT OUTER JOIN despesa_data des_d on\n"
-            + "        des.despesa_data_cod_despesa = des_d.cod_despesa\n"
-            + "        LEFT OUTER JOIN despesa_credito des_c on\n" 
-            + "        (des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
-            + "    left join categoria C on\n" 
-            + "    (C.categoriaId = des.categoria_id)\n"
-            + "        WHERE des_d.conta_id_conta = ?\n";
-        
+                + "des.cod_despesa,\n"
+                + "des.dia, \n"
+                + "des.mes, \n"
+                + "des.ano, \n"
+                + "des.valor, \n"
+                + "des.categoria_id, \n"
+                + "des.f_pagamento, \n"
+                + "des.num_cartao_credito, \n"
+                + "des_c.n_parcelas, \n"
+                + "des.estatus, \n"
+                + "des.descricao, \n"
+                + "C.categoriaTipo \n"
+                + "from despesa des \n"
+                + "LEFT OUTER JOIN despesa_credito des_c on \n"
+                + "(des.cod_despesa = des_c.despesa_cod_despesa) \n"
+                + "left join categoria C on \n"
+                + "(C.categoriaId = des.categoria_id) \n"
+                + "WHERE des.conta_id_conta = ? and des.f_pagamento = 'CRÉDITO')"; 
+           
         ResultSet rs = null;
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
@@ -604,21 +581,6 @@ public class DespesaDAO {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                /*
-                lista_despesa.add(new Despesa(
-                        rs.getInt("dia"),
-                        rs.getInt("mes"),
-                        rs.getInt("ano"),
-                        rs.getFloat("valor"),
-                        rs.getString("categoria"),
-                        rs.getString("f_pagamento"),
-                        rs.getLong("num_cartao"),
-                        rs.getInt("n_parcelas"),
-                        rs.getString("estatus"),
-                        rs.getString("descricao"),
-                        rs.getInt("cod_despesa")
-                ));
-                    */
                 lista_despesa.add(new Despesa(
                         rs.getInt("dia"),
                         rs.getInt("mes"),
@@ -626,7 +588,7 @@ public class DespesaDAO {
                         rs.getFloat("valor"),
                         rs.getString("categoriaTipo"),
                         rs.getString("f_pagamento"),
-                        rs.getLong("num_cartao"),
+                        rs.getLong("num_cartao_credito"),
                         rs.getInt("n_parcelas"),
                         rs.getString("estatus"),
                         rs.getString("descricao"),
@@ -641,6 +603,7 @@ public class DespesaDAO {
             JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:CarregaTabela_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             JOptionPane.showMessageDialog(null, e.getMessage());
+            
 
         } finally {
 
@@ -651,7 +614,86 @@ public class DespesaDAO {
         return lista_despesa;
 
     }
+    
+    public LinkedList<Despesa> CarregaTabela_DespesaDebito(int id_conta) throws SQLException {
+        
+        String consulta
+                = "(select\n"
+                + "des.cod_despesa,\n"
+                + "des.dia, \n"
+                + "des.mes, \n"
+                + "des.ano, \n"
+                + "des.valor, \n"
+                + "des.categoria_id, \n"
+                + "des.f_pagamento, \n"
+                + "des.num_cartao_debito, \n"
+                + "des_c.n_parcelas, \n"
+                + "des.estatus, \n"
+                + "des.descricao, \n"
+                + "C.categoriaTipo \n"
+                + "from despesa des \n"
+                + "LEFT OUTER JOIN despesa_credito des_c on \n"
+                + "(des.cod_despesa = des_c.despesa_cod_despesa) \n"
+                + "left join categoria C on \n"
+                + "(C.categoriaId = des.categoria_id) \n"
+                + "WHERE des.conta_id_conta = ? and des.f_pagamento = 'DÉBITO')"; 
+           
+        ResultSet rs = null;
 
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+
+        try {
+
+            pst.setInt(1, id_conta);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                lista_despesa.add(new Despesa(
+                        rs.getInt("dia"),
+                        rs.getInt("mes"),
+                        rs.getInt("ano"),
+                        rs.getFloat("valor"),
+                        rs.getString("categoriaTipo"),
+                        rs.getString("f_pagamento"),
+                        rs.getLong("num_cartao_debito"),
+                        rs.getInt("n_parcelas"),
+                        rs.getString("estatus"),
+                        rs.getString("descricao"),
+                        rs.getInt("cod_despesa")
+                ));
+
+
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:CarregaTabela_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            
+
+        } finally {
+
+            pst.close();
+
+        }
+
+        return lista_despesa;
+
+    }
+    
+    public LinkedList<Despesa> CarregaTabela_Despesa(int id_conta) throws SQLException {
+         LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+         
+         lista_despesa.addAll(CarregaTabela_DespesaCredito(id_conta));
+         lista_despesa.addAll(CarregaTabela_DespesaDebito(id_conta));    
+         
+         return lista_despesa;
+    }
+    
     public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, boolean despesas, String id_conta, Receita receita) throws SQLException {
 
         String argumento = "";
@@ -842,26 +884,6 @@ public class DespesaDAO {
     }
 
     public LinkedList<Despesa> PreencherCampos_Despesa(String dia, String mes, String ano, String categoria, String id_conta) throws SQLException {
-        /*
-        String consulta
-                = "(select\n"
-                + "des_d.dia,\n"
-                + "des_d.mes,\n"
-                + "des_d.ano,\n"
-                + "des.valor,\n"
-                + "des.categoria,\n"
-                + "des.f_pagamento,\n"
-                + "des.num_cartao,\n"
-                + "des_c.n_parcelas,\n"
-                + "des.estatus,\n"
-                + "des.descricao\n"
-                + "from despesa des\n"
-                + " LEFT OUTER JOIN despesa_data des_d on\n"
-                + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
-                + " LEFT OUTER JOIN despesa_credito des_c on \n"
-                + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
-                + "WHERE des_d.conta_id_conta = ? and des_d.dia = ? and des_d.mes = ? and des_d.ano = ? and des.categoria = ?);";
-            */
         
         String consulta  
             = "select\n"

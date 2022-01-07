@@ -16,13 +16,12 @@ public class moduloConexao {
         
         String driver = "com.mysql.cj.jdbc.Driver";  
         
-        String url = "jdbc:mysql://127.0.0.1:3306/bd_pedemeia";          
+        String url = "jdbc:mysql://127.0.0.1:3307/bd_pedemeia_01";          
         String user = "root";          
 
         String password = "";  
   
         try{
-   
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, password);
                         
