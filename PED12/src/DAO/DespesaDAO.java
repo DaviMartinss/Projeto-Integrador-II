@@ -518,7 +518,7 @@ public class DespesaDAO {
 
         PreparedStatement pst = null;
 
-        String update = "delete from despesa_data where cod_despesa = ?";
+        String update = "delete from despesa where cod_despesa = ?;";
 
         pst = conexao.prepareStatement(update);
 
