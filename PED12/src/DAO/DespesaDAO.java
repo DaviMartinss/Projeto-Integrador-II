@@ -364,6 +364,8 @@ public class DespesaDAO {
         
         idCategoria =  categoriaNova.GetDespesaCategoria(despesa.getCategoria(), id_conta);
         
+        System.out.println("O id categoria é: "+idCategoria);
+        
         
         if (despesa.getF_pagamento().equals("CRÉDITO")) {
             
@@ -373,7 +375,7 @@ public class DespesaDAO {
                 PreparedStatement pst1 = null;
                 PreparedStatement pst2 = null;
                 
-                String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa LEFT OUTER JOIN despesa_credito on (despesa.despesa_data_cod_despesa = despesa_credito.despesa_data_cod_despesa) SET dia = ?, mes = ?, ano = ?, valor = ?, categoria_id = ?, f_pagamento = ?, num_cartao=?, n_parcelas = ?, estatus=?, descricao=? where cod_despesa = ?";
+                String update = "update despesa  D LEFT OUTER JOIN despesa_credito DC ON D.cod_despesa = DC.despesa_cod_despesa SET dia = ?, mes = ?, ano = ?, valor = ?, categoria_id = ?, f_pagamento = ?, num_cartao_credito= ?, n_parcelas = ?, estatus= ?, descricao= ? WHERE D.cod_despesa = ?;";
 
                 pst1 = conexao.prepareStatement(update);
 
@@ -435,7 +437,7 @@ public class DespesaDAO {
         } else if (despesa.getF_pagamento().equals("DÉBITO")) {
             if (DespesaTemCartaoDebito(despesa.getNum_cartao(), id_conta)) {
                 PreparedStatement pst2 = null;
-                String update = "update despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria_id = ?, f_pagamento = ?, num_cartao=?, estatus = ?, descricao = ? where cod_despesa = ?";
+                String update = "UPDATE despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria_id = ?, f_pagamento = ?, num_cartao_debito = ?, estatus = ?, descricao = ? WHERE cod_despesa = ?";
 
                 pst2 = conexao.prepareStatement(update);
 
@@ -473,11 +475,10 @@ public class DespesaDAO {
             }
 
         } else {
-            
-            // é dinheiro
-            System.out.println("é dinheiro");
+            // É DINHEIRO
+            System.out.println("É dinheiro");
             PreparedStatement pst3 = null;
-            String update = "UPDATE despesa LEFT OUTER JOIN despesa_data on despesa.despesa_data_cod_despesa = despesa_data.cod_despesa set dia = ?, mes = ?, ano = ?, valor = ?, categoria_id=?, f_pagamento=?, estatus = ?, descricao=? where cod_despesa= ?";
+            String update = "UPDATE despesa set dia = ?, mes = ?, ano = ? , valor = ?, categoria_id= ?, f_pagamento= ?, estatus = ?, descricao= ? where cod_despesa= ?;";
              
             pst3 = conexao.prepareStatement(update);
 
