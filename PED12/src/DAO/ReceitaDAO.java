@@ -5,14 +5,12 @@
  */
 package DAO;
 
-import Model.Despesa;
 import Model.Receita;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,8 +26,8 @@ public class ReceitaDAO {
     
     public float GetReceitaSaldo(Receita receita, float valor) throws SQLException {
 
-        PreparedStatement pst_SelectSaldo = null;
-        ResultSet rs_SelectSaldo = null;
+        PreparedStatement pst_SelectSaldo;
+        ResultSet rs_SelectSaldo;
         float saldo = 0;
 
         String SelectSaldo = "SELECT total FROM receita WHERE conta_id_conta = ? AND mes = ? AND ano = ?; ";

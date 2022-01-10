@@ -223,7 +223,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(343, 42, 81, 21);
+        txt_id.setBounds(343, 42, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

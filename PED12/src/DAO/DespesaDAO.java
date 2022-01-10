@@ -199,7 +199,7 @@ public class DespesaDAO {
                 
                 CartaoCreditoDAO ccDAO = new CartaoCreditoDAO();
 
-                ccDAO.UpdateCreditoCartaoCredito(despesa.getId_conta(), despesa.getValor(), despesa.getNum_cartao());
+                ccDAO.UpdateCreditoFaturaCartaoCredito(despesa.getId_conta(), despesa.getValor(), despesa.getNum_cartao());
 
             }
 

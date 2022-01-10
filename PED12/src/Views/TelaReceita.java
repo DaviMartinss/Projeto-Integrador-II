@@ -310,6 +310,7 @@ public class TelaReceita extends javax.swing.JFrame{
 
         //<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">
 /* 
+
          try {
 
                 DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
@@ -664,7 +665,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btnDESC);
-        btnDESC.setBounds(130, 140, 100, 23);
+        btnDESC.setBounds(160, 130, 130, 30);
 
         btnASC.setText("Ascendente");
         btnASC.addActionListener(new java.awt.event.ActionListener() {
@@ -673,7 +674,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btnASC);
-        btnASC.setBounds(30, 140, 89, 23);
+        btnASC.setBounds(30, 130, 120, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);

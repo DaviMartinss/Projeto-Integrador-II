@@ -12,13 +12,13 @@ import ValidacaoComum.Validacao;
  * @author pc
  */
 
-public class CartaoCredito {
+public class CartaoCredito extends Cartao{
     
     private float limite;
     private int dia_fatura;
     private long n_cartao_credito;
     private float valor_fatura;
-    private String bandeira;
+//    private String bandeira;
     private int id_conta;
     private long  n_cartao_aux;
     private float credito;
@@ -128,14 +128,6 @@ public class CartaoCredito {
         this.valor_fatura = valor_fatura;
     }
 
-    public String getBandeira() {
-        return bandeira;
-    }
-
-    public void setBandeira(String bandeira) {
-        this.bandeira = bandeira;
-    }
-    
     public long getN_cartao_aux() {
         return n_cartao_aux;
     }
@@ -188,15 +180,13 @@ public class CartaoCredito {
        
     }         
      
-   // falta verificar o número do cartão
-     public boolean  verifica_num_cartao_credito(){
-        
-         Cartao cartao_aux = new Cartao();
-         
-        return (cartao_aux.ValidaNUM_Cartao(Long.toString(n_cartao_credito)));
-       
-    }  
-     
+////   // falta verificar o número do cartão
+//     public boolean  verifica_num_cartao_credito(){
+//                
+//        return (ValidaNUM_Cartao(Long.toString(n_cartao_credito)));
+//       
+//    }  
+//     
      public boolean EhVazio(String rec){
         if(rec == null || rec.trim().equals("")){
             return true;

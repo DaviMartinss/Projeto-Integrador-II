@@ -9,7 +9,7 @@ package Model;
  *
  * @author pc
  */
-public class CartaoDebito {
+public class CartaoDebito extends Cartao{
 
     private long n_cartao_debito;
     private float valor_atual;
@@ -65,14 +65,6 @@ public class CartaoDebito {
 
     public void setValor_atual(float valor_atual) {
         this.valor_atual = valor_atual;
-    }
-
-    public String getBandeira() {
-        return bandeira;
-    }
-
-    public void setBandeira(String bandeira) {
-        this.bandeira = bandeira;
     }
 
     public long getN_cartao_aux() {

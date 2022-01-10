@@ -5,13 +5,14 @@
  */
 package Views;
 
+import Controllers.ControlerCartaoCredito;
 import Controllers.ControlerTabela;
-import DAO.CartaoCreditoDAO;
+import Model.Cartao;
 import Model.CartaoCredito;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ValidacaoComum.Validacao;
+import java.awt.HeadlessException;
 
 /**
  *
@@ -36,7 +37,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     }
 
-    void inicio() {
+    void TelaPrincipal() {
 
         TelaPrincipal TelaPrincipal = null;
 
@@ -67,7 +68,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void receita() {
+    void TelaReceita() {
 
         TelaReceita TelaReceita = null;
 
@@ -92,7 +93,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void cadastra_cartao() {
+    void TelaCadastrarCartaoCredito() {
 
         TelaCartaoCredito_cadastrar TelaCadastra_CartaoCredito = null;
 
@@ -170,27 +171,26 @@ public class TelaCartao_credito extends javax.swing.JFrame {
              this.dispose();
         }else{
             
-            JOptionPane.showMessageDialog(null, "Selecione um Cartão de Crédito", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Selecione um Cartão de Crédito", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
 
     }
 
-    void RecarregaTabela_CartaoCC() {
+    void RecarregaTabela() {
 
-        boolean salvaLinhaAtiva = false;
+        salvaLinhaAtiva = false;
         
         ControlerTabela.LimpaTabela(jtConsultaCC);
 
-        try {
+        DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
+        
+        ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "CartaoCredito");
 
-            CartaoCreditoDAO cartao_c = new CartaoCreditoDAO();
-
-            DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
-
+//<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">
+/*             
             LinkedList<CartaoCredito> lista_CC = cartao_c.CarregaTabela_Cartao_C(Integer.parseInt(txt_id.getText()));
 
-            for (CartaoCredito cartao : lista_CC) {
-
+            lista_CC.forEach((cartao) -> {
                 String Col0 = Long.toString(cartao.getN_cartao_credito());
                 String Col1 = Float.toString(cartao.getLimite());
                 String Col2 = Float.toString(cartao.getCredito());
@@ -199,8 +199,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 String Col5 = cartao.getBandeira();
 
                 mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5});
-
-            }
+            });
 
             lista_CC.clear();
 
@@ -209,29 +208,32 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage());
 
         }
+*/ 
+//</editor-fold> 
 
     }
 
-    void update_cartao_credito() {
+    void AtualizarCartaoCredito() {
+        
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhum Cartão de Credito foi selecionada para ser atualizado");
+            JOptionPane.showMessageDialog(this, "Nenhum Cartão de Credito foi selecionada para ser atualizado", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         CartaoCredito cartao_aux = new CartaoCredito();
 
         if (cartao_aux.UpdateEhVazio(txt_NumCartaoC.getText(), txt_ValorFatura.getText(), txt_Limite.getText(), txt_Bandeira.getText(), txt_DiaFatura.getText())) {
-            JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
+            JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
         if (!(cartao_aux.Update_CamposValidos(txt_ValorFatura.getText(), txt_Bandeira.getText(), txt_Limite.getText(), txt_DiaFatura.getText()))) {
-            JOptionPane.showMessageDialog(null, "Valor inválido");
+            JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         Validacao valida = new Validacao();
 
         if (!(valida.ehNum(txt_NumCartaoC.getText()))) {
-            JOptionPane.showMessageDialog(null, "Valor inválido");
+            JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -245,34 +247,39 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 salva_num_cartao
         );
 
-        CartaoCreditoDAO cartao_creditoDAO = new CartaoCreditoDAO();
-
         try {
 
             if (cartao_c.varifica_valor_fatura()
-                    && cartao_c.verifica_bandeira_credito()
-                    && cartao_c.verifica_dia_fatura()
-                    && cartao_c.verifica_limite()) {
+                && cartao_c.verifica_bandeira_credito()
+                && cartao_c.verifica_dia_fatura()
+                && cartao_c.verifica_limite()) 
+            {
+                
+                if (!(cartao_c.ValidaNUM_Cartao(txt_NumCartaoC.getText()))) {
 
-                cartao_creditoDAO.UpdateCartaoCredito(cartao_c);
+                    JOptionPane.showMessageDialog(this, "Número do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    
+                    ControlerCartaoCredito.AtualizarCartaoCredito(cartao_c);
+                }
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Dados Inválidos, impossível atuzalizar!!");
-
+                JOptionPane.showMessageDialog(this, "Dados Inválidos, impossível atuzalizar!!", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
 
     }
 
-    void delete_cartao_credito() {
+    void ApagarCartaoCredito() {
 
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhum Cartão de Credito foi selecionado para ser atualizado");
+            JOptionPane.showMessageDialog(this, "Nenhum Cartão de Credito foi selecionado para ser atualizado", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -280,16 +287,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 salva_num_cartao
         );
 
-        CartaoCreditoDAO cartao_creditoDAO = new CartaoCreditoDAO();
-
-        try {
-
-            cartao_creditoDAO.DeleteCartaoCredito(cartao_c);
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        ControlerCartaoCredito.ApagarCartaoCredito(cartao_c);
     }
     
     void LimpaCampos_CC() {
@@ -300,7 +298,121 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         txt_Bandeira.setText("");
         txt_Limite.setText("");
         txt_DiaFatura.setText("");
+    }
+    
+    void ConsultaCartaoCredito(boolean ordenar) {
 
+        String tipo = "";
+
+        String escolha = selectorType.getSelectedItem().toString().trim();
+
+        if (escolha.equals("Nº Cartão")) {
+            tipo = " " + "n_cartao_credito";
+        }
+
+        if (escolha.equals("Limite")) {
+            tipo = " " + "limite";
+        }
+
+        if (escolha.equals("Dia da Fatura")) {
+            tipo = " " + "dia_fatura";
+        }
+
+        if (escolha.equals("Valor da Fatura")) {
+            tipo = " " + "valor_fatura";
+        }
+
+        if (escolha.equals("Bandeira")) {
+            tipo = " " + "bandeira";
+        }
+
+        String argumento = txt_Pesquisa.getText();
+
+        ControlerTabela.LimpaTabela(jtConsultaCC);
+
+        DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
+
+        ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, "CartaoCredito");
+
+        //<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">
+/* 
+      if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
+
+            boolean ordenar = true;
+
+            String tipo = "";
+
+            String escolha = selectorType.getSelectedItem().toString().trim();
+
+            if (escolha.equals("Nº Cartão")) {
+                tipo = " " + "n_cartao_credito";
+            }
+
+            if (escolha.equals("Limite")) {
+                tipo = " " + "limite";
+            }
+
+            if (escolha.equals("Dia da Fatura")) {
+                tipo = " " + "dia_fatura";
+            }
+
+            if (escolha.equals("Valor da Fatura")) {
+                tipo = " " + "valor_fatura";
+            }
+
+            if (escolha.equals("Bandeira")) {
+                tipo = " " + "bandeira";
+            }
+
+            if (rbAscendente.isSelected()) {
+
+                ordenar = true;
+
+            } else {
+
+                ordenar = false;
+            }
+
+            String argumento = txt_Pesquisa.getText();
+
+            ControlerTabela.LimpaTabela(jtConsultaCC);
+
+            try {
+
+                CartaoCreditoDAO cartao_c = new CartaoCreditoDAO();
+
+                DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
+
+                LinkedList<CartaoCredito> lista_CC = cartao_c.ConsultaCartao_C(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
+
+                for (CartaoCredito cartao : lista_CC) {
+
+                    String Col0 = Long.toString(cartao.getN_cartao_credito());
+                    String Col1 = Float.toString(cartao.getLimite());
+                    String Col2 = Float.toString(cartao.getCredito());
+                    String Col3 = Integer.toString(cartao.getDia_fatura());
+                    String Col4 = Float.toString(cartao.getValor_fatura());
+                    String Col5 = cartao.getBandeira();
+
+                    mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5});
+
+                }
+
+                lista_CC.clear();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(this, e.getMessage());
+
+            }
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
+
+        }
+         */
+//</editor-fold> 
     }
 
     /**
@@ -322,8 +434,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         txt_Bandeira = new javax.swing.JTextField();
         txt_NumCartaoC = new javax.swing.JTextField();
         txt_Limite = new javax.swing.JTextField();
-        rbDescendente = new javax.swing.JRadioButton();
-        rbAscendente = new javax.swing.JRadioButton();
         btn_inicio_CC = new javax.swing.JButton();
         btn_receitaCC = new javax.swing.JButton();
         btn_sairCC = new javax.swing.JButton();
@@ -341,6 +451,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         ordenationTitle = new javax.swing.JLabel();
         limitTitle = new javax.swing.JLabel();
         findTextType = new javax.swing.JLabel();
+        btnDESC = new javax.swing.JButton();
+        btnASC = new javax.swing.JButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -443,26 +555,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         getContentPane().add(txt_Limite);
         txt_Limite.setBounds(450, 360, 150, 27);
 
-        rbDescendente.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        rbDescendente.setText("Descendente");
-        rbDescendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDescendenteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(610, 100, 110, 27);
-
-        rbAscendente.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        rbAscendente.setText("Ascendente");
-        rbAscendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbAscendenteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(520, 100, 100, 27);
-
         btn_inicio_CC.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio_CC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_inicio_CC.setForeground(new java.awt.Color(255, 255, 255));
@@ -533,7 +625,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btPesquisarCC);
-        btPesquisarCC.setBounds(730, 100, 40, 40);
+        btPesquisarCC.setBounds(750, 90, 40, 40);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -599,7 +691,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         ordenationTitle.setText("Ordenação");
         getContentPane().add(ordenationTitle);
-        ordenationTitle.setBounds(520, 80, 100, 27);
+        ordenationTitle.setBounds(520, 70, 100, 27);
 
         limitTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         limitTitle.setText("Limite");
@@ -610,6 +702,24 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         findTextType.setText("Digite sua pesquisa aqui");
         getContentPane().add(findTextType);
         findTextType.setBounds(170, 80, 180, 27);
+
+        btnDESC.setText("Descendente");
+        btnDESC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDESCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDESC);
+        btnDESC.setBounds(640, 100, 110, 30);
+
+        btnASC.setText("Ascendente");
+        btnASC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnASCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnASC);
+        btnASC.setBounds(530, 100, 110, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel8");
@@ -635,17 +745,17 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
     private void btn_inicio_CCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicio_CCActionPerformed
         // TODO add your handling code here:
-        inicio();
+        TelaPrincipal();
     }//GEN-LAST:event_btn_inicio_CCActionPerformed
 
     private void btn_receitaCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_receitaCCActionPerformed
         // TODO add your handling code here:
-        receita();
+        TelaReceita();
     }//GEN-LAST:event_btn_receitaCCActionPerformed
 
     private void btn_novoCartao_ccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_novoCartao_ccActionPerformed
         // TODO add your handling code here:
-        cadastra_cartao();
+        TelaCadastrarCartaoCredito();
     }//GEN-LAST:event_btn_novoCartao_ccActionPerformed
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
@@ -660,125 +770,26 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         // TODO add your handling code here
 
         if (txt_Pesquisa.getText().isEmpty()) {
-            RecarregaTabela_CartaoCC();
+            RecarregaTabela();
         }
-
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
     private void btPesquisarCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCCActionPerformed
         // TODO add your handling code here:
 
-        if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
-
-            boolean ordenar = true;
-
-            String tipo = "";
-
-            String escolha = selectorType.getSelectedItem().toString().trim();
-
-            if (escolha.equals("Nº Cartão")) {
-                tipo = " " + "n_cartao_credito";
-            }
-
-            if (escolha.equals("Limite")) {
-                tipo = " " + "limite";
-            }
-
-            if (escolha.equals("Dia da Fatura")) {
-                tipo = " " + "dia_fatura";
-            }
-
-            if (escolha.equals("Valor da Fatura")) {
-                tipo = " " + "valor_fatura";
-            }
-
-            if (escolha.equals("Bandeira")) {
-                tipo = " " + "bandeira";
-            }
-
-            if (rbAscendente.isSelected()) {
-
-                ordenar = true;
-
-            } else {
-
-                ordenar = false;
-            }
-
-            String argumento = txt_Pesquisa.getText();
-
-            ControlerTabela.LimpaTabela(jtConsultaCC);
-
-            try {
-
-                CartaoCreditoDAO cartao_c = new CartaoCreditoDAO();
-
-                DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
-
-                LinkedList<CartaoCredito> lista_CC = cartao_c.ConsultaCartao_C(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
-
-                for (CartaoCredito cartao : lista_CC) {
-
-                    String Col0 = Long.toString(cartao.getN_cartao_credito());
-                    String Col1 = Float.toString(cartao.getLimite());
-                    String Col2 = Float.toString(cartao.getCredito());
-                    String Col3 = Integer.toString(cartao.getDia_fatura());
-                    String Col4 = Float.toString(cartao.getValor_fatura());
-                    String Col5 = cartao.getBandeira();
-
-                    mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5});
-
-                }
-
-                lista_CC.clear();
-
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(this, e.getMessage());
-
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-
-        }
-
-
+        ConsultaCartaoCredito(true);
     }//GEN-LAST:event_btPesquisarCCActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
 
-        RecarregaTabela_CartaoCC();
+        RecarregaTabela();
 
     }//GEN-LAST:event_formWindowOpened
 
     private void txt_BandeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BandeiraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_BandeiraActionPerformed
-
-    private void rbAscendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAscendenteActionPerformed
-        // TODO add your handling code here:
-
-        if (rbAscendente.isSelected()) {
-
-            rbDescendente.setSelected(false);
-
-        }
-
-    }//GEN-LAST:event_rbAscendenteActionPerformed
-
-    private void rbDescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendenteActionPerformed
-        // TODO add your handling code here:
-
-        if (rbDescendente.isSelected()) {
-
-            rbAscendente.setSelected(false);
-
-        }
-
-    }//GEN-LAST:event_rbDescendenteActionPerformed
 
     private void jtConsultaCCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaCCMouseClicked
         // TODO add your handling code here:
@@ -791,8 +802,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         
         txt_NumCartaoC.setText(num_cartao);
         txt_Limite.setText(limite);
-        txt_ValorFatura.setText(diaFatura);
-        txt_DiaFatura.setText(valorFatura);
+        txt_ValorFatura.setText(valorFatura);
+        txt_DiaFatura.setText(diaFatura);
         txt_Bandeira.setText(bandeira);
         salva_num_cartao = Long.parseLong(num_cartao);
         
@@ -812,7 +823,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             btn_update.setText("Atualizar");
 
             txt_NumCartaoC.setEditable(true);
-            txt_ValorFatura.setEditable(true);
             txt_Bandeira.setEditable(true);
             txt_Limite.setEditable(true);
             txt_DiaFatura.setEditable(true);
@@ -822,54 +832,20 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             btn_update.setText("Alterar");
 
             txt_NumCartaoC.setEditable(false);
-            txt_ValorFatura.setEditable(false);
             txt_Bandeira.setEditable(false);
             txt_Limite.setEditable(false);
             txt_DiaFatura.setEditable(false);
             
-            boolean atualiza = true;
-            
-            CartaoCreditoDAO cartaoDAO = new CartaoCreditoDAO();
-            
-            CartaoCredito cartaoCC = new CartaoCredito(
-                                      Long.parseLong(txt_NumCartaoC.getText()),
-                                      Float.parseFloat(txt_Limite.getText()),
-                                      Integer.parseInt(txt_DiaFatura.getText()),
-                                      Float.parseFloat(txt_ValorFatura.getText()),
-                                      txt_Bandeira.getText(),
-                                      Integer.parseInt(txt_id.getText())
-                                            
-            );
-            
-            if(!(cartaoCC.verifica_num_cartao_credito())){
-                
-                JOptionPane.showMessageDialog(null, "Número do cartão de crédito inválido","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                
-                atualiza = false;
-            }
-            
-            if (atualiza) {
-
-                update_cartao_credito();
-                RecarregaTabela_CartaoCC();
-                LimpaCampos_CC();
-                
-                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
-                
-            }else{
-                
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                
-            }
-
+            AtualizarCartaoCredito();
+            RecarregaTabela();
+            LimpaCampos_CC();
         }
-
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_exclui_ccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exclui_ccActionPerformed
         // TODO add your handling code here:
-        delete_cartao_credito();
-        RecarregaTabela_CartaoCC();
+        ApagarCartaoCredito();
+        RecarregaTabela();
     }//GEN-LAST:event_btn_exclui_ccActionPerformed
 
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
@@ -887,6 +863,16 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         // TODO add your handling code here:
         TelaFatura();
     }//GEN-LAST:event_btnListaFaturasActionPerformed
+
+    private void btnDESCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDESCActionPerformed
+
+        ConsultaCartaoCredito(false);
+    }//GEN-LAST:event_btnDESCActionPerformed
+
+    private void btnASCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnASCActionPerformed
+        // TODO add your handling code here:
+        ConsultaCartaoCredito(true);
+    }//GEN-LAST:event_btnASCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -926,6 +912,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JButton btPesquisarCC;
+    private javax.swing.JButton btnASC;
+    private javax.swing.JButton btnDESC;
     private javax.swing.JButton btnListaFaturas;
     private javax.swing.JButton btn_exclui_cc;
     private javax.swing.JButton btn_inicio_CC;
@@ -944,8 +932,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JLabel numCardTitle;
     private javax.swing.JLabel ordenationTitle;
     private javax.swing.JLabel pageTitle;
-    private javax.swing.JRadioButton rbAscendente;
-    private javax.swing.JRadioButton rbDescendente;
     private javax.swing.JComboBox<String> selectorType;
     private javax.swing.JTextField txt_Bandeira;
     private javax.swing.JTextField txt_DiaFatura;

@@ -65,31 +65,31 @@ public class Cartao {
 
     // falta a função de verificar o número do cartão de credito
     // verfica apenas se é a String é numero e se o tamnho é valido
-    public boolean verifica_cartao() {
-        String numCartao = getN_cartao();
-        int tam = numCartao.length();
-        if (tam >= 13 && tam <= 16) {
-
-            boolean isNumeric = true;
-
-            for (int i = 0; i < numCartao.length(); i++) {
-                if (!Character.isDigit(numCartao.charAt(i))) {
-                    isNumeric = false;
-                }
-            }
-            if (isNumeric) {
-
-                return true;
-            } else {
-
-                return false;
-            }
-        } else {
-
-            return false;
-        }
-
-    }
+//    public boolean verifica_cartao() {
+//        String numCartao = getN_cartao();
+//        int tam = numCartao.length();
+//        if (tam >= 13 && tam <= 16) {
+//
+//            boolean isNumeric = true;
+//
+//            for (int i = 0; i < numCartao.length(); i++) {
+//                if (!Character.isDigit(numCartao.charAt(i))) {
+//                    isNumeric = false;
+//                }
+//            }
+//            if (isNumeric) {
+//
+//                return true;
+//            } else {
+//
+//                return false;
+//            }
+//        } else {
+//
+//            return false;
+//        }
+//
+//    }
     
 
     private int somaDigitos(int numero) {

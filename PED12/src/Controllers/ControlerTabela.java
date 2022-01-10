@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Model.CartaoCredito;
 import Model.Receita;
 import ReceitaOrdenacao.ReceitaAnoASC;
 import ReceitaOrdenacao.ReceitaAnoDESC;
@@ -62,17 +63,32 @@ public class ControlerTabela {
 
                         mp.addRow(new String[]{Col0, Col1, Col2, Col3});
                     });
+                    
+                    listaReceita.clear();
                     break;
                     
                 case "Despesa":
                     //Implementar
                     break;
                 
-                case "Cartão Crédito":
-                     //Implementar
+                case "CartaoCredito":
+                    LinkedList<CartaoCredito> listaCC = ControlerCartaoCredito.GetListaCartaoCredito(conta_id);
+
+                    listaCC.forEach((cartao) -> {
+                        String Col0 = Long.toString(cartao.getN_cartao_credito());
+                        String Col1 = Float.toString(cartao.getLimite());
+                        String Col2 = Float.toString(cartao.getCredito());
+                        String Col3 = Integer.toString(cartao.getDia_fatura());
+                        String Col4 = Float.toString(cartao.getValor_fatura());
+                        String Col5 = cartao.getBandeira();
+
+                        mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5});
+                    });
+
+                    listaCC.clear();
                     break;
                     
-                case "Cartão Débito":
+                case "CartaoDebito":
                      //Implementar
                     break;
                 
@@ -154,11 +170,24 @@ public class ControlerTabela {
                     //Implementar
                     break;
                 
-                case "Cartão Crédito":
-                     //Implementar
+                case "CartaoCredito":
+                    LinkedList<CartaoCredito> lista_CC = ControlerCartaoCredito.ConsultaCartaoCredito(tipo, argumento, conta_id, ordenar);
+
+                    lista_CC.forEach((cartao) -> {
+                        String Col0 = Long.toString(cartao.getN_cartao_credito());
+                        String Col1 = Float.toString(cartao.getLimite());
+                        String Col2 = Float.toString(cartao.getCredito());
+                        String Col3 = Integer.toString(cartao.getDia_fatura());
+                        String Col4 = Float.toString(cartao.getValor_fatura());
+                        String Col5 = cartao.getBandeira();
+
+                        mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5});
+                    });
+
+                    lista_CC.clear();
                     break;
                     
-                case "Cartão Débito":
+                case "CartaoDebito":
                      //Implementar
                     break;
                 
