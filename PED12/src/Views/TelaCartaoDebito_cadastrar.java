@@ -5,18 +5,11 @@
  */
 package Views;
 
-import DAO.CartaoDebitoDAO;
-import DAO.moduloConexao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import Controllers.ControlerCartaoDebito;
 import javax.swing.JOptionPane;
 import Model.CartaoDebito;
 import ValidacaoComum.Validacao;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import java.awt.HeadlessException;
 /**
  *
  * @author pc
@@ -29,7 +22,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         txt_id.setVisible(false);
     }
     
-    void voltaTelaCartao_Debito(){
+    void voltaTelaCartaoDebito(){
 
           TelaCartao_debito TelaCartao_debito = null;
 
@@ -52,11 +45,10 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         }
 
         this.dispose();
-
     }
     
     
-   public void cadastro_cartao_debito(){
+    public void CadastrarCartaoDebito() {
 
         CartaoDebito cartao_db = new CartaoDebito(
                 Long.parseLong(txt_numCartDeb.getText()),
@@ -65,32 +57,24 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
                 Integer.parseInt(txt_id.getText())
         );
 
-        CartaoDebitoDAO cartao_dbDAO = new CartaoDebitoDAO();
-
         try {
-            
-            
-            if (cartao_db.verifica_Bandeira_cartao_deb() && cartao_db.verifica_valor_atual())
-            {
-                
-                cartao_dbDAO.CadastrarCartaoDebito(cartao_db);
-                
-                voltaTelaCartao_Debito();
-                
-            }else{
-                
-                JOptionPane.showMessageDialog(null, "Dados Inválidos!!");
-                
+
+            if (cartao_db.verifica_Bandeira_cartao_deb() && cartao_db.verifica_valor_atual()) {
+                ControlerCartaoDebito.CadastrarCartaoDebito(cartao_db);
+                voltaTelaCartaoDebito();
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Dados Inválidos!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             }
+        } catch (HeadlessException e) {
 
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
+
     }
 
-   void inicio(){
+   void TelaPrincipal(){
          
          TelaPrincipal TelaPrincipal = null;
          
@@ -233,21 +217,19 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         if(  txt_numCartDeb.getText().isEmpty() || txt_valorCartaoDeb.getText().isEmpty()   ||
              txt_BandCartDeb.getText().isEmpty()){
             
-            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
             
             Validacao valida = new Validacao();
             
             if(!( valida.ehNum(txt_numCartDeb.getText()) && valida.ehNum(txt_valorCartaoDeb.getText()))) {
-                JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+                JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 return;
             }
             
-            
             boolean cadastra = true;
             
-            CartaoDebitoDAO cartaoDAO = new CartaoDebitoDAO();
             
             CartaoDebito cartaoDB = new CartaoDebito(
                                       Long.parseLong(txt_numCartDeb.getText()),
@@ -257,53 +239,37 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
                                             
             );
             
-            try {
-                if(cartaoDAO.CartaoDebitoExiste(cartaoDB)){
+        
+            if(ControlerCartaoDebito.CartaoDebitoExiste(cartaoDB)){
                             
-                    JOptionPane.showMessageDialog(null, "Número do cartão de débito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                    
-                    cadastra = false;
-                    
-                }
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(TelaCartaoDebito_cadastrar.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Número do cartão de débito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);                   
+                cadastra = false;                   
             }
-            
-            
+             
             if(!(cartaoDB.verifica_num_cartao_deb())){
                 
-                JOptionPane.showMessageDialog(null, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                
+                JOptionPane.showMessageDialog(this, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);               
                 cadastra = false;
             }
             
             if(!(cartaoDB.verifica_valor_atual())){
                 
-                JOptionPane.showMessageDialog(null, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                
+                JOptionPane.showMessageDialog(this, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);                
                 cadastra = false;
             }
             
             if(!(cartaoDB.verifica_Bandeira_cartao_deb())){
                 
-                JOptionPane.showMessageDialog(null, "Bandeira inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                
+                JOptionPane.showMessageDialog(this, "Bandeira inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 cadastra = false;
             }
      
             if(cadastra){
                 
-                cadastro_cartao_debito();
-                
-                JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!", "INFORMATION_MESSAGE" , JOptionPane.INFORMATION_MESSAGE);
-                
+                CadastrarCartaoDebito();                
+                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "INFORMATION_MESSAGE" , JOptionPane.INFORMATION_MESSAGE);      
             }
-            
-            
-
         } 
- 
     }//GEN-LAST:event_btn_cadastraCartDebActionPerformed
 
     private void txt_BandCartDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BandCartDebActionPerformed
@@ -316,7 +282,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
-        inicio();
+        TelaPrincipal();
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**
@@ -348,10 +314,8 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCartaoDebito_cadastrar().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaCartaoDebito_cadastrar().setVisible(true);
         });
     }
 
@@ -371,12 +335,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     private javax.swing.JTextField txt_valorCartaoDeb;
     // End of variables declaration//GEN-END:variables
 
-
-
     public void receberID(String recebe){
-
         txt_id.setText(recebe);
     }
-
-
 }

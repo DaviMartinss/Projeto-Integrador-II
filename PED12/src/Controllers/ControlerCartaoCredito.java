@@ -46,7 +46,6 @@ public class ControlerCartaoCredito {
     
     public static boolean  AtualizarCartaoCredito(CartaoCredito cartao_credito) {
 
-        //REMOVER OPÇÃO DE USUARIO ATUALIZAR VALOR DA FATURA(ISSO JÁ E FEITO AUTOMATICO DO SISTEMA)
         CartaoCreditoDAO ccDAO = new CartaoCreditoDAO();
 
         try {

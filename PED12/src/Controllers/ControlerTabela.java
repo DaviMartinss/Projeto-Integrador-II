@@ -6,6 +6,7 @@
 package Controllers;
 
 import Model.CartaoCredito;
+import Model.CartaoDebito;
 import Model.Receita;
 import ReceitaOrdenacao.ReceitaAnoASC;
 import ReceitaOrdenacao.ReceitaAnoDESC;
@@ -89,7 +90,17 @@ public class ControlerTabela {
                     break;
                     
                 case "CartaoDebito":
-                     //Implementar
+                    LinkedList<CartaoDebito> lista_CD = ControlerCartaoDebito.GetListaCartaoDebito(conta_id);
+
+                    lista_CD.forEach((cartao) -> {
+                        String Col0 = Long.toString(cartao.getN_cartao_debito());
+                        String Col1 = Float.toString(cartao.getValor_atual());
+                        String Col2 = cartao.getBandeira();
+
+                        mp.addRow(new String[]{Col0, Col1, Col2});
+                    });
+
+                    lista_CD.clear();
                     break;
                 
                  case "Fatura":
@@ -110,6 +121,7 @@ public class ControlerTabela {
         return mp;
     }
     
+    @SuppressWarnings("empty-statement")
     public static DefaultTableModel RecarregaTabelaConsulta(DefaultTableModel mp, String tipo, String argumento, int conta_id, boolean ordenar,String tipoTabela){
         
         try {
@@ -188,7 +200,17 @@ public class ControlerTabela {
                     break;
                     
                 case "CartaoDebito":
-                     //Implementar
+                    LinkedList<CartaoDebito> lista_CD = ControlerCartaoDebito.ConsultaCartaoDebito(tipo, argumento, conta_id, ordenar);
+
+                    lista_CD.forEach((cartao) -> {
+                        String Col0 = Long.toString(cartao.getN_cartao_debito());
+                        String Col1 = Float.toString(cartao.getValor_atual());
+                        String Col2 = cartao.getBandeira();
+
+                        mp.addRow(new String[]{Col0, Col1, Col2});
+                    });
+
+                    lista_CD.clear();
                     break;
                 
                  case "Fatura":

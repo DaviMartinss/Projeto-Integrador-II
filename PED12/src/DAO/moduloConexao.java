@@ -12,7 +12,7 @@ public class moduloConexao {
     
     public static Connection conector(){
         
-        java.sql.Connection conexao = null; 
+        java.sql.Connection conexao; 
         
         String driver = "com.mysql.cj.jdbc.Driver";  
         

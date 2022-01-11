@@ -5,11 +5,11 @@
  */ 
 package Views;
 
-import DAO.CartaoDebitoDAO;
+import Controllers.ControlerCartaoDebito;
 import Model.CartaoDebito;
 import ValidacaoComum.Validacao;
 import Controllers.ControlerTabela;
-import java.util.LinkedList;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,7 +36,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         txt_Bandeira.setEditable(false);
     }
 
-    void inicio() {
+    void TelaPrincipal() {
 
         TelaPrincipal TelaPrincipal = null;
 
@@ -93,7 +93,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void receita() {
+    void TelaReceita() {
 
         TelaReceita TelaReceita = null;
 
@@ -118,7 +118,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void cadastraCartao_Deb() {
+    void TelaCartaoDebito_cadastrar() {
 
         TelaCartaoDebito_cadastrar TelaCadastra_CartaoDebito = null;
 
@@ -143,55 +143,40 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void RecarregaTabela_CartaoDB() {
+    void RecarregaTabela() {
         salvaLinhaAtiva = false;
 
-        ControlerTabela.LimpaTabela(jtConsultaCD);
-
         try {
-
-            CartaoDebitoDAO cartao_c = new CartaoDebitoDAO();
+            
+            ControlerTabela.LimpaTabela(jtConsultaCD);
 
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
-            LinkedList<CartaoDebito> lista_CD = cartao_c.CarregaTabela_Cartao_D(Integer.parseInt(txt_id.getText()));
+            ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "CartaoDebito");
 
-            for (CartaoDebito cartao : lista_CD) {
-
-                String Col0 = Long.toString(cartao.getN_cartao_debito());
-                String Col1 = Float.toString(cartao.getValor_atual());
-                String Col2 = cartao.getBandeira();
-
-                mp.addRow(new String[]{Col0, Col1, Col2});
-
-            }
-
-            lista_CD.clear();
-
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage());
-
         }
-
     }
 
-    void update_cartao_debito() {
+    void AtualizarCartaoDebito() {
+        
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhum Cartão de Credito foi selecionada para ser atualizado");
+            JOptionPane.showMessageDialog(this, "Nenhum Cartão de Credito foi selecionada para ser atualizado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         CartaoDebito cartao_aux = new CartaoDebito();
         if (cartao_aux.UpdateEhVazio(txt_NumCartaoD.getText(), txt_Valor.getText(), txt_Bandeira.getText())) {
-            JOptionPane.showMessageDialog(null, "Nenhum Campo pode ser nulo no Update");
+            JOptionPane.showMessageDialog(this, "Nenhum Campo pode ser nulo no Update", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         Validacao valida = new Validacao();
 
         if (!(valida.ehNum(txt_NumCartaoD.getText()) && valida.ehNum(txt_Valor.getText()))) {
-            JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!");
+            JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -203,56 +188,88 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                 salva_num_cartao_debito
         );
 
-        CartaoDebitoDAO cartao_debitoDAO = new CartaoDebitoDAO();
-
         try {
 
             if (cartao_d.verifica_Bandeira_cartao_deb()
                     && cartao_d.verifica_valor_atual()) {
 
-                cartao_debitoDAO.UpdateCartaoDebito(cartao_d);
+                ControlerCartaoDebito.AtualizarCartaoDebito(cartao_d);
+                
+                LimpaCampos_CD();
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Dados Inválidos, impossível atuzalizar!!");
-
+                JOptionPane.showMessageDialog(this, "Dados Inválidos, impossível atuzalizar!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
-
     }
 
-    void delete_cartao_debito() {
+    void ApagarCartaoDebito() {
+        
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhum Cartão de Débito foi selecionada para ser deletado");
+            JOptionPane.showMessageDialog(this, "Nenhum Cartão de Débito foi selecionada para ser deletado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
         CartaoDebito cartao_d = new CartaoDebito(
                 Long.parseLong(txt_NumCartaoD.getText())
         );
 
-        CartaoDebitoDAO cartao_debitoDAO = new CartaoDebitoDAO();
-
         try {
 
-            cartao_debitoDAO.DeleteCartaoDebito(cartao_d);
+            ControlerCartaoDebito.ApagarCartaoDebito(cartao_d);
+            
+            LimpaCampos_CD();
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    void ConsultaCartaoDebito(boolean ordenar) {
+
+        String tipo = "";
+
+        String escolha = cbbTipo.getSelectedItem().toString().trim();
+
+        if (escolha.equals("Nº Cartão")) {
+            tipo = " " + "n_cartao_debito";
         }
 
+        if (escolha.equals("Valor")) {
+            tipo = " " + "valor_atual";
+        }
+
+        if (escolha.equals("Bandeira")) {
+            tipo = " " + "bandeira";
+        }
+
+        String argumento = txt_Pesquisa.getText();
+
+        try {
+
+            ControlerTabela.LimpaTabela(jtConsultaCD);
+
+            DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
+
+            ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, "CartaoDebito");
+
+            LimpaCampos_CD();
+            
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
     void LimpaCampos_CD() {
-
         txt_NumCartaoD.setText("");
         txt_Valor.setText("");
         txt_Bandeira.setText("");
-
     }
 
     /**
@@ -270,8 +287,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         txt_Valor = new javax.swing.JTextField();
         txt_Bandeira = new javax.swing.JTextField();
         txt_Pesquisa = new javax.swing.JTextField();
-        selectorUp = new javax.swing.JRadioButton();
-        selectorDown = new javax.swing.JRadioButton();
         cardTable = new javax.swing.JScrollPane();
         jtConsultaCD = new javax.swing.JTable();
         btPesquisarCD = new javax.swing.JButton();
@@ -288,6 +303,8 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         valueTitle = new javax.swing.JLabel();
         ordenationTitle = new javax.swing.JLabel();
         findTextTitle = new javax.swing.JLabel();
+        btnASC = new javax.swing.JButton();
+        btnDESC = new javax.swing.JButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -346,26 +363,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         });
         getContentPane().add(txt_Pesquisa);
         txt_Pesquisa.setBounds(170, 90, 350, 27);
-
-        selectorUp.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        selectorUp.setText("Ascendente");
-        selectorUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectorUpActionPerformed(evt);
-            }
-        });
-        getContentPane().add(selectorUp);
-        selectorUp.setBounds(530, 90, 90, 27);
-
-        selectorDown.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        selectorDown.setText("Descendente");
-        selectorDown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectorDownActionPerformed(evt);
-            }
-        });
-        getContentPane().add(selectorDown);
-        selectorDown.setBounds(620, 90, 110, 27);
 
         jtConsultaCD.setBackground(new java.awt.Color(187, 210, 240));
         jtConsultaCD.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -531,6 +528,24 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         getContentPane().add(findTextTitle);
         findTextTitle.setBounds(170, 70, 170, 27);
 
+        btnASC.setText("Ascendente");
+        btnASC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnASCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnASC);
+        btnASC.setBounds(520, 100, 110, 30);
+
+        btnDESC.setText("Descendente");
+        btnDESC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDESCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDESC);
+        btnDESC.setBounds(630, 100, 110, 30);
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);
         background.setBounds(0, 0, 1920, 1080);
@@ -554,17 +569,17 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
-        inicio();
+        TelaPrincipal();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void incomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeButtonActionPerformed
         // TODO add your handling code here:
-        receita();
+        TelaReceita();
     }//GEN-LAST:event_incomeButtonActionPerformed
 
     private void newCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newCardButtonActionPerformed
         // TODO add your handling code here:
-        cadastraCartao_Deb();
+        TelaCartaoDebito_cadastrar();
     }//GEN-LAST:event_newCardButtonActionPerformed
 
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
@@ -583,101 +598,15 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         // TODO add your handling code here
 
         if (txt_Pesquisa.getText().isEmpty()) {
-            RecarregaTabela_CartaoDB();
+            RecarregaTabela();
         }
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
-    private void selectorUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectorUpActionPerformed
-        // TODO add your handling code here:
-
-        if (selectorUp.isSelected()) {
-
-            selectorDown.setSelected(false);
-
-        }
-
-    }//GEN-LAST:event_selectorUpActionPerformed
-
-    private void selectorDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectorDownActionPerformed
-        // TODO add your handling code here:
-
-        if (selectorDown.isSelected()) {
-
-            selectorUp.setSelected(false);
-
-        }
-
-    }//GEN-LAST:event_selectorDownActionPerformed
-
     private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
         // TODO add your handling code here:
-
-        if (selectorUp.isSelected() || selectorDown.isSelected()) {
-
-            boolean ordenar = true;
-
-            String tipo = "";
-
-            String escolha = cbbTipo.getSelectedItem().toString().trim();
-
-            if (escolha.equals("Nº Cartão")) {
-                tipo = " " + "n_cartao_debito";
-            }
-
-            if (escolha.equals("Valor")) {
-                tipo = " " + "valor_atual";
-            }
-
-            if (escolha.equals("Bandeira")) {
-                tipo = " " + "bandeira";
-            }
-
-            if (selectorUp.isSelected()) {
-
-                ordenar = true;
-
-            } else {
-
-                ordenar = false;
-            }
-
-            String argumento = txt_Pesquisa.getText();
-            
-            ControlerTabela.LimpaTabela(jtConsultaCD);
-
-            try {
-
-                CartaoDebitoDAO cartao_d = new CartaoDebitoDAO();
-
-                DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
-
-                LinkedList<CartaoDebito> lista_CD = cartao_d.ConsultaCartao_D(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
-
-                for (CartaoDebito cartao : lista_CD) {
-
-                    String Col0 = Long.toString(cartao.getN_cartao_debito());
-                    String Col1 = Float.toString(cartao.getValor_atual());
-                    String Col2 = cartao.getBandeira();
-
-                    mp.addRow(new String[]{Col0, Col1, Col2});
-
-                }
-
-                lista_CD.clear();
-
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(this, e.getMessage());
-
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-
-        }
-
+    
+        ConsultaCartaoDebito(true);
     }//GEN-LAST:event_btPesquisarCDActionPerformed
 
     private void jtConsultaCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaCDMouseClicked
@@ -691,12 +620,14 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         txt_Valor.setText(valor);
         txt_Bandeira.setText(bandeira);
         salva_num_cartao_debito = Long.parseLong(num_cartao);
+        salvaLinhaAtiva = true;
+        
     }//GEN-LAST:event_jtConsultaCDMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
 
-        RecarregaTabela_CartaoDB();
+        RecarregaTabela();
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -721,8 +652,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
             boolean atualiza = true;
 
-            CartaoDebitoDAO cartaoDAO = new CartaoDebitoDAO();
-
             CartaoDebito cartaoDB = new CartaoDebito(
                     Long.parseLong(txt_NumCartaoD.getText()),
                     Float.parseFloat(txt_Valor.getText()),
@@ -732,34 +661,31 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
             if (!(cartaoDB.verifica_num_cartao_deb())) {
 
-                JOptionPane.showMessageDialog(null, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
                 atualiza = false;
             }
 
             if (atualiza) {
 
-                update_cartao_debito();
-                RecarregaTabela_CartaoDB();
+                AtualizarCartaoDebito();
+                RecarregaTabela();
                 LimpaCampos_CD();
                 
-                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Atualizado com sucesso!");
                 
             }else{
                 
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                
+                JOptionPane.showMessageDialog(this, "Erro ao atualizar","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);              
             }
-
         }
-
 
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void delCardButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delCardButtonActionPerformed
         // TODO add your handling code here:
-        delete_cartao_debito();
-        RecarregaTabela_CartaoDB();
+        ApagarCartaoDebito();
+        RecarregaTabela();
     }//GEN-LAST:event_delCardButtonActionPerformed
 
     private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
@@ -767,6 +693,18 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
         TelaUsuario();
     }//GEN-LAST:event_userButtonActionPerformed
+
+    private void btnASCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnASCActionPerformed
+        // TODO add your handling code here:
+        ConsultaCartaoDebito(true);
+        LimpaCampos_CD();
+    }//GEN-LAST:event_btnASCActionPerformed
+
+    private void btnDESCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDESCActionPerformed
+
+        ConsultaCartaoDebito(false);
+        LimpaCampos_CD();
+    }//GEN-LAST:event_btnDESCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -797,16 +735,16 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCartao_debito().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaCartao_debito().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JButton btPesquisarCD;
+    private javax.swing.JButton btnASC;
+    private javax.swing.JButton btnDESC;
     private javax.swing.JButton btn_update;
     private javax.swing.JLabel cardNumTitle;
     private javax.swing.JScrollPane cardTable;
@@ -821,8 +759,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private javax.swing.JButton newCardButton;
     private javax.swing.JLabel ordenationTitle;
     private javax.swing.JLabel pageTitle;
-    private javax.swing.JRadioButton selectorDown;
-    private javax.swing.JRadioButton selectorUp;
     private javax.swing.JButton startButton;
     private javax.swing.JTextField txt_Bandeira;
     private javax.swing.JTextField txt_NumCartaoD;
@@ -837,5 +773,4 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
         txt_id.setText(recebe);
     }
-
 }

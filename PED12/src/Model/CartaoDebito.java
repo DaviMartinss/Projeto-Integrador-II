@@ -13,7 +13,6 @@ public class CartaoDebito extends Cartao{
 
     private long n_cartao_debito;
     private float valor_atual;
-    private String bandeira;
     private int id_conta;
     private long n_cartao_aux;
 
@@ -77,14 +76,7 @@ public class CartaoDebito extends Cartao{
 
     public boolean verifica_valor_atual() {
 
-        if (getValor_atual() > 0) {
-
-            return true;
-
-        } else {
-
-            return false;
-        }
+        return getValor_atual() > 0;
     }
 
     public boolean verifica_Bandeira_cartao_deb() {
@@ -104,21 +96,11 @@ public class CartaoDebito extends Cartao{
     }
 
     public boolean EhVazio(String rec) {
-        if (rec == null || rec.trim().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return rec == null || rec.trim().equals("");
     }
 
     public boolean UpdateEhVazio(String num_cartao, String valor, String bandeira) {
 
-        if (EhVazio(num_cartao) || EhVazio(valor) || EhVazio(bandeira)) {
-
-            return true;
-
-        } else {
-            return false;
-        }
+        return EhVazio(num_cartao) || EhVazio(valor) || EhVazio(bandeira);
     }
 }
