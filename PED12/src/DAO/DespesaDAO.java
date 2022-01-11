@@ -685,12 +685,57 @@ public class DespesaDAO {
         return lista_despesa;
 
     }
+    public LinkedList<Despesa> CarregaTabela_DespesaDinheiro(int id_conta) throws SQLException {
+        
+        String consulta = "select des.cod_despesa, des.dia, des.mes,  des.ano, des.valor,  des.categoria_id,  des.f_pagamento,  des.estatus,  des.descricao, C.categoriaTipo from despesa des left join categoria C ON  (C.categoriaId = des.categoria_id)  WHERE des.conta_id_conta = ? and des.f_pagamento = 'DINHEIRO'; ";
+        ResultSet rs = null;
+
+        PreparedStatement pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
+
+        try {
+
+            pst.setInt(1, id_conta);
+
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                lista_despesa.add(new Despesa(
+                        rs.getInt("dia"),
+                        rs.getInt("mes"),
+                        rs.getInt("ano"),
+                        rs.getFloat("valor"),
+                        rs.getString("categoriaTipo"),
+                        rs.getString("f_pagamento"),
+                        rs.getString("estatus"),
+                        rs.getString("descricao"),
+                        rs.getInt("cod_despesa")
+                ));
+            }
+                
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, "Erro em DespesaDAO:CarregaTabela_Despesa!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, e.getMessage());
+
+        } finally {
+
+            pst.close();
+
+        }
+
+        return lista_despesa;
+
+    }
     
     public LinkedList<Despesa> CarregaTabela_Despesa(int id_conta) throws SQLException {
          LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
          
          lista_despesa.addAll(CarregaTabela_DespesaCredito(id_conta));
-         lista_despesa.addAll(CarregaTabela_DespesaDebito(id_conta));    
+         lista_despesa.addAll(CarregaTabela_DespesaDebito(id_conta));
+         lista_despesa.addAll(CarregaTabela_DespesaDinheiro(id_conta));
          
          return lista_despesa;
     }
