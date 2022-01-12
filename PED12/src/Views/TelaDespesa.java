@@ -23,6 +23,7 @@ import ValidacaoComum.Validacao;
 /**
  *
  * @author Alan
+ * @author Davi
  */
 public class TelaDespesa extends javax.swing.JFrame {
 
@@ -308,7 +309,6 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         if (escolha.equals("Nº  Parcelas")) {
             tipo = " " + "n_parcelas";
-            System.out.println("bateu aqui");
         }
 
         if (escolha.equals("Forma de Pagamento")) {
@@ -452,7 +452,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
-                    //Integer.parseInt(txt_id.getText())
                     
             );
 
@@ -477,7 +476,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
-                    //Integer.parseInt(txt_id.getText())
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
@@ -501,7 +499,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                     salvaStatus,
                     txtAreaDescricao.getText(),
                     salvaCodigoDespesa
-                    //Integer.parseInt(txt_id.getText())
             );
 
             DespesaDAO despesaDao = new DespesaDAO();
