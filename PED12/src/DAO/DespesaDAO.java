@@ -733,7 +733,7 @@ public class DespesaDAO {
     public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, boolean despesas, String id_conta, Receita receita) throws SQLException {
 
         String argumento = "";
-
+        
         if (ordenar) {
 
             argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
@@ -742,7 +742,7 @@ public class DespesaDAO {
 
             argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
         }
-
+        
         String consulta = null;
 
         ResultSet rs = null;
@@ -752,8 +752,7 @@ public class DespesaDAO {
         LinkedList<Despesa> lista_despesa = new LinkedList<Despesa>();
 
         if (despesas) {
-
-          consulta = "select des.cod_despesa, des.dia, des.mes, des.ano, des.valor, des.categoria_id, des.f_pagamento, des.num_cartao_credito, des.num_cartao_debito, des_c.n_parcelas, des.estatus, des.descricao from despesa des LEFT OUTER JOIN despesa_credito des_c ON  (des.cod_despesa = des_c.despesa_cod_despesa) WHERE des.conta_id_conta = ? " +argumento;
+          consulta = "select des.cod_despesa, des.dia, des.mes, des.ano, des.valor, des.categoria_id, des.f_pagamento, des.num_cartao_credito, des.num_cartao_debito, des_c.n_parcelas, des.estatus, des.descricao, c.categoriaTipo from despesa des LEFT OUTER JOIN despesa_credito des_c ON  (des.cod_despesa = des_c.despesa_cod_despesa)  LEFT OUTER JOIN categoria c ON  (des.categoria_id = c.categoriaId) WHERE des.conta_id_conta = ? " +argumento;
           
             try {
 
@@ -771,7 +770,7 @@ public class DespesaDAO {
                                         rs.getInt("mes"),
                                         rs.getInt("ano"),
                                         rs.getFloat("valor"),
-                                        rs.getString("categoria_id"), 
+                                        rs.getString("categoriaTipo"), 
                                         rs.getString("f_pagamento"),
                                         rs.getLong("num_cartao_credito"),
                                         rs.getInt("n_parcelas"),
@@ -789,7 +788,7 @@ public class DespesaDAO {
                                         rs.getInt("mes"),
                                         rs.getInt("ano"),
                                         rs.getFloat("valor"),
-                                        rs.getString("categoria_id"), 
+                                        rs.getString("categoriaTipo"), 
                                         rs.getString("f_pagamento"),
                                         rs.getLong("num_cartao_debito"),
                                         rs.getString("estatus"),
@@ -807,7 +806,7 @@ public class DespesaDAO {
                                         rs.getInt("mes"),
                                         rs.getInt("ano"),
                                         rs.getFloat("valor"),
-                                        rs.getString("categoria_id"), 
+                                        rs.getString("categoriaTipo"), 
                                         rs.getString("f_pagamento"),
                                         rs.getString("estatus"),
                                         rs.getString("descricao"),
@@ -833,8 +832,7 @@ public class DespesaDAO {
 
         } else {
             // segunda parte -> melhor fazer outra função
-            consulta = "select des.cod_despesa, des.dia, des.mes, des.ano, des.valor, des.categoria_id, des.f_pagamento, des.num_cartao_credito, des.num_cartao_debito, des_c.n_parcelas, des.estatus, des.descricao from despesa des LEFT OUTER JOIN despesa_credito des_c ON  (des.cod_despesa = des_c.despesa_cod_despesa) WHERE des.conta_id_conta = ? and des.mes = ? and des.ano = ?"+argumento;
-            
+            consulta = "select des.cod_despesa, des.dia, des.mes, des.ano, des.valor, des.categoria_id, des.f_pagamento, des.num_cartao_credito, des.num_cartao_debito, des_c.n_parcelas, des.estatus, des.descricao, c.categoriaTipo from despesa des LEFT OUTER JOIN despesa_credito des_c ON  (des.cod_despesa = des_c.despesa_cod_despesa) LEFT OUTER JOIN categoria c ON  (des.categoria_id = c.categoriaId) WHERE des.conta_id_conta = ? and des.mes = ? and des.ano = ?" +argumento;
             try {
 
                 pst = conexao.prepareStatement(consulta);
@@ -854,7 +852,7 @@ public class DespesaDAO {
                                     rs.getInt("mes"),
                                     rs.getInt("ano"),
                                     rs.getFloat("valor"),
-                                    rs.getString("categoria_id"),
+                                    rs.getString("categoriaTipo"),
                                     rs.getString("f_pagamento"),
                                     rs.getLong("num_cartao_credito"),
                                     rs.getInt("n_parcelas"),
@@ -870,7 +868,7 @@ public class DespesaDAO {
                                         rs.getInt("mes"),
                                         rs.getInt("ano"),
                                         rs.getFloat("valor"),
-                                        rs.getString("categoria_id"), 
+                                        rs.getString("categoriaTipo"), 
                                         rs.getString("f_pagamento"),
                                         rs.getLong("num_cartao_debito"),
                                         rs.getString("estatus"),
@@ -886,7 +884,7 @@ public class DespesaDAO {
                                         rs.getInt("mes"),
                                         rs.getInt("ano"),
                                         rs.getFloat("valor"),
-                                        rs.getString("categoria_id"), 
+                                        rs.getString("categoriaTipo"), 
                                         rs.getString("f_pagamento"),
                                         rs.getString("estatus"),
                                         rs.getString("descricao"),

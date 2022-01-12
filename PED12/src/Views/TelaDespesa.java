@@ -283,7 +283,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         }
 
         if (escolha.equals("Categoria")) {
-            tipo = " " + "categoria";
+            tipo = " " + "categoriaTipo";
         }
 
         if (escolha.equals("Número do Cartão")) {
@@ -306,8 +306,9 @@ public class TelaDespesa extends javax.swing.JFrame {
             tipo = " " + "descricao";
         }
 
-        if (escolha.equals("Nº Parcelas")) {
+        if (escolha.equals("Nº  Parcelas")) {
             tipo = " " + "n_parcelas";
+            System.out.println("bateu aqui");
         }
 
         if (escolha.equals("Forma de Pagamento")) {
@@ -682,6 +683,11 @@ public class TelaDespesa extends javax.swing.JFrame {
         cbbTipo.setBackground(new java.awt.Color(187, 210, 240));
         cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor", "Categoria", "Descrição", "Forma de Pagamento", "Número do Cartão", "Estatus", "Dia", "Mês", "Ano", "Nº  Parcelas", " ", " ", " " }));
+        cbbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbTipoActionPerformed(evt);
+            }
+        });
         getContentPane().add(cbbTipo);
         cbbTipo.setBounds(20, 80, 160, 27);
 
@@ -1070,8 +1076,6 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         if (txt_Pesquisa.getText().isEmpty()) {
             RecarregaTabela_Despesa();
-            //RecarregaTabela_DespesaCredito();
-            //RecarregaTabela_DespesaDebito();
             
         }
 
@@ -1277,8 +1281,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
         CarregaCategoria();
         RecarregaTabela_Despesa();
-        //RecarregaTabela_DespesaCredito();
-        //RecarregaTabela_DespesaDebito();
     }//GEN-LAST:event_formWindowOpened
 
     private void txtMesReceitaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMesReceitaKeyPressed
@@ -1433,8 +1435,6 @@ public class TelaDespesa extends javax.swing.JFrame {
             if (atualiza) {
 
                 telaUpdateDespesa();
-                //RecarregaTabela_DespesaCredito();
-                //RecarregaTabela_DespesaDebito();
                 RecarregaTabela_Despesa();
                 LimpaCampos_Despesa();
 
@@ -1453,10 +1453,12 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         // TODO add your handling code here:
         delete_despesa();
-        //RecarregaTabela_DespesaCredito();
-        //RecarregaTabela_DespesaDebito();
         RecarregaTabela_Despesa();
     }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void cbbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbTipoActionPerformed
 
     /**
      * @param args the command line arguments
