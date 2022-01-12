@@ -372,18 +372,17 @@ public class TelaDespesa extends javax.swing.JFrame {
                 Col4 = Float.toString(despesa.getValor());
                 Col5 = despesa.getCategoria();
                 Col6 = despesa.getF_pagamento();
-                Col7 = Long.toString(despesa.getNum_cartao());
+                if(despesa.getNum_cartao() != null){
+                    Col7 = Long.toString(despesa.getNum_cartao());
+                }else{
+                    Col7 = "----";
+                }
+                
                 Col8 = Integer.toString(despesa.getNum_parcelas());
                 Col9 = despesa.getEstatus();
                 Col10 = despesa.getDescricao();
-
-                if (Col7 == null) {
-
-                    Col7 = "----";
-
-                }
-
-                if (Col8 == null) {
+                  
+                if (Col8 == null || Col8.equals("0")) {
 
                     Col8 = "----";
 
