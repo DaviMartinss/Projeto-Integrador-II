@@ -832,28 +832,9 @@ public class DespesaDAO {
             }
 
         } else {
-
-            consulta
-                    = "(select\n"
-                    + "des_d.cod_despesa,\n"
-                    + "des_d.dia,\n"
-                    + "des_d.mes,\n"
-                    + "des_d.ano,\n"
-                    + "des.valor,\n"
-                    + "des.categoria_id,\n"
-                    + "des.f_pagamento,\n"
-                    + "des.num_cartao,\n"
-                    + "des_c.n_parcelas,\n"
-                    + "des.estatus,\n"
-                    + "des.descricao\n"
-                    + "from despesa des\n"
-                    + " LEFT OUTER JOIN despesa_data des_d on\n"
-                    + "	 des.despesa_data_cod_despesa = des_d.cod_despesa\n"
-                    + " LEFT OUTER JOIN despesa_credito des_c on \n"
-                    + "	(des.despesa_data_cod_despesa = des_c.despesa_data_cod_despesa)\n"
-                    + "WHERE des_d.conta_id_conta = ? and des_d.mes = ? and des_d.ano = ?"
-                    + argumento + " );";
-
+            // segunda parte -> melhor fazer outra função
+            consulta = "select des.cod_despesa, des.dia, des.mes, des.ano, des.valor, des.categoria_id, des.f_pagamento, des.num_cartao_credito, des.num_cartao_debito, des_c.n_parcelas, des.estatus, des.descricao from despesa des LEFT OUTER JOIN despesa_credito des_c ON  (des.cod_despesa = des_c.despesa_cod_despesa) WHERE des.conta_id_conta = ? and des.mes = ? and des.ano = ?"+argumento;
+            
             try {
 
                 pst = conexao.prepareStatement(consulta);
@@ -865,8 +846,9 @@ public class DespesaDAO {
                 rs = pst.executeQuery();
 
                 while (rs.next()) {
-
-                    lista_despesa.add(
+                    if(rs.getString("f_pagamento").equals("CRÉDITO")){
+                        lista_despesa.add(
+                            
                             new Despesa(
                                     rs.getInt("dia"),
                                     rs.getInt("mes"),
@@ -874,13 +856,44 @@ public class DespesaDAO {
                                     rs.getFloat("valor"),
                                     rs.getString("categoria_id"),
                                     rs.getString("f_pagamento"),
-                                    rs.getLong("num_cartao"),
+                                    rs.getLong("num_cartao_credito"),
                                     rs.getInt("n_parcelas"),
                                     rs.getString("estatus"),
                                     rs.getString("descricao"),
                                     rs.getInt("cod_despesa")
                             )
-                    );
+                        );
+                    }else if(rs.getString("f_pagamento").equals("DÉBITO")){
+                        lista_despesa.add(
+                                new Despesa(
+                                        rs.getInt("dia"),
+                                        rs.getInt("mes"),
+                                        rs.getInt("ano"),
+                                        rs.getFloat("valor"),
+                                        rs.getString("categoria_id"), 
+                                        rs.getString("f_pagamento"),
+                                        rs.getLong("num_cartao_debito"),
+                                        rs.getString("estatus"),
+                                        rs.getString("descricao"),
+                                        rs.getInt("cod_despesa")
+                                )
+                        );
+
+                    }else{
+                        lista_despesa.add(
+                                new Despesa(
+                                        rs.getInt("dia"),
+                                        rs.getInt("mes"),
+                                        rs.getInt("ano"),
+                                        rs.getFloat("valor"),
+                                        rs.getString("categoria_id"), 
+                                        rs.getString("f_pagamento"),
+                                        rs.getString("estatus"),
+                                        rs.getString("descricao"),
+                                        rs.getInt("cod_despesa")
+                                )
+                        );
+                    }
                 }
 
             } catch (Exception e) {
@@ -903,7 +916,7 @@ public class DespesaDAO {
 
     public boolean ValidaConsulta_Despesa(int mes, int ano) throws SQLException {
 
-        String consulta = "select * from receita_data where mes = ? and ano = ?";
+        String consulta = "select * from receita where mes = ? and ano = ?";
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
