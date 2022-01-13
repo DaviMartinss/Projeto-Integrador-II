@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Model.CartaoCredito;
 import Model.Despesa;
 import Model.Receita;
 import java.sql.Connection;
@@ -71,6 +70,99 @@ public class DespesaDAO {
 
     }
 
+    public void InsertDespesa(Despesa despesa, int cod_receita, int id_categoria) throws SQLException {
+
+        String InsertDespesa = "";
+
+        PreparedStatement pst_InsertDespesa;
+
+        //<editor-fold defaultstate="collapsed" desc="----- Verificando tipo de Insert da Despesa --">
+        if (despesa.getF_pagamento().equals("DINHEIRO")) {
+
+                InsertDespesa = "INSERT INTO despesa (\n"
+                            + "	receita_cod_receita, \n"
+                            + "	dia, \n"
+                            + "	mes, \n"
+                            + "	ano, \n"
+                            + "	conta_id_conta, \n"
+                            + "	categoria_id, \n"
+                            + "	valor, \n"
+                            + "	f_pagamento, \n"
+                            + "	estatus)\n"
+                            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            //InsertDespesa = "INSERT INTO despesa (receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+        } else {
+
+            if (despesa.getF_pagamento().equals("DÉBITO")) {
+
+                InsertDespesa = "INSERT INTO despesa (\n"
+                            + "	receita_cod_receita, \n"
+                            + "	dia, \n"
+                            + "	mes, \n"
+                            + "	ano, \n"
+                            + "	conta_id_conta, \n"
+                            + "	categoria_id, \n"
+                            + "	num_cartao_debito, \n"
+                            + "	valor, \n"
+                            + "	f_pagamento, \n"
+                            + "	estatus)\n"
+                            + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+            } else {
+
+                InsertDespesa = "INSERT INTO despesa (\n"
+                            + "	receita_cod_receita, \n"
+                            + "	dia, \n"
+                            + "	mes, \n"
+                            + "	ano, \n"
+                            + "	conta_id_conta, \n"
+                            + "	categoria_id, \n"
+                            + "	num_cartao_credito, \n"
+                            + "	valor, \n"
+                            + "	f_pagamento, \n"
+                            + "	estatus)\n"
+                            + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+            }
+        }
+
+        //</editor-fold>
+        
+        
+        //<editor-fold defaultstate="collapsed" desc="----- Insert da Despesa --">
+        pst_InsertDespesa = conexao.prepareStatement(InsertDespesa);
+
+        pst_InsertDespesa.setInt(1, cod_receita);
+        pst_InsertDespesa.setInt(2, despesa.getDia());
+        pst_InsertDespesa.setInt(3, despesa.getMes());
+        pst_InsertDespesa.setInt(4, despesa.getAno());
+        pst_InsertDespesa.setInt(5, despesa.getId_conta());
+        pst_InsertDespesa.setInt(6, id_categoria);
+
+        if (despesa.getF_pagamento().equals("DINHEIRO")) {
+
+            pst_InsertDespesa.setFloat(7, despesa.getValor());
+            pst_InsertDespesa.setString(8, despesa.getF_pagamento());
+            pst_InsertDespesa.setString(9, despesa.getEstatus());
+
+        } else {
+
+            pst_InsertDespesa.setLong(7, despesa.getNum_cartao());
+            pst_InsertDespesa.setFloat(8, despesa.getValor());
+            pst_InsertDespesa.setString(9, despesa.getF_pagamento());
+            pst_InsertDespesa.setString(10, despesa.getEstatus());
+
+        }
+
+        pst_InsertDespesa.executeUpdate();
+
+        //</editor-fold>
+       
+        pst_InsertDespesa.close();
+    }
+    
+    
     public boolean CadastrarDespesa(Despesa despesa) throws SQLException {
 
         ReceitaDAO receitaDAO = new ReceitaDAO();
@@ -352,7 +444,7 @@ public class DespesaDAO {
         CategoriaDAO categoriaNova = new CategoriaDAO();
         
         
-        idCategoria =  categoriaNova.GetDespesaCategoria(despesa.getCategoria(), id_conta);
+        idCategoria =  categoriaNova.GetCategoriaId(id_conta,despesa.getCategoria());
         
         System.out.println("O id categoria é: "+idCategoria);
         
@@ -1282,4 +1374,10 @@ public class DespesaDAO {
         return ListaDespesaFatura;
 
     }
+
+/*
+    
+    
+*/
+
 }

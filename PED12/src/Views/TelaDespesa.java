@@ -185,7 +185,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         try {
            int id_aux = Integer.parseInt(txt_id.getText()); 
             
-            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(id_aux);
+            LinkedList<Categoria> lista_categoria = categoria.GetListaCategoria(id_aux);
             
             for (Categoria cat : lista_categoria) {
 
@@ -616,7 +616,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         categoryTitle = new javax.swing.JLabel();
         cardNumTitle = new javax.swing.JLabel();
         findTextTitle = new javax.swing.JLabel();
-        instTitle = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -724,11 +723,11 @@ public class TelaDespesa extends javax.swing.JFrame {
         txtCategoria.setBackground(new java.awt.Color(187, 210, 240));
         txtCategoria.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtCategoria);
-        txtCategoria.setBounds(120, 290, 200, 27);
+        txtCategoria.setBounds(20, 430, 200, 27);
 
         txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
         getContentPane().add(txtParcelas);
-        txtParcelas.setBounds(20, 440, 110, 27);
+        txtParcelas.setBounds(120, 290, 200, 27);
 
         txt_Pesquisa.setColumns(200);
         txt_Pesquisa.setName(""); // NOI18N
@@ -955,7 +954,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         instNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         instNumTitle.setText("Nº de Pacelas: ");
         getContentPane().add(instNumTitle);
-        instNumTitle.setBounds(210, 320, 84, 27);
+        instNumTitle.setBounds(120, 270, 84, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findByTitle.setText("Pesquisar por");
@@ -970,7 +969,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         categoryTitle.setText("Categoria: ");
         getContentPane().add(categoryTitle);
-        categoryTitle.setBounds(120, 270, 61, 27);
+        categoryTitle.setBounds(210, 320, 61, 27);
 
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
@@ -981,11 +980,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         findTextTitle.setText("Digite sua pesquisa aqui");
         getContentPane().add(findTextTitle);
         findTextTitle.setBounds(190, 60, 180, 27);
-
-        instTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        instTitle.setText("Parcelas");
-        getContentPane().add(instTitle);
-        instTitle.setBounds(20, 420, 70, 27);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel13");
@@ -1156,14 +1150,21 @@ public class TelaDespesa extends javax.swing.JFrame {
         String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
         String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
         
+        
         txtDia.setText(dia);
         txtMes.setText(mes);
         txtAno.setText(ano);
+        cbb_categoria.setSelectedItem(categoria);
         txtValor.setText(valor);
-        txtCategoria.setText(categoria);
-        txt_NumCartao.setText(numCartao);
-        txtParcelas.setText(numParcelas);
-        txtAreaDescricao.setText(descricao);
+        
+        if(!numCartao.equals("----"))
+            txt_NumCartao.setText(numCartao);
+            
+        if(!numParcelas.equals("----"))
+            txtParcelas.setText(numParcelas);
+        
+        if(!descricao.equals("----"))
+            txtAreaDescricao.setText(descricao);
             
         if (formaPagamento.equals("CRÉDITO")) 
         {
@@ -1373,7 +1374,7 @@ public class TelaDespesa extends javax.swing.JFrame {
                     Integer.parseInt(txtMes.getText()),
                     Integer.parseInt(txtAno.getText()),
                     Float.parseFloat(txtValor.getText()),
-                    txtCategoria.getText(),
+                    cbb_categoria.getSelectedItem().toString().trim(),
                     txtAreaDescricao.getText(),
                     Integer.parseInt(txt_id.getText())
             );
@@ -1488,10 +1489,8 @@ public class TelaDespesa extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaDespesa().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaDespesa().setVisible(true);
         });
     }
 
@@ -1513,7 +1512,6 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel findByTitle;
     private javax.swing.JLabel findTextTitle;
     private javax.swing.JLabel instNumTitle;
-    private javax.swing.JLabel instTitle;
     private javax.swing.JLabel invoiceDateTitle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -7,12 +7,8 @@ package Views;
 
 import Model.Categoria;
 import javax.swing.JOptionPane;
-import DAO.CategoriaDAO;
-import java.util.Collections;
-import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
-import CategoriaOrdenacao.CategoriaASC;
-import CategoriaOrdenacao.CategoriaDESC;
+import Controllers.ControlerCategoria;
 import Controllers.ControlerTabela;
 /**
  *
@@ -35,7 +31,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
     }
 
-    void inicio() {
+    void TelaPrincipal() {
 
         TelaPrincipal TelaPrincipal = null;
 
@@ -65,7 +61,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         
     }
 
-    void cadastra_categoria() {
+    void TelaCategoria_cadastrar() {
 
         TelaCategoria_cadastrar TelaCadastra_categoria = null;
 
@@ -91,10 +87,10 @@ public class TelaCategoria extends javax.swing.JFrame {
     }
     
     
-    void update_categoria() {
+    void AtualizarCategoria() {
 
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhuma categoria foi selecionada para ser atualizda");
+            JOptionPane.showMessageDialog(this, "Nenhuma categoria foi selecionada para ser atualizda","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
@@ -108,116 +104,117 @@ public class TelaCategoria extends javax.swing.JFrame {
                     Integer.parseInt(txt_id.getText())
                     
             );
-            
-            CategoriaDAO categoria_DAO = new CategoriaDAO();
 
             try {
                 
-                 categoria_DAO.UpdateCategoria(categoria_atua);
+                 ControlerCategoria.AtualizarCategoria(categoria_atua);
                  
                  limpa_campo();
 
             } catch (Exception e) {
 
-                JOptionPane.showMessageDialog(null, "Falha ao atualizar a categoria");
+                JOptionPane.showMessageDialog(this, "Falha ao atualizar a categoria " + e.getMessage() ,"WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             }
         } else {
             
-            JOptionPane.showMessageDialog(null, "Nenhum campo pode ser nulo");
+            JOptionPane.showMessageDialog(this, "Nenhum campo pode ser nulo","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
     }
     
     
-    void delete_categoria() {
+    void ApagarCategoria() {
 
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhuma categoria foi selecionada para ser deletada");
+            JOptionPane.showMessageDialog(this, "Nenhuma categoria foi selecionada para ser deletada","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
-        Categoria categoria = new Categoria(
-        
-                salvaCategoria
-                    
-        );
-                
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
+        Categoria categoria = new Categoria(salvaCategoria);
 
         try {
             
-            categoriaDAO.DeleteCategoria(categoria, Integer.parseInt(txt_id.getText()));
+            ControlerCategoria.ApagarCategoria(categoria, Integer.parseInt(txt_id.getText()));
             limpa_campo();
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(null, "Falha ao deletar categoria");
+            JOptionPane.showMessageDialog(this, "Falha ao deletar categoria","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
     }
     
-    void RecarregaTabela_Categoria(boolean ordena) {
+    void RecarregaTabela(boolean ordena) {
                 
         boolean salvaLinhaAtiva = false;
         
         ControlerTabela.LimpaTabela(jt_categoria);
+       
+        DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
+
+        ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "Categoria");
         
+        //VER PARA Q SERVE ESSAS ORDENAÇÕES
+                    
+//            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(Integer.parseInt(txt_id.getText()));
+//        
+//            if(!(ordena)){    
+//                    
+//                    for (Categoria cat : lista_categoria) {
+//                        String Col0 = cat.getCategoria_aux();
+//                        mp.addRow(new String[]{Col0});
+//                    }
+//
+//                    lista_categoria.clear();
+//
+//            }else{
+//
+//                if(selectorUp.isSelected()){
+//                       
+//                   Collections.sort(lista_categoria, new CategoriaASC() );
+//                   
+//                   for (Categoria cat : lista_categoria) {
+//
+//                        String Col0 =  cat.getCategoria_aux();
+//
+//                        mp.addRow(new String[]{Col0});
+//                    }
+//
+//                    lista_categoria.clear();
+//
+//                }else{
+//                    // ordena decrescente
+//                    
+//                    Collections.sort(lista_categoria, new CategoriaDESC() );
+//                   
+//                   for (Categoria cat : lista_categoria) {
+//
+//                        String Col0 =  cat.getCategoria_aux();
+//
+//                        mp.addRow(new String[]{Col0});
+//                    }
+//
+//                    lista_categoria.clear();
+//                    
+//                }
+    
+}
+    
+    void ConsultaCategoria(boolean ordenar) {
+
+        String argumento = txt_Pesquisa.getText();
+
+        ControlerTabela.LimpaTabela(jt_categoria);
+
         try {
 
-            CategoriaDAO categoria = new CategoriaDAO();
             DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
 
-            
-            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(Integer.parseInt(txt_id.getText()));
-        
-            if(!(ordena)){    
-                    
-                    for (Categoria cat : lista_categoria) {
-                        String Col0 = cat.getCategoria_aux();
-                        mp.addRow(new String[]{Col0});
-                    }
+            ControlerTabela.RecarregaTabelaConsulta(mp, "categoriaTipo", argumento, Integer.parseInt(txt_id.getText()), ordenar, "Categoria");
 
-                    lista_categoria.clear();
+        } catch (NumberFormatException e) {
 
-            }else{
-
-                if(selectorUp.isSelected()){
-                       
-                   Collections.sort(lista_categoria, new CategoriaASC() );
-                   
-                   for (Categoria cat : lista_categoria) {
-
-                        String Col0 =  cat.getCategoria_aux();
-
-                        mp.addRow(new String[]{Col0});
-                    }
-
-                    lista_categoria.clear();
-
-                }else{
-                    // ordena decrescente
-                    
-                    Collections.sort(lista_categoria, new CategoriaDESC() );
-                   
-                   for (Categoria cat : lista_categoria) {
-
-                        String Col0 =  cat.getCategoria_aux();
-
-                        mp.addRow(new String[]{Col0});
-                    }
-
-                    lista_categoria.clear();
-                    
-                }
-
-            }
-
-    }  catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, "Falha ao realizar a ordenação");
-
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    
     }
-    
     
     
 
@@ -235,16 +232,15 @@ public class TelaCategoria extends javax.swing.JFrame {
         jt_categoria = new javax.swing.JTable();
         txt_NomeCategoria = new javax.swing.JTextField();
         txt_Pesquisa = new javax.swing.JTextField();
-        selectorUp = new javax.swing.JRadioButton();
-        selectorDown = new javax.swing.JRadioButton();
         btn_voltaInicio = new javax.swing.JButton();
         btn_cadastraCategoria = new javax.swing.JButton();
         btn_deletaCategoria = new javax.swing.JButton();
-        btn_ordenar = new javax.swing.JButton();
         btn_updateCategoria = new javax.swing.JButton();
         btPesquisarCD = new javax.swing.JButton();
         findTextTitle = new javax.swing.JLabel();
         nameTitle = new javax.swing.JLabel();
+        btnDESC = new javax.swing.JButton();
+        btnASC = new javax.swing.JButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -312,26 +308,6 @@ public class TelaCategoria extends javax.swing.JFrame {
         getContentPane().add(txt_Pesquisa);
         txt_Pesquisa.setBounds(150, 110, 520, 27);
 
-        selectorUp.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        selectorUp.setText("Ascendente");
-        selectorUp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectorUpActionPerformed(evt);
-            }
-        });
-        getContentPane().add(selectorUp);
-        selectorUp.setBounds(150, 150, 93, 27);
-
-        selectorDown.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        selectorDown.setText("Descendente");
-        selectorDown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectorDownActionPerformed(evt);
-            }
-        });
-        getContentPane().add(selectorDown);
-        selectorDown.setBounds(250, 150, 101, 27);
-
         btn_voltaInicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_voltaInicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_voltaInicio.setForeground(new java.awt.Color(255, 255, 255));
@@ -368,18 +344,6 @@ public class TelaCategoria extends javax.swing.JFrame {
         getContentPane().add(btn_deletaCategoria);
         btn_deletaCategoria.setBounds(540, 420, 140, 27);
 
-        btn_ordenar.setBackground(new java.awt.Color(105, 69, 219));
-        btn_ordenar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btn_ordenar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ordenar.setText("Ordenar");
-        btn_ordenar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ordenarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_ordenar);
-        btn_ordenar.setBounds(370, 150, 120, 27);
-
         btn_updateCategoria.setBackground(new java.awt.Color(105, 69, 219));
         btn_updateCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_updateCategoria.setForeground(new java.awt.Color(255, 255, 255));
@@ -414,6 +378,24 @@ public class TelaCategoria extends javax.swing.JFrame {
         getContentPane().add(nameTitle);
         nameTitle.setBounds(150, 180, 60, 27);
 
+        btnDESC.setText("Descendente");
+        btnDESC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDESCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDESC);
+        btnDESC.setBounds(280, 150, 130, 30);
+
+        btnASC.setText("Ascendente");
+        btnASC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnASCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnASC);
+        btnASC.setBounds(150, 150, 120, 30);
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel1");
         getContentPane().add(background);
@@ -437,57 +419,27 @@ public class TelaCategoria extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
-        RecarregaTabela_Categoria(ordena);
+        RecarregaTabela(ordena);
     }//GEN-LAST:event_formWindowOpened
 
     private void btn_deletaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletaCategoriaActionPerformed
         // TODO add your handling code here:
         
-        delete_categoria();
-        RecarregaTabela_Categoria(ordena);
+        ApagarCategoria();
+        RecarregaTabela(ordena);
         
     }//GEN-LAST:event_btn_deletaCategoriaActionPerformed
 
     private void btn_voltaInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltaInicioActionPerformed
         // TODO add your handling code here:
         
-        inicio();
+        TelaPrincipal();
         
     }//GEN-LAST:event_btn_voltaInicioActionPerformed
 
-    private void btn_ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ordenarActionPerformed
-        // TODO add your handling code here:
-        
-         if (selectorUp.isSelected() || selectorDown.isSelected()) {
-            RecarregaTabela_Categoria(ordena);
-        }else{
-            
-            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-        }
-    }//GEN-LAST:event_btn_ordenarActionPerformed
-
-    private void selectorUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectorUpActionPerformed
-        // TODO add your handling code here:
-          if (selectorUp.isSelected()) {
-            ordena = true;
-            selectorDown.setSelected(false);
-            
-        }
-    }//GEN-LAST:event_selectorUpActionPerformed
-
-    private void selectorDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectorDownActionPerformed
-        // TODO add your handling code here:
-        
-        if (selectorDown.isSelected()) {
-            ordena = true;
-            selectorUp.setSelected(false);
-
-        }
-    }//GEN-LAST:event_selectorDownActionPerformed
-
     private void btn_cadastraCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastraCategoriaActionPerformed
         // TODO add your handling code here:
-         cadastra_categoria();
+         TelaCategoria_cadastrar();
     }//GEN-LAST:event_btn_cadastraCategoriaActionPerformed
 
     private void btn_updateCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateCategoriaActionPerformed
@@ -505,9 +457,9 @@ public class TelaCategoria extends javax.swing.JFrame {
 
             txt_NomeCategoria.setEditable(false);
 
-            update_categoria();
+            AtualizarCategoria();
 
-            RecarregaTabela_Categoria(true);
+            RecarregaTabela(true);
 
             limpa_campo();
         }
@@ -521,69 +473,25 @@ public class TelaCategoria extends javax.swing.JFrame {
     private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
 
         if (txt_Pesquisa.getText().isEmpty()) {
-            RecarregaTabela_Categoria(true);
+            RecarregaTabela(true);
         }
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
     private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
         // TODO add your handling code here:
+        ConsultaCategoria(true);
 
-        if (selectorUp.isSelected() || selectorDown.isSelected()) {
-
-            boolean ordenar = true;
-
-            if (selectorUp.isSelected()) {
-
-                ordenar = true;
-
-            } else {
-
-                ordenar = false;
-            }
-
-            String argumento = txt_Pesquisa.getText();
-
-            ControlerTabela.LimpaTabela(jt_categoria);
-
-            try {
-
-                CategoriaDAO categoriaDAO = new CategoriaDAO();
-
-                DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
-
-                LinkedList<Categoria> lista_categoria = categoriaDAO.ConsultaCategoria(argumento, Integer.parseInt(txt_id.getText()), ordenar);
-
-                if (ordenar) {
-
-                    Collections.sort(lista_categoria, new CategoriaASC());
-
-                } else {
-
-                    Collections.sort(lista_categoria, new CategoriaDESC());
-                }
-                
-                for (Categoria categoria : lista_categoria) {
-
-                        String Col0 = categoria.getCategoriaTipo();
-
-                        mp.addRow(new String[]{Col0});
-
-                }
-
-                lista_categoria.clear();
-
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(this, e.getMessage());
-
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-
-        }
     }//GEN-LAST:event_btPesquisarCDActionPerformed
+
+    private void btnDESCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDESCActionPerformed
+
+        ConsultaCategoria(false);
+    }//GEN-LAST:event_btnDESCActionPerformed
+
+    private void btnASCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnASCActionPerformed
+        // TODO add your handling code here:
+        ConsultaCategoria(true);
+    }//GEN-LAST:event_btnASCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,19 +521,18 @@ public class TelaCategoria extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCategoria().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaCategoria().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JButton btPesquisarCD;
+    private javax.swing.JButton btnASC;
+    private javax.swing.JButton btnDESC;
     private javax.swing.JButton btn_cadastraCategoria;
     private javax.swing.JButton btn_deletaCategoria;
-    private javax.swing.JButton btn_ordenar;
     private javax.swing.JButton btn_updateCategoria;
     private javax.swing.JButton btn_voltaInicio;
     private javax.swing.JLabel findTextTitle;
@@ -633,19 +540,14 @@ public class TelaCategoria extends javax.swing.JFrame {
     private javax.swing.JTable jt_categoria;
     private javax.swing.JLabel nameTitle;
     private javax.swing.JLabel pageTitle;
-    private javax.swing.JRadioButton selectorDown;
-    private javax.swing.JRadioButton selectorUp;
     private javax.swing.JTextField txt_NomeCategoria;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
 
-public void receberID(String recebe) {
+    public void receberID(String recebe) {
 
         txt_id.setText(recebe);
-}
-
-
-
+    }
 }

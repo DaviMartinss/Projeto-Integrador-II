@@ -33,9 +33,9 @@ public class Categoria {
     }
 
     
-    public Categoria(String Categoria_aux) {
+    public Categoria(String categoriaTipo) {
         
-        this.Categoria_aux = Categoria_aux;
+        this.CategoriaTipo = categoriaTipo;
         
     }
 

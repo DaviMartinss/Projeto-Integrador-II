@@ -5,8 +5,9 @@
  */
 package Views;
 
+import Controllers.ControlerCategoria;
 import Model.Categoria;
-import DAO.CategoriaDAO;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +27,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         
     }
     
-    void inicio(){
+    void TelaPrincipal(){
 
          TelaPrincipal TelaPrincipal = null;
 
@@ -51,7 +52,6 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     }
     
     void volta_telaCategoria() {
-
 
         TelaCategoria TelaCategoria = null;
 
@@ -78,34 +78,32 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     
     void limpa_campo(){
         
-        txt_categoria.setText("");
-        
+        txt_categoria.setText("");        
     }
     
     
    public void cadastro_categoria() {
-        
-        Categoria cartategoria_aux = new Categoria();
           
         Categoria categoria = new Categoria(
               txt_categoria.getText(),
-              Integer.parseInt(txt_id.getText())
-                
+              Integer.parseInt(txt_id.getText())                
         );
-        
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
 
         try {
-            
-                categoriaDAO.CadastrarCategoria(categoria);
-                 volta_telaCategoria();
+            if (!(categoria.valorEhVazio(categoria.getCategoriaTipo()))) {
                 
+                ControlerCategoria.CadastrarCategoria(categoria);
+                
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Nenhum campo pode ser nulo","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            }
+                 volta_telaCategoria();                
             
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
     }
     
     
@@ -182,18 +180,15 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cadastarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastarCategoriaActionPerformed
-        
-        
+
         cadastro_categoria();
-        
-        
+
     }//GEN-LAST:event_btn_cadastarCategoriaActionPerformed
 
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed
         // TODO add your handling code here:
-        
-        inicio();
-        
+
+        TelaPrincipal();
     }//GEN-LAST:event_btn_inicioActionPerformed
 
     /**
@@ -224,10 +219,8 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCategoria_cadastrar().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaCategoria_cadastrar().setVisible(true);
         });
     }
 
@@ -242,11 +235,8 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
-public void receberID(String recebe) {
+    public void receberID(String recebe) {
 
         txt_id.setText(recebe);
-}
-
-
-
+    }
 }

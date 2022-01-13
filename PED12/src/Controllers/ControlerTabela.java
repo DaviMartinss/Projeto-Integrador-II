@@ -5,8 +5,11 @@
  */
 package Controllers;
 
+import CategoriaOrdenacao.CategoriaASC;
+import CategoriaOrdenacao.CategoriaDESC;
 import Model.CartaoCredito;
 import Model.CartaoDebito;
+import Model.Categoria;
 import Model.Receita;
 import ReceitaOrdenacao.ReceitaAnoASC;
 import ReceitaOrdenacao.ReceitaAnoDESC;
@@ -102,8 +105,22 @@ public class ControlerTabela {
 
                     lista_CD.clear();
                     break;
+                    
+                case "Categoria":
+                    LinkedList<Categoria> listaCategoria = ControlerCategoria.GetListaCategoria(conta_id);
+                    
+                    Collections.sort(listaCategoria, new CategoriaASC());
+                    
+                    listaCategoria.forEach(categoria -> {
+                        
+                        String Col0 = categoria.getCategoriaTipo();                        
+                        mp.addRow(new String[]{Col0});
+                    });
+                    
+                    listaCategoria.clear();
+                    break;
                 
-                 case "Fatura":
+                case "Fatura":
                      //Implementar
                     break;
                     
@@ -121,7 +138,7 @@ public class ControlerTabela {
         return mp;
     }
     
-    @SuppressWarnings("empty-statement")
+   
     public static DefaultTableModel RecarregaTabelaConsulta(DefaultTableModel mp, String tipo, String argumento, int conta_id, boolean ordenar,String tipoTabela){
         
         try {
@@ -133,39 +150,32 @@ public class ControlerTabela {
                     
                     if (ordenar) {
 
-                        if (tipo.equals(" total")) {
+                        if (tipo.equals(" total")) 
                             Collections.sort(listaReceita, new ReceitaTotalASC());
-                        }
-
-                        if (tipo.equals(" dia")) {
+                        
+                        if (tipo.equals(" dia")) 
                             Collections.sort(listaReceita, new ReceitaDiaASC());
-                        }
-
-                        if (tipo.equals(" mes")) {
+                        
+                        if (tipo.equals(" mes"))
                             Collections.sort(listaReceita, new ReceitaMesASC());
-                        }
-
-                        if (tipo.equals(" ano")) {
+                        
+                        if (tipo.equals(" ano"))
                             Collections.sort(listaReceita, new ReceitaAnoASC());
-                        }
-
+                        
                     } else {
 
-                        if (tipo.equals(" total")) {
+                        if (tipo.equals(" total")) 
                             Collections.sort(listaReceita, new ReceitaTotalDESC());
-                        }
-
-                        if (tipo.equals(" dia")) {
+                        
+                        if (tipo.equals(" dia")) 
                             Collections.sort(listaReceita, new ReceitaDiaDESC());
-                        }
-
-                        if (tipo.equals(" mes")) {
+                        
+                        if (tipo.equals(" mes")) 
                             Collections.sort(listaReceita, new ReceitaMesDESC());
-                        }
-
-                        if (tipo.equals(" ano")) {
+                        
+                        if (tipo.equals(" ano")) 
                             Collections.sort(listaReceita, new ReceitaAnoDESC());
-                        }
+                       
                     }
 
                     listaReceita.forEach((receita) -> {
@@ -213,7 +223,33 @@ public class ControlerTabela {
                     lista_CD.clear();
                     break;
                 
-                 case "Fatura":
+                case "Categoria":
+                    LinkedList<Categoria> listaCategoria;
+                    
+                    if(!argumento.isEmpty() || !argumento.equals(""))
+                        listaCategoria = ControlerCategoria.ConsultaCategoria(argumento, conta_id, ordenar);
+                    else
+                        listaCategoria = ControlerCategoria.GetListaCategoria(conta_id);
+                    
+                    if (ordenar) {
+
+                        Collections.sort(listaCategoria, new CategoriaASC());
+
+                    } else {
+
+                        Collections.sort(listaCategoria, new CategoriaDESC());
+                    }
+
+                    listaCategoria.forEach(categoria -> {
+                        
+                        String Col0 = categoria.getCategoriaTipo();                        
+                        mp.addRow(new String[]{Col0});
+                    });
+
+                    listaCategoria.clear();
+                    break;
+                    
+                case "Fatura":
                      //Implementar
                     break;
                     

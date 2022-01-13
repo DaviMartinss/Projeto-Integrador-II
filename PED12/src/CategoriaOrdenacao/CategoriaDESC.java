@@ -21,10 +21,10 @@ public class CategoriaDESC implements Comparator<Categoria>{
     public int compare(Categoria c, Categoria c1) {
 
         // c é maior que c1
-        if (Collator.getInstance().compare(c.getCategoria_aux(), c1.getCategoria_aux()) > 0) {
+        if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) > 0) {
             return -1;
             
-        } else if (Collator.getInstance().compare(c.getCategoria_aux(), c1.getCategoria_aux()) < 0) {
+        } else if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) < 0) {
              // c é menor que c1
             return 1;
 

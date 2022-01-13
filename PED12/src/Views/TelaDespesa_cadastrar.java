@@ -108,7 +108,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         try {
            int id_aux = Integer.parseInt(txt_id.getText()); 
             
-            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(id_aux);
+            LinkedList<Categoria> lista_categoria = categoria.GetListaCategoria(id_aux);
             
             
             for (Categoria cat : lista_categoria) {
