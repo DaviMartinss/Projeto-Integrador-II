@@ -287,10 +287,13 @@ public class TelaDespesa extends javax.swing.JFrame {
             tipo = " " + "categoriaTipo";
         }
 
-        if (escolha.equals("Número do Cartão")) {
-            tipo = " " + "num_cartao";
+        if (escolha.equals("Número do Cartão Crédito")) {
+            tipo = " " + "num_cartao_credito";
         }
-
+        if (escolha.equals("Número do Cartão Débito")) {
+            tipo = " " + "num_cartao_debito";
+        }
+        
         if (escolha.equals("Dia")) {
             tipo = " " + "dia";
         }

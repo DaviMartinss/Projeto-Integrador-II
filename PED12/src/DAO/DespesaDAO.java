@@ -731,16 +731,25 @@ public class DespesaDAO {
     }
     
     public LinkedList<Despesa> Consulta_Despesa(String tipo, String arg, boolean ordenar, boolean despesas, String id_conta, Receita receita) throws SQLException {
-
-        String argumento = "";
         
-        if (ordenar) {
+        String argumento = "";
+        if(arg == null || arg.equals("")){
+            if(ordenar){
+                argumento = " ORDER BY " + tipo + " ASC";
+            }else{
+                argumento = " ORDER BY " + tipo + " DESC";
+            }
+            
+        }else{
+            if (ordenar) {
 
-            argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " ASC";
+            argumento = " and " + tipo + " " + "like '%" + arg + "%'" + " ORDER BY " + tipo + " ASC";
 
-        } else {
-
-            argumento = " and " + tipo + " " + "like '" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+            } else {
+                
+            argumento = " and " + tipo + " " + "like '%" + arg + "%'" + " ORDER BY " + tipo + " DESC";
+            
+            }
         }
         
         String consulta = null;
