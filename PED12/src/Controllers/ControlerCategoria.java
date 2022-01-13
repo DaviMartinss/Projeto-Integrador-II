@@ -55,6 +55,8 @@ public class ControlerCategoria {
         try {
             
             if (!(categoriaDAO.CategoriaExiste(categoria.getCategoriaTipo(), categoria.getId_conta()))) {
+                
+                categoria.setCategoriaId(categoriaDAO.GetCategoriaId(categoria.getId_conta(), categoria.getCategoria_aux()));
 
                 categoriaDAO.UpdateCategoria(categoria);
                 
@@ -137,9 +139,11 @@ public class ControlerCategoria {
        
         try {
             
-            if (categoriaDAO.CategoriaDespesaExiste(categoria.getCategoriaTipo(), id_conta)) {
+            int id_categoria =  categoriaDAO.GetCategoriaId(id_conta, categoria.getCategoriaTipo());
+            
+            if (!categoriaDAO.CategoriaDespesaExiste(categoria.getCategoriaTipo(), id_conta)) {
 
-                categoriaDAO.DeleteCategoria(categoria, id_conta);
+                categoriaDAO.DeleteCategoria(id_categoria, id_conta);
                 
                 return true;
                 

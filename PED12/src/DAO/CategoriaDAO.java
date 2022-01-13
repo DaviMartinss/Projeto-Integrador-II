@@ -42,12 +42,13 @@ public class CategoriaDAO {
 
         PreparedStatement pst;
 
-        String update = "UPDATE categoria SET categoriaTipo=? WHERE categoriaTipo = ?;";
+        String update = "UPDATE categoria SET categoriaTipo=? WHERE categoriaId = ? AND conta_id_conta = ?;";
 
         pst = conexao.prepareStatement(update);
 
         pst.setString(1, categoria.getCategoriaTipo().toUpperCase());
-        pst.setString(2, categoria.getCategoria_aux());
+        pst.setInt(2, categoria.getCategoriaId());
+        pst.setInt(3, categoria.getId_conta());
 
         pst.executeUpdate();
 
@@ -55,15 +56,16 @@ public class CategoriaDAO {
 
     }
 
-    public void DeleteCategoria(Categoria categoria, int id) throws SQLException {
+    public void DeleteCategoria(int categoria_id, int conta_id) throws SQLException {
 
         PreparedStatement pst;
 
-        String delete = "DELETE FROM categoria WHERE categoriaTipo = ?";
+        String delete = "DELETE FROM categoria WHERE categoriaId = ? AND conta_id_conta = ?";
 
         pst = conexao.prepareStatement(delete);
 
-        pst.setString(1, categoria.getCategoria_aux());
+        pst.setInt(1, categoria_id);
+        pst.setInt(2, conta_id);
 
         pst.executeUpdate();
 

@@ -46,11 +46,11 @@ public class Categoria {
     }
     
    
-    public int getCategiaId() {
+    public int getCategoriaId() {
         return CategiaId;
     }
 
-    public void setCategiaId(int CategiaId) {
+    public void setCategoriaId(int CategiaId) {
         this.CategiaId = CategiaId;
     }
 

@@ -17,8 +17,6 @@ import Controllers.ControlerTabela;
 public class TelaCategoria extends javax.swing.JFrame {
 
     boolean salvaLinhaAtiva = false;
-    boolean ordena = false;
-    String salvaCategoria = null;
 
     /**
      * Creates new form TelaCategoria
@@ -98,11 +96,12 @@ public class TelaCategoria extends javax.swing.JFrame {
             
         if (!(categoria_aux.valorEhVazio(txt_NomeCategoria.getText()))) {
 
+            String categoriaAntiga = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
+            
             Categoria categoria_atua = new Categoria(
                     txt_NomeCategoria.getText(),
-                    salvaCategoria,
-                    Integer.parseInt(txt_id.getText())
-                    
+                    categoriaAntiga,
+                    Integer.parseInt(txt_id.getText())                    
             );
 
             try {
@@ -129,7 +128,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             return;
         }
         
-        Categoria categoria = new Categoria(salvaCategoria);
+        Categoria categoria = new Categoria(txt_NomeCategoria.getText());
 
         try {
             
@@ -144,58 +143,14 @@ public class TelaCategoria extends javax.swing.JFrame {
     
     void RecarregaTabela(boolean ordena) {
                 
-        boolean salvaLinhaAtiva = false;
+        salvaLinhaAtiva = false;
         
         ControlerTabela.LimpaTabela(jt_categoria);
        
         DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
 
         ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "Categoria");
-        
-        //VER PARA Q SERVE ESSAS ORDENAÇÕES
-                    
-//            LinkedList<Categoria> lista_categoria = categoria.TabelaCategoria(Integer.parseInt(txt_id.getText()));
-//        
-//            if(!(ordena)){    
-//                    
-//                    for (Categoria cat : lista_categoria) {
-//                        String Col0 = cat.getCategoria_aux();
-//                        mp.addRow(new String[]{Col0});
-//                    }
-//
-//                    lista_categoria.clear();
-//
-//            }else{
-//
-//                if(selectorUp.isSelected()){
-//                       
-//                   Collections.sort(lista_categoria, new CategoriaASC() );
-//                   
-//                   for (Categoria cat : lista_categoria) {
-//
-//                        String Col0 =  cat.getCategoria_aux();
-//
-//                        mp.addRow(new String[]{Col0});
-//                    }
-//
-//                    lista_categoria.clear();
-//
-//                }else{
-//                    // ordena decrescente
-//                    
-//                    Collections.sort(lista_categoria, new CategoriaDESC() );
-//                   
-//                   for (Categoria cat : lista_categoria) {
-//
-//                        String Col0 =  cat.getCategoria_aux();
-//
-//                        mp.addRow(new String[]{Col0});
-//                    }
-//
-//                    lista_categoria.clear();
-//                    
-//                }
-    
+   
 }
     
     void ConsultaCategoria(boolean ordenar) {
@@ -414,19 +369,22 @@ public class TelaCategoria extends javax.swing.JFrame {
         String cat = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
         txt_NomeCategoria.setText(cat);
         
+        salvaLinhaAtiva = true;
+        
+        
     }//GEN-LAST:event_jt_categoriaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
-        RecarregaTabela(ordena);
+        RecarregaTabela(true);
     }//GEN-LAST:event_formWindowOpened
 
     private void btn_deletaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deletaCategoriaActionPerformed
         // TODO add your handling code here:
         
         ApagarCategoria();
-        RecarregaTabela(ordena);
+        RecarregaTabela(true);
         
     }//GEN-LAST:event_btn_deletaCategoriaActionPerformed
 
