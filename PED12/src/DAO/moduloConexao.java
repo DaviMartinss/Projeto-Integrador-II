@@ -16,11 +16,8 @@ public class moduloConexao {
         
         String driver = "com.mysql.cj.jdbc.Driver";  
         
-<<<<<<< Updated upstream
         String url = "jdbc:mysql://127.0.0.1:3307/bd_pedemeia";         
-=======
-        String url = "jdbc:mysql://127.0.0.1:3306/bd_pedemeia";         
->>>>>>> Stashed changes
+
         String user = "root";          
 
         String password = "";  
