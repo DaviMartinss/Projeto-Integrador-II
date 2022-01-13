@@ -187,20 +187,18 @@
           <Font name="Noto Serif" size="12" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="13">
+          <StringArray count="11">
             <StringItem index="0" value="Valor"/>
             <StringItem index="1" value="Categoria"/>
             <StringItem index="2" value="Descri&#xe7;&#xe3;o"/>
             <StringItem index="3" value="Forma de Pagamento"/>
-            <StringItem index="4" value="N&#xfa;mero do Cart&#xe3;o"/>
-            <StringItem index="5" value="Estatus"/>
-            <StringItem index="6" value="Dia"/>
-            <StringItem index="7" value="M&#xea;s"/>
-            <StringItem index="8" value="Ano"/>
-            <StringItem index="9" value="N&#xba;  Parcelas"/>
-            <StringItem index="10" value=" "/>
-            <StringItem index="11" value=" "/>
-            <StringItem index="12" value=" "/>
+            <StringItem index="4" value="N&#xfa;mero do Cart&#xe3;o Cr&#xe9;dito"/>
+            <StringItem index="5" value="N&#xfa;mero do Cart&#xe3;o D&#xe9;bito"/>
+            <StringItem index="6" value="Estatus"/>
+            <StringItem index="7" value="Dia"/>
+            <StringItem index="8" value="M&#xea;s"/>
+            <StringItem index="9" value="Ano"/>
+            <StringItem index="10" value="N&#xba; Parcelas"/>
           </StringArray>
         </Property>
       </Properties>
@@ -208,6 +206,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbbTipoActionPerformed"/>
       </Events>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="TelaDespesa_cbbTipo"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
       <Constraints>

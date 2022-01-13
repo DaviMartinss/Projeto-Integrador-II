@@ -307,7 +307,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             tipo = " " + "descricao";
         }
 
-        if (escolha.equals("Nº  Parcelas")) {
+        if (escolha.equals("Nº Parcelas")) {
             tipo = " " + "n_parcelas";
         }
 
@@ -679,7 +679,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         cbbTipo.setBackground(new java.awt.Color(187, 210, 240));
         cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor", "Categoria", "Descrição", "Forma de Pagamento", "Número do Cartão", "Estatus", "Dia", "Mês", "Ano", "Nº  Parcelas", " ", " ", " " }));
+        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor", "Categoria", "Descrição", "Forma de Pagamento", "Número do Cartão Crédito", "Número do Cartão Débito", "Estatus", "Dia", "Mês", "Ano", "Nº Parcelas" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbTipoActionPerformed(evt);
