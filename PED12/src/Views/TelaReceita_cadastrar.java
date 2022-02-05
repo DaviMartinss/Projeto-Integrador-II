@@ -264,7 +264,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
                     Integer.parseInt(txt_ano.getText())
             );
             
-            if (ControlerReceita.ReceitaExiste(receita)) {
+            if (ControlerReceita.ReceitaExiste(receita.getMes(), receita.getAno(), receita.getId_conta())) {
 
                 JOptionPane.showMessageDialog(this, "Receita já existe!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 cadastra = false;

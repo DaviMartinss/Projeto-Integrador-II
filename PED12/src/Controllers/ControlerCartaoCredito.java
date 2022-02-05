@@ -44,6 +44,31 @@ public class ControlerCartaoCredito {
         }
     }
     
+    public static boolean UpdateCreditoFaturaCartaoCredito(int id_conta, float valor, long num_cartao){
+        
+        CartaoCreditoDAO ccDAO = new CartaoCreditoDAO();
+        
+        try {
+            
+          ccDAO.UpdateCreditoFaturaCartaoCredito(id_conta, valor, num_cartao);          
+          return true;
+            
+        }catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:UpdateCreditoFaturaCartaoCredito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return false;
+        
+        }catch(Exception ex){
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:UpdateCreditoFaturaCartaoCredito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return false;   
+        }
+    }
+    
     public static boolean  AtualizarCartaoCredito(CartaoCredito cartao_credito) {
 
         CartaoCreditoDAO ccDAO = new CartaoCreditoDAO();
@@ -85,7 +110,6 @@ public class ControlerCartaoCredito {
 
         }
     }
-    
     
     public static boolean ApagarCartaoCredito(CartaoCredito cartao_credito){
         

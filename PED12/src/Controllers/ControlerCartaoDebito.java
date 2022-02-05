@@ -44,6 +44,31 @@ public class ControlerCartaoDebito {
         }
     }
     
+    public static boolean UpdateValorAtualCartaoDebito(int id_conta, float valor, long num_cartao){
+        
+        CartaoDebitoDAO cartao_debitoDAO = new CartaoDebitoDAO();
+        
+        try {
+            
+          cartao_debitoDAO.UpdateValorAtualCartaoDebito(id_conta, valor, num_cartao);          
+          return true;
+            
+        }catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:UpdateValorAtualCartaoDebito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return false;
+        
+        }catch(Exception ex){
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:UpdateValorAtualCartaoDebito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return false;   
+        }
+    }
+    
     public static boolean DespesaCartaoExiste(long num_cartao){
         
         CartaoDebitoDAO cartao_debitoDAO = new CartaoDebitoDAO();
@@ -68,6 +93,32 @@ public class ControlerCartaoDebito {
             JOptionPane.showMessageDialog(null, "Erro:DespesaCartaoExiste", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             return false;   
+        }
+    }
+    
+    public static CartaoDebito GetCartaoDebito(long numCartao, int id_conta){
+        
+        CartaoDebitoDAO cartao_debitoDAO = new CartaoDebitoDAO();
+        
+        try {
+            
+          return cartao_debitoDAO.GetCartaoDebito(numCartao, id_conta);          
+       
+        }catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:DespesaCartaoExiste", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return null;
+        
+        }catch(Exception ex){
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "Erro:DespesaCartaoExiste", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            return null;   
         }
     }
     

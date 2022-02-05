@@ -54,7 +54,7 @@ public class CartaoDebito extends Cartao{
         return n_cartao_debito;
     }
 
-    public void setN_cartao_debito(int n_cartao_debito) {
+    public void setN_cartao_debito(long n_cartao_debito) {
         this.n_cartao_debito = n_cartao_debito;
     }
 

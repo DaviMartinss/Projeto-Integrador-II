@@ -256,7 +256,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
-            ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, "CartaoDebito");
+            ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, null, "CartaoDebito");
 
             LimpaCampos_CD();
             

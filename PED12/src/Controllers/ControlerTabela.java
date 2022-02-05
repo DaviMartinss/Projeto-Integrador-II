@@ -10,6 +10,7 @@ import CategoriaOrdenacao.CategoriaDESC;
 import Model.CartaoCredito;
 import Model.CartaoDebito;
 import Model.Categoria;
+import Model.Despesa;
 import Model.Receita;
 import ReceitaOrdenacao.ReceitaAnoASC;
 import ReceitaOrdenacao.ReceitaAnoDESC;
@@ -72,7 +73,41 @@ public class ControlerTabela {
                     break;
                     
                 case "Despesa":
-                    //Implementar
+                    LinkedList<Despesa> lista_despesa = ControlerDespesa.GetListaDespesa(conta_id);
+
+                    String Col7;
+                    
+                    for (Despesa despesa : lista_despesa) {
+
+                        String Col0 = Integer.toString(despesa.getCod_despesa());
+                        String Col1 = Integer.toString(despesa.getDia());
+                        String Col2 = Integer.toString(despesa.getMes());
+                        String Col3 = Integer.toString(despesa.getAno());
+                        String Col4 = Float.toString(despesa.getValor());
+                        String Col5 = despesa.getCategoria();
+                        String Col6 = despesa.getF_pagamento();
+                        
+                        if (despesa.getNum_cartao() != null)
+                            Col7 = Long.toString(despesa.getNum_cartao());
+                        else
+                            Col7 = "----";
+                        
+                        String Col8 = Integer.toString(despesa.getNum_parcelas());
+                        String Col9 = despesa.getEstatus();
+                        
+                        String Col10 = despesa.getDescricao();
+
+                        if (Col8 == null || Col8.isEmpty() || Col8.equals("0")) 
+                            Col8 = "----";
+                        
+                        if (Col10 == null || Col10.isEmpty())
+                            Col10 = "----";
+
+                        mp.addRow(new String[]{Col0, Col1, Col2, Col3,
+                            Col4, Col5, Col6, Col7,
+                            Col8, Col9, Col10});
+                    }
+
                     break;
                 
                 case "CartaoCredito":
@@ -139,7 +174,7 @@ public class ControlerTabela {
     }
     
    
-    public static DefaultTableModel RecarregaTabelaConsulta(DefaultTableModel mp, String tipo, String argumento, int conta_id, boolean ordenar,String tipoTabela){
+    public static DefaultTableModel RecarregaTabelaConsulta(DefaultTableModel mp, String tipo, String argumento, int conta_id, boolean ordenar, Receita receitaConsulta, String tipoTabela){
         
         try {
 
@@ -189,7 +224,47 @@ public class ControlerTabela {
                     break;
                     
                 case "Despesa":
-                    //Implementar
+                    
+                    LinkedList<Despesa> lista_despesa = null;
+                    
+                    if(receitaConsulta != null)
+                        lista_despesa = ControlerDespesa.ConsultaDespesaPorReceita(tipo, argumento, ordenar, receitaConsulta);
+                    else
+                        lista_despesa = ControlerDespesa.ConsultaDespesa(tipo, argumento, ordenar, conta_id);
+                    
+                    String Col7;
+                    
+                    for (Despesa despesa : lista_despesa) {
+
+                        String Col0 = Integer.toString(despesa.getCod_despesa());
+                        String Col1 = Integer.toString(despesa.getDia());
+                        String Col2 = Integer.toString(despesa.getMes());
+                        String Col3 = Integer.toString(despesa.getAno());
+                        String Col4 = Float.toString(despesa.getValor());
+                        String Col5 = despesa.getCategoria();
+                        String Col6 = despesa.getF_pagamento();
+                        
+                        if (despesa.getNum_cartao() != null)
+                            Col7 = Long.toString(despesa.getNum_cartao());
+                        else
+                            Col7 = "----";
+                        
+                        String Col8 = Integer.toString(despesa.getNum_parcelas());
+                        String Col9 = despesa.getEstatus();
+                        String Col10 = despesa.getDescricao();
+
+                        if (Col8 == null || Col8.isEmpty() || Col8.equals("0")) 
+                            Col8 = "----";
+                        
+                        if (Col10 == null || Col10.isEmpty())
+                            Col10 = "----";
+
+                        mp.addRow(new String[]{Col0, Col1, Col2, Col3,
+                            Col4, Col5, Col6, Col7,
+                            Col8, Col9, Col10});
+
+                    }
+
                     break;
                 
                 case "CartaoCredito":

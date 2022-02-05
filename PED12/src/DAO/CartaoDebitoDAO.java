@@ -94,6 +94,27 @@ public class CartaoDebitoDAO {
 
         pst.close();
     }
+    
+    public void UpdateValorAtualCartaoDebito(int id_conta, float valor, long num_cartao) throws SQLException {
+        
+        PreparedStatement pst_UpdateValorAtual;
+
+        String UpdateValorAtual = "UPDATE cartao_debito SET \n"
+                                    + "valor_atual = (valor_atual - ?) \n"
+                                    + "WHERE n_cartao_debito = ? AND conta_id_conta = ?;";
+
+        pst_UpdateValorAtual = conexao.prepareStatement(UpdateValorAtual);
+
+        pst_UpdateValorAtual.setFloat(1, valor);
+
+        pst_UpdateValorAtual.setLong(2, num_cartao);
+
+        pst_UpdateValorAtual.setInt(3, id_conta);
+
+        pst_UpdateValorAtual.executeUpdate();
+
+        pst_UpdateValorAtual.close();
+    }
    
    public LinkedList<CartaoDebito> GetListaCartaoDebito(int id_conta) throws SQLException {
        
@@ -187,6 +208,38 @@ public class CartaoDebitoDAO {
        return rs.next();
    }
    
-   
+   public CartaoDebito GetCartaoDebito(long numCartao, int id_conta) throws SQLException {
+
+        PreparedStatement pst;
+        ResultSet rs;
+
+        CartaoDebito cartao = new CartaoDebito();
+
+        String consulta = "SELECT \n"
+                        + "n_cartao_debito,\n"
+                        + "valor_atual,\n"
+                        + "bandeira,\n"
+                        + "conta_id_conta\n"
+                        + "FROM cartao_debito\n"
+                        + "WHERE n_cartao_debito = ? AND conta_id_conta = ?";
+
+        pst = conexao.prepareStatement(consulta);
+
+        pst.setLong(1, numCartao);
+
+        pst.setInt(2, id_conta);
+
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+
+            cartao.setId_conta(rs.getInt("conta_id_conta"));
+            cartao.setN_cartao_debito(rs.getLong("n_cartao_debito"));
+            cartao.setValor_atual(rs.getFloat("valor_atual"));
+            cartao.setBandeira(rs.getString("bandeira"));
+        }
+
+        return cartao;
+    }
     
 }

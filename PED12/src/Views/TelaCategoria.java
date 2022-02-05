@@ -163,7 +163,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
             DefaultTableModel mp = (DefaultTableModel) jt_categoria.getModel();
 
-            ControlerTabela.RecarregaTabelaConsulta(mp, "categoriaTipo", argumento, Integer.parseInt(txt_id.getText()), ordenar, "Categoria");
+            ControlerTabela.RecarregaTabelaConsulta(mp, "categoriaTipo", argumento, Integer.parseInt(txt_id.getText()), ordenar, null, "Categoria");
 
         } catch (NumberFormatException e) {
 

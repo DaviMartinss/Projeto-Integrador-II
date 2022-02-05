@@ -61,7 +61,7 @@ public class ControlerReceita {
 
                 receita_nova = receitaDAO.GetUltimaReceita(receita_nova.getId_conta());
 
-                despesaDAO.TransferirDespesasEntreReceitas(lista_despesasNp, receita_nova);
+                ControlerDespesa.TransferirDespesasEntreReceitas(lista_despesasNp, receita_nova);
             }
             
             return true;
@@ -212,12 +212,11 @@ public class ControlerReceita {
         }     
     }
     
-    public static int GetCodigoReceita(int conta_id, int mes, int ano) throws Exception{
+    public static int GetCodigoReceita(int conta_id, int mes, int ano){
         
          ReceitaDAO receitaDAO = new ReceitaDAO();
          
-         //EXCEÇÃO TEMPORARIA ATE Q SEJA MELHORADO O LANÇAMENTO DAS EXCEPTION
-         Exception Exception = null;
+         //EXCEÇÃO TEMPORARIA ATE Q SEJA MELHORADO O LANÇAMENTO DAS EXCEPTION     
         
         try {
             
@@ -229,7 +228,8 @@ public class ControlerReceita {
 
             JOptionPane.showMessageDialog(null, "Erro:GetCodigoReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
          
-            throw ex;
+            //EXCEPTION
+            return -1;
             
         }catch(Exception ex){
             
@@ -237,7 +237,8 @@ public class ControlerReceita {
 
             JOptionPane.showMessageDialog(null, "Erro:GetCodigoReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
-            throw ex;
+            //EXCEPTION
+            return -1;
         }     
     }
     
@@ -267,13 +268,13 @@ public class ControlerReceita {
         }     
     }
     
-    public static boolean ReceitaExiste(Receita receita){
+    public static boolean ReceitaExiste(int mes, int ano, int id_conta){
         
          ReceitaDAO receitaDAO = new ReceitaDAO();
         
         try {
             
-            return receitaDAO.ReceitaExiste(receita);
+            return receitaDAO.ReceitaExiste(mes, ano, id_conta);
             
         }catch (SQLException ex) {
             
@@ -290,6 +291,32 @@ public class ControlerReceita {
             JOptionPane.showMessageDialog(null, "ERRO:ReceitaExiste", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return false;
+        }     
+    }
+    
+    public static Receita GetReceita(int mes, int ano, int id_conta){
+        
+         ReceitaDAO receitaDAO = new ReceitaDAO();
+        
+        try {
+            
+            return receitaDAO.GetReceita(mes, ano, id_conta);
+            
+        }catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "ERRO:GetReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            return null;
+        
+        }catch(Exception ex){
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+
+            JOptionPane.showMessageDialog(null, "ERRO:GetReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            return null;
         }     
     }
     

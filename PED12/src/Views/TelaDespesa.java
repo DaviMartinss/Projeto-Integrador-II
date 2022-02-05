@@ -5,20 +5,17 @@
  */
 package Views;
 
+import Controllers.ControlerCategoria;
+import Controllers.ControlerDespesa;
+import Controllers.ControlerReceita;
 import Controllers.ControlerTabela;
-import DAO.CategoriaDAO;
-import DAO.DespesaDAO;
-import DAO.ReceitaDAO;
 import Model.Categoria;
-import Model.Data;
 import Model.Despesa;
 import Model.Receita;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ValidacaoComum.Validacao;
+import java.util.LinkedList;
 
 /**
  *
@@ -40,7 +37,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         txtValor.setEditable(false);
         txt_NumCartao.setEditable(false);
         txtParcelas.setEditable(false);
-        txtCategoria.setEditable(false);
+        //txtCategoria.setEditable(false);
         txtDia.setEditable(false);
         txtMes.setEditable(false);
         txtAno.setEditable(false);
@@ -52,7 +49,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         cbb_categoria.removeAllItems();
     }
 
-    void inicio() {
+    void TelaPrincipal() {
 
         TelaPrincipal TelaPrincipal = null;
 
@@ -76,7 +73,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void cartao_credito() {
+    void TelaCartaoCredito() {
 
         TelaCartao_credito TelaCartao_credito = null;
 
@@ -101,7 +98,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void cartao_debito() {
+    void TelaCartaoDebito() {
 
         TelaCartao_debito TelaCartao_debito = null;
 
@@ -126,7 +123,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void receita() {
+    void TelaReceita() {
 
         TelaReceita TelaReceita = null;
 
@@ -152,7 +149,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }
 
-    void cadastrar_despesa() {
+    void TelaCadastrar_cadastrar() {
 
         TelaDespesa_cadastrar TelaDespesa_cadastrar = null;
 
@@ -178,28 +175,19 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }
     
-    void CarregaCategoria(){
-        
-        CategoriaDAO categoria = new CategoriaDAO();
-            
-        try {
-           int id_aux = Integer.parseInt(txt_id.getText()); 
-            
-            LinkedList<Categoria> lista_categoria = categoria.GetListaCategoria(id_aux);
-            
-            for (Categoria cat : lista_categoria) {
+    void CarregaCategoria() {
 
-                String Cat_aux =  cat.getCategoria_aux();
+        int id_conta = Integer.parseInt(txt_id.getText());
+
+        LinkedList<Categoria> lista_categoria = ControlerCategoria.GetListaCategoria(id_conta);
+
+        for (Categoria cat : lista_categoria) {
+
+                String Cat_aux =  cat.getCategoriaTipo();
                 cbb_categoria.addItem(Cat_aux);
-            }
-
-            lista_categoria.clear();
-            
-        } catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null, "Falha listar categoria");
         }
-        
+
+        lista_categoria.clear();
     }
 
     void RecarregaTabela_Despesa() {
@@ -207,129 +195,106 @@ public class TelaDespesa extends javax.swing.JFrame {
         salvaLinhaAtiva = false;     
         
         ControlerTabela.LimpaTabela(jtConsultaDespesa);
-
-        try {
-
-            String Col0 = null;
-            String Col1 = null;
-            String Col2 = null;
-            String Col3 = null;
-            String Col4 = null;
-            String Col5 = null;
-            String Col6 = null;
-            String Col7 = null;
-            String Col8 = null;
-            String Col9 = null;
-            String Col10 = null;
-
-            DespesaDAO despesaDAO = new DespesaDAO();
-
-            DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
-
-            LinkedList<Despesa> lista_despesa = despesaDAO.CarregaTabela_Despesa(Integer.parseInt(txt_id.getText()));
-
-            for (Despesa despesa : lista_despesa) {
-
-                Col0 = Integer.toString(despesa.getCod_despesa());
-                Col1 = Integer.toString(despesa.getDia());
-                Col2 = Integer.toString(despesa.getMes());
-                Col3 = Integer.toString(despesa.getAno());
-                Col4 = Float.toString(despesa.getValor());
-                Col5 = despesa.getCategoria();
-                Col6 = despesa.getF_pagamento();
-                if(despesa.getNum_cartao() != null){
-                    Col7 = Long.toString(despesa.getNum_cartao());
-                }else{
-                    Col7 = "----";
-                }
-                Col8 = Integer.toString(despesa.getNum_parcelas());
-                Col9 = despesa.getEstatus();
-                Col10 = despesa.getDescricao();
-                
-                if (Col8.equals("0") || Col8 == null) {
-
-                    Col8 = "----";
-                }
-
-                if (Col10 == null) {
-
-                    Col10 = "----";
-
-                }
-
-                mp.addRow(new String[]{Col0, Col1, Col2, Col3,
-                    Col4, Col5, Col6, Col7,
-                    Col8, Col9, Col10});
-
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage());
-
-        }
-
+        
+        DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
+        
+        ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "Despesa");
     }
     
-    void PesquisaDespesa(boolean despesas) {
-
-        boolean ordenar = true;
+    void PesquisaDespesa(boolean ordenar) {
 
         String tipo = "";
+        
+        boolean filtroConsulta = true;
 
         String escolha = cbbTipo.getSelectedItem().toString().trim();
-
-        if (escolha.equals("Valor")) {
-            tipo = " " + "valor";
-        }
-
-        if (escolha.equals("Categoria")) {
-            tipo = " " + "categoriaTipo";
-        }
-
-        if (escolha.equals("Número do Cartão Crédito")) {
-            tipo = " " + "num_cartao_credito";
-        }
-        if (escolha.equals("Número do Cartão Débito")) {
-            tipo = " " + "num_cartao_debito";
-        }
         
-        if (escolha.equals("Dia")) {
-            tipo = " " + "dia";
+        switch(escolha){
+            
+            case "Valor":
+                tipo = " " + "valor";
+                break;
+                
+            case "Categoria":
+                tipo = " " + "categoriaTipo";
+                break;
+                
+            case "Número do Cartão Crédito":
+                tipo = " " + "num_cartao_credito";
+                break;
+                
+            case "Número do Cartão Débito":
+                tipo = " " + "num_cartao_debito";
+                break;
+            
+            case "Dia":
+                tipo = " " + "dia";
+                break;
+                
+            case "Mês":
+                tipo = " " + "mes";
+                break;
+                
+            case "Ano":
+                tipo = " " + "ano";
+                break;
+                
+            case "Descrição":
+                tipo = " " + "descricao";
+                break;
+                
+            case "Nº Parcelas":
+                tipo = " " + "n_parcelas";
+                break;
+
+            case "Forma de Pagamento":
+                tipo = " " + "f_pagamento";
+                break;
+
+            case "Estatus":
+                tipo = " " + "estatus";
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this, "Tipo de Filtro Inválido"); filtroConsulta = false;
         }
 
-        if (escolha.equals("Mês")) {
-            tipo = " " + "mes";
-        }
-
-        if (escolha.equals("Ano")) {
-            tipo = " " + "ano";
-        }
-
-        if (escolha.equals("Descrição")) {
-            tipo = " " + "descricao";
-        }
-
-        if (escolha.equals("Nº Parcelas")) {
-            tipo = " " + "n_parcelas";
-        }
-
-        if (escolha.equals("Forma de Pagamento")) {
-            tipo = " " + "f_pagamento";
-        }
-
-        if (escolha.equals("Estatus")) {
-            tipo = " " + "estatus";
-        }
-
-        if (rbAscendente.isSelected()) {
-
-            ordenar = true;
-
-        } else {
-
-            ordenar = false;
-        }
+//        if (escolha.equals("Valor")) {
+//            tipo = " " + "valor";
+//        }
+//
+//        if (escolha.equals("Categoria")) {
+//            tipo = " " + "categoriaTipo";
+//        }
+//
+//        if (escolha.equals("Número do Cartão Crédito")) {
+//            tipo = " " + "num_cartao_credito";
+//        }
+//        if (escolha.equals("Número do Cartão Débito")) {
+//            tipo = " " + "num_cartao_debito";
+//        }
+//        
+//        if (escolha.equals("Dia"))
+//            tipo = " " + "dia";
+//        
+//        if (escolha.equals("Mês"))
+//            tipo = " " + "mes";
+//        
+//        if (escolha.equals("Ano")) 
+//            tipo = " " + "ano";
+//        
+//        if (escolha.equals("Descrição")) 
+//            tipo = " " + "descricao";
+//        
+//        if (escolha.equals("Nº Parcelas")) 
+//            tipo = " " + "n_parcelas";
+//        
+//        if (escolha.equals("Forma de Pagamento")) 
+//            tipo = " " + "f_pagamento";
+//        
+//        if (escolha.equals("Estatus")) 
+//            tipo = " " + "estatus";
+        
 
         String argumento = txt_Pesquisa.getText();
 
@@ -337,82 +302,46 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         try {
 
-            String Col0 = null;
-            String Col1 = null;
-            String Col2 = null;
-            String Col3 = null;
-            String Col4 = null;
-            String Col5 = null;
-            String Col6 = null;
-            String Col7 = null;
-            String Col8 = null;
-            String Col9 = null;
-            String Col10 = null;
-
-            ResultSet rs = null;
-
-            DespesaDAO despesaDAO = new DespesaDAO();
-
-            Receita receita = new Receita();
+            Receita receita = null;
             
-            receita.setId_conta(Integer.parseInt(txt_id.getText()));
-            
-            if(!(despesas)){
+            if(!(txtMesReceita.getText().isEmpty() && txtAnoReceita.getText().isEmpty())){
                 
+                receita = new Receita();
+                
+                receita.setId_conta(Integer.parseInt(txt_id.getText()));
                 receita.setMes(Integer.parseInt(txtMesReceita.getText()));
                 receita.setAno(Integer.parseInt(txtAnoReceita.getText()));
             }
 
             DefaultTableModel mp = (DefaultTableModel) jtConsultaDespesa.getModel();
-
-            LinkedList<Despesa> lista_despesa = despesaDAO.Consulta_Despesa(tipo, argumento, ordenar, despesas, txt_id.getText(), receita);
             
-            for (Despesa despesa : lista_despesa) {
+            if (filtroConsulta) 
+            {
+                if (receita != null) 
+                {
+                    if (ControlerReceita.GetReceita(Integer.parseInt(txtMesReceita.getText()), Integer.parseInt(txtAnoReceita.getText()), Integer.parseInt(txt_id.getText())) != null) {
 
-                Col0 = Integer.toString(despesa.getCod_despesa());
-                Col1 = Integer.toString(despesa.getDia());
-                Col2 = Integer.toString(despesa.getMes());
-                Col3 = Integer.toString(despesa.getAno());
-                Col4 = Float.toString(despesa.getValor());
-                Col5 = despesa.getCategoria();
-                Col6 = despesa.getF_pagamento();
-                if(despesa.getNum_cartao() != null){
-                    Col7 = Long.toString(despesa.getNum_cartao());
-                }else{
-                    Col7 = "----";
+                        ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, receita, "Despesa");
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Mês ou Ano da receita inválidos ou inexistentes!");
+                    }
+                } 
+                else 
+                {
+                    ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, null, "Despesa");
                 }
-                
-                Col8 = Integer.toString(despesa.getNum_parcelas());
-                Col9 = despesa.getEstatus();
-                Col10 = despesa.getDescricao();
-                  
-                if (Col8 == null || Col8.equals("0")) {
-
-                    Col8 = "----";
-
-                }
-
-                if (Col10 == null) {
-
-                    Col10 = "----";
-
-                }
-
-                mp.addRow(new String[]{Col0, Col1, Col2, Col3,
-                    Col4, Col5, Col6, Col7,
-                    Col8, Col9, Col10});
-
             }
-
-        } catch (Exception e) {
+            else
+                JOptionPane.showMessageDialog(this, "Erro na filtragem da consulta");
+            
+        } catch (NumberFormatException e) {
 
             JOptionPane.showMessageDialog(this, "Erro:PesquisaDespesa - " + e.getMessage());
-
         }
-
     }
 
-    void telaUpdateDespesa() {
+    void AtualizarDespesa() {
 
         if (!(salvaLinhaAtiva)) {
             JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser atualizda");
@@ -421,7 +350,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         Despesa despesa_aux = new Despesa();
 
-        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus, txtAreaDescricao.getText())) {
+        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus)) {
             JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
             return;
         }
@@ -439,86 +368,117 @@ public class TelaDespesa extends javax.swing.JFrame {
                 return;
             }
         }
+        
         String categoria = cbb_categoria.getSelectedItem().toString().trim();
         
-        if (salvaF_pagamento.equals("CRÉDITO")) {
+        //String categoria = txtCategoria.getText();
+        
+        Despesa despesa = null;
+        
+        switch(salvaF_pagamento){
+            
+            case "CRÉDITO":
+                despesa = new Despesa(
+                        Integer.parseInt(txtDia.getText().trim()),
+                        Integer.parseInt(txtMes.getText()),
+                        Integer.parseInt(txtAno.getText()),
+                        Float.parseFloat(txtValor.getText()),
+                        categoria,
+                        salvaF_pagamento,
+                        Long.parseLong(txt_NumCartao.getText()),
+                        Integer.parseInt(txtParcelas.getText()),
+                        salvaStatus,
+                        txtAreaDescricao.getText(),
+                        salvaCodigoDespesa
+                );
+                break;
 
-            Despesa despesa = new Despesa(
-                    Integer.parseInt(txtDia.getText().trim()),
-                    Integer.parseInt(txtMes.getText()),
-                    Integer.parseInt(txtAno.getText()),
-                    Float.parseFloat(txtValor.getText()),
-                    categoria,
-                    salvaF_pagamento,
-                    Long.parseLong(txt_NumCartao.getText()),
-                    Integer.parseInt(txtParcelas.getText()),
-                    salvaStatus,
-                    txtAreaDescricao.getText(),
-                    salvaCodigoDespesa
-                    
-            );
+            case "DÉBITO":
+                despesa = new Despesa(
+                        Integer.parseInt(txtDia.getText().trim()),
+                        Integer.parseInt(txtMes.getText()),
+                        Integer.parseInt(txtAno.getText()),
+                        Float.parseFloat(txtValor.getText()),
+                        categoria,
+                        salvaF_pagamento,
+                        Long.parseLong(txt_NumCartao.getText()),
+                        salvaStatus,
+                        txtAreaDescricao.getText(),
+                        salvaCodigoDespesa
+                );
+                break;
 
-            DespesaDAO despesaDao = new DespesaDAO();
-
-            try {
-                despesaDao.UpdateDespesa(despesa, Integer.parseInt(txt_id.getText()));
-
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-        } else if (salvaF_pagamento.equals("DÉBITO")) {
-            Despesa despesa = new Despesa(
-                    Integer.parseInt(txtDia.getText().trim()),
-                    Integer.parseInt(txtMes.getText()),
-                    Integer.parseInt(txtAno.getText()),
-                    Float.parseFloat(txtValor.getText()),
-                    categoria,
-                    salvaF_pagamento,
-                    Long.parseLong(txt_NumCartao.getText()),
-                    salvaStatus,
-                    txtAreaDescricao.getText(),
-                    salvaCodigoDespesa
-            );
-
-            DespesaDAO despesaDao = new DespesaDAO();
-
-            try {
-                despesaDao.UpdateDespesa(despesa, Integer.parseInt(txt_id.getText()));
-
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-
-        } else {
-            Despesa despesa = new Despesa(
-                    Integer.parseInt(txtDia.getText().trim()),
-                    Integer.parseInt(txtMes.getText()),
-                    Integer.parseInt(txtAno.getText()),
-                    Float.parseFloat(txtValor.getText()),
-                    categoria,
-                    salvaF_pagamento,
-                    salvaStatus,
-                    txtAreaDescricao.getText(),
-                    salvaCodigoDespesa
-            );
-
-            DespesaDAO despesaDao = new DespesaDAO();
-
-            try {
-                despesaDao.UpdateDespesa(despesa, Integer.parseInt(txt_id.getText()));
-
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
+            case "DINHEIRO":
+                despesa = new Despesa(
+                        Integer.parseInt(txtDia.getText().trim()),
+                        Integer.parseInt(txtMes.getText()),
+                        Integer.parseInt(txtAno.getText()),
+                        Float.parseFloat(txtValor.getText()),
+                        categoria,
+                        salvaF_pagamento,
+                        salvaStatus,
+                        txtAreaDescricao.getText(),
+                        salvaCodigoDespesa
+                );
+                break;
+                
+            //VER USO DE ALGUMA EXCEPTION OU NAO    
+            default:
+                JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada"); return;
 
         }
-
+        
+//        if (salvaF_pagamento.equals("CRÉDITO")) {
+//
+//            despesa = new Despesa(
+//                    Integer.parseInt(txtDia.getText().trim()),
+//                    Integer.parseInt(txtMes.getText()),
+//                    Integer.parseInt(txtAno.getText()),
+//                    Float.parseFloat(txtValor.getText()),
+//                    categoria,
+//                    salvaF_pagamento,
+//                    Long.parseLong(txt_NumCartao.getText()),
+//                    Integer.parseInt(txtParcelas.getText()),
+//                    salvaStatus,
+//                    txtAreaDescricao.getText(),
+//                    salvaCodigoDespesa
+//            );
+//
+//        } else if (salvaF_pagamento.equals("DÉBITO")) {
+//            
+//            despesa = new Despesa(
+//                    Integer.parseInt(txtDia.getText().trim()),
+//                    Integer.parseInt(txtMes.getText()),
+//                    Integer.parseInt(txtAno.getText()),
+//                    Float.parseFloat(txtValor.getText()),
+//                    categoria,
+//                    salvaF_pagamento,
+//                    Long.parseLong(txt_NumCartao.getText()),
+//                    salvaStatus,
+//                    txtAreaDescricao.getText(),
+//                    salvaCodigoDespesa
+//            );
+//            
+//        } else {
+//            despesa = new Despesa(
+//                    Integer.parseInt(txtDia.getText().trim()),
+//                    Integer.parseInt(txtMes.getText()),
+//                    Integer.parseInt(txtAno.getText()),
+//                    Float.parseFloat(txtValor.getText()),
+//                    categoria,
+//                    salvaF_pagamento,
+//                    salvaStatus,
+//                    txtAreaDescricao.getText(),
+//                    salvaCodigoDespesa
+//            );
+//        }
+        
+        despesa.setId_conta(Integer.parseInt(txt_id.getText()));
+        
+        ControlerDespesa.AtualizarDespesa(despesa);
     }
 
-    void delete_despesa() {
+    void ApagarDespesa() {
 
         if (!(salvaLinhaAtiva)) {
             JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser deletada");
@@ -527,17 +487,10 @@ public class TelaDespesa extends javax.swing.JFrame {
         Despesa despesa = new Despesa(
                 salvaCodigoDespesa
         );
+        
+        despesa.setId_conta(Integer.parseInt(txt_id.getText()));
 
-        DespesaDAO despesaDAO = new DespesaDAO();
-
-        try {
-
-            despesaDAO.DeleteDespesa(despesa);
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        ControlerDespesa.ApagarDespesa(despesa);
     }
 
     void LimpaCampos_Despesa() {
@@ -545,7 +498,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         txtValor.setText("");
         txt_NumCartao.setText("");
         txtParcelas.setText("");
-        txtCategoria.setText("");
+        //txtCategoria.setText("");
         txtDia.setText("");
         txtMes.setText("");
         txtAno.setText("");
@@ -578,19 +531,15 @@ public class TelaDespesa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaDescricao = new javax.swing.JTextArea();
         cbbTipo = new javax.swing.JComboBox<>();
-        cbb_categoria = new javax.swing.JComboBox<>();
         txtValor = new javax.swing.JTextField();
         txtDia = new javax.swing.JTextField();
         txtMes = new javax.swing.JTextField();
         txtAno = new javax.swing.JTextField();
-        txtCategoria = new javax.swing.JTextField();
         txtParcelas = new javax.swing.JTextField();
         txt_Pesquisa = new javax.swing.JTextField();
         txtMesReceita = new javax.swing.JTextField();
         txtAnoReceita = new javax.swing.JTextField();
         txt_NumCartao = new javax.swing.JTextField();
-        rbAscendente = new javax.swing.JRadioButton();
-        rbDescendente = new javax.swing.JRadioButton();
         rbPago = new javax.swing.JRadioButton();
         rbNaoPago = new javax.swing.JRadioButton();
         rbDebito = new javax.swing.JRadioButton();
@@ -616,6 +565,9 @@ public class TelaDespesa extends javax.swing.JFrame {
         categoryTitle = new javax.swing.JLabel();
         cardNumTitle = new javax.swing.JLabel();
         findTextTitle = new javax.swing.JLabel();
+        cbb_categoria = new javax.swing.JComboBox<>();
+        btnASC = new javax.swing.JButton();
+        btnDESC = new javax.swing.JButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -690,11 +642,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         getContentPane().add(cbbTipo);
         cbbTipo.setBounds(20, 80, 160, 27);
 
-        cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cbb_categoria);
-        cbb_categoria.setBounds(210, 340, 110, 27);
-
         txtValor.setBackground(new java.awt.Color(187, 210, 240));
         txtValor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txtValor.addActionListener(new java.awt.event.ActionListener() {
@@ -719,11 +666,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         txtAno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtAno);
         txtAno.setBounds(730, 290, 50, 27);
-
-        txtCategoria.setBackground(new java.awt.Color(187, 210, 240));
-        txtCategoria.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txtCategoria);
-        txtCategoria.setBounds(20, 430, 200, 27);
 
         txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
         getContentPane().add(txtParcelas);
@@ -768,26 +710,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NumCartao);
         txt_NumCartao.setBounds(340, 290, 250, 27);
-
-        rbAscendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbAscendente.setText("Ascendente");
-        rbAscendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbAscendenteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbAscendente);
-        rbAscendente.setBounds(20, 120, 100, 27);
-
-        rbDescendente.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbDescendente.setText("Descendente");
-        rbDescendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDescendenteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDescendente);
-        rbDescendente.setBounds(120, 120, 110, 27);
 
         rbPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbPago.setText("Pago");
@@ -969,7 +891,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         categoryTitle.setText("Categoria: ");
         getContentPane().add(categoryTitle);
-        categoryTitle.setBounds(210, 320, 61, 27);
+        categoryTitle.setBounds(20, 420, 61, 27);
 
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
@@ -980,6 +902,28 @@ public class TelaDespesa extends javax.swing.JFrame {
         findTextTitle.setText("Digite sua pesquisa aqui");
         getContentPane().add(findTextTitle);
         findTextTitle.setBounds(190, 60, 180, 27);
+
+        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbb_categoria);
+        cbb_categoria.setBounds(20, 450, 120, 30);
+
+        btnASC.setText("Ascendente");
+        btnASC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnASCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnASC);
+        btnASC.setBounds(20, 110, 120, 30);
+
+        btnDESC.setText("Descendente");
+        btnDESC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDESCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDESC);
+        btnDESC.setBounds(150, 110, 130, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel13");
@@ -1000,7 +944,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     private void btnReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceitasActionPerformed
         // TODO add your handling code here:
-        receita();
+        TelaReceita();
     }//GEN-LAST:event_btnReceitasActionPerformed
 
     private void rbPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPagoActionPerformed
@@ -1057,7 +1001,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void btnNovaDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaDespesaActionPerformed
         // TODO add your handling code here:
 
-        cadastrar_despesa();
+        TelaCadastrar_cadastrar();
 
     }//GEN-LAST:event_btnNovaDespesaActionPerformed
 
@@ -1070,7 +1014,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         if (txt_Pesquisa.getText().isEmpty()) {
             RecarregaTabela_Despesa();
-            
+            LimpaCampos_Despesa();
         }
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
@@ -1078,62 +1022,14 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void btPesquisarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarDespesaActionPerformed
         // TODO add your handling code here:
         Validacao valida = new Validacao();
+        
         if(!(valida.ehNum(txtMesReceita.getText()) && valida.ehNum(txtAnoReceita.getText()) )){
             JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
             return;
         }
         
-        DespesaDAO despesaDAO = new DespesaDAO();
-        
-        boolean despesas = false;
-        
-        if (txtMesReceita.getText().isEmpty() && txtAnoReceita.getText().isEmpty()) {   
-            
-            despesas = true;
-            
-        }
-        
-        if (despesas) {
+        PesquisaDespesa(true);
 
-            if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
-
-                PesquisaDespesa(despesas);
-
-             } else {
-
-                JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-
-            }
-
-        }else{
-            
-            try {
-
-                if (despesaDAO.ValidaConsulta_Despesa(Integer.parseInt(txtMesReceita.getText()), Integer.parseInt(txtAnoReceita.getText()))) {
-
-                    if (rbAscendente.isSelected() || rbDescendente.isSelected()) {
-
-                        PesquisaDespesa(despesas);
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-
-                    }
-
-                } else {
-
-                    JOptionPane.showMessageDialog(this, "Mês ou Ano da receita inválidos ou inexistentes!");
-                }
-
-            } catch (SQLException ex) {
-
-                JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
-
-            }
-            
-            
-        }
     }//GEN-LAST:event_btPesquisarDespesaActionPerformed
 
     private void jtConsultaDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaDespesaMouseClicked
@@ -1150,10 +1046,10 @@ public class TelaDespesa extends javax.swing.JFrame {
         String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
         String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
         
-        
         txtDia.setText(dia);
         txtMes.setText(mes);
         txtAno.setText(ano);
+        //txtCategoria.setText(categoria);
         cbb_categoria.setSelectedItem(categoria);
         txtValor.setText(valor);
         
@@ -1201,7 +1097,6 @@ public class TelaDespesa extends javax.swing.JFrame {
             rbPago.setSelected(false);
         }
 
-        DespesaDAO despesaDAO = new DespesaDAO();
         int linhSel = jtConsultaDespesa.getSelectedRow();
         String id = null;
         id = (String) jtConsultaDespesa.getValueAt(linhSel, 0);
@@ -1213,69 +1108,11 @@ public class TelaDespesa extends javax.swing.JFrame {
         if (selLinha != -1) {
             salvaLinhaAtiva = true;
         }
-
-//        try {
-//
-//            LinkedList<Despesa> lista_despesa = despesaDAO.PreencherCampos_Despesa(dia, mes, ano, categoria, txt_id.getText());
-//
-//            txtValor.setText(Float.toString(lista_despesa.element().getValor()));
-//            txtCategoria.setText(lista_despesa.element().getCategoria());
-//            txtDia.setText(Integer.toString(lista_despesa.element().getDia()));
-//            txtMes.setText(Integer.toString(lista_despesa.element().getMes()));
-//            txtAno.setText(Integer.toString(lista_despesa.element().getAno()));
-//            txtAreaDescricao.setText(lista_despesa.element().getDescricao());
-//            txtParcelas.setText(Integer.toString(lista_despesa.element().getNum_parcelas()));
-//            txt_NumCartao.setText(Long.toString(lista_despesa.element().getNum_cartao()));
-//
-//            if (lista_despesa.element().getF_pagamento().equals("CRÉDITO")) {
-//
-//                salvaF_pagamento = "CRÉDITO";
-//                rbCredito.setSelected(true);
-//                rbDebito.setSelected(false);
-//                rbDinheiro.setSelected(false);
-//
-//            }
-//
-//            if (lista_despesa.element().getF_pagamento().equals("DÉBITO")) {
-//
-//                salvaF_pagamento = "DÉBITO";
-//                rbDebito.setSelected(true);
-//                rbCredito.setSelected(false);
-//                rbDinheiro.setSelected(false);
-//
-//            }
-//
-//            if (lista_despesa.element().getF_pagamento().equals("DINHEIRO")) {
-//
-//                salvaF_pagamento = "DINHEIRO";
-//                rbDinheiro.setSelected(true);
-//                rbDebito.setSelected(false);
-//                rbCredito.setSelected(false);
-//            }
-//
-//            if (lista_despesa.element().getEstatus().equals("PAGO")) {
-//
-//                salvaStatus = "PAGO";
-//                rbPago.setSelected(true);
-//                rbNaoPago.setSelected(false);
-//
-//            } else {
-//
-//                salvaStatus = "NÃO PAGO";
-//                rbNaoPago.setSelected(true);
-//                rbPago.setSelected(false);
-//            }
-//
-//        } catch (SQLException ex) {
-//
-//            JOptionPane.showMessageDialog(this, "Erro ao selecionar os dados!!");
-//        }
-
     }//GEN-LAST:event_jtConsultaDespesaMouseClicked
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
-        inicio();
+        TelaPrincipal();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1293,26 +1130,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_txtAnoReceitaKeyPressed
-
-    private void rbDescendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDescendenteActionPerformed
-        // TODO add your handling code here:
-
-        if (rbDescendente.isSelected()) {
-
-            rbAscendente.setSelected(false);
-
-        }
-    }//GEN-LAST:event_rbDescendenteActionPerformed
-
-    private void rbAscendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAscendenteActionPerformed
-        // TODO add your handling code here:
-
-        if (rbAscendente.isSelected()) {
-
-            rbDescendente.setSelected(false);
-
-        }
-    }//GEN-LAST:event_rbAscendenteActionPerformed
 
     private void rbDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDinheiroActionPerformed
         // TODO add your handling code here:
@@ -1342,7 +1159,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             txtValor.setEditable(true);
             txt_NumCartao.setEditable(true);
             txtParcelas.setEditable(true);
-            txtCategoria.setEditable(true);
+            //txtCategoria.setEditable(true);
             txtDia.setEditable(true);
             txtMes.setEditable(true);
             txtAno.setEditable(true);
@@ -1359,7 +1176,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             txtValor.setEditable(false);
             txt_NumCartao.setEditable(false);
             txtParcelas.setEditable(false);
-            txtCategoria.setEditable(false);
+            //txtCategoria.setEditable(false);
             txtDia.setEditable(false);
             txtMes.setEditable(false);
             txtAno.setEditable(false);
@@ -1379,46 +1196,36 @@ public class TelaDespesa extends javax.swing.JFrame {
                     Integer.parseInt(txt_id.getText())
             );
 
-            Data data = new Data(Integer.parseInt(txtDia.getText()),
-                    Integer.parseInt(txtMes.getText()),
-                    Integer.parseInt(txtAno.getText()));
+//              Despesa despesa = new Despesa(
+//                    Integer.parseInt(txtDia.getText()),
+//                    Integer.parseInt(txtMes.getText()),
+//                    Integer.parseInt(txtAno.getText()),
+//                    Float.parseFloat(txtValor.getText()),
+//                    txtCategoria.getText(),
+//                    txtAreaDescricao.getText(),
+//                    Integer.parseInt(txt_id.getText())
+//              );
 
-            if (rbDebito.isSelected()) {
+            //VALIDAR UPDATE DA DATA
 
+            if (rbDebito.isSelected()) 
+            {
                 despesa.setF_pagamento("DÉBITO");
-
                 despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-
-            } else if (rbCredito.isSelected()) {
-
+            } 
+            else if (rbCredito.isSelected()) 
+            {
                 despesa.setF_pagamento("CRÉDITO");
-
                 despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-
-            } else {
-
+            } 
+            else 
                 despesa.setF_pagamento("DINHEIRO");
 
-            }
-
-            if (rbPago.isSelected()) {
-
+            if (rbPago.isSelected())
                 despesa.setEstatus("PAGO");
-
-            } else {
-
+            else 
                 despesa.setEstatus("NÃO PAGO");
-            }
-
-            DespesaDAO despesaDAO = new DespesaDAO();
-
-            ReceitaDAO receitaDAO = new ReceitaDAO();
-
-            Receita receita = new Receita(Integer.parseInt(txt_id.getText()),
-                    Integer.parseInt(txtMes.getText()),
-                    Integer.parseInt(txtAno.getText())
-            );
-
+            
             boolean atualiza = true;
 
             if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
@@ -1428,38 +1235,48 @@ public class TelaDespesa extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
                     atualiza = false;
-
                 }
-
             }
             
             if (atualiza) {
 
-                telaUpdateDespesa();
+                AtualizarDespesa();
                 RecarregaTabela_Despesa();
                 LimpaCampos_Despesa();
 
-                JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+                JOptionPane.showMessageDialog(this, "Atualizado com sucesso!");
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Erro ao atualizar", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-
+                JOptionPane.showMessageDialog(this, "Erro ao atualizar", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             }
-
         }
-
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         // TODO add your handling code here:
-        delete_despesa();
+        ApagarDespesa();
         RecarregaTabela_Despesa();
+        LimpaCampos_Despesa();
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void cbbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbTipoActionPerformed
+
+    private void btnASCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnASCActionPerformed
+        // TODO add your handling code here:
+        
+        PesquisaDespesa(true);
+        
+    }//GEN-LAST:event_btnASCActionPerformed
+
+    private void btnDESCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDESCActionPerformed
+
+        
+        PesquisaDespesa(false);
+        
+    }//GEN-LAST:event_btnDESCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1497,6 +1314,8 @@ public class TelaDespesa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
     private javax.swing.JButton btPesquisarDespesa;
+    private javax.swing.JButton btnASC;
+    private javax.swing.JButton btnDESC;
     private javax.swing.JToggleButton btnNovaDespesa;
     private javax.swing.JButton btnReceitas;
     private javax.swing.JButton btn_excluir;
@@ -1519,10 +1338,8 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel monthBar;
     private javax.swing.JLabel pageTitle;
     private javax.swing.JLabel payFormTitle;
-    private javax.swing.JRadioButton rbAscendente;
     private javax.swing.JRadioButton rbCredito;
     private javax.swing.JRadioButton rbDebito;
-    private javax.swing.JRadioButton rbDescendente;
     private javax.swing.JRadioButton rbDinheiro;
     private javax.swing.JRadioButton rbNaoPago;
     private javax.swing.JRadioButton rbPago;
@@ -1531,7 +1348,6 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtAnoReceita;
     private javax.swing.JTextArea txtAreaDescricao;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtMesReceita;
@@ -1547,5 +1363,4 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         txt_id.setText(recebe);
     }
-
 }

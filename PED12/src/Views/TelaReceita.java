@@ -234,7 +234,7 @@ public class TelaReceita extends javax.swing.JFrame{
                 if (receita_atua.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())) {
                     
                     //Não deixa atualizar para o MÊS E ANO de uma receita PRÉ-EXISTENTE
-                    if(!ControlerReceita.ReceitaExiste(receita_atua)){
+                    if(!ControlerReceita.ReceitaExiste(receita_atua.getMes(), receita_atua.getAno(), receita_atua.getId_conta())){
                         
                          ControlerReceita.AtualizarReceita(receita_atua);
                         
@@ -284,29 +284,25 @@ public class TelaReceita extends javax.swing.JFrame{
 
         String escolha = cbbTipo.getSelectedItem().toString().trim();
 
-        if (escolha.equals("Total")) {
+        if (escolha.equals("Total")) 
             tipo = " " + "total";
-        }
-
-        if (escolha.equals("Dia")) {
+        
+        if (escolha.equals("Dia")) 
             tipo = " " + "dia";
-        }
-
-        if (escolha.equals("Mês")) {
+        
+        if (escolha.equals("Mês")) 
             tipo = " " + "mes";
-        }
-
-        if (escolha.equals("Ano")) {
+        
+        if (escolha.equals("Ano"))
             tipo = " " + "ano";
-        }
-
+        
         String argumento = txt_Pesquisa.getText();
 
         ControlerTabela.LimpaTabela(jtConsultaCD);
 
         DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
-        ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, "Receita");
+        ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, null, "Receita");
 
         //<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">
 /* 
@@ -727,20 +723,16 @@ public class TelaReceita extends javax.swing.JFrame{
         // TODO add your handling code here:
 
         String total = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
-
         String dia = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
-
         String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
-
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
         int selLinha = -1;
         selLinha = jtConsultaCD.getSelectedRow();
 
-        if (selLinha != -1) {
+        if (selLinha != -1)
             salvaLinhaAtiva = true;
-        }
-
+        
         txt_total.setText(total);
         txt_dia.setText(dia);
         txt_mes.setText(mes);
@@ -757,11 +749,9 @@ public class TelaReceita extends javax.swing.JFrame{
 
     private void txt_PesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_PesquisaKeyReleased
 
-        if (txt_Pesquisa.getText().isEmpty()) {
-            RecarregaTabela();
+       if (txt_Pesquisa.getText().isEmpty()) 
+           RecarregaTabela();
             
-        }
-
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
     private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
@@ -806,15 +796,10 @@ public class TelaReceita extends javax.swing.JFrame{
             txt_mes.setEditable(false);
             txt_ano.setEditable(false);
 
-            
             AtualizarReceita();
-
             RecarregaTabela();
-
             LimpaCampos_Receita();
         }
-
-
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void txt_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_totalActionPerformed
@@ -905,5 +890,4 @@ public class TelaReceita extends javax.swing.JFrame{
 
         txt_id.setText(recebe);
     }
-
 }

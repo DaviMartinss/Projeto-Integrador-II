@@ -121,7 +121,7 @@ public class ReceitaDAO {
 
         PreparedStatement pst_SelectListaReceitas = conexao.prepareStatement(SelectListaReceitas);
 
-        LinkedList<Receita> lista_receita = new LinkedList<Receita>();
+        LinkedList<Receita> lista_receita = new LinkedList<>();
 
         pst_SelectListaReceitas.setInt(1, id_conta);
 
@@ -273,21 +273,20 @@ public class ReceitaDAO {
         return lista_receita;
     }
 
-    public boolean ReceitaExiste(Receita receita) throws SQLException {
-
-        String SelectReceitaExiste = "SELECT COUNT(*) count FROM receita WHERE conta_id_conta = ? AND mes = ? AND ano = ?;";
-
-        PreparedStatement pst_SelectReceitaExiste = null;
-
-        ResultSet rs_SelectReceitaExiste = null;
+    public boolean ReceitaExiste(int mes, int ano, int id_conta) throws SQLException {
 
         boolean result;
+        
+        PreparedStatement pst_SelectReceitaExiste;
+        ResultSet rs_SelectReceitaExiste;
+        
+        String SelectReceitaExiste = "SELECT COUNT(*) count FROM receita WHERE conta_id_conta = ? AND mes = ? AND ano = ?;";
 
         pst_SelectReceitaExiste = conexao.prepareStatement(SelectReceitaExiste);
 
-        pst_SelectReceitaExiste.setInt(1, receita.getId_conta());
-        pst_SelectReceitaExiste.setInt(2, receita.getMes());
-        pst_SelectReceitaExiste.setInt(3, receita.getAno());
+        pst_SelectReceitaExiste.setInt(1, id_conta);
+        pst_SelectReceitaExiste.setInt(2, mes);
+        pst_SelectReceitaExiste.setInt(3, ano);
 
         rs_SelectReceitaExiste = pst_SelectReceitaExiste.executeQuery();
 
@@ -298,8 +297,50 @@ public class ReceitaDAO {
         } else {
             result = false;
         }
+        
+        pst_SelectReceitaExiste.close();
+        rs_SelectReceitaExiste.close();
 
         return result;
+    }
+    
+    public Receita GetReceita(int mes, int ano, int id_conta) throws SQLException {
+
+        PreparedStatement pst;
+        ResultSet rs;
+        
+        Receita receita = new Receita();
+        
+        String consulta = "SELECT * FROM receita WHERE mes = ? AND ano = ? AND conta_id_conta = ?";
+
+        pst = conexao.prepareStatement(consulta);
+
+        pst.setInt(1, mes);
+
+        pst.setInt(2, ano);
+
+        pst.setInt(3, id_conta);
+
+        rs = pst.executeQuery();
+
+        if (rs.next()) {
+
+            receita.setDia(rs.getInt("dia"));
+            receita.setMes(rs.getInt("mes"));
+            receita.setAno(rs.getInt("ano"));
+            receita.setTotal(rs.getFloat("total"));
+            receita.setCod_receita(rs.getInt("cod_receita"));
+            receita.setId_conta(rs.getInt("conta_id_conta"));
+
+        } else {
+
+            return null;//exception
+        }
+        
+        pst.close();
+        rs.close();
+
+       return receita;
     }
 
     //<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">

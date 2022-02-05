@@ -332,7 +332,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 
         DefaultTableModel mp = (DefaultTableModel) jtConsultaCC.getModel();
 
-        ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, "CartaoCredito");
+        ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, null, "CartaoCredito");
 
         //<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">
 /* 

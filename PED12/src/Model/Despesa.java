@@ -361,7 +361,7 @@ public class Despesa {
     }
 
     public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String f_pag,
-            String num_cartao, String num_parc, String status, String desc) {
+            String num_cartao, String num_parc, String status) {
 
         if (!(EhVazio(f_pag))) {
 
@@ -369,7 +369,7 @@ public class Despesa {
 
                 if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
                         || EhVazio(num_cartao) || EhVazio(num_parc)
-                        || EhVazio(status) || EhVazio(desc)) {
+                        || EhVazio(status)) {
                     
                     return true;
 
@@ -380,9 +380,7 @@ public class Despesa {
 
             } else if (f_pag.equals("DÉBITO")) {
 
-                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
-                        || EhVazio(num_parc)
-                        || EhVazio(status) || EhVazio(desc)) {
+                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)|| EhVazio(status)) {
 
                     return true;
 
@@ -394,7 +392,7 @@ public class Despesa {
             } else {
 
                 if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
-                        || EhVazio(status) || EhVazio(desc)) {
+                        || EhVazio(status)) {
 
                     return true;
 

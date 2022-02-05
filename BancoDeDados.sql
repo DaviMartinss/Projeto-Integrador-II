@@ -116,7 +116,7 @@ VALUES("ALAN","alanstark@gmail.com", 123);
 
 #Receita
 
-INSERT INTO receita (dia, mes, ano, conta_id_conta, total) VALUES(1, 1, 2019, 1, 1500);
+INSERT INTO receita (dia, mes, ano, conta_id_conta, total) VALUES(1, 07, 2009, 1, 80000);
 INSERT INTO receita (dia, mes, ano, conta_id_conta, total) VALUES(4, 6, 2019, 1, 2000);
 INSERT INTO receita (dia, mes, ano, conta_id_conta, total) VALUES (5, 7, 2017, 1, 2500);
 INSERT INTO receita (dia, mes, ano, conta_id_conta, total) VALUES (4, 6, 2018, 1, 3000);
@@ -281,37 +281,37 @@ VALUES("BUGIGANGAS", 1);
 #Despesa
 
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(1, 01, 04, 2001, 1, 1, 4716140503513062, 999.00, "DÉBITO", "PAGO");
+(1, 01, 07, 2009, 1, 1, 4716140503513062, 999.00, "DÉBITO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(3, 02, 05, 2002, 1, 2, 4532325278607205, 666.00, "DÉBITO", "PAGO");
+(1, 02, 07, 2009, 1, 2, 4532325278607205, 666.00, "DÉBITO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(4, 03, 01, 2003, 1, 1, 6011365210948403, 333.00, "DÉBITO", "PAGO");
+(1, 03, 07, 2009, 1, 1, 6011365210948403, 333.00, "DÉBITO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(5, 04, 02, 2004, 1, 4, 6011665697125619, 444.00, "DÉBITO", "PAGO");
+(1, 04, 07, 2009, 1, 4, 6011665697125619, 444.00, "DÉBITO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(6, 05, 03, 2005, 1, 5, 6011196972036388, 210.00, "DÉBITO", "PAGO");
+(1, 05, 07, 2009, 1, 5, 6011196972036388, 210.00, "DÉBITO", "PAGO");
 
 
+insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
+(1, 06, 07, 2009, 1, 6, 80.00, "DINHEIRO", "NÃO PAGO");
+insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
+(1, 07, 07, 2009, 1, 7, 50.00, "DINHEIRO", "PAGO");
+insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
+(1, 08, 07, 2009, 1, 8, 120.00, "DINHEIRO", "PAGO");
+insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
+(1, 09, 07, 2009, 1, 9, 230.00, "DINHEIRO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(7, 06, 01, 2006, 1, 6, 3551955896655422, 80.00, "DINHEIRO", "NÃO PAGO");
-insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(8, 07, 02, 2007, 1, 7, 6011960143642873, 50.00, "DINHEIRO", "PAGO");
-insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(9, 08, 03, 2008, 1, 8, 6011233259347194, 120.00, "DINHEIRO", "PAGO");
-insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(10, 09, 06, 2008, 1, 9, 6011984442617329, 230.00, "DINHEIRO", "PAGO");
-insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
-(11, 10, 07, 2009, 1, 10, 4904628247877647, 300.00, "DINHEIRO", "NÃO PAGO");
+(1, 10, 07, 2009, 1, 10, 300.00, "DINHEIRO", "NÃO PAGO");
 
 
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
-(12, 11, 12 ,2010, 1, 11, 5339614010424884,	888.00, "CRÉDITO", "NÃO PAGO");
+(1, 11, 07, 2009, 1, 11, 5339614010424884,	888.00, "CRÉDITO", "NÃO PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
-(13, 12, 09, 2011, 1, 12, 5339614010424884,	777.00, "CRÉDITO", "PAGO");
+(1, 12, 07, 2009, 1, 12, 5339614010424884,	777.00, "CRÉDITO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
-(14, 13, 08, 2012, 1, 13, 5339614010424884,	555.00, "CRÉDITO", "NÃO PAGO");
+(1, 13, 07, 2009, 1, 13, 5339614010424884,	555.00, "CRÉDITO", "NÃO PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
-(15, 14, 07, 2013, 1, 14, 5339614010424884,	222.00, "CRÉDITO", "NÃO PAGO");
+(1, 14, 07, 2009, 1, 14, 5339614010424884,	222.00, "CRÉDITO", "NÃO PAGO");
 
 
 #Despesa credito
