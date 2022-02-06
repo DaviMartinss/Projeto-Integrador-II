@@ -85,6 +85,30 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         this.dispose();
 
     }
+    
+    void TelaAtualizarCartaoDebito(CartaoDebito cartaoDebito) {
+
+        TelaAtualizarCartaoDebito telaAtualizarCartaoDebito = null;
+
+        if (telaAtualizarCartaoDebito == null) {
+
+            telaAtualizarCartaoDebito = new TelaAtualizarCartaoDebito();
+
+            telaAtualizarCartaoDebito.setVisible(true);
+
+            telaAtualizarCartaoDebito.receberCartaoDebito(cartaoDebito);
+
+        } else {
+
+            telaAtualizarCartaoDebito.setVisible(true);
+
+            telaAtualizarCartaoDebito.setState(telaAtualizarCartaoDebito.NORMAL);
+
+            telaAtualizarCartaoDebito.receberCartaoDebito(cartaoDebito);
+        }
+
+        this.dispose();
+    }
 
     void sair() {
         //telaCliente cadastroCliente = new telaCliente();
@@ -166,41 +190,22 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nenhum Cartão de Credito foi selecionada para ser atualizado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
-        CartaoDebito cartao_aux = new CartaoDebito();
-        if (cartao_aux.UpdateEhVazio(txt_NumCartaoD.getText(), txt_Valor.getText(), txt_Bandeira.getText())) {
-            JOptionPane.showMessageDialog(this, "Nenhum Campo pode ser nulo no Update", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        Validacao valida = new Validacao();
-
-        if (!(valida.ehNum(txt_NumCartaoD.getText()) && valida.ehNum(txt_Valor.getText()))) {
-            JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        CartaoDebito cartao_d = new CartaoDebito(
-                Long.parseLong(txt_NumCartaoD.getText()),
-                Float.parseFloat(txt_Valor.getText()),
-                txt_Bandeira.getText(),
-                Integer.parseInt(txt_id.getText()),
-                salva_num_cartao_debito
-        );
+        
+        String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+        String valor = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
+        String bandeira = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
+        
+        CartaoDebito cartao_d = 
+            new CartaoDebito(
+                Long.parseLong(num_cartao),
+                Float.parseFloat(valor),
+                bandeira,
+                Integer.parseInt(txt_id.getText())
+            );
 
         try {
 
-            if (cartao_d.verifica_Bandeira_cartao_deb()
-                    && cartao_d.verifica_valor_atual()) {
-
-                ControlerCartaoDebito.AtualizarCartaoDebito(cartao_d);
-                
-                LimpaCampos_CD();
-
-            } else {
-
-                JOptionPane.showMessageDialog(this, "Dados Inválidos, impossível atuzalizar!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            }
+            TelaAtualizarCartaoDebito(cartao_d);
 
         } catch (HeadlessException e) {
 
@@ -634,51 +639,53 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
 
-        if (btn_update.getText().equals("Alterar")) {
+//        if (btn_update.getText().equals("Alterar")) {
+//
+//            btn_update.setText("Atualizar");
+//
+//            txt_NumCartaoD.setEditable(true);
+//            txt_Valor.setEditable(true);
+//            txt_Bandeira.setEditable(true);
+//
+//        } else {
+//
+//            btn_update.setText("Alterar");
+//
+//            txt_NumCartaoD.setEditable(false);
+//            txt_Valor.setEditable(false);
+//            txt_Bandeira.setEditable(false);
+//
+//            boolean atualiza = true;
+//
+//            CartaoDebito cartaoDB = new CartaoDebito(
+//                    Long.parseLong(txt_NumCartaoD.getText()),
+//                    Float.parseFloat(txt_Valor.getText()),
+//                    txt_Bandeira.getText(),
+//                    Integer.parseInt(txt_id.getText())
+//            );
+//
+//            if (!(cartaoDB.verifica_num_cartao_deb())) {
+//
+//                JOptionPane.showMessageDialog(this, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//
+//                atualiza = false;
+//            }
+//
+//            if (atualiza) {
+//
+//                AtualizarCartaoDebito();
+//                RecarregaTabela();
+//                LimpaCampos_CD();
+//                
+//                JOptionPane.showMessageDialog(this, "Atualizado com sucesso!");
+//                
+//            }else{
+//                
+//                JOptionPane.showMessageDialog(this, "Erro ao atualizar","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);              
+//            }
+//        }
 
-            btn_update.setText("Atualizar");
-
-            txt_NumCartaoD.setEditable(true);
-            txt_Valor.setEditable(true);
-            txt_Bandeira.setEditable(true);
-
-        } else {
-
-            btn_update.setText("Alterar");
-
-            txt_NumCartaoD.setEditable(false);
-            txt_Valor.setEditable(false);
-            txt_Bandeira.setEditable(false);
-
-            boolean atualiza = true;
-
-            CartaoDebito cartaoDB = new CartaoDebito(
-                    Long.parseLong(txt_NumCartaoD.getText()),
-                    Float.parseFloat(txt_Valor.getText()),
-                    txt_Bandeira.getText(),
-                    Integer.parseInt(txt_id.getText())
-            );
-
-            if (!(cartaoDB.verifica_num_cartao_deb())) {
-
-                JOptionPane.showMessageDialog(this, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-
-                atualiza = false;
-            }
-
-            if (atualiza) {
-
-                AtualizarCartaoDebito();
-                RecarregaTabela();
-                LimpaCampos_CD();
-                
-                JOptionPane.showMessageDialog(this, "Atualizado com sucesso!");
-                
-            }else{
-                
-                JOptionPane.showMessageDialog(this, "Erro ao atualizar","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);              
-            }
-        }
+        AtualizarCartaoDebito();
 
     }//GEN-LAST:event_btn_updateActionPerformed
 

@@ -128,13 +128,12 @@ public class ControlerCartaoDebito {
         
         try {
             
-          cartao_debitoDAO.UpdateCartaoDebito(cartao_debito);          
+          cartao_debitoDAO.UpdateCartaoDebito(cartao_debito);
           return true;
-            
+           
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "Erro:AtualizarCartaoDebito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             return false;
@@ -142,7 +141,6 @@ public class ControlerCartaoDebito {
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "Erro:AtualizarCartaoDebito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             return false;   

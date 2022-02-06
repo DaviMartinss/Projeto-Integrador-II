@@ -103,11 +103,9 @@ public class ControlerCartaoCredito {
         } catch (SQLException | NullPointerException ex) {
 
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "Erro:AtualizarCartaoCredito", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
             return false;
-
         }
     }
     

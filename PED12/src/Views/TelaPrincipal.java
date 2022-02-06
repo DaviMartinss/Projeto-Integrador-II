@@ -80,7 +80,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }
 
-    void cartao_debito() {
+    void TelaCartaoDebito() {
 
         TelaCartao_debito TelaCartao_debito = null;
 
@@ -350,7 +350,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnCartao_DebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartao_DebActionPerformed
         // TODO add your handling code here:
-        cartao_debito();
+        TelaCartaoDebito();
     }//GEN-LAST:event_btnCartao_DebActionPerformed
 
     private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed

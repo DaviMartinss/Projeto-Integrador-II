@@ -81,6 +81,17 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
                 this.cartaoCredito.getId_conta(),
                 this.cartaoCredito.getN_cartao_credito()
         );
+        
+         //Verifica se o número do cartao de crédito foi modificado
+        if(cartao_c.getN_cartao_credito() != this.cartaoCredito.getN_cartao_credito())
+        {
+            //Verifica se o novo número já existe
+            if(ControlerCartaoCredito.GetCartaoCredito(cartao_c.getN_cartao_credito(), cartao_c.getId_conta()) != null )
+            {
+                JOptionPane.showMessageDialog(null, "Número de Cartão de Crédito já existe!!\n Tente outro número", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+                return;
+            } 
+        }
 
         try {
 

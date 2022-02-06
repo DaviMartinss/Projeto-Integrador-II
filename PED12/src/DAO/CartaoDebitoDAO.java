@@ -213,7 +213,7 @@ public class CartaoDebitoDAO {
         PreparedStatement pst;
         ResultSet rs;
 
-        CartaoDebito cartao = new CartaoDebito();
+        CartaoDebito cartao = null;
 
         String consulta = "SELECT \n"
                         + "n_cartao_debito,\n"
@@ -232,6 +232,8 @@ public class CartaoDebitoDAO {
         rs = pst.executeQuery();
 
         if (rs.next()) {
+            
+            cartao = new CartaoDebito();
 
             cartao.setId_conta(rs.getInt("conta_id_conta"));
             cartao.setN_cartao_debito(rs.getLong("n_cartao_debito"));
