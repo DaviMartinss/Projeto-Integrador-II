@@ -193,7 +193,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btn_update.setForeground(new java.awt.Color(255, 255, 255));
-        btn_update.setText("Alterar");
+        btn_update.setText("Atualizar");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_updateActionPerformed(evt);

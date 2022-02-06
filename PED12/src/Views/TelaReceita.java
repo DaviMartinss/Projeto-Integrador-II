@@ -698,10 +698,10 @@ public class TelaReceita extends javax.swing.JFrame{
     private void jtConsultaCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaCDMouseClicked
         // TODO add your handling code here:
 
-        String total = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
-        String dia = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
-        String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
-        String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
+//        String total = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+//        String dia = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
+//        String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
+//        String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
         int selLinha = -1;
         selLinha = jtConsultaCD.getSelectedRow();
