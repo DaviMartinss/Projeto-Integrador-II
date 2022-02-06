@@ -27,21 +27,23 @@ public class ControlerReceita {
             
             if (valor <= receitaDAO.GetReceitaSaldo(receita, valor))
                 return true;
+            else
+                return false;
             
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
             JOptionPane.showMessageDialog(null, "Erro:ReceitaTemSaldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            
+            return false;
         
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
             JOptionPane.showMessageDialog(null, "Erro:ReceitaTemSaldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            
+            return false;
         }
-        
-        return false;
     }
     
     public static boolean CadastrarReceita(Receita receita_nova){
@@ -69,7 +71,6 @@ public class ControlerReceita {
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:CadastrarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return false;
@@ -77,7 +78,6 @@ public class ControlerReceita {
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:CadastrarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return false;
@@ -92,20 +92,22 @@ public class ControlerReceita {
             
             receitaDAO.UpdateReceita(receita);
             
+            return true;
+            
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
             JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            
+            return false;    
         
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
             JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            
+            return false;    
         }
-        
-        return false;        
     }
     
     public static boolean ApagarReceita(Receita receita){
@@ -116,20 +118,22 @@ public class ControlerReceita {
             
             receitaDAO.DeleteReceita(receita);
             
+            return true;
+            
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
             JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            
+            return false;
         
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
-            JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            return false;
         }
-        
-        return false;     
     }
     
     public static LinkedList<Receita> GetListaReceita(int id_conta){
@@ -143,7 +147,6 @@ public class ControlerReceita {
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:GetListaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return null;
@@ -151,7 +154,6 @@ public class ControlerReceita {
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:GetListaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return null;
@@ -169,7 +171,6 @@ public class ControlerReceita {
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return null;
@@ -177,7 +178,6 @@ public class ControlerReceita {
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return null;
@@ -197,7 +197,6 @@ public class ControlerReceita {
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "Erro:UpdateTotalReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return false;
@@ -205,7 +204,6 @@ public class ControlerReceita {
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "Erro:UpdateTotalReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return false;
@@ -319,5 +317,4 @@ public class ControlerReceita {
             return null;
         }     
     }
-    
 }

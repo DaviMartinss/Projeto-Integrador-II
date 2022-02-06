@@ -54,7 +54,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }
 
-    void receita() {
+    void TelaReceita() {
 
         TelaReceita TelaReceita = null;
 
@@ -130,7 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.dispose();
     }
 
-    void despesa() {
+    void TelaDespesa() {
 
         TelaDespesa TelaDespesa = null;
 
@@ -156,7 +156,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }
 
-    void categoria() {
+    void TelaCategoria() {
 
         TelaCategoria Telacategoria = null;
 
@@ -345,7 +345,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceitasActionPerformed
         // TODO add your handling code here:
-        receita();
+        TelaReceita();
     }//GEN-LAST:event_btnReceitasActionPerformed
 
     private void btnCartao_DebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartao_DebActionPerformed
@@ -356,7 +356,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespesasActionPerformed
         // TODO add your handling code here:
 
-        despesa();
+        TelaDespesa();
     }//GEN-LAST:event_btnDespesasActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
@@ -389,7 +389,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void categoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryButtonActionPerformed
         // TODO add your handling code here:
-        categoria();
+        TelaCategoria();
     }//GEN-LAST:event_categoryButtonActionPerformed
 
     /**

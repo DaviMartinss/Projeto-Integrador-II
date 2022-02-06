@@ -15,6 +15,7 @@ import Model.Receita;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ValidacaoComum.Validacao;
+import com.mysql.cj.util.StringUtils;
 import java.util.LinkedList;
 
 /**
@@ -259,43 +260,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Tipo de Filtro Inválido"); filtroConsulta = false;
         }
 
-//        if (escolha.equals("Valor")) {
-//            tipo = " " + "valor";
-//        }
-//
-//        if (escolha.equals("Categoria")) {
-//            tipo = " " + "categoriaTipo";
-//        }
-//
-//        if (escolha.equals("Número do Cartão Crédito")) {
-//            tipo = " " + "num_cartao_credito";
-//        }
-//        if (escolha.equals("Número do Cartão Débito")) {
-//            tipo = " " + "num_cartao_debito";
-//        }
-//        
-//        if (escolha.equals("Dia"))
-//            tipo = " " + "dia";
-//        
-//        if (escolha.equals("Mês"))
-//            tipo = " " + "mes";
-//        
-//        if (escolha.equals("Ano")) 
-//            tipo = " " + "ano";
-//        
-//        if (escolha.equals("Descrição")) 
-//            tipo = " " + "descricao";
-//        
-//        if (escolha.equals("Nº Parcelas")) 
-//            tipo = " " + "n_parcelas";
-//        
-//        if (escolha.equals("Forma de Pagamento")) 
-//            tipo = " " + "f_pagamento";
-//        
-//        if (escolha.equals("Estatus")) 
-//            tipo = " " + "estatus";
-        
-
         String argumento = txt_Pesquisa.getText();
 
         ControlerTabela.LimpaTabela(jtConsultaDespesa);
@@ -344,27 +308,44 @@ public class TelaDespesa extends javax.swing.JFrame {
     void AtualizarDespesa() {
 
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser atualizda");
+            JOptionPane.showMessageDialog(this, "Nenhuma despesa foi selecionada para ser atualizda");
             return;
         }
 
         Despesa despesa_aux = new Despesa();
 
-        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus)) {
-            JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
-            return;
+        if
+        (
+           StringUtils.isNullOrEmpty(txtDia.getText()) &&
+           StringUtils.isNullOrEmpty(txtMes.getText()) &&
+           StringUtils.isNullOrEmpty(txtAno.getText()) &&
+           StringUtils.isNullOrEmpty(txtValor.getText()) &&   
+           StringUtils.isNullOrEmpty(salvaF_pagamento) &&  
+           StringUtils.isNullOrEmpty(txt_NumCartao.getText()) &&
+           StringUtils.isNullOrEmpty(txtParcelas.getText()) &&
+           StringUtils.isNullOrEmpty(salvaStatus)
+        )
+        {
+           JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
+           return;
         }
+        
+        
+//        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus)) {
+//            JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
+//            return;
+//        }
 
         if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText()))) {
 
-            JOptionPane.showMessageDialog(null, "O valor informado é inválido");
+            JOptionPane.showMessageDialog(this, "O valor informado é inválido");
             return;
         }
 
         if (salvaF_pagamento.equals("CRÉDITO")) {
             Validacao valida = new Validacao();
             if (!(valida.ehNum(txtParcelas.getText()))) {
-                JOptionPane.showMessageDialog(null, "Número de parcelas inválido");
+                JOptionPane.showMessageDialog(this, "Número de parcelas inválido");
                 return;
             }
         }
@@ -424,7 +405,8 @@ public class TelaDespesa extends javax.swing.JFrame {
                 
             //VER USO DE ALGUMA EXCEPTION OU NAO    
             default:
-                JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada"); return;
+                JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada"); 
+                return;
 
         }
         
@@ -1061,29 +1043,57 @@ public class TelaDespesa extends javax.swing.JFrame {
         
         if(!descricao.equals("----"))
             txtAreaDescricao.setText(descricao);
-            
-        if (formaPagamento.equals("CRÉDITO")) 
-        {
-            salvaF_pagamento = "CRÉDITO";
-            rbCredito.setSelected(true);
-            rbDebito.setSelected(false);
-            rbDinheiro.setSelected(false);
-        }
-        else if (formaPagamento.equals("DÉBITO"))
-        {
-            salvaF_pagamento = "DÉBITO";
-            rbDebito.setSelected(true);
-            rbCredito.setSelected(false);
-            rbDinheiro.setSelected(false);
-        }
-        else
-        {
-            salvaF_pagamento = "DINHEIRO";
-            rbDinheiro.setSelected(true);
-            rbDebito.setSelected(false);
-            rbCredito.setSelected(false);
-        }
         
+        switch (formaPagamento) 
+        {
+            case "CRÉDITO":
+                salvaF_pagamento = "CRÉDITO";
+                rbCredito.setSelected(true);
+                rbDebito.setSelected(false);
+                rbDinheiro.setSelected(false);
+                break;
+
+            case "DÉBITO":
+                salvaF_pagamento = "DÉBITO";
+                rbDebito.setSelected(true);
+                rbCredito.setSelected(false);
+                rbDinheiro.setSelected(false);
+                break;
+
+            case "DINHEIRO":
+                salvaF_pagamento = "DINHEIRO";
+                rbDinheiro.setSelected(true);
+                rbDebito.setSelected(false);
+                rbCredito.setSelected(false);
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(this, "Forma de Pagamento Desconhecida ou Inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                return;
+        }
+            
+//        if (formaPagamento.equals("CRÉDITO")) 
+//        {
+//            salvaF_pagamento = "CRÉDITO";
+//            rbCredito.setSelected(true);
+//            rbDebito.setSelected(false);
+//            rbDinheiro.setSelected(false);
+//        }
+//        else if (formaPagamento.equals("DÉBITO"))
+//        {
+//            salvaF_pagamento = "DÉBITO";
+//            rbDebito.setSelected(true);
+//            rbCredito.setSelected(false);
+//            rbDinheiro.setSelected(false);
+//        }
+//        else
+//        {
+//            salvaF_pagamento = "DINHEIRO";
+//            rbDinheiro.setSelected(true);
+//            rbDebito.setSelected(false);
+//            rbCredito.setSelected(false);
+//        }
+
         if (status.equals("PAGO")) 
         {
             salvaStatus = "PAGO";
@@ -1098,8 +1108,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         }
 
         int linhSel = jtConsultaDespesa.getSelectedRow();
-        String id = null;
-        id = (String) jtConsultaDespesa.getValueAt(linhSel, 0);
+        String id = (String) jtConsultaDespesa.getValueAt(linhSel, 0);
         salvaCodigoDespesa = Integer.parseInt(id);
 
         int selLinha = -1;

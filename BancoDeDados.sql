@@ -300,7 +300,7 @@ insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categori
 (1, 08, 07, 2009, 1, 8, 120.00, "DINHEIRO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
 (1, 09, 07, 2009, 1, 9, 230.00, "DINHEIRO", "PAGO");
-insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_debito, valor, f_pagamento, estatus) values
+insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
 (1, 10, 07, 2009, 1, 10, 300.00, "DINHEIRO", "NÃO PAGO");
 
 

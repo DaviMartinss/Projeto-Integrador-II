@@ -20,6 +20,7 @@ import ReceitaOrdenacao.ReceitaMesASC;
 import ReceitaOrdenacao.ReceitaMesDESC;
 import ReceitaOrdenacao.ReceitaTotalASC;
 import ReceitaOrdenacao.ReceitaTotalDESC;
+import com.mysql.cj.util.StringUtils;
 import java.util.Collections;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -97,10 +98,10 @@ public class ControlerTabela {
                         
                         String Col10 = despesa.getDescricao();
 
-                        if (Col8 == null || Col8.isEmpty() || Col8.equals("0")) 
+                        if (StringUtils.isNullOrEmpty(Col8) || Col8.equals("0")) 
                             Col8 = "----";
                         
-                        if (Col10 == null || Col10.isEmpty())
+                        if (StringUtils.isNullOrEmpty(Col10))
                             Col10 = "----";
 
                         mp.addRow(new String[]{Col0, Col1, Col2, Col3,
@@ -160,7 +161,7 @@ public class ControlerTabela {
                     break;
                     
                 default:
-                    JOptionPane.showMessageDialog(null, "ERRO INESPERADO");
+                    JOptionPane.showMessageDialog(null, "ERRO NO TIPO DE TABELA PARA SER RECARREGADA");
                     
             };
 
@@ -253,10 +254,10 @@ public class ControlerTabela {
                         String Col9 = despesa.getEstatus();
                         String Col10 = despesa.getDescricao();
 
-                        if (Col8 == null || Col8.isEmpty() || Col8.equals("0")) 
+                        if (StringUtils.isNullOrEmpty(Col8) || Col8.equals("0")) 
                             Col8 = "----";
                         
-                        if (Col10 == null || Col10.isEmpty())
+                        if (StringUtils.isNullOrEmpty(Col10))
                             Col10 = "----";
 
                         mp.addRow(new String[]{Col0, Col1, Col2, Col3,
@@ -329,7 +330,7 @@ public class ControlerTabela {
                     break;
                     
                 default:
-                    JOptionPane.showMessageDialog(null, "ERRO INESPERADO");                   
+                    JOptionPane.showMessageDialog(null, "ERRO NO TIPO DE TABELA PARA SER RECARREGADA A CONSULTA");                   
             };
 
         } catch (NumberFormatException e) {
