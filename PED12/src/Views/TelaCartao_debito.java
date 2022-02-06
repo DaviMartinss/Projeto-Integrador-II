@@ -30,10 +30,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
-
-        txt_NumCartaoD.setEditable(false);
-        txt_Valor.setEditable(false);
-        txt_Bandeira.setEditable(false);
     }
 
     void TelaPrincipal() {
@@ -187,7 +183,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     void AtualizarCartaoDebito() {
         
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(this, "Nenhum Cartão de Credito foi selecionada para ser atualizado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Nenhum Cartão de Débito foi selecionada para ser atualizado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
@@ -219,15 +215,16 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nenhum Cartão de Débito foi selecionada para ser deletado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+        String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+        
         CartaoDebito cartao_d = new CartaoDebito(
-                Long.parseLong(txt_NumCartaoD.getText())
+                Long.parseLong(num_cartao)
         );
 
         try {
 
             ControlerCartaoDebito.ApagarCartaoDebito(cartao_d);
-            
-            LimpaCampos_CD();
 
         } catch (Exception e) {
 
@@ -262,8 +259,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
 
             ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, null, "CartaoDebito");
-
-            LimpaCampos_CD();
             
         } catch (NumberFormatException e) {
 
@@ -271,11 +266,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         }
     }
 
-    void LimpaCampos_CD() {
-        txt_NumCartaoD.setText("");
-        txt_Valor.setText("");
-        txt_Bandeira.setText("");
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -288,9 +278,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
         pageTitle = new javax.swing.JLabel();
         cbbTipo = new javax.swing.JComboBox<>();
-        txt_NumCartaoD = new javax.swing.JTextField();
-        txt_Valor = new javax.swing.JTextField();
-        txt_Bandeira = new javax.swing.JTextField();
         txt_Pesquisa = new javax.swing.JTextField();
         cardTable = new javax.swing.JScrollPane();
         jtConsultaCD = new javax.swing.JTable();
@@ -302,10 +289,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         newCardButton = new javax.swing.JButton();
         delCardButton = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
-        cardNumTitle = new javax.swing.JLabel();
         findByTitle = new javax.swing.JLabel();
-        flagTitle = new javax.swing.JLabel();
-        valueTitle = new javax.swing.JLabel();
         ordenationTitle = new javax.swing.JLabel();
         findTextTitle = new javax.swing.JLabel();
         btnASC = new javax.swing.JButton();
@@ -333,26 +317,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Valor", "Bandeira", " ", " ", " " }));
         getContentPane().add(cbbTipo);
         cbbTipo.setBounds(20, 90, 140, 27);
-
-        txt_NumCartaoD.setBackground(new java.awt.Color(187, 210, 240));
-        txt_NumCartaoD.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_NumCartaoD);
-        txt_NumCartaoD.setBounds(20, 340, 400, 27);
-
-        txt_Valor.setBackground(new java.awt.Color(187, 210, 240));
-        txt_Valor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_Valor);
-        txt_Valor.setBounds(20, 390, 400, 27);
-
-        txt_Bandeira.setBackground(new java.awt.Color(187, 210, 240));
-        txt_Bandeira.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txt_Bandeira.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_BandeiraActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_Bandeira);
-        txt_Bandeira.setBounds(20, 440, 400, 27);
 
         txt_Pesquisa.setColumns(100);
         txt_Pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -477,7 +441,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(newCardButton);
-        newCardButton.setBounds(630, 340, 140, 27);
+        newCardButton.setBounds(30, 380, 140, 27);
 
         delCardButton.setBackground(new java.awt.Color(210, 59, 239));
         delCardButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -489,7 +453,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(delCardButton);
-        delCardButton.setBounds(630, 440, 140, 27);
+        delCardButton.setBounds(540, 370, 140, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -501,27 +465,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(630, 390, 140, 27);
-
-        cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cardNumTitle.setText("Número do cartão");
-        getContentPane().add(cardNumTitle);
-        cardNumTitle.setBounds(20, 320, 140, 27);
+        btn_update.setBounds(300, 380, 140, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findByTitle.setText("Pesquisar por");
         getContentPane().add(findByTitle);
         findByTitle.setBounds(20, 70, 100, 27);
-
-        flagTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        flagTitle.setText("Bandeira");
-        getContentPane().add(flagTitle);
-        flagTitle.setBounds(20, 420, 70, 27);
-
-        valueTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        valueTitle.setText("Valor");
-        getContentPane().add(valueTitle);
-        valueTitle.setBounds(20, 370, 100, 27);
 
         ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         ordenationTitle.setText("Ordenação");
@@ -591,10 +540,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
 
-    private void txt_BandeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_BandeiraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_BandeiraActionPerformed
-
     private void txt_PesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_PesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_PesquisaActionPerformed
@@ -618,12 +563,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
-        String valor = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
-        String bandeira = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
 
-        txt_NumCartaoD.setText(num_cartao);
-        txt_Valor.setText(valor);
-        txt_Bandeira.setText(bandeira);
         salva_num_cartao_debito = Long.parseLong(num_cartao);
         salvaLinhaAtiva = true;
         
@@ -704,13 +644,12 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private void btnASCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnASCActionPerformed
         // TODO add your handling code here:
         ConsultaCartaoDebito(true);
-        LimpaCampos_CD();
+ 
     }//GEN-LAST:event_btnASCActionPerformed
 
     private void btnDESCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDESCActionPerformed
 
         ConsultaCartaoDebito(false);
-        LimpaCampos_CD();
     }//GEN-LAST:event_btnDESCActionPerformed
 
     /**
@@ -753,27 +692,21 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private javax.swing.JButton btnASC;
     private javax.swing.JButton btnDESC;
     private javax.swing.JButton btn_update;
-    private javax.swing.JLabel cardNumTitle;
     private javax.swing.JScrollPane cardTable;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JButton delCardButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel findByTitle;
     private javax.swing.JLabel findTextTitle;
-    private javax.swing.JLabel flagTitle;
     private javax.swing.JButton incomeButton;
     private javax.swing.JTable jtConsultaCD;
     private javax.swing.JButton newCardButton;
     private javax.swing.JLabel ordenationTitle;
     private javax.swing.JLabel pageTitle;
     private javax.swing.JButton startButton;
-    private javax.swing.JTextField txt_Bandeira;
-    private javax.swing.JTextField txt_NumCartaoD;
     private javax.swing.JTextField txt_Pesquisa;
-    private javax.swing.JTextField txt_Valor;
     private javax.swing.JTextField txt_id;
     private javax.swing.JButton userButton;
-    private javax.swing.JLabel valueTitle;
     // End of variables declaration//GEN-END:variables
 
     public void receberID(String recebe) {
