@@ -1,22 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Views;
 
-import Controllers.ControlerCategoria;
 import Controllers.ControlerDespesa;
 import Controllers.ControlerReceita;
 import Controllers.ControlerTabela;
-import Model.Categoria;
 import Model.Despesa;
 import Model.Receita;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ValidacaoComum.Validacao;
-import com.mysql.cj.util.StringUtils;
-import java.util.LinkedList;
 
 /**
  *
@@ -34,20 +25,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
-
-        txtValor.setEditable(false);
-        txt_NumCartao.setEditable(false);
-        txtParcelas.setEditable(false);
-        //txtCategoria.setEditable(false);
-        txtDia.setEditable(false);
-        txtMes.setEditable(false);
-        txtAno.setEditable(false);
-        rbPago.setEnabled(false);
-        rbNaoPago.setEnabled(false);
-        rbDebito.setEnabled(false);
-        rbCredito.setEnabled(false);
-        rbDinheiro.setEnabled(false);
-        cbb_categoria.removeAllItems();
     }
 
     void TelaPrincipal() {
@@ -69,6 +46,30 @@ public class TelaDespesa extends javax.swing.JFrame {
             TelaPrincipal.setState(TelaPrincipal.NORMAL);
 
             TelaPrincipal.receberID(txt_id.getText());
+        }
+
+        this.dispose();
+    }
+    
+    void TelaAtualizarDespesa(Despesa despesa) {
+
+        TelaAtualizarDespesa telaAtualizarDespesa = null;
+
+        if (telaAtualizarDespesa == null) {
+
+            telaAtualizarDespesa = new TelaAtualizarDespesa();
+
+            telaAtualizarDespesa.setVisible(true);
+
+            telaAtualizarDespesa.receberDespesa(despesa);
+
+        } else {
+
+            telaAtualizarDespesa.setVisible(true);
+
+            telaAtualizarDespesa.setState(TelaPrincipal.NORMAL);
+
+            telaAtualizarDespesa.receberDespesa(despesa);
         }
 
         this.dispose();
@@ -176,21 +177,6 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }
     
-    void CarregaCategoria() {
-
-        int id_conta = Integer.parseInt(txt_id.getText());
-
-        LinkedList<Categoria> lista_categoria = ControlerCategoria.GetListaCategoria(id_conta);
-
-        for (Categoria cat : lista_categoria) {
-
-                String Cat_aux =  cat.getCategoriaTipo();
-                cbb_categoria.addItem(Cat_aux);
-        }
-
-        lista_categoria.clear();
-    }
-
     void RecarregaTabela_Despesa() {
         
         salvaLinhaAtiva = false;     
@@ -308,97 +294,66 @@ public class TelaDespesa extends javax.swing.JFrame {
     void AtualizarDespesa() {
 
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(this, "Nenhuma despesa foi selecionada para ser atualizda");
+            JOptionPane.showMessageDialog(this, "Nenhuma despesa foi selecionada para ser atualizda", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Despesa despesa_aux = new Despesa();
-
-        if
-        (
-           StringUtils.isNullOrEmpty(txtDia.getText()) &&
-           StringUtils.isNullOrEmpty(txtMes.getText()) &&
-           StringUtils.isNullOrEmpty(txtAno.getText()) &&
-           StringUtils.isNullOrEmpty(txtValor.getText()) &&   
-           StringUtils.isNullOrEmpty(salvaF_pagamento) &&  
-           StringUtils.isNullOrEmpty(txt_NumCartao.getText()) &&
-           StringUtils.isNullOrEmpty(txtParcelas.getText()) &&
-           StringUtils.isNullOrEmpty(salvaStatus)
-        )
-        {
-           JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
-           return;
-        }
-        
-        
-//        if (despesa_aux.UpdateEhVazio(txtDia.getText(), txtMes.getText(), txtAno.getText(), txtValor.getText(), salvaF_pagamento, txt_NumCartao.getText(), txtParcelas.getText(), salvaStatus)) {
-//            JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
-//            return;
-//        }
-
-        if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText()))) {
-
-            JOptionPane.showMessageDialog(this, "O valor informado é inválido");
-            return;
-        }
-
-        if (salvaF_pagamento.equals("CRÉDITO")) {
-            Validacao valida = new Validacao();
-            if (!(valida.ehNum(txtParcelas.getText()))) {
-                JOptionPane.showMessageDialog(this, "Número de parcelas inválido");
-                return;
-            }
-        }
-        
-        String categoria = cbb_categoria.getSelectedItem().toString().trim();
-        
-        //String categoria = txtCategoria.getText();
+        String dia = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 1);
+        String mes = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 2);
+        String ano = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 3);
+        String valor = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 4);
+        String categoria = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 5);
+        String formaPagamento = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 6);
+        String numCartao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 7);
+        String numParcelas = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 8);
+        String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
+        String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
         
         Despesa despesa = null;
         
-        switch(salvaF_pagamento){
+        switch(formaPagamento){
             
             case "CRÉDITO":
                 despesa = new Despesa(
-                        Integer.parseInt(txtDia.getText().trim()),
-                        Integer.parseInt(txtMes.getText()),
-                        Integer.parseInt(txtAno.getText()),
-                        Float.parseFloat(txtValor.getText()),
+                        Integer.parseInt(dia),
+                        Integer.parseInt(mes),
+                        Integer.parseInt(ano),
+                        Float.parseFloat(valor),
                         categoria,
-                        salvaF_pagamento,
-                        Long.parseLong(txt_NumCartao.getText()),
-                        Integer.parseInt(txtParcelas.getText()),
-                        salvaStatus,
-                        txtAreaDescricao.getText(),
+                        formaPagamento,
+                        Long.parseLong(numCartao),
+                        Integer.parseInt(numParcelas),
+                        status,
+                        descricao,
                         salvaCodigoDespesa
                 );
                 break;
 
             case "DÉBITO":
                 despesa = new Despesa(
-                        Integer.parseInt(txtDia.getText().trim()),
-                        Integer.parseInt(txtMes.getText()),
-                        Integer.parseInt(txtAno.getText()),
-                        Float.parseFloat(txtValor.getText()),
+                        Integer.parseInt(dia),
+                        Integer.parseInt(mes),
+                        Integer.parseInt(ano),
+                        Float.parseFloat(valor),
                         categoria,
-                        salvaF_pagamento,
-                        Long.parseLong(txt_NumCartao.getText()),
-                        salvaStatus,
-                        txtAreaDescricao.getText(),
+                        formaPagamento,
+                        Long.parseLong(numCartao),
+                        status,
+                        descricao,
                         salvaCodigoDespesa
                 );
                 break;
 
             case "DINHEIRO":
                 despesa = new Despesa(
-                        Integer.parseInt(txtDia.getText().trim()),
-                        Integer.parseInt(txtMes.getText()),
-                        Integer.parseInt(txtAno.getText()),
-                        Float.parseFloat(txtValor.getText()),
+                        Integer.parseInt(dia),
+                        Integer.parseInt(mes),
+                        Integer.parseInt(ano),
+                        Float.parseFloat(valor),
                         categoria,
-                        salvaF_pagamento,
-                        salvaStatus,
-                        txtAreaDescricao.getText(),
+                        formaPagamento,
+                        status,
+                        descricao,
                         salvaCodigoDespesa
                 );
                 break;
@@ -409,55 +364,17 @@ public class TelaDespesa extends javax.swing.JFrame {
                 return;
 
         }
-        
-//        if (salvaF_pagamento.equals("CRÉDITO")) {
-//
-//            despesa = new Despesa(
-//                    Integer.parseInt(txtDia.getText().trim()),
-//                    Integer.parseInt(txtMes.getText()),
-//                    Integer.parseInt(txtAno.getText()),
-//                    Float.parseFloat(txtValor.getText()),
-//                    categoria,
-//                    salvaF_pagamento,
-//                    Long.parseLong(txt_NumCartao.getText()),
-//                    Integer.parseInt(txtParcelas.getText()),
-//                    salvaStatus,
-//                    txtAreaDescricao.getText(),
-//                    salvaCodigoDespesa
-//            );
-//
-//        } else if (salvaF_pagamento.equals("DÉBITO")) {
-//            
-//            despesa = new Despesa(
-//                    Integer.parseInt(txtDia.getText().trim()),
-//                    Integer.parseInt(txtMes.getText()),
-//                    Integer.parseInt(txtAno.getText()),
-//                    Float.parseFloat(txtValor.getText()),
-//                    categoria,
-//                    salvaF_pagamento,
-//                    Long.parseLong(txt_NumCartao.getText()),
-//                    salvaStatus,
-//                    txtAreaDescricao.getText(),
-//                    salvaCodigoDespesa
-//            );
-//            
-//        } else {
-//            despesa = new Despesa(
-//                    Integer.parseInt(txtDia.getText().trim()),
-//                    Integer.parseInt(txtMes.getText()),
-//                    Integer.parseInt(txtAno.getText()),
-//                    Float.parseFloat(txtValor.getText()),
-//                    categoria,
-//                    salvaF_pagamento,
-//                    salvaStatus,
-//                    txtAreaDescricao.getText(),
-//                    salvaCodigoDespesa
-//            );
-//        }
+
+        if ((despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO"))) {
+
+            if (!(despesa.verifica_num_cartao_despesa())) {
+                JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
         
         despesa.setId_conta(Integer.parseInt(txt_id.getText()));
-        
-        ControlerDespesa.AtualizarDespesa(despesa);
+        TelaAtualizarDespesa(despesa);
     }
 
     void ApagarDespesa() {
@@ -471,31 +388,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         );
         
         despesa.setId_conta(Integer.parseInt(txt_id.getText()));
-
         ControlerDespesa.ApagarDespesa(despesa);
-    }
-
-    void LimpaCampos_Despesa() {
-
-        txtValor.setText("");
-        txt_NumCartao.setText("");
-        txtParcelas.setText("");
-        //txtCategoria.setText("");
-        txtDia.setText("");
-        txtMes.setText("");
-        txtAno.setText("");
-        txtAreaDescricao.setText("");
-        rbPago.setEnabled(false);
-        rbNaoPago.setEnabled(false);
-        rbDebito.setEnabled(false);
-        rbCredito.setEnabled(false);
-        rbDinheiro.setEnabled(false);
-        rbPago.setSelected(false);
-        rbNaoPago.setSelected(false);
-        rbDebito.setSelected(false);
-        rbCredito.setSelected(false);
-        rbDinheiro.setSelected(false);
-
     }
 
     /**
@@ -510,44 +403,20 @@ public class TelaDespesa extends javax.swing.JFrame {
         pageTitle = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtConsultaDespesa = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaDescricao = new javax.swing.JTextArea();
         cbbTipo = new javax.swing.JComboBox<>();
-        txtValor = new javax.swing.JTextField();
-        txtDia = new javax.swing.JTextField();
-        txtMes = new javax.swing.JTextField();
-        txtAno = new javax.swing.JTextField();
-        txtParcelas = new javax.swing.JTextField();
         txt_Pesquisa = new javax.swing.JTextField();
         txtMesReceita = new javax.swing.JTextField();
         txtAnoReceita = new javax.swing.JTextField();
-        txt_NumCartao = new javax.swing.JTextField();
-        rbPago = new javax.swing.JRadioButton();
-        rbNaoPago = new javax.swing.JRadioButton();
-        rbDebito = new javax.swing.JRadioButton();
-        rbCredito = new javax.swing.JRadioButton();
-        rbDinheiro = new javax.swing.JRadioButton();
         btnReceitas = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
         btnNovaDespesa = new javax.swing.JToggleButton();
         btPesquisarDespesa = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
-        dayBar = new javax.swing.JLabel();
-        monthBar = new javax.swing.JLabel();
         dateBar = new javax.swing.JLabel();
-        valueTitle = new javax.swing.JLabel();
-        descriptionTitle = new javax.swing.JLabel();
-        dateTitle = new javax.swing.JLabel();
-        statusTitle = new javax.swing.JLabel();
-        payFormTitle = new javax.swing.JLabel();
-        instNumTitle = new javax.swing.JLabel();
         findByTitle = new javax.swing.JLabel();
         invoiceDateTitle = new javax.swing.JLabel();
-        categoryTitle = new javax.swing.JLabel();
-        cardNumTitle = new javax.swing.JLabel();
         findTextTitle = new javax.swing.JLabel();
-        cbb_categoria = new javax.swing.JComboBox<>();
         btnASC = new javax.swing.JButton();
         btnDESC = new javax.swing.JButton();
         background = new javax.swing.JLabel();
@@ -602,16 +471,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jtConsultaDespesa);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(20, 150, 760, 120);
-
-        txtAreaDescricao.setBackground(new java.awt.Color(187, 210, 240));
-        txtAreaDescricao.setColumns(20);
-        txtAreaDescricao.setRows(5);
-        txtAreaDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jScrollPane1.setViewportView(txtAreaDescricao);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(340, 340, 440, 120);
+        jScrollPane2.setBounds(20, 170, 830, 210);
 
         cbbTipo.setBackground(new java.awt.Color(187, 210, 240));
         cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -623,35 +483,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         });
         getContentPane().add(cbbTipo);
         cbbTipo.setBounds(20, 80, 160, 27);
-
-        txtValor.setBackground(new java.awt.Color(187, 210, 240));
-        txtValor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txtValor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtValor);
-        txtValor.setBounds(20, 290, 80, 27);
-
-        txtDia.setBackground(new java.awt.Color(187, 210, 240));
-        txtDia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txtDia);
-        txtDia.setBounds(610, 290, 50, 27);
-
-        txtMes.setBackground(new java.awt.Color(187, 210, 240));
-        txtMes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txtMes);
-        txtMes.setBounds(670, 290, 50, 27);
-
-        txtAno.setBackground(new java.awt.Color(187, 210, 240));
-        txtAno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txtAno);
-        txtAno.setBounds(730, 290, 50, 27);
-
-        txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
-        getContentPane().add(txtParcelas);
-        txtParcelas.setBounds(120, 290, 200, 27);
 
         txt_Pesquisa.setColumns(200);
         txt_Pesquisa.setName(""); // NOI18N
@@ -688,61 +519,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         getContentPane().add(txtAnoReceita);
         txtAnoReceita.setBounds(660, 80, 60, 27);
 
-        txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
-        txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        getContentPane().add(txt_NumCartao);
-        txt_NumCartao.setBounds(340, 290, 250, 27);
-
-        rbPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbPago.setText("Pago");
-        rbPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbPagoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbPago);
-        rbPago.setBounds(20, 340, 70, 27);
-
-        rbNaoPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbNaoPago.setText("Não pago");
-        rbNaoPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbNaoPagoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbNaoPago);
-        rbNaoPago.setBounds(90, 340, 79, 27);
-
-        rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbDebito.setText("Débito");
-        rbDebito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDebitoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDebito);
-        rbDebito.setBounds(20, 390, 63, 27);
-
-        rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbCredito.setText("Crédito");
-        rbCredito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCreditoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbCredito);
-        rbCredito.setBounds(80, 390, 70, 27);
-
-        rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
-        rbDinheiro.setText("Dinheiro");
-        rbDinheiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbDinheiroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rbDinheiro);
-        rbDinheiro.setBounds(150, 390, 90, 27);
-
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btnReceitas.setForeground(new java.awt.Color(255, 255, 255));
@@ -777,7 +553,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNovaDespesa);
-        btnNovaDespesa.setBounds(200, 490, 150, 27);
+        btnNovaDespesa.setBounds(340, 440, 150, 27);
 
         btPesquisarDespesa.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarDespesa.setForeground(new java.awt.Color(255, 255, 255));
@@ -801,7 +577,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(20, 490, 150, 27);
+        btn_update.setBounds(40, 440, 150, 27);
 
         btn_excluir.setBackground(new java.awt.Color(210, 59, 239));
         btn_excluir.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -813,52 +589,12 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_excluir);
-        btn_excluir.setBounds(630, 490, 150, 27);
-
-        dayBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
-        dayBar.setText("/");
-        getContentPane().add(dayBar);
-        dayBar.setBounds(660, 290, 10, 27);
-
-        monthBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
-        monthBar.setText("/");
-        getContentPane().add(monthBar);
-        monthBar.setBounds(720, 290, 10, 27);
+        btn_excluir.setBounds(630, 440, 150, 27);
 
         dateBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         dateBar.setText(" /");
         getContentPane().add(dateBar);
         dateBar.setBounds(640, 80, 20, 27);
-
-        valueTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        valueTitle.setText("Valor:");
-        getContentPane().add(valueTitle);
-        valueTitle.setBounds(20, 270, 41, 27);
-
-        descriptionTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        descriptionTitle.setText("Descrição: ");
-        getContentPane().add(descriptionTitle);
-        descriptionTitle.setBounds(340, 320, 64, 27);
-
-        dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        dateTitle.setText("Data: (dd/mm/aaaa)");
-        getContentPane().add(dateTitle);
-        dateTitle.setBounds(610, 270, 130, 27);
-
-        statusTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        statusTitle.setText("Status: ");
-        getContentPane().add(statusTitle);
-        statusTitle.setBounds(20, 320, 60, 27);
-
-        payFormTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        payFormTitle.setText("Forma de Pagamento: ");
-        getContentPane().add(payFormTitle);
-        payFormTitle.setBounds(20, 370, 127, 27);
-
-        instNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        instNumTitle.setText("Nº de Pacelas: ");
-        getContentPane().add(instNumTitle);
-        instNumTitle.setBounds(120, 270, 84, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findByTitle.setText("Pesquisar por");
@@ -870,24 +606,10 @@ public class TelaDespesa extends javax.swing.JFrame {
         getContentPane().add(invoiceDateTitle);
         invoiceDateTitle.setBounds(600, 60, 140, 27);
 
-        categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        categoryTitle.setText("Categoria: ");
-        getContentPane().add(categoryTitle);
-        categoryTitle.setBounds(20, 420, 61, 27);
-
-        cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cardNumTitle.setText("Nº do Cartão: ");
-        getContentPane().add(cardNumTitle);
-        cardNumTitle.setBounds(340, 270, 76, 27);
-
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTextTitle.setText("Digite sua pesquisa aqui");
         getContentPane().add(findTextTitle);
         findTextTitle.setBounds(190, 60, 180, 27);
-
-        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cbb_categoria);
-        cbb_categoria.setBounds(20, 450, 120, 30);
 
         btnASC.setText("Ascendente");
         btnASC.addActionListener(new java.awt.event.ActionListener() {
@@ -929,53 +651,6 @@ public class TelaDespesa extends javax.swing.JFrame {
         TelaReceita();
     }//GEN-LAST:event_btnReceitasActionPerformed
 
-    private void rbPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbPagoActionPerformed
-        // TODO add your handling code here:
-        if (rbPago.isSelected()) {
-            salvaStatus = "PAGO";
-            rbNaoPago.setSelected(false);
-
-        }
-
-    }//GEN-LAST:event_rbPagoActionPerformed
-
-    private void rbNaoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNaoPagoActionPerformed
-        // TODO add your handling code here:
-
-        if (rbNaoPago.isSelected()) {
-            salvaStatus = "NÃO PAGO";
-            rbPago.setSelected(false);
-
-        }
-    }//GEN-LAST:event_rbNaoPagoActionPerformed
-
-    private void rbDebitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDebitoActionPerformed
-        // TODO add your handling code here:
-
-        if (rbDebito.isSelected()) {
-            salvaF_pagamento = "DÉBITO";
-            txtParcelas.setEnabled(false);
-            txt_NumCartao.setEnabled(true);
-            rbCredito.setSelected(false);
-            rbDinheiro.setSelected(false);
-
-        }
-    }//GEN-LAST:event_rbDebitoActionPerformed
-
-    private void rbCreditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCreditoActionPerformed
-        // TODO add your handling code here:
-
-        if (rbCredito.isSelected()) {
-            salvaF_pagamento = "CRÉDITO";
-            txtParcelas.setEnabled(true);
-            txt_NumCartao.setEnabled(true);
-            rbDebito.setSelected(false);
-            rbDinheiro.setSelected(false);
-
-        }
-
-    }//GEN-LAST:event_rbCreditoActionPerformed
-
     private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_idActionPerformed
@@ -996,7 +671,6 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         if (txt_Pesquisa.getText().isEmpty()) {
             RecarregaTabela_Despesa();
-            LimpaCampos_Despesa();
         }
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
@@ -1017,96 +691,6 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void jtConsultaDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaDespesaMouseClicked
         // TODO add your handling code here:
 
-        String dia = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 1);
-        String mes = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 2);
-        String ano = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 3);
-        String valor = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 4);
-        String categoria = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 5);
-        String formaPagamento = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 6);
-        String numCartao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 7);
-        String numParcelas = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 8);
-        String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
-        String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
-        
-        txtDia.setText(dia);
-        txtMes.setText(mes);
-        txtAno.setText(ano);
-        //txtCategoria.setText(categoria);
-        cbb_categoria.setSelectedItem(categoria);
-        txtValor.setText(valor);
-        
-        if(!numCartao.equals("----"))
-            txt_NumCartao.setText(numCartao);
-            
-        if(!numParcelas.equals("----"))
-            txtParcelas.setText(numParcelas);
-        
-        if(!descricao.equals("----"))
-            txtAreaDescricao.setText(descricao);
-        
-        switch (formaPagamento) 
-        {
-            case "CRÉDITO":
-                salvaF_pagamento = "CRÉDITO";
-                rbCredito.setSelected(true);
-                rbDebito.setSelected(false);
-                rbDinheiro.setSelected(false);
-                break;
-
-            case "DÉBITO":
-                salvaF_pagamento = "DÉBITO";
-                rbDebito.setSelected(true);
-                rbCredito.setSelected(false);
-                rbDinheiro.setSelected(false);
-                break;
-
-            case "DINHEIRO":
-                salvaF_pagamento = "DINHEIRO";
-                rbDinheiro.setSelected(true);
-                rbDebito.setSelected(false);
-                rbCredito.setSelected(false);
-                break;
-
-            default:
-                JOptionPane.showMessageDialog(this, "Forma de Pagamento Desconhecida ou Inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                return;
-        }
-            
-//        if (formaPagamento.equals("CRÉDITO")) 
-//        {
-//            salvaF_pagamento = "CRÉDITO";
-//            rbCredito.setSelected(true);
-//            rbDebito.setSelected(false);
-//            rbDinheiro.setSelected(false);
-//        }
-//        else if (formaPagamento.equals("DÉBITO"))
-//        {
-//            salvaF_pagamento = "DÉBITO";
-//            rbDebito.setSelected(true);
-//            rbCredito.setSelected(false);
-//            rbDinheiro.setSelected(false);
-//        }
-//        else
-//        {
-//            salvaF_pagamento = "DINHEIRO";
-//            rbDinheiro.setSelected(true);
-//            rbDebito.setSelected(false);
-//            rbCredito.setSelected(false);
-//        }
-
-        if (status.equals("PAGO")) 
-        {
-            salvaStatus = "PAGO";
-            rbPago.setSelected(true);
-            rbNaoPago.setSelected(false);
-        } 
-        else 
-        {
-            salvaStatus = "NÃO PAGO";
-            rbNaoPago.setSelected(true);
-            rbPago.setSelected(false);
-        }
-
         int linhSel = jtConsultaDespesa.getSelectedRow();
         String id = (String) jtConsultaDespesa.getValueAt(linhSel, 0);
         salvaCodigoDespesa = Integer.parseInt(id);
@@ -1126,7 +710,6 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        CarregaCategoria();
         RecarregaTabela_Despesa();
     }//GEN-LAST:event_formWindowOpened
 
@@ -1140,133 +723,18 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtAnoReceitaKeyPressed
 
-    private void rbDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDinheiroActionPerformed
-        // TODO add your handling code here:
-
-        if (rbDinheiro.isSelected()) {
-
-            salvaF_pagamento = "DINHEIRO";
-            rbCredito.setSelected(false);
-            rbDebito.setSelected(false);
-            txt_NumCartao.setEnabled(false);
-            txtParcelas.setEnabled(false);
-
-        }
-    }//GEN-LAST:event_rbDinheiroActionPerformed
-
-    private void txtValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValorActionPerformed
-
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
 
-        if (btn_update.getText().equals("Alterar")) {
+        AtualizarDespesa();
 
-            btn_update.setText("Atualizar");
-
-            txtValor.setEditable(true);
-            txt_NumCartao.setEditable(true);
-            txtParcelas.setEditable(true);
-            //txtCategoria.setEditable(true);
-            txtDia.setEditable(true);
-            txtMes.setEditable(true);
-            txtAno.setEditable(true);
-            rbPago.setEnabled(true);
-            rbNaoPago.setEnabled(true);
-            rbDebito.setEnabled(true);
-            rbCredito.setEnabled(true);
-            rbDinheiro.setEnabled(true);
-
-        } else {
-
-            btn_update.setText("Alterar");
-
-            txtValor.setEditable(false);
-            txt_NumCartao.setEditable(false);
-            txtParcelas.setEditable(false);
-            //txtCategoria.setEditable(false);
-            txtDia.setEditable(false);
-            txtMes.setEditable(false);
-            txtAno.setEditable(false);
-            rbPago.setEnabled(false);
-            rbNaoPago.setEnabled(false);
-            rbDebito.setEnabled(false);
-            rbCredito.setEnabled(false);
-            rbDinheiro.setEnabled(false);
-
-            Despesa despesa = new Despesa(
-                    Integer.parseInt(txtDia.getText()),
-                    Integer.parseInt(txtMes.getText()),
-                    Integer.parseInt(txtAno.getText()),
-                    Float.parseFloat(txtValor.getText()),
-                    cbb_categoria.getSelectedItem().toString().trim(),
-                    txtAreaDescricao.getText(),
-                    Integer.parseInt(txt_id.getText())
-            );
-
-//              Despesa despesa = new Despesa(
-//                    Integer.parseInt(txtDia.getText()),
-//                    Integer.parseInt(txtMes.getText()),
-//                    Integer.parseInt(txtAno.getText()),
-//                    Float.parseFloat(txtValor.getText()),
-//                    txtCategoria.getText(),
-//                    txtAreaDescricao.getText(),
-//                    Integer.parseInt(txt_id.getText())
-//              );
-
-            //VALIDAR UPDATE DA DATA
-
-            if (rbDebito.isSelected()) 
-            {
-                despesa.setF_pagamento("DÉBITO");
-                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-            } 
-            else if (rbCredito.isSelected()) 
-            {
-                despesa.setF_pagamento("CRÉDITO");
-                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-            } 
-            else 
-                despesa.setF_pagamento("DINHEIRO");
-
-            if (rbPago.isSelected())
-                despesa.setEstatus("PAGO");
-            else 
-                despesa.setEstatus("NÃO PAGO");
-            
-            boolean atualiza = true;
-
-            if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
-
-                if (!(despesa.verifica_num_cartao_despesa())) {
-
-                    JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-
-                    atualiza = false;
-                }
-            }
-            
-            if (atualiza) {
-
-                AtualizarDespesa();
-                RecarregaTabela_Despesa();
-                LimpaCampos_Despesa();
-
-                JOptionPane.showMessageDialog(this, "Atualizado com sucesso!");
-
-            } else {
-
-                JOptionPane.showMessageDialog(this, "Erro ao atualizar", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            }
-        }
+ 
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
         // TODO add your handling code here:
         ApagarDespesa();
         RecarregaTabela_Despesa();
-        LimpaCampos_Despesa();
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void cbbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTipoActionPerformed
@@ -1329,43 +797,19 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JButton btnReceitas;
     private javax.swing.JButton btn_excluir;
     private javax.swing.JButton btn_update;
-    private javax.swing.JLabel cardNumTitle;
-    private javax.swing.JLabel categoryTitle;
     private javax.swing.JComboBox<String> cbbTipo;
-    private javax.swing.JComboBox<String> cbb_categoria;
     private javax.swing.JLabel dateBar;
-    private javax.swing.JLabel dateTitle;
-    private javax.swing.JLabel dayBar;
-    private javax.swing.JLabel descriptionTitle;
     private javax.swing.JLabel findByTitle;
     private javax.swing.JLabel findTextTitle;
-    private javax.swing.JLabel instNumTitle;
     private javax.swing.JLabel invoiceDateTitle;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtConsultaDespesa;
-    private javax.swing.JLabel monthBar;
     private javax.swing.JLabel pageTitle;
-    private javax.swing.JLabel payFormTitle;
-    private javax.swing.JRadioButton rbCredito;
-    private javax.swing.JRadioButton rbDebito;
-    private javax.swing.JRadioButton rbDinheiro;
-    private javax.swing.JRadioButton rbNaoPago;
-    private javax.swing.JRadioButton rbPago;
     private javax.swing.JButton startButton;
-    private javax.swing.JLabel statusTitle;
-    private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtAnoReceita;
-    private javax.swing.JTextArea txtAreaDescricao;
-    private javax.swing.JTextField txtDia;
-    private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtMesReceita;
-    private javax.swing.JTextField txtParcelas;
-    private javax.swing.JTextField txtValor;
-    private javax.swing.JTextField txt_NumCartao;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
-    private javax.swing.JLabel valueTitle;
     // End of variables declaration//GEN-END:variables
 
     public void receberID(String recebe) {

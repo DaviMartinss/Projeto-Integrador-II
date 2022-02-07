@@ -282,13 +282,14 @@ public class TelaReceita extends javax.swing.JFrame{
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
         Receita receita_atual
-                = new Receita(
+                = new Receita
+                    (
                         Integer.parseInt(dia),
                         Integer.parseInt(mes),
                         Integer.parseInt(ano),
                         Float.parseFloat(total),
                         Integer.parseInt(txt_id.getText()) 
-                     );
+                    );
 
         try {
             TelaAtualizarReceita(receita_atual);

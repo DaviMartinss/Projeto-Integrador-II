@@ -96,8 +96,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
 
         try {
 
-            if (cartao_d.verifica_Bandeira_cartao_deb()
-                    && cartao_d.verifica_valor_atual()) {
+            if (cartao_d.verifica_Bandeira_cartao_deb() && cartao_d.verifica_valor_atual()) {
 
                 ControlerCartaoDebito.AtualizarCartaoDebito(cartao_d);
 
@@ -249,7 +248,6 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
 
         AtualizarCartaoDebito();
         TelaCartaoDebito();
-
     }//GEN-LAST:event_btn_updateActionPerformed
 
     private void btnReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceitasActionPerformed
