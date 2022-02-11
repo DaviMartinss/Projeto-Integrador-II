@@ -67,7 +67,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="90" width="150" height="27"/>
+          <AbsoluteConstraints x="30" y="100" width="150" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -77,7 +77,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="170" width="740" height="180"/>
+          <AbsoluteConstraints x="30" y="140" width="740" height="180"/>
         </Constraint>
       </Constraints>
 
@@ -140,7 +140,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="190" y="90" width="530" height="27"/>
+          <AbsoluteConstraints x="30" y="380" width="380" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -256,7 +256,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="200" y="420" width="140" height="27"/>
+          <AbsoluteConstraints x="630" y="420" width="140" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -278,7 +278,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="730" y="90" width="40" height="40"/>
+          <AbsoluteConstraints x="420" y="370" width="40" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -300,7 +300,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="420" width="140" height="27"/>
+          <AbsoluteConstraints x="630" y="460" width="140" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -322,7 +322,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="380" y="420" width="140" height="27"/>
+          <AbsoluteConstraints x="630" y="500" width="140" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -331,16 +331,25 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Noto Serif" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Pesquisar por"/>
+        <Property name="text" type="java.lang.String" value="Ordenar/Refinar por:"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="70" width="120" height="-1"/>
+          <AbsoluteConstraints x="30" y="80" width="150" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btnDESC">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="db" green="45" red="69" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Noto Serif" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Descendente"/>
       </Properties>
       <Events>
@@ -348,12 +357,21 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="130" width="130" height="30"/>
+          <AbsoluteConstraints x="310" y="100" width="130" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="btnASC">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="db" green="45" red="69" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Noto Serif" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Ascendente"/>
       </Properties>
       <Events>
@@ -361,20 +379,29 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="30" y="130" width="120" height="30"/>
+          <AbsoluteConstraints x="190" y="100" width="110" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JToggleButton" name="tbHabilitaConsulta">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Habilitar Consulta"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="db" green="45" red="69" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Noto Serif" size="12" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="label" type="java.lang.String" value="Refinar Busca"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbHabilitaConsultaActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="570" y="410" width="140" height="30"/>
+          <AbsoluteConstraints x="30" y="320" width="140" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -383,11 +410,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Noto Serif" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Ordena&#xe7;&#xe3;o"/>
+        <Property name="text" type="java.lang.String" value="Tipo de Ordena&#xe7;&#xe3;o"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="310" y="130" width="100" height="27"/>
+          <AbsoluteConstraints x="190" y="80" width="130" height="27"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -396,11 +423,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Noto Serif" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Digite sua pesquisa aqui"/>
+        <Property name="text" type="java.lang.String" value="Buscar por"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="190" y="70" width="180" height="27"/>
+          <AbsoluteConstraints x="30" y="350" width="140" height="27"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -89,9 +89,6 @@ public class TelaCategoria extends javax.swing.JFrame {
         findTextTitle.setVisible(true);
         txt_Pesquisa.setVisible(true);
         btPesquisar.setVisible(true);
-        txt_Pesquisa.setVisible(true);
-        btnASC.setVisible(true);
-        btnDESC.setVisible(true);
     }
     
     final void DesabilitarConsulta(){
@@ -99,9 +96,6 @@ public class TelaCategoria extends javax.swing.JFrame {
         findTextTitle.setVisible(false);
         txt_Pesquisa.setVisible(false);
         btPesquisar.setVisible(false);
-        txt_Pesquisa.setVisible(false);
-        btnASC.setVisible(false);
-        btnDESC.setVisible(false);
     }
     
     void AtualizarCategoria() {
@@ -216,6 +210,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         btnDESC = new javax.swing.JButton();
         btnASC = new javax.swing.JButton();
         tbHabilitaConsulta = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -232,7 +227,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Categorias");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 110, 24);
+        pageTitle.setBounds(360, 0, 110, 26);
 
         jt_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -265,9 +260,12 @@ public class TelaCategoria extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jt_categoria);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(150, 250, 300, 199);
+        jScrollPane1.setBounds(40, 160, 720, 199);
+
+        txt_NomeCategoria.setBackground(new java.awt.Color(187, 210, 240));
+        txt_NomeCategoria.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NomeCategoria);
-        txt_NomeCategoria.setBounds(150, 200, 300, 27);
+        txt_NomeCategoria.setBounds(360, 120, 400, 27);
 
         txt_Pesquisa.setColumns(200);
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -281,7 +279,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(150, 110, 520, 27);
+        txt_Pesquisa.setBounds(40, 430, 400, 27);
 
         btn_voltaInicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_voltaInicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -305,7 +303,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cadastraCategoria);
-        btn_cadastraCategoria.setBounds(540, 340, 140, 27);
+        btn_cadastraCategoria.setBounds(610, 430, 140, 27);
 
         btn_deletaCategoria.setBackground(new java.awt.Color(210, 59, 239));
         btn_deletaCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -317,7 +315,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_deletaCategoria);
-        btn_deletaCategoria.setBounds(540, 420, 140, 27);
+        btn_deletaCategoria.setBounds(610, 510, 140, 27);
 
         btn_updateCategoria.setBackground(new java.awt.Color(105, 69, 219));
         btn_updateCategoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -329,7 +327,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_updateCategoria);
-        btn_updateCategoria.setBounds(540, 380, 140, 27);
+        btn_updateCategoria.setBounds(610, 470, 140, 27);
 
         btPesquisar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisar.setForeground(new java.awt.Color(255, 255, 255));
@@ -341,18 +339,21 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btPesquisar);
-        btPesquisar.setBounds(630, 140, 40, 40);
+        btPesquisar.setBounds(460, 420, 40, 40);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTextTitle.setText("Pesquisar");
         getContentPane().add(findTextTitle);
-        findTextTitle.setBounds(150, 90, 60, 27);
+        findTextTitle.setBounds(40, 410, 60, 27);
 
         nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        nameTitle.setText("Nome");
+        nameTitle.setText("Categoria Selecionada");
         getContentPane().add(nameTitle);
-        nameTitle.setBounds(150, 180, 60, 27);
+        nameTitle.setBounds(360, 100, 150, 27);
 
+        btnDESC.setBackground(new java.awt.Color(105, 69, 219));
+        btnDESC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnDESC.setForeground(new java.awt.Color(255, 255, 255));
         btnDESC.setText("Descendente");
         btnDESC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,8 +361,11 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDESC);
-        btnDESC.setBounds(280, 150, 130, 30);
+        btnDESC.setBounds(170, 120, 130, 27);
 
+        btnASC.setBackground(new java.awt.Color(105, 69, 219));
+        btnASC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnASC.setForeground(new java.awt.Color(255, 255, 255));
         btnASC.setText("Ascendente");
         btnASC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,8 +373,11 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnASC);
-        btnASC.setBounds(150, 150, 120, 30);
+        btnASC.setBounds(40, 120, 120, 27);
 
+        tbHabilitaConsulta.setBackground(new java.awt.Color(105, 69, 219));
+        tbHabilitaConsulta.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        tbHabilitaConsulta.setForeground(new java.awt.Color(255, 255, 255));
         tbHabilitaConsulta.setText("Habilitar Consulta");
         tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,7 +385,12 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tbHabilitaConsulta);
-        tbHabilitaConsulta.setBounds(540, 300, 140, 30);
+        tbHabilitaConsulta.setBounds(40, 370, 170, 30);
+
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        jLabel1.setText("Tipo de Ordenação");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(40, 100, 130, 27);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel1");
@@ -387,7 +399,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         background.getAccessibleContext().setAccessibleName("background");
 
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 20);
+        txt_id.setBounds(0, 0, 49, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -531,6 +543,7 @@ public class TelaCategoria extends javax.swing.JFrame {
     private javax.swing.JButton btn_updateCategoria;
     private javax.swing.JButton btn_voltaInicio;
     private javax.swing.JLabel findTextTitle;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jt_categoria;
     private javax.swing.JLabel nameTitle;

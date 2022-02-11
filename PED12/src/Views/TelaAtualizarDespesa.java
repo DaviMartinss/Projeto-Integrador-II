@@ -216,14 +216,19 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         valueTitle1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         valueTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         valueTitle.setText("Valor:");
+        getContentPane().add(valueTitle);
+        valueTitle.setBounds(30, 120, 41, 27);
 
         txtValor.setBackground(new java.awt.Color(187, 210, 240));
         txtValor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -232,38 +237,63 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 txtValorActionPerformed(evt);
             }
         });
+        getContentPane().add(txtValor);
+        txtValor.setBounds(30, 140, 80, 27);
 
         instNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         instNumTitle.setText("Nº de Pacelas: ");
+        getContentPane().add(instNumTitle);
+        instNumTitle.setBounds(130, 120, 87, 27);
 
         txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
+        txtParcelas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtParcelas);
+        txtParcelas.setBounds(130, 140, 200, 27);
 
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
+        getContentPane().add(cardNumTitle);
+        cardNumTitle.setBounds(350, 120, 82, 27);
 
         txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_NumCartao);
+        txt_NumCartao.setBounds(350, 140, 250, 27);
 
         dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         dateTitle.setText("Data: (dd/mm/aaaa)");
+        getContentPane().add(dateTitle);
+        dateTitle.setBounds(620, 120, 130, 27);
 
         txtDia.setBackground(new java.awt.Color(187, 210, 240));
         txtDia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtDia);
+        txtDia.setBounds(620, 140, 50, 27);
 
         dayBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         dayBar.setText("/");
+        getContentPane().add(dayBar);
+        dayBar.setBounds(670, 140, 10, 27);
 
         txtMes.setBackground(new java.awt.Color(187, 210, 240));
         txtMes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtMes);
+        txtMes.setBounds(680, 140, 50, 27);
 
         monthBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         monthBar.setText("/");
+        getContentPane().add(monthBar);
+        monthBar.setBounds(730, 140, 10, 27);
 
         txtAno.setBackground(new java.awt.Color(187, 210, 240));
         txtAno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtAno);
+        txtAno.setBounds(740, 140, 50, 27);
 
         statusTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         statusTitle.setText("Status: ");
+        getContentPane().add(statusTitle);
+        statusTitle.setBounds(30, 170, 60, 27);
 
         rbPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbPago.setText("Pago");
@@ -272,6 +302,8 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 rbPagoActionPerformed(evt);
             }
         });
+        getContentPane().add(rbPago);
+        rbPago.setBounds(30, 190, 70, 27);
 
         rbNaoPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbNaoPago.setText("Não pago");
@@ -280,9 +312,13 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 rbNaoPagoActionPerformed(evt);
             }
         });
+        getContentPane().add(rbNaoPago);
+        rbNaoPago.setBounds(100, 190, 79, 27);
 
         descriptionTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         descriptionTitle.setText("Descrição: ");
+        getContentPane().add(descriptionTitle);
+        descriptionTitle.setBounds(355, 170, 65, 27);
 
         txtAreaDescricao.setBackground(new java.awt.Color(187, 210, 240));
         txtAreaDescricao.setColumns(20);
@@ -290,8 +326,13 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         txtAreaDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jScrollPane1.setViewportView(txtAreaDescricao);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(355, 190, 440, 120);
+
         payFormTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         payFormTitle.setText("Forma de Pagamento: ");
+        getContentPane().add(payFormTitle);
+        payFormTitle.setBounds(30, 220, 135, 27);
 
         rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDebito.setText("Débito");
@@ -300,6 +341,8 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 rbDebitoActionPerformed(evt);
             }
         });
+        getContentPane().add(rbDebito);
+        rbDebito.setBounds(30, 240, 62, 27);
 
         rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbCredito.setText("Crédito");
@@ -308,6 +351,8 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 rbCreditoActionPerformed(evt);
             }
         });
+        getContentPane().add(rbCredito);
+        rbCredito.setBounds(90, 240, 70, 27);
 
         rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDinheiro.setText("Dinheiro");
@@ -316,11 +361,18 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 rbDinheiroActionPerformed(evt);
             }
         });
+        getContentPane().add(rbDinheiro);
+        rbDinheiro.setBounds(165, 240, 90, 27);
 
         categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         categoryTitle.setText("Categoria: ");
+        getContentPane().add(categoryTitle);
+        categoryTitle.setBounds(30, 270, 65, 27);
 
+        cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbb_categoria);
+        cbb_categoria.setBounds(30, 300, 120, 30);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -331,6 +383,8 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 btn_updateActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_update);
+        btn_update.setBounds(640, 540, 140, 27);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -341,130 +395,13 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                 btnReceitasActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReceitas);
+        btnReceitas.setBounds(30, 60, 111, 27);
 
         valueTitle1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         valueTitle1.setText("Atualizar DESPESA");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(btnReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(302, 302, 302))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(valueTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(instNumTitle))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cardNumTitle)
-                            .addComponent(txt_NumCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(valueTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(dayBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(monthBar, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(statusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rbPago, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(rbNaoPago))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(60, 60, 60)
-                                        .addComponent(rbCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(payFormTitle)
-                                    .addComponent(rbDebito))
-                                .addComponent(rbDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(categoryTitle)
-                            .addComponent(cbb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(100, 100, 100)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(descriptionTitle))))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(valueTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(valueTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(instNumTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cardNumTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_NumCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dayBar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(monthBar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(statusTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbPago, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rbNaoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(payFormTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbCredito, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rbDebito, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(rbDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(3, 3, 3)
-                        .addComponent(categoryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(cbb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(descriptionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69))
-        );
+        getContentPane().add(valueTitle1);
+        valueTitle1.setBounds(350, 12, 133, 42);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

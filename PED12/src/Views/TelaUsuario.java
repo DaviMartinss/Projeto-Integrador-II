@@ -216,7 +216,7 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(startButton);
-        startButton.setBounds(40, 50, 110, 27);
+        startButton.setBounds(40, 50, 100, 27);
 
         btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -228,7 +228,7 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAlterar);
-        btnAlterar.setBounds(350, 380, 140, 27);
+        btnAlterar.setBounds(340, 380, 140, 27);
 
         btnExcluir.setBackground(new java.awt.Color(210, 59, 233));
         btnExcluir.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -240,7 +240,7 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnExcluir);
-        btnExcluir.setBounds(350, 420, 140, 27);
+        btnExcluir.setBounds(340, 420, 140, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -252,7 +252,7 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(350, 340, 140, 27);
+        btn_update.setBounds(340, 340, 140, 27);
 
         nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         nameTitle.setText("Nome: ");

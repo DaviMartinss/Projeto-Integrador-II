@@ -134,7 +134,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(30, 50, 100, 27);
+        btnVoltar.setBounds(30, 40, 100, 27);
 
         btnRealizarCadastro.setBackground(new java.awt.Color(105, 69, 219));
         btnRealizarCadastro.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N

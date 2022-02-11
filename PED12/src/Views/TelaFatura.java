@@ -243,19 +243,25 @@ public class TelaFatura extends javax.swing.JFrame {
         txtTotalFatura = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtBandeira = new javax.swing.JTextField();
-        txt_id = new javax.swing.JTextField();
         btn_ASC = new javax.swing.JButton();
         btn_DESC = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         PageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         PageTitle.setText("Faturas");
+        getContentPane().add(PageTitle);
+        PageTitle.setBounds(370, 0, 76, 27);
 
         jtFaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,8 +288,13 @@ public class TelaFatura extends javax.swing.JFrame {
         });
         dataTable.setViewportView(jtFaturas);
 
+        getContentPane().add(dataTable);
+        dataTable.setBounds(30, 220, 750, 232);
+
         selectorType.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         selectorType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dia", "Mês", "Ano", "Valor Total", "Estatus", "Categoria", "Parcelas", "Descrição", "Parcelas Pagas", "Valor Parcela", " ", " " }));
+        getContentPane().add(selectorType);
+        selectorType.setBounds(30, 180, 150, 27);
 
         findField.setColumns(20);
         findField.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +307,8 @@ public class TelaFatura extends javax.swing.JFrame {
                 findFieldKeyReleased(evt);
             }
         });
+        getContentPane().add(findField);
+        findField.setBounds(30, 480, 330, 27);
 
         backButton.setBackground(new java.awt.Color(105, 69, 219));
         backButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -306,6 +319,8 @@ public class TelaFatura extends javax.swing.JFrame {
                 backButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(backButton);
+        backButton.setBounds(30, 50, 100, 27);
 
         searchButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -316,23 +331,88 @@ public class TelaFatura extends javax.swing.JFrame {
                 searchButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(searchButton);
+        searchButton.setBounds(370, 470, 40, 40);
 
         findTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findTitle.setText("Digite sua pesquisa aqui");
+        findTitle.setText("Refinar consulta por:");
+        getContentPane().add(findTitle);
+        findTitle.setBounds(30, 460, 160, 27);
 
         selectorTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        selectorTitle.setText("Pesquisar por");
+        selectorTitle.setText("Ordenar/Refinar por:");
+        getContentPane().add(selectorTitle);
+        selectorTitle.setBounds(30, 160, 140, 27);
 
         orientationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        orientationTitle.setText("Ordenação");
+        orientationTitle.setText("Tipo de Ordenação");
+        getContentPane().add(orientationTitle);
+        orientationTitle.setBounds(200, 160, 120, 27);
 
-        jLabel1.setText("Número do Cartão: ");
+        txtNumCartao.setBackground(new java.awt.Color(187, 210, 240));
+        txtNumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtNumCartao);
+        txtNumCartao.setBounds(30, 110, 190, 27);
+
+        jLabel1.setText("Nº Cartão");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 90, 70, 27);
 
         jLabel2.setText("Dia da Fatura");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(280, 90, 100, 27);
+
+        txtDiaFatura.setBackground(new java.awt.Color(187, 210, 240));
+        txtDiaFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtDiaFatura);
+        txtDiaFatura.setBounds(280, 110, 80, 27);
 
         jLabel3.setText("Total Fatura");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(410, 90, 100, 27);
+
+        txtTotalFatura.setBackground(new java.awt.Color(187, 210, 240));
+        txtTotalFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtTotalFatura);
+        txtTotalFatura.setBounds(410, 110, 130, 27);
 
         jLabel4.setText("Bandeira");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(590, 90, 100, 27);
+
+        txtBandeira.setBackground(new java.awt.Color(187, 210, 240));
+        txtBandeira.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txtBandeira);
+        txtBandeira.setBounds(590, 110, 180, 27);
+
+        btn_ASC.setBackground(new java.awt.Color(105, 69, 219));
+        btn_ASC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_ASC.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ASC.setText("Ascendente");
+        btn_ASC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ASCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_ASC);
+        btn_ASC.setBounds(200, 180, 110, 27);
+
+        btn_DESC.setBackground(new java.awt.Color(105, 69, 219));
+        btn_DESC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btn_DESC.setForeground(new java.awt.Color(255, 255, 255));
+        btn_DESC.setText("Descendente");
+        btn_DESC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DESCActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_DESC);
+        btn_DESC.setBounds(320, 180, 112, 27);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        jLabel5.setText("background");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 1920, 1080);
 
         txt_id.setEditable(false);
         txt_id.setBackground(new java.awt.Color(150, 175, 231));
@@ -341,133 +421,8 @@ public class TelaFatura extends javax.swing.JFrame {
                 txt_idActionPerformed(evt);
             }
         });
-
-        btn_ASC.setText("Ascendente");
-        btn_ASC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ASCActionPerformed(evt);
-            }
-        });
-
-        btn_DESC.setText("Descendente");
-        btn_DESC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DESCActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(PageTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(387, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_ASC)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_DESC))
-                    .addComponent(orientationTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(130, 130, 130)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNumCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(30, 30, 30)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtDiaFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(50, 50, 50)
-                                    .addComponent(txtTotalFatura, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtBandeira, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(selectorType, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(selectorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(findField, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(findTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(dataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PageTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(orientationTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_ASC)
-                            .addComponent(btn_DESC)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(299, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(20, 20, 20)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(backButton)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(6, 6, 6)
-                            .addComponent(txtNumCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addGap(6, 6, 6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtDiaFatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTotalFatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(6, 6, 6)
-                            .addComponent(txtBandeira, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(20, 20, 20)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(selectorTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(findTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(selectorType, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(findField, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(43, 43, 43)
-                    .addComponent(dataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(txt_id);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -565,6 +520,7 @@ public class TelaFatura extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTable jtFaturas;
     private javax.swing.JLabel orientationTitle;
     private javax.swing.JButton searchButton;

@@ -84,25 +84,16 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     
     void HabilitarConsulta(){
         
-        findByTitle.setVisible(true);
         findTextTitle.setVisible(true);
-        ordenationTitle.setVisible(true);
-        cbbTipo.setVisible(true);
         txt_Pesquisa.setVisible(true);
-        btnASC.setVisible(true);
-        btnDESC.setVisible(true);
         btPesquisarCD.setVisible(true);
+        
     }
     
     final void DesabilitarConsulta(){
         
-        findByTitle.setVisible(false);
         findTextTitle.setVisible(false);
-        ordenationTitle.setVisible(false);
-        cbbTipo.setVisible(false);
         txt_Pesquisa.setVisible(false);
-        btnASC.setVisible(false);
-        btnDESC.setVisible(false);
         btPesquisarCD.setVisible(false);
     }
     
@@ -341,7 +332,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nº Cartão", "Valor", "Bandeira", " ", " ", " " }));
         getContentPane().add(cbbTipo);
-        cbbTipo.setBounds(20, 90, 140, 27);
+        cbbTipo.setBounds(20, 100, 140, 27);
 
         txt_Pesquisa.setColumns(100);
         txt_Pesquisa.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -356,7 +347,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(170, 90, 350, 27);
+        txt_Pesquisa.setBounds(20, 370, 350, 27);
 
         jtConsultaCD.setBackground(new java.awt.Color(187, 210, 240));
         jtConsultaCD.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -406,7 +397,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btPesquisarCD);
-        btPesquisarCD.setBounds(740, 90, 40, 40);
+        btPesquisarCD.setBounds(380, 360, 40, 40);
 
         startButton.setBackground(new java.awt.Color(105, 69, 219));
         startButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -466,7 +457,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(newCardButton);
-        newCardButton.setBounds(30, 380, 140, 27);
+        newCardButton.setBounds(640, 450, 140, 27);
 
         delCardButton.setBackground(new java.awt.Color(210, 59, 239));
         delCardButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -478,7 +469,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(delCardButton);
-        delCardButton.setBounds(410, 380, 140, 27);
+        delCardButton.setBounds(640, 530, 140, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -490,23 +481,26 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(240, 380, 140, 27);
+        btn_update.setBounds(640, 490, 140, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findByTitle.setText("Pesquisar por");
+        findByTitle.setText("Ordenar/Refinar por: ");
         getContentPane().add(findByTitle);
-        findByTitle.setBounds(20, 70, 100, 27);
+        findByTitle.setBounds(20, 80, 140, 27);
 
         ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        ordenationTitle.setText("Ordenação");
+        ordenationTitle.setText("Tipo de Ordenação");
         getContentPane().add(ordenationTitle);
-        ordenationTitle.setBounds(530, 70, 80, 27);
+        ordenationTitle.setBounds(180, 80, 140, 27);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTextTitle.setText("Digite sua pesquisa aqui");
         getContentPane().add(findTextTitle);
-        findTextTitle.setBounds(170, 70, 170, 27);
+        findTextTitle.setBounds(20, 350, 170, 27);
 
+        btnASC.setBackground(new java.awt.Color(105, 69, 219));
+        btnASC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnASC.setForeground(new java.awt.Color(255, 255, 255));
         btnASC.setText("Ascendente");
         btnASC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -514,8 +508,11 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnASC);
-        btnASC.setBounds(520, 100, 110, 30);
+        btnASC.setBounds(180, 100, 110, 27);
 
+        btnDESC.setBackground(new java.awt.Color(105, 69, 219));
+        btnDESC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnDESC.setForeground(new java.awt.Color(255, 255, 255));
         btnDESC.setText("Descendente");
         btnDESC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -523,8 +520,11 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDESC);
-        btnDESC.setBounds(630, 100, 110, 30);
+        btnDESC.setBounds(300, 100, 130, 27);
 
+        tbHabilitaConsulta.setBackground(new java.awt.Color(105, 69, 219));
+        tbHabilitaConsulta.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        tbHabilitaConsulta.setForeground(new java.awt.Color(255, 255, 255));
         tbHabilitaConsulta.setText("Habilitar Consulta");
         tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -532,7 +532,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tbHabilitaConsulta);
-        tbHabilitaConsulta.setBounds(590, 380, 140, 30);
+        tbHabilitaConsulta.setBounds(20, 320, 190, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);
@@ -545,7 +545,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 20);
+        txt_id.setBounds(0, 0, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

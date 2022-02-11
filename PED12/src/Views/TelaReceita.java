@@ -132,25 +132,17 @@ public class TelaReceita extends javax.swing.JFrame{
     
     void HabilitarConsulta(){
         
-        findByTitle.setVisible(true);
+        
         findTextType.setVisible(true);
-        ordenationTitle.setVisible(true);
-        cbbTipo.setVisible(true);
         txt_Pesquisa.setVisible(true);
-        btnASC.setVisible(true);
-        btnDESC.setVisible(true);
         btPesquisar.setVisible(true);
     }
     
     final void DesabilitarConsulta(){
         
-        findByTitle.setVisible(false);
+        
         findTextType.setVisible(false);
-        ordenationTitle.setVisible(false);
-        cbbTipo.setVisible(false);
         txt_Pesquisa.setVisible(false);
-        btnASC.setVisible(false);
-        btnDESC.setVisible(false);
         btPesquisar.setVisible(false);
     }
 
@@ -497,7 +489,7 @@ public class TelaReceita extends javax.swing.JFrame{
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Receitas");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 90, 24);
+        pageTitle.setBounds(360, 0, 90, 26);
 
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -506,7 +498,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(cbbTipo);
-        cbbTipo.setBounds(30, 90, 150, 27);
+        cbbTipo.setBounds(30, 100, 150, 27);
 
         jtConsultaCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCD.setModel(new javax.swing.table.DefaultTableModel(
@@ -540,7 +532,7 @@ public class TelaReceita extends javax.swing.JFrame{
         jScrollPane1.setViewportView(jtConsultaCD);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 170, 740, 180);
+        jScrollPane1.setBounds(30, 140, 740, 180);
 
         txt_Pesquisa.setColumns(200);
         txt_Pesquisa.addActionListener(new java.awt.event.ActionListener() {
@@ -554,7 +546,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_Pesquisa);
-        txt_Pesquisa.setBounds(190, 90, 530, 27);
+        txt_Pesquisa.setBounds(30, 380, 380, 27);
 
         btn_inicio.setBackground(new java.awt.Color(105, 69, 219));
         btn_inicio.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -616,7 +608,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(200, 420, 140, 27);
+        btn_NovaReceita.setBounds(630, 420, 140, 27);
 
         btPesquisar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisar.setForeground(new java.awt.Color(255, 255, 255));
@@ -628,7 +620,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btPesquisar);
-        btPesquisar.setBounds(730, 90, 40, 40);
+        btPesquisar.setBounds(420, 370, 40, 40);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -640,7 +632,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(30, 420, 140, 27);
+        btn_update.setBounds(630, 460, 140, 27);
 
         btn_excluir.setBackground(new java.awt.Color(210, 59, 239));
         btn_excluir.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -652,13 +644,16 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btn_excluir);
-        btn_excluir.setBounds(380, 420, 140, 27);
+        btn_excluir.setBounds(630, 500, 140, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findByTitle.setText("Pesquisar por");
+        findByTitle.setText("Ordenar/Refinar por:");
         getContentPane().add(findByTitle);
-        findByTitle.setBounds(30, 70, 120, 16);
+        findByTitle.setBounds(30, 80, 150, 27);
 
+        btnDESC.setBackground(new java.awt.Color(105, 69, 219));
+        btnDESC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnDESC.setForeground(new java.awt.Color(255, 255, 255));
         btnDESC.setText("Descendente");
         btnDESC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -666,8 +661,11 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btnDESC);
-        btnDESC.setBounds(160, 130, 130, 30);
+        btnDESC.setBounds(310, 100, 130, 27);
 
+        btnASC.setBackground(new java.awt.Color(105, 69, 219));
+        btnASC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnASC.setForeground(new java.awt.Color(255, 255, 255));
         btnASC.setText("Ascendente");
         btnASC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -675,26 +673,29 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btnASC);
-        btnASC.setBounds(30, 130, 120, 30);
+        btnASC.setBounds(190, 100, 110, 27);
 
-        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.setBackground(new java.awt.Color(105, 69, 219));
+        tbHabilitaConsulta.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        tbHabilitaConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        tbHabilitaConsulta.setLabel("Refinar Busca");
         tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbHabilitaConsultaActionPerformed(evt);
             }
         });
         getContentPane().add(tbHabilitaConsulta);
-        tbHabilitaConsulta.setBounds(570, 410, 140, 30);
+        tbHabilitaConsulta.setBounds(30, 320, 140, 27);
 
         ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        ordenationTitle.setText("Ordenação");
+        ordenationTitle.setText("Tipo de Ordenação");
         getContentPane().add(ordenationTitle);
-        ordenationTitle.setBounds(310, 130, 100, 27);
+        ordenationTitle.setBounds(190, 80, 130, 27);
 
         findTextType.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findTextType.setText("Digite sua pesquisa aqui");
+        findTextType.setText("Buscar por");
         getContentPane().add(findTextType);
-        findTextType.setBounds(190, 70, 180, 27);
+        findTextType.setBounds(30, 350, 140, 27);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);
@@ -707,7 +708,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 20);
+        txt_id.setBounds(20, 10, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

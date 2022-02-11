@@ -128,6 +128,8 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
         monthBarTitle = new javax.swing.JLabel();
         txt_ano = new javax.swing.JTextField();
         btn_update = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -135,9 +137,12 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         findByTitle1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         findByTitle1.setText("Atualizar Receitas");
+        getContentPane().add(findByTitle1);
+        findByTitle1.setBounds(300, 0, 188, 30);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -148,9 +153,13 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                 btnReceitasActionPerformed(evt);
             }
         });
+        getContentPane().add(btnReceitas);
+        btnReceitas.setBounds(30, 50, 111, 27);
 
         totalTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         totalTitle.setText("Total: ");
+        getContentPane().add(totalTitle);
+        totalTitle.setBounds(180, 130, 50, 27);
 
         txt_total.setBackground(new java.awt.Color(187, 210, 240));
         txt_total.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -163,9 +172,13 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                 txt_totalActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_total);
+        txt_total.setBounds(180, 150, 100, 27);
 
         dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         dateTitle.setText("Data (dd/mm/aaaa)");
+        getContentPane().add(dateTitle);
+        dateTitle.setBounds(300, 130, 150, 27);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -175,20 +188,30 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                 txt_diaActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_dia);
+        txt_dia.setBounds(300, 150, 50, 27);
 
         txt_mes.setBackground(new java.awt.Color(187, 210, 240));
         txt_mes.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         txt_mes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_mes);
+        txt_mes.setBounds(360, 150, 50, 27);
 
         dayBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         dayBarTitle.setText("/");
+        getContentPane().add(dayBarTitle);
+        dayBarTitle.setBounds(350, 150, 10, 26);
 
         monthBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         monthBarTitle.setText("/");
+        getContentPane().add(monthBarTitle);
+        monthBarTitle.setBounds(410, 150, 10, 26);
 
         txt_ano.setBackground(new java.awt.Color(187, 210, 240));
         txt_ano.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(txt_ano);
+        txt_ano.setBounds(420, 150, 50, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -199,71 +222,18 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                 btn_updateActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_update);
+        btn_update.setBounds(550, 150, 140, 27);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(txt_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(txt_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(monthBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(dayBarTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(149, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(btnReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(findByTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(findByTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(totalTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(txt_total, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(monthBarTitle)
-                            .addComponent(dayBarTitle))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_update, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReceitas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-280x200.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(200, 200, 400, 370);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("background");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 10, 10);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -334,11 +304,13 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btnReceitas;
     private javax.swing.JButton btn_update;
     private javax.swing.JLabel dateTitle;
     private javax.swing.JLabel dayBarTitle;
     private javax.swing.JLabel findByTitle1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel monthBarTitle;
     private javax.swing.JLabel totalTitle;
     private javax.swing.JTextField txt_ano;

@@ -184,7 +184,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_inicio);
-        btn_inicio.setBounds(40, 60, 90, 27);
+        btn_inicio.setBounds(40, 50, 90, 27);
 
         btn_NovaReceita.setBackground(new java.awt.Color(105, 69, 219));
         btn_NovaReceita.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N

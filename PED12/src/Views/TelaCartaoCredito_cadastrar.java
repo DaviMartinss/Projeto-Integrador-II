@@ -254,7 +254,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 6, 20);
+        txt_id.setBounds(0, 0, 5, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
