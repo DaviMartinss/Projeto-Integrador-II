@@ -26,6 +26,7 @@ public class TelaReceita extends javax.swing.JFrame{
     public TelaReceita() {
         initComponents();
         this.setLocationRelativeTo(null);
+        DesabilitarConsulta();
         txt_id.setVisible(false);
     }
 
@@ -127,6 +128,30 @@ public class TelaReceita extends javax.swing.JFrame{
         }
 
         this.dispose();
+    }
+    
+    void HabilitarConsulta(){
+        
+        findByTitle.setVisible(true);
+        findTextType.setVisible(true);
+        ordenationTitle.setVisible(true);
+        cbbTipo.setVisible(true);
+        txt_Pesquisa.setVisible(true);
+        btnASC.setVisible(true);
+        btnDESC.setVisible(true);
+        btPesquisar.setVisible(true);
+    }
+    
+    final void DesabilitarConsulta(){
+        
+        findByTitle.setVisible(false);
+        findTextType.setVisible(false);
+        ordenationTitle.setVisible(false);
+        cbbTipo.setVisible(false);
+        txt_Pesquisa.setVisible(false);
+        btnASC.setVisible(false);
+        btnDESC.setVisible(false);
+        btPesquisar.setVisible(false);
     }
 
     void TelaReceitaCadastrar() {
@@ -446,12 +471,15 @@ public class TelaReceita extends javax.swing.JFrame{
         btnCartao_cred = new javax.swing.JButton();
         btnCartao_Deb = new javax.swing.JButton();
         btn_NovaReceita = new javax.swing.JButton();
-        btPesquisarCD = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
         findByTitle = new javax.swing.JLabel();
         btnDESC = new javax.swing.JButton();
         btnASC = new javax.swing.JButton();
+        tbHabilitaConsulta = new javax.swing.JToggleButton();
+        ordenationTitle = new javax.swing.JLabel();
+        findTextType = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -588,19 +616,19 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btn_NovaReceita);
-        btn_NovaReceita.setBounds(310, 420, 140, 27);
+        btn_NovaReceita.setBounds(200, 420, 140, 27);
 
-        btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
-        btPesquisarCD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
-        btPesquisarCD.setBorderPainted(false);
-        btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        btPesquisar.setBorderPainted(false);
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPesquisarCDActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(btPesquisarCD);
-        btPesquisarCD.setBounds(730, 90, 40, 40);
+        getContentPane().add(btPesquisar);
+        btPesquisar.setBounds(730, 90, 40, 40);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -624,7 +652,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(btn_excluir);
-        btn_excluir.setBounds(620, 420, 140, 27);
+        btn_excluir.setBounds(380, 420, 140, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findByTitle.setText("Pesquisar por");
@@ -648,6 +676,25 @@ public class TelaReceita extends javax.swing.JFrame{
         });
         getContentPane().add(btnASC);
         btnASC.setBounds(30, 130, 120, 30);
+
+        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHabilitaConsultaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbHabilitaConsulta);
+        tbHabilitaConsulta.setBounds(570, 410, 140, 30);
+
+        ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        ordenationTitle.setText("Ordenação");
+        getContentPane().add(ordenationTitle);
+        ordenationTitle.setBounds(310, 130, 100, 27);
+
+        findTextType.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        findTextType.setText("Digite sua pesquisa aqui");
+        getContentPane().add(findTextType);
+        findTextType.setBounds(190, 70, 180, 27);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);
@@ -731,12 +778,12 @@ public class TelaReceita extends javax.swing.JFrame{
             
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
-    private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         
         ConsultaReceita(true);
 
-    }//GEN-LAST:event_btPesquisarCDActionPerformed
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -798,6 +845,15 @@ public class TelaReceita extends javax.swing.JFrame{
 
     }//GEN-LAST:event_btn_updateActionPerformed
 
+    private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
+
+        if(tbHabilitaConsulta.isSelected())
+        HabilitarConsulta();
+        else
+        DesabilitarConsulta();
+
+    }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -833,7 +889,7 @@ public class TelaReceita extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JButton btPesquisarCD;
+    private javax.swing.JButton btPesquisar;
     private javax.swing.JButton btnASC;
     private javax.swing.JButton btnCartao_Deb;
     private javax.swing.JButton btnCartao_cred;
@@ -845,9 +901,12 @@ public class TelaReceita extends javax.swing.JFrame{
     private javax.swing.JButton btn_update;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JLabel findByTitle;
+    private javax.swing.JLabel findTextType;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtConsultaCD;
+    private javax.swing.JLabel ordenationTitle;
     private javax.swing.JLabel pageTitle;
+    private javax.swing.JToggleButton tbHabilitaConsulta;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables

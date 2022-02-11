@@ -28,6 +28,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         initComponents();
 
         this.setLocationRelativeTo(null);
+        DesabilitarConsulta();
 
         txt_id.setVisible(false);
 
@@ -235,6 +236,30 @@ public class TelaCartao_credito extends javax.swing.JFrame {
 */ 
 //</editor-fold> 
 
+    }
+    
+    void HabilitarConsulta(){
+        
+        findTitle.setVisible(true);
+        findTextType.setVisible(true);
+        ordenationTitle.setVisible(true);
+        selectorType.setVisible(true);
+        txt_Pesquisa.setVisible(true);
+        btnASC.setVisible(true);
+        btnDESC.setVisible(true);
+        btPesquisarCC.setVisible(true);
+    }
+    
+    final void DesabilitarConsulta(){
+        
+        findTitle.setVisible(false);
+        findTextType.setVisible(false);
+        ordenationTitle.setVisible(false);
+        selectorType.setVisible(false);
+        txt_Pesquisa.setVisible(false);
+        btnASC.setVisible(false);
+        btnDESC.setVisible(false);
+        btPesquisarCC.setVisible(false);
     }
 
     void AtualizarCartaoCredito() {
@@ -486,6 +511,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         findTextType = new javax.swing.JLabel();
         btnDESC = new javax.swing.JButton();
         btnASC = new javax.swing.JButton();
+        tbHabilitaConsulta = new javax.swing.JToggleButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -604,7 +630,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_novoCartao_cc);
-        btn_novoCartao_cc.setBounds(40, 340, 140, 27);
+        btn_novoCartao_cc.setBounds(20, 340, 140, 27);
 
         btn_exclui_cc.setBackground(new java.awt.Color(210, 59, 239));
         btn_exclui_cc.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -616,7 +642,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_exclui_cc);
-        btn_exclui_cc.setBounds(620, 340, 140, 27);
+        btn_exclui_cc.setBounds(480, 340, 140, 27);
 
         btPesquisarCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         btPesquisarCC.setForeground(new java.awt.Color(255, 255, 255));
@@ -640,7 +666,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(220, 340, 140, 27);
+        btn_update.setBounds(180, 340, 140, 27);
 
         userButton.setBackground(new java.awt.Color(105, 69, 219));
         userButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -664,7 +690,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnListaFaturas);
-        btnListaFaturas.setBounds(430, 340, 140, 27);
+        btnListaFaturas.setBounds(330, 340, 140, 27);
 
         findTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTitle.setText("Pesquisar por");
@@ -698,6 +724,15 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         });
         getContentPane().add(btnASC);
         btnASC.setBounds(530, 100, 110, 30);
+
+        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHabilitaConsultaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbHabilitaConsulta);
+        tbHabilitaConsulta.setBounds(630, 340, 140, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel8");
@@ -843,6 +878,15 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         ConsultaCartaoCredito(true);
     }//GEN-LAST:event_btnASCActionPerformed
 
+    private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
+
+        if(tbHabilitaConsulta.isSelected())
+            HabilitarConsulta();
+        else
+            DesabilitarConsulta();
+        
+    }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -897,6 +941,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
     private javax.swing.JLabel ordenationTitle;
     private javax.swing.JLabel pageTitle;
     private javax.swing.JComboBox<String> selectorType;
+    private javax.swing.JToggleButton tbHabilitaConsulta;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
     private javax.swing.JButton userButton;

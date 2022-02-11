@@ -7,7 +7,6 @@ package Views;
 
 import Controllers.ControlerCartaoDebito;
 import Model.CartaoDebito;
-import ValidacaoComum.Validacao;
 import Controllers.ControlerTabela;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
@@ -29,6 +28,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         initComponents();
 
         this.setLocationRelativeTo(null);
+        DesabilitarConsulta();
         txt_id.setVisible(false);
     }
 
@@ -80,6 +80,30 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
         this.dispose();
 
+    }
+    
+    void HabilitarConsulta(){
+        
+        findByTitle.setVisible(true);
+        findTextTitle.setVisible(true);
+        ordenationTitle.setVisible(true);
+        cbbTipo.setVisible(true);
+        txt_Pesquisa.setVisible(true);
+        btnASC.setVisible(true);
+        btnDESC.setVisible(true);
+        btPesquisarCD.setVisible(true);
+    }
+    
+    final void DesabilitarConsulta(){
+        
+        findByTitle.setVisible(false);
+        findTextTitle.setVisible(false);
+        ordenationTitle.setVisible(false);
+        cbbTipo.setVisible(false);
+        txt_Pesquisa.setVisible(false);
+        btnASC.setVisible(false);
+        btnDESC.setVisible(false);
+        btPesquisarCD.setVisible(false);
     }
     
     void TelaAtualizarCartaoDebito(CartaoDebito cartaoDebito) {
@@ -294,6 +318,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         findTextTitle = new javax.swing.JLabel();
         btnASC = new javax.swing.JButton();
         btnDESC = new javax.swing.JButton();
+        tbHabilitaConsulta = new javax.swing.JToggleButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -453,7 +478,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(delCardButton);
-        delCardButton.setBounds(540, 370, 140, 27);
+        delCardButton.setBounds(410, 380, 140, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -465,7 +490,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(300, 380, 140, 27);
+        btn_update.setBounds(240, 380, 140, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findByTitle.setText("Pesquisar por");
@@ -499,6 +524,15 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         });
         getContentPane().add(btnDESC);
         btnDESC.setBounds(630, 100, 110, 30);
+
+        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHabilitaConsultaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbHabilitaConsulta);
+        tbHabilitaConsulta.setBounds(590, 380, 140, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);
@@ -652,6 +686,15 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         ConsultaCartaoDebito(false);
     }//GEN-LAST:event_btnDESCActionPerformed
 
+    private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
+
+        if(tbHabilitaConsulta.isSelected())
+        HabilitarConsulta();
+        else
+        DesabilitarConsulta();
+
+    }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -704,6 +747,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private javax.swing.JLabel ordenationTitle;
     private javax.swing.JLabel pageTitle;
     private javax.swing.JButton startButton;
+    private javax.swing.JToggleButton tbHabilitaConsulta;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;
     private javax.swing.JButton userButton;

@@ -24,7 +24,7 @@ public class TelaCategoria extends javax.swing.JFrame {
     public TelaCategoria() {
         
         initComponents();
-
+        DesabilitarConsulta();
         this.setLocationRelativeTo(null);
 
     }
@@ -84,6 +84,25 @@ public class TelaCategoria extends javax.swing.JFrame {
         this.dispose();
     }
     
+    void HabilitarConsulta(){
+        
+        findTextTitle.setVisible(true);
+        txt_Pesquisa.setVisible(true);
+        btPesquisar.setVisible(true);
+        txt_Pesquisa.setVisible(true);
+        btnASC.setVisible(true);
+        btnDESC.setVisible(true);
+    }
+    
+    final void DesabilitarConsulta(){
+        
+        findTextTitle.setVisible(false);
+        txt_Pesquisa.setVisible(false);
+        btPesquisar.setVisible(false);
+        txt_Pesquisa.setVisible(false);
+        btnASC.setVisible(false);
+        btnDESC.setVisible(false);
+    }
     
     void AtualizarCategoria() {
 
@@ -191,11 +210,12 @@ public class TelaCategoria extends javax.swing.JFrame {
         btn_cadastraCategoria = new javax.swing.JButton();
         btn_deletaCategoria = new javax.swing.JButton();
         btn_updateCategoria = new javax.swing.JButton();
-        btPesquisarCD = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
         findTextTitle = new javax.swing.JLabel();
         nameTitle = new javax.swing.JLabel();
         btnDESC = new javax.swing.JButton();
         btnASC = new javax.swing.JButton();
+        tbHabilitaConsulta = new javax.swing.JToggleButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -311,17 +331,17 @@ public class TelaCategoria extends javax.swing.JFrame {
         getContentPane().add(btn_updateCategoria);
         btn_updateCategoria.setBounds(540, 380, 140, 27);
 
-        btPesquisarCD.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btPesquisarCD.setForeground(new java.awt.Color(255, 255, 255));
-        btPesquisarCD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
-        btPesquisarCD.setBorderPainted(false);
-        btPesquisarCD.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        btPesquisar.setBorderPainted(false);
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPesquisarCDActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(btPesquisarCD);
-        btPesquisarCD.setBounds(630, 140, 40, 40);
+        getContentPane().add(btPesquisar);
+        btPesquisar.setBounds(630, 140, 40, 40);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTextTitle.setText("Pesquisar");
@@ -350,6 +370,15 @@ public class TelaCategoria extends javax.swing.JFrame {
         });
         getContentPane().add(btnASC);
         btnASC.setBounds(150, 150, 120, 30);
+
+        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHabilitaConsultaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbHabilitaConsulta);
+        tbHabilitaConsulta.setBounds(540, 300, 140, 30);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel1");
@@ -435,11 +464,11 @@ public class TelaCategoria extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
-    private void btPesquisarCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarCDActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         ConsultaCategoria(true);
 
-    }//GEN-LAST:event_btPesquisarCDActionPerformed
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btnDESCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDESCActionPerformed
 
@@ -450,6 +479,14 @@ public class TelaCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
         ConsultaCategoria(true);
     }//GEN-LAST:event_btnASCActionPerformed
+
+    private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
+
+        if(tbHabilitaConsulta.isSelected())
+        HabilitarConsulta();
+        else
+        DesabilitarConsulta();
+    }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,7 +523,7 @@ public class TelaCategoria extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JButton btPesquisarCD;
+    private javax.swing.JButton btPesquisar;
     private javax.swing.JButton btnASC;
     private javax.swing.JButton btnDESC;
     private javax.swing.JButton btn_cadastraCategoria;
@@ -498,6 +535,7 @@ public class TelaCategoria extends javax.swing.JFrame {
     private javax.swing.JTable jt_categoria;
     private javax.swing.JLabel nameTitle;
     private javax.swing.JLabel pageTitle;
+    private javax.swing.JToggleButton tbHabilitaConsulta;
     private javax.swing.JTextField txt_NomeCategoria;
     private javax.swing.JTextField txt_Pesquisa;
     private javax.swing.JTextField txt_id;

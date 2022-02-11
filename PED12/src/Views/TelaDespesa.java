@@ -24,6 +24,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     public TelaDespesa() {
         initComponents();
         this.setLocationRelativeTo(null);
+        DesabilitarConsulta();
         txt_id.setVisible(false);
     }
 
@@ -149,6 +150,38 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         this.dispose();
 
+    }
+    
+    void HabilitarConsulta() {
+
+        findByTitle.setVisible(true);
+        findTextTitle.setVisible(true);
+        ordenationTitle.setVisible(true);
+        cbbTipo.setVisible(true);
+        txt_Pesquisa.setVisible(true);
+        btnASC.setVisible(true);
+        btnDESC.setVisible(true);
+        btPesquisar.setVisible(true);
+        invoiceDateTitle.setVisible(true);
+        txtMesReceita.setVisible(true);
+        txtAnoReceita.setVisible(true);
+        dateBar.setVisible(true);
+    }
+    
+    final void DesabilitarConsulta(){
+        
+        findByTitle.setVisible(false);
+        findTextTitle.setVisible(false);
+        ordenationTitle.setVisible(false);
+        cbbTipo.setVisible(false);
+        txt_Pesquisa.setVisible(false);
+        btnASC.setVisible(false);
+        btnDESC.setVisible(false);
+        btPesquisar.setVisible(false);
+        invoiceDateTitle.setVisible(false);
+        txtMesReceita.setVisible(false);
+        txtAnoReceita.setVisible(false);
+        dateBar.setVisible(false);
     }
 
     void TelaCadastrar_cadastrar() {
@@ -410,7 +443,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         btnReceitas = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
         btnNovaDespesa = new javax.swing.JToggleButton();
-        btPesquisarDespesa = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
         btn_update = new javax.swing.JButton();
         btn_excluir = new javax.swing.JButton();
         dateBar = new javax.swing.JLabel();
@@ -419,6 +452,10 @@ public class TelaDespesa extends javax.swing.JFrame {
         findTextTitle = new javax.swing.JLabel();
         btnASC = new javax.swing.JButton();
         btnDESC = new javax.swing.JButton();
+        tbHabilitaConsulta = new javax.swing.JToggleButton();
+        ordenationTitle = new javax.swing.JLabel();
+        btnCartao_cred = new javax.swing.JButton();
+        btnCartao_Deb = new javax.swing.JButton();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -553,19 +590,19 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnNovaDespesa);
-        btnNovaDespesa.setBounds(340, 440, 150, 27);
+        btnNovaDespesa.setBounds(260, 440, 150, 27);
 
-        btPesquisarDespesa.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        btPesquisarDespesa.setForeground(new java.awt.Color(255, 255, 255));
-        btPesquisarDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
-        btPesquisarDespesa.setBorderPainted(false);
-        btPesquisarDespesa.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btPesquisar.setForeground(new java.awt.Color(255, 255, 255));
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/lupa.png"))); // NOI18N
+        btPesquisar.setBorderPainted(false);
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPesquisarDespesaActionPerformed(evt);
+                btPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(btPesquisarDespesa);
-        btPesquisarDespesa.setBounds(740, 80, 40, 40);
+        getContentPane().add(btPesquisar);
+        btPesquisar.setBounds(740, 80, 40, 40);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -589,7 +626,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_excluir);
-        btn_excluir.setBounds(630, 440, 150, 27);
+        btn_excluir.setBounds(450, 440, 150, 27);
 
         dateBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         dateBar.setText(" /");
@@ -628,6 +665,44 @@ public class TelaDespesa extends javax.swing.JFrame {
         });
         getContentPane().add(btnDESC);
         btnDESC.setBounds(150, 110, 130, 30);
+
+        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbHabilitaConsultaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tbHabilitaConsulta);
+        tbHabilitaConsulta.setBounds(630, 440, 140, 30);
+
+        ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        ordenationTitle.setText("Ordenação");
+        getContentPane().add(ordenationTitle);
+        ordenationTitle.setBounds(290, 120, 80, 27);
+
+        btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
+        btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnCartao_cred.setForeground(new java.awt.Color(255, 255, 255));
+        btnCartao_cred.setText("Cartão de Crédito");
+        btnCartao_cred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartao_credActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCartao_cred);
+        btnCartao_cred.setBounds(360, 30, 140, 27);
+
+        btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
+        btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
+        btnCartao_Deb.setForeground(new java.awt.Color(255, 255, 255));
+        btnCartao_Deb.setText("Cartão de Débito");
+        btnCartao_Deb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCartao_DebActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCartao_Deb);
+        btnCartao_Deb.setBounds(520, 30, 140, 27);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("jLabel13");
@@ -675,7 +750,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txt_PesquisaKeyReleased
 
-    private void btPesquisarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarDespesaActionPerformed
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         Validacao valida = new Validacao();
         
@@ -686,7 +761,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         
         PesquisaDespesa(true);
 
-    }//GEN-LAST:event_btPesquisarDespesaActionPerformed
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void jtConsultaDespesaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaDespesaMouseClicked
         // TODO add your handling code here:
@@ -755,6 +830,24 @@ public class TelaDespesa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDESCActionPerformed
 
+    private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
+
+        if(tbHabilitaConsulta.isSelected())
+        HabilitarConsulta();
+        else
+        DesabilitarConsulta();
+    }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
+
+    private void btnCartao_credActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartao_credActionPerformed
+        // TODO add your handling code here:
+        TelaCartaoCredito();
+    }//GEN-LAST:event_btnCartao_credActionPerformed
+
+    private void btnCartao_DebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartao_DebActionPerformed
+        // TODO add your handling code here:
+        TelaCartaoDebito();
+    }//GEN-LAST:event_btnCartao_DebActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -790,8 +883,10 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JButton btPesquisarDespesa;
+    private javax.swing.JButton btPesquisar;
     private javax.swing.JButton btnASC;
+    private javax.swing.JButton btnCartao_Deb;
+    private javax.swing.JButton btnCartao_cred;
     private javax.swing.JButton btnDESC;
     private javax.swing.JToggleButton btnNovaDespesa;
     private javax.swing.JButton btnReceitas;
@@ -804,8 +899,10 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel invoiceDateTitle;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtConsultaDespesa;
+    private javax.swing.JLabel ordenationTitle;
     private javax.swing.JLabel pageTitle;
     private javax.swing.JButton startButton;
+    private javax.swing.JToggleButton tbHabilitaConsulta;
     private javax.swing.JTextField txtAnoReceita;
     private javax.swing.JTextField txtMesReceita;
     private javax.swing.JTextField txt_Pesquisa;
