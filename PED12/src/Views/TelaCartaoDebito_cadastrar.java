@@ -8,7 +8,7 @@ package Views;
 import Controllers.ControlerCartaoDebito;
 import javax.swing.JOptionPane;
 import Model.CartaoDebito;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 import java.awt.HeadlessException;
 /**
  *
@@ -207,7 +207,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(343, 42, 81, 21);
+        txt_id.setBounds(343, 42, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -221,9 +221,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             
         }else{
             
-            Validacao valida = new Validacao();
-            
-            if(!( valida.ehNum(txt_numCartDeb.getText()) && valida.ehNum(txt_valorCartaoDeb.getText()))) {
+            if(!( Validacao.isNumeric(txt_numCartDeb.getText()) && Validacao.isNumeric(txt_valorCartaoDeb.getText()))) {
                 JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 return;
             }

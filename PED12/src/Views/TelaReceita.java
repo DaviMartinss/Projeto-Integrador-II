@@ -196,97 +196,20 @@ public class TelaReceita extends javax.swing.JFrame{
 
     void RecarregaTabela() {
 
-        salvaLinhaAtiva = false;
-
-        ControlerTabela.LimpaTabela(jtConsultaCD);
-        
-        DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
-        
-        ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "Receita");
-
-//<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">
-/* 
-
         try {
-
+            
+            salvaLinhaAtiva = false;
+            ControlerTabela.LimpaTabela(jtConsultaCD);
             DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
+            ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "Receita");
             
-            LinkedList<Receita> lista_receita = ControlerReceita.GetListaReceita(Integer.parseInt(txt_id.getText()));
-
-            
-            
-            lista_receita.forEach((receita) -> {
-                String Col0 = Float.toString(receita.getTotal());
-                String Col1 = Integer.toString(receita.getDia());
-                String Col2 = Integer.toString(receita.getMes());
-                String Col3 = Integer.toString(receita.getAno());
-
-                mp.addRow(new String[]{Col0, Col1, Col2, Col3});
-            });
-
-            lista_receita.clear();
-
         } catch (NumberFormatException e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
-*/ 
-//</editor-fold> 
     }
 
     void AtualizarReceita() {
-
-//        if (!(salvaLinhaAtiva)) {
-//            JOptionPane.showMessageDialog(this, "Nenhuma receita foi selecionada para ser atualizda","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//
-//        Validacao valida = new Validacao();
-//
-//        if (!(valida.ehNum(txt_dia.getText()) && valida.ehNum(txt_mes.getText()) && valida.ehNum(txt_ano.getText()) && valida.ehNum(txt_total.getText()))) {
-//            JOptionPane.showMessageDialog(this, "Informe um valor numérico!!","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//
-//        Receita receita_aux = new Receita();
-//
-//        if (!(receita_aux.UpdateEhVazio(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText()))) {
-//
-//            Receita receita_atua = new Receita(
-//                    Integer.parseInt(txt_dia.getText()),
-//                    Integer.parseInt(txt_mes.getText()),
-//                    Integer.parseInt(txt_ano.getText()),
-//                    Float.parseFloat(txt_total.getText()),
-//                    Integer.parseInt(txt_id.getText()),
-//                    salvaMes,
-//                    SalvaAno
-//            );
-//
-//            try {
-//                //MUDAR NOME DESSES MÉTODOS DE VALIDAÇÃO
-//                if (receita_atua.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())) {
-//                    
-//                    //Não deixa atualizar para o MÊS E ANO de uma receita PRÉ-EXISTENTE
-//                    if(!ControlerReceita.ReceitaExiste(receita_atua.getMes(), receita_atua.getAno(), receita_atua.getId_conta())){
-//                        
-//                         TelaAtualizarReceita(receita_atua);
-//                        
-//                    }else{
-//                        
-//                        JOptionPane.showMessageDialog(this, "Já existe uma receita com MÊS e ANO informados!\n Não foi possível atualizar!", "ALERTA", JOptionPane.WARNING_MESSAGE );
-//                    }
-//                       
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Valor Inválido","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//                }
-//
-//            } catch (HeadlessException e) {
-//
-//                JOptionPane.showMessageDialog(this, e.getMessage(),"WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Nenhum campo pode ser nulo","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//        }
 
         if (!(salvaLinhaAtiva)) {
             JOptionPane.showMessageDialog(this, "Nenhuma receita foi selecionada para ser atualizda", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
@@ -298,7 +221,9 @@ public class TelaReceita extends javax.swing.JFrame{
         String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
 
-        Receita receita_atual
+        try {
+            
+            Receita receita_atual
                 = new Receita
                     (
                         Integer.parseInt(dia),
@@ -307,18 +232,22 @@ public class TelaReceita extends javax.swing.JFrame{
                         Float.parseFloat(total),
                         Integer.parseInt(txt_id.getText()) 
                     );
-
-        try {
+            
             TelaAtualizarReceita(receita_atual);
 
         } catch (HeadlessException e) {
 
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        
+        }catch (NumberFormatException e) {
+        
             JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
 
     }
 
     void ApagarReceita() {
+        
         if (!(salvaLinhaAtiva)) {
             JOptionPane.showMessageDialog(this, "Nenhuma receita foi selecionada para ser deletada","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
@@ -327,41 +256,51 @@ public class TelaReceita extends javax.swing.JFrame{
         String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
         String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
         
-        Receita receita = new Receita(
-                Integer.parseInt(txt_id.getText()),
-                Integer.parseInt(mes),
-                Integer.parseInt(ano)
-        );
-
         try {
+
+            Receita receita = new Receita(
+                    Integer.parseInt(txt_id.getText()),
+                    Integer.parseInt(mes),
+                    Integer.parseInt(ano)
+            );
 
             ControlerReceita.ApagarReceita(receita);
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(this, "Foi no delete_receita","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro ao deletar a Receita","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             JOptionPane.showMessageDialog(this, e.toString(),"WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        
         }
     }
     
     void ConsultaReceita(boolean ordenar) {
 
         String tipo = "";
-
         String escolha = cbbTipo.getSelectedItem().toString().trim();
+        
+        switch(escolha)
+        {
+            case "Total":
+                tipo = " " + "total";
+                break;
+                
+            case "Dia":
+                tipo = " " + "dia";
+                break;
+                
+            case "Mês":
+                tipo = " " + "mes";
+                break;
+            
+            case "Ano":
+                tipo = " " + "ano";
+                break;
+                
+            default:
+                JOptionPane.showMessageDialog(this, "Filtro de consulta desconhecido ou não implementado","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        }
 
-        if (escolha.equals("Total")) 
-            tipo = " " + "total";
-        
-        if (escolha.equals("Dia")) 
-            tipo = " " + "dia";
-        
-        if (escolha.equals("Mês")) 
-            tipo = " " + "mes";
-        
-        if (escolha.equals("Ano"))
-            tipo = " " + "ano";
-        
         String argumento = txt_Pesquisa.getText();
 
         ControlerTabela.LimpaTabela(jtConsultaCD);
@@ -370,76 +309,6 @@ public class TelaReceita extends javax.swing.JFrame{
 
         ControlerTabela.RecarregaTabelaConsulta(mp, tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar, null, "Receita");
 
-        //<editor-fold defaultstate="collapsed" desc="----- ESTA EM FASE DE TESTES PARA SER REMOVIDO POR ALGO MELHOR!!NÃO APAGUE BACKUP!! --">
-/* 
-
-         try {
-
-                DefaultTableModel mp = (DefaultTableModel) jtConsultaCD.getModel();
-
-                LinkedList<Receita> lista_receita = ControlerReceita.ConsultaReceita(tipo, argumento, Integer.parseInt(txt_id.getText()), ordenar);
-      
-                if (ordenar) {
-                    
-                    if (escolha.equals("Total")) {
-                        Collections.sort(lista_receita, new ReceitaTotalASC());
-                    }
-
-                    if (escolha.equals("Dia")) {
-                        Collections.sort(lista_receita, new ReceitaDiaASC());
-                    }
-
-                    if (escolha.equals("Mês")) {
-                        Collections.sort(lista_receita, new ReceitaMesASC());
-                    }
-
-                    if (escolha.equals("Ano")) {
-                        Collections.sort(lista_receita, new ReceitaAnoASC());
-                    }
-                
-                }else{
-                    
-                    if (escolha.equals("Total")) {
-                        Collections.sort(lista_receita, new ReceitaTotalDESC());
-                    }
-
-                    if (escolha.equals("Dia")) {
-                        Collections.sort(lista_receita, new ReceitaDiaDESC());
-                    }
-
-                    if (escolha.equals("Mês")) {
-                        Collections.sort(lista_receita, new ReceitaMesDESC());
-                    }
-
-                    if (escolha.equals("Ano")) {
-                        Collections.sort(lista_receita, new ReceitaAnoDESC());
-                    }
-                }
-
-                lista_receita.forEach((receita) -> {
-                    String Col0 = Float.toString(receita.getTotal());
-                    String Col1 = Integer.toString(receita.getDia());
-                    String Col2 = Integer.toString(receita.getMes());
-                    String Col3 = Integer.toString(receita.getAno());
-
-                    mp.addRow(new String[]{Col0, Col1, Col2, Col3});
-                });
-
-                lista_receita.clear();
-
-            } catch (NumberFormatException e) {
-
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Tipo de Ordenação Obrigatório");
-
-        }   
-            
-         */
-//</editor-fold> 
     }
 
     
@@ -747,24 +616,11 @@ public class TelaReceita extends javax.swing.JFrame{
     private void jtConsultaCDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtConsultaCDMouseClicked
         // TODO add your handling code here:
 
-//        String total = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
-//        String dia = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
-//        String mes = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
-//        String ano = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 3);
-
         int selLinha = -1;
         selLinha = jtConsultaCD.getSelectedRow();
 
         if (selLinha != -1)
             salvaLinhaAtiva = true;
-        
-//        txt_total.setText(total);
-//        txt_dia.setText(dia);
-//        txt_mes.setText(mes);
-//        txt_ano.setText(ano);
-//
-//        salvaMes = Integer.parseInt(txt_mes.getText());
-//        SalvaAno = Integer.parseInt(txt_ano.getText());
 
     }//GEN-LAST:event_jtConsultaCDMouseClicked
 
@@ -815,33 +671,7 @@ public class TelaReceita extends javax.swing.JFrame{
     }//GEN-LAST:event_btnDESCActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
-        // TODO add your handling code here:
-
-        //        if (btn_update.getText().equals("Alterar")) {
-            //
-            //            btn_update.setText("Atualizar");
-            //
-            //            txt_total.setEditable(true);
-            //            txt_dia.setEditable(true);
-            //            txt_mes.setEditable(true);
-            //            txt_ano.setEditable(true);
-            //
-            //        } else {
-            //
-            //            btn_update.setText("Alterar");
-            //
-            //            txt_total.setEditable(false);
-            //            txt_dia.setEditable(false);
-            //            txt_mes.setEditable(false);
-            //            txt_ano.setEditable(false);
-            //
-            //            AtualizarReceita();
-            //            RecarregaTabela();
-            //            LimpaCampos_Receita();
-            //        }
-
-        //===============================================================================================
-
+        
         AtualizarReceita();
 
     }//GEN-LAST:event_btn_updateActionPerformed
@@ -849,9 +679,9 @@ public class TelaReceita extends javax.swing.JFrame{
     private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
 
         if(tbHabilitaConsulta.isSelected())
-        HabilitarConsulta();
+            HabilitarConsulta();
         else
-        DesabilitarConsulta();
+            DesabilitarConsulta();
 
     }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
 

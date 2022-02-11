@@ -3,34 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CategoriaOrdenacao;
-
-
+package Ordenacao;
 
 import java.util.Comparator;
 import Model.Categoria;
 import java.text.Collator;
 
-public class CategoriaDESC implements Comparator<Categoria>{
+
+
+public class CategoriaASC implements Comparator<Categoria> {
+     
+    public CategoriaASC() {
     
-    public CategoriaDESC(){
-        
-    }
-   
-     @Override
+     }
+     
+    @Override
     public int compare(Categoria c, Categoria c1) {
 
         // c é maior que c1
         if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) > 0) {
-            return -1;
+            return 1;
             
         } else if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) < 0) {
              // c é menor que c1
-            return 1;
+            return -1;
 
         } else {
               // são iguais
             return 0;
         }
+    
     }
 }

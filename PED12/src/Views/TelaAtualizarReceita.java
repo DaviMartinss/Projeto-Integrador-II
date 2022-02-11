@@ -7,7 +7,7 @@ package Views;
 
 import Controllers.ControlerReceita;
 import Model.Receita;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -26,7 +26,6 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
     
     void TelaReceita() {
 
@@ -50,15 +49,13 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
     
     void AtualizarReceita() {
         
-        Validacao valida = new Validacao();
         Receita receita_aux = new Receita();
 
-        //USAR EXPRESSÕES LAMBDA PARA RESOLVER ISSO OU EXPRESSOES REGULARES
         if (!(
-                valida.ehNum(txt_dia.getText()) && 
-                valida.ehNum(txt_mes.getText()) && 
-                valida.ehNum(txt_ano.getText()) && 
-                valida.ehNum(txt_total.getText())
+                Validacao.isNumeric(txt_dia.getText()) && 
+                Validacao.isNumeric(txt_mes.getText()) && 
+                Validacao.isNumeric(txt_ano.getText()) && 
+                Validacao.isNumeric(txt_total.getText())
               )
             ) 
         {

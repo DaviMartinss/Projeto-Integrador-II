@@ -8,7 +8,7 @@ package Views;
 import Controllers.ControlerCartaoCredito;
 import DAO.CartaoCreditoDAO;
 import Model.CartaoCredito;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -270,9 +270,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
         } else {
 
-            Validacao valida = new Validacao();
-
-            if (!(valida.ehNum(txt_NumCC.getText()) && valida.ehNum(txt_ValorFatura.getText()) && valida.ehNum(txt_LimiteCC.getText()) && valida.ehNum(txt_DiaFaturaCC.getText()))) {
+            if (!(Validacao.isNumeric(txt_NumCC.getText()) && Validacao.isNumeric(txt_ValorFatura.getText()) && Validacao.isNumeric(txt_LimiteCC.getText()) && Validacao.isNumeric(txt_DiaFaturaCC.getText()))) {
                 JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 return;
             }

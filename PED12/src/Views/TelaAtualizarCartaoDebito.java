@@ -7,7 +7,7 @@ package Views;
 
 import Controllers.ControlerCartaoDebito;
 import Model.CartaoDebito;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -61,9 +61,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             return;
         }
 
-        Validacao valida = new Validacao();
-
-        if (!(valida.ehNum(txt_NumCartaoD.getText()) && valida.ehNum(txt_Valor.getText()))) {
+        if (!(Validacao.isNumeric(txt_NumCartaoD.getText()) && Validacao.isNumeric(txt_Valor.getText()))) {
             JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }

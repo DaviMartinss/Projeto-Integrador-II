@@ -7,9 +7,9 @@ package Views;
 
 import Controllers.ControlerReceita;
 import javax.swing.JOptionPane;
-import Model.Data;
 import Model.Receita;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
+import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 /**
  *
@@ -25,40 +25,6 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
-    }
-    
-    public void cadastro_receita(){
-        Validacao valida = new Validacao();
-        
-        if(!( valida.ehNum(txt_dia.getText()) && valida.ehNum(txt_mes.getText()) && valida.ehNum(txt_ano.getText()) && valida.ehNum(txt_total.getText()) )){
-            JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        Receita receita = new Receita(
-                Integer.parseInt(txt_dia.getText()),
-                Integer.parseInt(txt_mes.getText()),
-                Integer.parseInt(txt_ano.getText()),
-                Float.parseFloat(txt_total.getText()),
-                Integer.parseInt(txt_id.getText())
-        );
-        
-        try {                      
-            if (receita.verifica_ReceitaValida())
-            {
-                
-                ControlerReceita.CadastrarReceita(receita);               
-                TelaReceita();
-                
-            }else{
-                
-                JOptionPane.showMessageDialog(this, "Dados Inválidos!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);                
-            }
-
-        } catch (HeadlessException e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-        }      
     }
     
     void TelaPrincipal(){
@@ -110,7 +76,81 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
          this.dispose();
     }
     
+    void CadastrarReceita(){
+        
+        if(  StringUtils.isNullOrEmpty(txt_dia.getText()) || 
+             StringUtils.isNullOrEmpty(txt_mes.getText()) ||
+             StringUtils.isNullOrEmpty(txt_ano.getText()) || 
+             StringUtils.isNullOrEmpty(txt_total.getText()))
+        {
+            
+            JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
+        if(!(Validacao.isNumeric(txt_dia.getText()) && 
+             Validacao.isNumeric(txt_mes.getText()) &&
+             Validacao.isNumeric(txt_ano.getText()) && 
+             Validacao.isNumeric(txt_total.getText())))
+        {
+            JOptionPane.showMessageDialog(null, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try { 
+            
+            boolean cadastra = true;
+            
+            String dataString = txt_dia.getText() + txt_mes.getText() + txt_ano.getText();
+            
+            if(!Validacao.isDate(dataString))
+            {
+                JOptionPane.showMessageDialog(null, "Informe uma data válida!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                cadastra = false;
+            }
+            
+            Receita receita = new Receita(
+                Integer.parseInt(txt_dia.getText()),
+                Integer.parseInt(txt_mes.getText()),
+                Integer.parseInt(txt_ano.getText()),
+                Float.parseFloat(txt_total.getText()),
+                Integer.parseInt(txt_id.getText())
+            );
+            
+            if (ControlerReceita.ReceitaExiste(receita.getMes(), receita.getAno(), receita.getId_conta())) {
+
+                JOptionPane.showMessageDialog(this, "Receita já existe!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                cadastra = false;
+            }
+
+            if (!(receita.verifica_total())) {
+
+                JOptionPane.showMessageDialog(this, "Valor inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                cadastra = false;
+            }
+
+            if (cadastra)
+            {
+                ControlerReceita.CadastrarReceita(receita);    
+                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+                TelaReceita();
+                
+            }else{
+                
+                JOptionPane.showMessageDialog(this, "Dados Inválidos!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);                
+            }
+
+        } catch (HeadlessException e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        
+        }catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        }      
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -235,71 +275,89 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
 
     private void btn_NovaReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NovaReceitaActionPerformed
         
-        if(  txt_dia.getText().isEmpty() || txt_mes.getText().isEmpty()   ||
-             txt_ano.getText().isEmpty() || txt_total.getText().isEmpty()){
-            
-            JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            
-        }else{
-            Validacao valida = new Validacao();
-        
-                if(!( valida.ehNum(txt_dia.getText()) && valida.ehNum(txt_mes.getText()) && valida.ehNum(txt_ano.getText()) && valida.ehNum(txt_total.getText()) )){
-                JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            
-            boolean cadastra = true;
-            
-            Receita receita = new Receita(
-                    Integer.parseInt(txt_dia.getText()),
-                    Integer.parseInt(txt_mes.getText()),
-                    Integer.parseInt(txt_ano.getText()),
-                    Float.parseFloat(txt_total.getText()),
-                    Integer.parseInt(txt_id.getText())
-            );
-            
-            Data data = new Data(Integer.parseInt(
-                    txt_dia.getText()),
-                    Integer.parseInt(txt_mes.getText()),
-                    Integer.parseInt(txt_ano.getText())
-            );
-            
-            if (ControlerReceita.ReceitaExiste(receita.getMes(), receita.getAno(), receita.getId_conta())) {
+//        if(  StringUtils.isNullOrEmpty(txt_dia.getText()) || 
+//             StringUtils.isNullOrEmpty(txt_mes.getText()) ||
+//             StringUtils.isNullOrEmpty(txt_ano.getText()) || 
+//             StringUtils.isNullOrEmpty(txt_total.getText()))
+//        {
+//            
+//            JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//            
+//        }else{
+//            
+//            if
+//            (!( Validacao.isNumeric(txt_dia.getText()) && 
+//                Validacao.isNumeric(txt_mes.getText()) &&
+//                Validacao.isNumeric(txt_ano.getText()) && 
+//                Validacao.isNumeric(txt_total.getText())))
+//            {
+//                JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//                return;
+//            }
+//            
+//            boolean cadastra = true;
+//            
+//            try {
+//
+//                Receita receita = new Receita(
+//                        Integer.parseInt(txt_dia.getText()),
+//                        Integer.parseInt(txt_mes.getText()),
+//                        Integer.parseInt(txt_ano.getText()),
+//                        Float.parseFloat(txt_total.getText()),
+//                        Integer.parseInt(txt_id.getText())
+//                );
+//
+//                Data data = new Data(Integer.parseInt(
+//                        txt_dia.getText()),
+//                        Integer.parseInt(txt_mes.getText()),
+//                        Integer.parseInt(txt_ano.getText())
+//                );
+//
+//                if (ControlerReceita.ReceitaExiste(receita.getMes(), receita.getAno(), receita.getId_conta())) {
+//
+//                    JOptionPane.showMessageDialog(this, "Receita já existe!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//                    cadastra = false;
+//                }
+//
+//                if (!(receita.verifica_total())) {
+//
+//                    JOptionPane.showMessageDialog(this, "Valor inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//                    cadastra = false;
+//                }
+//
+//                if (!(data.verifica_dia())) {
+//
+//                    JOptionPane.showMessageDialog(this, "Dia inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//                    cadastra = false;
+//                }
+//
+//                if (!(data.verifica_mes())) {
+//
+//                    JOptionPane.showMessageDialog(this, "Mês inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//                    cadastra = false;
+//                }
+//
+//                if (!(data.verifica_ano())) {
+//
+//                    JOptionPane.showMessageDialog(this, "Ano inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//                    cadastra = false;
+//                }
+//
+//                if (cadastra) {
+//
+//                    cadastro_receita();
+//                    JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//
+//            } catch (NumberFormatException e) {
+//
+//                JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+//
+//            }
+//        }
 
-                JOptionPane.showMessageDialog(this, "Receita já existe!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
+        CadastrarReceita();
 
-            if (!(receita.verifica_total())) {
-
-                JOptionPane.showMessageDialog(this, "Valor inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (!(data.verifica_dia())) {
-
-                JOptionPane.showMessageDialog(this, "Dia inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (!(data.verifica_mes())) {
-
-                JOptionPane.showMessageDialog(this, "Mês inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (!(data.verifica_ano())) {
-
-                JOptionPane.showMessageDialog(this, "Ano inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (cadastra) {
-
-                cadastro_receita();
-                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
     }//GEN-LAST:event_btn_NovaReceitaActionPerformed
 
     private void btn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inicioActionPerformed

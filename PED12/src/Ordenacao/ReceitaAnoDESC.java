@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ReceitaOrdenacao;
+package Ordenacao;
 
+import Model.Data;
 import Model.Receita;
 import java.util.Comparator;
 
@@ -12,19 +13,19 @@ import java.util.Comparator;
  *
  * @author Alan
  */
-public class ReceitaTotalDESC implements Comparator<Receita>{
+public class ReceitaAnoDESC implements Comparator<Receita>{
 
-    public ReceitaTotalDESC() {
+    public ReceitaAnoDESC() {
     }
 
     @Override
     public int compare(Receita t, Receita t1) {
-       
-        if (t.getTotal() > t1.getTotal()) {
+
+        if (t.getAno() > t1.getAno()) {
 
             return -1;
 
-        } else if (t.getTotal()  < t1.getTotal()) {
+        } else if (t.getAno() < t1.getAno()) {
 
             return 1;
 
@@ -33,7 +34,5 @@ public class ReceitaTotalDESC implements Comparator<Receita>{
             return 0;
         }
     }
-    
-    
-    
+   
 }

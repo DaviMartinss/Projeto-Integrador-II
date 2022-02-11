@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ReceitaOrdenacao;
+package Ordenacao;
 
-import Model.Data;
 import Model.Receita;
 import java.util.Comparator;
 
@@ -13,27 +12,29 @@ import java.util.Comparator;
  *
  * @author Alan
  */
-public class ReceitaMesASC implements Comparator<Receita>{
+public class ReceitaDiaDESC implements Comparator<Receita>{
 
-    public ReceitaMesASC() {
+    public ReceitaDiaDESC() {
     }
 
     @Override
     public int compare(Receita t, Receita t1) {
      
-        if (t.getMes()> t1.getMes()) {
-
-            return 1;
-
-        } else if (t.getMes() < t1.getMes()) {
+      if (t.getDia() > t1.getDia()) {
 
             return -1;
+
+        } else if (t.getDia() < t1.getDia()) {
+
+            return 1;
 
         } else {
 
             return 0;
         }
     
+    
     }
+       
     
 }

@@ -5,7 +5,7 @@
  */
 package Model;
 
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 
 /**
  *

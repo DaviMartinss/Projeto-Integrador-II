@@ -7,7 +7,8 @@ import Model.Despesa;
 import Model.Receita;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
+import com.mysql.cj.util.StringUtils;
 
 /**
  *
@@ -269,7 +270,9 @@ public class TelaDespesa extends javax.swing.JFrame {
 
             Receita receita = null;
             
-            if(!(txtMesReceita.getText().isEmpty() && txtAnoReceita.getText().isEmpty())){
+            if(!(StringUtils.isNullOrEmpty(txtMesReceita.getText()) &&
+                 StringUtils.isNullOrEmpty(txtAnoReceita.getText())))
+            {
                 
                 receita = new Receita();
                 
@@ -324,7 +327,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
         String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
         
-        Despesa despesa = null;
+        Despesa despesa;
         
         switch(formaPagamento){
             
@@ -395,7 +398,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     void ApagarDespesa() {
 
         if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(null, "Nenhuma despesa foi selecionada para ser deletada");
+            JOptionPane.showMessageDialog(this, "Nenhuma despesa foi selecionada para ser deletada");
             return;
         }
         Despesa despesa = new Despesa(
@@ -418,7 +421,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         pageTitle = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtConsultaDespesa = new javax.swing.JTable();
-        cbbTipo = new javax.swing.JComboBox<>();
+        cbbTipo = new javax.swing.JComboBox<String>();
         txt_Pesquisa = new javax.swing.JTextField();
         txtMesReceita = new javax.swing.JTextField();
         txtAnoReceita = new javax.swing.JTextField();
@@ -494,7 +497,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         cbbTipo.setBackground(new java.awt.Color(187, 210, 240));
         cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor", "Categoria", "Descrição", "Forma de Pagamento", "Número do Cartão Crédito", "Número do Cartão Débito", "Estatus", "Dia", "Mês", "Ano", "Nº Parcelas" }));
+        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Valor", "Categoria", "Descrição", "Forma de Pagamento", "Número do Cartão Crédito", "Número do Cartão Débito", "Estatus", "Dia", "Mês", "Ano", "Nº Parcelas" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbTipoActionPerformed(evt);
@@ -707,7 +710,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2360, 119, 81, 21);
+        txt_id.setBounds(2360, 119, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -743,9 +746,9 @@ public class TelaDespesa extends javax.swing.JFrame {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        Validacao valida = new Validacao();
+ 
         
-        if(!(valida.ehNum(txtMesReceita.getText()) && valida.ehNum(txtAnoReceita.getText()) )){
+        if(!(Validacao.isNumeric(txtMesReceita.getText()) && Validacao.isNumeric(txtAnoReceita.getText()) )){
             JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
             return;
         }
@@ -824,9 +827,9 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
 
         if(tbHabilitaConsulta.isSelected())
-        HabilitarConsulta();
+            HabilitarConsulta();
         else
-        DesabilitarConsulta();
+            DesabilitarConsulta();
     }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
 
     private void btnCartao_credActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartao_credActionPerformed

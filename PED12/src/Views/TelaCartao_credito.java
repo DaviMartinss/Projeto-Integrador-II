@@ -11,7 +11,7 @@ import Model.Cartao;
 import Model.CartaoCredito;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 

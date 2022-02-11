@@ -7,7 +7,7 @@ package Views;
 
 import Controllers.ControlerCartaoCredito;
 import Model.CartaoCredito;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -65,9 +65,8 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        Validacao valida = new Validacao();
 
-        if (!(valida.ehNum(txt_NumCartaoC.getText()))) {
+        if (!(Validacao.isNumeric(txt_NumCartaoC.getText()))) {
             JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }

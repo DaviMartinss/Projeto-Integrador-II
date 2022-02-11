@@ -9,7 +9,7 @@ import Controllers.ControlerCategoria;
 import Controllers.ControlerDespesa;
 import Model.Categoria;
 import Model.Despesa;
-import ValidacaoComum.Validacao;
+import Utilities.Validacao;
 import com.mysql.cj.util.StringUtils;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -86,8 +86,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         }
 
         if (salvaF_pagamento.equals("CRÉDITO")) {
-            Validacao valida = new Validacao();
-            if (!(valida.ehNum(txtParcelas.getText()))) {
+            if (!(Validacao.isNumeric(txtParcelas.getText()))) {
                 JOptionPane.showMessageDialog(this, "Número de parcelas inválido");
                 return;
             }
