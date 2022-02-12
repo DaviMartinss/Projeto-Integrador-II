@@ -5,15 +5,25 @@
  */
 package Views;
 
+import Controllers.ControlerTabela;
 import DAO.UsuarioDAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author pc
  */
+
+
 public class TelaPrincipal extends javax.swing.JFrame {
 
     /**
@@ -25,6 +35,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txt_id.setVisible(true);
         this.setLocationRelativeTo(null);
         txt_id.setVisible(false);
+        
+        CarregaRelogio();
 
     }
 
@@ -180,6 +192,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         this.dispose();
     }
+    
+    void CarregaTabela(){
+        
+        ControlerTabela.LimpaTabela(jtMain);
+        DefaultTableModel mp = (DefaultTableModel) jtMain.getModel();
+        ControlerTabela.RecarregaTabela(mp, Integer.parseInt(txt_id.getText()), "Main");
+        
+    }
+    
+    void CarregaRelogio(){
+        
+        Date dataSistema = new Date();
+        
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        
+        jlData.setText(formatoData.format(dataSistema));
+        
+        //Hora
+        Timer timer = new Timer(1000, new Hora());
+        timer.start();
+    }
 
     void sair() {
         //telaCliente cadastroCliente = new telaCliente();
@@ -206,6 +239,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         categoryButton = new javax.swing.JButton();
         BtnSair = new javax.swing.JButton();
         labelNome = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtMain = new javax.swing.JTable();
+        jlData = new javax.swing.JLabel();
+        jlTime = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
 
@@ -234,7 +271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(accountButton);
-        accountButton.setBounds(10, 40, 80, 27);
+        accountButton.setBounds(10, 40, 80, 25);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -246,7 +283,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(90, 40, 100, 27);
+        btnReceitas.setBounds(90, 40, 100, 25);
 
         btnDespesas.setBackground(new java.awt.Color(105, 69, 219));
         btnDespesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -259,7 +296,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDespesas);
-        btnDespesas.setBounds(190, 40, 100, 27);
+        btnDespesas.setBounds(190, 40, 100, 25);
 
         btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -271,7 +308,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(290, 40, 150, 27);
+        btnCartao_cred.setBounds(290, 40, 150, 25);
 
         btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -283,7 +320,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(440, 40, 150, 27);
+        btnCartao_Deb.setBounds(440, 40, 150, 25);
 
         categoryButton.setBackground(new java.awt.Color(105, 69, 219));
         categoryButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -295,7 +332,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(categoryButton);
-        categoryButton.setBounds(590, 40, 120, 27);
+        categoryButton.setBounds(590, 40, 120, 25);
 
         BtnSair.setBackground(new java.awt.Color(105, 69, 219));
         BtnSair.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -307,12 +344,47 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnSair);
-        BtnSair.setBounds(710, 40, 80, 27);
+        BtnSair.setBounds(710, 40, 80, 25);
 
         labelNome.setFont(new java.awt.Font("Noto Serif", 3, 18)); // NOI18N
         labelNome.setForeground(new java.awt.Color(81, 63, 252));
         getContentPane().add(labelNome);
         labelNome.setBounds(10, 10, 200, 27);
+
+        jtMain.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Total Receitas", "Total Despesas", "Total Cartão Crédito", "Total Cartão Débito"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Float.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtMain.setColumnSelectionAllowed(true);
+        jtMain.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jtMain);
+        jtMain.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(120, 150, 570, 130);
+        getContentPane().add(jlData);
+        jlData.setBounds(300, 360, 150, 40);
+        getContentPane().add(jlTime);
+        jlTime.setBounds(520, 360, 170, 40);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("background");
@@ -327,7 +399,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 21);
+        txt_id.setBounds(0, 0, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -374,11 +446,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         UsuarioDAO usuario = new UsuarioDAO();
 
-        ResultSet rs = null;
-
         try {
 
             labelNome.setText(usuario.NomeUsuario(txt_id.getText()));
+            
+         
+            
+            CarregaTabela();
 
         } catch (SQLException ex) {
 
@@ -420,10 +494,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaPrincipal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaPrincipal().setVisible(true);
         });
     }
 
@@ -437,11 +509,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnDespesas;
     private javax.swing.JButton btnReceitas;
     private javax.swing.JButton categoryButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlData;
+    private javax.swing.JLabel jlTime;
+    private javax.swing.JTable jtMain;
     private javax.swing.JLabel labelNome;
     private javax.swing.JLabel pageTitle;
     private javax.swing.JTextField txt_id;
     // End of variables declaration//GEN-END:variables
 
+    class Hora implements ActionListener{
+        
+        @Override
+        public void actionPerformed(ActionEvent e){
+            Calendar now = Calendar.getInstance();
+            jlTime.setText(String.format("%1$tH:%1$tM:%1$tS", now));
+        }
+    }
+    
     public void receberID(String recebe) {
 
         txt_id.setText(recebe);

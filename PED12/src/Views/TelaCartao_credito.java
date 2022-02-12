@@ -7,11 +7,9 @@ package Views;
 
 import Controllers.ControlerCartaoCredito;
 import Controllers.ControlerTabela;
-import Model.Cartao;
 import Model.CartaoCredito;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import Utilities.Validacao;
 import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 
