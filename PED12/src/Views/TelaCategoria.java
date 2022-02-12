@@ -105,18 +105,24 @@ public class TelaCategoria extends javax.swing.JFrame {
             return;
         }
         
-        Categoria categoria_aux  = new Categoria();
+      Categoria categoria_aux  = new Categoria.CategoriaBuild().build();
             
         if (!(categoria_aux.valorEhVazio(txt_NomeCategoria.getText()))) {
 
             String categoriaAntiga = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
-            
+            /*
             Categoria categoria_atua = new Categoria(
                     txt_NomeCategoria.getText(),
                     categoriaAntiga,
                     Integer.parseInt(txt_id.getText())                    
             );
-
+            */
+              Categoria categoria_atua = new Categoria.CategoriaBuild()
+                    .CategoriaTipo(txt_NomeCategoria.getText())
+                    .Categoria_aux(categoriaAntiga)
+                    .id_conta(Integer.parseInt(txt_id.getText()))
+                    .build();
+              
             try {
                 
                  ControlerCategoria.AtualizarCategoria(categoria_atua);
@@ -141,7 +147,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             return;
         }
         
-        Categoria categoria = new Categoria(txt_NomeCategoria.getText());
+         Categoria categoria = new Categoria.CategoriaBuild().CategoriaTipo(txt_NomeCategoria.getText()).build();
 
         try {
             
@@ -227,7 +233,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Categorias");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 110, 26);
+        pageTitle.setBounds(360, 0, 110, 24);
 
         jt_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -399,7 +405,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         background.getAccessibleContext().setAccessibleName("background");
 
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 21);
+        txt_id.setBounds(0, 0, 49, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

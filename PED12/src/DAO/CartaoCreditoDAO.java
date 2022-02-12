@@ -154,17 +154,15 @@ public class CartaoCreditoDAO {
 
         while (rs_ListaCartaoCredito.next()) {
 
-            lista_CC.add
-            (new CartaoCredito
-                (
-                    Long.parseLong(rs_ListaCartaoCredito.getString("n_cartao_credito")),
-                    Float.parseFloat(rs_ListaCartaoCredito.getString("limite")),
-                    Float.parseFloat(rs_ListaCartaoCredito.getString("credito")),
-                    Integer.parseInt(rs_ListaCartaoCredito.getString("dia_fatura")),
-                    Float.parseFloat(rs_ListaCartaoCredito.getString("valor_fatura")),
-                    rs_ListaCartaoCredito.getString("bandeira"),
-                    id_conta
-                )
+             lista_CC.add
+            (new CartaoCredito.CartaoCreditoBuild(Long.parseLong(rs_ListaCartaoCredito.getString("n_cartao_credito")))
+                        .Limite(Float.parseFloat(rs_ListaCartaoCredito.getString("limite")))
+                        .Credito(Float.parseFloat(rs_ListaCartaoCredito.getString("credito")))
+                        .DiaFatura(Integer.parseInt(rs_ListaCartaoCredito.getString("dia_fatura")))
+                        .ValorFatura(Float.parseFloat(rs_ListaCartaoCredito.getString("valor_fatura")))
+                        .Bandeira(rs_ListaCartaoCredito.getString("bandeira"))
+                        .IdConta(id_conta)
+                        .build()
             );
         }
 
@@ -197,7 +195,7 @@ public class CartaoCreditoDAO {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-
+                /*
                 listaCC_Faturas.add(new CartaoCredito(
                         Long.parseLong(rs.getString("n_cartao_credito")),
                         Integer.parseInt(rs.getString("dia_fatura")),
@@ -205,7 +203,14 @@ public class CartaoCreditoDAO {
                         rs.getString("bandeira"),
                         id_conta)
                 );
-
+                */
+                 listaCC_Faturas.add(new CartaoCredito.CartaoCreditoBuild(Long.parseLong(rs.getString("n_cartao_credito")))
+                        .DiaFatura(Integer.parseInt(rs.getString("dia_fatura")))
+                        .ValorFatura(Float.parseFloat(rs.getString("valor_fatura")))
+                        .Bandeira(rs.getString("bandeira"))
+                        .IdConta(id_conta)
+                        .build()
+                );
             }
 
         } catch (Exception e) {
@@ -246,6 +251,7 @@ public class CartaoCreditoDAO {
         rs_consulta = pst_consulta.executeQuery();
 
         while (rs_consulta.next()) {
+            /*
             lista_CC.add
             (new CartaoCredito
                 (
@@ -257,6 +263,18 @@ public class CartaoCreditoDAO {
                     rs_consulta.getString("bandeira"),
                     id_conta
                 )
+            );
+            */
+             lista_CC.add
+            (new CartaoCredito.CartaoCreditoBuild(Long.parseLong(rs_consulta.getString("n_cartao_credito")))
+                    .Limite(Float.parseFloat(rs_consulta.getString("limite")))
+                    .Credito(Float.parseFloat(rs_consulta.getString("credito")))
+                    .DiaFatura(Integer.parseInt(rs_consulta.getString("dia_fatura")))
+                    .ValorFatura(Float.parseFloat(rs_consulta.getString("valor_fatura")))
+                    .Bandeira(rs_consulta.getString("bandeira"))
+                    .IdConta(id_conta)
+                    .build()
+
             );
         }
 
@@ -296,7 +314,7 @@ public class CartaoCreditoDAO {
         PreparedStatement pst;
         ResultSet rs;
 
-        CartaoCredito cartao = new CartaoCredito();
+         CartaoCredito cartao = new CartaoCredito.CartaoCreditoBuild().build();
 
         String consulta = "SELECT \n"
                         + "n_cartao_credito,\n"

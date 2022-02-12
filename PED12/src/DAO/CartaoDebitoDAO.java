@@ -132,12 +132,20 @@ public class CartaoDebitoDAO {
        rs = pst.executeQuery();
 
        while (rs.next()) {
-
+           /*
            lista_CD.add(new CartaoDebito(
                    Long.parseLong(rs.getString("n_cartao_debito")),
                    Float.parseFloat(rs.getString("valor_atual")),
                    rs.getString("bandeira"),
                    id_conta)
+           );
+           */
+           
+             lista_CD.add(new CartaoDebito.CartaoDebitoBuild(Long.parseLong(rs.getString("n_cartao_debito")))
+                   .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
+                   .Bandeira(rs.getString("bandeira"))
+                   .IdConta(id_conta)
+                   .build()
            );
        }
 
@@ -172,12 +180,20 @@ public class CartaoDebitoDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
-
+            
+            /*
             lista_CD.add(new CartaoDebito(
                     Long.parseLong(rs.getString("n_cartao_debito")),
                     Float.parseFloat(rs.getString("valor_atual")),
                     rs.getString("bandeira"),
                     id_conta)
+            );
+*/
+               lista_CD.add(new CartaoDebito.CartaoDebitoBuild(Long.parseLong(rs.getString("n_cartao_debito")))
+                    .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
+                    .Bandeira(rs.getString("bandeira"))
+                    .IdConta(id_conta)
+                    .build()
             );
         }
 
@@ -233,7 +249,7 @@ public class CartaoDebitoDAO {
 
         if (rs.next()) {
             
-            cartao = new CartaoDebito();
+            cartao = new CartaoDebito.CartaoDebitoBuild().build();
 
             cartao.setId_conta(rs.getInt("conta_id_conta"));
             cartao.setN_cartao_debito(rs.getLong("n_cartao_debito"));

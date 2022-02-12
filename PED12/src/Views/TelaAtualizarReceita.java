@@ -49,7 +49,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
     
     void AtualizarReceita() {
         
-        Receita receita_aux = new Receita();
+         Receita receita_aux = new Receita.ReceitaBuild().build();
 
         if (!(
                 Validacao.isNumeric(txt_dia.getText()) && 
@@ -64,7 +64,13 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
         }
 
         if (!(receita_aux.UpdateEhVazio(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText()))) {
-
+            
+             Receita receita_atual
+                    = new Receita.ReceitaBuild(receita.getId_conta(), Integer.parseInt(txt_mes.getText()), Integer.parseInt(txt_ano.getText()))
+                          .Dia(Integer.parseInt(txt_dia.getText()))
+                          .Total(Float.parseFloat(txt_total.getText()))
+                          .build();
+            /*
             Receita receita_atual
                     = new Receita
                           (
@@ -76,6 +82,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                             this.receita.getMes(),
                             this.receita.getAno()
                           );
+            */
 
             try {
                 //MUDAR NOME DESSES MÉTODOS DE VALIDAÇÃO

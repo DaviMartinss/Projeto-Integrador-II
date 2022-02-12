@@ -207,13 +207,20 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         String bandeira = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
         
         CartaoDebito cartao_d = 
+            new CartaoDebito.CartaoDebitoBuild(Long.parseLong(num_cartao))
+                .ValorAtual(Float.parseFloat(valor))
+                .Bandeira(bandeira)
+                .IdConta(Integer.parseInt(txt_id.getText()))
+                .build();
+        /*
+        CartaoDebito cartao_d = 
             new CartaoDebito(
                 Long.parseLong(num_cartao),
                 Float.parseFloat(valor),
                 bandeira,
                 Integer.parseInt(txt_id.getText())
             );
-
+            */
         try {
 
             TelaAtualizarCartaoDebito(cartao_d);
@@ -233,9 +240,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         
         String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
         
-        CartaoDebito cartao_d = new CartaoDebito(
-                Long.parseLong(num_cartao)
-        );
+         CartaoDebito cartao_d = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(num_cartao)).build();
 
         try {
 
@@ -545,7 +550,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 21);
+        txt_id.setBounds(0, 0, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

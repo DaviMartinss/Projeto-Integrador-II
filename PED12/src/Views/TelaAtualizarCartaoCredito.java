@@ -54,7 +54,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
     
     void AtualizarCartaoCredito() {
         
-        CartaoCredito cartao_aux = new CartaoCredito();
+        CartaoCredito cartao_aux = new CartaoCredito.CartaoCreditoBuild().build();
 
         if (cartao_aux.UpdateEhVazio(txt_NumCartaoC.getText(), txt_ValorFatura.getText(), txt_Limite.getText(), txt_Bandeira.getText(), txt_DiaFatura.getText())) {
             JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
@@ -70,7 +70,16 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-
+        
+         CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCartaoC.getText()))
+                .Limite(Float.parseFloat(txt_Limite.getText()))
+                .DiaFatura(Integer.parseInt(txt_DiaFatura.getText()))
+                .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
+                .Bandeira(txt_Bandeira.getText())
+                .IdConta(this.cartaoCredito.getId_conta())
+                .NumCartaoAux(this.cartaoCredito.getN_cartao_credito())
+                .build();
+        /*
         CartaoCredito cartao_c = new CartaoCredito(
                 Long.parseLong(txt_NumCartaoC.getText()),
                 Float.parseFloat(txt_Limite.getText()),
@@ -80,7 +89,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
                 this.cartaoCredito.getId_conta(),
                 this.cartaoCredito.getN_cartao_credito()
         );
-        
+        */
          //Verifica se o número do cartao de crédito foi modificado
         if(cartao_c.getN_cartao_credito() != this.cartaoCredito.getN_cartao_credito())
         {

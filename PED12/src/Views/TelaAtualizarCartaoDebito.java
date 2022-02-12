@@ -54,7 +54,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
     
     void AtualizarCartaoDebito() {
         
-        CartaoDebito cartao_aux = new CartaoDebito();
+        CartaoDebito cartao_aux = new CartaoDebito.CartaoDebitoBuild().build();
         
         if (cartao_aux.UpdateEhVazio(txt_NumCartaoD.getText(), txt_Valor.getText(), txt_Bandeira.getText())) {
             JOptionPane.showMessageDialog(this, "Nenhum Campo pode ser nulo no Update", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
@@ -65,7 +65,15 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+        
+        CartaoDebito cartao_d = 
+            new CartaoDebito.CartaoDebitoBuild(Long.parseLong(txt_NumCartaoD.getText()))
+                .ValorAtual(Float.parseFloat(txt_Valor.getText()))
+                .Bandeira(txt_Bandeira.getText())
+                .IdConta(this.cartaoDebito.getId_conta())
+                .NumCartaoAux(this.cartaoDebito.getN_cartao_debito())
+                .build();
+        /*
         CartaoDebito cartao_d = 
             new CartaoDebito(
                 Long.parseLong(txt_NumCartaoD.getText()),
@@ -74,7 +82,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
                 this.cartaoDebito.getId_conta(),
                 this.cartaoDebito.getN_cartao_debito()
             );
-        
+        */
         if (!(cartao_d.verifica_num_cartao_deb())) {
             
             JOptionPane.showMessageDialog(this, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);

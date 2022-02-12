@@ -146,7 +146,17 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                     return;
                 }
             }
-
+             Despesa despesa = new Despesa.DespesaBuild()
+                    .Dia(Integer.parseInt(txtDia.getText()))
+                    .Mes(Integer.parseInt(txtMes.getText()))
+                    .Ano(Integer.parseInt(txtAno.getText()))
+                    .Valor(Float.parseFloat(txtValor.getText()))
+                    .Categoria(categoria)
+                    .Descricao(txtAreaDescricao.getText())
+                    .IdConta(Integer.parseInt(txt_id.getText()))
+                    .build();
+            
+            /*
             Despesa despesa = new Despesa(
                     Integer.parseInt(txtDia.getText()),
                     Integer.parseInt(txtMes.getText()),
@@ -156,7 +166,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                     txtAreaDescricao.getText(),
                     Integer.parseInt(txt_id.getText())
             );
-
+            */
             if (rbDebito.isSelected()) {
 
                 despesa.setF_pagamento("DÉBITO");
@@ -240,7 +250,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         pageTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaDescricao = new javax.swing.JTextArea();
-        cbb_categoria = new javax.swing.JComboBox<String>();
+        cbb_categoria = new javax.swing.JComboBox<>();
         txtParcelas = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
         txtDia = new javax.swing.JTextField();
@@ -294,7 +304,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jScrollPane1.setBounds(30, 160, 740, 113);
 
         cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cbb_categoria);
         cbb_categoria.setBounds(420, 110, 130, 27);
 

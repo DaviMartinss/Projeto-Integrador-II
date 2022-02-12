@@ -15,7 +15,53 @@ public class CartaoDebito extends Cartao{
     private float valor_atual;
     private int id_conta;
     private long n_cartao_aux;
-
+    
+    public CartaoDebito(CartaoDebitoBuild build){
+        this.n_cartao_debito = build.n_cartao_debito;
+        this.valor_atual = build.valor_atual;
+        this.id_conta = build.id_conta;
+        this.n_cartao_aux = build.n_cartao_aux;
+        this.bandeira = build.bandeira;
+    }
+   
+    public static class CartaoDebitoBuild{
+        private long n_cartao_debito;
+        private float valor_atual;
+        private int id_conta;
+        private long n_cartao_aux;
+        private String bandeira;
+        
+        public CartaoDebitoBuild(long numCartao){
+            this.n_cartao_debito = numCartao;
+        }
+        
+        public CartaoDebitoBuild(){}
+        
+         public CartaoDebitoBuild ValorAtual(float valorAtual){
+             this.valor_atual = valorAtual;
+             return this;
+         }
+         
+          public CartaoDebitoBuild IdConta(int idConta){
+              this.id_conta = idConta;
+              return this;
+          }
+          
+          public CartaoDebitoBuild NumCartaoAux(long numCartaoAux){
+              this.n_cartao_aux = numCartaoAux;
+              return this;
+          }
+          
+           public CartaoDebitoBuild Bandeira(String bandeira){
+              this.bandeira = bandeira;
+              return this;
+          }
+           
+          public CartaoDebito build(){
+              return new CartaoDebito(this);
+          }
+        }
+    /*
     public CartaoDebito() {
 
     }
@@ -41,7 +87,7 @@ public class CartaoDebito extends Cartao{
         this.id_conta = id_conta;
         this.n_cartao_aux = num_cart_aux;
     }
-
+*/
     public int getId_conta() {
         return id_conta;
     }

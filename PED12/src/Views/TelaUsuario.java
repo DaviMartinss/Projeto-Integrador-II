@@ -94,16 +94,18 @@ public class TelaUsuario extends javax.swing.JFrame {
     void telaUpdateUser(){
      
             int id = Integer.parseInt(this.txt_id.getText());
-            
+                Usuario user = new Usuario.UsuarioBuild(txtEmail.getText())
+                    .IdConta(id)
+                    .Nome(txtNome.getText())
+                    .build();
+                /*
             Usuario user = new Usuario(
                 id,
                 txtNome.getText(),
                 txtEmail.getText()
-                
-                
-                
+
         );
-          
+                */
         UsuarioDAO UserDao = new UsuarioDAO();
 
         try {
@@ -189,7 +191,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Dados do Usuário");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(310, 0, 170, 26);
+        pageTitle.setBounds(310, 0, 170, 24);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -216,7 +218,7 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(startButton);
-        startButton.setBounds(40, 50, 100, 27);
+        startButton.setBounds(40, 50, 100, 25);
 
         btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -257,12 +259,12 @@ public class TelaUsuario extends javax.swing.JFrame {
         nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         nameTitle.setText("Nome: ");
         getContentPane().add(nameTitle);
-        nameTitle.setBounds(200, 130, 70, 17);
+        nameTitle.setBounds(200, 130, 70, 16);
 
         emailTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         emailTitle.setText("Email:");
         getContentPane().add(emailTitle);
-        emailTitle.setBounds(200, 190, 60, 17);
+        emailTitle.setBounds(200, 190, 60, 16);
 
         passwdTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         passwdTitle.setText("Senha:");

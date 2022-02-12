@@ -14,7 +14,46 @@ public class Data{
     private int dia;
     private int mes;
     private int ano;
-
+    
+     public Data(DataBuild build){
+        this.dia = build.dia;
+        this.mes = build.mes;
+        this.ano = build.ano;
+    }
+   
+    public static class DataBuild{
+        private int dia;
+        private int mes;
+        private int ano;
+        
+        public DataBuild(int mes, int ano){
+            this.mes = mes;
+            this.ano = ano;
+        }
+        
+        public DataBuild(){}
+        
+         public DataBuild Dia(int dia){
+             this.dia = dia;
+             return this;
+         }
+         
+          public DataBuild Mes(int mes){
+              this.mes = mes;
+              return this;
+          }
+          
+          public DataBuild Ano(int ano){
+              this.ano = ano;
+              return this;
+          }
+           
+          public Data build(){
+              return new Data(this);
+          }
+        }
+    
+    /*
     public Data() {
     
     }
@@ -29,7 +68,7 @@ public class Data{
         this.mes = mes;
         this.ano = ano;
     }
-    
+    */
     
     public int getDia() {
         return dia;

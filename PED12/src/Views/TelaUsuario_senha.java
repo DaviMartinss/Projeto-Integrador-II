@@ -56,13 +56,19 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             String senha2 = new String(this.txt_ConfirmaSenha.getPassword());
             int id = Integer.parseInt(this.txt_id.getText());
             
+             Usuario senhaUser = new Usuario.UsuarioBuild()
+                    .Senha(senha1)
+                    .ConfirmaSenha(senha2)
+                    .IdConta(id)
+                    .build();
+             /*
             Usuario senhaUser = new Usuario(
                 senha1,
                 senha2,
                 id
                 
         );
-
+*/
         UsuarioDAO UserSenhaDAO = new UsuarioDAO();
 
         try {
@@ -140,7 +146,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Nova Senha");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(350, 0, 120, 26);
+        pageTitle.setBounds(350, 0, 120, 24);
 
         txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
         txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -168,7 +174,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_alteraSenha);
-        btn_alteraSenha.setBounds(360, 300, 100, 27);
+        btn_alteraSenha.setBounds(360, 300, 100, 25);
         btn_alteraSenha.getAccessibleContext().setAccessibleDescription("Botão de confirmação");
 
         btn_voltar.setBackground(new java.awt.Color(105, 69, 219));
@@ -181,18 +187,18 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_voltar);
-        btn_voltar.setBounds(40, 50, 100, 27);
+        btn_voltar.setBounds(40, 50, 100, 25);
         btn_voltar.getAccessibleContext().setAccessibleDescription("Botão para voltar sem cadastrar nova senha");
 
         newPasswd.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         newPasswd.setText("Nova senha");
         getContentPane().add(newPasswd);
-        newPasswd.setBounds(310, 160, 100, 17);
+        newPasswd.setBounds(310, 160, 100, 16);
 
         rpNewPasswd.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         rpNewPasswd.setText("Repita a nova senha");
         getContentPane().add(rpNewPasswd);
-        rpNewPasswd.setBounds(310, 210, 140, 17);
+        rpNewPasswd.setBounds(310, 210, 140, 16);
 
         iconPed12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-140x100.png"))); // NOI18N
         getContentPane().add(iconPed12);
@@ -202,7 +208,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         getContentPane().add(background);
         background.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 54, 21);
+        txt_id.setBounds(0, 0, 54, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

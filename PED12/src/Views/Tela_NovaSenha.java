@@ -37,15 +37,20 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
         
             String senha1 = new String(this.txt_NovaSenha.getPassword());
             String senha2 = new String(this.txt_ConfirmaSenha.getPassword());
-            
-            
+              
+            Usuario senhaUser = new Usuario.UsuarioBuild()
+                    .Senha(senha1)
+                    .ConfirmaSenha(senha2)
+                    .IdConta(salvaId)
+                    .build();
+            /*
             Usuario senhaUser = new Usuario(
                 senha1,
                 senha2,
                 salvaId
                 
         );
-
+        */
         UsuarioDAO UserSenhaDAO = new UsuarioDAO();
 
         try {
@@ -105,7 +110,7 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         pageTitle.setText("Atualização de Senha");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(300, 0, 210, 26);
+        pageTitle.setBounds(300, 0, 210, 24);
 
         txt_NovaSenha.setBackground(new java.awt.Color(187, 210, 240));
         txt_NovaSenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -126,7 +131,7 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_AlteraSenha);
-        btn_AlteraSenha.setBounds(360, 270, 90, 27);
+        btn_AlteraSenha.setBounds(360, 270, 90, 25);
 
         newPasswd.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         newPasswd.setText("Nova Senha");

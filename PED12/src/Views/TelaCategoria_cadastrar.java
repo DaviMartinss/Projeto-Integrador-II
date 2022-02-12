@@ -83,11 +83,10 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     
     
    public void cadastro_categoria() {
-          
-        Categoria categoria = new Categoria(
-              txt_categoria.getText(),
-              Integer.parseInt(txt_id.getText())                
-        );
+        Categoria categoria = new Categoria.CategoriaBuild()
+              .CategoriaTipo(txt_categoria.getText())
+              .id_conta(Integer.parseInt(txt_id.getText()))
+              .build();
 
         try {
             if (!(categoria.valorEhVazio(categoria.getCategoriaTipo()))) {
@@ -174,7 +173,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         getContentPane().add(background);
         background.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 21);
+        txt_id.setBounds(0, 0, 49, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

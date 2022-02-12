@@ -28,8 +28,122 @@ public class Despesa {
     private int id_conta;
     private int cod_despesa;
     private int id_categoria;
-
-
+    
+      public Despesa(DespesaBuild build){
+        this.dia = build.dia;
+        this.mes = build.mes;
+        this.ano = build.ano;
+        this.valor = build.valor;
+        this.categoria = build.categoria;
+        this.descricao = build.descricao;
+        this.f_pagamento = build.f_pagamento;
+        this.num_cartao = build.num_cartao;
+        this.estatus = build.estatus;
+        this.num_parcelas = build.num_parcelas;
+        this.num_parcelas_pagas = build.num_parcelas_pagas;
+        this.valor_parcela = build.valor_parcela;
+        this.id_conta = build.id_conta;
+        this.cod_despesa = build.cod_despesa;
+        this.id_categoria = build.id_categoria;
+        
+    }
+   
+    public static class DespesaBuild{
+        private int dia;
+        private int mes;
+        private int ano;
+        private float valor;
+        private String categoria;
+        private String descricao;
+        private String f_pagamento;
+        private Long num_cartao;
+        private String estatus;
+        private int num_parcelas;
+        private int num_parcelas_pagas;
+        private float valor_parcela;
+        private int id_conta;
+        private int cod_despesa;
+        private int id_categoria;
+        
+        // obrigatórios
+        public DespesaBuild(int codDespesa){
+            this.cod_despesa = codDespesa;
+        }
+        
+        public DespesaBuild(){}
+        
+         public DespesaBuild Dia(int dia){
+             this.dia = dia;
+             return this;
+         }
+         
+          public DespesaBuild Mes(int mes){
+              this.mes = mes;
+              return this;
+          }
+          
+          public DespesaBuild Ano(int ano){
+              this.ano = ano;
+              return this;
+          }
+          public DespesaBuild Valor(float valor){
+               this.valor = valor;
+               return this;
+           }
+          public DespesaBuild Categoria(String categoria){
+               this.categoria = categoria;
+               return this;
+           }
+           public DespesaBuild Descricao(String descricao){
+               this.descricao = descricao;
+               return this;
+           }
+           
+            public DespesaBuild FormaPagamento(String formaPagamento){
+               this.f_pagamento = formaPagamento;
+               return this;
+           }
+            
+             public DespesaBuild NumeroCartao(long numCartao){
+               this.num_cartao = num_cartao;
+               return this;
+           }
+             
+             public DespesaBuild Status(String status){
+               this.estatus = status;
+               return this;
+           }
+             
+             public DespesaBuild NumeroParcelas(int numeroParcelas){
+               this.num_parcelas = numeroParcelas;
+               return this;
+           }
+             
+             public DespesaBuild NumeroParcelasPagas(int numParcelasPagas){
+               this.num_parcelas_pagas = numParcelasPagas;
+               return this;
+           }
+             
+             public DespesaBuild ValorParcela(float valorParcela){
+               this.valor_parcela = valorParcela;
+               return this;
+           }
+             
+             public DespesaBuild IdConta(int idConta){
+               this.id_conta = idConta;
+               return this;
+           }
+             
+             public DespesaBuild idCategoria(int idCategoria){
+               this.id_categoria = idCategoria;
+               return this;
+           }
+             
+          public Despesa build(){
+              return new Despesa(this);
+          }
+    }
+/*
     public Despesa() {
 
     }
@@ -117,7 +231,7 @@ public class Despesa {
         this.descricao = descricao;
         this.cod_despesa = cod_despesa;
     }
-    
+    */
     public int getNum_parcelas_pagas() {
         return num_parcelas_pagas;
     }
@@ -242,7 +356,10 @@ public class Despesa {
     
     public boolean validaDataDespesa() {
 
-        Data data_aux = new Data(getDia(), getMes(), getAno());
+        Data data_aux = new Data.DataBuild(getMes(), getAno())
+                .Dia(getDia())
+                .build();
+        
 
         if (data_aux.verifica_data()) {
 

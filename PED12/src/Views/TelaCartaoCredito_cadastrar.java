@@ -80,13 +80,14 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
     public void CadastrarCartaoCredito() {
         
-        CartaoCredito cartao_aux = new CartaoCredito();
+        CartaoCredito cartao_aux = new CartaoCredito.CartaoCreditoBuild().build();
         
         if(cartao_aux.UpdateEhVazio(txt_NumCC.getText(), txt_ValorFatura.getText(), txt_LimiteCC.getText(), txt_BandeiraCC.getText(), txt_DiaFaturaCC.getText())){
             JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
             return;
          }
         
+        /*
         CartaoCredito cartao_c = new CartaoCredito(
                 Long.parseLong(txt_NumCC.getText()),
                 Float.parseFloat(txt_LimiteCC.getText()),
@@ -95,7 +96,15 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
                 txt_BandeiraCC.getText(),
                 Integer.parseInt(txt_id.getText())
         );
-
+        */
+         CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCC.getText()))
+                .Limite(Float.parseFloat(txt_LimiteCC.getText()))
+                .DiaFatura(Integer.parseInt(txt_DiaFaturaCC.getText()))
+                .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
+                .Bandeira(txt_BandeiraCC.getText())
+                .IdConta(Integer.parseInt(txt_id.getText()))
+                .build();
+         
         try {
             
             if (cartao_c.verifica_bandeira_credito()
@@ -254,7 +263,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 5, 21);
+        txt_id.setBounds(0, 0, 6, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -278,7 +287,8 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
             boolean cadastra = true;
 
             CartaoCreditoDAO cartaoDAO = new CartaoCreditoDAO();
-
+            
+            /*
             CartaoCredito cartaoCC = new CartaoCredito(
                     Long.parseLong(txt_NumCC.getText()),
                     Float.parseFloat(txt_LimiteCC.getText()),
@@ -287,7 +297,14 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
                     txt_BandeiraCC.getText(),
                     Integer.parseInt(txt_id.getText())
             );
-
+            */
+             CartaoCredito cartaoCC = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCC.getText()))
+                    .Limite(Float.parseFloat(txt_LimiteCC.getText()))
+                    .DiaFatura(Integer.parseInt(txt_DiaFaturaCC.getText()))
+                    .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
+                    .Bandeira(txt_BandeiraCC.getText())
+                    .IdConta(Integer.parseInt(txt_id.getText()))
+                    .build();
             if (ControlerCartaoCredito.CartaoCreditoExiste(cartaoCC)) {
 
                 JOptionPane.showMessageDialog(this, "Número do cartão de crédito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);

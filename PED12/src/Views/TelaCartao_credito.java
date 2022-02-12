@@ -323,7 +323,8 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         String diaFatura = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 3);
         String valorFatura = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 4);
         String bandeira = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 5);
-
+        
+        /*
         CartaoCredito cartao_c = 
             new CartaoCredito(
                 Long.parseLong(num_cartao),
@@ -333,7 +334,16 @@ public class TelaCartao_credito extends javax.swing.JFrame {
                 bandeira,
                 Integer.parseInt(txt_id.getText())
             );
-
+        */
+        
+        CartaoCredito cartao_c = 
+            new CartaoCredito.CartaoCreditoBuild(Long.parseLong(num_cartao))
+                .Limite(Float.parseFloat(limite))
+                .DiaFatura(Integer.parseInt(diaFatura))
+                .ValorFatura(Float.parseFloat(valorFatura))
+                .Bandeira(bandeira)
+                .IdConta(Integer.parseInt(txt_id.getText()))
+                .build();
         try {
 
             TelaAtualizarCartaoCredito(cartao_c);
@@ -351,9 +361,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             return;
         }
 
-        CartaoCredito cartao_c = new CartaoCredito(
-                salva_num_cartao
-        );
+        CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(salva_num_cartao).build();
 
         ControlerCartaoCredito.ApagarCartaoCredito(cartao_c);
     }
@@ -518,7 +526,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Cartão de Crédito");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(330, 0, 170, 26);
+        pageTitle.setBounds(330, 0, 170, 24);
 
         jtConsultaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCC.setModel(new javax.swing.table.DefaultTableModel(
@@ -745,7 +753,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(30, 10, 81, 21);
+        txt_id.setBounds(30, 10, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

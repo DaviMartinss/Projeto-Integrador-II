@@ -354,6 +354,7 @@ public class DespesaDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
+            /*
             lista_despesa.add(new Despesa(
                     rs.getInt("dia"),
                     rs.getInt("mes"),
@@ -367,6 +368,20 @@ public class DespesaDAO {
                     rs.getString("descricao"),
                     rs.getInt("cod_despesa")
             ));
+            */
+             lista_despesa.add(new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                    .Dia(rs.getInt("dia"))
+                    .Mes(rs.getInt("mes"))
+                    .Ano(rs.getInt("ano"))
+                    .Valor(rs.getFloat("valor"))
+                    .Categoria(rs.getString("categoriaTipo"))
+                    .FormaPagamento(rs.getString("f_pagamento"))
+                    .NumeroCartao(rs.getLong("num_cartao_credito"))
+                    .NumeroParcelas(rs.getInt("n_parcelas"))
+                    .Status(rs.getString("estatus"))
+                    .Descricao(rs.getString("descricao"))
+                    .build()
+            );
         }
 
         pst.close();
@@ -408,6 +423,7 @@ public class DespesaDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
+            /*
             lista_despesa.add(new Despesa(
                     rs.getInt("dia"),
                     rs.getInt("mes"),
@@ -421,6 +437,20 @@ public class DespesaDAO {
                     rs.getString("descricao"),
                     rs.getInt("cod_despesa")
             ));
+            */
+             lista_despesa.add(new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                    .Dia(rs.getInt("dia"))
+                    .Mes(rs.getInt("mes"))
+                    .Ano(rs.getInt("ano"))
+                    .Valor(rs.getFloat("valor"))
+                    .Categoria(rs.getString("categoriaTipo"))
+                    .FormaPagamento(rs.getString("f_pagamento"))
+                    .NumeroCartao(rs.getLong("num_cartao_debito"))
+                    .NumeroParcelas(rs.getInt("n_parcelas"))
+                    .Status(rs.getString("estatus"))
+                    .Descricao(rs.getString("descricao"))
+                    .build()
+            );
         }
 
         pst.close();
@@ -456,6 +486,7 @@ public class DespesaDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
+            /*
             lista_despesa.add(new Despesa(
                     rs.getInt("dia"),
                     rs.getInt("mes"),
@@ -467,6 +498,19 @@ public class DespesaDAO {
                     rs.getString("descricao"),
                     rs.getInt("cod_despesa")
             ));
+            */
+            
+             lista_despesa.add(new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                    .Dia(rs.getInt("dia"))
+                    .Mes(rs.getInt("mes"))
+                    .Ano(rs.getInt("ano"))
+                    .Valor(rs.getFloat("valor"))
+                    .Categoria(rs.getString("categoriaTipo"))
+                    .FormaPagamento(rs.getString("f_pagamento"))
+                    .Status(rs.getString("estatus"))
+                    .Descricao(rs.getString("descricao"))
+                    .build()
+            );
         }
 
         pst.close();
@@ -532,7 +576,9 @@ public class DespesaDAO {
             switch (rs.getString("f_pagamento")) {
                 
                 case "CRÉDITO":
+                    /*
                     lista_despesa.add(
+                            
                             new Despesa(
                                     rs.getInt("dia"),
                                     rs.getInt("mes"),
@@ -547,9 +593,25 @@ public class DespesaDAO {
                                     rs.getInt("cod_despesa")
                             )
                     );
+                            */
+                            lista_despesa.add(
+                            new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                                    .Dia(rs.getInt("dia"))
+                                    .Mes(rs.getInt("mes"))
+                                    .Ano(rs.getInt("ano"))
+                                    .Valor(rs.getFloat("valor"))
+                                    .Categoria(rs.getString("categoriaTipo"))
+                                    .FormaPagamento(rs.getString("f_pagamento"))
+                                    .NumeroCartao(rs.getLong("num_cartao_credito"))
+                                    .NumeroParcelas(rs.getInt("n_parcelas"))
+                                    .Status(rs.getString("estatus"))
+                                    .Descricao(rs.getString("descricao"))
+                                    .build()
+                    );
                     break;
                     
                 case "DÉBITO":
+                    /*
                     lista_despesa.add(
                             new Despesa(
                                     rs.getInt("dia"),
@@ -564,9 +626,24 @@ public class DespesaDAO {
                                     rs.getInt("cod_despesa")
                             )
                     );
+                    */
+                     lista_despesa.add(
+                            new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                                    .Dia(rs.getInt("dia"))
+                                    .Mes(rs.getInt("mes"))
+                                    .Ano(rs.getInt("ano"))
+                                    .Valor(rs.getFloat("valor"))
+                                    .Categoria(rs.getString("categoriaTipo"))
+                                    .FormaPagamento(rs.getString("f_pagamento"))
+                                    .NumeroCartao(rs.getLong("num_cartao_debito"))
+                                    .Status(rs.getString("estatus"))
+                                    .Descricao(rs.getString("descricao"))
+                                    .build()
+                    );
                     break;
                     
                 default:
+                    /*
                     lista_despesa.add(
                             new Despesa(
                                     rs.getInt("dia"),
@@ -579,6 +656,19 @@ public class DespesaDAO {
                                     rs.getString("descricao"),
                                     rs.getInt("cod_despesa")
                             )
+                    );
+                    */
+                    lista_despesa.add(
+                            new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                                    .Dia(rs.getInt("dia"))
+                                    .Mes(rs.getInt("mes"))
+                                    .Ano(rs.getInt("ano"))
+                                    .Valor(rs.getFloat("valor"))
+                                    .Categoria(rs.getString("categoriaTipo"))
+                                    .FormaPagamento(rs.getString("f_pagamento"))
+                                    .Status(rs.getString("estatus"))
+                                    .Descricao(rs.getString("descricao"))
+                                    .build()
                     );
                     break;
             }
@@ -643,6 +733,7 @@ public class DespesaDAO {
             switch (rs.getString("f_pagamento")) {
                 
                 case "CRÉDITO":
+                    /*
                     lista_despesa.add(
                             new Despesa(
                                     rs.getInt("dia"),
@@ -657,10 +748,26 @@ public class DespesaDAO {
                                     rs.getString("descricao"),
                                     rs.getInt("cod_despesa")
                             )
+                    );
+                    */
+                     lista_despesa.add(
+                            new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                            .Dia(rs.getInt("dia"))
+                            .Mes(rs.getInt("mes"))
+                            .Ano(rs.getInt("ano"))
+                            .Valor(rs.getFloat("valor"))
+                            .Categoria(rs.getString("categoriaTipo"))
+                            .FormaPagamento(rs.getString("f_pagamento"))
+                            .NumeroCartao(rs.getLong("num_cartao_credito"))
+                            .NumeroParcelas(rs.getInt("n_parcelas"))
+                            .Status(rs.getString("estatus"))
+                            .Descricao(rs.getString("descricao"))
+                            .build()                                    
                     );  
                     break;
                     
                 case "DÉBITO":
+                    /*
                     lista_despesa.add(
                             new Despesa(
                                     rs.getInt("dia"),
@@ -674,10 +781,25 @@ public class DespesaDAO {
                                     rs.getString("descricao"),
                                     rs.getInt("cod_despesa")
                             )
+                    );
+                    */
+                    lista_despesa.add(
+                            new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                            .Dia(rs.getInt("dia"))
+                            .Mes(rs.getInt("mes"))
+                            .Ano(rs.getInt("ano"))
+                            .Valor(rs.getFloat("valor"))
+                            .Categoria(rs.getString("categoriaTipo"))
+                            .FormaPagamento(rs.getString("f_pagamento"))
+                            .NumeroCartao(rs.getLong("num_cartao_debito"))
+                            .Status(rs.getString("estatus"))
+                            .Descricao(rs.getString("descricao"))
+                            .build()
                     );  
                     break;
                     
                 default:
+                    /*
                     lista_despesa.add(
                             new Despesa(
                                     rs.getInt("dia"),
@@ -690,6 +812,19 @@ public class DespesaDAO {
                                     rs.getString("descricao"),
                                     rs.getInt("cod_despesa")
                             )
+                    );
+                    */
+                     lista_despesa.add(
+                            new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                                    .Dia(rs.getInt("dia"))
+                                    .Mes(rs.getInt("mes"))
+                                    .Ano(rs.getInt("ano"))
+                                    .Valor(rs.getFloat("valor"))
+                                    .Categoria(rs.getString("categoriaTipo"))
+                                    .FormaPagamento(rs.getString("f_pagamento"))
+                                    .Status(rs.getString("estatus"))
+                                    .Descricao(rs.getString("descricao"))
+                                    .build()
                     );  
                     break;
             }
@@ -748,7 +883,7 @@ public class DespesaDAO {
 
         while (rs_SelectDespesas.next()) {
 
-            Despesa despesa_aux = new Despesa();
+           Despesa despesa_aux = new Despesa.DespesaBuild().build();
 
             despesa_aux.setCod_despesa(rs_SelectDespesas.getInt("cod_despesa"));
 
@@ -833,7 +968,7 @@ public class DespesaDAO {
 
         while (rs_SelectDespesasFatura.next()) {
 
-            Despesa despesa = new Despesa();
+           Despesa despesa = new Despesa.DespesaBuild().build();
 
             despesa.setDia(rs_SelectDespesasFatura.getInt("dia"));
             despesa.setMes(rs_SelectDespesasFatura.getInt("mes"));
@@ -894,7 +1029,7 @@ public class DespesaDAO {
 
         while (rs.next()) {
 
-            Despesa despesa = new Despesa();
+            Despesa despesa = new Despesa.DespesaBuild().build();
 
             despesa.setDia(rs.getInt("dia"));
             despesa.setMes(rs.getInt("mes"));

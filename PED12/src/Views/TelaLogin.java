@@ -28,7 +28,9 @@ public class TelaLogin extends javax.swing.JFrame {
     
     public void logar() throws SQLException{   
         
-        Usuario user = new Usuario(txtEmail.getText(), txtSenha.getText());
+       Usuario user = new Usuario.UsuarioBuild(txtEmail.getText())
+                .Senha(txtSenha.getText())
+                .build();
 
         UsuarioDAO userDAO = new UsuarioDAO();
         

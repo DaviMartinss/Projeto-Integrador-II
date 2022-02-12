@@ -86,9 +86,7 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
     
     public void RecuperaSenha() {
         
-        Usuario user = new Usuario(
-            txt_RecuperaSenha_email.getText()
-        );
+        Usuario user = new Usuario.UsuarioBuild(txt_RecuperaSenha_email.getText()).build();
           
         
         UsuarioDAO userDAO = new UsuarioDAO();
@@ -157,7 +155,7 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(checkButton);
-        checkButton.setBounds(340, 260, 110, 27);
+        checkButton.setBounds(340, 260, 110, 25);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/waning_back.png"))); // NOI18N
         background.setText("jLabel2");

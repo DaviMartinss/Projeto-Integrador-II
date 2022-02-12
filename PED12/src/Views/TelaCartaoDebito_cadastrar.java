@@ -49,14 +49,20 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     
     
     public void CadastrarCartaoDebito() {
-
+        
+        /*
         CartaoDebito cartao_db = new CartaoDebito(
                 Long.parseLong(txt_numCartDeb.getText()),
                 Float.parseFloat(txt_valorCartaoDeb.getText()),
                 txt_BandCartDeb.getText(),
                 Integer.parseInt(txt_id.getText())
         );
-
+        */
+         CartaoDebito cartao_db = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(txt_numCartDeb.getText()))
+                .ValorAtual(Float.parseFloat(txt_valorCartaoDeb.getText()))
+                .Bandeira(txt_BandCartDeb.getText())
+                .IdConta(Integer.parseInt(txt_id.getText()))
+                .build();
         try {
 
             if (cartao_db.verifica_Bandeira_cartao_deb() && cartao_db.verifica_valor_atual()) {
@@ -228,7 +234,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             
             boolean cadastra = true;
             
-            
+            /*
             CartaoDebito cartaoDB = new CartaoDebito(
                                       Long.parseLong(txt_numCartDeb.getText()),
                                       Float.parseFloat(txt_valorCartaoDeb.getText()),
@@ -236,7 +242,12 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
                                       Integer.parseInt(txt_id.getText())
                                             
             );
-            
+            */
+             CartaoDebito cartaoDB = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(txt_numCartDeb.getText()))
+                    .ValorAtual(Float.parseFloat(txt_valorCartaoDeb.getText()))
+                    .Bandeira(txt_BandCartDeb.getText())
+                    .IdConta(Integer.parseInt(txt_id.getText()))
+                    .build();
         
             if(ControlerCartaoDebito.CartaoDebitoExiste(cartaoDB)){
                             

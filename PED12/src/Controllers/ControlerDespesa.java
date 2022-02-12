@@ -26,12 +26,8 @@ public class ControlerDespesa {
         
         try {
             
-            Receita receita = new Receita(
-                    despesa.getId_conta(),
-                    despesa.getMes(),
-                    despesa.getAno()
-            );
-            
+             Receita receita = new Receita.ReceitaBuild(despesa.getId_conta(), despesa.getMes(), despesa.getAno())
+                    .build();
             if (despesaDAO.DespesaExiste(despesa)) {
 
                 JOptionPane.showMessageDialog(null, "Já existe uma despesa nesse dia!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);

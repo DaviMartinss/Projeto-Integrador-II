@@ -23,8 +23,75 @@ public class CartaoCredito extends Cartao{
     private long  n_cartao_aux;
     private float credito;
 
+     public CartaoCredito(CartaoCreditoBuild build){
+        this.limite = build.limite;
+        this.dia_fatura = build.dia_fatura;
+        this.n_cartao_credito = build.n_cartao_credito;
+        this.valor_fatura = build.valor_fatura;
+        this.bandeira = build.bandeira;
+        this.id_conta = build.id_conta;
+        this.n_cartao_aux = build.n_cartao_aux;
+        this.credito = build.credito;
+        
+    }
+   
+    public static class CartaoCreditoBuild{
+        
+        private float limite;
+        private int dia_fatura;
+        private long n_cartao_credito;
+        private float valor_fatura;
+        private String bandeira;
+        private int id_conta;
+        private long  n_cartao_aux;
+        private float credito;
+        // obrigatórios
+        
+        public CartaoCreditoBuild(long numCartao){
+            this.n_cartao_credito = numCartao;
+        }
+        
+        public CartaoCreditoBuild(){}
+        
+         public CartaoCreditoBuild Limite(float limite){
+             this.limite = limite;
+             return this;
+         }
+         
+          public CartaoCreditoBuild DiaFatura(int diaFatura){
+              this.dia_fatura = diaFatura;
+              return this;
+          }
+          
+          public CartaoCreditoBuild ValorFatura(float valorFatura){
+              this.valor_fatura = valorFatura;
+              return this;
+          }
+          
+          public CartaoCreditoBuild Bandeira(String bandeira){
+              this.bandeira = bandeira;
+              return this;
+          }
+          
+          public CartaoCreditoBuild IdConta(int idConta){
+               this.id_conta = idConta;
+               return this;
+           }
+          public CartaoCreditoBuild NumCartaoAux(long NumCartaoAux){
+               this.n_cartao_aux = NumCartaoAux;
+               return this;
+           }
+           public CartaoCreditoBuild Credito(float credito){
+               this.credito = credito;
+               return this;
+           }
+           
+          public CartaoCredito build(){
+              return new CartaoCredito(this);
+          }
+    }
     
-    
+    /*
     public CartaoCredito() {
         
     }
@@ -79,7 +146,7 @@ public class CartaoCredito extends Cartao{
         this.id_conta = id_conta;
         this.n_cartao_aux = n_aux;
     }
-
+*/
     public float getCredito() {
         return credito;
     }
@@ -139,7 +206,7 @@ public class CartaoCredito extends Cartao{
     
      public boolean verifica_dia_fatura(){
          
-        Data dia_aux = new Data();
+        Data dia_aux = new Data.DataBuild().build();
         
         dia_aux.setDia(getDia_fatura());
         

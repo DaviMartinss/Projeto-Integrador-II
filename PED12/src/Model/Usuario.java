@@ -23,11 +23,60 @@ public class Usuario {
     private String senha;
     private String senhaConfirma;
     private String salvaEmail_aux;
-
-    
     private int id_conta;
     
-    
+     public Usuario(UsuarioBuild build){
+        this.nome = build.nome;
+        this.email = build.email;
+        this.senha = build.senha;
+        this.senhaConfirma = build.senhaConfirma;
+        this.id_conta = build.id_conta;
+        
+    }
+   
+    public static class UsuarioBuild{
+        private String nome;
+        private String email;
+        private String senha;
+        private String senhaConfirma;
+        private int id_conta;
+        
+        public UsuarioBuild(String email){
+            this.email = email;
+        }
+        
+        public UsuarioBuild(){}
+        
+         public UsuarioBuild Nome(String nome){
+             this.nome = nome;
+             return this;
+         }
+         
+          public UsuarioBuild Email(String email){
+              this.email = email;
+              return this;
+          }
+          
+          public UsuarioBuild Senha(String senha){
+              this.senha = senha;
+              return this;
+          }
+           
+          public UsuarioBuild ConfirmaSenha(String senha){
+              this.senhaConfirma = senha;
+              return this;
+          }
+          
+          public UsuarioBuild IdConta(int idConta){
+              this.id_conta = idConta;
+              return this;
+          }
+          
+          public Usuario build(){
+              return new Usuario(this);
+          }
+        }
+    /*
     public Usuario() {
        
     }
@@ -63,7 +112,7 @@ public class Usuario {
         this.email = email;
         
     }
-    
+    */
     public String getEmail() {
         return email;
     }

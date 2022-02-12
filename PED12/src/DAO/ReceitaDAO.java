@@ -128,7 +128,8 @@ public class ReceitaDAO {
         rs_SelectListaReceitas = pst_SelectListaReceitas.executeQuery();
 
         while (rs_SelectListaReceitas.next()) {
-
+            
+            /*
             lista_receita.add(
                     new Receita(
                             rs_SelectListaReceitas.getInt("dia"),
@@ -137,6 +138,13 @@ public class ReceitaDAO {
                             rs_SelectListaReceitas.getFloat("total"),
                             id_conta
                     )
+            );
+            */
+                      
+            lista_receita.add(new Receita.ReceitaBuild(id_conta, rs_SelectListaReceitas.getInt("mes"), rs_SelectListaReceitas.getInt("ano"))
+                            .Dia(rs_SelectListaReceitas.getInt("dia"))
+                            .Total(rs_SelectListaReceitas.getFloat("total"))
+                            .build()
             );
         }
 
@@ -152,7 +160,7 @@ public class ReceitaDAO {
                 = "SELECT Max(cod_receita) cod_receita, R.mes, R.ano FROM receita R \n"
                 + "WHERE R.conta_id_conta = ? AND R.cod_receita = (SELECT Max(cod_receita) FROM receita);";
 
-        Receita receita = new Receita();
+         Receita receita = new Receita.ReceitaBuild().build();
 
         PreparedStatement pst_SelectReceita = null;
 
@@ -254,7 +262,8 @@ public class ReceitaDAO {
         rs_ConsultaReceita = pst_ConsultaReceita.executeQuery();
 
         while (rs_ConsultaReceita.next()) {
-
+            
+            /*
             lista_receita.add
             (   new Receita
                 (
@@ -264,6 +273,13 @@ public class ReceitaDAO {
                     Float.parseFloat(rs_ConsultaReceita.getString("total")),
                     id_conta
                 )
+            );
+            */
+            
+            lista_receita.add( new Receita.ReceitaBuild(id_conta, Integer.parseInt(rs_ConsultaReceita.getString("mes")), Integer.parseInt(rs_ConsultaReceita.getString("ano")))
+                    .Dia(Integer.parseInt(rs_ConsultaReceita.getString("dia")))
+                    .Total(Float.parseFloat(rs_ConsultaReceita.getString("total")))
+                    .build()
             );
         }
 
@@ -309,7 +325,7 @@ public class ReceitaDAO {
         PreparedStatement pst;
         ResultSet rs;
         
-        Receita receita = new Receita();
+       Receita receita = new Receita.ReceitaBuild().build();
         
         String consulta = "SELECT * FROM receita WHERE mes = ? AND ano = ? AND conta_id_conta = ?";
 

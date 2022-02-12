@@ -22,6 +22,77 @@ public class Receita{
     private int Salva_ano;
     private int cod_receita;
     
+     public Receita(ReceitaBuild build){
+        this.dia = build.dia;
+        this.mes = build.mes;
+        this.ano = build.ano;
+        this.total = build.total;
+        this.id_conta = build.id_conta;
+        this.Salva_Mes = build.Salva_Mes;
+        this.Salva_ano = build.Salva_ano;
+        this.cod_receita = build.cod_receita;
+    }
+   
+    public static class ReceitaBuild{
+        private int dia;
+        private int mes;
+        private int ano;
+        private float total;
+        private int id_conta;
+        private int Salva_Mes;
+        private int Salva_ano;
+        private int cod_receita;
+        
+        // obrigatórios
+        public ReceitaBuild(int idConta, int mes, int ano){
+            this.id_conta = idConta;
+            this.mes = mes;
+            this.ano = ano;
+        }
+        
+        public ReceitaBuild(){}
+        
+         public ReceitaBuild Dia(int dia){
+             this.dia = dia;
+             return this;
+         }
+         
+          public ReceitaBuild Mes(int mes){
+              this.mes = mes;
+              return this;
+          }
+          
+          public ReceitaBuild Ano(int ano){
+              this.ano = ano;
+              return this;
+          }
+          public ReceitaBuild Total(float total){
+               this.total = total;
+               return this;
+           }
+          public ReceitaBuild IdConta(int id_conta){
+               this.id_conta = id_conta;
+               return this;
+           }
+           public ReceitaBuild SalvaMes(int salva_Mes){
+               this.Salva_Mes = salva_Mes;
+               return this;
+           }
+           
+            public ReceitaBuild SalvaAno(int salvaAno){
+               this.Salva_ano = salvaAno;
+               return this;
+           }
+            
+             public ReceitaBuild CodReceita(int cod_receita){
+               this.cod_receita = id_conta;
+               return this;
+           }
+          public Receita build(){
+              return new Receita(this);
+          }
+    }
+    /*
     public Receita() {
         
     }
@@ -58,7 +129,7 @@ public class Receita{
         this.Salva_Mes = Salva_Mes;
         this.Salva_ano = Salva_ano;
     }
-
+*/
     public int getId_conta() {
         return id_conta;
     }
@@ -136,7 +207,8 @@ public class Receita{
     
     public boolean verifica_ReceitaValida(){
         
-        Data data_aux = new Data(dia, mes, ano);
+        Data data_aux = new Data.DataBuild(mes, ano).Dia(dia).build();
+        
         
         if(data_aux.verifica_data() && verifica_total()){
             return true;
@@ -154,7 +226,7 @@ public class Receita{
     }
      
     public boolean UpdateEhVazio(String dia, String mes, String ano, String valor){
-        Data data_aux = new Data();
+        Data data_aux = new Data.DataBuild().build();
         
         if(data_aux.dataEhVazia(dia, mes, ano) || valorEhVazio(valor)){
             return true;

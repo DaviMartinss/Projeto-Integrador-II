@@ -94,10 +94,16 @@ public class CategoriaDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
-
+            /*
             lista_categoria.add(new Categoria(
                     rs.getString("categoriaTipo"),
                     id_conta)
+            );
+            */
+             lista_categoria.add(new Categoria.CategoriaBuild()
+                    .CategoriaTipo(rs.getString("categoriaTipo"))
+                    .CategiaId(id_conta)
+                    .build()
             );
         }
 
@@ -190,10 +196,12 @@ public class CategoriaDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
-
+            /*
             lista_Categoria.add(new Categoria(
                     rs.getString("categoriaTipo"))
             );
+            */
+             lista_Categoria.add(new Categoria.CategoriaBuild().CategoriaTipo(rs.getString("categoriaTipo")).build());
         }
 
         pst.close();
@@ -269,7 +277,7 @@ public class CategoriaDAO {
 
             while (rs1.next()) {
 
-                Despesa Desp_cat_aux = new Despesa();
+              Despesa Desp_cat_aux = new Despesa.DespesaBuild().build();
 
                 Desp_cat_aux.setId_categoria(rs1.getInt("categoria_id"));
 

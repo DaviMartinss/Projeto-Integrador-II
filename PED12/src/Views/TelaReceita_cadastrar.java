@@ -108,7 +108,12 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Informe uma data válida!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 cadastra = false;
             }
-            
+             
+        Receita receita = new Receita.ReceitaBuild(Integer.parseInt(txt_id.getText()), Integer.parseInt(txt_mes.getText()), Integer.parseInt(txt_ano.getText()))
+                .Dia(Integer.parseInt(txt_dia.getText()))
+                .Total(Float.parseFloat(txt_total.getText()))
+                .build();
+                /*
             Receita receita = new Receita(
                 Integer.parseInt(txt_dia.getText()),
                 Integer.parseInt(txt_mes.getText()),
@@ -116,7 +121,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
                 Float.parseFloat(txt_total.getText()),
                 Integer.parseInt(txt_id.getText())
             );
-            
+            */
             if (ControlerReceita.ReceitaExiste(receita.getMes(), receita.getAno(), receita.getId_conta())) {
 
                 JOptionPane.showMessageDialog(this, "Receita já existe!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
