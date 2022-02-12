@@ -116,11 +116,7 @@ public class Categoria {
     }
     
     
-    public boolean valorEhVazio(String valor){
-         if(valor == null || valor.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
-    }
+//    public boolean valorEhVazio(String valor){
+//        return valor == null || valor.trim().equals("");
+//    }
 }

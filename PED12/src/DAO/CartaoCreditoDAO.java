@@ -51,7 +51,7 @@ public class CartaoCreditoDAO {
         pst_UpdateCreditoFatura.close();
     }
     
-    public void InsertCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
+    public void InsertCartaoCredito(CartaoCredito cartao_credito) throws SQLException, NullPointerException {
 
         PreparedStatement pst_CadastrarCC;
 
@@ -100,7 +100,7 @@ public class CartaoCreditoDAO {
         }
     }
     
-    public void UpdateCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
+    public void UpdateCartaoCredito(CartaoCredito cartao_credito) throws SQLException, NullPointerException {
 
         PreparedStatement pstUpdate;
 
@@ -121,7 +121,7 @@ public class CartaoCreditoDAO {
         pstUpdate.close();
     }
 
-    public void DeleteCartaoCredito(CartaoCredito cartao_credito) throws SQLException {
+    public void DeleteCartaoCredito(CartaoCredito cartao_credito) throws SQLException, NullPointerException {
 
         PreparedStatement pst_DeleteCC;
 
@@ -137,7 +137,7 @@ public class CartaoCreditoDAO {
 
     }
 
-    public LinkedList<CartaoCredito> GetListaCartaoCredito(int id_conta) throws SQLException {
+    public LinkedList<CartaoCredito> GetListaCartaoCredito(int id_conta) throws SQLException, NullPointerException {
 
         ResultSet rs_ListaCartaoCredito;
         PreparedStatement pst_ListaCartaoCredito;
@@ -155,7 +155,8 @@ public class CartaoCreditoDAO {
         while (rs_ListaCartaoCredito.next()) {
 
              lista_CC.add
-            (new CartaoCredito.CartaoCreditoBuild(Long.parseLong(rs_ListaCartaoCredito.getString("n_cartao_credito")))
+            (new CartaoCredito.CartaoCreditoBuild(
+                        Long.parseLong(rs_ListaCartaoCredito.getString("n_cartao_credito")))
                         .Limite(Float.parseFloat(rs_ListaCartaoCredito.getString("limite")))
                         .Credito(Float.parseFloat(rs_ListaCartaoCredito.getString("credito")))
                         .DiaFatura(Integer.parseInt(rs_ListaCartaoCredito.getString("dia_fatura")))
@@ -172,7 +173,7 @@ public class CartaoCreditoDAO {
         return lista_CC;
     }
 
-    public LinkedList<CartaoCredito> Carrega_Faturas(int id_conta) throws SQLException {
+    public LinkedList<CartaoCredito> Carrega_Faturas(int id_conta) throws SQLException, NumberFormatException {
 
         String consulta = "SELECT   \n"
                 + "CC.n_cartao_credito,\n"
@@ -182,20 +183,16 @@ public class CartaoCreditoDAO {
                 + "FROM cartao_credito CC \n"
                 + "where CC.conta_id_conta = 1;";
 
-        ResultSet rs = null;
-
         LinkedList<CartaoCredito> listaCC_Faturas = new LinkedList();
 
         PreparedStatement pst = conexao.prepareStatement(consulta);
 
-        try {
+        pst.setInt(1, id_conta);
 
-            pst.setInt(1, id_conta);
+        ResultSet rs = pst.executeQuery();
 
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                /*
+        while (rs.next()) {
+            /*
                 listaCC_Faturas.add(new CartaoCredito(
                         Long.parseLong(rs.getString("n_cartao_credito")),
                         Integer.parseInt(rs.getString("dia_fatura")),
@@ -203,30 +200,24 @@ public class CartaoCreditoDAO {
                         rs.getString("bandeira"),
                         id_conta)
                 );
-                */
-                 listaCC_Faturas.add(new CartaoCredito.CartaoCreditoBuild(Long.parseLong(rs.getString("n_cartao_credito")))
-                        .DiaFatura(Integer.parseInt(rs.getString("dia_fatura")))
-                        .ValorFatura(Float.parseFloat(rs.getString("valor_fatura")))
-                        .Bandeira(rs.getString("bandeira"))
-                        .IdConta(id_conta)
-                        .build()
-                );
-            }
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-        } finally {
-
-            pst.close();
+             */
+            listaCC_Faturas.add(new CartaoCredito.CartaoCreditoBuild(
+                    Long.parseLong(rs.getString("n_cartao_credito")))
+                    .DiaFatura(Integer.parseInt(rs.getString("dia_fatura")))
+                    .ValorFatura(Float.parseFloat(rs.getString("valor_fatura")))
+                    .Bandeira(rs.getString("bandeira"))
+                    .IdConta(id_conta)
+                    .build()
+            );
         }
 
-        return listaCC_Faturas;
+        pst.close();
+        rs.close();
 
+        return listaCC_Faturas;
     }
     
-    public LinkedList<CartaoCredito> ConsultaCartaoCredito(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+    public LinkedList<CartaoCredito> ConsultaCartaoCredito(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException, NumberFormatException {
 
         PreparedStatement pst_consulta;
         ResultSet rs_consulta;
@@ -266,7 +257,8 @@ public class CartaoCreditoDAO {
             );
             */
              lista_CC.add
-            (new CartaoCredito.CartaoCreditoBuild(Long.parseLong(rs_consulta.getString("n_cartao_credito")))
+            (new CartaoCredito.CartaoCreditoBuild(
+                    Long.parseLong(rs_consulta.getString("n_cartao_credito")))
                     .Limite(Float.parseFloat(rs_consulta.getString("limite")))
                     .Credito(Float.parseFloat(rs_consulta.getString("credito")))
                     .DiaFatura(Integer.parseInt(rs_consulta.getString("dia_fatura")))
@@ -284,7 +276,7 @@ public class CartaoCreditoDAO {
         return lista_CC;
     }
     
-    public boolean CartaoCreditoExiste(CartaoCredito cartao) throws SQLException {
+    public boolean CartaoCreditoExiste(CartaoCredito cartao) throws SQLException, NullPointerException {
 
         PreparedStatement pst;
         ResultSet rs;

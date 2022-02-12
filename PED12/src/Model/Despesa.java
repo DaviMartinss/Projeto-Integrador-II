@@ -361,51 +361,21 @@ public class Despesa {
                 .build();
         
 
-        if (data_aux.verifica_data()) {
-
-            return true;
-
-        } else {
-
-            return false;
-        }
+        return data_aux.verifica_data();
     }
 
     public boolean validaNumParcelas() {
 
-        if (this.getNum_parcelas() > 0 && this.getNum_parcelas() <= 12) {
-
-            return true;
-        } else {
-
-            return false;
-        }
+        return this.getNum_parcelas() > 0 && this.getNum_parcelas() <= 12;
     }
 
     public boolean validaValor() {
 
-        if (getValor() > 0) {
-            return true;
-        } else {
-
-            return false;
-        }
+        return getValor() > 0;
     }
 
     public boolean valorEhVazio(String valor) {
-        if (valor == null || valor.trim().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean EhVazio(String rec) {
-        if (rec == null || rec.trim().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return valor == null || valor.trim().equals("");
     }
 
     public boolean verifica_num_cartao_despesa() {
@@ -431,21 +401,12 @@ public class Despesa {
             }
         }
 
-        if (!(soLetra)) {
-            return false;
-        }
-
-        return true;
+        return soLetra;
     }
 
     public boolean verifica_DespesaValida() {
 
-        if (validaValor() && validaDataDespesa() ) {
-
-            return true;
-        } else {
-            return false;
-        }
+        return validaValor() && validaDataDespesa();
 
     }
        
@@ -464,64 +425,11 @@ public class Despesa {
             setAno(ano_aux);
             setValor(valor_aux);
 
-            if (verifica_DespesaValida()) {
-
-                return true;
-            } else {
-                return false;
-            }
+            return verifica_DespesaValida();
 
         } else {
 
             return false;
         }
     }
-
-    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor, String f_pag,
-            String num_cartao, String num_parc, String status) {
-
-        if (!(EhVazio(f_pag))) {
-
-            if (f_pag.equals("CRÉDITO")) {
-
-                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
-                        || EhVazio(num_cartao) || EhVazio(num_parc)
-                        || EhVazio(status)) {
-                    
-                    return true;
-
-                } else {
-
-                    return false;
-                }
-
-            } else if (f_pag.equals("DÉBITO")) {
-
-                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)|| EhVazio(status)) {
-
-                    return true;
-
-                } else {
-
-                    return false;
-                }
-
-            } else {
-
-                if (EhVazio(dia) || EhVazio(mes) || EhVazio(ano) || EhVazio(valor)
-                        || EhVazio(status)) {
-
-                    return true;
-
-                } else {
-
-                    return false;
-                }
-            }
-        } else {
-
-            return true;
-        }
-    }
-
 }

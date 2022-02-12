@@ -233,8 +233,8 @@
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="Total Receitas" type="java.lang.Float"/>
                 <Column editable="false" title="Total Despesas" type="java.lang.Float"/>
-                <Column editable="false" title="Total Cart&#xe3;o Cr&#xe9;dito" type="java.lang.Float"/>
-                <Column editable="false" title="Total Cart&#xe3;o D&#xe9;bito" type="java.lang.Float"/>
+                <Column editable="false" title="Total Cart&#xf5;es de Cr&#xe9;dito" type="java.lang.Float"/>
+                <Column editable="false" title="Total Cart&#xf5;es D&#xe9;bito" type="java.lang.Float"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

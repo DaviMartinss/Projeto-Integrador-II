@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Controllers.ControlerCategoria;
 import Controllers.ControlerTabela;
+import com.mysql.cj.util.StringUtils;
 /**
  *
  * @author Alan
@@ -107,7 +108,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         
       Categoria categoria_aux  = new Categoria.CategoriaBuild().build();
             
-        if (!(categoria_aux.valorEhVazio(txt_NomeCategoria.getText()))) {
+        if (!(StringUtils.isNullOrEmpty(txt_NomeCategoria.getText()))) {
 
             String categoriaAntiga = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
             /*

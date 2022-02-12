@@ -356,7 +356,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Total Receitas", "Total Despesas", "Total Cartão Crédito", "Total Cartão Débito"
+                "Total Receitas", "Total Despesas", "Total Cartões de Crédito", "Total Cartões Débito"
             }
         ) {
             Class[] types = new Class [] {

@@ -8,6 +8,7 @@ package Views;
 import Controllers.ControlerCartaoCredito;
 import Model.CartaoCredito;
 import Utilities.Validacao;
+import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -54,67 +55,69 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
     
     void AtualizarCartaoCredito() {
         
-        CartaoCredito cartao_aux = new CartaoCredito.CartaoCreditoBuild().build();
-
-        if (cartao_aux.UpdateEhVazio(txt_NumCartaoC.getText(), txt_ValorFatura.getText(), txt_Limite.getText(), txt_Bandeira.getText(), txt_DiaFatura.getText())) {
-            JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        if (!(cartao_aux.Update_CamposValidos(txt_ValorFatura.getText(), txt_Bandeira.getText(), txt_Limite.getText(), txt_DiaFatura.getText()))) {
-            JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-
-        if (!(Validacao.isNumeric(txt_NumCartaoC.getText()))) {
-            JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-         CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCartaoC.getText()))
-                .Limite(Float.parseFloat(txt_Limite.getText()))
-                .DiaFatura(Integer.parseInt(txt_DiaFatura.getText()))
-                .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
-                .Bandeira(txt_Bandeira.getText())
-                .IdConta(this.cartaoCredito.getId_conta())
-                .NumCartaoAux(this.cartaoCredito.getN_cartao_credito())
-                .build();
-        /*
-        CartaoCredito cartao_c = new CartaoCredito(
-                Long.parseLong(txt_NumCartaoC.getText()),
-                Float.parseFloat(txt_Limite.getText()),
-                Integer.parseInt(txt_DiaFatura.getText()),
-                Float.parseFloat(txt_ValorFatura.getText()),
-                txt_Bandeira.getText(),
-                this.cartaoCredito.getId_conta(),
-                this.cartaoCredito.getN_cartao_credito()
-        );
-        */
-         //Verifica se o número do cartao de crédito foi modificado
-        if(cartao_c.getN_cartao_credito() != this.cartaoCredito.getN_cartao_credito())
-        {
-            //Verifica se o novo número já existe
-            if(ControlerCartaoCredito.GetCartaoCredito(cartao_c.getN_cartao_credito(), cartao_c.getId_conta()) != null )
-            {
-                JOptionPane.showMessageDialog(null, "Número de Cartão de Crédito já existe!!\n Tente outro número", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-                return;
-            } 
-        }
-
         try {
 
+            CartaoCredito cartao_aux = new CartaoCredito.CartaoCreditoBuild().build();
+
+            if (StringUtils.isNullOrEmpty(txt_NumCartaoC.getText())
+                    || StringUtils.isNullOrEmpty(txt_ValorFatura.getText())
+                    || StringUtils.isNullOrEmpty(txt_Limite.getText())
+                    || StringUtils.isNullOrEmpty(txt_Bandeira.getText())
+                    || StringUtils.isNullOrEmpty(txt_DiaFatura.getText())) {
+                JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            if (!(cartao_aux.Update_CamposValidos(txt_ValorFatura.getText(), txt_Bandeira.getText(), txt_Limite.getText(), txt_DiaFatura.getText()))) {
+                JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            if (!(Validacao.isNumeric(txt_NumCartaoC.getText()))) {
+                JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(
+                    Long.parseLong(txt_NumCartaoC.getText()))
+                    .Limite(Float.parseFloat(txt_Limite.getText()))
+                    .DiaFatura(Integer.parseInt(txt_DiaFatura.getText()))
+                    .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
+                    .Bandeira(txt_Bandeira.getText())
+                    .IdConta(this.cartaoCredito.getId_conta())
+                    .NumCartaoAux(this.cartaoCredito.getN_cartao_credito())
+                    .build();
+                        /*
+                    CartaoCredito cartao_c = new CartaoCredito(
+                            Long.parseLong(txt_NumCartaoC.getText()),
+                            Float.parseFloat(txt_Limite.getText()),
+                            Integer.parseInt(txt_DiaFatura.getText()),
+                            Float.parseFloat(txt_ValorFatura.getText()),
+                            txt_Bandeira.getText(),
+                            this.cartaoCredito.getId_conta(),
+                            this.cartaoCredito.getN_cartao_credito()
+                    );
+                         */
+            //Verifica se o número do cartao de crédito foi modificado
+            if (cartao_c.getN_cartao_credito() != this.cartaoCredito.getN_cartao_credito()) {
+                //Verifica se o novo número já existe
+                if (ControlerCartaoCredito.GetCartaoCredito(cartao_c.getN_cartao_credito(), cartao_c.getId_conta()) != null) {
+                    JOptionPane.showMessageDialog(null, "Número de Cartão de Crédito já existe!!\n Tente outro número", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+
             if (cartao_c.varifica_valor_fatura()
-                && cartao_c.verifica_bandeira_credito()
-                && cartao_c.verifica_dia_fatura()
-                && cartao_c.verifica_limite()) 
-            {
-                
+                    && cartao_c.verifica_bandeira()
+                    && cartao_c.verifica_dia_fatura()
+                    && cartao_c.verifica_limite()) {
+
                 if (!(cartao_c.ValidaNUM_Cartao(txt_NumCartaoC.getText()))) {
 
                     JOptionPane.showMessageDialog(this, "Número do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
                 } else {
-                    
+
                     ControlerCartaoCredito.AtualizarCartaoCredito(cartao_c);
                 }
 
@@ -123,7 +126,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Dados Inválidos, impossível atuzalizar!!", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             }
 
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | NullPointerException | NumberFormatException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -166,7 +169,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
         numCardTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         numCardTitle.setText("Número do cartão");
         getContentPane().add(numCardTitle);
-        numCardTitle.setBounds(86, 133, 130, 27);
+        numCardTitle.setBounds(120, 240, 130, 27);
 
         txt_NumCartaoC.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartaoC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -221,7 +224,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
         numCardTitle1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         numCardTitle1.setText("Atualizar Cartão de Crédito");
         getContentPane().add(numCardTitle1);
-        numCardTitle1.setBounds(292, 20, 165, 34);
+        numCardTitle1.setBounds(292, 20, 152, 34);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -233,7 +236,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(292, 520, 140, 27);
+        btn_update.setBounds(290, 430, 140, 25);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -245,7 +248,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(485, 520, 111, 27);
+        btnReceitas.setBounds(470, 430, 111, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -269,12 +272,18 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        txt_NumCartaoC.setText(Long.toString(cartaoCredito.getN_cartao_credito()));
-        txt_Limite.setText(Float.toString(cartaoCredito.getLimite()));
-        txt_ValorFatura.setText(Float.toString(cartaoCredito.getValor_fatura()));
-        txt_DiaFatura.setText(Integer.toString(cartaoCredito.getDia_fatura()));
-        txt_Bandeira.setText(cartaoCredito.getBandeira());
-
+        try {
+            txt_NumCartaoC.setText(Long.toString(cartaoCredito.getN_cartao_credito()));
+            txt_Limite.setText(Float.toString(cartaoCredito.getLimite()));
+            txt_ValorFatura.setText(Float.toString(cartaoCredito.getValor_fatura()));
+            txt_DiaFatura.setText(Integer.toString(cartaoCredito.getDia_fatura()));
+            txt_Bandeira.setText(cartaoCredito.getBandeira());
+            
+        } catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**

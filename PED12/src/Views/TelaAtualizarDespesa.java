@@ -11,6 +11,7 @@ import Model.Categoria;
 import Model.Despesa;
 import Utilities.Validacao;
 import com.mysql.cj.util.StringUtils;
+import java.awt.HeadlessException;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
@@ -60,59 +61,58 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
     
     void AtualizarDespesa() {
 
-         Despesa despesa_aux = new Despesa.DespesaBuild().build();
+         
+        try {
 
-        if
-        (
-           StringUtils.isNullOrEmpty(txtDia.getText()) &&
-           StringUtils.isNullOrEmpty(txtMes.getText()) &&
-           StringUtils.isNullOrEmpty(txtAno.getText()) &&
-           StringUtils.isNullOrEmpty(txtValor.getText()) &&   
-           StringUtils.isNullOrEmpty(salvaF_pagamento) &&  
-           StringUtils.isNullOrEmpty(txt_NumCartao.getText()) &&
-           StringUtils.isNullOrEmpty(txtParcelas.getText()) &&
-           StringUtils.isNullOrEmpty(salvaStatus)
-        )
-        {
-           JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
-           return;
-        }
-        
+            Despesa despesa_aux = new Despesa.DespesaBuild().build();
 
-        if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText()))) {
-
-            JOptionPane.showMessageDialog(this, "O valor informado é inválido");
-            return;
-        }
-
-        if (salvaF_pagamento.equals("CRÉDITO")) {
-            if (!(Validacao.isNumeric(txtParcelas.getText()))) {
-                JOptionPane.showMessageDialog(this, "Número de parcelas inválido");
+            if (StringUtils.isNullOrEmpty(txtDia.getText())
+                    && StringUtils.isNullOrEmpty(txtMes.getText())
+                    && StringUtils.isNullOrEmpty(txtAno.getText())
+                    && StringUtils.isNullOrEmpty(txtValor.getText())
+                    && StringUtils.isNullOrEmpty(salvaF_pagamento)
+                    && StringUtils.isNullOrEmpty(txt_NumCartao.getText())
+                    && StringUtils.isNullOrEmpty(txtParcelas.getText())
+                    && StringUtils.isNullOrEmpty(salvaStatus)) 
+            {
+                JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
                 return;
             }
-        }
-        
-        String categoria = cbb_categoria.getSelectedItem().toString().trim();
-        
-        Despesa despesa = null;
-        
-        switch(salvaF_pagamento){
-            
-            case "CRÉDITO":
-                
-                despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
-                        .Dia(Integer.parseInt(txtDia.getText().trim()))
-                        .Mes(Integer.parseInt(txtMes.getText()))
-                        .Ano(Integer.parseInt(txtAno.getText()))
-                        .Valor(Float.parseFloat(txtValor.getText()))
-                        .Categoria(categoria)
-                        .FormaPagamento(salvaF_pagamento)
-                        .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
-                        .NumeroParcelas(Integer.parseInt(txtParcelas.getText()))
-                        .Status(salvaStatus)
-                        .Descricao(txtAreaDescricao.getText())
-                        .build();
-                /*
+
+            if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText()))) {
+
+                JOptionPane.showMessageDialog(this, "O valor informado é inválido");
+                return;
+            }
+
+            if (salvaF_pagamento.equals("CRÉDITO")) {
+                if (!(Validacao.isNumeric(txtParcelas.getText()))) {
+                    JOptionPane.showMessageDialog(this, "Número de parcelas inválido");
+                    return;
+                }
+            }
+
+            String categoria = cbb_categoria.getSelectedItem().toString().trim();
+
+            Despesa despesa;
+
+            switch (salvaF_pagamento) {
+
+                case "CRÉDITO":
+
+                    despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
+                            .Dia(Integer.parseInt(txtDia.getText().trim()))
+                            .Mes(Integer.parseInt(txtMes.getText()))
+                            .Ano(Integer.parseInt(txtAno.getText()))
+                            .Valor(Float.parseFloat(txtValor.getText()))
+                            .Categoria(categoria)
+                            .FormaPagamento(salvaF_pagamento)
+                            .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
+                            .NumeroParcelas(Integer.parseInt(txtParcelas.getText()))
+                            .Status(salvaStatus)
+                            .Descricao(txtAreaDescricao.getText())
+                            .build();
+                    /*
                 despesa = new Despesa(
                         Integer.parseInt(txtDia.getText().trim()),
                         Integer.parseInt(txtMes.getText()),
@@ -126,22 +126,22 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                         txtAreaDescricao.getText(),
                         this.despesa.getCod_despesa()
                 );
-                */
-                break;
+                     */
+                    break;
 
-            case "DÉBITO":
-                despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
-                        .Dia(Integer.parseInt(txtDia.getText().trim()))
-                        .Mes(Integer.parseInt(txtMes.getText()))
-                        .Ano(Integer.parseInt(txtAno.getText()))
-                        .Valor(Float.parseFloat(txtValor.getText()))
-                        .Categoria(categoria)
-                        .FormaPagamento(salvaF_pagamento)
-                        .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
-                        .Status(salvaStatus)
-                        .Descricao(txtAreaDescricao.getText())
-                        .build();
-                /*
+                case "DÉBITO":
+                    despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
+                            .Dia(Integer.parseInt(txtDia.getText().trim()))
+                            .Mes(Integer.parseInt(txtMes.getText()))
+                            .Ano(Integer.parseInt(txtAno.getText()))
+                            .Valor(Float.parseFloat(txtValor.getText()))
+                            .Categoria(categoria)
+                            .FormaPagamento(salvaF_pagamento)
+                            .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
+                            .Status(salvaStatus)
+                            .Descricao(txtAreaDescricao.getText())
+                            .build();
+                    /*
                 despesa = new Despesa(
                         Integer.parseInt(txtDia.getText().trim()),
                         Integer.parseInt(txtMes.getText()),
@@ -154,21 +154,21 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                         txtAreaDescricao.getText(),
                         this.despesa.getCod_despesa()
                 );
-                */
-                break;
+                     */
+                    break;
 
-            case "DINHEIRO":
-                 despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
-                        .Dia(Integer.parseInt(txtDia.getText().trim()))
-                        .Mes(Integer.parseInt(txtMes.getText()))
-                        .Ano(Integer.parseInt(txtAno.getText()))
-                        .Valor(Float.parseFloat(txtValor.getText()))
-                        .Categoria(categoria)
-                        .FormaPagamento(salvaF_pagamento)
-                        .Status(salvaStatus)
-                        .Descricao(txtAreaDescricao.getText())
-                        .build();
-                /*
+                case "DINHEIRO":
+                    despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
+                            .Dia(Integer.parseInt(txtDia.getText().trim()))
+                            .Mes(Integer.parseInt(txtMes.getText()))
+                            .Ano(Integer.parseInt(txtAno.getText()))
+                            .Valor(Float.parseFloat(txtValor.getText()))
+                            .Categoria(categoria)
+                            .FormaPagamento(salvaF_pagamento)
+                            .Status(salvaStatus)
+                            .Descricao(txtAreaDescricao.getText())
+                            .build();
+                    /*
                 despesa = new Despesa(
                         Integer.parseInt(txtDia.getText().trim()),
                         Integer.parseInt(txtMes.getText()),
@@ -180,28 +180,33 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                         txtAreaDescricao.getText(),
                         this.despesa.getCod_despesa()
                 );
-                */
-                break;
-                
-            //VER USO DE ALGUMA EXCEPTION OU NAO    
-            default:
-                JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada"); 
-                return;
+                     */
+                    break;
 
-        }
+                //VER USO DE ALGUMA EXCEPTION OU NAO    
+                default:
+                    JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada");
+                    return;
 
-        if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
-
-            if (!(despesa.verifica_num_cartao_despesa())) {
-
-                JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                return;
             }
+
+            if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
+
+                if (!(despesa.verifica_num_cartao_despesa())) {
+
+                    JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+
+            despesa.setId_conta(this.despesa.getId_conta());
+
+            ControlerDespesa.AtualizarDespesa(despesa);
+
+        } catch (HeadlessException | NullPointerException | NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
-        
-        despesa.setId_conta(this.despesa.getId_conta());
-        
-        ControlerDespesa.AtualizarDespesa(despesa);
     }
     
     void CarregaCategoria() {
@@ -423,7 +428,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(640, 540, 140, 25);
+        btn_update.setBounds(360, 380, 140, 25);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -528,68 +533,73 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
 
         CarregaCategoria();
         
-        txtDia.setText(Integer.toString(despesa.getDia()));
-        txtMes.setText(Integer.toString(despesa.getMes()));
-        txtAno.setText(Integer.toString(despesa.getAno()));
-        //txtCategoria.setText(categoria);
-        cbb_categoria.setSelectedItem(despesa.getCategoria());
-        txtValor.setText(Float.toString(despesa.getValor()));
-        
-        if(despesa.getNum_cartao() != null)
-            txt_NumCartao.setText(Long.toString(despesa.getNum_cartao()));
-            
-        if(despesa.getNum_parcelas() > 0)
-            txtParcelas.setText(Integer.toString(despesa.getNum_parcelas()));
-        
-        if(StringUtils.isNullOrEmpty(despesa.getDescricao()))
-            txtAreaDescricao.setText(despesa.getDescricao());
-        
-        switch (despesa.getF_pagamento()) 
-        {
-            case "CRÉDITO":
-                salvaF_pagamento = "CRÉDITO";
-                rbCredito.setSelected(true);
-                rbDebito.setSelected(false);
-                rbDinheiro.setSelected(false);
-                break;
+        try {
 
-            case "DÉBITO":
-                salvaF_pagamento = "DÉBITO";
-                rbDebito.setSelected(true);
-                rbCredito.setSelected(false);
-                rbDinheiro.setSelected(false);
-                
-                txtParcelas.setEnabled(false);
-                break;
+            txtDia.setText(Integer.toString(despesa.getDia()));
+            txtMes.setText(Integer.toString(despesa.getMes()));
+            txtAno.setText(Integer.toString(despesa.getAno()));
+            //txtCategoria.setText(categoria);
+            cbb_categoria.setSelectedItem(despesa.getCategoria());
+            txtValor.setText(Float.toString(despesa.getValor()));
 
-            case "DINHEIRO":
-                salvaF_pagamento = "DINHEIRO";
-                rbDinheiro.setSelected(true);
-                rbDebito.setSelected(false);
-                rbCredito.setSelected(false);
-                
-                txt_NumCartao.setEnabled(false);
-                txtParcelas.setEnabled(false);
-                break;
+            if (despesa.getNum_cartao() != null) {
+                txt_NumCartao.setText(Long.toString(despesa.getNum_cartao()));
+            }
 
-            default:
-                JOptionPane.showMessageDialog(this, "Forma de Pagamento Desconhecida ou Inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                return;
+            if (despesa.getNum_parcelas() > 0) {
+                txtParcelas.setText(Integer.toString(despesa.getNum_parcelas()));
+            }
+
+            if (StringUtils.isNullOrEmpty(despesa.getDescricao())) {
+                txtAreaDescricao.setText(despesa.getDescricao());
+            }
+
+            switch (despesa.getF_pagamento()) {
+                case "CRÉDITO":
+                    salvaF_pagamento = "CRÉDITO";
+                    rbCredito.setSelected(true);
+                    rbDebito.setSelected(false);
+                    rbDinheiro.setSelected(false);
+                    break;
+
+                case "DÉBITO":
+                    salvaF_pagamento = "DÉBITO";
+                    rbDebito.setSelected(true);
+                    rbCredito.setSelected(false);
+                    rbDinheiro.setSelected(false);
+
+                    txtParcelas.setEnabled(false);
+                    break;
+
+                case "DINHEIRO":
+                    salvaF_pagamento = "DINHEIRO";
+                    rbDinheiro.setSelected(true);
+                    rbDebito.setSelected(false);
+                    rbCredito.setSelected(false);
+
+                    txt_NumCartao.setEnabled(false);
+                    txtParcelas.setEnabled(false);
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(this, "Forma de Pagamento Desconhecida ou Inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    return;
+            }
+
+            if (despesa.getEstatus().equals("PAGO")) {
+                salvaStatus = "PAGO";
+                rbPago.setSelected(true);
+                rbNaoPago.setSelected(false);
+            } else {
+                salvaStatus = "NÃO PAGO";
+                rbNaoPago.setSelected(true);
+                rbPago.setSelected(false);
+            }
+
+        } catch (NullPointerException | NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
-        
-        if (despesa.getEstatus().equals("PAGO")) 
-        {
-            salvaStatus = "PAGO";
-            rbPago.setSelected(true);
-            rbNaoPago.setSelected(false);
-        } 
-        else 
-        {
-            salvaStatus = "NÃO PAGO";
-            rbNaoPago.setSelected(true);
-            rbPago.setSelected(false);
-        }
-
 
     }//GEN-LAST:event_formWindowOpened
 

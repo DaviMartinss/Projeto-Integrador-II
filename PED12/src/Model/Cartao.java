@@ -41,9 +41,9 @@ public class Cartao {
         this.n_cartao = n_cartao;
     }
 
-    public boolean verifica_bandeira(String bandeira) {
+    public boolean verifica_bandeira() {
 
-        String bandeira_aux = bandeira.replace(" ", "");
+        String bandeira_aux = this.bandeira.replace(" ", "");
 
         boolean soLetra = true;
 
@@ -56,11 +56,7 @@ public class Cartao {
             }
         }
 
-        if (!(soLetra)) {
-            return false;
-        }
-
-        return true;
+        return soLetra;
     }
 
     // falta a função de verificar o número do cartão de credito
@@ -119,16 +115,7 @@ public class Cartao {
             somaImpar = somaImpar + aux;
         }
 
-        if ((somaPar + somaImpar) % 10 == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (somaPar + somaImpar) % 10 == 0;
 
     }
-
-    
-    
-    
-    
 }

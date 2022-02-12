@@ -24,7 +24,7 @@ public class ReceitaDAO {
         conexao = moduloConexao.conector();
     }
     
-    public float GetReceitaSaldo(Receita receita, float valor) throws SQLException {
+    public float GetReceitaSaldo(Receita receita, float valor) throws SQLException, NullPointerException {
 
         PreparedStatement pst_SelectSaldo;
         ResultSet rs_SelectSaldo;
@@ -52,7 +52,7 @@ public class ReceitaDAO {
         return saldo;
     }
 
-    public void InsertReceita(Receita receita_nova) throws SQLException {
+    public void InsertReceita(Receita receita_nova) throws SQLException, NullPointerException {
 
         PreparedStatement pst_InsertReceita = null;
 
@@ -72,7 +72,7 @@ public class ReceitaDAO {
     }
     
     
-    public void UpdateReceita(Receita receita) throws SQLException {
+    public void UpdateReceita(Receita receita) throws SQLException, NullPointerException {
 
         PreparedStatement pst_UpdateReceita = null;
 
@@ -94,7 +94,7 @@ public class ReceitaDAO {
 
     }
     
-    public void DeleteReceita(Receita receita) throws SQLException {
+    public void DeleteReceita(Receita receita) throws SQLException, NullPointerException {
         
         PreparedStatement pst_DeleteReceita;
 
@@ -141,7 +141,9 @@ public class ReceitaDAO {
             );
             */
                       
-            lista_receita.add(new Receita.ReceitaBuild(id_conta, rs_SelectListaReceitas.getInt("mes"), rs_SelectListaReceitas.getInt("ano"))
+            lista_receita.add(new Receita.ReceitaBuild(
+                            id_conta, rs_SelectListaReceitas.getInt("mes"), 
+                            rs_SelectListaReceitas.getInt("ano"))
                             .Dia(rs_SelectListaReceitas.getInt("dia"))
                             .Total(rs_SelectListaReceitas.getFloat("total"))
                             .build()
@@ -187,7 +189,8 @@ public class ReceitaDAO {
     
     public void UpdateTotalReceita(int id_conta, float valor, int cod_receita) throws SQLException {
 
-        String UpdateTotal = "UPDATE receita SET total = (total - ?) WHERE conta_id_conta = ? AND cod_receita = ?";
+        String UpdateTotal = "UPDATE receita SET total = (total - ?) "
+                           + "WHERE conta_id_conta = ? AND cod_receita = ?";
 
         PreparedStatement pst_UpdateTotal = null;
 
@@ -233,7 +236,7 @@ public class ReceitaDAO {
         return cod_receita;
     }
  
-    public LinkedList<Receita> ConsultaReceita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+    public LinkedList<Receita> ConsultaReceita(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException, NumberFormatException {
 
         String argumento = "";
 
@@ -253,7 +256,7 @@ public class ReceitaDAO {
 
         ResultSet rs_ConsultaReceita = null;
 
-        LinkedList<Receita> lista_receita = new LinkedList<Receita>();
+        LinkedList<Receita> lista_receita = new LinkedList<>();
 
         pst_ConsultaReceita = conexao.prepareStatement(ConsultaReceita);
 
@@ -276,7 +279,10 @@ public class ReceitaDAO {
             );
             */
             
-            lista_receita.add( new Receita.ReceitaBuild(id_conta, Integer.parseInt(rs_ConsultaReceita.getString("mes")), Integer.parseInt(rs_ConsultaReceita.getString("ano")))
+            lista_receita.add( new Receita.ReceitaBuild(
+                    id_conta, 
+                    Integer.parseInt(rs_ConsultaReceita.getString("mes")), 
+                    Integer.parseInt(rs_ConsultaReceita.getString("ano")))
                     .Dia(Integer.parseInt(rs_ConsultaReceita.getString("dia")))
                     .Total(Float.parseFloat(rs_ConsultaReceita.getString("total")))
                     .build()

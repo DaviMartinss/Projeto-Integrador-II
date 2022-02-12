@@ -10,12 +10,6 @@ package Model;
  * @author pc
  */
 
-    
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-
 public class Usuario {
     
     private String nome;
@@ -185,43 +179,20 @@ public class Usuario {
                 soLetra = false;
             }
         }
-        if(!(soLetra)){
-           return false;
-        }
-        
-        return true;
+        return soLetra;
     }
 
     
     public boolean validaTamSenha(String senha){
-        if(senha.length() >= 6){
-            
-            return  true;
-            
-        }else{
-            
-            return  false;
-        }
+        return senha.length() >= 6;
     }
     
     public boolean EhVazio(String rec){
-        if(rec == null || rec.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
+        return rec == null || rec.trim().equals("");
     }
     
     public boolean UpdateEhVazio(){
            
-       if(EhVazio(getNome()) || EhVazio(getEmail()) ){
-           
-           return true;
-           
-       }else{
-           
-           return  false;
-       }
-    }
-    
+        return EhVazio(getNome()) || EhVazio(getEmail());
+    }   
 }

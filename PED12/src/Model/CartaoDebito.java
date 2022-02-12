@@ -125,12 +125,12 @@ public class CartaoDebito extends Cartao{
         return getValor_atual() > 0;
     }
 
-    public boolean verifica_Bandeira_cartao_deb() {
-
-        Cartao cartao_aux = new Cartao();
-
-        return (cartao_aux.verifica_bandeira(bandeira));
-    }
+//    public boolean verifica_Bandeira_cartao_deb() {
+//
+//        Cartao cartao_aux = new Cartao();
+//
+//        return (cartao_aux.verifica_bandeira(bandeira));
+//    }
     // falta verificar o número do cartão
 
     public boolean verifica_num_cartao_deb() {
@@ -139,14 +139,5 @@ public class CartaoDebito extends Cartao{
 
         return (cartao_aux.ValidaNUM_Cartao(Long.toString(n_cartao_debito)));
 
-    }
-
-    public boolean EhVazio(String rec) {
-        return rec == null || rec.trim().equals("");
-    }
-
-    public boolean UpdateEhVazio(String num_cartao, String valor, String bandeira) {
-
-        return EhVazio(num_cartao) || EhVazio(valor) || EhVazio(bandeira);
     }
 }

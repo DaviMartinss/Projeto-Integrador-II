@@ -8,6 +8,7 @@ package Views;
 import Controllers.ControlerCartaoDebito;
 import Model.CartaoDebito;
 import Utilities.Validacao;
+import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -54,9 +55,10 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
     
     void AtualizarCartaoDebito() {
         
-        CartaoDebito cartao_aux = new CartaoDebito.CartaoDebitoBuild().build();
-        
-        if (cartao_aux.UpdateEhVazio(txt_NumCartaoD.getText(), txt_Valor.getText(), txt_Bandeira.getText())) {
+        if (StringUtils.isNullOrEmpty(txt_NumCartaoD.getText()) ||
+            StringUtils.isNullOrEmpty(txt_Valor.getText()) ||
+            StringUtils.isNullOrEmpty(txt_Bandeira.getText())) 
+        {
             JOptionPane.showMessageDialog(this, "Nenhum Campo pode ser nulo no Update", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -67,7 +69,8 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
         }
         
         CartaoDebito cartao_d = 
-            new CartaoDebito.CartaoDebitoBuild(Long.parseLong(txt_NumCartaoD.getText()))
+            new CartaoDebito.CartaoDebitoBuild(
+                 Long.parseLong(txt_NumCartaoD.getText()))
                 .ValorAtual(Float.parseFloat(txt_Valor.getText()))
                 .Bandeira(txt_Bandeira.getText())
                 .IdConta(this.cartaoDebito.getId_conta())
@@ -102,14 +105,14 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
 
         try {
 
-            if (cartao_d.verifica_Bandeira_cartao_deb() && cartao_d.verifica_valor_atual()) {
+            if (cartao_d.verifica_bandeira() && cartao_d.verifica_valor_atual()) {
 
                 ControlerCartaoDebito.AtualizarCartaoDebito(cartao_d);
 
             } else 
                 JOptionPane.showMessageDialog(this, "Dados Inválidos, impossível atuzalizar!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | NullPointerException | NumberFormatException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
@@ -193,7 +196,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(135, 274, 140, 27);
+        btn_update.setBounds(135, 274, 140, 25);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -205,7 +208,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(328, 274, 111, 27);
+        btnReceitas.setBounds(328, 274, 111, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,9 +231,16 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        txt_NumCartaoD.setText(Long.toString(cartaoDebito.getN_cartao_debito()));
-        txt_Valor.setText(Float.toString(cartaoDebito.getValor_atual()));
-        txt_Bandeira.setText(cartaoDebito.getBandeira());
+        try {
+            txt_NumCartaoD.setText(Long.toString(cartaoDebito.getN_cartao_debito()));
+            txt_Valor.setText(Float.toString(cartaoDebito.getValor_atual()));
+            txt_Bandeira.setText(cartaoDebito.getBandeira());
+        } catch (NumberFormatException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        }
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**

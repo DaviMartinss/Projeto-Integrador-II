@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Model;
-import Utilities.Validacao;
 /**
  *
  * @author pc
@@ -96,68 +95,36 @@ public class Data{
     
     public boolean verifica_dia(){
         
-        if(getDia() > 0 && getDia() <= 31){
-            return true;
-        }else{
-            return false;
-        }
+        return getDia() > 0 && getDia() <= 31;
     }
     
     public boolean verifica_mes(){
-        if (getMes() > 0 && getMes() <= 12) {
-            return true;
-        } else {
-            return false;
-        }
+        return getMes() > 0 && getMes() <= 12;
     }
     public boolean verifica_ano(){
-        if (getAno() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return getAno() > 0;
     }
     
     
     public boolean verifica_data(){
         
         
-        if(verifica_dia() && verifica_mes() && verifica_ano()){
-            return  true;
-        }else{
-            return false;
-        }
+        return verifica_dia() && verifica_mes() && verifica_ano();
     }
     
     public boolean diaEhVazio(String dia){
-        if(dia == null || dia.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
+        return dia == null || dia.trim().equals("");
     }
     
     public boolean MesEhVazio(String Mes){
-        if(Mes == null || Mes.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
+        return Mes == null || Mes.trim().equals("");
     }
     
     public boolean AnoEhVazio(String ano){
-        if(ano == null || ano.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
+        return ano == null || ano.trim().equals("");
     }
     
     public boolean dataEhVazia(String dia, String mes, String ano){
-        if(diaEhVazio(dia) || MesEhVazio(mes) || AnoEhVazio(ano)){
-            return  true;
-        }else{
-            return false;
-        }
+        return diaEhVazio(dia) || MesEhVazio(mes) || AnoEhVazio(ano);
     }
 }

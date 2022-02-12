@@ -6,9 +6,9 @@
 package Views;
 
 import Controllers.ControlerCartaoCredito;
-import DAO.CartaoCreditoDAO;
 import Model.CartaoCredito;
 import Utilities.Validacao;
+import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -80,53 +80,149 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
     public void CadastrarCartaoCredito() {
         
-        CartaoCredito cartao_aux = new CartaoCredito.CartaoCreditoBuild().build();
+//        CartaoCredito cartao_aux = new CartaoCredito.CartaoCreditoBuild().build();
+//        
+//        if(cartao_aux.UpdateEhVazio(txt_NumCC.getText(), txt_ValorFatura.getText(), txt_LimiteCC.getText(), txt_BandeiraCC.getText(), txt_DiaFaturaCC.getText())){
+//            JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
+//            return;
+//         }
+//        
+//        /*
+//        CartaoCredito cartao_c = new CartaoCredito(
+//                Long.parseLong(txt_NumCC.getText()),
+//                Float.parseFloat(txt_LimiteCC.getText()),
+//                Integer.parseInt(txt_DiaFaturaCC.getText()),
+//                Float.parseFloat(txt_ValorFatura.getText()),
+//                txt_BandeiraCC.getText(),
+//                Integer.parseInt(txt_id.getText())
+//        );
+//        */
+//         CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCC.getText()))
+//                .Limite(Float.parseFloat(txt_LimiteCC.getText()))
+//                .DiaFatura(Integer.parseInt(txt_DiaFaturaCC.getText()))
+//                .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
+//                .Bandeira(txt_BandeiraCC.getText())
+//                .IdConta(Integer.parseInt(txt_id.getText()))
+//                .build();
+//         
+//        try {
+//            
+//            if (cartao_c.verifica_bandeira() &&
+//                cartao_c.verifica_dia_fatura() && 
+//                cartao_c.verifica_limite())
+//            {
+//                
+//                ControlerCartaoCredito.CadastrarCartaoCredito(cartao_c);
+//                
+//                TelaCartaoCredito();
+//                
+//            }else{
+//                
+//                JOptionPane.showMessageDialog(this, "Dados Inválidos!!","INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+//                
+//            }
+//
+//        } catch (HeadlessException e) {
+//
+//            JOptionPane.showMessageDialog(this, e.getMessage(),"ERROR", JOptionPane.ERROR);
+//        }
+
         
-        if(cartao_aux.UpdateEhVazio(txt_NumCC.getText(), txt_ValorFatura.getText(), txt_LimiteCC.getText(), txt_BandeiraCC.getText(), txt_DiaFaturaCC.getText())){
-            JOptionPane.showMessageDialog(null, "Nenhum Campo ser vazio");
-            return;
-         }
         
-        /*
-        CartaoCredito cartao_c = new CartaoCredito(
-                Long.parseLong(txt_NumCC.getText()),
-                Float.parseFloat(txt_LimiteCC.getText()),
-                Integer.parseInt(txt_DiaFaturaCC.getText()),
-                Float.parseFloat(txt_ValorFatura.getText()),
-                txt_BandeiraCC.getText(),
-                Integer.parseInt(txt_id.getText())
-        );
-        */
-         CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCC.getText()))
-                .Limite(Float.parseFloat(txt_LimiteCC.getText()))
-                .DiaFatura(Integer.parseInt(txt_DiaFaturaCC.getText()))
-                .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
-                .Bandeira(txt_BandeiraCC.getText())
-                .IdConta(Integer.parseInt(txt_id.getText()))
-                .build();
-         
         try {
-            
-            if (cartao_c.verifica_bandeira_credito()
-                    && cartao_c.verifica_dia_fatura()
-                    && cartao_c.verifica_limite())
-            {
+
+            if (!StringUtils.isNullOrEmpty(txt_NumCC.getText())
+                    && !StringUtils.isNullOrEmpty(txt_LimiteCC.getText())
+                    && !StringUtils.isNullOrEmpty(txt_ValorFatura.getText())
+                    && !StringUtils.isNullOrEmpty(txt_DiaFaturaCC.getText())
+                    && !StringUtils.isNullOrEmpty(txt_BandeiraCC.getText())) {
+
+                if (!(Validacao.isNumeric(txt_NumCC.getText())
+                        && Validacao.isNumeric(txt_ValorFatura.getText())
+                        && Validacao.isNumeric(txt_LimiteCC.getText())
+                        && Validacao.isNumeric(txt_DiaFaturaCC.getText()))) {
+                    JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                boolean cadastra = true;
+
+                /*
+            CartaoCredito cartaoCC = new CartaoCredito(
+            Long.parseLong(txt_NumCC.getText()),
+            Float.parseFloat(txt_LimiteCC.getText()),
+            Integer.parseInt(txt_DiaFaturaCC.getText()),
+            Float.parseFloat(txt_ValorFatura.getText()),
+            txt_BandeiraCC.getText(),
+            Integer.parseInt(txt_id.getText())
+            );
+                 */
+                CartaoCredito cartaoCC = 
+                        new CartaoCredito.CartaoCreditoBuild
+                        (
+                            Long.parseLong(txt_NumCC.getText()))
+                            .Limite(Float.parseFloat(txt_LimiteCC.getText()))
+                            .DiaFatura(Integer.parseInt(txt_DiaFaturaCC.getText()))
+                            .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
+                            .Bandeira(txt_BandeiraCC.getText())
+                            .IdConta(Integer.parseInt(txt_id.getText())
+                        ).build();
+
+                if (ControlerCartaoCredito.CartaoCreditoExiste(cartaoCC)) {
+
+                    JOptionPane.showMessageDialog(this, "Número do cartão de crédito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    cadastra = false;
+                }
+
+                if (!(cartaoCC.ValidaNUM_Cartao(txt_NumCC.getText()))) {
+
+                    JOptionPane.showMessageDialog(this, "Número do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    cadastra = false;
+                }
+
+                if (!(cartaoCC.verifica_bandeira())) {
+
+                    JOptionPane.showMessageDialog(this, "Bandeira inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    cadastra = false;
+                }
+
+                if (cartaoCC.getValor_fatura() < 0 || cartaoCC.getLimite() < cartaoCC.getValor_fatura()) {
+
+                    JOptionPane.showMessageDialog(this, "Valor da fatura inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    cadastra = false;
+                }
+
+                if (!(cartaoCC.verifica_dia_fatura())) {
+
+                    JOptionPane.showMessageDialog(this, "Dia da fatura inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    cadastra = false;
+                }
+
+                if (!(cartaoCC.verifica_limite())) {
+
+                    JOptionPane.showMessageDialog(this, "Limite do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    cadastra = false;
+                }
+
+                if (cadastra) {
+
+                    ControlerCartaoCredito.CadastrarCartaoCredito(cartaoCC);
+                    JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+                    TelaCartaoCredito();
+                    
+                }
                 
-                ControlerCartaoCredito.CadastrarCartaoCredito(cartao_c);
-                
-                TelaCartaoCredito();
-                
-            }else{
-                
-                JOptionPane.showMessageDialog(this, "Dados Inválidos!!","INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-                
+            } else {
+
+                JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
             }
 
-        } catch (HeadlessException e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage(),"ERROR", JOptionPane.ERROR);
+        } catch (HeadlessException | NumberFormatException | NullPointerException e) {
+            
+            JOptionPane.showMessageDialog(this, "Error!" + e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
         }
-
     }
 
     /**
@@ -270,83 +366,9 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
     private void btnCadastraCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraCartaoActionPerformed
         // TODO add your handling code here:
-
-        if (txt_NumCC.getText().isEmpty() || txt_LimiteCC.getText().isEmpty()
-                || txt_ValorFatura.getText().isEmpty() || txt_DiaFaturaCC.getText().isEmpty()
-                || txt_BandeiraCC.getText().isEmpty()) {
-
-            JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-
-        } else {
-
-            if (!(Validacao.isNumeric(txt_NumCC.getText()) && Validacao.isNumeric(txt_ValorFatura.getText()) && Validacao.isNumeric(txt_LimiteCC.getText()) && Validacao.isNumeric(txt_DiaFaturaCC.getText()))) {
-                JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-
-            boolean cadastra = true;
-
-            CartaoCreditoDAO cartaoDAO = new CartaoCreditoDAO();
             
-            /*
-            CartaoCredito cartaoCC = new CartaoCredito(
-                    Long.parseLong(txt_NumCC.getText()),
-                    Float.parseFloat(txt_LimiteCC.getText()),
-                    Integer.parseInt(txt_DiaFaturaCC.getText()),
-                    Float.parseFloat(txt_ValorFatura.getText()),
-                    txt_BandeiraCC.getText(),
-                    Integer.parseInt(txt_id.getText())
-            );
-            */
-             CartaoCredito cartaoCC = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCC.getText()))
-                    .Limite(Float.parseFloat(txt_LimiteCC.getText()))
-                    .DiaFatura(Integer.parseInt(txt_DiaFaturaCC.getText()))
-                    .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
-                    .Bandeira(txt_BandeiraCC.getText())
-                    .IdConta(Integer.parseInt(txt_id.getText()))
-                    .build();
-            if (ControlerCartaoCredito.CartaoCreditoExiste(cartaoCC)) {
-
-                JOptionPane.showMessageDialog(this, "Número do cartão de crédito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (!(cartaoCC.ValidaNUM_Cartao(txt_NumCC.getText()))) {
-
-                JOptionPane.showMessageDialog(this, "Número do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (!(cartaoCC.verifica_bandeira_credito())) {
-
-                JOptionPane.showMessageDialog(this, "Bandeira inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (cartaoCC.getValor_fatura() < 0 || cartaoCC.getLimite() < cartaoCC.getValor_fatura()) {
-
-                JOptionPane.showMessageDialog(this, "Valor da fatura inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (!(cartaoCC.verifica_dia_fatura())) {
-
-                JOptionPane.showMessageDialog(this, "Dia da fatura inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (!(cartaoCC.verifica_limite())) {
-
-                JOptionPane.showMessageDialog(this, "Limite do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
-
-            if (cadastra) {
-
-                CadastrarCartaoCredito();
-                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
+        CadastrarCartaoCredito();
+        
     }//GEN-LAST:event_btnCadastraCartaoActionPerformed
 
     private void txt_LimiteCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_LimiteCCActionPerformed
@@ -395,10 +417,8 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaCartaoCredito_cadastrar().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaCartaoCredito_cadastrar().setVisible(true);
         });
     }
 
@@ -424,5 +444,4 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
         txt_id.setText(recebe);
     }
-
 }

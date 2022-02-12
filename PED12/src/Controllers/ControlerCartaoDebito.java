@@ -232,8 +232,7 @@ public class ControlerCartaoDebito {
         
         try {
             
-          cartao_debitoDAO.CartaoDebitoExiste(cartao);          
-          return true;
+          return cartao_debitoDAO.CartaoDebitoExiste(cartao);          
             
         }catch (SQLException ex) {
             

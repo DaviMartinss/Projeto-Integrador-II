@@ -7,6 +7,7 @@ package Views;
 
 import Controllers.ControlerCategoria;
 import Model.Categoria;
+import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -89,7 +90,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
               .build();
 
         try {
-            if (!(categoria.valorEhVazio(categoria.getCategoriaTipo()))) {
+            if (!(StringUtils.isNullOrEmpty(categoria.getCategoriaTipo()))) {
                 
                 ControlerCategoria.CadastrarCategoria(categoria);
                 

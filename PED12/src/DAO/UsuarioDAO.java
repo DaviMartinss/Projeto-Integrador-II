@@ -22,166 +22,124 @@ public class UsuarioDAO {
         
     }
     
-    public boolean logar(Usuario user) throws SQLException {
+    public boolean logar(Usuario user) throws SQLException, NullPointerException {
 
-        String sql = "select * from conta where email=? and senha=?";
-        
-        PreparedStatement pst = null;
-        
-        try {
-            
-            pst = conexao.prepareStatement(sql);
-            
-            pst.setString(1, user.getEmail());
-            pst.setString(2, user.getSenha());
+       String sql = "select * from conta where email=? and senha=?";
 
-            ResultSet rs = pst.executeQuery();
+       PreparedStatement pst = conexao.prepareStatement(sql);
+       
+       boolean retorno = false;
 
-            if (rs.next()) {
+        pst.setString(1, user.getEmail());
+        pst.setString(2, user.getSenha());
 
-                user.setId_conta(rs.getInt(1));
-                
-                return true;
+        ResultSet rs = pst.executeQuery();
 
-            } else {
-                
-                JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
-                
-                return false;
-            }
-        } catch (Exception e) {
-        
-            JOptionPane.showMessageDialog(null, "Erro ao logar", "ERROR_MESSAGE", ERROR_MESSAGE);
-            
-            return false;
-        
-        }finally{
-            
-            pst.close();
-            
+        if (rs.next()) {
+
+            user.setId_conta(rs.getInt(1));
+
+            retorno = true;
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
+
+            retorno = false;
         }
 
+        pst.close();
+
+        return retorno;
     }
     
-    public boolean CadastrarUsuario(Usuario usuario) throws SQLException {
-        
-        if(!(verificaEmailExiste(usuario.getEmail()))){
-            PreparedStatement pst = null;
+    public boolean CadastrarUsuario(Usuario usuario) throws SQLException, NullPointerException {
 
-            String insert = "insert into conta (nome, email, senha) values(?,?,?)";
+        boolean retorno = false;
+        PreparedStatement pst = null;
+
+        if (!(verificaEmailExiste(usuario.getEmail()))) {
+
+            String insert = "INSERT INTO conta (nome, email, senha) VALUES(?,?,?)";
 
             pst = conexao.prepareStatement(insert);
 
-            try {
+            pst.setString(1, usuario.getNome());
+            pst.setString(2, usuario.getEmail());
+            pst.setString(3, usuario.getSenha());
 
-                pst.setString(1, usuario.getNome());
-                pst.setString(2, usuario.getEmail());
-                pst.setString(3, usuario.getSenha());
+            //pst.setString(5, txtCadastraAvatar.getText());
+            pst.executeUpdate();
 
-                //pst.setString(5, txtCadastraAvatar.getText());
-                pst.executeUpdate();
+            retorno = true;
 
-                return true;
+        } else {
 
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(null, e.getMessage());
-
-                return false;
-
-            }finally{
-
-                pst.close();
-
-            }
-        }else{
-            
             JOptionPane.showMessageDialog(null, "Email já é cadastrado");
-            return false;
+            retorno = false;
         }
+
+        pst.close();
+
+        return retorno;
 
     }
     
-     public boolean UpdateUser(Usuario usuario) throws SQLException {
+     public boolean UpdateUser(Usuario usuario) throws SQLException, NullPointerException {
             
          String email_aux = consultaEmail(usuario.getId_conta());
-        
-        if (email_aux != usuario.getEmail()) {
-            
-            if (!(verificaEmailExiste(usuario.getEmail()))) {
-                
-                PreparedStatement pst = null;
+         
+         boolean retorno = false;
+         PreparedStatement pst = null;
+         
+         if (!email_aux.equals(usuario.getEmail())) {
 
-                String insert = "update conta set nome= ? , email = ? where id_conta = ?";
+             if (!(verificaEmailExiste(usuario.getEmail()))) {
 
-                pst = conexao.prepareStatement(insert);
+                 String insert = "UPDATE conta SET nome= ? , email = ? WHERE id_conta = ?";
 
-                try {
+                 pst = conexao.prepareStatement(insert);
 
-                    pst.setString(1, usuario.getNome());
-                    pst.setString(2, usuario.getEmail());
-                    pst.setInt(3, usuario.getId_conta());
+                 pst.setString(1, usuario.getNome());
+                 pst.setString(2, usuario.getEmail());
+                 pst.setInt(3, usuario.getId_conta());
 
-                    pst.executeUpdate();
+                 pst.executeUpdate();
 
-                    return true;
+                 retorno = true;
 
-                } catch (Exception e) {
-
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-
-                    return false;
-
-                } finally {
-
-                    pst.close();
-
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "Esse email já foi cadastrado");
-                return false;
-            }
+             } else {
+                 JOptionPane.showMessageDialog(null, "Esse email já foi cadastrado");
+                 retorno = false;
+             }
         }else{
             // é igual ao seu email atual
-            return true;
+            retorno = true;
         }
-
+            
+         pst.close();
+         return retorno;
     }
+    
+    public boolean UpdateSenha(Usuario usuario) throws SQLException, NullPointerException {
 
-    
-    
-    public boolean UpdateSenha(Usuario usuario) throws SQLException {
-        
         PreparedStatement pst = null;
-
-        String insert = "update conta set senha = ? where id_conta = ?";
+        boolean retorno = false;
+        String insert = "UPDATE conta SET senha = ? WHERE id_conta = ?";
 
         pst = conexao.prepareStatement(insert);
 
-        try {
+        pst.setString(1, usuario.getSenha());
+        pst.setInt(2, usuario.getId_conta());
 
-            pst.setString(1, usuario.getSenha());
-            pst.setInt(2, usuario.getId_conta());
-            
+        pst.executeUpdate();
 
-            
-            pst.executeUpdate();
-            
-            return true;
+        retorno = true;
 
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-            return false;
-
-        }finally{
-            
-            pst.close();
-            
-        }
-
-    }
+        pst.close();
+        
+        return retorno;
+}
     
      public ResultSet PreencherCampos_Usuario(String id_conta) throws SQLException {
  
@@ -197,7 +155,7 @@ public class UsuarioDAO {
            
            rs = pst.executeQuery();
 
-       } catch (Exception e) {
+       } catch (NumberFormatException | SQLException e) {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -229,7 +187,7 @@ public class UsuarioDAO {
                
            }
 
-       } catch (Exception e) {
+       } catch (NumberFormatException | SQLException e) {
 
            JOptionPane.showMessageDialog(null, e.getMessage());
 
@@ -253,7 +211,7 @@ public class UsuarioDAO {
 
             pst.executeUpdate();
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, e.toString());
             return false;
@@ -269,14 +227,7 @@ public class UsuarioDAO {
    
     public boolean valida_UpdateSenha(String senha1, String senha2) {
 
-        if (senha1.equals(senha2)) {
-            return true;
-
-        } else {
-
-            return false;
-
-        }
+        return senha1.equals(senha2);
     }
     
     public boolean verificaEmailExiste(String email)throws SQLException {
@@ -293,14 +244,7 @@ public class UsuarioDAO {
 
             rs = pst.executeQuery();
 
-            if (rs.next()) {
-
-                return true;
-
-            } else {
-
-                return false;
-            }
+            return rs.next();
 
         } catch (Exception e) {
 
@@ -333,10 +277,9 @@ public class UsuarioDAO {
                
            }
 
-       } catch (Exception e) {
+       } catch (SQLException e) {
 
            JOptionPane.showMessageDialog(null, "Falha ao consultar email");
-
        }
        
        return email;
@@ -366,7 +309,7 @@ public class UsuarioDAO {
                
            }
 
-       } catch (Exception e) {
+       } catch (SQLException e) {
 
            JOptionPane.showMessageDialog(null, "Falha ao consultar Id");
 
@@ -375,6 +318,4 @@ public class UsuarioDAO {
        return id;
        
     }
-    
-
 }

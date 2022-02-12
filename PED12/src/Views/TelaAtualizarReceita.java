@@ -8,6 +8,7 @@ package Views;
 import Controllers.ControlerReceita;
 import Model.Receita;
 import Utilities.Validacao;
+import com.mysql.cj.util.StringUtils;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
@@ -48,8 +49,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
     }
     
     void AtualizarReceita() {
-        
-         Receita receita_aux = new Receita.ReceitaBuild().build();
+       
 
         if (!(
                 Validacao.isNumeric(txt_dia.getText()) && 
@@ -63,7 +63,9 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
             return;
         }
 
-        if (!(receita_aux.UpdateEhVazio(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText()))) {
+        if (!(StringUtils.isNullOrEmpty(txt_dia.getText())) &&  !(StringUtils.isNullOrEmpty(txt_mes.getText())) &&
+            !(StringUtils.isNullOrEmpty(txt_ano.getText())) &&  !(StringUtils.isNullOrEmpty(txt_total.getText())))
+        {
             
              Receita receita_atual
                     = new Receita.ReceitaBuild(receita.getId_conta(), Integer.parseInt(txt_mes.getText()), Integer.parseInt(txt_ano.getText()))
@@ -266,11 +268,17 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
 
-        txt_total.setText(Float.toString(receita.getTotal()));
-        txt_dia.setText(Integer.toString(receita.getDia()));
-        txt_mes.setText(Integer.toString(receita.getMes()));
-        txt_ano.setText(Integer.toString(receita.getAno()));
+        try {
 
+            txt_total.setText(Float.toString(receita.getTotal()));
+            txt_dia.setText(Integer.toString(receita.getDia()));
+            txt_mes.setText(Integer.toString(receita.getMes()));
+            txt_ano.setText(Integer.toString(receita.getAno()));
+
+        } catch (NumberFormatException | NullPointerException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**

@@ -82,21 +82,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     }
     
-    void HabilitarConsulta(){
-        
-        findTextTitle.setVisible(true);
-        txt_Pesquisa.setVisible(true);
-        btPesquisarCD.setVisible(true);
-        
-    }
-    
-    final void DesabilitarConsulta(){
-        
-        findTextTitle.setVisible(false);
-        txt_Pesquisa.setVisible(false);
-        btPesquisarCD.setVisible(false);
-    }
-    
     void TelaAtualizarCartaoDebito(CartaoDebito cartaoDebito) {
 
         TelaAtualizarCartaoDebito telaAtualizarCartaoDebito = null;
@@ -119,6 +104,21 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         }
 
         this.dispose();
+    }
+    
+    void HabilitarConsulta(){
+        
+        findTextTitle.setVisible(true);
+        txt_Pesquisa.setVisible(true);
+        btPesquisarCD.setVisible(true);
+        
+    }
+    
+    final void DesabilitarConsulta(){
+        
+        findTextTitle.setVisible(false);
+        txt_Pesquisa.setVisible(false);
+        btPesquisarCD.setVisible(false);
     }
 
     void sair() {
@@ -197,22 +197,25 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     void AtualizarCartaoDebito() {
         
-        if (!(salvaLinhaAtiva)) {
-            JOptionPane.showMessageDialog(this, "Nenhum Cartão de Débito foi selecionada para ser atualizado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
         
-        String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
-        String valor = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
-        String bandeira = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
-        
-        CartaoDebito cartao_d = 
-            new CartaoDebito.CartaoDebitoBuild(Long.parseLong(num_cartao))
-                .ValorAtual(Float.parseFloat(valor))
-                .Bandeira(bandeira)
-                .IdConta(Integer.parseInt(txt_id.getText()))
-                .build();
-        /*
+        try {
+
+            if (!(salvaLinhaAtiva)) {
+                JOptionPane.showMessageDialog(this, "Nenhum Cartão de Débito foi selecionada para ser atualizado", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+            String valor = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 1);
+            String bandeira = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 2);
+
+            CartaoDebito cartao_d
+                    = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(num_cartao))
+                            .ValorAtual(Float.parseFloat(valor))
+                            .Bandeira(bandeira)
+                            .IdConta(Integer.parseInt(txt_id.getText()))
+                            .build();
+            /*
         CartaoDebito cartao_d = 
             new CartaoDebito(
                 Long.parseLong(num_cartao),
@@ -220,12 +223,11 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                 bandeira,
                 Integer.parseInt(txt_id.getText())
             );
-            */
-        try {
+             */
 
             TelaAtualizarCartaoDebito(cartao_d);
 
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | NumberFormatException | NullPointerException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }

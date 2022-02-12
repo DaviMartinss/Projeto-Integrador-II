@@ -210,42 +210,25 @@ public class CartaoCredito extends Cartao{
         
         dia_aux.setDia(getDia_fatura());
         
-        if(dia_aux.verifica_dia()){
-            return  true;
-            
-        }else{
-            
-            return false;
-        }
+        return dia_aux.verifica_dia();
         
     }
      
      public boolean verifica_limite(){
-         if (getLimite() > 0) {
-             
-             return true;
-             
-         } else {
-             
-             return false;
-         }
+        return getLimite() > 0;
      }
      public boolean varifica_valor_fatura(){
          
-         if(getValor_fatura() >= 0 && getValor_fatura() <= getLimite()){
-             return true;
-         }else{
-             return false;
-         }
+        return getValor_fatura() >= 0 && getValor_fatura() <= getLimite();
      }
      
-     public boolean  verifica_bandeira_credito(){
-        
-         Cartao cartao_aux = new Cartao();
-         
-        return (cartao_aux.verifica_bandeira(bandeira));
-       
-    }         
+//     public boolean  verifica_bandeira_credito(){
+//        
+//         Cartao cartao_aux = new Cartao();
+//         
+//        return (cartao_aux.verifica_bandeira(bandeira));
+//       
+//    }         
      
 ////   // falta verificar o número do cartão
 //     public boolean  verifica_num_cartao_credito(){
@@ -254,34 +237,10 @@ public class CartaoCredito extends Cartao{
 //       
 //    }  
 //     
-     public boolean EhVazio(String rec){
-        if(rec == null || rec.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-       
-      public boolean UpdateEhVazio(String num_cartao, String valor, String limite, String bandeira, String dia){
-        
-        
-       if(EhVazio(num_cartao) || EhVazio(valor) || EhVazio(limite) || EhVazio(bandeira) || EhVazio(dia)){
-           
-           return true;
-           
-       }else{
-           return  false;
-       }
-    }
-      
+ 
     public boolean verifica_cartaoCreditoValido(){
           
-          if(varifica_valor_fatura() && verifica_bandeira_credito() && verifica_limite() && verifica_dia_fatura()){
-              return true;
-          }else{
-              return false;
-          }
+        return varifica_valor_fatura() && verifica_bandeira() && verifica_limite() && verifica_dia_fatura();
               
       }  
       
@@ -298,15 +257,10 @@ public class CartaoCredito extends Cartao{
             setDia_fatura(dia_aux);
             setBandeira(bandeira);
             
-            if(verifica_cartaoCreditoValido()){
-                return true;
-            }else{
-                return false;
-            }
+            return verifica_cartaoCreditoValido();
             
         }else{
             return false;
         }
     }
-      
 }

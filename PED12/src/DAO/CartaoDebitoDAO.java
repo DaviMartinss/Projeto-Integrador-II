@@ -27,7 +27,7 @@ public class CartaoDebitoDAO {
     
     }
     
-   public void InsertCartaoDebito(CartaoDebito cartaoDB) throws SQLException {
+   public void InsertCartaoDebito(CartaoDebito cartaoDB) throws SQLException, NullPointerException {
    
         PreparedStatement pst;
 
@@ -50,6 +50,8 @@ public class CartaoDebitoDAO {
 
         PreparedStatement pst;
         ResultSet rs;
+        
+        boolean despesaExiste = false;
 
         String consulta = "SELECT num_cartao_debito FROM despesa WHERE num_cartao_debito = ?";
 
@@ -59,10 +61,16 @@ public class CartaoDebitoDAO {
 
         rs = pst.executeQuery();
 
-        return rs.next();
+        if(rs.next())
+            despesaExiste = true;
+        
+        pst.close();
+        rs.close();
+        
+        return despesaExiste;
     }
    
-    public void UpdateCartaoDebito(CartaoDebito cartao_debito) throws SQLException {
+    public void UpdateCartaoDebito(CartaoDebito cartao_debito) throws SQLException, NullPointerException {
 
         PreparedStatement pst;
 
@@ -80,7 +88,7 @@ public class CartaoDebitoDAO {
         pst.close();
     }
 
-    public void DeleteCartaoDebito(CartaoDebito cartao_debito) throws SQLException {
+    public void DeleteCartaoDebito(CartaoDebito cartao_debito) throws SQLException, NullPointerException {
 
         PreparedStatement pst;
 
@@ -141,7 +149,8 @@ public class CartaoDebitoDAO {
            );
            */
            
-             lista_CD.add(new CartaoDebito.CartaoDebitoBuild(Long.parseLong(rs.getString("n_cartao_debito")))
+             lista_CD.add(new CartaoDebito.CartaoDebitoBuild(
+                    Long.parseLong(rs.getString("n_cartao_debito")))
                    .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
                    .Bandeira(rs.getString("bandeira"))
                    .IdConta(id_conta)
@@ -155,7 +164,7 @@ public class CartaoDebitoDAO {
        return lista_CD;
    }
    
-   public LinkedList<CartaoDebito> ConsultaCartaoDebito(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException {
+   public LinkedList<CartaoDebito> ConsultaCartaoDebito(String tipo, String arg, int id_conta, boolean ordenar) throws SQLException, NumberFormatException {
        
        LinkedList<CartaoDebito> lista_CD = new LinkedList();
        
@@ -189,7 +198,8 @@ public class CartaoDebitoDAO {
                     id_conta)
             );
 */
-               lista_CD.add(new CartaoDebito.CartaoDebitoBuild(Long.parseLong(rs.getString("n_cartao_debito")))
+               lista_CD.add(new CartaoDebito.CartaoDebitoBuild(
+                    Long.parseLong(rs.getString("n_cartao_debito")))
                     .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
                     .Bandeira(rs.getString("bandeira"))
                     .IdConta(id_conta)
@@ -208,6 +218,8 @@ public class CartaoDebitoDAO {
        PreparedStatement pst;
        ResultSet rs;
        
+       boolean cdExiste = false;
+       
        String consulta = "SELECT n_cartao_debito FROM cartao_debito WHERE n_cartao_debito = ? AND conta_id_conta =?";
        
        pst = conexao.prepareStatement(consulta);
@@ -218,13 +230,16 @@ public class CartaoDebitoDAO {
 
        rs = pst.executeQuery();
        
+       if(rs.next())
+           cdExiste = true;
+       
        pst.close();
        rs.close();
 
-       return rs.next();
+       return cdExiste;
    }
    
-   public CartaoDebito GetCartaoDebito(long numCartao, int id_conta) throws SQLException {
+   public CartaoDebito GetCartaoDebito(long numCartao, int id_conta) throws SQLException, NumberFormatException {
 
         PreparedStatement pst;
         ResultSet rs;
@@ -256,8 +271,10 @@ public class CartaoDebitoDAO {
             cartao.setValor_atual(rs.getFloat("valor_atual"));
             cartao.setBandeira(rs.getString("bandeira"));
         }
+        
+        pst.close();
+        rs.close();
 
         return cartao;
     }
-    
 }

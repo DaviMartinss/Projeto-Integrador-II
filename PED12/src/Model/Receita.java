@@ -196,45 +196,17 @@ public class Receita{
 
     
     public boolean verifica_total(){
-        if (getTotal() > 0) {
-            
-            return  true;
-        } else {
-            
-            return false;
-        }
+        return getTotal() > 0;
     }
     
     public boolean verifica_ReceitaValida(){
         
         Data data_aux = new Data.DataBuild(mes, ano).Dia(dia).build();
         
-        
-        if(data_aux.verifica_data() && verifica_total()){
-            return true;
-        }else{
-            return false;
-        }
+        return data_aux.verifica_data() && verifica_total();
     }
-    
-     public boolean valorEhVazio(String valor){
-         if(valor == null || valor.trim().equals("")){
-            return true;
-        }else{
-            return false;
-        }
-    }
+
      
-    public boolean UpdateEhVazio(String dia, String mes, String ano, String valor){
-        Data data_aux = new Data.DataBuild().build();
-        
-        if(data_aux.dataEhVazia(dia, mes, ano) || valorEhVazio(valor)){
-            return true;
-        }else{
-            
-            return false;
-        }
-    }
     /*
     public boolean ehNum(String res){
         
@@ -287,11 +259,7 @@ public class Receita{
             setAno(ano_aux);
             setTotal(valor_aux);
             
-            if(verifica_ReceitaValida()){
-                return true;
-            }else{
-                return false;
-            }
+            return verifica_ReceitaValida();
             
         }else{
             return false;
