@@ -68,7 +68,7 @@ public class Cartao {
     }
 
     //Utilizando o algoritmo de LUHN para validar o número dos cartões
-    public boolean ValidaNUM_Cartao(String numeroCartao) {
+    public boolean ValidarN_Cartao(String numeroCartao) {
 
         int somaPar = 0;
         int somaImpar = 0;

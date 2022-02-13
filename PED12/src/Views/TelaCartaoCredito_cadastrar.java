@@ -113,7 +113,7 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
                     cadastra = false;
                 }
 
-                if (!(cartaoCC.ValidaNUM_Cartao(txt_NumCC.getText()))) {
+                if (!(cartaoCC.ValidarN_Cartao(txt_NumCC.getText()))) {
 
                     JOptionPane.showMessageDialog(this, "Número do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                     cadastra = false;
@@ -131,13 +131,13 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
                     cadastra = false;
                 }
 
-                if (!(cartaoCC.verifica_dia_fatura())) {
+                if (!(cartaoCC.ValidarDiaFatura())) {
 
                     JOptionPane.showMessageDialog(this, "Dia da fatura inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                     cadastra = false;
                 }
 
-                if (!(cartaoCC.verifica_limite())) {
+                if (!(cartaoCC.ValidarLimite())) {
 
                     JOptionPane.showMessageDialog(this, "Limite do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                     cadastra = false;

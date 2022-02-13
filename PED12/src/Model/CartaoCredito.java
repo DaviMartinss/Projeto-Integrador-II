@@ -149,7 +149,7 @@ public class CartaoCredito extends Cartao{
     }
     
     
-     public boolean verifica_dia_fatura(){
+     public boolean ValidarDiaFatura(){
          
         Data dia_aux = new Data.DataBuild().build();
         
@@ -159,38 +159,18 @@ public class CartaoCredito extends Cartao{
         
     }
      
-    public boolean verifica_limite(){
+    public boolean ValidarLimite(){
         return getLimite() > 0;
     }
     
-    public boolean varifica_valor_fatura(){
+    public boolean ValidarFatura(){
          
         return getValor_fatura() >= 0 && getValor_fatura() <= getLimite();
     }
      
-    public boolean verifica_cartaoCreditoValido(){
+    public boolean ValidarCartaoCredito(){
           
-        return varifica_valor_fatura() && verifica_bandeira() && verifica_limite() && verifica_dia_fatura();
+        return ValidarFatura() && verifica_bandeira() && ValidarLimite() && ValidarDiaFatura();
               
     }  
-      
-    public boolean Update_CamposValidos(String valorFat, String bandeira, String limite, String diaFat){
-        Validacao valida = new Validacao();
-        
-        float valorFat_aux = valida.converteParaFloat(valorFat);
-        float limite_aux  = valida.converteParaFloat(limite);
-        int dia_aux = valida.converteParaInt(diaFat);
-        
-        if(valorFat_aux != -1 && limite_aux != -1 && dia_aux != -1 ){
-            setValor_fatura(valorFat_aux);
-            setLimite(limite_aux);
-            setDia_fatura(dia_aux);
-            setBandeira(bandeira);
-            
-            return verifica_cartaoCreditoValido();
-            
-        }else{
-            return false;
-        }
-    }
 }

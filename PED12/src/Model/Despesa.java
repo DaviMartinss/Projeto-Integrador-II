@@ -5,8 +5,6 @@
  */
 package Model;
 
-import Utilities.Validacao;
-
 /**
  *
  * @author Alan
@@ -29,6 +27,9 @@ public class Despesa {
     private int id_conta;
     private int cod_despesa;
     private int id_categoria;
+    
+    private CartaoCredito cc;
+    private CartaoDebito cd;
     
     public Despesa(DespesaBuild build){
         this.dia = build.dia;
@@ -270,39 +271,25 @@ public class Despesa {
         this.id_categoria = id_categoria;
     }
     
-    public boolean validaDataDespesa() {
-
-        Data data_aux = new Data.DataBuild(getMes(), getAno())
-                .Dia(getDia())
-                .build();
-        
-
-        return data_aux.verifica_data();
-    }
-
     public boolean validaNumParcelas() {
 
         return this.getNum_parcelas() > 0 && this.getNum_parcelas() <= 12;
     }
 
-    public boolean validaValor() {
+    public boolean ValidarValorDespesa() {
 
         return getValor() > 0;
     }
 
-    public boolean valorEhVazio(String valor) {
-        return valor == null || valor.trim().equals("");
-    }
+    public boolean ValidarNumCartao() {
 
-    public boolean verifica_num_cartao_despesa() {
+        Cartao cartao = new Cartao();
 
-        Cartao cartao_aux = new Cartao();
-
-        return (cartao_aux.ValidaNUM_Cartao(Long.toString(this.num_cartao)));
+        return (cartao.ValidarN_Cartao(Long.toString(this.num_cartao)));
 
     }
 
-    public boolean verifica_Categoria(String categoria) {
+    public boolean ValidarCategoria(String categoria) {
 
         String categoria_aux = categoria.replace(" ", "");
 
@@ -318,34 +305,5 @@ public class Despesa {
         }
 
         return soLetra;
-    }
-
-    public boolean verifica_DespesaValida() {
-
-        return validaValor() && validaDataDespesa();
-
-    }
-       
-
-    public boolean Update_CamposValidos(String valor, String dia, String mes, String ano) {
-        Validacao valida = new Validacao();
-
-        int dia_aux = valida.converteParaInt(dia);
-        int mes_aux = valida.converteParaInt(mes);
-        int ano_aux = valida.converteParaInt(ano);
-        float valor_aux = valida.converteParaFloat(valor);
-
-        if (dia_aux != -1 && mes_aux != -1 && ano_aux != -1 && valor_aux != -1) {
-            setDia(dia_aux);
-            setMes(mes_aux);
-            setAno(ano_aux);
-            setValor(valor_aux);
-
-            return verifica_DespesaValida();
-
-        } else {
-
-            return false;
-        }
     }
 }

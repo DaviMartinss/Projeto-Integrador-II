@@ -34,7 +34,12 @@ public class Validacao {
         try {
           
             formatDate.setLenient(false);
-            formatDate.parse(dataString);
+         
+            if(dataString.length() == 8)
+                formatDate.parse(dataString);
+            else
+                JOptionPane.showMessageDialog(null, "Digitte uma data no formato Ex: Dia = 01, Mês = 03 e Ano = 2000");
+            
             return true; 
             
         } catch (ParseException e) {
@@ -42,20 +47,25 @@ public class Validacao {
         }
     }
     
-    public int converteParaInt(String valor){
-        if(isNumeric(valor)){
-            return Integer.parseInt(valor);
-          }
-          
-          return -1;
-    }  
+//    public int converteParaInt(String valor){
+//        if(isNumeric(valor)){
+//            return Integer.parseInt(valor);
+//          }
+//          
+//          return -1;
+//    }  
+//    
+//     public float converteParaFloat(String valor){
+//         
+//        if(isNumeric(valor)){
+//            return Float.parseFloat(valor);
+//          }
+//          
+//          return -1;
+//    }    
     
-     public float converteParaFloat(String valor){
-         
-        if(isNumeric(valor)){
-            return Float.parseFloat(valor);
-          }
-          
-          return -1;
-    }    
+    
+    
+    
+    
 }

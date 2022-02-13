@@ -346,7 +346,27 @@ public class TelaDespesa extends javax.swing.JFrame {
                             .Status(status)
                             .Descricao(descricao)
                             .build();
-                   
+
+                    if (!(despesa.validaNumParcelas())) {
+
+                        JOptionPane.showMessageDialog(this, "Número de parcelas inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    /*
+                despesa = new Despesa(
+                        Integer.parseInt(dia),
+                        Integer.parseInt(mes),
+                        Integer.parseInt(ano),
+                        Float.parseFloat(valor),
+                        categoria,
+                        formaPagamento,
+                        Long.parseLong(numCartao),
+                        Integer.parseInt(numParcelas),
+                        status,
+                        descricao,
+                        salvaCodigoDespesa
+                );
+                     */
                     break;
 
                 case "DÉBITO":
@@ -389,7 +409,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
             if ((despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO"))) {
 
-                if (!(despesa.verifica_num_cartao_despesa())) {
+                if (!(despesa.ValidarNumCartao())) {
                     JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
@@ -780,11 +800,17 @@ public class TelaDespesa extends javax.swing.JFrame {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
  
-        
-        if(!(Validacao.isNumeric(txtMesReceita.getText()) && Validacao.isNumeric(txtAnoReceita.getText()) )){
-            JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
-            return;
+        if (!StringUtils.isNullOrEmpty(txtMesReceita.getText()) && 
+            !StringUtils.isNullOrEmpty(txtAnoReceita.getText())) 
+        {
+            
+            if (!(Validacao.isNumeric(txtMesReceita.getText()) && Validacao.isNumeric(txtAnoReceita.getText()))) {
+                JOptionPane.showMessageDialog(this, "Erro na validação da consulta");
+                return;
+            }
+
         }
+        
         
         PesquisaDespesa(true);
 

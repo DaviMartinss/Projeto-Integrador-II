@@ -68,11 +68,6 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
                 return;
             }
 
-            if (!(cartao_aux.Update_CamposValidos(txt_ValorFatura.getText(), txt_Bandeira.getText(), txt_Limite.getText(), txt_DiaFatura.getText()))) {
-                JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-
             if (!(Validacao.isNumeric(txt_NumCartaoC.getText()))) {
                 JOptionPane.showMessageDialog(this, "Valor inválido", "INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
                 return;
@@ -97,12 +92,12 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
                 }
             }
 
-            if (cartao_c.varifica_valor_fatura()
+            if (cartao_c.ValidarFatura()
                     && cartao_c.verifica_bandeira()
-                    && cartao_c.verifica_dia_fatura()
-                    && cartao_c.verifica_limite()) {
+                    && cartao_c.ValidarDiaFatura()
+                    && cartao_c.ValidarLimite()) {
 
-                if (!(cartao_c.ValidaNUM_Cartao(txt_NumCartaoC.getText()))) {
+                if (!(cartao_c.ValidarN_Cartao(txt_NumCartaoC.getText()))) {
 
                     JOptionPane.showMessageDialog(this, "Número do cartão de crédito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 

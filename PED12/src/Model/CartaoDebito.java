@@ -103,7 +103,7 @@ public class CartaoDebito extends Cartao{
 
         Cartao cartao_aux = new Cartao();
 
-        return (cartao_aux.ValidaNUM_Cartao(Long.toString(n_cartao_debito)));
+        return (cartao_aux.ValidarN_Cartao(Long.toString(n_cartao_debito)));
 
     }
 }

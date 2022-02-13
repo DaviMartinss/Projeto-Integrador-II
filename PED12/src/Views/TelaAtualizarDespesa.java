@@ -7,6 +7,7 @@ package Views;
 
 import Controllers.ControlerCategoria;
 import Controllers.ControlerDespesa;
+import Controllers.ControlerReceita;
 import Model.Categoria;
 import Model.Despesa;
 import Utilities.Validacao;
@@ -60,11 +61,8 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
     }
     
     void AtualizarDespesa() {
-
          
         try {
-
-            Despesa despesa_aux = new Despesa.DespesaBuild().build();
 
             if (StringUtils.isNullOrEmpty(txtDia.getText())
                     && StringUtils.isNullOrEmpty(txtMes.getText())
@@ -75,92 +73,121 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                     && StringUtils.isNullOrEmpty(txtParcelas.getText())
                     && StringUtils.isNullOrEmpty(salvaStatus)) 
             {
-                JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
+                JOptionPane.showMessageDialog(this, "Nenhum Campo pode ser vazio");
                 return;
             }
-
-            if (!(despesa_aux.Update_CamposValidos(txtValor.getText(), txtDia.getText(), txtMes.getText(), txtAno.getText()))) {
-
-                JOptionPane.showMessageDialog(this, "O valor informado é inválido");
-                return;
-            }
-
-            if (salvaF_pagamento.equals("CRÉDITO")) {
-                if (!(Validacao.isNumeric(txtParcelas.getText()))) {
-                    JOptionPane.showMessageDialog(this, "Número de parcelas inválido");
+            else 
+            {
+                if(Validacao.isNumeric(txtDia.getText()) && Validacao.isNumeric(txtMes.getText()) &&
+                   Validacao.isNumeric(txtAno.getText()) && Validacao.isNumeric(txtValor.getText()))
+                {
+                    JOptionPane.showMessageDialog(this, "Campo com dados não númericos!");
                     return;
                 }
-            }
+                  
+                String dataFormat = txtDia.getText() + txtMes.getText() + txtAno.getText();
 
-            String categoria = cbb_categoria.getSelectedItem().toString().trim();
-
-            Despesa despesa;
-
-            switch (salvaF_pagamento) {
-
-                case "CRÉDITO":
-
-                    despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
-                            .Dia(Integer.parseInt(txtDia.getText().trim()))
-                            .Mes(Integer.parseInt(txtMes.getText()))
-                            .Ano(Integer.parseInt(txtAno.getText()))
-                            .Valor(Float.parseFloat(txtValor.getText()))
-                            .Categoria(categoria)
-                            .FormaPagamento(salvaF_pagamento)
-                            .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
-                            .NumeroParcelas(Integer.parseInt(txtParcelas.getText()))
-                            .Status(salvaStatus)
-                            .Descricao(txtAreaDescricao.getText())
-                            .build();
-                    break;
-
-                case "DÉBITO":
-                    despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
-                            .Dia(Integer.parseInt(txtDia.getText().trim()))
-                            .Mes(Integer.parseInt(txtMes.getText()))
-                            .Ano(Integer.parseInt(txtAno.getText()))
-                            .Valor(Float.parseFloat(txtValor.getText()))
-                            .Categoria(categoria)
-                            .FormaPagamento(salvaF_pagamento)
-                            .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
-                            .Status(salvaStatus)
-                            .Descricao(txtAreaDescricao.getText())
-                            .build();
-                    break;
-
-                case "DINHEIRO":
-                    despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
-                            .Dia(Integer.parseInt(txtDia.getText().trim()))
-                            .Mes(Integer.parseInt(txtMes.getText()))
-                            .Ano(Integer.parseInt(txtAno.getText()))
-                            .Valor(Float.parseFloat(txtValor.getText()))
-                            .Categoria(categoria)
-                            .FormaPagamento(salvaF_pagamento)
-                            .Status(salvaStatus)
-                            .Descricao(txtAreaDescricao.getText())
-                            .build();
-                    break;
-
-                //VER USO DE ALGUMA EXCEPTION OU NAO    
-                default:
-                    JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada");
-                    return;
-
-            }
-
-            if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
-
-                if (!(despesa.verifica_num_cartao_despesa())) {
-
-                    JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                if (!Validacao.isDate(dataFormat)) {
+                    JOptionPane.showMessageDialog(this, "Data Inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
+
+//                if (salvaF_pagamento.equals("CRÉDITO")) {
+//                    if (!(Validacao.isNumeric(txtParcelas.getText()))) {
+//                        JOptionPane.showMessageDialog(this, "Número de parcelas inválido");
+//                        return;
+//                    }
+//                }
+
+                String categoria = cbb_categoria.getSelectedItem().toString().trim();
+
+                Despesa despesa = null;
+
+                switch (salvaF_pagamento) {
+
+                    case "CRÉDITO":
+
+                        despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
+                                .Dia(Integer.parseInt(txtDia.getText().trim()))
+                                .Mes(Integer.parseInt(txtMes.getText()))
+                                .Ano(Integer.parseInt(txtAno.getText()))
+                                .Valor(Float.parseFloat(txtValor.getText()))
+                                .Categoria(categoria)
+                                .FormaPagamento(salvaF_pagamento)
+                                .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
+                                .NumeroParcelas(Integer.parseInt(txtParcelas.getText()))
+                                .Status(salvaStatus)
+                                .Descricao(txtAreaDescricao.getText())
+                                .build();
+                        
+                        if(Validacao.isNumeric(txtParcelas.getText()))
+                        {
+                            JOptionPane.showMessageDialog(this, "Valor do Nº Parcelas é inválido!");
+                            return;
+                        }
+                            
+                        break;
+
+                    case "DÉBITO":
+                        despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
+                                .Dia(Integer.parseInt(txtDia.getText().trim()))
+                                .Mes(Integer.parseInt(txtMes.getText()))
+                                .Ano(Integer.parseInt(txtAno.getText()))
+                                .Valor(Float.parseFloat(txtValor.getText()))
+                                .Categoria(categoria)
+                                .FormaPagamento(salvaF_pagamento)
+                                .NumeroCartao(Long.parseLong(txt_NumCartao.getText()))
+                                .Status(salvaStatus)
+                                .Descricao(txtAreaDescricao.getText())
+                                .build();
+                        
+                        break;
+
+                    case "DINHEIRO":
+                        despesa = new Despesa.DespesaBuild(this.despesa.getCod_despesa())
+                                .Dia(Integer.parseInt(txtDia.getText().trim()))
+                                .Mes(Integer.parseInt(txtMes.getText()))
+                                .Ano(Integer.parseInt(txtAno.getText()))
+                                .Valor(Float.parseFloat(txtValor.getText()))
+                                .Categoria(categoria)
+                                .FormaPagamento(salvaF_pagamento)
+                                .Status(salvaStatus)
+                                .Descricao(txtAreaDescricao.getText())
+                                .build();
+                        break;
+
+                    //VER USO DE ALGUMA EXCEPTION OU NAO    
+                    default:
+                        JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada");
+                        return;
+                }
+                
+                if (!(despesa.ValidarValorDespesa())) {
+
+                     JOptionPane.showMessageDialog(this, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                     return;
+                 }
+                
+                if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
+
+                    if (Validacao.isNumeric(txt_NumCartao.getText())) {
+                        JOptionPane.showMessageDialog(this, "Campo com dados não númericos!");
+                        return;
+                    }
+
+                    if (!(despesa.ValidarNumCartao())) {
+
+                        JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
+
+                despesa.setId_conta(this.despesa.getId_conta());
+
+                ControlerDespesa.AtualizarDespesa(despesa);
+
             }
-
-            despesa.setId_conta(this.despesa.getId_conta());
-
-            ControlerDespesa.AtualizarDespesa(despesa);
-
+            
         } catch (HeadlessException | NullPointerException | NumberFormatException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
