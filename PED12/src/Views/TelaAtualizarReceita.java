@@ -49,30 +49,29 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
     }
     
     void AtualizarReceita() {
-       
+        
+        try {
 
-        if (!(
-                Validacao.isNumeric(txt_dia.getText()) && 
-                Validacao.isNumeric(txt_mes.getText()) && 
-                Validacao.isNumeric(txt_ano.getText()) && 
-                Validacao.isNumeric(txt_total.getText())
-              )
-            ) 
-        {
-            JOptionPane.showMessageDialog(this, "Informe um valor numérico!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+            if (!(Validacao.isNumeric(txt_dia.getText())
+                    && Validacao.isNumeric(txt_mes.getText())
+                    && Validacao.isNumeric(txt_ano.getText())
+                    && Validacao.isNumeric(txt_total.getText()))) {
+                JOptionPane.showMessageDialog(this, "Informe um valor numérico!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        if (!(StringUtils.isNullOrEmpty(txt_dia.getText())) &&  !(StringUtils.isNullOrEmpty(txt_mes.getText())) &&
-            !(StringUtils.isNullOrEmpty(txt_ano.getText())) &&  !(StringUtils.isNullOrEmpty(txt_total.getText())))
-        {
-            
-             Receita receita_atual
-                    = new Receita.ReceitaBuild(receita.getId_conta(), Integer.parseInt(txt_mes.getText()), Integer.parseInt(txt_ano.getText()))
-                          .Dia(Integer.parseInt(txt_dia.getText()))
-                          .Total(Float.parseFloat(txt_total.getText()))
-                          .build();
-            /*
+            if (!(StringUtils.isNullOrEmpty(txt_dia.getText())) && !(StringUtils.isNullOrEmpty(txt_mes.getText()))
+                    && !(StringUtils.isNullOrEmpty(txt_ano.getText())) && !(StringUtils.isNullOrEmpty(txt_total.getText()))) {
+
+                Receita receita_atual
+                        = new Receita.ReceitaBuild(
+                                receita.getId_conta(), 
+                                Integer.parseInt(txt_mes.getText()), 
+                                Integer.parseInt(txt_ano.getText()))
+                                .Dia(Integer.parseInt(txt_dia.getText()))
+                                .Total(Float.parseFloat(txt_total.getText()))
+                                .build();
+                /*
             Receita receita_atual
                     = new Receita
                           (
@@ -84,9 +83,8 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                             this.receita.getMes(),
                             this.receita.getAno()
                           );
-            */
+                 */
 
-            try {
                 //MUDAR NOME DESSES MÉTODOS DE VALIDAÇÃO
                 if (receita_atual.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())) {
 
@@ -104,12 +102,13 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Valor Inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
                 }
 
-            } catch (HeadlessException e) {
-
-                JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhum campo pode ser nulo", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Nenhum campo pode ser nulo", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+
+        } catch (HeadlessException | NumberFormatException | NullPointerException e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
 
     }
