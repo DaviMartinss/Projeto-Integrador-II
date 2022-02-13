@@ -105,7 +105,7 @@ public class Despesa {
            }
             
              public DespesaBuild NumeroCartao(long numCartao){
-               this.num_cartao = num_cartao;
+               this.num_cartao = numCartao;
                return this;
            }
              
