@@ -7,7 +7,8 @@ package Model;
 
 /**
  *
- * @author Alan
+ * @author alan
+ * @author DAVI
  */
 public class Categoria {
 
@@ -15,6 +16,7 @@ public class Categoria {
     private String CategoriaTipo;
     private int id_conta;
     private String Categoria_aux;
+    
     public Categoria(CategoriaBuild build){
         this.CategiaId = build.CategiaId;
         this.CategoriaTipo = build.CategoriaTipo;
@@ -29,58 +31,30 @@ public class Categoria {
         private String Categoria_aux; 
         
         
-         public CategoriaBuild CategiaId(int categoriaId){
-             this.CategiaId = categoriaId;
-             return this;
-         }
+        public CategoriaBuild CategiaId(int categoriaId){
+            this.CategiaId = categoriaId;
+            return this;
+        }
          
-          public CategoriaBuild CategoriaTipo(String categoriaTipo){
-              this.CategoriaTipo = categoriaTipo;
-              return this;
-          }
+        public CategoriaBuild CategoriaTipo(String categoriaTipo){
+            this.CategoriaTipo = categoriaTipo;
+            return this;
+        }
           
-          public CategoriaBuild id_conta(int idConta){
-              this.id_conta = idConta;
-              return this;
-          }
-          public CategoriaBuild Categoria_aux(String categotia_aux){
-               this.Categoria_aux = Categoria_aux;
-               return this;
-           }
+        public CategoriaBuild id_conta(int idConta){
+            this.id_conta = idConta;
+            return this;
+        }
+        
+        public CategoriaBuild Categoria_aux(String categotia_aux){
+            this.Categoria_aux = Categoria_aux;
+            return this;
+        }
           
-          public Categoria build(){
-              return new Categoria(this);
-          }
+        public Categoria build(){
+            return new Categoria(this);
+        }
     }
-    /*
-    public Categoria(){
-    
-    }
-    
-    public Categoria(String nome, int idConta){
-        this.CategoriaTipo = nome;
-        this.id_conta = idConta;
-    }
-    
-   
-    public Categoria(int CategiaId, String CategoriaTipo) {
-        this.CategiaId = CategiaId;
-        this.CategoriaTipo = CategoriaTipo;
-    }
-
-    
-    public Categoria(String categoriaTipo) {
-        
-        this.CategoriaTipo = categoriaTipo;
-        
-    }
-
-    public Categoria(String CategoriaTipo, String Categoria_aux, int id_conta) {
-        this.CategoriaTipo = CategoriaTipo;
-        this.Categoria_aux = Categoria_aux;
-        this.id_conta = id_conta;
-    }
-    */
    
     public int getCategoriaId() {
         return CategiaId;
@@ -114,9 +88,4 @@ public class Categoria {
     public void setCategoria_aux(String Categoria_aux) {
         this.Categoria_aux = Categoria_aux;
     }
-    
-    
-//    public boolean valorEhVazio(String valor){
-//        return valor == null || valor.trim().equals("");
-//    }
 }

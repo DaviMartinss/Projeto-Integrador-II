@@ -19,7 +19,7 @@ public class Usuario {
     private String salvaEmail_aux;
     private int id_conta;
     
-     public Usuario(UsuarioBuild build){
+    public Usuario(UsuarioBuild build){
         this.nome = build.nome;
         this.email = build.email;
         this.senha = build.senha;
@@ -41,72 +41,36 @@ public class Usuario {
         
         public UsuarioBuild(){}
         
-         public UsuarioBuild Nome(String nome){
-             this.nome = nome;
-             return this;
-         }
-         
-          public UsuarioBuild Email(String email){
-              this.email = email;
-              return this;
-          }
-          
-          public UsuarioBuild Senha(String senha){
-              this.senha = senha;
-              return this;
-          }
-           
-          public UsuarioBuild ConfirmaSenha(String senha){
-              this.senhaConfirma = senha;
-              return this;
-          }
-          
-          public UsuarioBuild IdConta(int idConta){
-              this.id_conta = idConta;
-              return this;
-          }
-          
-          public Usuario build(){
-              return new Usuario(this);
-          }
+        public UsuarioBuild Nome(String nome){
+            this.nome = nome;
+            return this;
         }
-    /*
-    public Usuario() {
-       
-    }
-    
-    // recupera senha
-    public Usuario(String email){
-        this.email = email;
-    }
-    
-    public Usuario(String email, String senha) {
-        this.email = email;
-        this.senha = senha;
-    }
-    
-    public Usuario(String nome, String email, String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+         
+        public UsuarioBuild Email(String email){
+            this.email = email;
+            return this;
+        }
+          
+        public UsuarioBuild Senha(String senha){
+            this.senha = senha;
+            return this;
+        }
+           
+        public UsuarioBuild ConfirmaSenha(String senha){
+            this.senhaConfirma = senha;
+            return this;
+        }
+          
+        public UsuarioBuild IdConta(int idConta){
+            this.id_conta = idConta;
+            return this;
+        }
+          
+        public Usuario build(){
+            return new Usuario(this);
+        }
     }
 
-    public Usuario(String senha, String senhaConfirma, int id_conta) {
-        this.senha = senha;
-        this.senhaConfirma = senhaConfirma;
-        this.id_conta = id_conta;
-    }
-    
-    
-    
-    
-    public Usuario(int id_conta, String nome, String email) {
-        this.id_conta = id_conta;
-        this.nome = nome;
-        this.email = email;
-        
-    }
-    */
     public String getEmail() {
         return email;
     }
@@ -118,10 +82,7 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
-
-    /**
-     * @return the nome
-     */
+    
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -130,16 +91,11 @@ public class Usuario {
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return the id_conta
-     */
     public int getId_conta() {
         return id_conta;
     }
@@ -151,10 +107,7 @@ public class Usuario {
     public void setSenhaConfirma(String senhaConfirma) {
         this.senhaConfirma = senhaConfirma;
     }
-
-    /**
-     * @param id_conta the id_conta to set
-     */
+    
     public void setId_conta(int id_conta) {
         this.id_conta = id_conta;
     }

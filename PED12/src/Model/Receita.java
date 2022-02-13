@@ -22,7 +22,7 @@ public class Receita{
     private int Salva_ano;
     private int cod_receita;
     
-     public Receita(ReceitaBuild build){
+    public Receita(ReceitaBuild build){
         this.dia = build.dia;
         this.mes = build.mes;
         this.ano = build.ano;
@@ -52,84 +52,51 @@ public class Receita{
         
         public ReceitaBuild(){}
         
-         public ReceitaBuild Dia(int dia){
-             this.dia = dia;
-             return this;
-         }
+        public ReceitaBuild Dia(int dia){
+           this.dia = dia;
+           return this;
+        }
          
-          public ReceitaBuild Mes(int mes){
-              this.mes = mes;
-              return this;
-          }
+        public ReceitaBuild Mes(int mes){
+            this.mes = mes;
+            return this;
+        }
           
-          public ReceitaBuild Ano(int ano){
-              this.ano = ano;
-              return this;
-          }
-          public ReceitaBuild Total(float total){
-               this.total = total;
-               return this;
-           }
-          public ReceitaBuild IdConta(int id_conta){
-               this.id_conta = id_conta;
-               return this;
-           }
-           public ReceitaBuild SalvaMes(int salva_Mes){
-               this.Salva_Mes = salva_Mes;
-               return this;
-           }
+        public ReceitaBuild Ano(int ano){
+            this.ano = ano;
+            return this;
+        }
+        
+        public ReceitaBuild Total(float total){
+            this.total = total;
+            return this;
+        }
+        
+        public ReceitaBuild IdConta(int id_conta){
+            this.id_conta = id_conta;
+            return this;
+        }
+        
+        public ReceitaBuild SalvaMes(int salva_Mes){
+            this.Salva_Mes = salva_Mes;
+            return this;
+        }
            
-            public ReceitaBuild SalvaAno(int salvaAno){
-               this.Salva_ano = salvaAno;
-               return this;
-           }
+        public ReceitaBuild SalvaAno(int salvaAno){
+            this.Salva_ano = salvaAno;
+            return this;
+        }
             
-             public ReceitaBuild CodReceita(int cod_receita){
-               this.cod_receita = id_conta;
-               return this;
-           }
-          public Receita build(){
-              return new Receita(this);
-          }
-    }
-    /*
-    public Receita() {
+        public ReceitaBuild CodReceita(int cod_receita){
+            this.cod_receita = id_conta;
+            return this;
+        }
         
+        public Receita build(){
+            return new Receita(this);
+        }
     }
-
-    public Receita(int dia, int mes, int ano, float total, int id_conta) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.total = total;
-        this.id_conta = id_conta;
-    }
-
-    public Receita(int id_conta, int mes, int ano ) {
-        this.id_conta = id_conta;
-        this.mes = mes;
-        this.ano = ano;
-        
-    }
-    
-    public Receita(int id_conta,int dia, int mes, int ano ) {
-        this.id_conta = id_conta;
-        this.mes = mes;
-        this.ano = ano;
-        this.dia = dia;
-        
-    }
-    
-    public Receita(int dia, int mes, int ano, float total, int id_conta, int Salva_Mes, int Salva_ano) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.total = total;
-        this.id_conta = id_conta;
-        this.Salva_Mes = Salva_Mes;
-        this.Salva_ano = Salva_ano;
-    }
-*/
+   
     public int getId_conta() {
         return id_conta;
     }
@@ -205,46 +172,6 @@ public class Receita{
         
         return data_aux.verifica_data() && verifica_total();
     }
-
-     
-    /*
-    public boolean ehNum(String res){
-        
-        boolean isNumeric = true;
-            
-            for(int i = 0; i < res.length(); i++){
-                if(!Character.isDigit(res.charAt(i))){
-                    isNumeric = false;
-                }
-            }
-            if(isNumeric){
-                
-                return  true;
-                
-            }else{
-                
-                return  false;
-            }
-        
-     }
-        
-
-    public int converteParaInt(String valor){
-        if(ehNum(valor)){
-            return Integer.parseInt(valor);
-          }
-          
-          return -1;
-    }
-    
-     public float converteParaFloat(String valor){
-        if(ehNum(valor)){
-            return Float.parseFloat(valor);
-          }
-          
-          return -1;
-    }
-     */
     
     public boolean Update_CamposValidos(String dia, String mes, String ano, String valor){
         

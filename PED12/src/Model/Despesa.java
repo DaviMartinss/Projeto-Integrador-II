@@ -10,6 +10,7 @@ import Utilities.Validacao;
 /**
  *
  * @author Alan
+ * @author DAVI
  */
 public class Despesa {
 
@@ -29,7 +30,7 @@ public class Despesa {
     private int cod_despesa;
     private int id_categoria;
     
-      public Despesa(DespesaBuild build){
+    public Despesa(DespesaBuild build){
         this.dia = build.dia;
         this.mes = build.mes;
         this.ano = build.ano;
@@ -72,166 +73,81 @@ public class Despesa {
         
         public DespesaBuild(){}
         
-         public DespesaBuild Dia(int dia){
-             this.dia = dia;
-             return this;
+        public DespesaBuild Dia(int dia){
+            this.dia = dia;
+            return this;
          }
          
-          public DespesaBuild Mes(int mes){
-              this.mes = mes;
-              return this;
-          }
+        public DespesaBuild Mes(int mes){
+            this.mes = mes;
+            return this;
+        }
           
-          public DespesaBuild Ano(int ano){
-              this.ano = ano;
-              return this;
-          }
-          public DespesaBuild Valor(float valor){
-               this.valor = valor;
-               return this;
-           }
-          public DespesaBuild Categoria(String categoria){
-               this.categoria = categoria;
-               return this;
-           }
-           public DespesaBuild Descricao(String descricao){
-               this.descricao = descricao;
-               return this;
-           }
+        public DespesaBuild Ano(int ano){
+            this.ano = ano;
+            return this;
+        }
+        
+        public DespesaBuild Valor(float valor){
+            this.valor = valor;
+            return this;
+        }
+        
+        public DespesaBuild Categoria(String categoria){
+            this.categoria = categoria;
+            return this;
+        }
+        
+        public DespesaBuild Descricao(String descricao){
+            this.descricao = descricao;
+            return this;
+        }
            
-            public DespesaBuild FormaPagamento(String formaPagamento){
-               this.f_pagamento = formaPagamento;
-               return this;
-           }
+        public DespesaBuild FormaPagamento(String formaPagamento){
+            this.f_pagamento = formaPagamento;
+            return this;
+        }
             
-             public DespesaBuild NumeroCartao(long numCartao){
-               this.num_cartao = numCartao;
-               return this;
-           }
+        public DespesaBuild NumeroCartao(long numCartao){
+            this.num_cartao = numCartao;
+            return this;
+        }
              
-             public DespesaBuild Status(String status){
-               this.estatus = status;
-               return this;
-           }
+        public DespesaBuild Status(String status){
+            this.estatus = status;
+            return this;
+        }
              
-             public DespesaBuild NumeroParcelas(int numeroParcelas){
-               this.num_parcelas = numeroParcelas;
-               return this;
-           }
+        public DespesaBuild NumeroParcelas(int numeroParcelas){
+            this.num_parcelas = numeroParcelas;
+            return this;
+        }
              
-             public DespesaBuild NumeroParcelasPagas(int numParcelasPagas){
-               this.num_parcelas_pagas = numParcelasPagas;
-               return this;
-           }
+        public DespesaBuild NumeroParcelasPagas(int numParcelasPagas){
+            this.num_parcelas_pagas = numParcelasPagas;
+            return this;
+        }
              
-             public DespesaBuild ValorParcela(float valorParcela){
-               this.valor_parcela = valorParcela;
-               return this;
-           }
+        public DespesaBuild ValorParcela(float valorParcela){
+            this.valor_parcela = valorParcela;
+            return this;
+        }
              
-             public DespesaBuild IdConta(int idConta){
-               this.id_conta = idConta;
-               return this;
-           }
+        public DespesaBuild IdConta(int idConta){
+            this.id_conta = idConta;
+            return this;
+        }
              
-             public DespesaBuild idCategoria(int idCategoria){
-               this.id_categoria = idCategoria;
-               return this;
-           }
+        public DespesaBuild idCategoria(int idCategoria){
+           this.id_categoria = idCategoria;
+           return this;
+        }
              
-          public Despesa build(){
-              return new Despesa(this);
-          }
-    }
-/*
-    public Despesa() {
-
+        public Despesa build(){
+            return new Despesa(this);
+        }
     }
 
-    public Despesa(int cod_despesa) {
-
-        this.cod_despesa = cod_despesa;
-    }
-    
-
-    public Despesa(int dia, int mes, int ano, float valor, String categoria, String descricao, int id_conta) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.valor = valor;
-        this.categoria = categoria;
-        this.descricao = descricao;
-        this.id_conta = id_conta;
-    }
-
-    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, int num_parcelas, String estatus, String descricao) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.valor = valor;
-        this.categoria = categoria;
-        this.descricao = descricao;
-        this.f_pagamento = f_pagamento;
-        this.num_cartao = num_cartao;
-        this.estatus = estatus;
-        this.num_parcelas = num_parcelas;
-
-    }
-
-    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, int num_parcelas, String estatus, String descricao, int cod_despesa) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.valor = valor;
-        this.categoria = categoria;
-        this.descricao = descricao;
-        this.f_pagamento = f_pagamento;
-        this.num_cartao = num_cartao;
-        this.estatus = estatus;
-        this.num_parcelas = num_parcelas;
-        this.cod_despesa = cod_despesa;
-    }
-
-    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, Long num_cartao, String estatus, String descricao, int cod_despesa) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.valor = valor;
-        this.categoria = categoria;
-        this.f_pagamento = f_pagamento;
-        this.num_cartao = num_cartao;
-        this.estatus = estatus;
-        this.descricao = descricao;
-        this.cod_despesa = cod_despesa;
-    }
-
-    public Despesa(int dia, int mes, int ano, float valor, String categoria, String f_pagamento, String estatus, String descricao, int cod_despesa) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.valor = valor;
-        this.categoria = categoria;
-        this.f_pagamento = f_pagamento;
-        this.estatus = estatus;
-        this.descricao = descricao;
-        this.cod_despesa = cod_despesa;
-    }
-    // construtor -> Crédito
-    
-    public Despesa(int dia, int mes, int ano, float valor, int categoria, String f_pagamento, Long num_cartao_credito, int num_parcelas, String status, String descricao, int cod_despesa) {
-        this.dia = dia;
-        this.mes = mes;
-        this.ano = ano;
-        this.valor = valor;
-        this.categoria = "teste";
-        this.f_pagamento = f_pagamento;
-        this.num_cartao = num_cartao_credito;
-        this.num_parcelas = num_parcelas;
-        this.estatus = estatus;
-        this.descricao = descricao;
-        this.cod_despesa = cod_despesa;
-    }
-    */
     public int getNum_parcelas_pagas() {
         return num_parcelas_pagas;
     }

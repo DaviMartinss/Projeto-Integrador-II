@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author pc
+ * @author DAVI
  */
 public class CartaoDebito extends Cartao{
 
@@ -37,57 +37,31 @@ public class CartaoDebito extends Cartao{
         
         public CartaoDebitoBuild(){}
         
-         public CartaoDebitoBuild ValorAtual(float valorAtual){
-             this.valor_atual = valorAtual;
-             return this;
-         }
-         
-          public CartaoDebitoBuild IdConta(int idConta){
-              this.id_conta = idConta;
-              return this;
-          }
-          
-          public CartaoDebitoBuild NumCartaoAux(long numCartaoAux){
-              this.n_cartao_aux = numCartaoAux;
-              return this;
-          }
-          
-           public CartaoDebitoBuild Bandeira(String bandeira){
-              this.bandeira = bandeira;
-              return this;
-          }
-           
-          public CartaoDebito build(){
-              return new CartaoDebito(this);
-          }
+        public CartaoDebitoBuild ValorAtual(float valorAtual){
+            this.valor_atual = valorAtual;
+            return this;
         }
-    /*
-    public CartaoDebito() {
-
+         
+        public CartaoDebitoBuild IdConta(int idConta){
+            this.id_conta = idConta;
+            return this;
+        }
+          
+        public CartaoDebitoBuild NumCartaoAux(long numCartaoAux){
+            this.n_cartao_aux = numCartaoAux;
+            return this;
+        }
+          
+        public CartaoDebitoBuild Bandeira(String bandeira){
+            this.bandeira = bandeira;
+            return this;
+        }
+           
+        public CartaoDebito build(){
+            return new CartaoDebito(this);
+        }
     }
-
-    public CartaoDebito(long n_cartao_debito) {
-
-        this.n_cartao_debito = n_cartao_debito;
-    }
-
-    public CartaoDebito(long n_cartao_debito, float valor_atual, String bandeira, int id_conta) {
-
-        this.n_cartao_debito = n_cartao_debito;
-        this.valor_atual = valor_atual;
-        this.bandeira = bandeira;
-        this.id_conta = id_conta;
-    }
-
-    public CartaoDebito(long n_cartao_debito, float valor_atual, String bandeira, int id_conta, long num_cart_aux) {
-
-        this.n_cartao_debito = n_cartao_debito;
-        this.valor_atual = valor_atual;
-        this.bandeira = bandeira;
-        this.id_conta = id_conta;
-        this.n_cartao_aux = num_cart_aux;
-    }
-*/
+    
     public int getId_conta() {
         return id_conta;
     }
@@ -124,14 +98,6 @@ public class CartaoDebito extends Cartao{
 
         return getValor_atual() > 0;
     }
-
-//    public boolean verifica_Bandeira_cartao_deb() {
-//
-//        Cartao cartao_aux = new Cartao();
-//
-//        return (cartao_aux.verifica_bandeira(bandeira));
-//    }
-    // falta verificar o número do cartão
 
     public boolean verifica_num_cartao_deb() {
 

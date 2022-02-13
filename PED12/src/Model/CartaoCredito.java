@@ -9,7 +9,7 @@ import Utilities.Validacao;
 
 /**
  *
- * @author pc
+ * @author DAVI
  */
 
 public class CartaoCredito extends Cartao{
@@ -18,12 +18,11 @@ public class CartaoCredito extends Cartao{
     private int dia_fatura;
     private long n_cartao_credito;
     private float valor_fatura;
-//    private String bandeira;
     private int id_conta;
     private long  n_cartao_aux;
     private float credito;
 
-     public CartaoCredito(CartaoCreditoBuild build){
+    public CartaoCredito(CartaoCreditoBuild build){
         this.limite = build.limite;
         this.dia_fatura = build.dia_fatura;
         this.n_cartao_credito = build.n_cartao_credito;
@@ -53,100 +52,46 @@ public class CartaoCredito extends Cartao{
         
         public CartaoCreditoBuild(){}
         
-         public CartaoCreditoBuild Limite(float limite){
-             this.limite = limite;
-             return this;
-         }
+        public CartaoCreditoBuild Limite(float limite){
+            this.limite = limite;
+            return this;
+        }
          
-          public CartaoCreditoBuild DiaFatura(int diaFatura){
-              this.dia_fatura = diaFatura;
-              return this;
-          }
+        public CartaoCreditoBuild DiaFatura(int diaFatura){
+            this.dia_fatura = diaFatura;
+            return this;
+        }
           
-          public CartaoCreditoBuild ValorFatura(float valorFatura){
-              this.valor_fatura = valorFatura;
-              return this;
-          }
+        public CartaoCreditoBuild ValorFatura(float valorFatura){
+            this.valor_fatura = valorFatura;
+            return this;
+        }
           
-          public CartaoCreditoBuild Bandeira(String bandeira){
-              this.bandeira = bandeira;
-              return this;
-          }
+        public CartaoCreditoBuild Bandeira(String bandeira){
+            this.bandeira = bandeira;
+            return this;
+        }
           
-          public CartaoCreditoBuild IdConta(int idConta){
-               this.id_conta = idConta;
-               return this;
-           }
-          public CartaoCreditoBuild NumCartaoAux(long NumCartaoAux){
-               this.n_cartao_aux = NumCartaoAux;
-               return this;
-           }
-           public CartaoCreditoBuild Credito(float credito){
-               this.credito = credito;
-               return this;
-           }
+        public CartaoCreditoBuild IdConta(int idConta){
+            this.id_conta = idConta;
+            return this;
+        }
+        
+        public CartaoCreditoBuild NumCartaoAux(long NumCartaoAux){
+            this.n_cartao_aux = NumCartaoAux;
+            return this;
+        }
+        
+        public CartaoCreditoBuild Credito(float credito){
+            this.credito = credito;
+            return this;
+        }
            
-          public CartaoCredito build(){
-              return new CartaoCredito(this);
-          }
+        public CartaoCredito build(){
+            return new CartaoCredito(this);
+        }
     }
     
-    /*
-    public CartaoCredito() {
-        
-    }
-    
-    public CartaoCredito(long n_cartao_credito) {
-        
-        this.n_cartao_credito = n_cartao_credito;
-        
-    }
-
-    public CartaoCredito(long n_cartao_credito, int dia_fatura,  float valor_fatura, String bandeira, int id_conta) {
-        
-        this.dia_fatura = dia_fatura;
-        this.n_cartao_credito = n_cartao_credito;
-        this.valor_fatura = valor_fatura;
-        this.bandeira = bandeira;
-        this.id_conta = id_conta;
-    }
-    
-    
-    
-     public CartaoCredito(long n_cartao_credito, float limite, int dia_fatura, float valor_fatura, String bandeira, int id_conta) {
-        
-        this.n_cartao_credito = n_cartao_credito;
-        this.limite = limite;
-        this.dia_fatura = dia_fatura;
-        this.valor_fatura = valor_fatura;
-        this.bandeira = bandeira;
-        this.id_conta = id_conta;
-    }
-    
-    
-    public CartaoCredito(long n_cartao_credito, float limite, float credito, int dia_fatura, float valor_fatura, String bandeira, int id_conta) {
-        
-        this.n_cartao_credito = n_cartao_credito;
-        this.limite = limite;
-        this.credito = credito;
-        this.dia_fatura = dia_fatura;
-        this.valor_fatura = valor_fatura;
-        this.bandeira = bandeira;
-        this.id_conta = id_conta;
-    }
-    
-    
-    public CartaoCredito(long n_cartao_credito, float limite, int dia_fatura, float valor_fatura, String bandeira, int id_conta, long n_aux) {
-        
-        this.n_cartao_credito = n_cartao_credito;
-        this.limite = limite;
-        this.dia_fatura = dia_fatura;
-        this.valor_fatura = valor_fatura;
-        this.bandeira = bandeira;
-        this.id_conta = id_conta;
-        this.n_cartao_aux = n_aux;
-    }
-*/
     public float getCredito() {
         return credito;
     }
@@ -214,37 +159,22 @@ public class CartaoCredito extends Cartao{
         
     }
      
-     public boolean verifica_limite(){
+    public boolean verifica_limite(){
         return getLimite() > 0;
-     }
-     public boolean varifica_valor_fatura(){
+    }
+    
+    public boolean varifica_valor_fatura(){
          
         return getValor_fatura() >= 0 && getValor_fatura() <= getLimite();
-     }
+    }
      
-//     public boolean  verifica_bandeira_credito(){
-//        
-//         Cartao cartao_aux = new Cartao();
-//         
-//        return (cartao_aux.verifica_bandeira(bandeira));
-//       
-//    }         
-     
-////   // falta verificar o número do cartão
-//     public boolean  verifica_num_cartao_credito(){
-//                
-//        return (ValidaNUM_Cartao(Long.toString(n_cartao_credito)));
-//       
-//    }  
-//     
- 
     public boolean verifica_cartaoCreditoValido(){
           
         return varifica_valor_fatura() && verifica_bandeira() && verifica_limite() && verifica_dia_fatura();
               
-      }  
+    }  
       
-      public boolean Update_CamposValidos(String valorFat, String bandeira, String limite, String diaFat){
+    public boolean Update_CamposValidos(String valorFat, String bandeira, String limite, String diaFat){
         Validacao valida = new Validacao();
         
         float valorFat_aux = valida.converteParaFloat(valorFat);
