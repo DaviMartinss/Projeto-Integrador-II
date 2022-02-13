@@ -231,17 +231,7 @@ public class TelaReceita extends javax.swing.JFrame{
                     .Dia(Integer.parseInt(dia))
                     .Total(Float.parseFloat(total))
                     .build();
-              /*
-            Receita receita_atual
-                = new Receita
-                    (
-                        Integer.parseInt(dia),
-                        Integer.parseInt(mes),
-                        Integer.parseInt(ano),
-                        Float.parseFloat(total),
-                        Integer.parseInt(txt_id.getText()) 
-                    );
-            */
+              
             TelaAtualizarReceita(receita_atual);
 
         } catch (HeadlessException e) {

@@ -236,17 +236,6 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         String valorFatura = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 4);
         String bandeira = "" + jtConsultaCC.getValueAt(jtConsultaCC.getSelectedRow(), 5);
         
-        /*
-        CartaoCredito cartao_c = 
-            new CartaoCredito(
-                Long.parseLong(num_cartao),
-                Float.parseFloat(limite),
-                Integer.parseInt(diaFatura),
-                Float.parseFloat(valorFatura),
-                bandeira,
-                Integer.parseInt(txt_id.getText())
-            );
-        */
         try {
             
             CartaoCredito cartao_c

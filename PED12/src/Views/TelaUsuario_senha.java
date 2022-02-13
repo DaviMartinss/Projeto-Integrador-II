@@ -39,7 +39,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
 
                 TelaUser.setVisible(true);
 
-                TelaUser.setState(TelaUser.NORMAL); // olha essa linha
+                TelaUser.setState(TelaUser.NORMAL);
 
                 TelaUser.receberID(txt_id.getText());
 
@@ -64,14 +64,6 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
                     .ConfirmaSenha(senha2)
                     .IdConta(id)
                     .build();
-             /*
-            Usuario senhaUser = new Usuario(
-                senha1,
-                senha2,
-                id
-                
-        );
-*/
 
         try {
             

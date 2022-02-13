@@ -111,13 +111,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             try {
                 
                  String categoriaAntiga = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
-            /*
-            Categoria categoria_atua = new Categoria(
-                    txt_NomeCategoria.getText(),
-                    categoriaAntiga,
-                    Integer.parseInt(txt_id.getText())                    
-            );
-            */
+          
               Categoria categoria_atua = new Categoria.CategoriaBuild()
                     .CategoriaTipo(txt_NomeCategoria.getText())
                     .Categoria_aux(categoriaAntiga)

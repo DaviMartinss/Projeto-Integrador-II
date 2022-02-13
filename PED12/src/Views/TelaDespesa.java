@@ -346,21 +346,7 @@ public class TelaDespesa extends javax.swing.JFrame {
                             .Status(status)
                             .Descricao(descricao)
                             .build();
-                    /*
-                despesa = new Despesa(
-                        Integer.parseInt(dia),
-                        Integer.parseInt(mes),
-                        Integer.parseInt(ano),
-                        Float.parseFloat(valor),
-                        categoria,
-                        formaPagamento,
-                        Long.parseLong(numCartao),
-                        Integer.parseInt(numParcelas),
-                        status,
-                        descricao,
-                        salvaCodigoDespesa
-                );
-                     */
+                   
                     break;
 
                 case "DÉBITO":
@@ -377,20 +363,6 @@ public class TelaDespesa extends javax.swing.JFrame {
                             .Descricao(descricao)
                             .build();
 
-                    /*
-                despesa = new Despesa(
-                        Integer.parseInt(dia),
-                        Integer.parseInt(mes),
-                        Integer.parseInt(ano),
-                        Float.parseFloat(valor),
-                        categoria,
-                        formaPagamento,
-                        Long.parseLong(numCartao),
-                        status,
-                        descricao,
-                        salvaCodigoDespesa
-                );
-                     */
                     break;
 
                 case "DINHEIRO":
@@ -405,19 +377,7 @@ public class TelaDespesa extends javax.swing.JFrame {
                             .Status(status)
                             .Descricao(descricao)
                             .build();
-                    /*
-                despesa = new Despesa(
-                        Integer.parseInt(dia),
-                        Integer.parseInt(mes),
-                        Integer.parseInt(ano),
-                        Float.parseFloat(valor),
-                        categoria,
-                        formaPagamento,
-                        status,
-                        descricao,
-                        salvaCodigoDespesa
-                );
-                     */
+                  
                     break;
 
                 //VER USO DE ALGUMA EXCEPTION OU NAO    

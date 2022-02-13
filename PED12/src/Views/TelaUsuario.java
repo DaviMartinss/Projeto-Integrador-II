@@ -96,14 +96,6 @@ public class TelaUsuario extends javax.swing.JFrame {
                     .IdConta(id)
                     .Nome(txtNome.getText())
                     .build();
-                /*
-            Usuario user = new Usuario(
-                id,
-                txtNome.getText(),
-                txtEmail.getText()
-
-        );
-                */
 
         try {
             
@@ -302,11 +294,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
         TelaUsuario_senha();
-        /*
-        txtNome.setEnabled(true);
-        txtEmail.setEnabled(true);
-        txtSenha.setEnabled(true);
-       */
+        
         
     }//GEN-LAST:event_btnAlterarActionPerformed
 

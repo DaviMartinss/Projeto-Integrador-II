@@ -157,17 +157,6 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                          .IdConta(Integer.parseInt(txt_id.getText()))
                          .build();
 
-                 /*
-            Despesa despesa = new Despesa(
-                    Integer.parseInt(txtDia.getText()),
-                    Integer.parseInt(txtMes.getText()),
-                    Integer.parseInt(txtAno.getText()),
-                    Float.parseFloat(txtValor.getText()),
-                    categoria,
-                    txtAreaDescricao.getText(),
-                    Integer.parseInt(txt_id.getText())
-            );
-                  */
                  if (rbDebito.isSelected()) {
 
                      despesa.setF_pagamento("DÉBITO");

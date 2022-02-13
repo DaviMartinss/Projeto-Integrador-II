@@ -22,35 +22,6 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
         initComponents();
     }
     
-    /*
-    void NovaSenha(int id) {
-
-        String id_aux = Integer.toString(id);
-        
-        TelaUsuario_senha TelaUsuario_senha = null;
-
-        if (TelaUsuario_senha == null) {
-
-            TelaUsuario_senha = new TelaUsuario_senha();
-
-            TelaUsuario_senha.setVisible(true);
-
-            TelaUsuario_senha.receberID(id_aux);
-
-        } else {
-
-            TelaUsuario_senha.setVisible(true);
-
-            TelaUsuario_senha.setState(TelaPrincipal.NORMAL);
-
-            TelaUsuario_senha.receberID(id_aux);
-
-        }
-
-        this.dispose();
-    }
-    */
-    
     void NovaSenha(int id) {
         
         Tela_NovaSenha Tela_NovaSenha = null;

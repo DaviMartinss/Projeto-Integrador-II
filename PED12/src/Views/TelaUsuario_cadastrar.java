@@ -20,7 +20,6 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     
     public TelaUsuario_cadastrar() {
         initComponents();
-        //conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
         txtAvatar.setEnabled(false);
         
@@ -37,7 +36,6 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     
     private void CadastrarUsuario(){
 
-        //Usuario novo_usuario = new Usuario(txtNome.getText(), txtEmail.getText(), txtSenha.getText());
           Usuario novo_usuario = new Usuario.UsuarioBuild(txtEmail.getText())
                 .Nome(txtNome.getText())
                 .Senha(txtSenha.getText())
@@ -58,7 +56,6 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     }
     
     void VoltarLogin(){
-         //telaCliente cadastroCliente = new telaCliente();
          TelaLogin tela_login = new TelaLogin();
          tela_login.setVisible(true);
          this.dispose();

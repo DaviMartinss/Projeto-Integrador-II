@@ -214,15 +214,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
                             .Bandeira(bandeira)
                             .IdConta(Integer.parseInt(txt_id.getText()))
                             .build();
-            /*
-        CartaoDebito cartao_d = 
-            new CartaoDebito(
-                Long.parseLong(num_cartao),
-                Float.parseFloat(valor),
-                bandeira,
-                Integer.parseInt(txt_id.getText())
-            );
-             */
 
             TelaAtualizarCartaoDebito(cartao_d);
 
