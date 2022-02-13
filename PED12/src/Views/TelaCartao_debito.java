@@ -122,7 +122,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     }
 
     void sair() {
-        //telaCliente cadastroCliente = new telaCliente();
         TelaLogin tela_login = new TelaLogin();
         tela_login.setVisible(true);
         this.dispose();

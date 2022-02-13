@@ -71,19 +71,6 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
                                 .Dia(Integer.parseInt(txt_dia.getText()))
                                 .Total(Float.parseFloat(txt_total.getText()))
                                 .build();
-                /*
-            Receita receita_atual
-                    = new Receita
-                          (
-                            Integer.parseInt(txt_dia.getText()),
-                            Integer.parseInt(txt_mes.getText()),
-                            Integer.parseInt(txt_ano.getText()),
-                            Float.parseFloat(txt_total.getText()),
-                            receita.getId_conta(),
-                            this.receita.getMes(),
-                            this.receita.getAno()
-                          );
-                 */
 
                 //MUDAR NOME DESSES MÉTODOS DE VALIDAÇÃO
                 if (receita_atual.Update_CamposValidos(txt_dia.getText(), txt_mes.getText(), txt_ano.getText(), txt_total.getText())) {
@@ -161,7 +148,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(20, 50, 111, 27);
+        btnReceitas.setBounds(20, 50, 111, 25);
 
         totalTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         totalTitle.setText("Total: ");
@@ -207,12 +194,12 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
         dayBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         dayBarTitle.setText("/");
         getContentPane().add(dayBarTitle);
-        dayBarTitle.setBounds(350, 150, 10, 26);
+        dayBarTitle.setBounds(350, 150, 10, 24);
 
         monthBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         monthBarTitle.setText("/");
         getContentPane().add(monthBarTitle);
-        monthBarTitle.setBounds(410, 150, 10, 26);
+        monthBarTitle.setBounds(410, 150, 10, 24);
 
         txt_ano.setBackground(new java.awt.Color(187, 210, 240));
         txt_ano.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -230,7 +217,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(550, 150, 140, 27);
+        btn_update.setBounds(550, 150, 140, 25);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-280x200.png"))); // NOI18N
         jLabel1.setText("jLabel1");

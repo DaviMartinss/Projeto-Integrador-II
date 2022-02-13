@@ -112,21 +112,6 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                             .Status(salvaStatus)
                             .Descricao(txtAreaDescricao.getText())
                             .build();
-                    /*
-                despesa = new Despesa(
-                        Integer.parseInt(txtDia.getText().trim()),
-                        Integer.parseInt(txtMes.getText()),
-                        Integer.parseInt(txtAno.getText()),
-                        Float.parseFloat(txtValor.getText()),
-                        categoria,
-                        salvaF_pagamento,
-                        Long.parseLong(txt_NumCartao.getText()),
-                        Integer.parseInt(txtParcelas.getText()),
-                        salvaStatus,
-                        txtAreaDescricao.getText(),
-                        this.despesa.getCod_despesa()
-                );
-                     */
                     break;
 
                 case "DÉBITO":
@@ -141,20 +126,6 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                             .Status(salvaStatus)
                             .Descricao(txtAreaDescricao.getText())
                             .build();
-                    /*
-                despesa = new Despesa(
-                        Integer.parseInt(txtDia.getText().trim()),
-                        Integer.parseInt(txtMes.getText()),
-                        Integer.parseInt(txtAno.getText()),
-                        Float.parseFloat(txtValor.getText()),
-                        categoria,
-                        salvaF_pagamento,
-                        Long.parseLong(txt_NumCartao.getText()),
-                        salvaStatus,
-                        txtAreaDescricao.getText(),
-                        this.despesa.getCod_despesa()
-                );
-                     */
                     break;
 
                 case "DINHEIRO":
@@ -168,19 +139,6 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
                             .Status(salvaStatus)
                             .Descricao(txtAreaDescricao.getText())
                             .build();
-                    /*
-                despesa = new Despesa(
-                        Integer.parseInt(txtDia.getText().trim()),
-                        Integer.parseInt(txtMes.getText()),
-                        Integer.parseInt(txtAno.getText()),
-                        Float.parseFloat(txtValor.getText()),
-                        categoria,
-                        salvaF_pagamento,
-                        salvaStatus,
-                        txtAreaDescricao.getText(),
-                        this.despesa.getCod_despesa()
-                );
-                     */
                     break;
 
                 //VER USO DE ALGUMA EXCEPTION OU NAO    
@@ -288,7 +246,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         instNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         instNumTitle.setText("Nº de Pacelas: ");
         getContentPane().add(instNumTitle);
-        instNumTitle.setBounds(400, 100, 87, 27);
+        instNumTitle.setBounds(400, 100, 84, 27);
 
         txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
         txtParcelas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -298,7 +256,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
         getContentPane().add(cardNumTitle);
-        cardNumTitle.setBounds(30, 160, 82, 27);
+        cardNumTitle.setBounds(30, 160, 76, 27);
 
         txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -363,7 +321,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         descriptionTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         descriptionTitle.setText("Descrição: ");
         getContentPane().add(descriptionTitle);
-        descriptionTitle.setBounds(30, 220, 65, 27);
+        descriptionTitle.setBounds(30, 220, 64, 27);
 
         txtAreaDescricao.setBackground(new java.awt.Color(187, 210, 240));
         txtAreaDescricao.setColumns(20);
@@ -377,7 +335,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         payFormTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         payFormTitle.setText("Forma de Pagamento: ");
         getContentPane().add(payFormTitle);
-        payFormTitle.setBounds(150, 100, 135, 27);
+        payFormTitle.setBounds(150, 100, 127, 27);
 
         rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDebito.setText("Débito");
@@ -387,7 +345,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDebito);
-        rbDebito.setBounds(150, 120, 62, 27);
+        rbDebito.setBounds(150, 120, 63, 27);
 
         rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbCredito.setText("Crédito");
@@ -412,7 +370,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         categoryTitle.setText("Categoria: ");
         getContentPane().add(categoryTitle);
-        categoryTitle.setBounds(300, 160, 65, 27);
+        categoryTitle.setBounds(300, 160, 61, 27);
 
         cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -429,7 +387,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(640, 520, 140, 27);
+        btn_update.setBounds(640, 520, 140, 25);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -441,7 +399,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(30, 50, 111, 27);
+        btnReceitas.setBounds(30, 50, 111, 25);
 
         valueTitle1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         valueTitle1.setText("Atualizar Despesa");

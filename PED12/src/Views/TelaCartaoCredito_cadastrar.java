@@ -18,9 +18,7 @@ import javax.swing.JOptionPane;
  */
 
 public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
-    
-    //Usuario usuarioConta = new Usuario();
-
+ 
     public TelaCartaoCredito_cadastrar() {
 
         initComponents();
@@ -80,55 +78,6 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
     public void CadastrarCartaoCredito() {
         
-//        CartaoCredito cartao_aux = new CartaoCredito.CartaoCreditoBuild().build();
-//        
-//        if(cartao_aux.UpdateEhVazio(txt_NumCC.getText(), txt_ValorFatura.getText(), txt_LimiteCC.getText(), txt_BandeiraCC.getText(), txt_DiaFaturaCC.getText())){
-//            JOptionPane.showMessageDialog(this, "Nenhum Campo ser vazio");
-//            return;
-//         }
-//        
-//        /*
-//        CartaoCredito cartao_c = new CartaoCredito(
-//                Long.parseLong(txt_NumCC.getText()),
-//                Float.parseFloat(txt_LimiteCC.getText()),
-//                Integer.parseInt(txt_DiaFaturaCC.getText()),
-//                Float.parseFloat(txt_ValorFatura.getText()),
-//                txt_BandeiraCC.getText(),
-//                Integer.parseInt(txt_id.getText())
-//        );
-//        */
-//         CartaoCredito cartao_c = new CartaoCredito.CartaoCreditoBuild(Long.parseLong(txt_NumCC.getText()))
-//                .Limite(Float.parseFloat(txt_LimiteCC.getText()))
-//                .DiaFatura(Integer.parseInt(txt_DiaFaturaCC.getText()))
-//                .ValorFatura(Float.parseFloat(txt_ValorFatura.getText()))
-//                .Bandeira(txt_BandeiraCC.getText())
-//                .IdConta(Integer.parseInt(txt_id.getText()))
-//                .build();
-//         
-//        try {
-//            
-//            if (cartao_c.verifica_bandeira() &&
-//                cartao_c.verifica_dia_fatura() && 
-//                cartao_c.verifica_limite())
-//            {
-//                
-//                ControlerCartaoCredito.CadastrarCartaoCredito(cartao_c);
-//                
-//                TelaCartaoCredito();
-//                
-//            }else{
-//                
-//                JOptionPane.showMessageDialog(this, "Dados Inválidos!!","INFORMATION_MESSAGE", JOptionPane.INFORMATION_MESSAGE);
-//                
-//            }
-//
-//        } catch (HeadlessException e) {
-//
-//            JOptionPane.showMessageDialog(this, e.getMessage(),"ERROR", JOptionPane.ERROR);
-//        }
-
-        
-        
         try {
 
             if (!StringUtils.isNullOrEmpty(txt_NumCC.getText())
@@ -147,16 +96,6 @@ public class TelaCartaoCredito_cadastrar extends javax.swing.JFrame {
 
                 boolean cadastra = true;
 
-                /*
-            CartaoCredito cartaoCC = new CartaoCredito(
-            Long.parseLong(txt_NumCC.getText()),
-            Float.parseFloat(txt_LimiteCC.getText()),
-            Integer.parseInt(txt_DiaFaturaCC.getText()),
-            Float.parseFloat(txt_ValorFatura.getText()),
-            txt_BandeiraCC.getText(),
-            Integer.parseInt(txt_id.getText())
-            );
-                 */
                 CartaoCredito cartaoCC = 
                         new CartaoCredito.CartaoCreditoBuild
                         (

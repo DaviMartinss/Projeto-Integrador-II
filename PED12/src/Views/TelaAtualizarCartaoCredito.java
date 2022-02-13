@@ -87,17 +87,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
                     .IdConta(this.cartaoCredito.getId_conta())
                     .NumCartaoAux(this.cartaoCredito.getN_cartao_credito())
                     .build();
-                        /*
-                    CartaoCredito cartao_c = new CartaoCredito(
-                            Long.parseLong(txt_NumCartaoC.getText()),
-                            Float.parseFloat(txt_Limite.getText()),
-                            Integer.parseInt(txt_DiaFatura.getText()),
-                            Float.parseFloat(txt_ValorFatura.getText()),
-                            txt_Bandeira.getText(),
-                            this.cartaoCredito.getId_conta(),
-                            this.cartaoCredito.getN_cartao_credito()
-                    );
-                         */
+                    
             //Verifica se o número do cartao de crédito foi modificado
             if (cartao_c.getN_cartao_credito() != this.cartaoCredito.getN_cartao_credito()) {
                 //Verifica se o novo número já existe
@@ -226,7 +216,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
         numCardTitle1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         numCardTitle1.setText("Atualizar Cartão de Crédito");
         getContentPane().add(numCardTitle1);
-        numCardTitle1.setBounds(270, 0, 251, 30);
+        numCardTitle1.setBounds(270, 0, 234, 30);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -238,7 +228,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(630, 520, 140, 27);
+        btn_update.setBounds(630, 520, 140, 25);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -250,7 +240,7 @@ public class TelaAtualizarCartaoCredito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(30, 60, 111, 27);
+        btnReceitas.setBounds(30, 60, 111, 25);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("background");

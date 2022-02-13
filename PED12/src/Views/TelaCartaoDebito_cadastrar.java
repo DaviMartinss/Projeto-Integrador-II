@@ -73,37 +73,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     }
     
     public void CadastrarCartaoDebito() {
-        
-//        /*
-//        CartaoDebito cartao_db = new CartaoDebito(
-//                Long.parseLong(txt_numCartDeb.getText()),
-//                Float.parseFloat(txt_valorCartaoDeb.getText()),
-//                txt_BandCartDeb.getText(),
-//                Integer.parseInt(txt_id.getText())
-//        );
-//        */
-//         CartaoDebito cartao_db = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(txt_numCartDeb.getText()))
-//                .ValorAtual(Float.parseFloat(txt_valorCartaoDeb.getText()))
-//                .Bandeira(txt_BandCartDeb.getText())
-//                .IdConta(Integer.parseInt(txt_id.getText()))
-//                .build();
-//        try {
-//
-//            if (cartao_db.verifica_bandeira() && cartao_db.verifica_valor_atual()) {
-//                ControlerCartaoDebito.CadastrarCartaoDebito(cartao_db);
-//                voltaTelaCartaoDebito();
-//
-//            } else {
-//
-//                JOptionPane.showMessageDialog(this, "Dados Inválidos!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//            }
-//        } catch (HeadlessException e) {
-//
-//            JOptionPane.showMessageDialog(this, e.getMessage());
-//        }
-        
-        
-        
+ 
         try {
 
             if (StringUtils.isNullOrEmpty(txt_numCartDeb.getText())
@@ -123,15 +93,6 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
 
                 boolean cadastra = true;
 
-                /*
-            CartaoDebito cartaoDB = new CartaoDebito(
-                                      Long.parseLong(txt_numCartDeb.getText()),
-                                      Float.parseFloat(txt_valorCartaoDeb.getText()),
-                                      txt_BandCartDeb.getText(),
-                                      Integer.parseInt(txt_id.getText())
-                                            
-            );
-                 */
                 CartaoDebito cartaoDB = new CartaoDebito.CartaoDebitoBuild(
                         Long.parseLong(txt_numCartDeb.getText()))
                         .ValorAtual(Float.parseFloat(txt_valorCartaoDeb.getText()))
@@ -178,8 +139,6 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         }
     }
 
-   
-   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -295,68 +254,6 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cadastraCartDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastraCartDebActionPerformed
-       
-//        if(  StringUtils.isNullOrEmpty(txt_numCartDeb.getText()) || 
-//             StringUtils.isNullOrEmpty(txt_valorCartaoDeb.getText()) ||
-//             StringUtils.isNullOrEmpty(txt_BandCartDeb.getText()))
-//        {
-//            
-//            JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//            
-//        }else{
-//            
-//            if(!( Validacao.isNumeric(txt_numCartDeb.getText()) && Validacao.isNumeric(txt_valorCartaoDeb.getText()))) {
-//                JOptionPane.showMessageDialog(this, "Informe um valor numérico válido!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//                return;
-//            }
-//            
-//            boolean cadastra = true;
-//            
-//            /*
-//            CartaoDebito cartaoDB = new CartaoDebito(
-//                                      Long.parseLong(txt_numCartDeb.getText()),
-//                                      Float.parseFloat(txt_valorCartaoDeb.getText()),
-//                                      txt_BandCartDeb.getText(),
-//                                      Integer.parseInt(txt_id.getText())
-//                                            
-//            );
-//            */
-//             CartaoDebito cartaoDB = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(txt_numCartDeb.getText()))
-//                    .ValorAtual(Float.parseFloat(txt_valorCartaoDeb.getText()))
-//                    .Bandeira(txt_BandCartDeb.getText())
-//                    .IdConta(Integer.parseInt(txt_id.getText()))
-//                    .build();
-//        
-//            if(ControlerCartaoDebito.CartaoDebitoExiste(cartaoDB)){
-//                            
-//                JOptionPane.showMessageDialog(this, "Número do cartão de débito já existe", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);                   
-//                cadastra = false;                   
-//            }
-//             
-//            if(!(cartaoDB.verifica_num_cartao_deb())){
-//                
-//                JOptionPane.showMessageDialog(this, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);               
-//                cadastra = false;
-//            }
-//            
-//            if(!(cartaoDB.verifica_valor_atual())){
-//                
-//                JOptionPane.showMessageDialog(this, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);                
-//                cadastra = false;
-//            }
-//            
-//            if(!(cartaoDB.verifica_bandeira())){
-//                
-//                JOptionPane.showMessageDialog(this, "Bandeira inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//                cadastra = false;
-//            }
-//     
-//            if(cadastra){
-//                
-//                CadastrarCartaoDebito();                
-//                JOptionPane.showMessageDialog(this, "Cadastrado com sucesso!", "INFORMATION_MESSAGE" , JOptionPane.INFORMATION_MESSAGE);      
-//            }
-//        } 
 
         CadastrarCartaoDebito(); 
 
