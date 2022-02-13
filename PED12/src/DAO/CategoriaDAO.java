@@ -93,12 +93,7 @@ public class CategoriaDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
-            /*
-            lista_categoria.add(new Categoria(
-                    rs.getString("categoriaTipo"),
-                    id_conta)
-            );
-            */
+          
              lista_categoria.add(new Categoria.CategoriaBuild()
                     .CategoriaTipo(rs.getString("categoriaTipo"))
                     .CategiaId(id_conta)
@@ -159,13 +154,9 @@ public class CategoriaDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
-            /*
-            lista_Categoria.add(new Categoria(
-                    rs.getString("categoriaTipo"))
-            );
-            */
-             lista_Categoria.add(new Categoria.CategoriaBuild()
-                     .CategoriaTipo(rs.getString("categoriaTipo")).build());
+           
+            lista_Categoria.add(new Categoria.CategoriaBuild()
+                .CategoriaTipo(rs.getString("categoriaTipo")).build());
         }
 
         pst.close();

@@ -66,8 +66,6 @@ public class UsuarioDAO {
             pst.setString(1, usuario.getNome());
             pst.setString(2, usuario.getEmail());
             pst.setString(3, usuario.getSenha());
-
-            //pst.setString(5, txtCadastraAvatar.getText());
             pst.executeUpdate();
 
             retorno = true;
@@ -112,7 +110,7 @@ public class UsuarioDAO {
                  retorno = false;
              }
         }else{
-            // é igual ao seu email atual
+            
             retorno = true;
         }
             
@@ -160,8 +158,7 @@ public class UsuarioDAO {
                          .Email(rs.getString("email"))
                          .IdConta(rs.getInt("id_conta"))
                          .build();
-
-             }
+            }
              
               pst.close();
               rs.close();

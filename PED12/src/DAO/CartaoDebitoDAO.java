@@ -140,21 +140,13 @@ public class CartaoDebitoDAO {
        rs = pst.executeQuery();
 
        while (rs.next()) {
-           /*
-           lista_CD.add(new CartaoDebito(
-                   Long.parseLong(rs.getString("n_cartao_debito")),
-                   Float.parseFloat(rs.getString("valor_atual")),
-                   rs.getString("bandeira"),
-                   id_conta)
-           );
-           */
-           
-             lista_CD.add(new CartaoDebito.CartaoDebitoBuild(
-                    Long.parseLong(rs.getString("n_cartao_debito")))
-                   .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
-                   .Bandeira(rs.getString("bandeira"))
-                   .IdConta(id_conta)
-                   .build()
+    
+            lista_CD.add(new CartaoDebito.CartaoDebitoBuild(
+                Long.parseLong(rs.getString("n_cartao_debito")))
+                .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
+                .Bandeira(rs.getString("bandeira"))
+                .IdConta(id_conta)
+                .build()
            );
        }
 
@@ -189,21 +181,12 @@ public class CartaoDebitoDAO {
         rs = pst.executeQuery();
 
         while (rs.next()) {
-            
-            /*
-            lista_CD.add(new CartaoDebito(
-                    Long.parseLong(rs.getString("n_cartao_debito")),
-                    Float.parseFloat(rs.getString("valor_atual")),
-                    rs.getString("bandeira"),
-                    id_conta)
-            );
-*/
-               lista_CD.add(new CartaoDebito.CartaoDebitoBuild(
-                    Long.parseLong(rs.getString("n_cartao_debito")))
-                    .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
-                    .Bandeira(rs.getString("bandeira"))
-                    .IdConta(id_conta)
-                    .build()
+            lista_CD.add(new CartaoDebito.CartaoDebitoBuild(
+                Long.parseLong(rs.getString("n_cartao_debito")))
+                .ValorAtual(Float.parseFloat(rs.getString("valor_atual")))
+                .Bandeira(rs.getString("bandeira"))
+                .IdConta(id_conta)
+                .build()
             );
         }
 
