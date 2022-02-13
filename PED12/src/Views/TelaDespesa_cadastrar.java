@@ -102,61 +102,62 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             
         } catch (NumberFormatException e) {
             
-            JOptionPane.showMessageDialog(null, "Falha listar categoria:" + e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Falha listar categoria:" + e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
         }
     }
      
      void CadastrarDespesa(){
-         String categoria = cbb_categoria.getSelectedItem().toString().trim();
-        
-        if (txtValor.getText().isEmpty() 
-                || txtDia.getText().isEmpty()
-                || txtMes.getText().isEmpty() 
-                || txtAno.getText().isEmpty()
-                || (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)
-                || (rbDebito.isSelected() == false && rbCredito.isSelected() == false && rbDinheiro.isSelected() == false)
-                || ((rbDebito.isSelected() == true || rbCredito.isSelected() == true) && StringUtils.isNullOrEmpty(txt_NumCartao.getText()))
-                || (rbCredito.isSelected() && StringUtils.isNullOrEmpty(txtParcelas.getText()))) 
-        {
+         
+         try {
 
-            JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+             String categoria = cbb_categoria.getSelectedItem().toString().trim();
 
-        } else {
+             if (txtValor.getText().isEmpty()
+                     || txtDia.getText().isEmpty()
+                     || txtMes.getText().isEmpty()
+                     || txtAno.getText().isEmpty()
+                     || (rbPago.isSelected() == false && rbNaoPago.isSelected() == false)
+                     || (rbDebito.isSelected() == false && rbCredito.isSelected() == false && rbDinheiro.isSelected() == false)
+                     || ((rbDebito.isSelected() == true || rbCredito.isSelected() == true) && StringUtils.isNullOrEmpty(txt_NumCartao.getText()))
+                     || (rbCredito.isSelected() && StringUtils.isNullOrEmpty(txtParcelas.getText()))) {
 
-            if (!(Validacao.isNumeric(txtDia.getText()) &&
-                  Validacao.isNumeric(txtMes.getText()) && 
-                  Validacao.isNumeric(txtAno.getText()) && 
-                  Validacao.isNumeric(txtValor.getText()))) 
-            {
-                JOptionPane.showMessageDialog(this, "Somente dados númericos!");
-                return;
-            }
-            if (!(rbDinheiro.isSelected())) {
+                 JOptionPane.showMessageDialog(null, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
 
-                if (rbCredito.isSelected()) {
+             } else {
 
-                    if (!(Validacao.isNumeric(txtParcelas.getText()))) {
-                        JOptionPane.showMessageDialog(this, "Quantidade Parcelas Inválida!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                        return;
-                    }
-                }
+                 if (!(Validacao.isNumeric(txtDia.getText())
+                         && Validacao.isNumeric(txtMes.getText())
+                         && Validacao.isNumeric(txtAno.getText())
+                         && Validacao.isNumeric(txtValor.getText()))) {
+                     JOptionPane.showMessageDialog(this, "Somente dados númericos!");
+                     return;
+                 }
+                 if (!(rbDinheiro.isSelected())) {
 
-                if (!(Validacao.isNumeric(txt_NumCartao.getText()))) {
-                    JOptionPane.showMessageDialog(this, "Número do Cartão Inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-            }
-             Despesa despesa = new Despesa.DespesaBuild()
-                    .Dia(Integer.parseInt(txtDia.getText()))
-                    .Mes(Integer.parseInt(txtMes.getText()))
-                    .Ano(Integer.parseInt(txtAno.getText()))
-                    .Valor(Float.parseFloat(txtValor.getText()))
-                    .Categoria(categoria)
-                    .Descricao(txtAreaDescricao.getText())
-                    .IdConta(Integer.parseInt(txt_id.getText()))
-                    .build();
-            
-            /*
+                     if (rbCredito.isSelected()) {
+
+                         if (!(Validacao.isNumeric(txtParcelas.getText()))) {
+                             JOptionPane.showMessageDialog(this, "Quantidade Parcelas Inválida!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                             return;
+                         }
+                     }
+
+                     if (!(Validacao.isNumeric(txt_NumCartao.getText()))) {
+                         JOptionPane.showMessageDialog(this, "Número do Cartão Inválido!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                         return;
+                     }
+                 }
+                 Despesa despesa = new Despesa.DespesaBuild()
+                         .Dia(Integer.parseInt(txtDia.getText()))
+                         .Mes(Integer.parseInt(txtMes.getText()))
+                         .Ano(Integer.parseInt(txtAno.getText()))
+                         .Valor(Float.parseFloat(txtValor.getText()))
+                         .Categoria(categoria)
+                         .Descricao(txtAreaDescricao.getText())
+                         .IdConta(Integer.parseInt(txt_id.getText()))
+                         .build();
+
+                 /*
             Despesa despesa = new Despesa(
                     Integer.parseInt(txtDia.getText()),
                     Integer.parseInt(txtMes.getText()),
@@ -166,76 +167,81 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
                     txtAreaDescricao.getText(),
                     Integer.parseInt(txt_id.getText())
             );
-            */
-            if (rbDebito.isSelected()) {
+                  */
+                 if (rbDebito.isSelected()) {
 
-                despesa.setF_pagamento("DÉBITO");
-                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
+                     despesa.setF_pagamento("DÉBITO");
+                     despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
 
-            } else if (rbCredito.isSelected()) {
+                 } else if (rbCredito.isSelected()) {
 
-                despesa.setF_pagamento("CRÉDITO");
-                despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
-                despesa.setNum_parcelas(Integer.parseInt((txtParcelas.getText())));
+                     despesa.setF_pagamento("CRÉDITO");
+                     despesa.setNum_cartao(Long.parseLong(txt_NumCartao.getText()));
+                     despesa.setNum_parcelas(Integer.parseInt((txtParcelas.getText())));
 
-            } else {
+                 } else {
 
-                despesa.setF_pagamento("DINHEIRO");
-            }
+                     despesa.setF_pagamento("DINHEIRO");
+                 }
 
-            if (rbPago.isSelected()) {
+                 if (rbPago.isSelected()) {
 
-                despesa.setEstatus("PAGO");
+                     despesa.setEstatus("PAGO");
 
-            } else {
+                 } else {
 
-                despesa.setEstatus("NÃO PAGO");
-            }
+                     despesa.setEstatus("NÃO PAGO");
+                 }
 
-            boolean cadastra = true;
+                 boolean cadastra = true;
 
-            String dataFormat = txtDia.getText() + txtMes.getText() + txtAno.getText();
-            
-            if(!Validacao.isDate(dataFormat))
-            {
-                JOptionPane.showMessageDialog(this, "Data Inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
+                 String dataFormat = txtDia.getText() + txtMes.getText() + txtAno.getText();
 
-            if (!(despesa.validaValor())) {
+                 if (!Validacao.isDate(dataFormat)) {
+                     JOptionPane.showMessageDialog(this, "Data Inválida", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                     cadastra = false;
+                 }
 
-                JOptionPane.showMessageDialog(this, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                cadastra = false;
-            }
+                 if (!(despesa.validaValor())) {
 
-            if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
+                     JOptionPane.showMessageDialog(this, "Valor inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                     cadastra = false;
+                 }
 
-                if (!(despesa.verifica_num_cartao_despesa())) {
+                 if (despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO")) {
 
-                    JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                    cadastra = false;
-                }
-            }
+                     if (!(despesa.verifica_num_cartao_despesa())) {
 
-            if (despesa.getF_pagamento().equals("CRÉDITO")) {
+                         JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                         cadastra = false;
+                     }
+                 }
 
-                if (!(despesa.validaNumParcelas())) {
+                 if (despesa.getF_pagamento().equals("CRÉDITO")) {
 
-                    JOptionPane.showMessageDialog(this, "Número de parcelas inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                    cadastra = false;
-                }
-            }
+                     if (!(despesa.validaNumParcelas())) {
 
-            if (cadastra) {
+                         JOptionPane.showMessageDialog(this, "Número de parcelas inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                         cadastra = false;
+                     }
+                 }
 
-                ControlerDespesa.CadastrarDespesa(despesa);
-                Volta_TelaDespesa();
+                 if (cadastra) {
 
-            } else {
+                     ControlerDespesa.CadastrarDespesa(despesa);
+                     Volta_TelaDespesa();
 
-                JOptionPane.showMessageDialog(this, "Dados Inválidos!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-            }
-        }
+                 } else {
+
+                     JOptionPane.showMessageDialog(this, "Dados Inválidos!!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                 }
+             }
+
+         } catch (NullPointerException | NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+         }
+         
+         
      }
 
     /**

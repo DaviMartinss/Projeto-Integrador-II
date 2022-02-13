@@ -25,24 +25,15 @@ public class ControlerReceita {
         
         try {
             
-            if (valor <= receitaDAO.GetReceitaSaldo(receita, valor))
-                return true;
-            else
-                return false;
+            return valor <= receitaDAO.GetReceitaSaldo(receita, valor);
             
-        }catch (SQLException ex) {
+        }catch (SQLException | NullPointerException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             JOptionPane.showMessageDialog(null, "Erro:ReceitaTemSaldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return false;
         
-        }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Erro:ReceitaTemSaldo", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
-            
-            return false;
         }
     }
     

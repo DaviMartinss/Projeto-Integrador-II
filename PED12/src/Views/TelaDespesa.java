@@ -222,11 +222,11 @@ public class TelaDespesa extends javax.swing.JFrame {
                 tipo = " " + "categoriaTipo";
                 break;
                 
-            case "Número do Cartão Crédito":
+            case "Nº Cartão Crédito":
                 tipo = " " + "num_cartao_credito";
                 break;
                 
-            case "Número do Cartão Débito":
+            case "Nº Cartão Débito":
                 tipo = " " + "num_cartao_debito";
                 break;
             
@@ -316,35 +316,37 @@ public class TelaDespesa extends javax.swing.JFrame {
             return;
         }
 
-        String dia = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 1);
-        String mes = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 2);
-        String ano = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 3);
-        String valor = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 4);
-        String categoria = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 5);
-        String formaPagamento = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 6);
-        String numCartao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 7);
-        String numParcelas = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 8);
-        String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
-        String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
-        
-        Despesa despesa;
-        
-        switch(formaPagamento){
-            
-            case "CRÉDITO":
-                 despesa = new Despesa.DespesaBuild(salvaCodigoDespesa)
-                        .Dia(Integer.parseInt(dia))
-                        .Mes(Integer.parseInt(mes))
-                        .Ano(Integer.parseInt(ano))
-                        .Valor(Float.parseFloat(valor))
-                        .Categoria(categoria)
-                        .FormaPagamento(formaPagamento)
-                        .NumeroCartao(Long.parseLong(numCartao))
-                        .NumeroParcelas(Integer.parseInt(numParcelas))
-                        .Status(status)
-                        .Descricao(descricao)
-                        .build();
-                /*
+        try {
+
+            String dia = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 1);
+            String mes = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 2);
+            String ano = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 3);
+            String valor = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 4);
+            String categoria = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 5);
+            String formaPagamento = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 6);
+            String numCartao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 7);
+            String numParcelas = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 8);
+            String status = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 9);
+            String descricao = "" + jtConsultaDespesa.getValueAt(jtConsultaDespesa.getSelectedRow(), 10);
+
+            Despesa despesa;
+
+            switch (formaPagamento) {
+
+                case "CRÉDITO":
+                    despesa = new Despesa.DespesaBuild(salvaCodigoDespesa)
+                            .Dia(Integer.parseInt(dia))
+                            .Mes(Integer.parseInt(mes))
+                            .Ano(Integer.parseInt(ano))
+                            .Valor(Float.parseFloat(valor))
+                            .Categoria(categoria)
+                            .FormaPagamento(formaPagamento)
+                            .NumeroCartao(Long.parseLong(numCartao))
+                            .NumeroParcelas(Integer.parseInt(numParcelas))
+                            .Status(status)
+                            .Descricao(descricao)
+                            .build();
+                    /*
                 despesa = new Despesa(
                         Integer.parseInt(dia),
                         Integer.parseInt(mes),
@@ -358,24 +360,24 @@ public class TelaDespesa extends javax.swing.JFrame {
                         descricao,
                         salvaCodigoDespesa
                 );
-                */
-                break;
+                     */
+                    break;
 
-            case "DÉBITO":
-                
-                despesa = new Despesa.DespesaBuild(salvaCodigoDespesa)
-                        .Dia(Integer.parseInt(dia))
-                        .Mes(Integer.parseInt(mes))
-                        .Ano(Integer.parseInt(ano))
-                        .Valor(Float.parseFloat(valor))
-                        .Categoria(categoria)
-                        .FormaPagamento(formaPagamento)
-                        .NumeroCartao(Long.parseLong(numCartao))
-                        .Status(status)
-                        .Descricao(descricao)
-                        .build();
-                        
-                /*
+                case "DÉBITO":
+
+                    despesa = new Despesa.DespesaBuild(salvaCodigoDespesa)
+                            .Dia(Integer.parseInt(dia))
+                            .Mes(Integer.parseInt(mes))
+                            .Ano(Integer.parseInt(ano))
+                            .Valor(Float.parseFloat(valor))
+                            .Categoria(categoria)
+                            .FormaPagamento(formaPagamento)
+                            .NumeroCartao(Long.parseLong(numCartao))
+                            .Status(status)
+                            .Descricao(descricao)
+                            .build();
+
+                    /*
                 despesa = new Despesa(
                         Integer.parseInt(dia),
                         Integer.parseInt(mes),
@@ -388,22 +390,22 @@ public class TelaDespesa extends javax.swing.JFrame {
                         descricao,
                         salvaCodigoDespesa
                 );
-                */
-                break;
+                     */
+                    break;
 
-            case "DINHEIRO":
-                
-                despesa = new Despesa.DespesaBuild(salvaCodigoDespesa)
-                        .Dia(Integer.parseInt(dia))
-                        .Mes(Integer.parseInt(mes))
-                        .Ano(Integer.parseInt(ano))
-                        .Valor(Float.parseFloat(valor))
-                        .Categoria(categoria)
-                        .FormaPagamento(formaPagamento)
-                        .Status(status)
-                        .Descricao(descricao)
-                        .build();
-                /*
+                case "DINHEIRO":
+
+                    despesa = new Despesa.DespesaBuild(salvaCodigoDespesa)
+                            .Dia(Integer.parseInt(dia))
+                            .Mes(Integer.parseInt(mes))
+                            .Ano(Integer.parseInt(ano))
+                            .Valor(Float.parseFloat(valor))
+                            .Categoria(categoria)
+                            .FormaPagamento(formaPagamento)
+                            .Status(status)
+                            .Descricao(descricao)
+                            .build();
+                    /*
                 despesa = new Despesa(
                         Integer.parseInt(dia),
                         Integer.parseInt(mes),
@@ -415,26 +417,33 @@ public class TelaDespesa extends javax.swing.JFrame {
                         descricao,
                         salvaCodigoDespesa
                 );
-                */
-                break;
-                
-            //VER USO DE ALGUMA EXCEPTION OU NAO    
-            default:
-                JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada"); 
-                return;
+                     */
+                    break;
 
-        }
+                //VER USO DE ALGUMA EXCEPTION OU NAO    
+                default:
+                    JOptionPane.showMessageDialog(this, "Forma de Pagamento Inexistente ou Não Implementada");
+                    return;
 
-        if ((despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO"))) {
-
-            if (!(despesa.verifica_num_cartao_despesa())) {
-                JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-                return;
             }
+
+            if ((despesa.getF_pagamento().equals("CRÉDITO") || despesa.getF_pagamento().equals("DÉBITO"))) {
+
+                if (!(despesa.verifica_num_cartao_despesa())) {
+                    JOptionPane.showMessageDialog(this, "Número do cartão inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+
+            despesa.setId_conta(Integer.parseInt(txt_id.getText()));
+            TelaAtualizarDespesa(despesa);
+
+        } catch (NumberFormatException | NullPointerException e) {
+
+            JOptionPane.showMessageDialog(this, "Erro:AtualizarDespesa - " + e.getMessage());
         }
         
-        despesa.setId_conta(Integer.parseInt(txt_id.getText()));
-        TelaAtualizarDespesa(despesa);
+        
     }
 
     void ApagarDespesa() {
@@ -561,7 +570,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         cbbTipo.setBackground(new java.awt.Color(187, 210, 240));
         cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor", "Categoria", "Descrição", "Forma de Pagamento", "Número do Cartão Crédito", "Número do Cartão Débito", "Estatus", "Dia", "Mês", "Ano", "Nº Parcelas" }));
+        cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Valor", "Categoria", "Descrição", "Forma de Pagamento", "Nº Cartão Crédito", "Nº Cartão Débito", "Estatus", "Dia", "Mês", "Ano", "Nº Parcelas" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbbTipoActionPerformed(evt);
@@ -774,7 +783,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2360, 119, 81, 21);
+        txt_id.setBounds(2360, 119, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

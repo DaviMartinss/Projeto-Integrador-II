@@ -157,12 +157,13 @@ public class ControlerTabela {
                     break;
                 
                 case "Fatura":
-                     //Implementar
+                    
+                    
                     break;
                 
                 case "Main":
                     LinkedList<Receita> receitas = ControlerReceita.GetListaReceita(conta_id); 
-                    LinkedList<Despesa> despesas = ControlerDespesa.GetListaDespesa(conta_id);
+                    LinkedList<Despesa> despesas = ControlerDespesa.GetListaDespesa(conta_id, "NÃO PAGO");
                     LinkedList<CartaoDebito> listaCD = ControlerCartaoDebito.GetListaCartaoDebito(conta_id);
                     LinkedList<CartaoCredito> listaCC = ControlerCartaoCredito.GetListaCartaoCredito(conta_id);
                     
@@ -195,7 +196,6 @@ public class ControlerTabela {
         return mp;
     }
     
-   
     public static DefaultTableModel RecarregaTabelaConsulta(DefaultTableModel mp, String tipo, String argumento, int conta_id, boolean ordenar, Receita receitaConsulta, String tipoTabela){
         
         try {
@@ -207,32 +207,41 @@ public class ControlerTabela {
                     
                     if (ordenar) {
 
-                        if (tipo.equals(" total")) 
-                            Collections.sort(listaReceita, new ReceitaTotalASC());
-                        
-                        if (tipo.equals(" dia")) 
-                            Collections.sort(listaReceita, new ReceitaDiaASC());
-                        
-                        if (tipo.equals(" mes"))
-                            Collections.sort(listaReceita, new ReceitaMesASC());
-                        
-                        if (tipo.equals(" ano"))
-                            Collections.sort(listaReceita, new ReceitaAnoASC());
-                        
+                        switch (tipo) {
+                            case " total":
+                                Collections.sort(listaReceita, new ReceitaTotalASC());
+                                break;
+                            case " dia":
+                                Collections.sort(listaReceita, new ReceitaDiaASC());
+                                break;
+                            case " mes":
+                                Collections.sort(listaReceita, new ReceitaMesASC());
+                                break;
+                            case " ano":
+                                Collections.sort(listaReceita, new ReceitaAnoASC());
+                                break;
+                            default:
+                                break;
+                        }
+
                     } else {
 
-                        if (tipo.equals(" total")) 
-                            Collections.sort(listaReceita, new ReceitaTotalDESC());
-                        
-                        if (tipo.equals(" dia")) 
-                            Collections.sort(listaReceita, new ReceitaDiaDESC());
-                        
-                        if (tipo.equals(" mes")) 
-                            Collections.sort(listaReceita, new ReceitaMesDESC());
-                        
-                        if (tipo.equals(" ano")) 
-                            Collections.sort(listaReceita, new ReceitaAnoDESC());
-                       
+                        switch (tipo) {
+                            case " total":
+                                Collections.sort(listaReceita, new ReceitaTotalDESC());
+                                break;
+                            case " dia":
+                                Collections.sort(listaReceita, new ReceitaDiaDESC());
+                                break;
+                            case " mes":
+                                Collections.sort(listaReceita, new ReceitaMesDESC());
+                                break;
+                            case " ano":
+                                Collections.sort(listaReceita, new ReceitaAnoDESC());
+                                break;
+                            default:
+                                break;
+                        }
                     }
 
                     listaReceita.forEach((receita) -> {
@@ -354,7 +363,7 @@ public class ControlerTabela {
                     JOptionPane.showMessageDialog(null, "ERRO NO TIPO DE TABELA PARA SER RECARREGADA A CONSULTA");                   
             };
 
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
         

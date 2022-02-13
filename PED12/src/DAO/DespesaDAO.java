@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -371,7 +370,79 @@ public class DespesaDAO {
                     rs.getInt("cod_despesa")
             ));
             */
-             lista_despesa.add(new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+             lista_despesa.add(new Despesa.DespesaBuild(
+                     rs.getInt("cod_despesa"))
+                    .Dia(rs.getInt("dia"))
+                    .Mes(rs.getInt("mes"))
+                    .Ano(rs.getInt("ano"))
+                    .Valor(rs.getFloat("valor"))
+                    .Categoria(rs.getString("categoriaTipo"))
+                    .FormaPagamento(rs.getString("f_pagamento"))
+                    .NumeroCartao(rs.getLong("num_cartao_credito"))
+                    .NumeroParcelas(rs.getInt("n_parcelas"))
+                    .Status(rs.getString("estatus"))
+                    .Descricao(rs.getString("descricao"))
+                    .build()
+            );
+        }
+
+        pst.close();
+        rs.close();
+
+        return lista_despesa;
+    }
+    
+    public LinkedList<Despesa> GetListaDespesaCredito(int id_conta, String status) throws SQLException, NumberFormatException {
+        
+        PreparedStatement pst;
+        ResultSet rs;
+        
+        String consulta = "(SELECT\n"
+                        + "des.cod_despesa,\n"
+                        + "des.dia, \n"
+                        + "des.mes, \n"
+                        + "des.ano, \n"
+                        + "des.valor, \n"
+                        + "des.categoria_id, \n"
+                        + "des.f_pagamento, \n"
+                        + "des.num_cartao_credito, \n"
+                        + "des_c.n_parcelas, \n"
+                        + "des.estatus, \n"
+                        + "des.descricao, \n"
+                        + "C.categoriaTipo \n"
+                        + "FROM despesa des LEFT OUTER JOIN despesa_credito des_c ON \n"
+                        + "(des.cod_despesa = des_c.despesa_cod_despesa) \n"
+                        + "LEFT JOIN categoria C ON \n"
+                        + "(C.categoriaId = des.categoria_id) \n"
+                        + "WHERE des.conta_id_conta = ? AND des.estatus = ? AND des.f_pagamento = 'CRÉDITO')"; 
+          
+        pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Despesa> lista_despesa = new LinkedList<>();
+
+        pst.setInt(1, id_conta);
+        pst.setString(2, status);
+         
+        rs = pst.executeQuery();
+
+        while (rs.next()) {
+            /*
+            lista_despesa.add(new Despesa(
+                    rs.getInt("dia"),
+                    rs.getInt("mes"),
+                    rs.getInt("ano"),
+                    rs.getFloat("valor"),
+                    rs.getString("categoriaTipo"),
+                    rs.getString("f_pagamento"),
+                    rs.getLong("num_cartao_credito"),
+                    rs.getInt("n_parcelas"),
+                    rs.getString("estatus"),
+                    rs.getString("descricao"),
+                    rs.getInt("cod_despesa")
+            ));
+            */
+             lista_despesa.add(new Despesa.DespesaBuild(
+                     rs.getInt("cod_despesa"))
                     .Dia(rs.getInt("dia"))
                     .Mes(rs.getInt("mes"))
                     .Ano(rs.getInt("ano"))
@@ -421,6 +492,77 @@ public class DespesaDAO {
         LinkedList<Despesa> lista_despesa = new LinkedList<>();
 
         pst.setInt(1, id_conta);
+
+        rs = pst.executeQuery();
+
+        while (rs.next()) {
+            /*
+            lista_despesa.add(new Despesa(
+                    rs.getInt("dia"),
+                    rs.getInt("mes"),
+                    rs.getInt("ano"),
+                    rs.getFloat("valor"),
+                    rs.getString("categoriaTipo"),
+                    rs.getString("f_pagamento"),
+                    rs.getLong("num_cartao_debito"),
+                    rs.getInt("n_parcelas"),
+                    rs.getString("estatus"),
+                    rs.getString("descricao"),
+                    rs.getInt("cod_despesa")
+            ));
+            */
+             lista_despesa.add(new Despesa.DespesaBuild(rs.getInt("cod_despesa"))
+                    .Dia(rs.getInt("dia"))
+                    .Mes(rs.getInt("mes"))
+                    .Ano(rs.getInt("ano"))
+                    .Valor(rs.getFloat("valor"))
+                    .Categoria(rs.getString("categoriaTipo"))
+                    .FormaPagamento(rs.getString("f_pagamento"))
+                    .NumeroCartao(rs.getLong("num_cartao_debito"))
+                    .NumeroParcelas(rs.getInt("n_parcelas"))
+                    .Status(rs.getString("estatus"))
+                    .Descricao(rs.getString("descricao"))
+                    .build()
+            );
+        }
+
+        pst.close();
+        rs.close();
+
+        return lista_despesa;
+    }
+    
+    public LinkedList<Despesa> GetListaDespesaDebito(int id_conta, String status) throws SQLException, NumberFormatException {
+        
+        PreparedStatement pst;
+        ResultSet rs;
+        
+        String consulta = "(SELECT\n"
+                        + "des.cod_despesa,\n"
+                        + "des.dia, \n"
+                        + "des.mes, \n"
+                        + "des.ano, \n"
+                        + "des.valor, \n"
+                        + "des.categoria_id, \n"
+                        + "des.f_pagamento, \n"
+                        + "des.num_cartao_debito, \n"
+                        + "des_c.n_parcelas, \n"
+                        + "des.estatus, \n"
+                        + "des.descricao, \n"
+                        + "C.categoriaTipo \n"
+                        + "FROM despesa des LEFT OUTER JOIN despesa_credito des_c ON \n"
+                        + "(des.cod_despesa = des_c.despesa_cod_despesa) \n"
+                        + "LEFT JOIN categoria C ON \n"
+                        + "(C.categoriaId = des.categoria_id) \n"
+                        + "WHERE des.conta_id_conta = ? AND des.estatus = ? AND des.f_pagamento = 'DÉBITO')"; 
+           
+        pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Despesa> lista_despesa = new LinkedList<>();
+
+        pst.setInt(1, id_conta);
+        
+        pst.setString(2, status);
 
         rs = pst.executeQuery();
 
@@ -521,7 +663,71 @@ public class DespesaDAO {
         return lista_despesa;
     }
     
-    public LinkedList<Despesa> ConsultaDespesaPorReceita(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException {
+     public LinkedList<Despesa> GetListaDespesaDinheiro(int id_conta, String status) throws SQLException, NumberFormatException {
+        
+        PreparedStatement pst;
+        ResultSet rs;
+        
+        String consulta = "SELECT "
+                        + "des.cod_despesa,"
+                        + " des.dia,"
+                        + " des.mes,"
+                        + " des.ano,"
+                        + " des.valor,"
+                        + " des.categoria_id,"
+                        + " des.f_pagamento,"
+                        + " des.estatus,"
+                        + " des.descricao,"
+                        + " C.categoriaTipo FROM despesa des LEFT JOIN categoria C ON (C.categoriaId = des.categoria_id) "
+                        + " WHERE des.conta_id_conta = ? AND des.estatus = ? AND des.f_pagamento = 'DINHEIRO'; ";
+        
+        pst = conexao.prepareStatement(consulta);
+
+        LinkedList<Despesa> lista_despesa = new LinkedList<>();
+
+        pst.setInt(1, id_conta);
+        pst.setString(2, status);
+
+        rs = pst.executeQuery();
+
+        while (rs.next()) {
+            /*
+            lista_despesa.add(new Despesa(
+                    rs.getInt("dia"),
+                    rs.getInt("mes"),
+                    rs.getInt("ano"),
+                    rs.getFloat("valor"),
+                    rs.getString("categoriaTipo"),
+                    rs.getString("f_pagamento"),
+                    rs.getString("estatus"),
+                    rs.getString("descricao"),
+                    rs.getInt("cod_despesa")
+            ));
+            */
+            
+             lista_despesa.add(new Despesa.DespesaBuild(
+                     rs.getInt("cod_despesa"))
+                    .Dia(rs.getInt("dia"))
+                    .Mes(rs.getInt("mes"))
+                    .Ano(rs.getInt("ano"))
+                    .Valor(rs.getFloat("valor"))
+                    .Categoria(rs.getString("categoriaTipo"))
+                    .FormaPagamento(rs.getString("f_pagamento"))
+                    .Status(rs.getString("estatus"))
+                    .Descricao(rs.getString("descricao"))
+                    .build()
+            );
+        }
+
+        pst.close();
+        rs.close();
+
+        return lista_despesa;
+    }
+     
+    
+    
+    public LinkedList<Despesa> ConsultaDespesaPorReceita(String tipo, String arg, boolean ordenar, Receita receita) throws SQLException, NullPointerException {
 
         String consultaDespesaPorReceita;
 

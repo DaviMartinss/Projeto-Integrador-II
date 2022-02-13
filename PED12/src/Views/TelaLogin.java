@@ -5,9 +5,10 @@
  */
 package Views;
 
-import DAO.UsuarioDAO;
+import Controllers.ControlerUser;
 import javax.swing.JOptionPane;
 import Model.Usuario;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 
 /**
@@ -25,24 +26,20 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     
-    
     public void logar() throws SQLException{   
         
-       Usuario user = new Usuario.UsuarioBuild(txtEmail.getText())
+       Usuario user = new Usuario.UsuarioBuild(
+               txtEmail.getText())
                 .Senha(txtSenha.getText())
                 .build();
-
-        UsuarioDAO userDAO = new UsuarioDAO();
-        
-//        boolean logar = userDAO.logar(user);
         
         try {
             
-            if(userDAO.logar(user)){
+            if(ControlerUser.Logar(user)){
                 
-               // TelaPrincipal TelaPrincipal = null;
+                TelaPrincipal TelaPrincipal = null;
 
-                //if (TelaPrincipal == null) {
+                if (TelaPrincipal == null) {
 
                     TelaPrincipal telaPrincipal = new TelaPrincipal();
 
@@ -52,54 +49,70 @@ public class TelaLogin extends javax.swing.JFrame {
 
                     telaPrincipal.receberID(id);
                     
-//                } else {
-//
-//                    TelaPrincipal.setVisible(true);
-//
-//                    TelaPrincipal.setState(TelaPrincipal.NORMAL);
-//
-//                    String id = Integer.toString(user.getId_conta());
-//
-//                    TelaPrincipal.receberID(id);
-//                }
+                } else {
+
+                    TelaPrincipal.setVisible(true);
+
+                    TelaPrincipal.setState(TelaPrincipal.NORMAL);
+
+                    String id = Integer.toString(user.getId_conta());
+
+                    TelaPrincipal.receberID(id);
+                }
                 
                 this.dispose();
 
             }else{
                 JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } catch (HeadlessException | NullPointerException e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
         
     }
     
     void cadastro(){
-         TelaUsuario_cadastrar cadastroCliente = new TelaUsuario_cadastrar();
-         cadastroCliente.setVisible(true);
-         this.dispose();
+        
+        try {
+
+            TelaUsuario_cadastrar cadastroCliente = new TelaUsuario_cadastrar();
+            cadastroCliente.setVisible(true);
+            this.dispose();
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
     
     
     void Recupera_senha() {
+        
+        try {
 
-        Tela_RecuperaSenha Tela_RecuperaSenha = null;
+            Tela_RecuperaSenha Tela_RecuperaSenha = null;
 
-        if (Tela_RecuperaSenha == null) {
+            if (Tela_RecuperaSenha == null) {
 
-            Tela_RecuperaSenha = new Tela_RecuperaSenha();
+                Tela_RecuperaSenha = new Tela_RecuperaSenha();
 
-            Tela_RecuperaSenha.setVisible(true);
+                Tela_RecuperaSenha.setVisible(true);
 
-        } else {
+            } else {
 
-            Tela_RecuperaSenha.setVisible(true);
+                Tela_RecuperaSenha.setVisible(true);
 
-            Tela_RecuperaSenha.setState(TelaPrincipal.NORMAL);
+                Tela_RecuperaSenha.setState(TelaPrincipal.NORMAL);
 
+            }
+
+            this.dispose();
+
+        } catch (Exception e) {
+            
+             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
-        this.dispose();
     }
     
 
@@ -215,15 +228,14 @@ public class TelaLogin extends javax.swing.JFrame {
         try {
             logar();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao logar");
+            JOptionPane.showMessageDialog(this, "Erro ao logar" + ex.getMessage());
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         cadastro();
-      
-        
+
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
@@ -263,10 +275,8 @@ public class TelaLogin extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaLogin().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaLogin().setVisible(true);
         });
     }
 
@@ -282,6 +292,5 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
-
 
 }

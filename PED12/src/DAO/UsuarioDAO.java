@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  *
@@ -22,33 +21,33 @@ public class UsuarioDAO {
         
     }
     
-    public boolean logar(Usuario user) throws SQLException, NullPointerException {
+    public boolean Logar(Usuario user) throws SQLException, NullPointerException {
 
        String sql = "select * from conta where email=? and senha=?";
 
-       PreparedStatement pst = conexao.prepareStatement(sql);
+       boolean retorno;
        
-       boolean retorno = false;
-
-        pst.setString(1, user.getEmail());
-        pst.setString(2, user.getSenha());
-
-        ResultSet rs = pst.executeQuery();
-
-        if (rs.next()) {
-
-            user.setId_conta(rs.getInt(1));
-
-            retorno = true;
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
-
+        try (PreparedStatement pst = conexao.prepareStatement(sql)) {
+            
             retorno = false;
+            
+            pst.setString(1, user.getEmail());
+            pst.setString(2, user.getSenha());
+            ResultSet rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                
+                user.setId_conta(rs.getInt(1));
+                
+                retorno = true;
+                
+            } else {
+                
+                JOptionPane.showMessageDialog(null, "Usuario ou senha inválido");
+                
+                retorno = false;
+            }
         }
-
-        pst.close();
 
         return retorno;
     }
@@ -123,199 +122,145 @@ public class UsuarioDAO {
     
     public boolean UpdateSenha(Usuario usuario) throws SQLException, NullPointerException {
 
-        PreparedStatement pst = null;
         boolean retorno = false;
         String insert = "UPDATE conta SET senha = ? WHERE id_conta = ?";
 
-        pst = conexao.prepareStatement(insert);
-
-        pst.setString(1, usuario.getSenha());
-        pst.setInt(2, usuario.getId_conta());
-
-        pst.executeUpdate();
-
-        retorno = true;
-
-        pst.close();
+        try (PreparedStatement pst = conexao.prepareStatement(insert)) {
+            
+            pst.setString(1, usuario.getSenha());
+            pst.setInt(2, usuario.getId_conta());
+            
+            pst.executeUpdate();
+            
+            retorno = true;
+        }
         
         return retorno;
 }
     
-     public ResultSet PreencherCampos_Usuario(String id_conta) throws SQLException {
+     public Usuario GetUsuario(String id_conta) throws SQLException, NumberFormatException {
  
        String consulta = "SELECT * FROM conta WHERE id_conta = ?";
        
-       PreparedStatement pst = conexao.prepareStatement(consulta);
+       ResultSet rs;
+       Usuario user;
        
-       ResultSet rs = null;
-       
-       try {
-           
-           pst.setInt(1, Integer.parseInt(id_conta));
-           
-           rs = pst.executeQuery();
+         try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
+             
+             pst.setInt(1, Integer.parseInt(id_conta));
+             rs = pst.executeQuery();
+             
+             user = null;
+             
+             if (rs.next()) {
 
-       } catch (NumberFormatException | SQLException e) {
+                 user = new Usuario.UsuarioBuild()
+                         .Nome(rs.getString("nome"))
+                         .Senha(rs.getString("senha"))
+                         .Email(rs.getString("email"))
+                         .IdConta(rs.getInt("id_conta"))
+                         .build();
 
-           JOptionPane.showMessageDialog(null, e.getMessage());
-
-       }
-
-       return rs;
-       
+             }
+             
+              pst.close();
+              rs.close();
+         }
+        
+       return user;
    }
      
-    public String NomeUsuario(String id_conta) throws SQLException {
+    public String NomeUsuario(String id_conta) throws SQLException, NumberFormatException {
  
        String consulta = "SELECT nome FROM conta WHERE id_conta = ?";
        
        String nome = null;
        
-       PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       try {
-           
-           pst.setInt(1, Integer.parseInt(id_conta));
-           
-           rs = pst.executeQuery();
-           
-           if(rs.next()){
-               
-               nome = rs.getString("nome");
-               
+        try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
+            
+            pst.setInt(1, Integer.parseInt(id_conta));
+            
+           try (ResultSet rs = pst.executeQuery()) {
+               if (rs.next())
+                   nome = rs.getString("nome");
            }
+        }
+        
 
-       } catch (NumberFormatException | SQLException e) {
-
-           JOptionPane.showMessageDialog(null, e.getMessage());
-
-       }
-
-       return nome;
-       
+       return nome;   
    }
     
    public boolean DeleteUser(int id) throws SQLException {
 
-        PreparedStatement pst = null;
-
-        String delete = "delete from conta where id_conta = ?";
+       String delete = "DELETE FROM conta WHERE id_conta = ?";
         
-        try {
-
-            pst = conexao.prepareStatement(delete);
-
+        try (PreparedStatement pst = conexao.prepareStatement(delete)) {
             pst.setInt(1, id);
-
-            pst.executeUpdate();
             
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e.toString());
-            return false;
-
-        } finally {
-
-            pst.close();
+            pst.executeUpdate();
         }
 
-        return true;
+       return true;
     }
     
    
-    public boolean valida_UpdateSenha(String senha1, String senha2) {
+    public boolean valida_UpdateSen(String senha1, String senha2) {
 
         return senha1.equals(senha2);
     }
     
     public boolean verificaEmailExiste(String email)throws SQLException {
         
-        String consulta = "select id_conta from conta where email = ?";
+        String consulta = "SELECT id_conta FROM conta WHERE email = ?";
 
-        PreparedStatement pst = conexao.prepareStatement(consulta);
-
-        ResultSet rs = null;
-
-        try {
-
+        boolean retorno;
+        
+        try (PreparedStatement pst = conexao.prepareStatement(consulta)) {
+            
             pst.setString(1, email);
-
-            rs = pst.executeQuery();
-
-            return rs.next();
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e.getMessage());
-
-            return false;
-
+            
+            try (ResultSet rs = pst.executeQuery()) {
+                retorno = rs.next();
+            }
         }
+        
+        return retorno;
     }
     
     public String consultaEmail(int id) throws SQLException{
        
-       String consulta = "select email from conta where id_conta = ?";
+       String consulta = "SELECT email FROM conta WHERE id_conta = ?";
 
        String email = null;
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       try {
-           
-           pst.setInt(1, id);
-           
-           rs = pst.executeQuery();
-           
-           if(rs.next()){
-               
-               email = rs.getString("email");
-               
-           }
 
-       } catch (SQLException e) {
+       pst.setInt(1, id);
 
-           JOptionPane.showMessageDialog(null, "Falha ao consultar email");
-       }
-       
+       ResultSet rs = pst.executeQuery();
+
+        if (rs.next())
+            email = rs.getString("email");
+        
        return email;
-       
     }
     
     
     public int consultaId(String email) throws SQLException{
        
-       String consulta = "select id_conta from conta where email = ?";
+       String consulta = "SELECT id_conta FROM conta WHERE email = ?";
 
        int id = -1;
        
        PreparedStatement pst = conexao.prepareStatement(consulta);
-       
-       ResultSet rs = null;
-       
-       try {
-           
-           pst.setString(1, email);
-           
-           rs = pst.executeQuery();
-           
-           if(rs.next()){
-               
-              id = rs.getInt("id_conta");
-               
-           }
 
-       } catch (SQLException e) {
+       pst.setString(1, email);
 
-           JOptionPane.showMessageDialog(null, "Falha ao consultar Id");
+       ResultSet rs = pst.executeQuery();
 
-       }
-       
+       if (rs.next()) 
+            id = rs.getInt("id_conta");
+        
        return id;
-       
     }
 }

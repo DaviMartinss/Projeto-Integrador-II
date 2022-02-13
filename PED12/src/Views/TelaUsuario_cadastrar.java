@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package Views;
-import DAO.UsuarioDAO;
-import java.sql.*;
-import DAO.moduloConexao;
+import Controllers.ControlerUser;
 import Model.Usuario;
+import com.mysql.cj.util.StringUtils;
 import javax.swing.JOptionPane;
 /**
  *
@@ -18,9 +17,6 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     /**
      * Creates new form TelaUsuario_cadastrar
      */
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
     
     public TelaUsuario_cadastrar() {
         initComponents();
@@ -39,23 +35,22 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     }
     
     
-    private void cadastro_cliente(){
+    private void CadastrarUsuario(){
 
         //Usuario novo_usuario = new Usuario(txtNome.getText(), txtEmail.getText(), txtSenha.getText());
           Usuario novo_usuario = new Usuario.UsuarioBuild(txtEmail.getText())
                 .Nome(txtNome.getText())
                 .Senha(txtSenha.getText())
                 .build();
-        
-        UsuarioDAO userDAO = new UsuarioDAO();
+       
         
         try {
             
-            userDAO.CadastrarUsuario(novo_usuario);
+            ControlerUser.CadastrarUsuario(novo_usuario);
             
             volta_telaLogin();
             
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -192,14 +187,16 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
     private void btnRealizarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarCadastroActionPerformed
         // TODO add your handling code here:
         
-        if(  txtNome.getText().isEmpty() || txtEmail.getText().isEmpty()   ||
-             txtSenha.getText().isEmpty()){
+        if(  StringUtils.isNullOrEmpty(txtNome.getText()) || 
+             StringUtils.isNullOrEmpty(txtEmail.getText()) ||
+             StringUtils.isNullOrEmpty(txtSenha.getText()))
+        {
             
             JOptionPane.showMessageDialog(this, "Todos campos são de preenchimento obrigatório!", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             
         }else{
             
-            cadastro_cliente();
+            CadastrarUsuario();
 
         } 
         
@@ -242,10 +239,8 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaUsuario_cadastrar().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaUsuario_cadastrar().setVisible(true);
         });
     }
 

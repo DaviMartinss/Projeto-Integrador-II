@@ -84,12 +84,15 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
     
     
    public void cadastro_categoria() {
-        Categoria categoria = new Categoria.CategoriaBuild()
+        
+
+        try {
+            
+            Categoria categoria = new Categoria.CategoriaBuild()
               .CategoriaTipo(txt_categoria.getText())
               .id_conta(Integer.parseInt(txt_id.getText()))
               .build();
-
-        try {
+            
             if (!(StringUtils.isNullOrEmpty(categoria.getCategoriaTipo()))) {
                 
                 ControlerCategoria.CadastrarCategoria(categoria);
@@ -100,7 +103,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
             }
                  volta_telaCategoria();                
             
-        } catch (HeadlessException e) {
+        } catch (HeadlessException | NumberFormatException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

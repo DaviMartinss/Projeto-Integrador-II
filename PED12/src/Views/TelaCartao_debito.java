@@ -240,15 +240,15 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             return;
         }
         
-        String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
-        
-         CartaoDebito cartao_d = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(num_cartao)).build();
-
         try {
+
+            String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
+
+            CartaoDebito cartao_d = new CartaoDebito.CartaoDebitoBuild(Long.parseLong(num_cartao)).build();
 
             ControlerCartaoDebito.ApagarCartaoDebito(cartao_d);
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage(), "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
@@ -259,17 +259,23 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         String tipo = "";
 
         String escolha = cbbTipo.getSelectedItem().toString().trim();
-
-        if (escolha.equals("Nº Cartão")) {
-            tipo = " " + "n_cartao_debito";
-        }
-
-        if (escolha.equals("Valor")) {
-            tipo = " " + "valor_atual";
-        }
-
-        if (escolha.equals("Bandeira")) {
-            tipo = " " + "bandeira";
+        
+        switch(escolha)
+        {
+            case "Nº Cartão":
+                tipo = " " + "n_cartao_debito";
+                break;
+            
+            case "Valor":
+                tipo = " " + "valor_atual";
+                break;
+            
+            case "Bandeira":
+                tipo = " " + "bandeira";
+                break;
+            
+            default:
+                JOptionPane.showMessageDialog(this, "Tipo de filtro desconhecido ou não implementado!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
         }
 
         String argumento = txt_Pesquisa.getText();
@@ -605,6 +611,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
         String num_cartao = "" + jtConsultaCD.getValueAt(jtConsultaCD.getSelectedRow(), 0);
 
+        
         salva_num_cartao_debito = Long.parseLong(num_cartao);
         salvaLinhaAtiva = true;
         
@@ -619,52 +626,6 @@ public class TelaCartao_debito extends javax.swing.JFrame {
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         // TODO add your handling code here:
-
-//        if (btn_update.getText().equals("Alterar")) {
-//
-//            btn_update.setText("Atualizar");
-//
-//            txt_NumCartaoD.setEditable(true);
-//            txt_Valor.setEditable(true);
-//            txt_Bandeira.setEditable(true);
-//
-//        } else {
-//
-//            btn_update.setText("Alterar");
-//
-//            txt_NumCartaoD.setEditable(false);
-//            txt_Valor.setEditable(false);
-//            txt_Bandeira.setEditable(false);
-//
-//            boolean atualiza = true;
-//
-//            CartaoDebito cartaoDB = new CartaoDebito(
-//                    Long.parseLong(txt_NumCartaoD.getText()),
-//                    Float.parseFloat(txt_Valor.getText()),
-//                    txt_Bandeira.getText(),
-//                    Integer.parseInt(txt_id.getText())
-//            );
-//
-//            if (!(cartaoDB.verifica_num_cartao_deb())) {
-//
-//                JOptionPane.showMessageDialog(this, "Número do cartão de débito inválido", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
-//
-//                atualiza = false;
-//            }
-//
-//            if (atualiza) {
-//
-//                AtualizarCartaoDebito();
-//                RecarregaTabela();
-//                LimpaCampos_CD();
-//                
-//                JOptionPane.showMessageDialog(this, "Atualizado com sucesso!");
-//                
-//            }else{
-//                
-//                JOptionPane.showMessageDialog(this, "Erro ao atualizar","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);              
-//            }
-//        }
 
         AtualizarCartaoDebito();
 
@@ -696,9 +657,9 @@ public class TelaCartao_debito extends javax.swing.JFrame {
     private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
 
         if(tbHabilitaConsulta.isSelected())
-        HabilitarConsulta();
+            HabilitarConsulta();
         else
-        DesabilitarConsulta();
+            DesabilitarConsulta();
 
     }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
 

@@ -5,8 +5,9 @@
  */
 package Views;
 
-import DAO.UsuarioDAO;
+import Controllers.ControlerUser;
 import Model.Usuario;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,33 +52,32 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
                 
         );
         */
-        UsuarioDAO UserSenhaDAO = new UsuarioDAO();
 
         try {
             
-            if (UserSenhaDAO.valida_UpdateSenha(senha1, senha2)){
+            if (senha1.equals(senha2)){
                 
                 if(senhaUser.validaTamSenha(senha1)){
                     
-                    UserSenhaDAO.UpdateSenha(senhaUser);
-                    JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso");
+                    ControlerUser.AtualizarSenha(senhaUser);
+                    JOptionPane.showMessageDialog(this, "Senha atualizada com sucesso");
                     volta_telaLogin();
                     
                 }else{
                     
-                    JOptionPane.showMessageDialog(null, "Falha,A senha dever ter no mínimo 6 caracteres!");
+                    JOptionPane.showMessageDialog(this, "Falha,A senha dever ter no mínimo 6 caracteres!");
                 }
                 
                 
             }else{
                 
-                JOptionPane.showMessageDialog(null, "Dados Inválidos, impossível atualizar!!");
+                JOptionPane.showMessageDialog(this, "Dados Inválidos, impossível atualizar!!");
                 
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException | NullPointerException e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
 
     }
@@ -184,10 +184,8 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Tela_NovaSenha().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Tela_NovaSenha().setVisible(true);
         });
     }
 

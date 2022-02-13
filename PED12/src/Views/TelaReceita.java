@@ -224,7 +224,10 @@ public class TelaReceita extends javax.swing.JFrame{
         try {
             
               Receita receita_atual
-                = new Receita.ReceitaBuild(Integer.parseInt(txt_id.getText()), Integer.parseInt(mes), Integer.parseInt(ano))
+                = new Receita.ReceitaBuild(
+                     Integer.parseInt(txt_id.getText()), 
+                     Integer.parseInt(mes), 
+                     Integer.parseInt(ano))
                     .Dia(Integer.parseInt(dia))
                     .Total(Float.parseFloat(total))
                     .build();
@@ -359,7 +362,7 @@ public class TelaReceita extends javax.swing.JFrame{
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Receitas");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 90, 26);
+        pageTitle.setBounds(360, 0, 90, 24);
 
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -578,7 +581,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 21);
+        txt_id.setBounds(20, 10, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

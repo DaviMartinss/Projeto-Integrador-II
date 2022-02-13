@@ -240,19 +240,52 @@ public class ControlerDespesa {
 
             return lista_despesa;
 
-        } catch (SQLException ex) {
+        } catch (SQLException | NumberFormatException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return null;
         
-        }catch(Exception ex){
+        }     
+    }
+    
+    public static LinkedList<Despesa> GetListaDespesa(int id_conta, String status){
+        
+         DespesaDAO despesaDAO = new DespesaDAO();
+        
+        try {
+
+            LinkedList<Despesa> lista_despesa = new LinkedList<>();
+
+            lista_despesa.addAll(despesaDAO.GetListaDespesaCredito(id_conta, status));
+            lista_despesa.addAll(despesaDAO.GetListaDespesaDebito(id_conta, status));
+            lista_despesa.addAll(despesaDAO.GetListaDespesaDinheiro(id_conta, status));
+
+            return lista_despesa;
+
+        } catch (SQLException | NumberFormatException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            
+            return null;
+        
+        }     
+    }
+    
+    public static LinkedList<Despesa> GetListaDespesaFatura(Long numCartaoCredito, int id_conta){
+        
+         DespesaDAO despesaDAO = new DespesaDAO();
+        
+        try {
 
-            JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            return despesaDAO.GetListaDespesaFatura(numCartaoCredito, id_conta);
+
+        } catch (SQLException | NumberFormatException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return null;
         }     
@@ -267,19 +300,27 @@ public class ControlerDespesa {
 
             return despesaDAO.ConsultaDespesa(tipo, arg, ordenar, id_conta);
 
-        } catch (SQLException ex) {
+        } catch (SQLException | NumberFormatException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return null;
+        }     
+    }
+    
+    public static LinkedList<Despesa> ConsultaDespesaFatura(String tipo, String arg, int id_conta, boolean ordenar){
         
-        }catch(Exception ex){
+         DespesaDAO despesaDAO = new DespesaDAO();
+        
+        try {
+
+            return despesaDAO.ConsultaDespesaFatura(tipo, arg, id_conta, ordenar);
+
+        } catch (SQLException | NumberFormatException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-            JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return null;
         }     
@@ -293,19 +334,10 @@ public class ControlerDespesa {
 
             return despesaDAO.ConsultaDespesaPorReceita(tipo, arg, ordenar, receita);
 
-        } catch (SQLException ex) {
+        } catch (SQLException | NullPointerException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
-            
-            return null;
-        
-        }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-            JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return null;
         }     
@@ -323,21 +355,13 @@ public class ControlerDespesa {
         
             return true;
 
-        } catch (SQLException ex) {
+        } catch (SQLException | NullPointerException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
             JOptionPane.showMessageDialog(null, "ERRO:TransferirDespesasEntreReceitas", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return false;
         
-        }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-            JOptionPane.showMessageDialog(null, "ERRO:TransferirDespesasEntreReceitas", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
-            return false;
         }     
     }
     

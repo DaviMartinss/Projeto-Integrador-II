@@ -105,12 +105,12 @@ public class TelaCategoria extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Nenhuma categoria foi selecionada para ser atualizda","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
-      Categoria categoria_aux  = new Categoria.CategoriaBuild().build();
             
         if (!(StringUtils.isNullOrEmpty(txt_NomeCategoria.getText()))) {
 
-            String categoriaAntiga = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
+            try {
+                
+                 String categoriaAntiga = "" + jt_categoria.getValueAt(jt_categoria.getSelectedRow(), 0);
             /*
             Categoria categoria_atua = new Categoria(
                     txt_NomeCategoria.getText(),
@@ -123,14 +123,12 @@ public class TelaCategoria extends javax.swing.JFrame {
                     .Categoria_aux(categoriaAntiga)
                     .id_conta(Integer.parseInt(txt_id.getText()))
                     .build();
-              
-            try {
                 
                  ControlerCategoria.AtualizarCategoria(categoria_atua);
                  
                  limpa_campo();
 
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
 
                 JOptionPane.showMessageDialog(this, "Falha ao atualizar a categoria " + e.getMessage() ,"WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
             }
@@ -148,16 +146,16 @@ public class TelaCategoria extends javax.swing.JFrame {
             return;
         }
         
-         Categoria categoria = new Categoria.CategoriaBuild().CategoriaTipo(txt_NomeCategoria.getText()).build();
-
         try {
-            
+
+            Categoria categoria = new Categoria.CategoriaBuild().CategoriaTipo(txt_NomeCategoria.getText()).build();
+
             ControlerCategoria.ApagarCategoria(categoria, Integer.parseInt(txt_id.getText()));
             limpa_campo();
 
         } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(this, "Falha ao deletar categoria","WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Falha ao deletar categoria", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -502,9 +500,9 @@ public class TelaCategoria extends javax.swing.JFrame {
     private void tbHabilitaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbHabilitaConsultaActionPerformed
 
         if(tbHabilitaConsulta.isSelected())
-        HabilitarConsulta();
+            HabilitarConsulta();
         else
-        DesabilitarConsulta();
+            DesabilitarConsulta();
     }//GEN-LAST:event_tbHabilitaConsultaActionPerformed
 
     /**

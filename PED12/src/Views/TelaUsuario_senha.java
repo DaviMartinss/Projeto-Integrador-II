@@ -5,12 +5,9 @@
  */
 package Views;
 
-import DAO.UsuarioDAO;
-import DAO.moduloConexao;
+import Controllers.ControlerUser;
 import Model.Usuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,32 +22,38 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     void Volta_TelaConta() {
-
-        TelaUsuario TelaUser = null;
-
-        if (TelaUser== null) {
-
-            TelaUser = new TelaUsuario();
-
-            TelaUser.setVisible(true);
-
-            TelaUser.receberID(txt_id.getText());
-
-        } else {
-
-            TelaUser.setVisible(true);
-
-            TelaUser.setState(TelaUser.NORMAL); // olha essa linha
-
-            TelaUser.receberID(txt_id.getText());
-
-        }
-
-        this.dispose();
         
+        try {
+
+            TelaUsuario TelaUser = null;
+
+            if (TelaUser == null) {
+
+                TelaUser = new TelaUsuario();
+
+                TelaUser.setVisible(true);
+
+                TelaUser.receberID(txt_id.getText());
+
+            } else {
+
+                TelaUser.setVisible(true);
+
+                TelaUser.setState(TelaUser.NORMAL); // olha essa linha
+
+                TelaUser.receberID(txt_id.getText());
+
+            }
+
+            this.dispose();
+
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
     
-    void update_Senha() {
+    void AtualizarSenha() {
         
             String senha1 = new String(this.txt_NovaSenha.getPassword());
             String senha2 = new String(this.txt_ConfirmaSenha.getPassword());
@@ -69,33 +72,32 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
                 
         );
 */
-        UsuarioDAO UserSenhaDAO = new UsuarioDAO();
 
         try {
             
-            if (UserSenhaDAO.valida_UpdateSenha(senha1, senha2)){
+            if (senha1.equals(senha2)){
                 
                 if(senhaUser.validaTamSenha(senha1)){
                     
-                    UserSenhaDAO.UpdateSenha(senhaUser);
-                    JOptionPane.showMessageDialog(null, "Senha atualizada com sucesso");
+                    ControlerUser.AtualizarSenha(senhaUser);
+                    JOptionPane.showMessageDialog(this, "Senha atualizada com sucesso");
                     Volta_TelaConta();
                     
                 }else{
                     
-                    JOptionPane.showMessageDialog(null, "Falha,A senha dever ter no mínimo 6 caracteres!");
+                    JOptionPane.showMessageDialog(this, "Falha,A senha dever ter no mínimo 6 caracteres!");
                 }
                 
                 
             }else{
                 
-                JOptionPane.showMessageDialog(null, "Dados Inválidos, impossível atualizar!!");
+                JOptionPane.showMessageDialog(this, "Dados Inválidos, impossível atualizar!!");
                 
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
 
     }
@@ -215,7 +217,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
 
     private void btn_alteraSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alteraSenhaActionPerformed
         // TODO add your handling code here:
-        update_Senha();
+        AtualizarSenha();
     }//GEN-LAST:event_btn_alteraSenhaActionPerformed
 
     private void btn_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_voltarActionPerformed
@@ -251,10 +253,8 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaUsuario_senha().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaUsuario_senha().setVisible(true);
         });
     }
 
@@ -279,7 +279,7 @@ public class TelaUsuario_senha extends javax.swing.JFrame {
 
 public void receberID(String recebe){
 
-        txt_id.setText(recebe);
-    }
+    txt_id.setText(recebe);
+}
 
 }

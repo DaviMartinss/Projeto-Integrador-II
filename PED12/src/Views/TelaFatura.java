@@ -5,10 +5,10 @@
  */
 package Views;
 
+import Controllers.ControlerCartaoCredito;
+import Controllers.ControlerCategoria;
+import Controllers.ControlerDespesa;
 import static Controllers.ControlerTabela.LimpaTabela;
-import DAO.CartaoCreditoDAO;
-import DAO.CategoriaDAO;
-import DAO.DespesaDAO;
 import Model.CartaoCredito;
 import Model.Despesa;
 import java.util.LinkedList;
@@ -32,29 +32,36 @@ public class TelaFatura extends javax.swing.JFrame {
     }
     
     
-    void cartao_credito() {
+    void TelaCartaoCredito() {
+        
+        try {
 
-        TelaCartao_credito TelaCartao_credito = null;
+            TelaCartao_credito TelaCartao_credito = null;
 
-        if (TelaCartao_credito == null) {
+            if (TelaCartao_credito == null) {
 
-            TelaCartao_credito = new TelaCartao_credito();
+                TelaCartao_credito = new TelaCartao_credito();
 
-            TelaCartao_credito.setVisible(true);
+                TelaCartao_credito.setVisible(true);
 
-            TelaCartao_credito.receberID(txt_id.getText());
+                TelaCartao_credito.receberID(txt_id.getText());
 
-        } else {
+            } else {
 
-            TelaCartao_credito.setVisible(true);
+                TelaCartao_credito.setVisible(true);
 
-            TelaCartao_credito.setState(TelaPrincipal.NORMAL);
+                TelaCartao_credito.setState(TelaPrincipal.NORMAL);
 
-            TelaCartao_credito.receberID(txt_id.getText());
+                TelaCartao_credito.receberID(txt_id.getText());
 
+            }
+
+            this.dispose();
+
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
-        this.dispose();
     }
     
 
@@ -70,12 +77,9 @@ public class TelaFatura extends javax.swing.JFrame {
 
         try {
 
-            DespesaDAO despesaDAO = new DespesaDAO();
-            CategoriaDAO categoriaDAO = new CategoriaDAO();
-
             DefaultTableModel mp = (DefaultTableModel) jtFaturas.getModel();
 
-            LinkedList<Despesa> listaDespesasFatura = despesaDAO.GetListaDespesaFatura(Long.parseLong(txtNumCartao.getText()), Integer.parseInt(txt_id.getText()));
+            LinkedList<Despesa> listaDespesasFatura = ControlerDespesa.GetListaDespesaFatura(Long.parseLong(txtNumCartao.getText()), Integer.parseInt(txt_id.getText()));
 
             for (Despesa despesa : listaDespesasFatura) {
 
@@ -84,7 +88,7 @@ public class TelaFatura extends javax.swing.JFrame {
                 String Col2 = Integer.toString(despesa.getAno());
                 String Col3 = Float.toString(despesa.getValor());
                 String Col4 = despesa.getEstatus();
-                String Col5 = categoriaDAO.GetTipoCategoria(despesa.getId_categoria(), Integer.parseInt(txt_id.getText()));
+                String Col5 = ControlerCategoria.GetTipoCategoria(despesa.getId_categoria(), Integer.parseInt(txt_id.getText()));
                 String Col6 = Integer.toString(despesa.getNum_parcelas());
                 String Col7 = despesa.getDescricao();
                 String Col8 = Integer.toString(despesa.getNum_parcelas_pagas());
@@ -100,30 +104,25 @@ public class TelaFatura extends javax.swing.JFrame {
             
             txtTotalFatura.setText(Float.toString(totalFatura));
 
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (NumberFormatException e) {
+            
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erro ao recarregar tabela", JOptionPane.ERROR_MESSAGE);
         }
         
-
     }
      
     void CarregaInfoCartao(){
         
         try {
             
-            CartaoCreditoDAO cartaoDAO = new CartaoCreditoDAO();
-
-            CartaoCredito cartao = cartaoDAO.GetCartaoCredito(Long.parseLong(txtNumCartao.getText()), Integer.parseInt(txt_id.getText()));
+            CartaoCredito cartao = ControlerCartaoCredito.GetCartaoCredito(Long.parseLong(txtNumCartao.getText()), Integer.parseInt(txt_id.getText()));
 
             txtDiaFatura.setText(Integer.toString(cartao.getDia_fatura()));
             
             txtBandeira.setText(cartao.getBandeira());
             
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(this, e.getMessage());
             JOptionPane.showMessageDialog(this, e.getMessage(), "Erro ao carregar Cartão Crédito", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -134,49 +133,40 @@ public class TelaFatura extends javax.swing.JFrame {
 
         String escolha = selectorType.getSelectedItem().toString().trim();
 
-        if (escolha.equals("Dia")) {
-            tipo = " " + "dia";
-        }
-
-        if (escolha.equals("Mês")) {
-            tipo = " " + "mes";
-        }
-
-        if (escolha.equals("Ano")) {
-            tipo = " " + "ano";
-        }
-
-        if (escolha.equals("Valor Total")) {
-            tipo = " " + "valor";
-        }
-
-        if (escolha.equals("Estatus")) {
-            tipo = " " + "estatus";
-        }
-
-        if (escolha.equals("Categoria")) {
-
-            tipo = " " + "categoriaTipo";
-        }
-
-        if (escolha.equals("Parcelas")) {
-
-            tipo = " " + "n_parcelas";
-        }
-
-        if (escolha.equals("Descrição")) {
-
-            tipo = " " + "descricao";
-        }
-
-        if (escolha.equals("Parcelas Pagas")) {
-
-            tipo = " " + "n_parcelas_pagas";
-        }
-
-        if (escolha.equals("Valor Parcela")) {
-
-            tipo = " " + "valor_parcela";
+        switch (escolha) {
+            case "Dia":
+                tipo = " " + "dia";
+                break;
+            case "Mês":
+                tipo = " " + "mes";
+                break;
+            case "Ano":
+                tipo = " " + "ano";
+                break;
+            case "Valor Total":
+                tipo = " " + "valor";
+                break;
+            case "Estatus":
+                tipo = " " + "estatus";
+                break;
+            case "Categoria":
+                tipo = " " + "categoriaTipo";
+                break;
+            case "Parcelas":
+                tipo = " " + "n_parcelas";
+                break;
+            case "Descrição":
+                tipo = " " + "descricao";
+                break;
+            case "Parcelas Pagas":
+                tipo = " " + "n_parcelas_pagas";
+                break;
+            case "Valor Parcela":
+                tipo = " " + "valor_parcela";
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "Filtro desconhecido ou não implementado", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+                break;
         }
 
         String argumento = findField.getText();
@@ -185,15 +175,12 @@ public class TelaFatura extends javax.swing.JFrame {
 
         try {
 
-            DespesaDAO despesaDAO = new DespesaDAO();
-            CategoriaDAO categoriaDAO = new CategoriaDAO();
-
             DefaultTableModel mp = (DefaultTableModel) jtFaturas.getModel();
 
-            LinkedList<Despesa> listaDespesaFaturas = despesaDAO.ConsultaDespesaFatura(tipo, argumento, Integer.parseInt(txt_id.getText()), ordena);
+            LinkedList<Despesa> listaDespesaFaturas = ControlerDespesa.ConsultaDespesaFatura(tipo, argumento, Integer.parseInt(txt_id.getText()), ordena);
 
-            for (Despesa despesa : listaDespesaFaturas) {
-
+            listaDespesaFaturas.forEach((despesa) -> {
+                
                 String Col0 = Integer.toString(despesa.getDia());
                 String Col1 = Integer.toString(despesa.getMes());
                 String Col2 = Integer.toString(despesa.getAno());
@@ -206,13 +193,12 @@ public class TelaFatura extends javax.swing.JFrame {
                 String Col9 = Float.toString(despesa.getValor_parcela());
 
                 mp.addRow(new String[]{Col0, Col1, Col2, Col3, Col4, Col5, Col6, Col7, Col8, Col9});
-
-            }
+            });
             listaDespesaFaturas.clear();
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
-            JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -340,7 +326,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(backButton);
-        backButton.setBounds(20, 50, 100, 27);
+        backButton.setBounds(20, 50, 100, 25);
 
         searchButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -419,7 +405,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ASC);
-        btn_ASC.setBounds(200, 180, 110, 27);
+        btn_ASC.setBounds(200, 180, 110, 25);
 
         btn_DESC.setBackground(new java.awt.Color(105, 69, 219));
         btn_DESC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -431,7 +417,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_DESC);
-        btn_DESC.setBounds(320, 180, 112, 27);
+        btn_DESC.setBounds(320, 180, 107, 25);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         jLabel5.setText("background");
@@ -446,7 +432,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 21);
+        txt_id.setBounds(0, 0, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -465,7 +451,7 @@ public class TelaFatura extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        cartao_credito();
+        TelaCartaoCredito();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
@@ -525,10 +511,8 @@ public class TelaFatura extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaFatura().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaFatura().setVisible(true);
         });
     }
 

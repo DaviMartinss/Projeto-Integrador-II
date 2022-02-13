@@ -5,16 +5,14 @@
  */
 package Views;
 
-import DAO.UsuarioDAO;
+import Controllers.ControlerUser;
 import DAO.moduloConexao;
 import Model.Usuario;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,7 +41,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         
     }
     
-     void inicio(){
+     void TelaPrincipal(){
          
          TelaPrincipal TelaPrincipal = null;
          
@@ -91,7 +89,7 @@ public class TelaUsuario extends javax.swing.JFrame {
          this.dispose();
     }
      
-    void telaUpdateUser(){
+    void AtualizarUsuario(){
      
             int id = Integer.parseInt(this.txt_id.getText());
                 Usuario user = new Usuario.UsuarioBuild(txtEmail.getText())
@@ -106,7 +104,6 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         );
                 */
-        UsuarioDAO UserDao = new UsuarioDAO();
 
         try {
             
@@ -115,16 +112,16 @@ public class TelaUsuario extends javax.swing.JFrame {
                 return;
             }
             
-            UserDao.UpdateUser(user);
+            ControlerUser.AtualizarUsuario(user);
             
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
 
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
      }
     
-    void volta_telaLogin(){
+    void TelaLogin(){
         
          TelaLogin telaDeLogin= new TelaLogin();
          telaDeLogin.setVisible(true);
@@ -132,15 +129,13 @@ public class TelaUsuario extends javax.swing.JFrame {
          
     }
     
-    void DeletaUser(){
-        
-        UsuarioDAO userDAO = new UsuarioDAO();
+    void ApagarUsuario(){
         
         try{
             
-            userDAO.DeleteUser(Integer.parseInt(txt_id.getText()));
+            ControlerUser.ApagarUsuario(Integer.parseInt(txt_id.getText()));
             
-        }catch(Exception e){
+        }catch(NumberFormatException e){
             
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -282,26 +277,18 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        
-        UsuarioDAO usuario = new UsuarioDAO();
-
-        ResultSet rs = null;
 
         try {
 
-            rs = usuario.PreencherCampos_Usuario(txt_id.getText());
+            Usuario usuario = ControlerUser.GetUsuario(txt_id.getText());
 
-            if(rs.next()){
+            txtNome.setText(usuario.getNome());
+            txtEmail.setText(usuario.getEmail());
+            txtSenha.setText(usuario.getSenha());
 
-                txtNome.setText(rs.getString("nome"));
-                txtEmail.setText(rs.getString("email"));
-                txtSenha.setText(rs.getString("senha"));
+        } catch (NullPointerException ex) {
 
-            }
-
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(this, "Erro ao inserir os dados nos campos!!");
+            JOptionPane.showMessageDialog(this, "Erro ao inserir os dados nos campos!! -> " + ex.getMessage());
         }
         
     }//GEN-LAST:event_formWindowOpened
@@ -309,7 +296,7 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         
-        inicio();
+        TelaPrincipal();
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -342,7 +329,7 @@ public class TelaUsuario extends javax.swing.JFrame {
             txtEmail.setEditable(false);
             txtSenha.setEditable(false);
             
-            telaUpdateUser();
+            AtualizarUsuario();
             
         }
         
@@ -351,8 +338,8 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-        DeletaUser();
-        volta_telaLogin();
+        ApagarUsuario();
+        TelaLogin();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
@@ -384,10 +371,8 @@ public class TelaUsuario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaUsuario().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaUsuario().setVisible(true);
         });
     }
 
@@ -413,7 +398,4 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         txt_id.setText(recebe);
     }
-
-
-
 }
