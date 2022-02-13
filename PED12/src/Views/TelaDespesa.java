@@ -505,7 +505,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Dia", "Mês", "Ano", "Valor", "Categoria", "Forma de Pagamento", "Nº Cartão", "Nº Parcelas", "Estatus", "Descrição"
+                "Id", "Dia", "Mês", "Ano", "Valor", "Categoria", "Pagto.", "Nº Cartão", "Nº Parc.", "Status", "Descrição"
             }
         ) {
             Class[] types = new Class [] {
@@ -531,6 +531,30 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(jtConsultaDespesa);
+        if (jtConsultaDespesa.getColumnModel().getColumnCount() > 0) {
+            jtConsultaDespesa.getColumnModel().getColumn(0).setMinWidth(25);
+            jtConsultaDespesa.getColumnModel().getColumn(0).setMaxWidth(25);
+            jtConsultaDespesa.getColumnModel().getColumn(1).setMinWidth(30);
+            jtConsultaDespesa.getColumnModel().getColumn(1).setMaxWidth(30);
+            jtConsultaDespesa.getColumnModel().getColumn(2).setMinWidth(35);
+            jtConsultaDespesa.getColumnModel().getColumn(2).setMaxWidth(35);
+            jtConsultaDespesa.getColumnModel().getColumn(3).setMinWidth(40);
+            jtConsultaDespesa.getColumnModel().getColumn(3).setMaxWidth(40);
+            jtConsultaDespesa.getColumnModel().getColumn(4).setMinWidth(50);
+            jtConsultaDespesa.getColumnModel().getColumn(4).setMaxWidth(50);
+            jtConsultaDespesa.getColumnModel().getColumn(5).setMinWidth(130);
+            jtConsultaDespesa.getColumnModel().getColumn(5).setMaxWidth(130);
+            jtConsultaDespesa.getColumnModel().getColumn(6).setMinWidth(80);
+            jtConsultaDespesa.getColumnModel().getColumn(6).setMaxWidth(80);
+            jtConsultaDespesa.getColumnModel().getColumn(7).setMinWidth(130);
+            jtConsultaDespesa.getColumnModel().getColumn(7).setMaxWidth(130);
+            jtConsultaDespesa.getColumnModel().getColumn(8).setMinWidth(40);
+            jtConsultaDespesa.getColumnModel().getColumn(8).setMaxWidth(40);
+            jtConsultaDespesa.getColumnModel().getColumn(9).setMinWidth(80);
+            jtConsultaDespesa.getColumnModel().getColumn(9).setMaxWidth(80);
+            jtConsultaDespesa.getColumnModel().getColumn(10).setMinWidth(99);
+            jtConsultaDespesa.getColumnModel().getColumn(10).setMaxWidth(99);
+        }
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(20, 170, 760, 210);
@@ -669,7 +693,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         invoiceDateTitle.setBounds(640, 110, 140, 27);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findTextTitle.setText("Refinar consulta por:");
+        findTextTitle.setText("Refinar busca por:");
         getContentPane().add(findTextTitle);
         findTextTitle.setBounds(20, 420, 180, 27);
 
@@ -750,7 +774,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2360, 119, 81, 20);
+        txt_id.setBounds(2360, 119, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

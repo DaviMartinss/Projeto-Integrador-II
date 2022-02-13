@@ -359,7 +359,7 @@ public class TelaReceita extends javax.swing.JFrame{
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Receitas");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 90, 24);
+        pageTitle.setBounds(360, 0, 90, 26);
 
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -555,7 +555,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(tbHabilitaConsulta);
-        tbHabilitaConsulta.setBounds(30, 320, 140, 27);
+        tbHabilitaConsulta.setBounds(30, 330, 140, 27);
 
         ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         ordenationTitle.setText("Tipo de Ordenação");
@@ -563,9 +563,9 @@ public class TelaReceita extends javax.swing.JFrame{
         ordenationTitle.setBounds(190, 80, 130, 27);
 
         findTextType.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findTextType.setText("Buscar por");
+        findTextType.setText("Refinar busca por:");
         getContentPane().add(findTextType);
-        findTextType.setBounds(30, 350, 140, 27);
+        findTextType.setBounds(30, 360, 140, 27);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         getContentPane().add(background);
@@ -578,7 +578,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 20);
+        txt_id.setBounds(20, 10, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

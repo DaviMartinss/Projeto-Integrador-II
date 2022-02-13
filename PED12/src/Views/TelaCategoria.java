@@ -234,7 +234,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Categorias");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 110, 24);
+        pageTitle.setBounds(340, 0, 100, 26);
 
         jt_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -349,9 +349,9 @@ public class TelaCategoria extends javax.swing.JFrame {
         btPesquisar.setBounds(460, 420, 40, 40);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findTextTitle.setText("Pesquisar");
+        findTextTitle.setText("Refinar busca por:");
         getContentPane().add(findTextTitle);
-        findTextTitle.setBounds(40, 410, 60, 27);
+        findTextTitle.setBounds(40, 410, 120, 27);
 
         nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         nameTitle.setText("Categoria Selecionada");
@@ -392,7 +392,7 @@ public class TelaCategoria extends javax.swing.JFrame {
             }
         });
         getContentPane().add(tbHabilitaConsulta);
-        tbHabilitaConsulta.setBounds(40, 370, 170, 30);
+        tbHabilitaConsulta.setBounds(40, 380, 170, 27);
 
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Tipo de Ordenação");
@@ -406,7 +406,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         background.getAccessibleContext().setAccessibleName("background");
 
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 20);
+        txt_id.setBounds(0, 0, 49, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

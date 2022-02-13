@@ -271,7 +271,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(accountButton);
-        accountButton.setBounds(10, 40, 80, 25);
+        accountButton.setBounds(20, 40, 80, 27);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -283,7 +283,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(90, 40, 100, 25);
+        btnReceitas.setBounds(110, 40, 100, 27);
 
         btnDespesas.setBackground(new java.awt.Color(105, 69, 219));
         btnDespesas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -296,7 +296,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDespesas);
-        btnDespesas.setBounds(190, 40, 100, 25);
+        btnDespesas.setBounds(220, 40, 100, 27);
 
         btnCartao_cred.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_cred.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -308,7 +308,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_cred);
-        btnCartao_cred.setBounds(290, 40, 150, 25);
+        btnCartao_cred.setBounds(330, 40, 150, 27);
 
         btnCartao_Deb.setBackground(new java.awt.Color(105, 69, 219));
         btnCartao_Deb.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -320,7 +320,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCartao_Deb);
-        btnCartao_Deb.setBounds(440, 40, 150, 25);
+        btnCartao_Deb.setBounds(490, 40, 150, 27);
 
         categoryButton.setBackground(new java.awt.Color(105, 69, 219));
         categoryButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -332,9 +332,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(categoryButton);
-        categoryButton.setBounds(590, 40, 120, 25);
+        categoryButton.setBounds(650, 40, 120, 27);
 
-        BtnSair.setBackground(new java.awt.Color(105, 69, 219));
+        BtnSair.setBackground(new java.awt.Color(210, 59, 235));
         BtnSair.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         BtnSair.setForeground(new java.awt.Color(255, 255, 255));
         BtnSair.setText("Sair");
@@ -344,12 +344,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BtnSair);
-        BtnSair.setBounds(710, 40, 80, 25);
+        BtnSair.setBounds(680, 540, 90, 27);
 
         labelNome.setFont(new java.awt.Font("Noto Serif", 3, 18)); // NOI18N
         labelNome.setForeground(new java.awt.Color(81, 63, 252));
+        labelNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Noto Serif", 1, 10))); // NOI18N
         getContentPane().add(labelNome);
-        labelNome.setBounds(10, 10, 200, 27);
+        labelNome.setBounds(20, 470, 200, 45);
 
         jtMain.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -380,11 +381,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jtMain.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(120, 150, 570, 130);
+        jScrollPane1.setBounds(20, 150, 750, 130);
+
+        jlData.setFont(new java.awt.Font("Noto Serif", 1, 14)); // NOI18N
+        jlData.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Noto Serif", 1, 10))); // NOI18N
         getContentPane().add(jlData);
-        jlData.setBounds(300, 360, 150, 40);
+        jlData.setBounds(150, 520, 150, 45);
+
+        jlTime.setFont(new java.awt.Font("Noto Serif", 1, 14)); // NOI18N
+        jlTime.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hora", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Noto Serif", 1, 10))); // NOI18N
         getContentPane().add(jlTime);
-        jlTime.setBounds(520, 360, 170, 40);
+        jlTime.setBounds(20, 520, 130, 45);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("background");
@@ -399,7 +406,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 20);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

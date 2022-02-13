@@ -261,21 +261,21 @@ public class TelaFatura extends javax.swing.JFrame {
         PageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         PageTitle.setText("Faturas");
         getContentPane().add(PageTitle);
-        PageTitle.setBounds(370, 0, 76, 27);
+        PageTitle.setBounds(360, 0, 76, 27);
 
         jtFaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Dia", "Mês", "Ano", "Valor Total", "Estatus", "Categoria", "Parcelas", "Descrição", "Parcelas Pagas", "Valor Parcela"
+                "Dia", "Mês", "Ano", "Valor Total", "Categoria", "Parc.", "Valor Parcela", "Parcelas Pagas", "Estatus", "Descrição"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -287,14 +287,34 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         dataTable.setViewportView(jtFaturas);
+        if (jtFaturas.getColumnModel().getColumnCount() > 0) {
+            jtFaturas.getColumnModel().getColumn(0).setMinWidth(30);
+            jtFaturas.getColumnModel().getColumn(0).setMaxWidth(30);
+            jtFaturas.getColumnModel().getColumn(1).setMinWidth(35);
+            jtFaturas.getColumnModel().getColumn(1).setMaxWidth(35);
+            jtFaturas.getColumnModel().getColumn(2).setMinWidth(40);
+            jtFaturas.getColumnModel().getColumn(2).setMaxWidth(40);
+            jtFaturas.getColumnModel().getColumn(3).setMinWidth(80);
+            jtFaturas.getColumnModel().getColumn(3).setMaxWidth(80);
+            jtFaturas.getColumnModel().getColumn(4).setMinWidth(120);
+            jtFaturas.getColumnModel().getColumn(4).setMaxWidth(120);
+            jtFaturas.getColumnModel().getColumn(5).setMinWidth(45);
+            jtFaturas.getColumnModel().getColumn(5).setMaxWidth(45);
+            jtFaturas.getColumnModel().getColumn(6).setMinWidth(80);
+            jtFaturas.getColumnModel().getColumn(6).setMaxWidth(80);
+            jtFaturas.getColumnModel().getColumn(7).setMinWidth(100);
+            jtFaturas.getColumnModel().getColumn(7).setMaxWidth(100);
+            jtFaturas.getColumnModel().getColumn(8).setMinWidth(60);
+            jtFaturas.getColumnModel().getColumn(8).setMaxWidth(60);
+        }
 
         getContentPane().add(dataTable);
-        dataTable.setBounds(30, 220, 750, 232);
+        dataTable.setBounds(20, 220, 760, 232);
 
         selectorType.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         selectorType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dia", "Mês", "Ano", "Valor Total", "Estatus", "Categoria", "Parcelas", "Descrição", "Parcelas Pagas", "Valor Parcela", " ", " " }));
         getContentPane().add(selectorType);
-        selectorType.setBounds(30, 180, 150, 27);
+        selectorType.setBounds(20, 180, 170, 27);
 
         findField.setColumns(20);
         findField.addActionListener(new java.awt.event.ActionListener() {
@@ -308,7 +328,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(findField);
-        findField.setBounds(30, 480, 330, 27);
+        findField.setBounds(20, 480, 330, 27);
 
         backButton.setBackground(new java.awt.Color(105, 69, 219));
         backButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -320,7 +340,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(backButton);
-        backButton.setBounds(30, 50, 100, 27);
+        backButton.setBounds(20, 50, 100, 27);
 
         searchButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -332,17 +352,17 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(searchButton);
-        searchButton.setBounds(370, 470, 40, 40);
+        searchButton.setBounds(360, 470, 40, 40);
 
         findTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTitle.setText("Refinar consulta por:");
         getContentPane().add(findTitle);
-        findTitle.setBounds(30, 460, 160, 27);
+        findTitle.setBounds(20, 460, 160, 27);
 
         selectorTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         selectorTitle.setText("Ordenar/Refinar por:");
         getContentPane().add(selectorTitle);
-        selectorTitle.setBounds(30, 160, 140, 27);
+        selectorTitle.setBounds(20, 160, 140, 27);
 
         orientationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         orientationTitle.setText("Tipo de Ordenação");
@@ -352,38 +372,42 @@ public class TelaFatura extends javax.swing.JFrame {
         txtNumCartao.setBackground(new java.awt.Color(187, 210, 240));
         txtNumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtNumCartao);
-        txtNumCartao.setBounds(30, 110, 190, 27);
+        txtNumCartao.setBounds(20, 110, 190, 27);
 
+        jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Nº Cartão");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 90, 70, 27);
+        jLabel1.setBounds(20, 90, 70, 27);
 
+        jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Dia da Fatura");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(280, 90, 100, 27);
+        jLabel2.setBounds(230, 90, 100, 27);
 
         txtDiaFatura.setBackground(new java.awt.Color(187, 210, 240));
         txtDiaFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtDiaFatura);
-        txtDiaFatura.setBounds(280, 110, 80, 27);
+        txtDiaFatura.setBounds(230, 110, 100, 27);
 
+        jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Total Fatura");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(410, 90, 100, 27);
+        jLabel3.setBounds(350, 90, 100, 27);
 
         txtTotalFatura.setBackground(new java.awt.Color(187, 210, 240));
         txtTotalFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtTotalFatura);
-        txtTotalFatura.setBounds(410, 110, 130, 27);
+        txtTotalFatura.setBounds(350, 110, 130, 27);
 
+        jLabel4.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel4.setText("Bandeira");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(590, 90, 100, 27);
+        jLabel4.setBounds(500, 90, 100, 27);
 
         txtBandeira.setBackground(new java.awt.Color(187, 210, 240));
         txtBandeira.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtBandeira);
-        txtBandeira.setBounds(590, 110, 180, 27);
+        txtBandeira.setBounds(500, 110, 280, 27);
 
         btn_ASC.setBackground(new java.awt.Color(105, 69, 219));
         btn_ASC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N

@@ -258,6 +258,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         btn_update = new javax.swing.JButton();
         btnReceitas = new javax.swing.JButton();
         valueTitle1 = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -272,7 +273,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         valueTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         valueTitle.setText("Valor:");
         getContentPane().add(valueTitle);
-        valueTitle.setBounds(30, 120, 41, 27);
+        valueTitle.setBounds(30, 100, 41, 27);
 
         txtValor.setBackground(new java.awt.Color(187, 210, 240));
         txtValor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -282,62 +283,62 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtValor);
-        txtValor.setBounds(30, 140, 80, 27);
+        txtValor.setBounds(30, 120, 100, 27);
 
         instNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         instNumTitle.setText("Nº de Pacelas: ");
         getContentPane().add(instNumTitle);
-        instNumTitle.setBounds(130, 120, 84, 27);
+        instNumTitle.setBounds(400, 100, 87, 27);
 
         txtParcelas.setBackground(new java.awt.Color(187, 210, 240));
         txtParcelas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtParcelas);
-        txtParcelas.setBounds(130, 140, 200, 27);
+        txtParcelas.setBounds(400, 120, 100, 27);
 
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Nº do Cartão: ");
         getContentPane().add(cardNumTitle);
-        cardNumTitle.setBounds(350, 120, 76, 27);
+        cardNumTitle.setBounds(30, 160, 82, 27);
 
         txt_NumCartao.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NumCartao);
-        txt_NumCartao.setBounds(350, 140, 250, 27);
+        txt_NumCartao.setBounds(30, 180, 250, 27);
 
         dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         dateTitle.setText("Data: (dd/mm/aaaa)");
         getContentPane().add(dateTitle);
-        dateTitle.setBounds(620, 120, 130, 27);
+        dateTitle.setBounds(590, 160, 130, 27);
 
         txtDia.setBackground(new java.awt.Color(187, 210, 240));
         txtDia.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtDia);
-        txtDia.setBounds(620, 140, 50, 27);
+        txtDia.setBounds(590, 180, 50, 27);
 
         dayBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         dayBar.setText("/");
         getContentPane().add(dayBar);
-        dayBar.setBounds(670, 140, 10, 27);
+        dayBar.setBounds(640, 180, 10, 27);
 
         txtMes.setBackground(new java.awt.Color(187, 210, 240));
         txtMes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtMes);
-        txtMes.setBounds(680, 140, 50, 27);
+        txtMes.setBounds(650, 180, 50, 27);
 
         monthBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         monthBar.setText("/");
         getContentPane().add(monthBar);
-        monthBar.setBounds(730, 140, 10, 27);
+        monthBar.setBounds(700, 180, 10, 27);
 
         txtAno.setBackground(new java.awt.Color(187, 210, 240));
         txtAno.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txtAno);
-        txtAno.setBounds(740, 140, 50, 27);
+        txtAno.setBounds(710, 180, 50, 27);
 
         statusTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         statusTitle.setText("Status: ");
         getContentPane().add(statusTitle);
-        statusTitle.setBounds(30, 170, 60, 27);
+        statusTitle.setBounds(30, 370, 60, 27);
 
         rbPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbPago.setText("Pago");
@@ -347,7 +348,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbPago);
-        rbPago.setBounds(30, 190, 70, 27);
+        rbPago.setBounds(30, 390, 70, 27);
 
         rbNaoPago.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbNaoPago.setText("Não pago");
@@ -357,12 +358,12 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbNaoPago);
-        rbNaoPago.setBounds(100, 190, 79, 27);
+        rbNaoPago.setBounds(100, 390, 79, 27);
 
         descriptionTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         descriptionTitle.setText("Descrição: ");
         getContentPane().add(descriptionTitle);
-        descriptionTitle.setBounds(355, 170, 64, 27);
+        descriptionTitle.setBounds(30, 220, 65, 27);
 
         txtAreaDescricao.setBackground(new java.awt.Color(187, 210, 240));
         txtAreaDescricao.setColumns(20);
@@ -371,12 +372,12 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtAreaDescricao);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(355, 190, 440, 120);
+        jScrollPane1.setBounds(30, 240, 740, 120);
 
         payFormTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         payFormTitle.setText("Forma de Pagamento: ");
         getContentPane().add(payFormTitle);
-        payFormTitle.setBounds(30, 220, 127, 27);
+        payFormTitle.setBounds(150, 100, 135, 27);
 
         rbDebito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDebito.setText("Débito");
@@ -386,7 +387,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDebito);
-        rbDebito.setBounds(30, 240, 63, 27);
+        rbDebito.setBounds(150, 120, 62, 27);
 
         rbCredito.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbCredito.setText("Crédito");
@@ -396,7 +397,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbCredito);
-        rbCredito.setBounds(90, 240, 70, 27);
+        rbCredito.setBounds(210, 120, 70, 27);
 
         rbDinheiro.setFont(new java.awt.Font("Noto Serif", 2, 12)); // NOI18N
         rbDinheiro.setText("Dinheiro");
@@ -406,17 +407,17 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(rbDinheiro);
-        rbDinheiro.setBounds(165, 240, 90, 27);
+        rbDinheiro.setBounds(290, 120, 90, 27);
 
         categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         categoryTitle.setText("Categoria: ");
         getContentPane().add(categoryTitle);
-        categoryTitle.setBounds(30, 270, 61, 27);
+        categoryTitle.setBounds(300, 160, 65, 27);
 
         cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cbb_categoria);
-        cbb_categoria.setBounds(30, 300, 120, 30);
+        cbb_categoria.setBounds(300, 180, 270, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -428,7 +429,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(360, 380, 140, 25);
+        btn_update.setBounds(640, 520, 140, 27);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -440,12 +441,17 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(30, 60, 111, 25);
+        btnReceitas.setBounds(30, 50, 111, 27);
 
-        valueTitle1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        valueTitle1.setText("Atualizar DESPESA");
+        valueTitle1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        valueTitle1.setText("Atualizar Despesa");
         getContentPane().add(valueTitle1);
-        valueTitle1.setBounds(350, 12, 133, 42);
+        valueTitle1.setBounds(300, 0, 170, 30);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("background");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -637,6 +643,7 @@ public class TelaAtualizarDespesa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btnReceitas;
     private javax.swing.JButton btn_update;
     private javax.swing.JLabel cardNumTitle;

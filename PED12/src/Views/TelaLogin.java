@@ -177,6 +177,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnCadastro.setBounds(450, 330, 150, 27);
 
         recoveryPasswdButton.setBackground(new java.awt.Color(210, 59, 235));
+        recoveryPasswdButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         recoveryPasswdButton.setForeground(new java.awt.Color(255, 255, 255));
         recoveryPasswdButton.setText("Recuperação de senha");
         recoveryPasswdButton.addActionListener(new java.awt.event.ActionListener() {

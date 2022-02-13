@@ -136,8 +136,10 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
         cardNumTitle1 = new javax.swing.JLabel();
         btn_update = new javax.swing.JButton();
         btnReceitas = new javax.swing.JButton();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -149,27 +151,27 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
         cardNumTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cardNumTitle.setText("Número do cartão");
         getContentPane().add(cardNumTitle);
-        cardNumTitle.setBounds(22, 71, 140, 27);
+        cardNumTitle.setBounds(200, 190, 140, 27);
 
         txt_NumCartaoD.setBackground(new java.awt.Color(187, 210, 240));
         txt_NumCartaoD.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_NumCartaoD);
-        txt_NumCartaoD.setBounds(22, 91, 400, 27);
+        txt_NumCartaoD.setBounds(200, 210, 400, 27);
 
         valueTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         valueTitle.setText("Valor");
         getContentPane().add(valueTitle);
-        valueTitle.setBounds(22, 121, 100, 27);
+        valueTitle.setBounds(200, 240, 100, 27);
 
         txt_Valor.setBackground(new java.awt.Color(187, 210, 240));
         txt_Valor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_Valor);
-        txt_Valor.setBounds(22, 141, 400, 27);
+        txt_Valor.setBounds(200, 260, 400, 27);
 
         flagTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         flagTitle.setText("Bandeira");
         getContentPane().add(flagTitle);
-        flagTitle.setBounds(22, 171, 70, 27);
+        flagTitle.setBounds(200, 290, 70, 27);
 
         txt_Bandeira.setBackground(new java.awt.Color(187, 210, 240));
         txt_Bandeira.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -179,12 +181,12 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_Bandeira);
-        txt_Bandeira.setBounds(22, 191, 400, 27);
+        txt_Bandeira.setBounds(200, 310, 400, 27);
 
-        cardNumTitle1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        cardNumTitle1.setText("Atualizar Cartao Debito");
+        cardNumTitle1.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
+        cardNumTitle1.setText("Atualizar Cartão Débito");
         getContentPane().add(cardNumTitle1);
-        cardNumTitle1.setBounds(320, 0, 140, 27);
+        cardNumTitle1.setBounds(280, 0, 220, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -196,7 +198,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(135, 274, 140, 25);
+        btn_update.setBounds(640, 510, 140, 27);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -208,7 +210,12 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(328, 274, 111, 25);
+        btnReceitas.setBounds(20, 50, 111, 27);
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
+        background.setText("background");
+        getContentPane().add(background);
+        background.setBounds(0, 0, 1920, 1080);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -277,6 +284,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel background;
     private javax.swing.JButton btnReceitas;
     private javax.swing.JButton btn_update;
     private javax.swing.JLabel cardNumTitle;
