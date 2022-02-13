@@ -44,14 +44,7 @@ public class Tela_NovaSenha extends javax.swing.JFrame {
                     .ConfirmaSenha(senha2)
                     .IdConta(salvaId)
                     .build();
-            /*
-            Usuario senhaUser = new Usuario(
-                senha1,
-                senha2,
-                salvaId
-                
-        );
-        */
+            
 
         try {
             
