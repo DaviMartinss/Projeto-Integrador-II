@@ -153,22 +153,27 @@ public class ControlerTabela {
                 
                 case "Main":
                     Receita receita = ControlerReceita.GetReceitaAtual(conta_id); 
-                    LinkedList<Despesa> despesas = ControlerDespesa.GetListaDespesaNpPorReceita(conta_id, "NÃO PAGO", receita);
-                    LinkedList<CartaoDebito> listaCD = ControlerCartaoDebito.GetListaCartaoDebito(conta_id);
-                    LinkedList<CartaoCredito> listaCC = ControlerCartaoCredito.GetListaCartaoCredito(conta_id);
                     
-                    float totReceita = 0, totDespesas = 0, totCD = 0, totCC = 0 ;
+                    if(receita != null)
+                    {
+                        LinkedList<Despesa> despesas = ControlerDespesa.GetListaDespesaNpPorReceita(conta_id, "NÃO PAGO", receita);
+                        LinkedList<CartaoDebito> listaCD = ControlerCartaoDebito.GetListaCartaoDebito(conta_id);
+                        LinkedList<CartaoCredito> listaCC = ControlerCartaoCredito.GetListaCartaoCredito(conta_id);
+
+                        float totReceita = 0, totDespesas = 0, totCD = 0, totCC = 0;
+
+                        totReceita = receita.getTotal();
+                        totDespesas = despesas.stream().map((despesa) -> despesa.getValor()).reduce(totDespesas, (accumulator, _item) -> accumulator + _item);
+                        totCD = listaCD.stream().map((cartaoCD) -> cartaoCD.getValor_atual()).reduce(totCD, (accumulator, _item) -> accumulator + _item);
+                        totCC = listaCC.stream().map((cartaoCC) -> cartaoCC.getCredito()).reduce(totCC, (accumulator, _item) -> accumulator + _item);
+
+                        mp.addRow(new Float[]{totReceita, totDespesas, totCC, totCD});
+
+                        despesas.clear();
+                        listaCD.clear();
+                        listaCC.clear();
+                    }
                     
-                    totReceita = receita.getTotal();
-                    totDespesas = despesas.stream().map((despesa) -> despesa.getValor()).reduce(totDespesas, (accumulator, _item) -> accumulator + _item);
-                    totCD =  listaCD.stream().map((cartaoCD) -> cartaoCD.getValor_atual()).reduce(totCD, (accumulator, _item) -> accumulator + _item);
-                    totCC = listaCC.stream().map((cartaoCC) -> cartaoCC.getCredito()).reduce(totCC, (accumulator, _item) -> accumulator + _item);
-                    
-                    mp.addRow(new Float[]{totReceita, totDespesas, totCC, totCD});
-                    
-                    despesas.clear();
-                    listaCD.clear();
-                    listaCC.clear();
                     break;
                     
                 default:

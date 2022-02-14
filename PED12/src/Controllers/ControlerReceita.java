@@ -44,20 +44,35 @@ public class ControlerReceita {
        
         try {
             
-          Receita ultimaReceita = receitaDAO.GetUltimaReceita(receita_nova.getId_conta());
+            Receita atualReceita = receitaDAO.GetReceitaAtual(receita_nova.getId_conta());
             
-            if (ultimaReceita != null) {
+            if(receita_nova.getAno() >= atualReceita.getAno()){
+                
+                if (receita_nova.getMes() > atualReceita.getMes()) {
 
-                LinkedList<Despesa> lista_despesasNp = despesaDAO.GetListaDespesasNpUltimaReceita(ultimaReceita);
+                    Receita ultimaReceita = receitaDAO.GetUltimaReceita(receita_nova.getId_conta());
 
-                receitaDAO.InsertReceita(receita_nova);
+                    if (ultimaReceita != null) {
 
-                receita_nova = receitaDAO.GetUltimaReceita(receita_nova.getId_conta());
+                        LinkedList<Despesa> lista_despesasNp = despesaDAO.GetListaDespesasNpUltimaReceita(ultimaReceita);
 
-                ControlerDespesa.TransferirDespesasEntreReceitas(lista_despesasNp, receita_nova);
+                        receitaDAO.InsertReceita(receita_nova);
+
+                        receita_nova = receitaDAO.GetUltimaReceita(receita_nova.getId_conta());
+
+                        ControlerDespesa.TransferirDespesasEntreReceitas(lista_despesasNp, receita_nova);
+                    }
+
+                    return true;
+
+                }
+                else
+                   JOptionPane.showMessageDialog(null, "Mês não pode ser menor do que da receita atual!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);  
             }
-            
-            return true;
+            else
+                JOptionPane.showMessageDialog(null, "Ano não pode ser menor do que da receita atual!", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);  
+               
+            return false;
             
         }catch (SQLException | NullPointerException ex) {
             
@@ -65,7 +80,6 @@ public class ControlerReceita {
             JOptionPane.showMessageDialog(null, "ERRO:CadastrarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return false;
-        
         }
     }
     

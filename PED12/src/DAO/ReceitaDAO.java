@@ -149,7 +149,8 @@ public class ReceitaDAO {
 
         String SelectReceita
                 = "SELECT Max(cod_receita) cod_receita, R.mes, R.ano, R.total FROM receita R \n"
-                + "WHERE R.conta_id_conta = ? AND R.cod_receita = (SELECT Max(cod_receita) FROM receita);";
+                + "WHERE R.conta_id_conta = ? AND "
+                + "R.cod_receita = (SELECT Max(cod_receita) FROM receita WHERE receita.conta_id_conta = ?);";
 
          Receita receita = new Receita.ReceitaBuild().build();
 
@@ -160,6 +161,7 @@ public class ReceitaDAO {
         pst_SelectReceita = conexao.prepareStatement(SelectReceita);
 
         pst_SelectReceita.setInt(1, conta_id);
+        pst_SelectReceita.setInt(2, conta_id);
 
         rs_SelectReceita = pst_SelectReceita.executeQuery();
 

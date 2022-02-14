@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 
 
-public class TelaPrincipal extends javax.swing.JFrame {
+public final class TelaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaPrincipal
@@ -462,7 +462,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "Erro ao pegar nome do usuario!!");
         }
-
     }//GEN-LAST:event_formWindowOpened
 
     private void categoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryButtonActionPerformed
