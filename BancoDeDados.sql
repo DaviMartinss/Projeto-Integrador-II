@@ -293,7 +293,7 @@ insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categori
 
 
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
-(1, 06, 07, 2009, 1, 6, 80.00, "DINHEIRO", "NÃO PAGO");
+(1, 06, 07, 2009, 1, 6, 80.00, "DINHEIRO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
 (1, 07, 07, 2009, 1, 7, 50.00, "DINHEIRO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
@@ -301,7 +301,7 @@ insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categori
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
 (1, 09, 07, 2009, 1, 9, 230.00, "DINHEIRO", "PAGO");
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, valor, f_pagamento, estatus) values
-(1, 10, 07, 2009, 1, 10, 300.00, "DINHEIRO", "NÃO PAGO");
+(1, 10, 07, 2009, 1, 10, 300.00, "DINHEIRO", "PAGO");
 
 
 insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categoria_id, num_cartao_credito, valor, f_pagamento, estatus) values
@@ -317,7 +317,7 @@ insert into despesa(receita_cod_receita, dia, mes, ano, conta_id_conta, categori
 #Despesa credito
 
 insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(12, 6, 20, 11);
-insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(09, 4, 60, 12);
+insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) VALUES(1, 1, 60, 12);
 insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(08, 2, 70, 13);
 insert into despesa_credito(n_parcelas, n_parcelas_pagas, valor_parcela, despesa_cod_despesa) values(07, 0, 80, 14);
 
