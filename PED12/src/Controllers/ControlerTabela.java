@@ -5,21 +5,11 @@
  */
 package Controllers;
 
-import Ordenacao.CategoriaASC;
-import Ordenacao.CategoriaDESC;
 import Model.CartaoCredito;
 import Model.CartaoDebito;
 import Model.Categoria;
 import Model.Despesa;
 import Model.Receita;
-import Ordenacao.ReceitaAnoASC;
-import Ordenacao.ReceitaAnoDESC;
-import Ordenacao.ReceitaDiaASC;
-import Ordenacao.ReceitaDiaDESC;
-import Ordenacao.ReceitaMesASC;
-import Ordenacao.ReceitaMesDESC;
-import Ordenacao.ReceitaTotalASC;
-import Ordenacao.ReceitaTotalDESC;
 import com.mysql.cj.util.StringUtils;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -145,7 +135,7 @@ public class ControlerTabela {
                 case "Categoria":
                     LinkedList<Categoria> listaCategoria = ControlerCategoria.GetListaCategoria(conta_id);
                     
-                    Collections.sort(listaCategoria, new CategoriaASC());
+                    Collections.sort(listaCategoria, new Categoria.CategoriaASC());
                     
                     listaCategoria.forEach(categoria -> {
                         
@@ -162,21 +152,20 @@ public class ControlerTabela {
                     break;
                 
                 case "Main":
-                    LinkedList<Receita> receitas = ControlerReceita.GetListaReceita(conta_id); 
-                    LinkedList<Despesa> despesas = ControlerDespesa.GetListaDespesa(conta_id, "NÃO PAGO");
+                    Receita receita = ControlerReceita.GetUltimaReceita(conta_id); 
+                    LinkedList<Despesa> despesas = ControlerDespesa.GetListaDespesaNpPorReceita(conta_id, "NÃO PAGO", receita);
                     LinkedList<CartaoDebito> listaCD = ControlerCartaoDebito.GetListaCartaoDebito(conta_id);
                     LinkedList<CartaoCredito> listaCC = ControlerCartaoCredito.GetListaCartaoCredito(conta_id);
                     
-                    float totReceitas = 0, totDespesas = 0, totCD = 0, totCC = 0 ;
+                    float totReceita = 0, totDespesas = 0, totCD = 0, totCC = 0 ;
                     
-                    totReceitas = receitas.stream().map((receita) -> receita.getTotal()).reduce(totReceitas, (accumulator, _item) -> accumulator + _item);
+                    totReceita = receita.getTotal();
                     totDespesas = despesas.stream().map((despesa) -> despesa.getValor()).reduce(totDespesas, (accumulator, _item) -> accumulator + _item);
                     totCD =  listaCD.stream().map((cartaoCD) -> cartaoCD.getValor_atual()).reduce(totCD, (accumulator, _item) -> accumulator + _item);
                     totCC = listaCC.stream().map((cartaoCC) -> cartaoCC.getCredito()).reduce(totCC, (accumulator, _item) -> accumulator + _item);
                     
-                    mp.addRow(new Float[]{totReceitas, totDespesas, totCC, totCD});
+                    mp.addRow(new Float[]{totReceita, totDespesas, totCC, totCD});
                     
-                    receitas.clear();
                     despesas.clear();
                     listaCD.clear();
                     listaCC.clear();
@@ -209,16 +198,16 @@ public class ControlerTabela {
 
                         switch (tipo) {
                             case " total":
-                                Collections.sort(listaReceita, new ReceitaTotalASC());
+                                Collections.sort(listaReceita, new Receita.ReceitaTotalASC());
                                 break;
                             case " dia":
-                                Collections.sort(listaReceita, new ReceitaDiaASC());
+                                Collections.sort(listaReceita, new Receita.ReceitaDiaASC());
                                 break;
                             case " mes":
-                                Collections.sort(listaReceita, new ReceitaMesASC());
+                                Collections.sort(listaReceita, new Receita.ReceitaMesASC());
                                 break;
                             case " ano":
-                                Collections.sort(listaReceita, new ReceitaAnoASC());
+                                Collections.sort(listaReceita, new Receita.ReceitaAnoASC());
                                 break;
                             default:
                                 break;
@@ -228,16 +217,16 @@ public class ControlerTabela {
 
                         switch (tipo) {
                             case " total":
-                                Collections.sort(listaReceita, new ReceitaTotalDESC());
+                                Collections.sort(listaReceita, new Receita.ReceitaTotalDESC());
                                 break;
                             case " dia":
-                                Collections.sort(listaReceita, new ReceitaDiaDESC());
+                                Collections.sort(listaReceita, new Receita.ReceitaDiaDESC());
                                 break;
                             case " mes":
-                                Collections.sort(listaReceita, new ReceitaMesDESC());
+                                Collections.sort(listaReceita, new Receita.ReceitaMesDESC());
                                 break;
                             case " ano":
-                                Collections.sort(listaReceita, new ReceitaAnoDESC());
+                                Collections.sort(listaReceita, new Receita.ReceitaAnoDESC());
                                 break;
                             default:
                                 break;
@@ -339,11 +328,11 @@ public class ControlerTabela {
                     
                     if (ordenar) {
 
-                        Collections.sort(listaCategoria, new CategoriaASC());
+                        Collections.sort(listaCategoria, new Categoria.CategoriaASC());
 
                     } else {
 
-                        Collections.sort(listaCategoria, new CategoriaDESC());
+                        Collections.sort(listaCategoria, new Categoria.CategoriaDESC());
                     }
 
                     listaCategoria.forEach(categoria -> {

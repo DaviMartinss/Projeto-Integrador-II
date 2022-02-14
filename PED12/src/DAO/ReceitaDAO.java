@@ -148,7 +148,7 @@ public class ReceitaDAO {
     public Receita GetUltimaReceita(int conta_id) throws SQLException {
 
         String SelectReceita
-                = "SELECT Max(cod_receita) cod_receita, R.mes, R.ano FROM receita R \n"
+                = "SELECT Max(cod_receita) cod_receita, R.mes, R.ano, R.total FROM receita R \n"
                 + "WHERE R.conta_id_conta = ? AND R.cod_receita = (SELECT Max(cod_receita) FROM receita);";
 
          Receita receita = new Receita.ReceitaBuild().build();
@@ -167,6 +167,7 @@ public class ReceitaDAO {
             receita.setCod_receita(rs_SelectReceita.getInt("cod_receita"));
             receita.setMes(rs_SelectReceita.getInt("mes"));
             receita.setAno(rs_SelectReceita.getInt("ano"));
+            receita.setTotal(rs_SelectReceita.getFloat("total"));
             receita.setId_conta(conta_id);
         }
 

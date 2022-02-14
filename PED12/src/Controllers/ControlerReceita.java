@@ -59,19 +59,13 @@ public class ControlerReceita {
             
             return true;
             
-        }catch (SQLException ex) {
+        }catch (SQLException | NullPointerException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             JOptionPane.showMessageDialog(null, "ERRO:CadastrarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return false;
         
-        }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "ERRO:CadastrarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
-            
-            return false;
         }
     }
     
@@ -85,19 +79,13 @@ public class ControlerReceita {
             
             return true;
             
-        }catch (SQLException ex) {
+        }catch (SQLException | NullPointerException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return false;    
         
-        }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
-            
-            return false;    
         }
     }
     
@@ -111,19 +99,13 @@ public class ControlerReceita {
             
             return true;
             
-        }catch (SQLException ex) {
+        }catch (SQLException | NullPointerException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
             
             return false;
         
-        }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Erro:AtualizarReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
-            return false;
         }
     }
     
@@ -239,7 +221,7 @@ public class ControlerReceita {
             
             return receitaDAO.ConsultaReceita(tipo,arg,id_conta,ordenar);
             
-        }catch (SQLException ex) {
+        }catch (SQLException | NumberFormatException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
 
@@ -247,13 +229,6 @@ public class ControlerReceita {
             
             return null;
         
-        }catch(Exception ex){
-            
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-
-            JOptionPane.showMessageDialog(null, "ERRO:ConsultaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            
-            return null;
         }     
     }
     

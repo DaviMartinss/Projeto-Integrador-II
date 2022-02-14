@@ -291,6 +291,24 @@ public class ControlerDespesa {
         }     
     }
     
+    public static LinkedList<Despesa> GetListaDespesaNpPorReceita(int id_conta, String status, Receita receita){
+        
+         DespesaDAO despesaDAO = new DespesaDAO();
+        
+        try {
+
+            return despesaDAO.GetListaDespesaNpPorReceita(id_conta, status, receita);
+
+        } catch (SQLException | NumberFormatException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "ERRO:GetListaDespesa", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE); 
+            
+            return null;
+        }    
+        
+    }
+    
     
     public static LinkedList<Despesa> ConsultaDespesa(String tipo, String arg, boolean ordenar, int id_conta){
         
@@ -342,7 +360,6 @@ public class ControlerDespesa {
             return null;
         }     
     }
-    
     
     public static boolean TransferirDespesasEntreReceitas(LinkedList<Despesa> lista_despesasNp, Receita receita_nova){
         

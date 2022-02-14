@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Model;
+
+import java.util.Comparator;
+
 /**
  *
  * @author pc
@@ -190,6 +193,182 @@ public class Receita{
             
         }else{
             return false;
+        }
+    }
+    
+    public static class ReceitaDiaASC implements Comparator<Receita> {
+
+        public ReceitaDiaASC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getDia() > t1.getDia()) {
+
+                return 1;
+
+            } else if (t.getDia() < t1.getDia()) {
+
+                return -1;
+
+            } else {
+
+                return 0;
+            }
+        }
+    }
+    
+    public static class ReceitaMesASC implements Comparator<Receita> {
+
+        public ReceitaMesASC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getMes() > t1.getMes()) {
+
+                return 1;
+
+            } else if (t.getMes() < t1.getMes()) {
+
+                return -1;
+
+            } else {
+
+                return 0;
+            }
+        }
+    }
+    
+    public static class ReceitaAnoASC implements Comparator<Receita> {
+
+        public ReceitaAnoASC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getAno() > t1.getAno()) {
+
+                return 1;
+
+            } else if (t.getAno() < t1.getAno()) {
+
+                return -1;
+
+            } else {
+
+                return 0;
+            }
+        }
+    }
+    
+    public static class ReceitaTotalASC implements Comparator<Receita> {
+
+        public ReceitaTotalASC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getTotal() > t1.getTotal()) {
+
+                return 1;
+
+            } else if (t.getTotal() < t1.getTotal()) {
+
+                return -1;
+
+            } else {
+
+                return 0;
+            }
+        }
+    }
+
+    public static class ReceitaDiaDESC implements Comparator<Receita> {
+
+        public ReceitaDiaDESC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getDia() > t1.getDia()) {
+
+                return -1;
+
+            } else if (t.getDia() < t1.getDia()) {
+
+                return 1;
+
+            } else {
+
+                return 0;
+            }
+        }
+    }
+
+    public static class ReceitaMesDESC implements Comparator<Receita> {
+
+        public ReceitaMesDESC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getMes() > t1.getMes()) {
+
+                return -1;
+
+            } else if (t.getMes() < t1.getMes()) {
+
+                return 1;
+
+            } else {
+
+                return 0;
+            }
+        }
+    }
+
+    public static class ReceitaAnoDESC implements Comparator<Receita> {
+
+        public ReceitaAnoDESC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getAno() > t1.getAno()) {
+
+                return -1;
+
+            } else if (t.getAno() < t1.getAno()) {
+
+                return 1;
+
+            } else {
+
+                return 0;
+            }
+        }
+    }
+
+    public static class ReceitaTotalDESC implements Comparator<Receita> {
+
+        public ReceitaTotalDESC() {}
+
+        @Override
+        public int compare(Receita t, Receita t1) {
+
+            if (t.getTotal() > t1.getTotal()) {
+
+                return -1;
+
+            } else if (t.getTotal() < t1.getTotal()) {
+
+                return 1;
+
+            } else {
+
+                return 0;
+            }
         }
     }
 

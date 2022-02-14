@@ -5,6 +5,9 @@
  */
 package Model;
 
+import java.text.Collator;
+import java.util.Comparator;
+
 /**
  *
  * @author alan
@@ -88,4 +91,53 @@ public class Categoria {
     public void setCategoria_aux(String Categoria_aux) {
         this.Categoria_aux = Categoria_aux;
     }
+    
+    public static class CategoriaASC implements Comparator<Categoria> {
+
+        public CategoriaASC() {
+
+        }
+
+        @Override
+        public int compare(Categoria c, Categoria c1) {
+
+            // c é maior que c1
+            if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) > 0) {
+                return 1;
+
+            } else if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) < 0) {
+                // c é menor que c1
+                return -1;
+
+            } else {
+                // são iguais
+                return 0;
+            }
+        }
+    } 
+    
+    public static class CategoriaDESC implements Comparator<Categoria> {
+
+        public CategoriaDESC() {
+
+        }
+
+        @Override
+        public int compare(Categoria c, Categoria c1) {
+
+            // c é maior que c1
+            if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) > 0) {
+                return -1;
+
+            } else if (Collator.getInstance().compare(c.getCategoriaTipo(), c1.getCategoriaTipo()) < 0) {
+                // c é menor que c1
+                return 1;
+
+            } else {
+                // são iguais
+                return 0;
+            }
+        }
+    }
+    
 }
