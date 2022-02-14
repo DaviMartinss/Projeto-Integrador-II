@@ -353,7 +353,7 @@ public class TelaReceita extends javax.swing.JFrame{
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Receitas");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 90, 26);
+        pageTitle.setBounds(360, 0, 90, 24);
 
         cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
@@ -573,7 +573,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 21);
+        txt_id.setBounds(20, 10, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

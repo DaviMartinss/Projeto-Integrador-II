@@ -87,12 +87,12 @@ public class TelaFatura extends javax.swing.JFrame {
                 String Col1 = Integer.toString(despesa.getMes());
                 String Col2 = Integer.toString(despesa.getAno());
                 String Col3 = Float.toString(despesa.getValor());
-                String Col4 = despesa.getEstatus();
-                String Col5 = ControlerCategoria.GetTipoCategoria(despesa.getId_categoria(), Integer.parseInt(txt_id.getText()));
-                String Col6 = Integer.toString(despesa.getNum_parcelas());
-                String Col7 = despesa.getDescricao();
-                String Col8 = Integer.toString(despesa.getNum_parcelas_pagas());
-                String Col9 = Float.toString(despesa.getValor_parcela());
+                String Col4 = ControlerCategoria.GetTipoCategoria(despesa.getId_categoria(), Integer.parseInt(txt_id.getText())); 
+                String Col5 = Integer.toString(despesa.getNum_parcelas());
+                String Col6 = Float.toString(despesa.getValor_parcela());
+                String Col7 = Integer.toString(despesa.getNum_parcelas_pagas()); 
+                String Col8 = despesa.getEstatus();  
+                String Col9 = despesa.getDescricao(); 
                 
                 totalFatura += despesa.getValor_parcela();
                 
@@ -259,10 +259,10 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -283,16 +283,16 @@ public class TelaFatura extends javax.swing.JFrame {
             jtFaturas.getColumnModel().getColumn(2).setMaxWidth(40);
             jtFaturas.getColumnModel().getColumn(3).setMinWidth(80);
             jtFaturas.getColumnModel().getColumn(3).setMaxWidth(80);
-            jtFaturas.getColumnModel().getColumn(4).setMinWidth(120);
+            jtFaturas.getColumnModel().getColumn(4).setMinWidth(100);
             jtFaturas.getColumnModel().getColumn(4).setMaxWidth(120);
-            jtFaturas.getColumnModel().getColumn(5).setMinWidth(45);
+            jtFaturas.getColumnModel().getColumn(5).setMinWidth(50);
             jtFaturas.getColumnModel().getColumn(5).setMaxWidth(45);
             jtFaturas.getColumnModel().getColumn(6).setMinWidth(80);
-            jtFaturas.getColumnModel().getColumn(6).setMaxWidth(80);
+            jtFaturas.getColumnModel().getColumn(6).setMaxWidth(100);
             jtFaturas.getColumnModel().getColumn(7).setMinWidth(100);
             jtFaturas.getColumnModel().getColumn(7).setMaxWidth(100);
             jtFaturas.getColumnModel().getColumn(8).setMinWidth(60);
-            jtFaturas.getColumnModel().getColumn(8).setMaxWidth(60);
+            jtFaturas.getColumnModel().getColumn(8).setMaxWidth(80);
         }
 
         getContentPane().add(dataTable);
@@ -327,7 +327,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(backButton);
-        backButton.setBounds(20, 50, 100, 27);
+        backButton.setBounds(20, 50, 100, 25);
 
         searchButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -406,7 +406,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ASC);
-        btn_ASC.setBounds(200, 180, 110, 27);
+        btn_ASC.setBounds(200, 180, 110, 25);
 
         btn_DESC.setBackground(new java.awt.Color(105, 69, 219));
         btn_DESC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -418,7 +418,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_DESC);
-        btn_DESC.setBounds(320, 180, 112, 27);
+        btn_DESC.setBounds(320, 180, 107, 25);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         jLabel5.setText("background");
@@ -433,7 +433,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 21);
+        txt_id.setBounds(0, 0, 60, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

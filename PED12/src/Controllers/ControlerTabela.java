@@ -148,7 +148,6 @@ public class ControlerTabela {
                 
                 case "Fatura":
                     
-                    
                     break;
                 
                 case "Main":

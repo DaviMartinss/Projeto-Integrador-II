@@ -68,7 +68,7 @@
                 <Column editable="false" title="Valor Total" type="java.lang.String"/>
                 <Column editable="false" title="Categoria" type="java.lang.String"/>
                 <Column editable="false" title="Parc." type="java.lang.String"/>
-                <Column editable="true" title="Valor Parcela" type="java.lang.Object"/>
+                <Column editable="false" title="Valor Parcela" type="java.lang.String"/>
                 <Column editable="false" title="Parcelas Pagas" type="java.lang.String"/>
                 <Column editable="false" title="Estatus" type="java.lang.String"/>
                 <Column editable="false" title="Descri&#xe7;&#xe3;o" type="java.lang.String"/>
@@ -96,17 +96,17 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="120" minWidth="120" prefWidth="-1" resizable="true">
+                <Column maxWidth="120" minWidth="100" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="45" minWidth="45" prefWidth="-1" resizable="true">
+                <Column maxWidth="45" minWidth="50" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="80" minWidth="80" prefWidth="-1" resizable="true">
+                <Column maxWidth="100" minWidth="80" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -116,7 +116,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="60" minWidth="60" prefWidth="-1" resizable="true">
+                <Column maxWidth="80" minWidth="60" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
