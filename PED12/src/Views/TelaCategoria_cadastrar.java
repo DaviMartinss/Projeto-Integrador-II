@@ -130,6 +130,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastrar Categoria");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -160,6 +161,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         getContentPane().add(btn_cadastarCategoria);
         btn_cadastarCategoria.setBounds(310, 170, 200, 27);
 
+        categoryTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         categoryTitle.setText("Nova Categoria");
         getContentPane().add(categoryTitle);
         categoryTitle.setBounds(160, 110, 200, 27);
@@ -177,7 +179,7 @@ public class TelaCategoria_cadastrar extends javax.swing.JFrame {
         getContentPane().add(background);
         background.setBounds(0, 0, 1920, 1080);
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 20);
+        txt_id.setBounds(0, 0, 49, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

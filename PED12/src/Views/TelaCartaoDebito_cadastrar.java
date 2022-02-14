@@ -165,6 +165,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastrar Cartao de Debito");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -248,7 +249,7 @@ public class TelaCartaoDebito_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(343, 42, 81, 20);
+        txt_id.setBounds(343, 42, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

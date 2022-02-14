@@ -317,6 +317,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cartao de Debito");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -497,7 +498,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         ordenationTitle.setBounds(180, 80, 140, 27);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
-        findTextTitle.setText("Digite sua pesquisa aqui");
+        findTextTitle.setText("Refinar busca por:");
         getContentPane().add(findTextTitle);
         findTextTitle.setBounds(20, 350, 170, 27);
 
@@ -528,7 +529,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
         tbHabilitaConsulta.setBackground(new java.awt.Color(105, 69, 219));
         tbHabilitaConsulta.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         tbHabilitaConsulta.setForeground(new java.awt.Color(255, 255, 255));
-        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.setText("Refinar Busca");
         tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbHabilitaConsultaActionPerformed(evt);
@@ -548,7 +549,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 20);
+        txt_id.setBounds(0, 0, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

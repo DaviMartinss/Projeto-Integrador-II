@@ -98,6 +98,7 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Recuperação de Senha");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -110,12 +111,12 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
         emailTitle.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         emailTitle.setText("Informe seu Email");
         getContentPane().add(emailTitle);
-        emailTitle.setBounds(270, 170, 120, 27);
+        emailTitle.setBounds(210, 170, 120, 27);
 
         txt_RecuperaSenha_email.setBackground(new java.awt.Color(187, 210, 240));
         txt_RecuperaSenha_email.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_RecuperaSenha_email);
-        txt_RecuperaSenha_email.setBounds(270, 190, 250, 27);
+        txt_RecuperaSenha_email.setBounds(210, 190, 370, 27);
 
         checkButton.setBackground(new java.awt.Color(105, 69, 219));
         checkButton.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
@@ -126,7 +127,7 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(checkButton);
-        checkButton.setBounds(340, 260, 110, 25);
+        checkButton.setBounds(330, 260, 140, 27);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/waning_back.png"))); // NOI18N
         background.setText("jLabel2");

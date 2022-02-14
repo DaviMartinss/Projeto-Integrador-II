@@ -235,6 +235,7 @@ public class TelaFatura extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fatura");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -326,7 +327,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(backButton);
-        backButton.setBounds(20, 50, 100, 25);
+        backButton.setBounds(20, 50, 100, 27);
 
         searchButton.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         searchButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -368,7 +369,7 @@ public class TelaFatura extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel2.setText("Dia da Fatura");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(230, 90, 100, 27);
+        jLabel2.setBounds(230, 90, 110, 27);
 
         txtDiaFatura.setBackground(new java.awt.Color(187, 210, 240));
         txtDiaFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -378,7 +379,7 @@ public class TelaFatura extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel3.setText("Total Fatura");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(350, 90, 100, 27);
+        jLabel3.setBounds(350, 90, 110, 27);
 
         txtTotalFatura.setBackground(new java.awt.Color(187, 210, 240));
         txtTotalFatura.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -405,7 +406,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ASC);
-        btn_ASC.setBounds(200, 180, 110, 25);
+        btn_ASC.setBounds(200, 180, 110, 27);
 
         btn_DESC.setBackground(new java.awt.Color(105, 69, 219));
         btn_DESC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -417,7 +418,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_DESC);
-        btn_DESC.setBounds(320, 180, 107, 25);
+        btn_DESC.setBounds(320, 180, 112, 27);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         jLabel5.setText("background");
@@ -432,7 +433,7 @@ public class TelaFatura extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 60, 20);
+        txt_id.setBounds(0, 0, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

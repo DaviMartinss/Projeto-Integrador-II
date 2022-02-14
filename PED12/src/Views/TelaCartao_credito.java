@@ -348,6 +348,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cartao de Credito");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -360,7 +361,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Cartão de Crédito");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(330, 0, 170, 24);
+        pageTitle.setBounds(330, 0, 170, 26);
 
         jtConsultaCC.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jtConsultaCC.setModel(new javax.swing.table.DefaultTableModel(
@@ -578,7 +579,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
         tbHabilitaConsulta.setBackground(new java.awt.Color(105, 69, 219));
         tbHabilitaConsulta.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         tbHabilitaConsulta.setForeground(new java.awt.Color(255, 255, 255));
-        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.setText("Refinar Busca");
         tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbHabilitaConsultaActionPerformed(evt);
@@ -599,7 +600,7 @@ public class TelaCartao_credito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(30, 10, 81, 20);
+        txt_id.setBounds(30, 10, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

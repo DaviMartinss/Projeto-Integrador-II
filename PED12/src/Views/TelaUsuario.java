@@ -166,6 +166,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dados do Usuário");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -178,7 +179,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Dados do Usuário");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(310, 0, 170, 24);
+        pageTitle.setBounds(310, 0, 170, 26);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -205,7 +206,7 @@ public class TelaUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(startButton);
-        startButton.setBounds(40, 50, 100, 25);
+        startButton.setBounds(40, 50, 100, 27);
 
         btnAlterar.setBackground(new java.awt.Color(105, 69, 219));
         btnAlterar.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -246,12 +247,12 @@ public class TelaUsuario extends javax.swing.JFrame {
         nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         nameTitle.setText("Nome: ");
         getContentPane().add(nameTitle);
-        nameTitle.setBounds(200, 130, 70, 16);
+        nameTitle.setBounds(200, 130, 70, 17);
 
         emailTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         emailTitle.setText("Email:");
         getContentPane().add(emailTitle);
-        emailTitle.setBounds(200, 190, 60, 16);
+        emailTitle.setBounds(200, 190, 60, 17);
 
         passwdTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         passwdTitle.setText("Senha:");

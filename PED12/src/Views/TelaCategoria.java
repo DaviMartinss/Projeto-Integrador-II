@@ -214,6 +214,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Categorias");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -377,7 +378,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         tbHabilitaConsulta.setBackground(new java.awt.Color(105, 69, 219));
         tbHabilitaConsulta.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         tbHabilitaConsulta.setForeground(new java.awt.Color(255, 255, 255));
-        tbHabilitaConsulta.setText("Habilitar Consulta");
+        tbHabilitaConsulta.setText("Refinar Busca");
         tbHabilitaConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbHabilitaConsultaActionPerformed(evt);

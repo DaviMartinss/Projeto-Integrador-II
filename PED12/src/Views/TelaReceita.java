@@ -339,6 +339,7 @@ public class TelaReceita extends javax.swing.JFrame{
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Receita");
         setMaximumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
@@ -352,8 +353,9 @@ public class TelaReceita extends javax.swing.JFrame{
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Receitas");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(360, 0, 90, 24);
+        pageTitle.setBounds(360, 0, 90, 26);
 
+        cbbTipo.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Total", "Dia", "Mês", "Ano" }));
         cbbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -553,7 +555,7 @@ public class TelaReceita extends javax.swing.JFrame{
         ordenationTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         ordenationTitle.setText("Tipo de Ordenação");
         getContentPane().add(ordenationTitle);
-        ordenationTitle.setBounds(190, 80, 130, 27);
+        ordenationTitle.setBounds(190, 80, 150, 27);
 
         findTextType.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTextType.setText("Refinar busca por:");
@@ -571,7 +573,7 @@ public class TelaReceita extends javax.swing.JFrame{
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(20, 10, 60, 20);
+        txt_id.setBounds(20, 10, 60, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

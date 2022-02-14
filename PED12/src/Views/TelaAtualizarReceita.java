@@ -124,6 +124,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Atualizar Receita");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -148,12 +149,12 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(20, 50, 111, 25);
+        btnReceitas.setBounds(20, 50, 111, 27);
 
         totalTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         totalTitle.setText("Total: ");
         getContentPane().add(totalTitle);
-        totalTitle.setBounds(180, 130, 50, 27);
+        totalTitle.setBounds(160, 130, 50, 27);
 
         txt_total.setBackground(new java.awt.Color(187, 210, 240));
         txt_total.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -167,12 +168,12 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_total);
-        txt_total.setBounds(180, 150, 100, 27);
+        txt_total.setBounds(160, 150, 130, 27);
 
         dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         dateTitle.setText("Data (dd/mm/aaaa)");
         getContentPane().add(dateTitle);
-        dateTitle.setBounds(300, 130, 150, 27);
+        dateTitle.setBounds(330, 130, 150, 27);
 
         txt_dia.setBackground(new java.awt.Color(187, 210, 240));
         txt_dia.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -183,29 +184,29 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_dia);
-        txt_dia.setBounds(300, 150, 50, 27);
+        txt_dia.setBounds(330, 150, 50, 27);
 
         txt_mes.setBackground(new java.awt.Color(187, 210, 240));
         txt_mes.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         txt_mes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_mes);
-        txt_mes.setBounds(360, 150, 50, 27);
+        txt_mes.setBounds(390, 150, 50, 27);
 
         dayBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         dayBarTitle.setText("/");
         getContentPane().add(dayBarTitle);
-        dayBarTitle.setBounds(350, 150, 10, 24);
+        dayBarTitle.setBounds(380, 150, 10, 26);
 
         monthBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         monthBarTitle.setText("/");
         getContentPane().add(monthBarTitle);
-        monthBarTitle.setBounds(410, 150, 10, 24);
+        monthBarTitle.setBounds(440, 150, 10, 26);
 
         txt_ano.setBackground(new java.awt.Color(187, 210, 240));
         txt_ano.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         txt_ano.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         getContentPane().add(txt_ano);
-        txt_ano.setBounds(420, 150, 50, 27);
+        txt_ano.setBounds(450, 150, 50, 27);
 
         btn_update.setBackground(new java.awt.Color(105, 69, 219));
         btn_update.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -217,7 +218,7 @@ public class TelaAtualizarReceita extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(550, 150, 140, 25);
+        btn_update.setBounds(550, 150, 140, 27);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icon-280x200.png"))); // NOI18N
         jLabel1.setText("jLabel1");

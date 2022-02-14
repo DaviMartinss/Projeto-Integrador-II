@@ -350,6 +350,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastrar Despesa");
         setMaximumSize(new java.awt.Dimension(700, 500));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -364,7 +365,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("CADASTRO DE DESPESA");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(280, 0, 230, 24);
+        pageTitle.setBounds(280, 0, 230, 26);
 
         txtAreaDescricao.setColumns(20);
         txtAreaDescricao.setRows(5);
@@ -372,7 +373,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtAreaDescricao);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 160, 740, 113);
+        jScrollPane1.setBounds(30, 160, 740, 103);
 
         cbb_categoria.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         cbb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -496,7 +497,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         catSelectTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         catSelectTitle.setText("Categoria: ");
         getContentPane().add(catSelectTitle);
-        catSelectTitle.setBounds(420, 90, 80, 27);
+        catSelectTitle.setBounds(420, 90, 90, 27);
 
         descriptionTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         descriptionTitle.setText("Descrição: ");
@@ -506,7 +507,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
         dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         dateTitle.setText("Data: (dd/mm/aaaa)");
         getContentPane().add(dateTitle);
-        dateTitle.setBounds(230, 90, 130, 27);
+        dateTitle.setBounds(230, 90, 160, 27);
 
         dayBarTitle.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         dayBarTitle.setText("/");
@@ -553,7 +554,7 @@ public class TelaDespesa_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2322, 50, 81, 20);
+        txt_id.setBounds(2322, 50, 81, 21);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

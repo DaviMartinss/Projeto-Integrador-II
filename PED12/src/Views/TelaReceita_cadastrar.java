@@ -180,6 +180,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastrar Receita");
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         getContentPane().setLayout(null);
@@ -238,7 +239,7 @@ public class TelaReceita_cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         jLabel1.setText("Total: ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(40, 180, 60, 27);
+        jLabel1.setBounds(40, 190, 60, 27);
 
         dateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         dateTitle.setText("Data: (dd/mm/aaaa)");
