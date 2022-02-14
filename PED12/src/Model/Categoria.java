@@ -50,7 +50,7 @@ public class Categoria {
         }
         
         public CategoriaBuild Categoria_aux(String categotia_aux){
-            this.Categoria_aux = Categoria_aux;
+            this.Categoria_aux = categotia_aux;
             return this;
         }
           
