@@ -152,7 +152,7 @@ public class ControlerTabela {
                     break;
                 
                 case "Main":
-                    Receita receita = ControlerReceita.GetUltimaReceita(conta_id); 
+                    Receita receita = ControlerReceita.GetReceitaAtual(conta_id); 
                     LinkedList<Despesa> despesas = ControlerDespesa.GetListaDespesaNpPorReceita(conta_id, "NÃO PAGO", receita);
                     LinkedList<CartaoDebito> listaCD = ControlerCartaoDebito.GetListaCartaoDebito(conta_id);
                     LinkedList<CartaoCredito> listaCC = ControlerCartaoCredito.GetListaCartaoCredito(conta_id);

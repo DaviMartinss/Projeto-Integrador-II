@@ -157,6 +157,30 @@ public class ControlerReceita {
         }     
     }
     
+    public static Receita GetReceitaAtual(int conta_id){
+        
+         ReceitaDAO receitaDAO = new ReceitaDAO();
+        
+        try {
+            
+            return receitaDAO.GetReceitaAtual(conta_id);
+            
+        }catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            return null;
+        
+        }catch(Exception ex){
+            
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            
+            return null;
+        }     
+    }
+    
     public static boolean UpdateTotalReceita(int conta_id, float valor, int cod_receita){
         
          ReceitaDAO receitaDAO = new ReceitaDAO();

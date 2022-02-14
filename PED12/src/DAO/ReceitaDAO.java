@@ -177,6 +177,45 @@ public class ReceitaDAO {
         return receita;
     }
     
+    public Receita GetReceitaAtual(int conta_id) throws SQLException {
+
+        String SelectReceita
+                = "SELECT Max(cod_receita) cod_receita, R.mes, R.ano, R.total FROM receita R \n"
+                + "WHERE R.conta_id_conta = ? AND \n"
+                + "R.ano = (SELECT Max(ano) FROM receita WHERE receita.conta_id_conta = ?) AND\n"
+                + "R.mes = \n"
+                + "(SELECT Max(mes) FROM receita WHERE receita.conta_id_conta = ? AND \n"
+                + "receita.ano = (SELECT Max(ano) FROM receita WHERE receita.conta_id_conta = ?));";
+
+        Receita receita = new Receita.ReceitaBuild().build();
+
+        PreparedStatement pst_SelectReceita = null;
+
+        ResultSet rs_SelectReceita = null;
+
+        pst_SelectReceita = conexao.prepareStatement(SelectReceita);
+
+        pst_SelectReceita.setInt(1, conta_id);
+        pst_SelectReceita.setInt(2, conta_id);
+        pst_SelectReceita.setInt(3, conta_id);
+        pst_SelectReceita.setInt(4, conta_id);
+
+        rs_SelectReceita = pst_SelectReceita.executeQuery();
+
+        if (rs_SelectReceita.next()) {
+            receita.setCod_receita(rs_SelectReceita.getInt("cod_receita"));
+            receita.setMes(rs_SelectReceita.getInt("mes"));
+            receita.setAno(rs_SelectReceita.getInt("ano"));
+            receita.setTotal(rs_SelectReceita.getFloat("total"));
+            receita.setId_conta(conta_id);
+        }
+
+        pst_SelectReceita.close();
+        rs_SelectReceita.close();
+
+        return receita;
+    }
+    
     public void UpdateTotalReceita(int id_conta, float valor, int cod_receita) throws SQLException {
 
         String UpdateTotal = "UPDATE receita SET total = (total - ?) "
