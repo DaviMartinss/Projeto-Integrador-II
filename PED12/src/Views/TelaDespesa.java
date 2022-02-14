@@ -158,6 +158,10 @@ public class TelaDespesa extends javax.swing.JFrame {
         findTextTitle.setVisible(true);
         txt_Pesquisa.setVisible(true);
         btPesquisar.setVisible(true);
+        invoiceDateTitle.setVisible(true);
+        txtMesReceita.setVisible(true);
+        dateBar.setVisible(true);
+        txtAnoReceita.setVisible(true);
     }
     
     final void DesabilitarConsulta(){
@@ -165,6 +169,10 @@ public class TelaDespesa extends javax.swing.JFrame {
         findTextTitle.setVisible(false);
         txt_Pesquisa.setVisible(false);
         btPesquisar.setVisible(false);
+        invoiceDateTitle.setVisible(false);
+        txtMesReceita.setVisible(false);
+        dateBar.setVisible(false);
+        txtAnoReceita.setVisible(false);
     }
 
     void TelaCadastrar_cadastrar() {
@@ -583,7 +591,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtMesReceita);
-        txtMesReceita.setBounds(640, 130, 40, 27);
+        txtMesReceita.setBounds(20, 490, 40, 27);
 
         txtAnoReceita.setBackground(new java.awt.Color(187, 210, 240));
         txtAnoReceita.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -593,7 +601,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtAnoReceita);
-        txtAnoReceita.setBounds(700, 130, 60, 27);
+        txtAnoReceita.setBounds(80, 490, 60, 27);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -670,7 +678,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         dateBar.setFont(new java.awt.Font("Noto Serif", 1, 24)); // NOI18N
         dateBar.setText(" /");
         getContentPane().add(dateBar);
-        dateBar.setBounds(680, 130, 20, 27);
+        dateBar.setBounds(60, 490, 20, 27);
 
         findByTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findByTitle.setText("Ordenar/Refinar por:");
@@ -680,7 +688,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         invoiceDateTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         invoiceDateTitle.setText("Receita: (mês e ano)");
         getContentPane().add(invoiceDateTitle);
-        invoiceDateTitle.setBounds(640, 110, 140, 27);
+        invoiceDateTitle.setBounds(20, 470, 140, 27);
 
         findTextTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         findTextTitle.setText("Refinar busca por:");
@@ -764,7 +772,7 @@ public class TelaDespesa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(2360, 119, 81, 21);
+        txt_id.setBounds(2360, 119, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
