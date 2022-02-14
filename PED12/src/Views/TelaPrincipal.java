@@ -456,9 +456,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             labelNome.setText(usuario.NomeUsuario(txt_id.getText()));
             
-         
-            
-            CarregaTabela();
+            //CarregaTabela();
 
         } catch (SQLException ex) {
 
