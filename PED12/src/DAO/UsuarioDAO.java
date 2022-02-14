@@ -87,15 +87,14 @@ public class UsuarioDAO {
          String email_aux = consultaEmail(usuario.getId_conta());
          
          boolean retorno = false;
-         PreparedStatement pst = null;
+         
+         String insert = "UPDATE conta SET nome= ? , email = ? WHERE id_conta = ?";
+         
+         PreparedStatement pst = conexao.prepareStatement(insert);
          
          if (!email_aux.equals(usuario.getEmail())) {
 
              if (!(verificaEmailExiste(usuario.getEmail()))) {
-
-                 String insert = "UPDATE conta SET nome= ? , email = ? WHERE id_conta = ?";
-
-                 pst = conexao.prepareStatement(insert);
 
                  pst.setString(1, usuario.getNome());
                  pst.setString(2, usuario.getEmail());
@@ -109,12 +108,19 @@ public class UsuarioDAO {
                  JOptionPane.showMessageDialog(null, "Esse email já foi cadastrado");
                  retorno = false;
              }
-        }else{
-            
-            retorno = true;
-        }
+         } else {
+
+             pst.setString(1, usuario.getNome());
+             pst.setString(2, usuario.getEmail());
+             pst.setInt(3, usuario.getId_conta());
+
+             pst.executeUpdate();
+
+             retorno = true;
+         }
             
          pst.close();
+         
          return retorno;
     }
     

@@ -182,14 +182,14 @@ public class ControlerReceita {
         }catch (SQLException ex) {
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:GetReceitaAtual", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return null;
         
         }catch(Exception ex){
             
             JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
-            JOptionPane.showMessageDialog(null, "Erro:GetUltimaReceita", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro:GetReceitaAtual", "ERROR_MESSAGE", JOptionPane.ERROR_MESSAGE);
             
             return null;
         }     
