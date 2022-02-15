@@ -49,19 +49,19 @@ Prints
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Screenshot_Others/cadastro_exemplo.gif" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Efetuando Login no Sistema</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Screenshot_Others/login_exemplo.gif" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Efetuando Login no Sistema</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Screenshot_Others/alterar-cadastro_exemplo.gif" />
-</h1>
+</h1><br></br>
 
 Diagramas
 =========
@@ -70,49 +70,49 @@ Diagramas
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ER_Diagrams_DB/ER_all.gif" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Diagrama de Classe do pacote Controllers</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Controllers.png" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Diagrama de Classe do pacote DAO</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_DAO.png" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Diagrama de Classe do pacote Model</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Model.png" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Diagrama de Classe do pacote Utilities</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Utilities.png" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Diagrama de Classe do pacote Ordenação</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Ordenacao.png" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Diagrama de Classe do pacote Views</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Views.png" />
-</h1>
+</h1><br></br>
 
 <h2 align="center">Diagrama de Caso de Uso</h2><br></br>
 
 <h1 align="center">
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/UML_UseCase_ped12.png" />
-</h1>
+</h1><br></br>
 
 ### Features
 
