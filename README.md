@@ -27,7 +27,7 @@ Mapa
       * [Combo](#combo) -->
    * [Prints](#Prints)
    * [Diagramas](#Diagramas) 
-   * [Tecnologias](#tecnologias)
+   * [Features](#Features)
 <!--te-->
 
 Instalacao
