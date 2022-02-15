@@ -116,6 +116,8 @@ Diagramas
 
 ### Features
 
+[Inicio](#Sobre)
+
 - [x] Bando de Dados
 - [x] Tela de Login
 - [x] Tela de Cadastro
