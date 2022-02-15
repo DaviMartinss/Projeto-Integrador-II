@@ -42,6 +42,8 @@ Dicas
 
 Prints
 ======
+[Inicio](#Sobre)
+
 
 <h2 align="center">Efetuando cadastro no sistema</h2><br></br>
 
@@ -65,6 +67,8 @@ Prints
 
 Diagramas
 =========
+[Inicio](#Sobre)
+
 
 <h2 align="center">Diagramas ER do banco de dados.</h2><br></br>
 
@@ -114,8 +118,8 @@ Diagramas
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/UML_UseCase_ped12.png" />
 </h1><br></br>
 
-### Features
-
+Features
+========
 [Inicio](#Sobre)
 
 - [x] Bando de Dados
