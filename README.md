@@ -19,21 +19,26 @@ Mapa
    * [Sobre](#Sobre)
    * [Mapa](#Mapa)
    * [Instalacao](#Instalacao)
-   * [Dicas](#Dicas)
+<!--   * [Dicas](#Dicas)
       * [Pre Requisitos](#pre-requisitos)
       * [Local files](#local-files)
       * [Remote files](#remote-files)
       * [Multiple files](#multiple-files)
-      * [Combo](#combo)
+      * [Combo](#combo) -->
    * [Prints](#Prints)
+   * [Diagramas](#Diagramas) 
    * [Tecnologias](#tecnologias)
 <!--te-->
 
 Instalacao
 ==========
 
+<p align="center">Para executar a aplicação será necessário possuir em sua máquina um gerenciador de banco de dados do tipo SQL, usamos o MySQL, mas pode ser outro desde que saida modificar o conector dentro da classe 'moduloConexao.java'. Após isso, qualquer IDE que possa trabalhar com java será capaz de executar o projeto. Recomendamos para isso o NetBeans.</p>
+
 Dicas
 =====
+
+<p align="center">Como o software ainda esta em produção e em fase muito prematura, recomendamos que comunique suas observações em -> eletromarlon@gmail.com <-. Para execução, se faz necessário uma boa velocidade de leitura e escrita, o que nos leva a dizer que o SSD no sistema ajuda para evitar ocorrência de engasgos na hora de produção de dados. </p>
 
 Prints
 ======
@@ -58,7 +63,56 @@ Prints
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Screenshot_Others/alterar-cadastro_exemplo.gif" />
 </h1>
 
+Diagramas
+=========
 
+<h2 align="center">Diagramas ER do banco de dados.</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ER_Diagrams_DB/ER_all.gif" />
+</h1>
+
+<h2 align="center">Diagrama de Classe do pacote Controllers</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Controllers.png" />
+</h1>
+
+<h2 align="center">Diagrama de Classe do pacote DAO</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_DAO.png" />
+</h1>
+
+<h2 align="center">Diagrama de Classe do pacote Model</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Model.png" />
+</h1>
+
+<h2 align="center">Diagrama de Classe do pacote Utilities</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Utilities.png" />
+</h1>
+
+<h2 align="center">Diagrama de Classe do pacote Ordenação</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Ordenacao.png" />
+</h1>
+
+<h2 align="center">Diagrama de Classe do pacote Views</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/ClassDiagram_Views.png" />
+</h1>
+
+<h2 align="center">Diagrama de Caso de Uso</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/UML_UseCase_ped12.png" />
+</h1>
 
 ### Features
 
