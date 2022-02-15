@@ -37,9 +37,11 @@ public class Validacao {
          
             if(dataString.length() == 8)
                 formatDate.parse(dataString);
-            else
-                JOptionPane.showMessageDialog(null, "Digitte uma data no formato Ex: Dia = 01, Mês = 03 e Ano = 2000");
-            
+            else{
+                JOptionPane.showMessageDialog(null, "Digite uma data no formato Ex: Dia = 01, Mês = 03 e Ano = 2000");
+                return false;
+            }
+                
             return true; 
             
         } catch (ParseException e) {
