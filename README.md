@@ -11,7 +11,7 @@ Sobre
 
 <p align="center">Com esse pensamento, foi que nossa equipe desenvolveu essa aplicação de gerenciamento e controle de finanças. A equipe formada por: Alan Lopes, Davi Martins, Dirlia Vieira e Marlon Duarte. Desenvolve essa aplicação em Java como uso de SQL para banco de dados. Esse projeto faz parte da Disciplina de Projeto Integrador (I e II) do curso de Ciência da Computação ministrada pelo professor Me. Italo Ribeiro com orientações dos demais professores de áreas diretamente correlatas ao trabalho desenvolvido.</p>
 
-<p align="center">...</p>
+<p align="center">ESTE TRABALHO AINDA ESTÁ EM DESENVOLVIMENTO E PODE CONTER INCONSISTÊNCIA NO FLUXO DE USO ! ! !</p>
 
 Mapa
 ====
