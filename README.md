@@ -118,6 +118,18 @@ Diagramas
   <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/UML_UseCase_ped12.png" />
 </h1><br></br>
 
+<h2 align="center">Diagrama de Estado (StateMachine) para situação de login</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/StateMachine_LOGIN.png" />
+</h1><br></br>
+
+<h2 align="center">Diagrama de Sequência para caso de Login e consulta de Despesas</h2><br></br>
+
+<h1 align="center">
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="./Diagram/SequenceDiagram_LOGIN.png" />
+</h1><br></br>
+
 Features
 ========
 [Inicio](#Sobre)
