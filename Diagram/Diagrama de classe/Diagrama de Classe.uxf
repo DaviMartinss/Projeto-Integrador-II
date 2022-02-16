@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2">
+<diagram program="umlet" version="14.3.0">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>110</y>
+      <x>70</x>
+      <y>480</y>
+      <w>470</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>
+Receita
+--
+-dia: int
+-mes: int
+-ano: int
+-total: float
+- idConta: int
+-salvaMes: int
+-salvaAno: int
+-codDespesa: int
+--
++VerificaTotal(): boolean
++verifica_ReceitaValida(): boolean
++Update_CamposValidos(dia: String, mes: String, ano: String): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>0</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -22,6 +47,24 @@ _-ClassAttribute: Long_
 Responsibilities
 -- Resp1
 -- Resp2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>90</x>
+      <y>330</y>
+      <w>320</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>
+Categoria
+--
+-categoriaId: int
+-categoriaTipo: String
+-int: idConta
+--
+#Compare(c: Categoria, c1: Categoria): int</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
