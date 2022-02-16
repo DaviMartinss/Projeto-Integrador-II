@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+<diagram program="umlet" version="14.2">
+  <zoom_level>4</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>70</x>
-      <y>480</y>
-      <w>470</w>
-      <h>260</h>
+      <x>80</x>
+      <y>908</y>
+      <w>188</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>
 Receita
@@ -29,10 +29,10 @@ Receita
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
-      <y>0</y>
-      <w>210</w>
-      <h>190</h>
+      <x>116</x>
+      <y>716</y>
+      <w>84</w>
+      <h>76</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Package::FatClass
@@ -52,10 +52,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>330</y>
-      <w>320</w>
-      <h>130</h>
+      <x>88</x>
+      <y>848</y>
+      <w>128</w>
+      <h>52</h>
     </coordinates>
     <panel_attributes>
 Categoria
@@ -65,6 +65,257 @@ Categoria
 -int: idConta
 --
 #Compare(c: Categoria, c1: Categoria): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>100</y>
+      <w>132</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>Cartao
+--
+-bandeira:String
+-n_Cartao:long
+--
++Cartao(bandeira:String, n_cartao: String)
++getBandeira():String 
++getN_cartao():String 
++verifica_bandeira():String
++somaDigitos():int
++validarN_Cartao(numeroCartao: String):boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>176</x>
+      <y>220</y>
+      <w>136</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>CartaoCredito
+--
+-limite: float;
+-dia_fatura: int;
+-valor_fatura: float;
+-id_conta: int;
+-n_cartao_aux: long;
+-credito: float;
+--
++CartaoCredito(CartaoCreditoBuild build)
++getCredito():float
++getN_cartao_credito(): long
++getId_conta(): int
++getLimite(): float 
++getDia_fatura(): int
++getValor_fatura(): float
++getN_cartao_aux(): long
++setCredito(credito: float): void
++setN_cartao_credito(n_cartao_credito: long): void
++setId_conta(id_conta: int): void
++setLimite(limite: float): void
++setDia_fatura(dia_fatura: int): void
++setValor_fatura(valor_fatura: float): void
++setN_cartao_aux(n_cartao_aux: long): void
++ValidarDiaFatura():boolean
++ValidarLimite():boolean
++ValidarFatura():boolean
++ValidarCartaoCredito(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>412</y>
+      <w>204</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>CartaoCreditoBuild
+--
+-limite: float;
+-dia_fatura: int;
+-valor_fatura: float;
+-id_conta: int;
+-n_cartao_aux: long;
+-credito: float;
+--
++CartaoCreditoBuild()
++CartaoCredito(CartaoCreditoBuild build)
++Limite(limite:float): CartaoCreditoBuild
++DiaFatura(diaFatura: int): CartaoCreditoBuild
++ValorFatura(valorFatura: float): CartaoCreditoBuild
++Bandeira(bandeira: String): CartaoCreditoBuild
++IdConta(idConta: int): CartaoCreditoBuild
++NumCartaoAux(NumCartaoAux: long): CartaoCreditoBuild
++Credito(credito:float): CartaoCreditoBuild
++build(): CartaoCredito
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>216</y>
+      <w>132</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>CartaoDebito
+--
+-valor_atual: float;
+-id_conta: int;
+-n_cartao_aux:long;
+--
++getId_conta(): int
++getN_cartao_debito(): long
++getValor_atual(): float
++getN_cartao_aux(): long
++setId_conta(id_conta: int): void
++setN_cartao_debito(n_cartao_debito: long): void
++setValor_atual(valor_atual: float): void
++setN_cartao_aux(n_cartao_aux: long): long
++verifica_valor_atual(): boolean
++verifica_num_cartao_deb(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>372</x>
+      <y>328</y>
+      <w>156</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>CartaoDebitoBuild
+--
+-valor_atual: float;
+-id_conta: int;
+-n_cartao_aux:long;
+--
++CartaoDebitoBuild():void
++CartaoDebitoBuild(numCartao: long) 
++IdConta(idConta: int): CartaoDebitoBuild
++NumCartaoAux(numCartaoAux: long): CartaoDebitoBuild
++Bandeira(bandeira:String): CartaoDebitoBuild
++build(): CartaoDebito
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>616</x>
+      <y>92</y>
+      <w>132</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Data
+--
+-dia: int;
+-mes: int;
+-ano: int;
+--
++getDia(): int
++getMes(): int 
++getAno(): int 
++setDia(dia: int): void
++setMes(mes: int): void
++setAno(ano: int): void
++verifica_dia(): boolean
++verifica_mes(): boolean
++verifica_ano(): boolean
++verifica_data(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>616</x>
+      <y>200</y>
+      <w>132</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>DataBuild
+--
+-dia: int;
+-mes: int;
+-ano: int;
+--
++DataBuild()
++DataBuild(int mes, int ano)
++Dia(dia: int): DataBuild
++Mes(mes: int): DataBuild
++Ano(ano: int): DataBuild
++build(): Data</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>812</x>
+      <y>244</y>
+      <w>132</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>UsuarioBuild
+--
+-nome: String;
+-email: String;
+-senha: String;
+-senhaConfirma: String;
+-salvaEmail_aux: String;
+-id_conta: int;
+--
++UsuarioBuild()
++UsuarioBuild(email: String)
++Nome(nome:String): UsuarioBuild
++Email(email: String): UsuarioBuild
++Senha(senha: String): UsuarioBuild
++ConfirmaSenha(senha: String): UsuarioBuild
++IdConta(idConta: int): UsuarioBuild
++build(): Usuario
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>812</x>
+      <y>100</y>
+      <w>132</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>Usuario
+--
+-nome: String;
+-email: String;
+-senha: String;
+-senhaConfirma: String;
+-salvaEmail_aux: String;
+-id_conta: int;
+--
++getEmail(): String
++getSenha(): String
++getNome(): String
++setNome(nome: String): void
++setSenhaConfirma(senhaConfirma: String): void
++setId_conta(id_conta: int): void
++setSalvaEmail_aux(salvaEmail_aux: String): void
++validaNomeUser(nome: String): boolean
++validaTamSenha(senha: String): boolean
++EhVazio(rec: String): boolean
++UpdateEhVazio(): boolean
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
