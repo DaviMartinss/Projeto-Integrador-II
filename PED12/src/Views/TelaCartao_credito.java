@@ -19,8 +19,8 @@ import java.awt.HeadlessException;
  */
 public class TelaCartao_credito extends javax.swing.JFrame {
 
-    long salva_num_cartao = 0;
-    boolean salvaLinhaAtiva = false;
+    private long salva_num_cartao = 0;
+    private boolean salvaLinhaAtiva = false;
 
     public TelaCartao_credito() {
         initComponents();

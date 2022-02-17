@@ -127,7 +127,7 @@ public class Tela_RecuperaSenha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(checkButton);
-        checkButton.setBounds(330, 260, 140, 27);
+        checkButton.setBounds(330, 260, 140, 25);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/waning_back.png"))); // NOI18N
         background.setText("jLabel2");

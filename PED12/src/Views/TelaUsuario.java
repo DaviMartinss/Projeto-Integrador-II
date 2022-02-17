@@ -6,12 +6,8 @@
 package Views;
 
 import Controllers.ControlerUser;
-import DAO.moduloConexao;
 import Model.Usuario;
 import java.awt.HeadlessException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,9 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class TelaUsuario extends javax.swing.JFrame {
 
-    Connection conexao = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
     
     /**
      * Creates new form TelaUsuario_consulta
@@ -30,7 +23,6 @@ public class TelaUsuario extends javax.swing.JFrame {
     public TelaUsuario() {
         
         initComponents();
-        conexao = moduloConexao.conector();
         this.setLocationRelativeTo(null);
         
         txtNome.setEditable(false);

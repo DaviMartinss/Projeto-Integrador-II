@@ -549,7 +549,7 @@ public class TelaCartao_debito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 81, 21);
+        txt_id.setBounds(0, 0, 81, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

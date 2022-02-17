@@ -93,7 +93,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Cadastro de Usuário");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(300, 0, 190, 26);
+        pageTitle.setBounds(300, 0, 190, 24);
 
         txtNome.setBackground(new java.awt.Color(187, 210, 240));
         txtNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -143,7 +143,7 @@ public class TelaUsuario_cadastrar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRealizarCadastro);
-        btnRealizarCadastro.setBounds(330, 350, 138, 27);
+        btnRealizarCadastro.setBounds(330, 350, 133, 27);
 
         nameTitle.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
         nameTitle.setText("Nome");

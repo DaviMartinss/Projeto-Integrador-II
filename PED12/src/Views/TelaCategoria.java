@@ -227,7 +227,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         pageTitle.setFont(new java.awt.Font("Noto Serif", 1, 18)); // NOI18N
         pageTitle.setText("Categorias");
         getContentPane().add(pageTitle);
-        pageTitle.setBounds(340, 0, 100, 26);
+        pageTitle.setBounds(340, 0, 100, 24);
 
         jt_categoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -399,7 +399,7 @@ public class TelaCategoria extends javax.swing.JFrame {
         background.getAccessibleContext().setAccessibleName("background");
 
         getContentPane().add(txt_id);
-        txt_id.setBounds(0, 0, 49, 21);
+        txt_id.setBounds(0, 0, 49, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -190,7 +190,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_update);
-        btn_update.setBounds(640, 510, 140, 27);
+        btn_update.setBounds(640, 510, 140, 25);
 
         btnReceitas.setBackground(new java.awt.Color(105, 69, 219));
         btnReceitas.setFont(new java.awt.Font("Noto Serif", 1, 12)); // NOI18N
@@ -202,7 +202,7 @@ public class TelaAtualizarCartaoDebito extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnReceitas);
-        btnReceitas.setBounds(20, 50, 111, 27);
+        btnReceitas.setBounds(20, 50, 111, 25);
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Back-2.png"))); // NOI18N
         background.setText("background");

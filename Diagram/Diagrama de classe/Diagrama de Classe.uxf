@@ -1,38 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>7</zoom_level>
+  <zoom_level>13</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
-      <y>1428</y>
-      <w>329</w>
-      <h>182</h>
+      <x>13</x>
+      <y>3952</y>
+      <w>273</w>
+      <h>156</h>
     </coordinates>
-    <panel_attributes>
-Receita
+    <panel_attributes>TelaAtualizarReceita
 --
--dia: int
--mes: int
--ano: int
--total: float
-- idConta: int
--salvaMes: int
--salvaAno: int
--codDespesa: int
+
 --
-+VerificaTotal(): boolean
-+verifica_ReceitaValida(): boolean
-+Update_CamposValidos(dia: String, mes: String, ano: String): boolean</panel_attributes>
++TelaAtualizarReceita()
++TelaReceita(): void
++AtualizarReceita():void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>245</x>
-      <y>1092</y>
-      <w>147</w>
-      <h>133</h>
+      <x>104</x>
+      <y>2028</y>
+      <w>273</w>
+      <h>247</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Package::FatClass
@@ -52,10 +44,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>196</x>
-      <y>1323</y>
-      <w>224</w>
-      <h>91</h>
+      <x>13</x>
+      <y>2457</y>
+      <w>416</w>
+      <h>169</h>
     </coordinates>
     <panel_attributes>
 Categoria
@@ -70,10 +62,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>532</x>
-      <y>14</y>
-      <w>231</w>
-      <h>133</h>
+      <x>637</x>
+      <y>26</y>
+      <w>429</w>
+      <h>247</h>
     </coordinates>
     <panel_attributes>Cartao
 --
@@ -92,10 +84,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
-      <y>224</y>
-      <w>238</w>
-      <h>322</h>
+      <x>299</x>
+      <y>416</y>
+      <w>442</w>
+      <h>598</h>
     </coordinates>
     <panel_attributes>CartaoCredito
 --
@@ -131,10 +123,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>294</x>
-      <y>560</y>
-      <w>357</w>
-      <h>210</h>
+      <x>195</x>
+      <y>1040</y>
+      <w>663</w>
+      <h>390</h>
     </coordinates>
     <panel_attributes>CartaoCreditoBuild
 --
@@ -162,10 +154,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>707</x>
-      <y>217</y>
-      <w>231</w>
-      <h>182</h>
+      <x>962</x>
+      <y>403</y>
+      <w>429</w>
+      <h>338</h>
     </coordinates>
     <panel_attributes>CartaoDebito
 --
@@ -189,10 +181,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>413</y>
-      <w>273</w>
-      <h>147</h>
+      <x>936</x>
+      <y>767</y>
+      <w>507</w>
+      <h>273</h>
     </coordinates>
     <panel_attributes>CartaoDebitoBuild
 --
@@ -213,10 +205,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
+      <x>1729</x>
       <y>0</y>
-      <w>231</w>
-      <h>175</h>
+      <w>429</w>
+      <h>325</h>
     </coordinates>
     <panel_attributes>Data
 --
@@ -240,10 +232,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>189</y>
-      <w>231</w>
-      <h>133</h>
+      <x>1729</x>
+      <y>351</y>
+      <w>429</w>
+      <h>247</h>
     </coordinates>
     <panel_attributes>DataBuild
 --
@@ -262,10 +254,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1463</x>
-      <y>266</y>
-      <w>231</w>
-      <h>182</h>
+      <x>2366</x>
+      <y>494</y>
+      <w>429</w>
+      <h>338</h>
     </coordinates>
     <panel_attributes>UsuarioBuild
 --
@@ -290,10 +282,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1463</x>
-      <y>14</y>
-      <w>231</w>
-      <h>217</h>
+      <x>2366</x>
+      <y>26</y>
+      <w>429</w>
+      <h>403</h>
     </coordinates>
     <panel_attributes>Usuario
 --
@@ -321,10 +313,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1218</x>
-      <y>819</y>
-      <w>287</w>
-      <h>392</h>
+      <x>1911</x>
+      <y>1521</y>
+      <w>533</w>
+      <h>728</h>
     </coordinates>
     <panel_attributes>DespesaBuild
 --
@@ -377,10 +369,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>917</x>
-      <y>819</y>
-      <w>266</w>
-      <h>588</h>
+      <x>1352</x>
+      <y>1521</y>
+      <w>494</w>
+      <h>1092</h>
     </coordinates>
     <panel_attributes>Despesa
 --
@@ -442,10 +434,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1001</x>
-      <y>3584</y>
-      <w>133</w>
-      <h>56</h>
+      <x>5226</x>
+      <y>2652</y>
+      <w>247</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>ModuloConexao
 --
@@ -457,10 +449,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
-      <y>2415</y>
-      <w>441</w>
-      <h>140</h>
+      <x>3679</x>
+      <y>481</y>
+      <w>819</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>ControlerCartaoDebito
 --
@@ -481,10 +473,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>161</x>
-      <y>2744</y>
-      <w>469</w>
-      <h>175</h>
+      <x>3666</x>
+      <y>1092</y>
+      <w>871</w>
+      <h>325</h>
     </coordinates>
     <panel_attributes>ControlerDespesa
 --
@@ -506,10 +498,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
-      <y>2576</y>
-      <w>441</w>
-      <h>140</h>
+      <x>3705</x>
+      <y>780</y>
+      <w>819</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>ControlerCategoria
 --
@@ -529,10 +521,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>161</x>
-      <y>2940</y>
-      <w>469</w>
-      <h>175</h>
+      <x>3666</x>
+      <y>1456</y>
+      <w>871</w>
+      <h>325</h>
     </coordinates>
     <panel_attributes>ControlerReceita
 --
@@ -555,10 +547,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
-      <y>3318</y>
-      <w>469</w>
-      <h>154</h>
+      <x>3627</x>
+      <y>2158</y>
+      <w>871</w>
+      <h>286</h>
     </coordinates>
     <panel_attributes>ControlerUser
 --
@@ -579,10 +571,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>3185</y>
-      <w>847</w>
-      <h>91</h>
+      <x>3367</x>
+      <y>1911</y>
+      <w>1573</w>
+      <h>169</h>
     </coordinates>
     <panel_attributes>ControlerTabela
 --
@@ -597,10 +589,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>182</x>
-      <y>2240</y>
-      <w>441</w>
-      <h>140</h>
+      <x>3705</x>
+      <y>156</y>
+      <w>819</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>ControlerCartaoCredito
 --
@@ -620,10 +612,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>658</x>
-      <y>2219</y>
-      <w>441</w>
-      <h>161</h>
+      <x>4589</x>
+      <y>117</y>
+      <w>819</w>
+      <h>299</h>
     </coordinates>
     <panel_attributes>CartaoCreditoDAO
 --
@@ -645,10 +637,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>672</x>
-      <y>2408</y>
-      <w>441</w>
-      <h>161</h>
+      <x>4615</x>
+      <y>468</y>
+      <w>819</w>
+      <h>299</h>
     </coordinates>
     <panel_attributes>CartaoDebitoDAO
 --
@@ -669,10 +661,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>679</x>
-      <y>2604</y>
-      <w>441</w>
-      <h>161</h>
+      <x>4628</x>
+      <y>832</y>
+      <w>819</w>
+      <h>299</h>
     </coordinates>
     <panel_attributes>CategoriaDAO
 --
@@ -694,10 +686,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>693</x>
-      <y>2807</y>
-      <w>469</w>
-      <h>294</h>
+      <x>4654</x>
+      <y>1209</y>
+      <w>871</w>
+      <h>546</h>
     </coordinates>
     <panel_attributes>DespesaDAO
 --
@@ -731,10 +723,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>896</x>
-      <y>3136</y>
-      <w>399</w>
-      <h>189</h>
+      <x>5031</x>
+      <y>1820</y>
+      <w>741</w>
+      <h>351</h>
     </coordinates>
     <panel_attributes>UsuarioDAO
 --
@@ -757,10 +749,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>910</x>
-      <y>3374</y>
-      <w>399</w>
-      <h>189</h>
+      <x>5057</x>
+      <y>2262</y>
+      <w>741</w>
+      <h>351</h>
     </coordinates>
     <panel_attributes>ReceitaDAO
 --
@@ -784,10 +776,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>987</x>
-      <y>3661</y>
-      <w>168</w>
-      <h>77</h>
+      <x>5200</x>
+      <y>2795</y>
+      <w>312</w>
+      <h>143</h>
     </coordinates>
     <panel_attributes>Validacao
 --
@@ -796,6 +788,457 @@ Categoria
 +Validacao() 
 +isNumeric( strNum:String):boolean
 +isDate( dataString:String):boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>13</x>
+      <y>2678</y>
+      <w>611</w>
+      <h>338</h>
+    </coordinates>
+    <panel_attributes>
+Receita
+--
+-dia: int
+-mes: int
+-ano: int
+-total: float
+- idConta: int
+-salvaMes: int
+-salvaAno: int
+-codDespesa: int
+--
++VerificaTotal(): boolean
++verifica_ReceitaValida(): boolean
++Update_CamposValidos(dia: String, mes: String, ano: String): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>52</x>
+      <y>3159</y>
+      <w>286</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>
+TelaLogin
+--
+
+--
++TelaLogin()
++logar(): void
++cadastro():void
++Recupera_senha():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>52</x>
+      <y>3354</y>
+      <w>273</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>TelaAtualizarCartaoCredito
+--
+
+--
++TelaAtualizarCartaoCredito()
++TelaCartaoCredito(): void
++AtualizarCartaoCredito():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>3536</y>
+      <w>286</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>TelaAtualizarCartaoDebito
+--
+
+--
++TelaAtualizarCartaoDebito()
++TelaCartaoDebito(): void
++AtualizarCartaoDebito():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>39</x>
+      <y>3744</y>
+      <w>273</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>TelaAtualizarDespesa
+--
+
+--
++TelaAtualizarDespesa()
++TelaDespesa(): void
++AtualizarDespesa():void
++CarregaCategoria(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>5005</y>
+      <w>546</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>TelaCartao_debito
+--
+-salva_num_cartao_debito:long
+-salvaLinhaAtiva: boolean
+--
++TelaCartao_debito()
++TelaPrincipal():void
++TelaUsuario():void
++TelaAtualizarCartaoDebito(cartaoDebito:CartaoDebito):void
++HabilitarConsulta():void
++DesabilitarConsulta():void
++sair():void
++TelaReceita():void
++TelaCartaoDebito_cadastrar():void
++RecarregaTabela():void
++AtualizarCartaoDebito():void
++ApagarCartaoDebito():void
++ConsultaCartaoDebito(ordenar:boolean):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>52</x>
+      <y>4160</y>
+      <w>273</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>TelaCartaoCredito_cadastrar
+--
+
+--
++TelaCartaoCredito_cadastrar()
++TelaPrincipal(): void
++TelaCartaoCredito():void
++CadastrarCartaoCredito():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>78</x>
+      <y>4381</y>
+      <w>286</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>TelaCartaoDebito_cadastrar
+--
+
+--
++TelaCartaoDebito_cadastrar()
++voltaTelaCartaoDebito(): void
++TelaPrincipal():void
++CadastrarCartaoDebito() :void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>4602</y>
+      <w>546</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>TelaCartao_credito
+--
+-salva_num_cartao:long
+-salvaLinhaAtiva: boolean
+--
++TelaCartao_credito()
++TelaPrincipal():void
++TelaReceita():void
++TelaCadastrarCartaoCredito():void
++TelaUsuario():void
++TelaAtualizarCartaoCredito(cartaoCredito:CartaoCredito): void
++TelaFatura():void
++Sair():void
++RecarregaTabela():void
++HabilitarConsulta():void
++DesabilitarConsulta():void
++AtualizarCartaoCredito():void
++ApagarCartaoCredito():void
++ConsultaCartaoCredito(ordenar:boolean):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>104</x>
+      <y>5824</y>
+      <w>312</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>TelaCategoria_cadastrar
+--
+
+--
++TelaCategoria_cadastrar()
++TelaPrincipal():void
++volta_telaCategoria():void
++limpa_campo():void
++cadastro_categoria():void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>143</x>
+      <y>5447</y>
+      <w>377</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes>TelaCategoria
+--
+-salvaLinhaAtiva: boolean
+--
++TelaCategoria()
++TelaPrincipal():void
++limpa_campo():void
++TelaCategoria_cadastrar() :void
++HabilitarConsulta():void
++DesabilitarConsulta():void
++AtualizarCategoria():void
++ApagarCategoria() :void
++RecarregaTabela(ordena:boolean):void
++ConsultaCategoria(ordenar:boolean):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>117</x>
+      <y>6045</y>
+      <w>403</w>
+      <h>429</h>
+    </coordinates>
+    <panel_attributes>TelaDespesa
+--
+-salvaF_pagamento: String
+-salvaStatus: String
+-salvaCodigoDespesa: int
+-salvaLinhaAtiva:boolean
+
+--
++TelaDespesa()
++TelaPrincipal():void
++TelaAtualizarDespesa(despesa:Despesa):void
++TelaCartaoCredito():void
++TelaCartaoDebito():void
++TelaReceita():void
++HabilitarConsulta():void
++DesabilitarConsulta():void
++TelaCadastrar_cadastrar():void
++RecarregaTabela_Despesa():void
++PesquisaDespesa(ordenar:boolean):void
++AtualizarDespesa():void
++ApagarDespesa():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>104</x>
+      <y>6513</y>
+      <w>403</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes>TelaDespesa
+--
+-salvaF_pagamento: String
+-salvaStatus: String
+-salvaCodigoDespesa: int
+-salvaLinhaAtiva:boolean
+
+--
++TelaDespesa_cadastrar()
++TelaDespesa() :void
++Volta_TelaPrincipal():void
++CarregaCategoria():void
++CadastrarDespesa():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>6838</y>
+      <w>351</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>TelaFatura
+--
+
+--
++TelaFatura():void
++TelaCartaoCredito():void
++RecarregaTabelaFaturas():void
++CarregaInfoCartao():void
++ConsultaFatura(ordena:boolean):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>104</x>
+      <y>7046</y>
+      <w>273</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes>TelaPrincipal
+--
+
+--
++TelaPrincipal()
++TelaUsuario():void
++TelaReceita():void
++TelaCartaoCredito():void
++TelaCartaoDebito() :void
++TelaDespesa():void
++TelaCategoria():void
++CarregaTabela():void
++CarregaRelogio():void
++sair():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>78</x>
+      <y>7384</y>
+      <w>481</w>
+      <h>338</h>
+    </coordinates>
+    <panel_attributes>TelaReceita
+--
+-salvaLinhaAtiva: boolean
+--
++TelaReceita()
++TelaPrincipal():void
++TelaCartaoCredito():void
++TelaCartaoDebito():void
++TelaDespesa():void
++HabilitarConsulta():void
++DesabilitarConsulta():void
++TelaReceitaCadastrar():void
++RecarregaTabela():void
++TelaAtualizarReceita(receita:Receita):void
++AtualizarReceita() :void
++ApagarReceita():void
++ConsultaReceita(ordenar:boolean):void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>7761</y>
+      <w>312</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>TelaReceita_cadastrar
+--
+
+--
++TelaReceita_cadastrar() 
++TelaPrincipal():void
++TelaReceita():void
++CadastrarReceita():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>104</x>
+      <y>7943</y>
+      <w>260</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>TelaUsuario
+--
+
+--
++TelaUsuario() 
++TelaPrincipal():void
++TelaUsuario_senha():void
++AtualizarUsuario():void
++TelaLogin():void
++ApagarUsuario():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>8411</y>
+      <w>234</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>TelaUsuario_senha
+--
+-salvaId:int
+--
++Tela_NovaSenha()
++volta_telaLogin():void
++recebeID(id:int):void
++nova_Senha():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>8190</y>
+      <w>260</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>TelaUsuario_cadastrar
+--
+
+--
++TelaUsuario_cadastrar()
++volta_telaLogin():void
++CadastrarUsuario():void
++VoltarLogin():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>8606</y>
+      <w>247</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>Tela_RecuperaSenha
+--
+
+--
++Tela_RecuperaSenha()
++NovaSenha(id:int):void
++volta_telaLogin():void
++RecuperaSenha():void</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

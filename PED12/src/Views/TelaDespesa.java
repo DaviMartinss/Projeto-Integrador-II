@@ -18,10 +18,10 @@ import com.mysql.cj.util.StringUtils;
 
 public class TelaDespesa extends javax.swing.JFrame {
 
-    String salvaF_pagamento = null;
-    String salvaStatus = null;
-    int salvaCodigoDespesa = -1;
-    boolean salvaLinhaAtiva = false;
+    private String salvaF_pagamento = null;
+    private String salvaStatus = null;
+    private int salvaCodigoDespesa = -1;
+    private boolean salvaLinhaAtiva = false;
 
     public TelaDespesa() {
         initComponents();
