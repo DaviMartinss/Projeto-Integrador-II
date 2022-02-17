@@ -41,7 +41,6 @@ public class ControlerTabela {
         }  
     }
     
-
     public static DefaultTableModel RecarregaTabela(DefaultTableModel mp, int conta_id,String tipoTabela){
         
         try {

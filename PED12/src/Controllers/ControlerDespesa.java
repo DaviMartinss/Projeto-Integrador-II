@@ -309,7 +309,6 @@ public class ControlerDespesa {
         
     }
     
-    
     public static LinkedList<Despesa> ConsultaDespesa(String tipo, String arg, boolean ordenar, int id_conta){
         
          DespesaDAO despesaDAO = new DespesaDAO();

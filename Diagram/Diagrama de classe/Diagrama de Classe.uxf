@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>9</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>1836</y>
-      <w>423</w>
-      <h>234</h>
+      <x>182</x>
+      <y>1428</y>
+      <w>329</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>
 Receita
@@ -29,10 +29,10 @@ Receita
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>81</x>
-      <y>1404</y>
-      <w>189</w>
-      <h>171</h>
+      <x>245</x>
+      <y>1092</y>
+      <w>147</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Package::FatClass
@@ -52,10 +52,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>18</x>
-      <y>1701</y>
-      <w>288</w>
-      <h>117</h>
+      <x>196</x>
+      <y>1323</y>
+      <w>224</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>
 Categoria
@@ -70,10 +70,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>18</y>
-      <w>297</w>
-      <h>171</h>
+      <x>532</x>
+      <y>14</y>
+      <w>231</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>Cartao
 --
@@ -92,10 +92,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>216</x>
-      <y>288</y>
-      <w>306</w>
-      <h>414</h>
+      <x>350</x>
+      <y>224</y>
+      <w>238</w>
+      <h>322</h>
     </coordinates>
     <panel_attributes>CartaoCredito
 --
@@ -131,10 +131,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>144</x>
-      <y>720</y>
-      <w>459</w>
-      <h>270</h>
+      <x>294</x>
+      <y>560</y>
+      <w>357</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>CartaoCreditoBuild
 --
@@ -162,10 +162,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>675</x>
-      <y>279</y>
-      <w>297</w>
-      <h>234</h>
+      <x>707</x>
+      <y>217</y>
+      <w>231</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>CartaoDebito
 --
@@ -189,10 +189,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>657</x>
-      <y>531</y>
-      <w>351</w>
-      <h>189</h>
+      <x>693</x>
+      <y>413</y>
+      <w>273</w>
+      <h>147</h>
     </coordinates>
     <panel_attributes>CartaoDebitoBuild
 --
@@ -213,10 +213,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1206</x>
+      <x>1120</x>
       <y>0</y>
-      <w>297</w>
-      <h>225</h>
+      <w>231</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>Data
 --
@@ -240,10 +240,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1206</x>
-      <y>243</y>
-      <w>297</w>
-      <h>171</h>
+      <x>1120</x>
+      <y>189</y>
+      <w>231</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>DataBuild
 --
@@ -262,10 +262,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1647</x>
-      <y>342</y>
-      <w>297</w>
-      <h>234</h>
+      <x>1463</x>
+      <y>266</y>
+      <w>231</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>UsuarioBuild
 --
@@ -290,10 +290,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1647</x>
-      <y>18</y>
-      <w>297</w>
-      <h>279</h>
+      <x>1463</x>
+      <y>14</y>
+      <w>231</w>
+      <h>217</h>
     </coordinates>
     <panel_attributes>Usuario
 --
@@ -321,10 +321,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1332</x>
-      <y>1053</y>
-      <w>369</w>
-      <h>504</h>
+      <x>1218</x>
+      <y>819</y>
+      <w>287</w>
+      <h>392</h>
     </coordinates>
     <panel_attributes>DespesaBuild
 --
@@ -377,10 +377,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>945</x>
-      <y>1053</y>
-      <w>342</w>
-      <h>756</h>
+      <x>917</x>
+      <y>819</y>
+      <w>266</w>
+      <h>588</h>
     </coordinates>
     <panel_attributes>Despesa
 --
@@ -437,6 +437,324 @@ Categoria
 +ValidarCategoria(categoria: String): boolean
 
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>889</x>
+      <y>3143</y>
+      <w>469</w>
+      <h>294</h>
+    </coordinates>
+    <panel_attributes>ReceitaDAO
+--
+-conexao: Connection 
+--
++ReceitaDAO()
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>2415</y>
+      <w>441</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ControlerCartaoDebito
+--
+
+--
++CadastrarCartaoDebito(cartao_debito:CartaoDebito):boolean 
++UpdateValorAtualCartaoDebito(id_conta:int, valor:float, num_cartao:long):boolean 
++DespesaCartaoExiste(num_cartao:long):boolean
++GetCartaoDebito(numCartao:long, id_conta:int):CartaoDebito
++AtualizarCartaoDebito(cartao_debito:CartaoDebito):boolean
++ApagarCartaoDebito(cartao_debito:CartaoDebito): boolean
++ConsultaCartaoDebito(tipo:String, arg:String, id_conta:int, ordenar:boolean): List&lt;CartaoDebito&gt;
++GetListaCartaoDebito(id_conta:int): List&lt;CartaoDebito&gt; 
++CartaoDebitoExiste(cartao:CartaoDebito): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>161</x>
+      <y>2744</y>
+      <w>469</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>ControlerDespesa
+--
+
+--
++CadastrarDespesa(despesa: Despesa):boolean
++AtualizarDespesa(despesa:Despesa):boolean
++ApagarDespesa(despesa:Despesa):boolean
++GetListaDespesa(id_conta:int):List&lt;Despesa&gt;
++GetListaDespesa(id_conta:int,  status:String):List&lt;Despesa&gt;
++GetListaDespesaFatura(numCartaoCredito:Long, id_conta:int): List&lt;Despesa&gt; 
++GetListaDespesaNpPorReceita(id_conta:int, status:String, receita:Receita):List&lt;Despesa&gt; 
++ConsultaDespesa(tipo:String, arg:String, ordenar:boolean, id_conta:int): List&lt;Despesa&gt; 
++ConsultaDespesaFatura(tipo:String, arg:String, id_conta:int, ordenar:boolean): List&lt;Despesa&gt; 
++ConsultaDespesaPorReceita(tipo:String, arg:String, ordenar:boolean, receita:Receita):List&lt;Despesa&gt; 
++TransferirDespesasEntreReceitas(lista_despesasNp:List&lt;Despesa&gt;, receita_nova:Receita):boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>2576</y>
+      <w>441</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ControlerCategoria
+--
+
+--
++CadastrarCategoria(categoria:Categoria):boolean
++AtualizarCategoria(categoria:Categoria):boolean
++GetCategoriaId(id_conta:int, categoria:String):int
++CategoriaExiste(categoria:String, id_conta:int):boolean
++GetTipoCategoria(id_categoria:int, id_conta:int):String
++ApagarCategoria(categoria:Categoria, id_conta:int):boolean
++GetListaCategoria(id_conta:int): List&lt;Categoria&gt;
++ConsultaCategoria( arg:String,  id_conta:int, ordenar:boolean): List&lt;Categoria&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>161</x>
+      <y>2940</y>
+      <w>469</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>ControlerReceita
+--
+
+--
++ReceitaTemSaldo(receita:Receita, valor:float):boolean
++CadastrarReceita(receita_nova:Receita):boolean
++AtualizarReceita(receita:Receita):boolean
++ApagarReceita(receita:Receita):boolean
++GetListaReceita(id_conta:int): List&lt;Receita&gt; 
++GetUltimaReceita(conta_id:int): Receita
++GetReceitaAtual(conta_id:int): Receita
++UpdateTotalReceita(conta_id: int, valor: float, cod_receita: int):boolean
++GetCodigoReceita(conta_id: int, mes: int, ano:int): int
++ConsultaReceita(tipo: String, arg: String, id_conta: int, ordenar: boolean): List&lt;Receita&gt; 
++ReceitaExiste(mes: int, ano: int, id_conta:int): boolean
++GetReceita(mes: int, ano: int, id_conta: int): Receita</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>3318</y>
+      <w>469</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>ControlerUser
+--
+
+--
++Logar(user:Usuario): boolean
++CadastrarUsuario(usuario:Usuario):boolean
++AtualizarUsuario(usuario:Usuario):boolean
++ApagarUsuario(id:int):boolean
++AtualizarSenha(usuario:Usuario): boolean
++GetUsuario(id_conta:String): Usuario
++NomeUsuario(id_conta:String):String
++EmailExiste(email:String):boolean
++ConsultarEmail(id: int): String
++consultaId(email: String): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>3185</y>
+      <w>847</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>ControlerTabela
+--
+
+--
++LimpaTabela(tabela: JTable): void
++RecarregaTabela(mp: DefaultTableModel, conta_id:int,tipoTabela: String): DefaultTableModel
++RecarregaTabelaConsulta(mp: DefaultTableModel,  tipo:String,  argumento: String, conta_id:int, ordenar:boolean, receitaConsulta:Receita, tipoTabela:String): DefaultTableModel
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>2240</y>
+      <w>441</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ControlerCartaoCredito
+--
+
+--
++CadastrarCartaoCredito(cartao_credito: CartaoCredito): boolean
++UpdateCreditoFaturaCartaoCredito(id_conta: int, valor:float, num_cartao:long): boolean
++AtualizarCartaoCredito(cartao_credito:CartaoCredito):boolean
++ApagarCartaoCredito(cartao_credito:CartaoCredito):boolean
++GetListaCartaoCredito(id_conta: int): List&lt;CartaoCredito&gt;
++CartaoCreditoExiste(cartao:CartaoCredito): boolean
++GetCartaoCredito(numCartao:long, id_conta:int): CartaoCredito
++ConsultaCartaoCredito(tipo:String, arg:String, id_conta:int, ordenar:boolean):List&lt;CartaoCredito&gt; 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>658</x>
+      <y>2219</y>
+      <w>441</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>CartaoCreditoDAO
+--
+-conexao: Connection 
+--
++CartaoCreditoDAO()
++UpdateCreditoFaturaCartaoCredito(id_conta: int, valor:float, num_cartao:long): void
++InsertCartaoCredito(cartao_credito: CartaoCredito): void
++DespesaNpCartaoExiste(num_cartao:long): boolean
++UpdateCartaoCredito(cartao_credito:CartaoCredito):void 
++DeleteCartaoCredito(cartao_credito: CartaoCredito):void
++GetListaCartaoCredito(id_conta: int): List&lt;CartaoCredito&gt;
++Carrega_Faturas(id_conta:int): List&lt;CartaoCredito&gt;
++ConsultaCartaoCredito(tipo:String, arg:String, id_conta:int, ordenar:boolean): List&lt;CartaoCredito&gt; 
++CartaoCreditoExiste(cartao:CartaoCredito): boolean
++GetCartaoCredito(numCartao: long, id_conta:int): CartaoCredito</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>2408</y>
+      <w>441</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>CartaoDebitoDAO
+--
+-conexao: Connection 
+--
++CartaoDebitoDAO()
++InsertCartaoDebito(cartaoDB: CartaoDebito): void
++DespesaCartaoExiste(num_cartao: long): boolean
++UpdateCartaoDebito( cartao_debito: CartaoDebito): void
++DeleteCartaoDebito(cartao_debito: CartaoDebito): void
++UpdateValorAtualCartaoDebito(id_conta:int, valor:float, num_cartao:long):void
++GetListaCartaoDebito(id_conta: int): List&lt;CartaoDebito&gt; 
++ConsultaCartaoDebito( tipo:String,  arg:String,  id_conta:int,  ordenar:boolean): List&lt;CartaoDebito&gt; 
++CartaoDebitoExiste( cartao:CartaoDebito):boolean
++GetCartaoDebito( numCartao:long,  id_conta:int) :CartaoDebito</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>679</x>
+      <y>2604</y>
+      <w>441</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>CategoriaDAO
+--
+-conexao: Connection 
+--
++CategoriaDAO() 
++InsertCategoria( categoria:Categoria):void
++UpdateCategoria(Categoria categoria):void
++DeleteCategoria( categoria_id:int,  conta_id:int) :void
++ConsultaCategoria( arg:String,  id_conta:int,  ordenar:boolean):List&lt;Categoria&gt;
++GetCategoriaId( id_conta:int,  categoria:String):int
++GetListaCategoria(id_conta:int): List&lt;Categoria&gt; 
++CategoriaExiste(categoria: String, id_conta:int): boolean
++CategoriaDespesaExiste( categoria: String,  id_conta: int): boolean
++GetCategoriaData( cat:Categoria,  id:int,  id_apag:int): boolean
++GetTipoCategoria( id_categoria:int,  id_conta:int):String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>693</x>
+      <y>2807</y>
+      <w>469</w>
+      <h>294</h>
+    </coordinates>
+    <panel_attributes>DespesaDAO
+--
+-conexao: Connection 
+--
++DespesaDAO()
++GetCodigoDespesa( id_conta:int,  dia:int,  mes:int,  ano:int):int
++InsertDespesa( despesa:Despesa,  cod_receita:int,  id_categoria:int): void
++InsertDespesaCredito( despesa:Despesa):void
++DespesaCCTemCredito( num_cartao:long,  valor:float,  id_conta:int):boolean
++UpdateDespesaTipoCredito( despesa:Despesa,  id_categoria:int):void
++UpdateDespesaTipoDebito( despesa:Despesa,  id_categoria:int):void
++UpdateDespesaTipoDinheiro( despesa:Despesa,  id_categoria:int):void
++DeleteDespesa( despesa:Despesa): void
++GetListaDespesaCredito( id_conta:int): List&lt;Despesa&gt;
++GetListaDespesaCredito( id_conta:int,  status:String):List&lt;Despesa&gt; 
++GetListaDespesaDebito( id_conta:int): List&lt;Despesa&gt; 
++GetListaDespesaDebito( id_conta:int,  status:String): List&lt;Despesa&gt; 
++GetListaDespesaDinheiro( id_conta:int): List&lt;Despesa&gt;
++GetListaDespesaDinheiro( id_conta:int,  status:String): List&lt;Despesa&gt; 
++GetListaDespesaNpPorReceita( id_conta:int,  status:String,  receita:Receita):List&lt;Despesa&gt; 
++ConsultaDespesaPorReceita( tipo:String,  arg:String,  ordenar:boolean,  receita:Receita):List&lt;Despesa&gt; 
++ConsultaDespesa( tipo:String,  arg:String,  ordenar:boolean,  id_conta:int):List&lt;Despesa&gt; 
++DespesaExiste( despesa:Despesa):boolean
++GetListaDespesasNpUltimaReceita(receita:Receita): List&lt;Despesa&gt;
++UpdateMesAnoDespesa( despesa:Despesa,  receita_nova:Receita):void
++GetListaDespesaFatura( numCartaoCredito;Long,  id_conta:int):List&lt;Despesa&gt; 
++ConsultaDespesaFatura( tipo:String,  arg:String,  id_conta:int,  ordenar:boolean):List&lt;Despesa&gt; </panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
