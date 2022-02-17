@@ -442,45 +442,16 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>889</x>
-      <y>3143</y>
-      <w>469</w>
-      <h>294</h>
+      <x>1001</x>
+      <y>3584</y>
+      <w>133</w>
+      <h>56</h>
     </coordinates>
-    <panel_attributes>ReceitaDAO
+    <panel_attributes>ModuloConexao
 --
--conexao: Connection 
+
 --
-+ReceitaDAO()
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+
-+</panel_attributes>
++conector():Connection</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -755,6 +726,76 @@ Categoria
 +UpdateMesAnoDespesa( despesa:Despesa,  receita_nova:Receita):void
 +GetListaDespesaFatura( numCartaoCredito;Long,  id_conta:int):List&lt;Despesa&gt; 
 +ConsultaDespesaFatura( tipo:String,  arg:String,  id_conta:int,  ordenar:boolean):List&lt;Despesa&gt; </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>896</x>
+      <y>3136</y>
+      <w>399</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>UsuarioDAO
+--
+-conexao: Connection 
+--
++UsuarioDAO()
++Logar( user:Usuario):boolean
++CadastrarUsuario( usuario:Usuario):boolean
++UpdateUser( usuario:Usuario): boolean
++UpdateSenha( usuario: Usuario): boolean
++GetUsuario(id_conta: String ): Usuario
++NomeUsuario( id_conta:String): String
++DeleteUser( id:int): boolean
++VerificaEmailExiste( email:String):boolean
++ConsultaEmail( id:int):String
++ConsultaId( email:String):int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>3374</y>
+      <w>399</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>ReceitaDAO
+--
+-conexao: Connection 
+--
++ReceitaDAO()
++GetReceitaSaldo( receita:Receita,  valor:float):float
++InsertReceita( receita_nova:Receita): void
++UpdateReceita( receita:Receita):void
++DeleteReceita( receita:Receita):void
++GetListaReceita( id_conta:int): List&lt;Receita&gt; 
++GetUltimaReceita( conta_id:int): Receita
++GetReceitaAtual( conta_id:int): Receita
++UpdateTotalReceita( id_conta:int,  valor:float,  cod_receita:int):void
++GetCodigoReceita( id_conta:int,  mes:int,  ano:int): int
++ConsultaReceita( tipo:String,  arg:String,  id_conta:int, ordenar:boolean): List&lt;Receita&gt; 
++ReceitaExiste( mes:int,  ano:int,  id_conta:int): boolean
++GetReceita( mes:int,  ano:int,  id_conta:int): Receita</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>987</x>
+      <y>3661</y>
+      <w>168</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Validacao
+--
+-formatDate:SimpleDateFormat
+--
++Validacao() 
++isNumeric( strNum:String):boolean
++isDate( dataString:String):boolean</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
