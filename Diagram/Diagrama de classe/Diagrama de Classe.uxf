@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>4</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>908</y>
-      <w>188</w>
-      <h>104</h>
+      <x>0</x>
+      <y>1836</y>
+      <w>423</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>
 Receita
@@ -29,10 +29,10 @@ Receita
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>116</x>
-      <y>716</y>
-      <w>84</w>
-      <h>76</h>
+      <x>81</x>
+      <y>1404</y>
+      <w>189</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Package::FatClass
@@ -52,10 +52,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>88</x>
-      <y>848</y>
-      <w>128</w>
-      <h>52</h>
+      <x>18</x>
+      <y>1701</y>
+      <w>288</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>
 Categoria
@@ -70,10 +70,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>100</y>
-      <w>132</w>
-      <h>76</h>
+      <x>450</x>
+      <y>18</y>
+      <w>297</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>Cartao
 --
@@ -92,10 +92,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>176</x>
-      <y>220</y>
-      <w>136</w>
-      <h>184</h>
+      <x>216</x>
+      <y>288</y>
+      <w>306</w>
+      <h>414</h>
     </coordinates>
     <panel_attributes>CartaoCredito
 --
@@ -132,9 +132,9 @@ Categoria
     <id>UMLClass</id>
     <coordinates>
       <x>144</x>
-      <y>412</y>
-      <w>204</w>
-      <h>120</h>
+      <y>720</y>
+      <w>459</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>CartaoCreditoBuild
 --
@@ -162,10 +162,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>380</x>
-      <y>216</y>
-      <w>132</w>
-      <h>104</h>
+      <x>675</x>
+      <y>279</y>
+      <w>297</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>CartaoDebito
 --
@@ -189,10 +189,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>372</x>
-      <y>328</y>
-      <w>156</w>
-      <h>84</h>
+      <x>657</x>
+      <y>531</y>
+      <w>351</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>CartaoDebitoBuild
 --
@@ -213,10 +213,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>616</x>
-      <y>92</y>
-      <w>132</w>
-      <h>100</h>
+      <x>1206</x>
+      <y>0</y>
+      <w>297</w>
+      <h>225</h>
     </coordinates>
     <panel_attributes>Data
 --
@@ -240,10 +240,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>616</x>
-      <y>200</y>
-      <w>132</w>
-      <h>76</h>
+      <x>1206</x>
+      <y>243</y>
+      <w>297</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>DataBuild
 --
@@ -262,10 +262,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>244</y>
-      <w>132</w>
-      <h>104</h>
+      <x>1647</x>
+      <y>342</y>
+      <w>297</w>
+      <h>234</h>
     </coordinates>
     <panel_attributes>UsuarioBuild
 --
@@ -290,10 +290,10 @@ Categoria
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>812</x>
-      <y>100</y>
-      <w>132</w>
-      <h>124</h>
+      <x>1647</x>
+      <y>18</y>
+      <w>297</w>
+      <h>279</h>
     </coordinates>
     <panel_attributes>Usuario
 --
@@ -315,6 +315,127 @@ Categoria
 +validaTamSenha(senha: String): boolean
 +EhVazio(rec: String): boolean
 +UpdateEhVazio(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1332</x>
+      <y>1053</y>
+      <w>369</w>
+      <h>504</h>
+    </coordinates>
+    <panel_attributes>DespesaBuild
+--
+-dia: int
+-mes: int
+-ano: int
+-valor: float
+-categoria: String
+-descricao: String
+-f_pagamento: String
+-num_cartao: Long
+-estatus: String
+-num_parcelas: int
+-num_parcelas_pagas: int
+-valor_parcela: float
+-id_conta: int
+-cod_despesa: int;
+-id_categoria: int;
+--
++DespesaBuild()
++DespesaBuild(codDespesa: int)
++Dia(dia: int): DespesaBuild
++Mes(mes: int): DespesaBuild
++Ano(ano: int): DespesaBuild
++Valor(valor: float): DespesaBuild
++Categoria(categoria: String): DespesaBuild
++Descricao(descricao: String): DespesaBuild
++FormaPagamento(formaPagamento: String): DespesaBuild
++NumeroCartao(numCartao: long): DespesaBuild
++Status(status: String): DespesaBuild
++NumeroParcelas(numeroParcelas: int): DespesaBuild
++NumeroParcelasPagas(numParcelasPagas: int): DespesaBuild
++ValorParcela(valorParcela: float): DespesaBuild
++IdConta(idConta:int): DespesaBuild
++idCategoria(idCategoria:int): DespesaBuild
++build(): Despesa
+
+
+
+
+
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>945</x>
+      <y>1053</y>
+      <w>342</w>
+      <h>756</h>
+    </coordinates>
+    <panel_attributes>Despesa
+--
+-dia: int
+-mes: int
+-ano: int
+-valor: float
+-categoria: String
+-descricao: String
+-f_pagamento: String
+-num_cartao: Long
+-estatus: String
+-num_parcelas: int
+-num_parcelas_pagas: int
+-valor_parcela: float
+-id_conta: int
+-cod_despesa: int;
+-id_categoria: int;
+--
++Despesa(DespesaBuild build)
++getNum_parcelas_pagas(): int
++setNum_parcelas_pagas(num_parcelas_pagas: int): void
++getValor_parcela(): float
++setValor_parcela(valor_parcela:float): void
++getDia(): int
++setDia(dia: int):void
++getMes(): int
++setMes(mes: int): void 
++getAno(): int
++setAno(ano: int): void
++getValor(): float
++setValor(valor: float): void
++getCategoria(): String
++setCategoria(categoria: String): void
++getDescricao(): String
++setDescricao(descricao: String): void
++getF_pagamento():String
++setF_pagamento(f_pagamento: String): void
++getNum_cartao(): long
++setNum_cartao(num_cartao: Long): void
++getEstatus(): String
++setEstatus(estatus: String): void 
++getNum_parcelas(): int
++setNum_parcelas(num_parcelas: int): void
++getId_conta(): int
++setId_conta(id_conta: int): void
++getCod_despesa(): int
++setCod_despesa(cod_despesa: int): void
++getId_categoria(): int
++setId_categoria(id_categoria: int): void
++validaNumParcelas(): boolean
++ValidarValorDespesa(): boolean
++ValidarNumCartao(): boolean
++ValidarCategoria(categoria: String): boolean
+
 </panel_attributes>
     <additional_attributes/>
   </element>
